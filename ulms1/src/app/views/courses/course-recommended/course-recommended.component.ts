@@ -25,15 +25,17 @@ export class CourseRecommendedComponent implements OnChanges {
     ngOnChanges() {
         clearInterval(this.currentItemInterval);
         this.currentItemData = this.transFormViewObject(this.itemData);
-        if(this.itemData.items.length){
+        if (this.itemData.items.length) {
             this.currentItemData = this.transFormViewObject(this.itemData);
             this.updatePageItem(this.currentItemData);
-        }else{
-            this.noItems = true
+        } else {
+            this.noItems = true;
         }
     }
 
-    clickUrl(id?: string) {}
+    clickUrl(id: string) {
+        this.router.navigate(['courses', id]);
+    }
 
     updatePageItem(currentList: any) {
         let itemNum = 0;
@@ -63,13 +65,13 @@ export class CourseRecommendedComponent implements OnChanges {
                 links: this.commonService.getLinks(item), // Launch button + links
                 status: this.commonService.getRecommendedStatus(invitation), // Status button
                 organization: this.commonService.getOrganizationName(invitation), // Meghívó szervezet
-                resultStartDate: this.commonService.getCourseResultStartDate(courseObject), //Kurzus kezdete
-                resultEndDate: this.commonService.getResultEndDate(courseObject), //Kurzus vége
+                resultStartDate: this.commonService.getCourseResultStartDate(courseObject), // Kurzus kezdete
+                resultEndDate: this.commonService.getResultEndDate(courseObject), // Kurzus vége
                 netTimeLimit: this.commonService.getNetTimeLimit(courseObject), // Idő keret
                 suggestedTime: this.commonService.getCourseSuggestedTime(courseObject), // Várható tanulási idő
                 expirationTime: this.commonService.getExpirationTime(course), // Beiratkozás határideje
                 description: this.commonService.getCourseDescription(course), // Leírás
-            })
+            });
         });
 
         return courseRecommendedView;

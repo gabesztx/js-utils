@@ -1,4 +1,5 @@
 import { Component, OnChanges, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { CommonService } from '../../../services/common/common.service';
 import { slideInOutKeyFrameAnimation } from '../../../animations/course-animation';
 
@@ -17,8 +18,7 @@ export class CourseUpcomingComponent implements OnChanges {
     currentItemInterval: any;
     noItems: boolean;
 
-    constructor(private commonService: CommonService) {
-    }
+    constructor(private commonService: CommonService, private router: Router) {}
 
     ngOnChanges() {
         clearInterval(this.currentItemInterval);
@@ -28,6 +28,10 @@ export class CourseUpcomingComponent implements OnChanges {
         } else {
             this.noItems = true
         }
+    }
+
+    clickUrl(id: string) {
+        this.router.navigate(['courses', id]);
     }
 
     updatePageItem(currentList: any) {

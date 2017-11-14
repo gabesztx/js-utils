@@ -9,7 +9,7 @@ export class DescriptionComponent {
     @Input() className;
     @Input() description: any;
 
-    public isOpen: boolean = false;
+    public isOpen = false;
     textToggle() {
         this.isOpen = !this.isOpen;
     }

@@ -8,7 +8,7 @@ export const routes: Routes = [{
     path: 'courses',
     canActivate: [PreloadGuard], // To defer loading feature areas while resources load.
     loadChildren: 'app/views/courses/courses.module#CoursesModule'
-}/*, {
+}, {
     path: '',
     redirectTo: 'courses/list/active/1',
     pathMatch: 'full'
@@ -16,4 +16,4 @@ export const routes: Routes = [{
     path: '**',
     redirectTo: 'courses/list/active/1',
     pathMatch: 'full'
-}*/];
+}];

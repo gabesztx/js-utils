@@ -9,9 +9,9 @@
         <div class="courseItemTextBlock col-sm-7">
             <div class="courseItemTextBlockContent">
                 <div class="courseTitleContent">
-                    <a href="{{item.id}}">
-                        <div class="courseTitle">{{item.title}}</div>
-                    </a>
+                    <!-- Title -->
+                    <div class="courseTitle" (click)="clickUrl(item.id)">{{item.title}}</div>
+                    <!-- Label -->
                     <div *ngIf="item.label.length || item.providerName.length" class="courseLabelContent">
                         <span *ngIf="item.label.length" class="courseLabel">{{item.label}}</span>
                         <span *ngIf="item.label.length && item.providerName.length">-</span>
@@ -71,7 +71,6 @@
                             >
                             </ulms-status-text>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -87,8 +86,8 @@
                 <ulms-dropdown-split
                     [groupName]="'optional'"
                     [labelText]="'btn_enrollment' | translate"
-                    [urlId]=item.id
                     [itemData]=item.links
+                    (onButtonFn)="clickUrl(item.id)"
                 ></ulms-dropdown-split>
             </div>
         </div>
@@ -97,8 +96,14 @@
                 [description]=item.description
                 [className]="'course-list'"
             >
-
             </ulms-description>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="noItems">
+    <div class="noItemstext">
+        <div class="col-sm-12">
+            {{'msg_optional_course_list_is_empty' | translate}}
         </div>
     </div>
 </div>

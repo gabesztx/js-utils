@@ -1,5 +1,5 @@
 import { Component, OnChanges, OnDestroy, OnInit, Input } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { RestApiResponse } from '../../../services/base/http.class';
 import { CommonService } from '../../../services/common/common.service';
 import { CourseDetail } from '../../../models/courseDetail.model';
@@ -18,14 +18,23 @@ export class CourseClosedComponent implements OnChanges {
     currentItemData: any;
     currentItemListaData: any;
     currentItemInterval: any;
+    noItems = false;
 
-    constructor(private commonService: CommonService) {
+    constructor(private commonService: CommonService, private router: Router) {
     }
 
     ngOnChanges() {
         clearInterval(this.currentItemInterval);
-        this.currentItemData = this.transFormViewObject(this.itemData);
-        this.updatePageItem(this.currentItemData);
+        if (this.itemData.items.length) {
+            this.currentItemData = this.transFormViewObject(this.itemData);
+            this.updatePageItem(this.currentItemData);
+        } else {
+            this.noItems = true;
+        }
+    }
+
+    clickUrl(id: string) {
+        this.router.navigate(['courses', id]);
     }
 
     updatePageItem(currentList: any) {
@@ -44,7 +53,6 @@ export class CourseClosedComponent implements OnChanges {
     transFormViewObject(data: RestApiResponse<CourseDetail[]>) {
         const dataArray: Array<any> = [];
         data.items.forEach((value) => {
-
             const courseActivities = value.courseActivities[0];
             const id = value.id;
             const title = value.title;

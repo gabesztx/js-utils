@@ -1,4 +1,5 @@
 import { Component, OnChanges, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { CommonService } from '../../../services/common/common.service';
 import { slideInOutKeyFrameAnimation } from '../../../animations/course-animation';
 
@@ -15,14 +16,22 @@ export class CourseOptionalComponent implements OnChanges {
     currentItemData: any;
     currentItemListaData: any;
     currentItemInterval: any;
+    noItems = false;
 
-    constructor(private commonService: CommonService) {}
+    constructor(private commonService: CommonService, private router: Router) {
+    }
 
     ngOnChanges() {
         clearInterval(this.currentItemInterval);
-        // console.log('CourseOptionalComponent', this.itemData)
-        this.currentItemData = this.transFormViewObject(this.itemData);
-        this.updatePageItem(this.currentItemData);
+        if (this.itemData.items.length) {
+            this.currentItemData = this.transFormViewObject(this.itemData);
+            this.updatePageItem(this.currentItemData);
+        } else {
+            this.noItems = true;
+        }
+    }
+    clickUrl(id: string) {
+        this.router.navigate(['courses', id]);
     }
 
     updatePageItem(currentList: any) {
@@ -52,9 +61,9 @@ export class CourseOptionalComponent implements OnChanges {
 
             let links;
             if (value.links) {
-                value.links.forEach((value) => {
-                    if (value.rel === 'Reject') {
-                        links = value
+                value.links.forEach((valueData) => {
+                    if (valueData.rel === 'Reject') {
+                        links = valueData;
                     }
                 });
             }

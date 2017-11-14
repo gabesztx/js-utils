@@ -2,7 +2,7 @@
 
     <!-- Active & Closed -->
     <div class="btn-group" *ngIf="groupName === 'active' || groupName === 'closed'">
-        <button  (click)="btnClick()"  class="btn btn-left">{{labelText}}</button>
+        <button (click)="btnClick()" class="btn btn-left">{{labelText}}</button>
         <button type="button" class="btn btn-right" [disabled]=!itemData.length (click)="openDropDown()">
             <span class="caret"></span>
         </button>
@@ -19,6 +19,7 @@
             </ul>
         </div>
     </div>
+
     <!-- Recommended-->
     <div class="btn-group" *ngIf="groupName === 'recommended'">
         <a [href]="itemData[0].href" class="btn btn-left">{{labelText}}</a>
@@ -28,21 +29,18 @@
         <div class="dropdownMenuContent" *ngIf="isShow">
             <ul class="dropdownMenu" [ngClass]="{'open':isOpen}">
                 <div class="dropdown-item">
-                    <li role="menuitem">
-                        <a [href]="'/'" [target]="'/'">
-                            {{'btn_information' | translate}}
-                        </a>
+                    <li role="menuitem" (click)="btnClick()">
+                        {{'btn_information' | translate}}
                     </li>
                     <div *ngIf="itemData">
                         <div *ngFor="let item of itemData">
-                            <li role="menuitem" *ngIf="item.rel === 'Reject'">
-                                <a [href]="item.href"
-                                   [target]="item.target">
+                            <a [href]="item.href"
+                               [target]="item.target">
+                                <li role="menuitem" *ngIf="item.rel === 'Reject'">
                                     {{item.label}}
-                                </a>
-                            </li>
+                                </li>
+                            </a>
                         </div>
-
                     </div>
                 </div>
             </ul>
@@ -51,6 +49,7 @@
 
     <!-- Optional -->
     <div class="btn-group" *ngIf="groupName === 'optional'">
+        <!--TODO: BUTTON CLICK AND POST -->
         <a [href]="" class="btn btn-left">{{labelText}}</a>
         <button type="button" class="btn btn-right" [disabled]=false (click)="openDropDown()">
             <span class="caret"></span>
@@ -58,17 +57,15 @@
         <div class="dropdownMenuContent" *ngIf="isShow">
             <ul class="dropdownMenu" [ngClass]="{'open':isOpen}">
                 <div class="dropdown-item">
-                    <li role="menuitem">
-                        <a [href]="'/'" [target]="'/'">
-                            {{'btn_information' | translate}}
-                        </a>
+                    <li role="menuitem" (click)="btnClick()">
+                        {{'btn_information' | translate}}
                     </li>
                     <div *ngIf="itemData">
-                        <li role="menuitem" *ngFor="let item of itemData">
-                            <a [href]="item.href" [target]="item.target">
+                        <a [href]="" [target]="">
+                            <li role="menuitem" *ngFor="let item of itemData">
                                 {{item.label}}
-                            </a>
-                        </li>
+                            </li>
+                        </a>
                     </div>
                 </div>
             </ul>
@@ -77,11 +74,10 @@
 
     <!-- Upcoming -->
     <div class="btn-group" *ngIf="groupName === 'upcoming'">
-        <a [href]="" class="btn btn-left">{{labelText}}</a>
+        <button (click)="btnClick()" class="btn btn-left">{{labelText}}</button>
         <button type="button" class="btn btn-right" [disabled]=true (click)="openDropDown()">
             <span class="caret"></span>
         </button>
         <!--<div class="dropdownMenuContent"></div>-->
     </div>
 </div>
-
