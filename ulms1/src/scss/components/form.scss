@@ -1,0 +1,53 @@
+.nx-form {
+    min-height: 375px;
+    margin-bottom: 20px;
+    h3 {
+        font-size: 20px;
+        color: $nx-blue;
+        margin-bottom: 40px;
+        margin-top: 40px;
+    }
+    .nx-form__link {
+        margin: 10px 16px 10px 0;
+    }
+    .nx-form__items {
+        color: $nx-blue;
+        margin-left: 0 !important; // FIXME: Bootstrap override
+        margin-right: 0 !important; // FIXME: Bootstrap override
+    }
+    .nx-form__item-label {
+        padding-right: 0;
+        padding-left: 0;
+    }
+    .nx-form__item-icon {
+        @include fa-icon();
+        width: 20px;
+        height: 15px;
+        vertical-align: top;
+        margin-top: 0px;
+    }
+    .nx-form__item-icon--envelope {
+        @extend .#{$fa-css-prefix}-envelope;
+        font-size: 1.4em;
+    }
+    .nx-form__item-icon--unlock {
+        @extend .#{$fa-css-prefix}-unlock;
+        font-size: 1.4em;
+    }
+    .nx-form-button {
+        width: 100%;
+        display: block;
+        margin-top: 25px;
+    }
+    .nx-form__input-text--error {
+        background: $nx-error-bg;
+        border: 2px solid $nx-error-content;
+        &:hover {
+            border: 2px solid $nx-border-grey;
+        }
+    }
+    .nx-form__input--error-message {
+        margin-top: 10px;
+        color: $nx-error-content;
+    }
+}

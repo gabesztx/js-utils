@@ -1,0 +1,42 @@
+import { Component, OnInit, OnDestroy, OnChanges, Input, SimpleChange } from '@angular/core';
+import { connectableObservableDescriptor } from "rxjs/observable/ConnectableObservable";
+
+@Component({
+    selector: 'ulms-status-line',
+    templateUrl: './status-line.component.html',
+    styleUrls: ['./status-line.component.scss']
+})
+
+export class StatusLineComponent implements OnInit, OnDestroy, OnChanges {
+    @Input() labelText: string;
+    @Input() infoData: string;
+    @Input() value: number;
+    @Input() statusIcon: any;
+    @Input() requiredText: string;
+    numberTimeOut: any;
+    numberInterval: any;
+
+    public startValue = 0;
+    public endValue;
+
+    ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
+        this.numberTimeOut = setTimeout(() => {
+            if (this.value) {
+                this.numberInterval = setInterval(() => {
+                    if (this.startValue === this.value) {
+                        clearInterval(this.numberInterval);
+                        return;
+                    }
+                    this.startValue++;
+                }, 40)
+            }
+        }, 700);
+    }
+
+    ngOnInit() {}
+
+    ngOnDestroy() {
+        clearTimeout(this.numberTimeOut);
+        clearInterval(this.numberInterval);
+    }
+}

@@ -1,0 +1,111 @@
+<div class="courseListItemContainer upcoming" [@slideInOutKeyFrame] *ngFor="let item of currentItemListaData">
+    <div class="row">
+        <div class="courseItemImgBlock col-sm-2 hidden-xs">
+            <div class="imgContent">
+                <img src="{{item.imageUrl}}" alt="">
+            </div>
+        </div>
+        <div class="courseItemTextBlock col-sm-7">
+            <div class="courseItemTextBlockContent">
+                <div class="courseTitleContent">
+                    <a href="{{item.urlId}}">
+                        <div class="courseTitle">{{item.title}}</div>
+                    </a>
+                    <div *ngIf="item.label.length || item.providerName.length" class="courseLabelContent">
+                        <span *ngIf="item.label.length" class="courseLabel">{{item.label}}</span>
+                        <span *ngIf="item.label.length && item.providerName.length">-</span>
+                        <span *ngIf="item.providerName.length" class="courseProviderName">{{item.providerName}}</span>
+                    </div>
+                </div>
+                <div class="courseItemImgBlock">
+                    <div class="imgContent">
+                        <img src="{{item.imageUrl}}" alt="">
+                    </div>
+                </div>
+                <div class="courseResultWrapper">
+                    <div class="courseResultList recommended">
+                        <div class="statusTextConent">
+                            <!-- Beirato szervezet -->
+                            <ulms-status-text
+                                [labelText]="'lbl_registration_organization' | translate"
+                                [value]=item.registrarOrganization
+
+                            >
+                            </ulms-status-text>
+                        </div>
+                        <div class="statusTextConent">
+                            <!--Kurzus kezdete-->
+                            <ulms-status-text
+                                [labelText]="'lbl_result_start_date_course' | translate"
+                                [value]=item.resultStartDate
+
+                            >
+                            </ulms-status-text>
+                        </div>
+                        <div class="statusTextConent">
+                            <!--Kurzus vége-->
+                            <ulms-status-text
+                                [labelText]="'lbl_result_end_date_course' | translate"
+                                [value]=item.resultEndDate
+                            >
+                            </ulms-status-text>
+                        </div>
+                    </div>
+                    <div class="courseResultList recommended">
+                        <div class="statusTextConent">
+                            <!--Idő keret -->
+                            <ulms-status-text
+                                [className]="'upcoming'"
+                                [labelText]="'lbl_net_time_limit' | translate"
+                                [value]="item.netTimeLimit | toLocalTimeSpan:{id:'upcoming'}"
+                            >
+                            </ulms-status-text>
+                        </div>
+                        <div class="statusTextConent">
+                            <!--Várható tanulási idő -->
+                            <ulms-status-text
+                                [className]="'upcoming'"
+                                [labelText]="'lbl_suggested_time' | translate"
+                                [value]="item.suggestedTime | toLocalTimeSpan:{id:'upcoming'}"
+                            >
+                            </ulms-status-text>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="courseItemButtonBlock col-sm-3">
+            <div class="buttonContent">
+                <ulms-button
+                    [btnLabel]="item.btnLabel | translate"
+                    [btnIconClassName]="item.btnIconClassName"
+                >
+                </ulms-button>
+            </div>
+            <div class="dropDownContent">
+                <ulms-dropdown-split
+                    [groupName]="'upcoming'"
+                    [labelText]="'btn_information' | translate"
+                    [urlId]=item.urlId
+                    [itemData]=item.links
+                ></ulms-dropdown-split>
+            </div>
+        </div>
+        <div class="descriptionContent col-sm-12" *ngIf="item.description">
+            <ulms-description
+                [description]=item.description
+                [className]="'course-list'"
+            >
+
+            </ulms-description>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="noItems">
+    <div class="noItemstext">
+        <div class="col-sm-12">
+            {{'msg_upcoming_course_list_is_empty' | translate}}
+        </div>
+    </div>
+</div>

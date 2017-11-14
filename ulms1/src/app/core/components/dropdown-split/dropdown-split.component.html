@@ -1,0 +1,87 @@
+<div class="dropdownSplitComponent">
+
+    <!-- Active & Closed -->
+    <div class="btn-group" *ngIf="groupName === 'active' || groupName === 'closed'">
+        <button  (click)="btnClick()"  class="btn btn-left">{{labelText}}</button>
+        <button type="button" class="btn btn-right" [disabled]=!itemData.length (click)="openDropDown()">
+            <span class="caret"></span>
+        </button>
+        <div class="dropdownMenuContent" *ngIf="itemData.length">
+            <ul class="dropdownMenu" [ngClass]="{'open':isOpen}">
+                <div class="dropdown-item">
+                    <li role="menuitem" *ngFor="let item of itemData">
+                        <a [href]="item.href"
+                           [target]="item.target">
+                            {{item.dropDownItemLabel | translate}}
+                        </a>
+                    </li>
+                </div>
+            </ul>
+        </div>
+    </div>
+    <!-- Recommended-->
+    <div class="btn-group" *ngIf="groupName === 'recommended'">
+        <a [href]="itemData[0].href" class="btn btn-left">{{labelText}}</a>
+        <button type="button" class="btn btn-right" [disabled]=false (click)="openDropDown()">
+            <span class="caret"></span>
+        </button>
+        <div class="dropdownMenuContent" *ngIf="isShow">
+            <ul class="dropdownMenu" [ngClass]="{'open':isOpen}">
+                <div class="dropdown-item">
+                    <li role="menuitem">
+                        <a [href]="'/'" [target]="'/'">
+                            {{'btn_information' | translate}}
+                        </a>
+                    </li>
+                    <div *ngIf="itemData">
+                        <div *ngFor="let item of itemData">
+                            <li role="menuitem" *ngIf="item.rel === 'Reject'">
+                                <a [href]="item.href"
+                                   [target]="item.target">
+                                    {{item.label}}
+                                </a>
+                            </li>
+                        </div>
+
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Optional -->
+    <div class="btn-group" *ngIf="groupName === 'optional'">
+        <a [href]="" class="btn btn-left">{{labelText}}</a>
+        <button type="button" class="btn btn-right" [disabled]=false (click)="openDropDown()">
+            <span class="caret"></span>
+        </button>
+        <div class="dropdownMenuContent" *ngIf="isShow">
+            <ul class="dropdownMenu" [ngClass]="{'open':isOpen}">
+                <div class="dropdown-item">
+                    <li role="menuitem">
+                        <a [href]="'/'" [target]="'/'">
+                            {{'btn_information' | translate}}
+                        </a>
+                    </li>
+                    <div *ngIf="itemData">
+                        <li role="menuitem" *ngFor="let item of itemData">
+                            <a [href]="item.href" [target]="item.target">
+                                {{item.label}}
+                            </a>
+                        </li>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Upcoming -->
+    <div class="btn-group" *ngIf="groupName === 'upcoming'">
+        <a [href]="" class="btn btn-left">{{labelText}}</a>
+        <button type="button" class="btn btn-right" [disabled]=true (click)="openDropDown()">
+            <span class="caret"></span>
+        </button>
+        <!--<div class="dropdownMenuContent"></div>-->
+    </div>
+</div>
+

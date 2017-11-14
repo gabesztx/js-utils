@@ -1,0 +1,14 @@
+<div class="paginationComponent">
+    <div class="pagerContent">
+        <pager
+            pageBtnClass="pagerStyle"
+            [totalItems]="totalItemsNumber"
+            [itemsPerPage]="itemsPerPage"
+            [nextText]="'>'"
+            [previousText]="'<'"
+            [(ngModel)]="currentPage"
+            (pageChanged)="pageChangeEvent($event)"
+        >
+        </pager>
+    </div>
+</div>

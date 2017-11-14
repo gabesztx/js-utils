@@ -1,0 +1,14 @@
+<div class="statusLineComponent">
+    <div class="statusLineLabel labelText">{{labelText}}</div>
+    <div class="statusLineContent">
+        <div class="statusLine" [ngStyle]="{'width':startValue+'%'}"></div>
+    </div>
+    <div class="statusLineValue">{{startValue+'%'}}</div>
+    <div *ngIf="statusIcon != null" class="statusIcon">
+        <i *ngIf="statusIcon === true" class="glyphicon glyphicon-ok success"></i>
+        <i *ngIf="statusIcon === false" class="glyphicon glyphicon-remove unsuccess"></i>
+    </div>
+    <div *ngIf="requiredText" class="statusText">{{requiredText}}</div>
+    <div class="informationIcon" [attr.info-data]="infoData"></div>
+</div>
+

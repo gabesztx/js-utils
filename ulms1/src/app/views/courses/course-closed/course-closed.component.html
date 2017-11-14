@@ -1,0 +1,189 @@
+<div class="courseListItemContainer active" [@slideInOutKeyFrame] *ngFor="let item of currentItemListaData">
+    <div class="row">
+        <div class="courseItemImgBlock col-sm-2 hidden-xs">
+            <div class="imgContent">
+                <img src="{{item.imageUrl}}" alt="">
+            </div>
+        </div>
+        <div class="courseItemTextBlock col-sm-7">
+            <div class="courseItemTextBlockContent">
+                <!--<ng-container *ngTemplateOutlet="courseTitleContent; context:{$implicit: item}"></ng-container>-->
+                <div class="courseTitleContent">
+                    <a href="{{item.id}}">
+                        <div class="courseTitle">{{item.title}}</div>
+                    </a>
+                    <div *ngIf="item.label.length || item.providerName.length" class="courseLabelContent">
+                        <span *ngIf="item.label.length" class="courseLabel">{{item.label}}</span>
+                        <span *ngIf="item.label.length && item.providerName.length">-</span>
+                        <span *ngIf="item.providerName.length" class="courseProviderName">{{item.providerName}}</span>
+                    </div>
+                </div>
+
+                <div class="courseItemImgBlock">
+                    <div class="imgContent">
+                        <img src="{{item.imageUrl}}" alt="">
+                    </div>
+                </div>
+                <div class="courseResultWrapper">
+                    <div class="courseResultList">
+                        <div class="statusTextConent">
+                            <!--Előrehaladás-->
+                            <ulms-status-line
+                                [labelText]="'lbl_progress' | translate "
+                                [value]=item.resultProgress
+                                [statusIcon]=item.progressStatus
+                                [infoData]="'tt_course_progress' | translate "
+                            >
+                            </ulms-status-line>
+                        </div>
+                        <div class="statusTextConent">
+                            <!--Eredmény-->
+                            <ulms-status-line
+                                [labelText]="'lbl_measure' | translate"
+                                [value]=item.resultMeasure
+                                [statusIcon]=item.measureStatus
+                                [infoData]="'tt_course_measure' | translate "
+                            >
+                            </ulms-status-line>
+
+                        </div>
+                    </div>
+                    <div class="courseResultList">
+                        <div class="statusTextConent">
+                            <!--Határidő idő-->
+                            <ulms-status-text
+                                [className]="'active'"
+                                [labelText]="'lbl_deadline_colon' | translate"
+                                [value]=item.deadLine
+                                [infoData]="'tt_deadline' | translate "
+                            >
+                            </ulms-status-text>
+                        </div>
+                        <div class="statusTextConent">
+                            <!--Eltöltött idő-->
+                            <ulms-status-text
+                                [className]="'active'"
+                                [labelText]="'lbl_total_time' | translate"
+                                [value]="item.totalTime | toLocalTimeSpan:{id:'active',otherValue:item.netTimeLimit}"
+                                [infoData]="'tt_total_time' | translate"
+                            >
+                            </ulms-status-text>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="courseItemButtonBlock col-sm-3">
+            <div class="buttonContent">
+                <ulms-button
+                    [btnLabel]="'lbl_course_status_' + item.status | translate"
+                    [btnIconClassName]="item.btnIcon"
+                >
+                </ulms-button>
+            </div>
+            <div class="dropDownContent">
+                <ulms-dropdown-split
+                    [groupName]="'active'"
+                    [labelText]="'btn_to_course' | translate"
+                    [urlId]=item.id
+                    [itemData]=item.links
+                    [dropDownLabel]="['btn_download_contract_pdf', 'btn_download_contract_zip']"
+                >
+                </ulms-dropdown-split>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--
+<div class="courseListItemContainer closed" [@slideInOutKeyFrame] *ngFor="let item of currentItemListaData">
+    <div class="row">
+        <div class="courseItemImgBlock col-sm-2 hidden-xs">
+            <div class="imgContent">
+                <img src="{{item.imageUrl}}" alt="">
+            </div>
+        </div>
+        <div class="courseItemTextBlock col-sm-7">
+            <div class="courseItemTextBlockContent">
+                <div class="courseTitleContent">
+                    <a href="{{item.id}}">
+                        <div class="courseTitle">{{item.title}}</div>
+                    </a>
+                    <div *ngIf="item.label.length || item.providerName.length" class="courseLabelContent">
+                        <span *ngIf="item.label.length" class="courseLabel">{{item.label}}</span>
+                        <span *ngIf="item.label.length && item.providerName.length">-</span>
+                        <span *ngIf="item.providerName.length" class="courseProviderName">{{item.providerName}}</span>
+                    </div>
+                </div>
+                <div class="courseItemImgBlock">
+                    <div class="imgContent">
+                        <img src="{{item.imageUrl}}" alt="">
+                    </div>
+                </div>
+                <div class="courseResultWrapper">
+                    <div class="courseResultList">
+                        <div class="statusTextConent">
+                            <ulms-status-line
+                                [labelText]="'lbl_progress' | translate "
+                                [value]=item.resultProgress
+                                [statusIcon]=item.progressStatus
+                                [infoData]="'tt_course_progress' | translate "
+                            >
+                            </ulms-status-line>
+                        </div>
+
+                        <ulms-status-line
+                            [labelText]="'lbl_measure' | translate"
+                            [value]=item.resultMeasure
+                            [statusIcon]=item.measureStatus
+                            [infoData]="'tt_course_measure' | translate "
+                        >
+                        </ulms-status-line>
+
+                    </div>
+                    <div class="courseResultList">
+                        <div class="statusTextConent">
+                            <ulms-status-text
+                                [className]="'closed'"
+                                [labelText]="'lbl_deadline_colon' | translate"
+                                [value]=item.deadLine
+                                [infoData]="'tt_deadline' | translate "
+                            >
+                            </ulms-status-text>
+                        </div>
+                        <div class="statusTextConent">
+                            <ulms-status-text
+                                [className]="'active'"
+                                [labelText]="'lbl_total_time' | translate"
+                                [value]="item.totalTime | toLocalTimeSpan:{id:'closed'}"
+                                [infoData]="'tt_total_time' | translate "
+                            >
+                            </ulms-status-text>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="courseItemButtonBlock col-sm-3">
+            <div class="buttonContent">
+                <ulms-button
+                    [isPointer]=false
+                    [btnLabel]="'lbl_course_status_' + item.status | translate"
+                    [btnIconClassName]="item.btnIcon"
+                >
+                </ulms-button>
+            </div>
+            <div class="dropDownContent">
+                <ulms-dropdown-split
+                    [groupName]="'closed'"
+                    [labelText]="'btn_to_course' | translate"
+                    [urlId]=item.id
+                    [itemData]=item.links
+                >
+                </ulms-dropdown-split>
+            </div>
+        </div>
+    </div>
+</div>
+-->
