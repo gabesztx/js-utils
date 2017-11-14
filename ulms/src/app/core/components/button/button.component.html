@@ -1,0 +1,6 @@
+<div class="buttonComponens">
+    <button class="btnContent" (click)="btnClick()" [ngClass]="classNameButton">
+        <i *ngIf="btnIconClassName" class="btn-icon" [ngClass]="btnIconClassName"></i>
+        <span class="btn-label-text">{{btnLabel | translate}}</span>
+    </button>
+</div>

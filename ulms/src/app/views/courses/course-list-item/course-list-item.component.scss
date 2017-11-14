@@ -1,0 +1,24 @@
+@import '../../../../variables.scss';
+
+.courseListItemComponent {
+    .boxAnim {
+        font-size: 20px;
+        padding: 20px;
+        background-color: red;
+    }
+    .courseTitleAdress {
+        padding-top: 20px;
+        padding-bottom: 10px;
+        font-size: 20px;
+        color: #0497bb;
+        @media(max-width: $sm-min-width) {
+            .pageTitle {
+                float: left;
+            }
+            .navigation {
+                float: right;
+            }
+        }
+
+    }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "arraymap",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./arraymap.js"
+}

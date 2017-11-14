@@ -1,0 +1,4 @@
+<div class="nameComponent">
+    <div>Master controls {{names.length}} names: </div>
+    <my-name-child *ngFor="let nameItem of names" [userName]="nameItem"></my-name-child>
+</div>

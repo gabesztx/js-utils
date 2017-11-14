@@ -1,0 +1,10 @@
+.appComponent {
+  a {
+    text-decoration: none;
+    font-size: 24px;
+    color: black;
+    &.actice {
+      opacity:0.5;
+    }
+  }
+}

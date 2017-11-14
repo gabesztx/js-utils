@@ -1,0 +1,14 @@
+{
+  "publicApp": {
+    "js": "publicApp-0f29300f848070b9e39b.js"
+  },
+  "app": {
+    "js": "app-3c4e829cca2dd0d212ca.js"
+  },
+  "vendor": {
+    "js": "vendor-6ea79cb37c211e2352e5.js"
+  },
+  "manifest": {
+    "js": "manifest-c687961259e7fb524a7e.js"
+  }
+}

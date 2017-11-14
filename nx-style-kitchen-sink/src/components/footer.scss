@@ -1,0 +1,60 @@
+.nx-container__version {
+}
+
+.nx-footer__items {
+  list-style: none;
+  background-color: #0497bb;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  li {
+    padding: 5px 0;
+    color: white;
+    &:nth-child(1) {
+      padding-right: 30px;
+      padding-left: 15px;
+    }
+    .footer-logo {
+      width: 100px;
+      color: transparent;
+      background-image: url('./assets/images/nexius-logo.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 100%;
+      cursor: default;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+    a {
+      color: white;
+      padding: 10px 10px;
+      border-radius: 0;
+      border: 0;
+      &:focus {
+        background-color: $nx-blue-hover;
+      }
+      &:hover {
+        background-color: $nx-blue-hover;
+      }
+    }
+  }
+}
+
+@media(max-width: $sm-mobil) {
+  .nx-footer__items {
+    li {
+      padding: 0;
+      float: inherit;
+      &:nth-child(1) {
+        padding-right: inherit;
+        padding-left: 5px;
+        padding-top: 5px;
+      }
+      a {
+        color: white;
+        padding: 10px 5px;
+      }
+    }
+  }
+}

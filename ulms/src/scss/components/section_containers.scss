@@ -1,0 +1,53 @@
+.nx-section-container {
+    margin-bottom: 20px;
+    border-radius: 2px;
+    padding: 10px;
+    @include border-radius(2);
+}
+
+.nx-section-container--grey-box {
+    border: 3px solid $bg;
+    background-color: white;
+}
+
+.nx-section-container--whiteframe-2 {
+    background-color: white;
+    @include white-frame(2);
+}
+
+.nx-section-container--whiteframe-3 {
+    background-color: white;
+    @include white-frame(3);
+}
+
+.nx-section-container--whiteframe-10 {
+    background-color: white;
+    @include white-frame(10);
+}
+
+.nx-section-container--whiteframe-20 {
+    background-color: white;
+    @include white-frame(20);
+}
+
+.nx-section-container--whiteframe-24 {
+    background-color: white;
+    @include white-frame(24);
+}
+
+.nx-section-container__thumbnail {
+    display: block;
+    padding: 4px;
+    width: 110px; //ez itt hogy legyen megadva?
+    height: 110px;
+    background-color: $bg;
+    .nx-section-container__thumbnail__icon {
+        @include fa-icon();
+        @extend .#{$fa-css-prefix}-briefcase;
+        position: relative;
+        color: white;
+        margin-top: 18px;
+        margin-left: 15px;
+        font-size: 5em;
+    }
+}

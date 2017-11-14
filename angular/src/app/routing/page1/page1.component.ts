@@ -1,0 +1,16 @@
+import {Component, OnInit} from '@angular/core';
+
+@Component({
+    templateUrl: './page1.component.html',
+    styleUrls: ['./page1.component.css']
+})
+export class Page1Component implements OnInit {
+    description: string;
+    constructor() {
+        this.description = 'text '
+    }
+
+    ngOnInit() {
+    }
+
+}

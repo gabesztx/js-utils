@@ -1,0 +1,30 @@
+// COLORS
+// Baisc colors
+// responsive
+$sm-mobil: 550px;
+$sm-height: 680px;
+$sm-min-width: 767px;
+$md-min-width: 992px;
+$lg-min-width: 1200px;
+
+
+$bg: rgb(222, 222, 222) !default;
+$content-bg: white !default;
+$footer-box-bg: #0497bb;
+$default-txt: rgba(0, 0, 0, 0.87) !default;
+// Main colors
+$nx-blue: rgb(4, 151, 187);
+$nx-yellow: rgb(253, 186, 61);
+$nx-error-content: rgb(185, 74, 72) !default;
+$nx-error-bg:rgb(255, 181, 181) !default;
+// Effects and accents
+$nx-border-grey: rgb(204, 204, 204) !default;
+$nx-accent-grey: rgba(0, 0, 0, 0.37) !default;
+$nx-blue-hover: rgb(4, 170, 212) !default;
+$nx-is-active-blue:rgb(229, 244, 247) !default;
+// Whiteframe shadows
+$wf-shadow-1-hue: rgba(0, 0, 0, .2);
+$wf-shadow-2-hue: rgba(0, 0, 0, .14);
+$wf-shadow-3-hue: rgba(0, 0, 0, .12);
+// FontAwesome path
+$fa-font-path: "./assets/icons/fa/fonts";

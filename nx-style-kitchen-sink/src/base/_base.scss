@@ -1,0 +1,101 @@
+html {
+  position: relative;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  min-height: 100%;
+
+}
+
+body {
+  color: $default-txt;
+  line-height: 1.1;
+  //height: auto !important;
+  background: url('./assets/970x1.png') 50% repeat-y $bg;
+
+}
+@media(max-width: $md-min-width) {
+  body {
+    background: url('./assets/750x1.png') 50% repeat-y $bg;
+  }
+}
+form,
+article,
+section,
+header,
+ul,
+footer {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+input[type="text"],
+select {
+  border: 2px solid $bg;
+  @include border-radius(3px);
+}
+
+input[type="text"]:hover,
+input[type="text"]:focus,
+select:hover,
+select:focus {
+  border: 2px solid rgba(0, 0, 0, 0.37);
+}
+
+input[type="email"],
+select {
+  border: 2px solid $bg;
+  @include border-radius(3px);
+}
+
+input[type="email"]:hover,
+input[type="email"]:focus,
+select:hover,
+select:focus {
+  border: 2px solid rgba(0, 0, 0, 0.37);
+}
+
+input[type="password"],
+select {
+  border: 2px solid $bg;
+  @include border-radius(3px);
+}
+
+input[type="password"]:hover,
+input[type="password"]:focus,
+select:hover,
+select:focus {
+  border: 2px solid rgba(0, 0, 0, 0.37);
+}
+
+button {
+  background-color: $nx-blue;
+  border: 2px solid $nx-blue;
+  border-radius: 2px;
+  outline: 0;
+}
+
+.nx-content {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+@media(max-width: $md-min-width) {
+  .nx-content {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+@media(max-width: $sm-mobil) {
+  .nx-content {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
