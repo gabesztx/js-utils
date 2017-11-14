@@ -45,7 +45,8 @@ export class L10nService extends HttpBase {
     }
 
     init(): Observable<boolean> {
-        const url = this.config.baseUrl + 'content/client/assets/locales/' + this.locale + '.json';
+        const urlPath = (<any>window).env === 'serv' ? 'content/client/assets/locales/' : 'assets/locales/';
+        const url = this.config.baseUrl + urlPath + this.locale + '.json';
         this.defaultScope = this.locale;
         return this.loadLocalizationResources(url, this.defaultScope);
     }

@@ -15,7 +15,7 @@ import { data5 } from './course-detail-data-5';
 export class CourseDetailService_ {
 
     private _MockCourseResult = data3;
-    public courseList = <Array<any>>JSON.parse(JSON.stringify(this._MockCourseResult.slice(0)));
+    public courseList = <Array<any>>JSON.parse(JSON.stringify(this._MockCourseResult));
     public courseDetailData: any;
     public courseDetaiId: any;
 
@@ -32,7 +32,6 @@ export class CourseDetailService_ {
     public getListData(): Observable<any> {
         return Observable.of(this.courseDetailData)
     }
-
 }
 
 

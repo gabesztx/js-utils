@@ -1,5 +1,4 @@
-export const data5 = [
-    {
+export const data5 = {
         "userInvitations": [],
         "certificateEnabled": true,
         "profileDetail": 1,
@@ -413,5 +412,4 @@ export const data5 = [
         "createdAt": "2017-06-02T12:43:44Z",
         "forCredit": true,
         "accreditationNum": ""
-    }
-];
+    };

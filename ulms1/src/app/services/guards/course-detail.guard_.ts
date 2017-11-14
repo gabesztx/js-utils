@@ -13,7 +13,7 @@ export class CourseDetailGuard_ implements Resolve<Observable<any>> {
     constructor(private courseDetailService: CourseDetailService_) {}
     resolve(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const courseId = next.paramMap.get('courseId');
-        return this.courseDetailService.list(courseId)
+        return this.courseDetailService.list(courseId);
     }
 }
 

@@ -66,7 +66,7 @@ export class CourseActiveComponent implements OnChanges {
                 courseMeasureStatus: this.commonService.getCourseMeasureStatus(courseActivitie), // Eredmény
                 deadLine: this.commonService.getDeadLine(courseActivitie), // Határidő
                 totalTime: this.commonService.getTotalTime(courseActivitie), // Eltöltött idő
-            })
+            });
         });
         return courseActiveView;
     }

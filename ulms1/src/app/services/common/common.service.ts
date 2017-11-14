@@ -26,7 +26,8 @@ export class CommonService {
      */
     getImageUrl(course: any): string {
         const imageUrl = course.imageUrl;
-        return imageUrl.length ? imageUrl : '/Content/client/assets/images/suitcase_big_icon.png';
+        const urlPath = (<any>window).env === 'serv' ? '/Content/client/assets/images/suitcase_big_icon.png' : '/assets/images/suitcase_big_icon.png';
+        return imageUrl.length ? imageUrl : urlPath;
     }
 
     /**
@@ -271,27 +272,27 @@ export class CommonService {
         const state = courseActivitie.state ? courseActivitie.state : 0;
 
         if (links.length && state === CourseState.Closed) {
-            if (links[0].rel == 'Launch') {
+            if (links[0].rel === 'Launch') {
                 return {
                     icon: 'btn-icon fa fa-exclamation-triangle',
                     className: 'launch_warning'
-                }
+                };
             }
         }
 
         /* TODO: Migrationra rákérdezni és normálisan megcsinálni ezt a feltételt */
         if (links.length && state !== CourseState.Closed) {
-            if (links[0].rel == 'Launch' && links[0].rel !== 'Migration') {
+            if (links[0].rel === 'Launch' && links[0].rel !== 'Migration') {
                 if (!courseActivitie.target.disturbingContent) {
                     return {
                         className: 'launch_origin'
-                    }
+                    };
                 }
                 if (courseActivitie.target.disturbingContent) {
                     return {
                         icon: 'btn-icon fa fa-exclamation-triangle',
                         className: 'launch_warning'
-                    }
+                    };
                 }
             }
         }

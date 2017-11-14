@@ -2,8 +2,8 @@
 var lmsConfiguration = (function () {
     'use strict';
     //TODO: varibles
-    // var baseUrlParam = 'http://localhost:4200/';
-    var baseUrlParam = 'https://devhome.nexiuslearning.com/app/';
+    var baseUrlParam = 'http://localhost:4200/';
+    // var baseUrlParam = 'https://devhome.nexiuslearning.com/app/';
     var _baseUrl = baseUrlParam;
     var _idpBaseUrl = 'https://devaccount.nexiuslearning.com/';
     var _playerBaseUrl = 'https://devplayer.nexiuslearning.com/';

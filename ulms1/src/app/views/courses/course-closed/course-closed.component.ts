@@ -46,7 +46,6 @@ export class CourseClosedComponent implements OnChanges {
         data.items.forEach((value) => {
 
             const courseActivities = value.courseActivities[0];
-
             const id = value.id;
             const title = value.title;
             const label = value.label;
@@ -82,30 +81,6 @@ export class CourseClosedComponent implements OnChanges {
                 measureStatus: this.commonService.getLineStatus(satisfied, status),
                 links: this.commonService.getLink(links),
             });
-
-
-            /*const activityValue = value.courseActivities[0];
-            const resultProgress = activityValue.result.progress;
-            const resultMeasure = activityValue.result.measure;
-
-            dataArray.push({
-                id: activityValue.id,
-                imageUrl: value.imageUrl.length ? value.imageUrl : '/Content/client/assets/images/suitcase_big_icon.png',
-                remainingTime: activityValue.result.remainingTime,
-                title: value.title,
-                label: value.label,
-                providerName: value.provider ? value.provider.name : '',
-                deadLine: this.commonService.getDeadLine_(activityValue.result.resultEndTime),
-                totalTime: activityValue.result.totalTime,
-                btnLabel: 'lbl_course_status_' + activityValue.status,
-                btnIconClassName: this.commonService.getStatusButton(activityValue.status),
-                resultProgress: resultProgress ? Math.round(resultProgress * 100) : 0,
-                resultMeasure: resultMeasure ? Math.round(resultMeasure * 100) : 0,
-                progressStatus: this.commonService.getLineStatus(activityValue.result.completed, activityValue.status),
-                measureStatus: this.commonService.getLineStatus(activityValue.result.satisfied, activityValue.status),
-                urlId: 'app/courses/' + value.id,
-                links: this.commonService.getLink(activityValue.links),
-            });*/
 
         });
         return dataArray;

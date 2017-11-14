@@ -19,7 +19,6 @@ export class CourseDetailMainItemComponent implements OnChanges {
     constructor(private commonService: CommonService) {}
 
     ngOnChanges() {
-        // console.log('this.itemData', this.itemData)
         this.currentItemData = this.transFormViewObject(this.itemData);
     }
 
@@ -29,7 +28,6 @@ export class CourseDetailMainItemComponent implements OnChanges {
         const course = itemData.items;
         const courseActivities = course.courseActivities;
         const courseRegistration = course.courseRegistration;
-
         courseActivities.forEach((item) => {
             if (!item.target.parent) {
                 const courseActivitie = item;

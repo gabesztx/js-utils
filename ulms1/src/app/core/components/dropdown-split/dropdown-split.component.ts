@@ -30,7 +30,7 @@ export class DropdownSplitComponent implements OnInit, OnDestroy {
 
     btnClick() {
         if (this.onButtonFn.observers.length) {
-            // this.onButtonFn.emit();
+            this.onButtonFn.emit();
         }
     }
 
@@ -40,7 +40,7 @@ export class DropdownSplitComponent implements OnInit, OnDestroy {
             this.isShow = true;
             this.openTime = setTimeout(() => {
                 this.isOpen = true;
-            }, 50)
+            }, 50);
         } else {
             clearTimeout(this.closeTime);
             this.isOpen = false;

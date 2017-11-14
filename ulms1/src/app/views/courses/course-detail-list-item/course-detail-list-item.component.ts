@@ -26,11 +26,9 @@ export class CourseDetailListItemComponent implements OnChanges, OnDestroy {
     constructor(private route: ActivatedRoute, private commonService: CommonService) {
         this.paramsObs = this.route.params.subscribe(params => {
             this.itemData = this.route.snapshot.data.responseData;
-
             clearInterval(this.currentItemInterval);
             this.elemItemNum = 0;
             this.currentItemData = this.transFormViewObject(this.itemData);
-            // console.log(this.currentItemData)
             if (this.currentItemData.length) {
                 this.updatePageItem(this.currentItemData);
             }

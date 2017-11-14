@@ -36,6 +36,6 @@ export class CourseDetailService extends HttpProxy {
             });
     }
     public getListData(): Observable<any> {
-        return Observable.of(this.courseDetailData)
+        return Observable.of(this.courseDetailData);
     }
 }

@@ -29,6 +29,7 @@ import { OptionalService_ } from './optional.service_';
 
 /* Close */
 import { ClosedGuard } from './guards/closed.guard';
+import { ClosedGuard_ } from './guards/closed.guard_';
 import { ClosedService_ } from './closed.service_';
 
 
@@ -84,6 +85,7 @@ import { CourseCaniactiveQuard } from './guards/course-caniactive.quard';
         UpcomingService_,
 
         ClosedGuard,
+        ClosedGuard_,
         ClosedService_,
 
 
