@@ -10,8 +10,7 @@
     <div class="descriptionWrapper" *ngIf="className === 'course-detail-description'">
         <i class="descriptionIcon glyphicon glyphicon-chevron-right"
            [ngClass]="{'open':isOpen}"
-           (click)="textToggle()"
-        >
+           (click)="textToggle()">
         </i>
         <span class="descriptionTextLabel" (click)="textToggle()">{{'btn_details' | translate}}</span>
         <div class="descriptionHideTextValue" [ngClass]="{'open':isOpen}">
