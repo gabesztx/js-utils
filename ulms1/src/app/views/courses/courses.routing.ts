@@ -32,10 +32,6 @@ import { CourseDetailGuard_ } from '../../services/guards/course-detail.guard_';
 import { CourseDetailListGuard } from '../../services/guards/course-detail-list.guard';
 import { CourseDetailListGuard_ } from '../../services/guards/course-detail-list.guard_';
 
-/* CourseDetail Feed Guard */
-import { CourseDetailFeedGuard } from '../../services/guards/course-detail-feed.guard';
-
-
 /* Component */
 import { CourseListItemComponent } from './course-list-item/course-list-item.component';
 import { CourseListContentComponent } from './course-list-content/course-list-content.component';
@@ -55,8 +51,8 @@ const recommendedGuard = (<any>window).env === 'serv' ? RecommendedGuard : Recom
 const optionalGuard = (<any>window).env === 'serv' ? OptionalGuard : OptionalGuard_;
 const upcomingGuard = (<any>window).env === 'serv' ? UpcomingGuard : UpcomingGuard_;
 const clouseGuard = (<any>window).env === 'serv' ? ClosedGuard : ClosedGuard_;
-const courseDetailGuard = (<any>window).env === 'serv' ? CourseDetailGuard : CourseDetailGuard_;
 
+const courseDetailGuard = (<any>window).env === 'serv' ? CourseDetailGuard : CourseDetailGuard_;
 const courseDetailListGuard = (<any>window).env === 'serv' ? CourseDetailListGuard : CourseDetailListGuard_;
 
 
@@ -175,7 +171,7 @@ export const routes: Routes = [{
         path: 'feed',
         component: CourseDetailFeedComponent,
         resolve: {
-            responseData: CourseDetailFeedGuard
+            responseData: courseDetailListGuard
         },
     }]
 }];

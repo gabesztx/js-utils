@@ -50,9 +50,6 @@ import { CourseDetailListGuard_ } from './guards/course-detail-list.guard_';
 import { CourseDetailService } from './course-detail.service';
 import { CourseDetailService_ } from './course-detail.service_';
 
-/* Feeds */
-import { CourseDetailFeedServices } from './course-detail-feed.services';
-import { CourseDetailFeedGuard } from './guards/course-detail-feed.guard';
 
 
 import { CourseStatusMapperService } from './course-status-mapper.service';
@@ -110,8 +107,6 @@ import { CourseCaniactiveQuard } from './guards/course-caniactive.quard';
 
         CourseDetailService,
         CourseDetailService_,
-        CourseDetailFeedServices,
-        CourseDetailFeedGuard,
 
         CourseStatusMapperService,
 

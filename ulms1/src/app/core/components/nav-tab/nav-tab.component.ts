@@ -13,14 +13,7 @@ export class NavTabComponent implements OnInit {
 
     ngOnInit() {}
 
-    navigateUrl(labelData: any) {
-        // const urlPathName = labelData.urlPath;
-        // this.router.navigate(['courses', 'list', urlPathName]);
-    }
+    navigateUrl() {}
 
-    isActive(labelData: any) {
-        return true;
-        // const urlPathName = [labelData.urlPath];
-        // console.log('urlPathName Class', urlPathName);
-    }
+    isActive() {}
 }

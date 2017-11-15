@@ -1,7 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { CourseDetail } from '../../../models/courseDetail.model';
 import { CourseTabIndex } from '../../../services/course-status-mapper.service';
 
 @Component({
@@ -15,8 +14,8 @@ export class CourseListItemComponent implements OnDestroy {
     public itemData: any;
     public state = 'small';
     public itemIndex: string;
-    public paramsObs: any;
-    public isListHead: false;
+    public paramsObservable: any;
+    public courseTabIndex = CourseTabIndex;
 
     public pageTitle = {
         [CourseTabIndex.ACTIVE]: 'lbl_active_courses_title',
@@ -28,13 +27,13 @@ export class CourseListItemComponent implements OnDestroy {
 
     constructor(private route: ActivatedRoute) {
         this.itemData = [];
-        this.paramsObs = this.route.params.subscribe(params => {
+        this.paramsObservable = this.route.params.subscribe(params => {
             this.itemIndex = this.route.snapshot.data.itemIndex;
             this.itemData = this.route.snapshot.data.responseData;
         });
     }
 
     ngOnDestroy() {
-        this.paramsObs.unsubscribe();
+        this.paramsObservable.unsubscribe();
     }
 }

@@ -9,19 +9,18 @@ import { ActivatedRoute } from '@angular/router';
 export class CourseDetailComponent implements OnInit, OnDestroy {
     public paramsObs: any;
     public urlId: any;
-    public itemData: any;
+    public courseDetail: any;
+    public courseFeeds: any;
 
     constructor(private route: ActivatedRoute) {
         this.paramsObs = this.route.params.subscribe(params => {
-            this.itemData = this.route.snapshot.data.responseData;
+            this.courseDetail = this.route.snapshot.data.responseData.courseDetail;
+            this.courseFeeds = this.route.snapshot.data.responseData.courseFeeds;
             this.urlId =  params.courseId;
-            // console.log('itemData', this.itemData);
-            // console.log('urlId', this.urlId);
         });
     }
 
-    ngOnInit() {
-    }
+    ngOnInit() {}
 
     ngOnDestroy() {
         this.paramsObs.unsubscribe();

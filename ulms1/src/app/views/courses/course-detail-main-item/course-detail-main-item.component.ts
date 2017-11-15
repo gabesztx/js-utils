@@ -22,12 +22,13 @@ export class CourseDetailMainItemComponent implements OnChanges {
         this.currentItemData = this.transFormViewObject(this.itemData);
     }
 
-    transFormViewObject(itemData: RestApiResponse<any>) {
+    transFormViewObject(itemData: any) {
 
         const courseDetailView: Array<CourseDetailViewModel> = [];
-        const course = itemData.items;
+        const course = itemData;
         const courseActivities = course.courseActivities;
         const courseRegistration = course.courseRegistration;
+
         courseActivities.forEach((item) => {
             if (!item.target.parent) {
                 const courseActivitie = item;

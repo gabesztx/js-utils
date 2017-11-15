@@ -16,35 +16,35 @@
     </div>
 
     <!--Active Course Component-->
-    <div *ngIf="itemIndex === 'active'" class="activeContent">
+    <div *ngIf="itemIndex === courseTabIndex.ACTIVE" class="activeContent">
         <ulms-course-active
             [itemData]="itemData"
         ></ulms-course-active>
     </div>
 
     <!--Recommended Course Component-->
-    <div *ngIf="itemIndex === 'recommended'" class="recommendedContent">
+    <div *ngIf="itemIndex === courseTabIndex.RECOMMENDED" class="recommendedContent">
         <ulms-course-recommended
             [itemData]="itemData"
         ></ulms-course-recommended>
     </div>
 
     <!--Optional Course Component-->
-    <div *ngIf="itemIndex === 'optional'" class="optionalContent">
+    <div *ngIf="itemIndex === courseTabIndex.OPTIONAL" class="optionalContent">
         <ulms-course-optional
             [itemData]="itemData"
         ></ulms-course-optional>
     </div>
 
     <!--Upcoming Course Component-->
-    <div *ngIf="itemIndex === 'upcoming'" class="upcomingContent">
+    <div *ngIf="itemIndex === courseTabIndex.UPCOMING" class="upcomingContent">
         <ulms-course-upcoming
             [itemData]="itemData"
         ></ulms-course-upcoming>
     </div>
 
     <!--Closed Course Component-->
-    <div *ngIf="itemIndex === 'closed'" class="closedContent">
+    <div *ngIf="itemIndex === courseTabIndex.CLOSED" class="closedContent">
         <ulms-course-closed
             [itemData]="itemData"
         ></ulms-course-closed>
