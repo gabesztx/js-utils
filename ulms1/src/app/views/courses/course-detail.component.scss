@@ -106,12 +106,12 @@ $itemPadding: 15px;
     .courseButtonWrapper {
         position: absolute;
         width: 100%;
-        transform: translateY(15px);
+        transform: translateY(20px);
         margin-left: -30px;
     }
     .courseDescriptionContent {
         .courseDescriptionBlock {
-            padding-top: 10px;
+            padding-top: 15px;
             margin-left: -30px;
             &:nth-child(2){
                 padding-top: 5px;
