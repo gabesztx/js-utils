@@ -103,14 +103,14 @@ $itemPadding: 20px;
         }
 
         .courseButtonWrapper {
-            transform: translateY($itemPadding);
-            -webkit-transform: translateY($itemPadding);
+            transform: translateY($itemPadding + 5);
+            -webkit-transform: translateY($itemPadding + 5);
         }
         .courseDescriptionContent {
             position: relative;
             .courseDescriptionBlock {
                 &:nth-child(1) {
-                    margin-top: 15px;
+                    margin-top: 20px;
                 }
                 &:nth-child(2) {
                     margin-top: 10px;
