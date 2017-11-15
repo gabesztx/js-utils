@@ -62,15 +62,6 @@
                             </ulms-status-line>
 
                         </div>
-                        <div class="statusTextConent">
-                            <!--Előfeltétel-->
-                            <ulms-status-text
-                                [value]=item.prerequisite
-                                [labelText]="'lbl_prerequisite' | translate"
-                            >
-                            </ulms-status-text>
-
-                        </div>
                     </div>
 
                     <div class="courseResultList">
@@ -128,12 +119,28 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="coursePrerequisite">
+                    <div class="statusTextConent">
+                        <!--Előfeltétel-->
+                        <ulms-status-text
+                            [value]=item.prerequisite
+                            [labelText]="'lbl_prerequisite' | translate"
+                        >
+                        </ulms-status-text>
+
+                    </div>
+                </div>
             </div>
+
             <div class="courseButtonWrapper" *ngIf="item.launchButton">
                 <div class="row">
-                    <div class="col-sm-9"></div>
+                    <div class="col-sm-9">
+
+                    </div>
                     <div class="col-sm-3 paddingReset">
                         <div class="buttonContent">
+                            <!--Launch Button -->
                             <ulms-button
                                 [isPointer]="'pointer'"
                                 [className]=item.launchButton.className
@@ -145,28 +152,31 @@
                     </div>
                 </div>
             </div>
-            <div class="courseDescriptionBlock">
+            <div class="courseDescriptionContent">
                 <div class="row">
-                    <div class="col-sm-12">
-                        <ulms-description
-                            [className]="'course-detail-description'"
-                            [description]=item.description
-                        >
-                        </ulms-description>
+                    <div class="courseDescriptionBlock">
+                        <div class="col-sm-12">
+                            <ulms-description
+                                [className]="'course-detail-description'"
+                                [description]=item.description
+                            >
+                            </ulms-description>
+                        </div>
+                    </div>
+                </div>
+                <div class="courseDescriptionBlock" *ngIf="item.serviceTechnicalProfile">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <ulms-description
+                                [className]="'course-detail-serviceTechnicalProfile'"
+                                [description]=item.serviceTechnicalProfile
+                            >
+                            </ulms-description>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="courseDescriptionBlock" *ngIf="item.serviceTechnicalProfile">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <ulms-description
-                            [className]="'course-detail-serviceTechnicalProfile'"
-                            [description]=item.serviceTechnicalProfile
-                        >
-                        </ulms-description>
-                    </div>
-                </div>
-            </div>
+            <div class="courseDetailListBorderWrapper"></div>
         </div>
     </div>
 </div>

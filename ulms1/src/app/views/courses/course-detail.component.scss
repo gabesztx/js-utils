@@ -1,11 +1,14 @@
 @import '../../../variables.scss';
-
+$itemPadding: 15px;
 .courseDetailListItemContainer {
     position: relative;
-    padding: 15px;
+    padding: $itemPadding;
     border: 3px solid #dedede;
-    border-radius: 2px;
-
+    &.courseDetailListItem{
+        border-bottom: 0;
+        padding-top: $itemPadding;
+        padding-bottom: 0;
+    }
     .courseItemImgBlock {
         text-align: center;
         .imgContent {
@@ -71,7 +74,7 @@
                 vertical-align: top;
                 &:nth-child(1) {
                     padding-right: 30px;
-                    .statusTextConent{
+                    .statusTextConent {
                         padding-bottom: 5px;
                         &:nth-child(2) {
                             //padding-bottom: 8px;
@@ -95,22 +98,33 @@
                     }
                 }
             }
-
         }
     }
-
-    .courseButtonWrapper {
-        //padding-top: 15px;
-        margin-left: -30px;
-    }
     .courseButtonWrapper {
         margin-left: -30px;
     }
-    .courseDescriptionBlock{
-        padding-top: 10px;
+    .courseButtonWrapper {
+        position: absolute;
+        width: 100%;
+        transform: translateY(15px);
         margin-left: -30px;
+    }
+    .courseDescriptionContent {
+        .courseDescriptionBlock {
+            padding-top: 10px;
+            margin-left: -30px;
+            &:nth-child(2){
+                padding-top: 5px;
+            }
+        }
+    }
+    .courseDetailListBorderWrapper {
+        padding-top: $itemPadding;
+        margin-left: -30px;
+        border-bottom: 3px solid #dedede;
 
     }
+
     @media(max-width: $md-min-width) {
         .courseItemTextBlockContent {
             margin-left: 0;
@@ -119,7 +133,6 @@
             margin-left: 0;
         }
     }
-
 
 }
 
