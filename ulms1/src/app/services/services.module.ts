@@ -32,12 +32,12 @@ import { ClosedGuard } from './guards/closed.guard';
 import { ClosedGuard_ } from './guards/closed.guard_';
 import { ClosedService_ } from './closed.service_';
 
-
+/* Upcoming */
 import { UpcomingGuard } from './guards/upcoming.guard';
 import { UpcomingGuard_ } from './guards/upcoming.guard_';
 import { UpcomingService_ } from './upcoming.service_';
 
-
+/* Services */
 import { CommonService } from './common/common.service';
 
 import { CourseDetailGuard } from './guards/course-detail.guard';
@@ -49,6 +49,11 @@ import { CourseDetailListGuard_ } from './guards/course-detail-list.guard_';
 
 import { CourseDetailService } from './course-detail.service';
 import { CourseDetailService_ } from './course-detail.service_';
+
+/* Feeds */
+import { CourseDetailFeedServices } from './course-detail-feed.services';
+import { CourseDetailFeedGuard } from './guards/course-detail-feed.guard';
+
 
 import { CourseStatusMapperService } from './course-status-mapper.service';
 
@@ -105,6 +110,8 @@ import { CourseCaniactiveQuard } from './guards/course-caniactive.quard';
 
         CourseDetailService,
         CourseDetailService_,
+        CourseDetailFeedServices,
+        CourseDetailFeedGuard,
 
         CourseStatusMapperService,
 

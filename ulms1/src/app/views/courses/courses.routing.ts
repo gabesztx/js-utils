@@ -32,16 +32,19 @@ import { CourseDetailGuard_ } from '../../services/guards/course-detail.guard_';
 import { CourseDetailListGuard } from '../../services/guards/course-detail-list.guard';
 import { CourseDetailListGuard_ } from '../../services/guards/course-detail-list.guard_';
 
+/* CourseDetail Feed Guard */
+import { CourseDetailFeedGuard } from '../../services/guards/course-detail-feed.guard';
 
 
 /* Component */
 import { CourseListItemComponent } from './course-list-item/course-list-item.component';
 import { CourseListContentComponent } from './course-list-content/course-list-content.component';
-
 import { CourseDetailComponent } from './course-detail/course-detail.component';
 import { CourseDetailListItemComponent } from './course-detail-list-item/course-detail-list-item.component';
 import { CourseDetailInfoComponent } from './course-detail-info/course-detail-info.component';
+import { CourseDetailFeedComponent } from './course-detail-feed/course-detail-feed.component';
 
+/* Services */
 import { CourseTabIndex } from '../../services/course-status-mapper.service';
 
 import { CourseCaniactiveQuard } from '../../services/guards/course-caniactive.quard';
@@ -49,11 +52,13 @@ import { CourseCaniactiveChildQuard } from '../../services/guards/course-caniact
 
 const coursesGuard = (<any>window).env === 'serv' ? CoursesGuard : CoursesGuard_;
 const recommendedGuard = (<any>window).env === 'serv' ? RecommendedGuard : RecommendedGuard_;
-const courseDetailGuard = (<any>window).env === 'serv' ? CourseDetailGuard : CourseDetailGuard_;
-const courseDetailListGuard = (<any>window).env === 'serv' ? CourseDetailListGuard : CourseDetailListGuard_;
 const optionalGuard = (<any>window).env === 'serv' ? OptionalGuard : OptionalGuard_;
 const upcomingGuard = (<any>window).env === 'serv' ? UpcomingGuard : UpcomingGuard_;
 const clouseGuard = (<any>window).env === 'serv' ? ClosedGuard : ClosedGuard_;
+const courseDetailGuard = (<any>window).env === 'serv' ? CourseDetailGuard : CourseDetailGuard_;
+
+const courseDetailListGuard = (<any>window).env === 'serv' ? CourseDetailListGuard : CourseDetailListGuard_;
+
 
 export const routes: Routes = [{
     path: '',
@@ -165,6 +170,12 @@ export const routes: Routes = [{
         component: CourseDetailInfoComponent,
         resolve: {
             responseData: courseDetailListGuard
+        },
+    }, {
+        path: 'feed',
+        component: CourseDetailFeedComponent,
+        resolve: {
+            responseData: CourseDetailFeedGuard
         },
     }]
 }];

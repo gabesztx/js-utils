@@ -4,7 +4,8 @@
             <ulms-nav-tab
                 [navData]="[
                 {'label': 'lbl_course_content', 'urlPath': '/courses/' + urlId + '/content' },
-                {'label': 'lbl_course_information', 'urlPath': '/courses/' + urlId + '/info' }]"
+                {'label': 'lbl_course_information', 'urlPath': '/courses/' + urlId + '/info' },
+                {'label': 'lbl_course_feed', 'urlPath': '/courses/' + urlId + '/feed' }]"
             ></ulms-nav-tab>
             <div *ngIf="itemData">
                 <ulms-course-detail-main-item [itemData]="itemData"></ulms-course-detail-main-item>

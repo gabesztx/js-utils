@@ -15,6 +15,8 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
         this.paramsObs = this.route.params.subscribe(params => {
             this.itemData = this.route.snapshot.data.responseData;
             this.urlId =  params.courseId;
+            // console.log('itemData', this.itemData);
+            // console.log('urlId', this.urlId);
         });
     }
 
