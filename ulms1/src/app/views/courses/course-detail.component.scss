@@ -3,12 +3,12 @@
 $itemPadding: 15px;
 .courseDetailListItemContainer {
     position: relative;
-    padding: $itemPadding;
+    //padding: $itemPadding;
     border-bottom: 3px solid #dedede;
     &.courseDetailListItem {
         border-bottom: 0;
         padding-top: $itemPadding;
-        padding-bottom: 0;
+        //padding-bottom: 0;
     }
     .courseItemImgBlock {
         text-align: center;
@@ -22,7 +22,7 @@ $itemPadding: 15px;
         }
     }
     .courseItemListContent {
-        margin-left: -45px;
+        //margin-left: - $itemPadding * 2;
         .courseItemTextBlockContent {
             .courseItemTextBlock {
                 .courseTitleContent {
@@ -106,6 +106,7 @@ $itemPadding: 15px;
         .courseButtonWrapper {
             position: absolute;
             width: 100%;
+            right: 15px;
             transform: translateY(20px);
         }
         .courseDescriptionContent {
@@ -121,18 +122,18 @@ $itemPadding: 15px;
             border-bottom: 3px solid #dedede;
 
         }
-        @media(max-width: $md-min-width) {
+        @media(max-width: $sm-min-width) {
             .courseButtonWrapper {
                 position: static;
                 transform: none;
+                left: inherit;
             }
         }
-
 
     }
     @media(max-width: $md-min-width) {
         .courseItemListContent {
-            margin-left: 0;
+            //margin-left: 0;
         }
     }
 
@@ -140,5 +141,9 @@ $itemPadding: 15px;
 
 .paddingReset {
     @include padding-reset;
+}
+
+.paddingLeftReset {
+    @include padding-left-reset;
 }
 

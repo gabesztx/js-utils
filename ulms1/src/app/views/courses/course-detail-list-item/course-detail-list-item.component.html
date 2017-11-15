@@ -1,7 +1,7 @@
 <div *ngFor="let item of currentItemListaData" [@slideOutInKeyFrame]
      class="courseDetailListItemContainer courseDetailListItem">
     <div class="row">
-        <div class="col-sm-2 hidden-xs paddingReset">
+        <div class="col-sm-2 hidden-xs">
             <!--<div class="courseItemImgBlock">
                 <div class="imgContent">
                     <img src="{{item.imageUrl}}" alt="">
@@ -10,8 +10,6 @@
         </div>
         <div class="col-sm-10">
             <div class="courseItemListContent">
-
-
                 <div class="courseItemTextBlockContent">
                     <div class="courseItemTextBlock">
                         <div class="row">
@@ -23,7 +21,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-3 paddingReset">
+                            <div class="col-sm-3">
                                 <div class="courseItemButtonBlock">
                                     <div class="buttonContent">
                                         <!-- Status -->
@@ -138,10 +136,8 @@
 
                 <div class="courseButtonWrapper" *ngIf="item.launchButton">
                     <div class="row">
-                        <div class="col-sm-9">
-
-                        </div>
-                        <div class="col-sm-3 paddingReset">
+                        <div class="col-sm-9"></div>
+                        <div class="col-sm-3">
                             <div class="buttonContent">
                                 <!--Launch Button -->
                                 <ulms-button
