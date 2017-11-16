@@ -46,7 +46,7 @@
                             <ulms-status-line
                                 [labelText]="'lbl_measure' | translate"
                                 [toolTipDataLabel]="['tt_course_measure'] | tooltTip"
-                                [toolTipData]="['tt_course_measure','tt_course_measure_required'] | translate "
+                                [toolTipData]="['tt_course_measure','tt_course_measure_required'] | tooltTip "
                                 [value]=item.courseMeasureStatus.value
                                 [statusIcon]=item.courseMeasureStatus.statusIcon
                             >
@@ -95,7 +95,6 @@
                     [groupName]="'active'"
                     [labelText]="'btn_to_course' | translate"
                     [itemData]=item.links
-                    [urlId]=''
                     [dropDownLabel]=''
                     (onButtonFn)="clickUrl(item.id)"
                 >

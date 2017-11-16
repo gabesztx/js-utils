@@ -19,7 +19,7 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
             this.urlId = params.courseId;
             this.courseDetail = this.route.snapshot.data.responseData.courseDetail;
             this.courseFeeds = this.route.snapshot.data.responseData.courseFeeds;
-            this.navigationTabView()
+            this.navigationTabView();
         });
     }
 
@@ -38,7 +38,7 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
 
         // add content tab
         if (courseActivities.length) {
-            this.navTabData.push(navTabDefaultData.content)
+            this.navTabData.push(navTabDefaultData.content);
         }
 
         // add information tab

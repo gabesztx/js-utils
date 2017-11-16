@@ -13,7 +13,7 @@ export class TooltipPipe implements PipeTransform {
             if (key === 0) {
                 toolTipText = this.l10n.translate(text);
             } else {
-                toolTipText += ' ' + this.l10n.translate(text)
+                toolTipText += ' ' + this.l10n.translate(text);
             }
         });
         return toolTipText;

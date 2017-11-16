@@ -7,8 +7,7 @@ import * as moment from 'moment';
 @Injectable()
 export class CommonService {
 
-    constructor(private l10nService: L10nService) {
-    }
+    constructor(private l10nService: L10nService) {}
 
     /**
      *  getTitle
@@ -114,11 +113,10 @@ export class CommonService {
         if (resultEndTime && this.isValideDate(resultEndTime)) {
             value = this.translate('txt_not_exists');
         }
-
         return {
             value: value,
             textLabel: textLabel,
-        }
+        };
     }
 
     /**
@@ -127,8 +125,8 @@ export class CommonService {
      *  @return {String}
      */
     getTotalTime(courseActivitie: any): any {
-        let totalTime = courseActivitie.result.totalTime;
-        let netTimeLimit = courseActivitie.target.requirement.netTimeLimit;
+        const totalTime = courseActivitie.result.totalTime;
+        const netTimeLimit = courseActivitie.target.requirement.netTimeLimit;
         return {
             'value': totalTime ? totalTime : 0,
             'netTimeLimit': netTimeLimit,
@@ -141,7 +139,7 @@ export class CommonService {
      *  @return {Object}
      */
     getActivityStatus(courseActivitie: any): any {
-        let status = courseActivitie.status ? courseActivitie.status : 0;
+        const status = courseActivitie.status ? courseActivitie.status : 0;
         const ICON_NAME = {
             '1': 'hourglass_icon',
             '2': 'play glyphicon glyphicon-play',
@@ -205,7 +203,7 @@ export class CommonService {
             links.forEach((link) => {
                 if (linksLabel.hasOwnProperty(link.rel)) {
                     link.dropDownItemLabel = linksLabel[link.rel];
-                    linkData.push(link)
+                    linkData.push(link);
                 }
             });
         }
@@ -491,7 +489,7 @@ export class CommonService {
      *  @param {Object} courseObject
      *  @return
      */
-    getResultEndDate(courseObject) {
+    getResultEndDate(courseObject: any) {
         const resultEndDate = courseObject.requirement.resultEndDate;
         if (this.isValideDate(resultEndDate)) {
             return this.translate('txt_not_specified');
@@ -504,7 +502,7 @@ export class CommonService {
      *  @param {Object} courseObject
      *  @return
      */
-    getNetTimeLimit(courseObject) {
+    getNetTimeLimit(courseObject: any) {
         const netTimeLimit = courseObject.requirement.netTimeLimit;
         return netTimeLimit;
     }
@@ -514,7 +512,7 @@ export class CommonService {
      *  @param {Object} courseObject
      *  @return
      */
-    getCourseSuggestedTime(courseObject) {
+    getCourseSuggestedTime(courseObject: any) {
         const suggestedTime = courseObject.requirement.suggestedTime;
         return suggestedTime;
     }
@@ -524,7 +522,7 @@ export class CommonService {
      *  @param {Object} course
      *  @return
      */
-    getExpirationTime(course) {
+    getExpirationTime(course: any) {
         const invitation = course.invitation;
         const registration = course.registration;
         const exparitation = invitation ? invitation.expiration : undefined;
@@ -561,7 +559,7 @@ export class CommonService {
      *  @param {Object} course
      *  @return
      */
-    getCourseDescription(course) {
+    getCourseDescription(course: any) {
         const description = course.description;
         return description;
     }
@@ -585,10 +583,10 @@ export class CommonService {
      *  @return {}
      */
     getLineStatus(value, status) {
-        if (value == true) {
+        if (value === true) {
             return true;
         }
-        if (!value && status == 7) {
+        if (!value && status === 7) {
             return false;
         }
         return null;
