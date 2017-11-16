@@ -25,14 +25,12 @@ export class CourseDetailListItemComponent implements OnChanges, OnDestroy {
 
     constructor(private route: ActivatedRoute, private commonService: CommonService) {
         this.paramsObs = this.route.params.subscribe(params => {
-            this.itemData = this.route.snapshot.data.responseData;
-
-           /* clearInterval(this.currentItemInterval);
-            this.elemItemNum = 0;
+            this.itemData = this.route.snapshot.data.responseData.courseDetail;
+            clearInterval(this.currentItemInterval);
+            this.currentItemData = this.transFormViewObject(this.itemData);
             if (this.currentItemData.length) {
-                this.currentItemData = this.transFormViewObject(this.itemData);
                 this.updatePageItem(this.currentItemData);
-            }*/
+            }
         });
     }
 
@@ -55,10 +53,10 @@ export class CourseDetailListItemComponent implements OnChanges, OnDestroy {
         }, 130);
     }
 
-    transFormViewObject(itemData: RestApiResponse<any>) {
+    transFormViewObject(itemData: any) {
 
         const courseDetailView: Array<CourseDetailViewModel> = [];
-        const course = itemData.items;
+        const course = itemData;
         const courseActivities = course.courseActivities;
         const courseRegistration = course.courseRegistration;
 

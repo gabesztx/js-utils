@@ -23,7 +23,6 @@ import { UpcomingGuard_ } from '../../services/guards/upcoming.guard_';
 import { ClosedGuard } from '../../services/guards/closed.guard';
 import { ClosedGuard_ } from '../../services/guards/closed.guard_';
 
-
 /* CourseDetail Guard */
 import { CourseDetailGuard } from '../../services/guards/course-detail.guard';
 import { CourseDetailGuard_ } from '../../services/guards/course-detail.guard_';

@@ -14,9 +14,9 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
 
     constructor(private route: ActivatedRoute) {
         this.paramsObs = this.route.params.subscribe(params => {
+            this.urlId =  params.courseId;
             this.courseDetail = this.route.snapshot.data.responseData.courseDetail;
             this.courseFeeds = this.route.snapshot.data.responseData.courseFeeds;
-            this.urlId =  params.courseId;
         });
     }
 

@@ -90,7 +90,6 @@ import { CourseCaniactiveQuard } from './guards/course-caniactive.quard';
         ClosedGuard_,
         ClosedService_,
 
-
         OptionalGuard,
         OptionalGuard_,
 

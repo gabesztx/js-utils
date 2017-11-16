@@ -3,9 +3,7 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/r
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/delay';
 
-import { RestApiResponse } from '../base/http.class';
 import { CourseDetailService_ } from '../course-detail.service_';
-import { CourseDetail } from '../../models/courseDetail.model';
 
 @Injectable()
 

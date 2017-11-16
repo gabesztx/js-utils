@@ -5,6 +5,7 @@ import 'rxjs/add/operator/delay';
 
 import { RestApiResponse } from './base/http.class';
 
+import { feedData } from './course-detail-feed-data';
 import { data1 } from './course-detail-data-1';
 import { data2 } from './course-detail-data-2';
 import { data3 } from './course-detail-data-3';
@@ -14,23 +15,24 @@ import { data5 } from './course-detail-data-5';
 @Injectable()
 export class CourseDetailService_ {
 
-    private _MockCourseResult = data4;
-    public courseList = <Array<any>>JSON.parse(JSON.stringify(this._MockCourseResult));
-    public courseDetailData: any;
+    public courseList = <Array<any>>JSON.parse(JSON.stringify(data4));
+    public courseFeed = <Array<any>>JSON.parse(JSON.stringify(feedData));
+    public courseDetailData = { courseDetail: null, courseFeeds: null };
     public courseDetaiId: any;
 
-    public list(id?: any): Observable<RestApiResponse<any>> {
+    public list(id?: any): Observable<any> {
         this.courseDetaiId = id;
         return Observable
             .of(this.courseList)
             .map(() => {
-                this.courseDetailData = {items: this.courseList};
+                this.courseDetailData.courseDetail = this.courseList;
+                this.courseDetailData.courseFeeds = this.courseFeed;
                 return this.courseDetailData;
             });
     }
 
     public getListData(): Observable<any> {
-        return Observable.of(this.courseDetailData)
+        return Observable.of(this.courseDetailData);
     }
 }
 
