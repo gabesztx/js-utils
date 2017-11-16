@@ -17,12 +17,10 @@ export class CourseDetailService extends HttpProxy {
 
     constructor(protected http: Http, private config: RuntimeConfigService) {
         super();
-
        /* if (__instance__ !== this) {
             this.apiUrl = `${this.config.baseApiUrl}usercourses`;
             __instance__ = this;
         }
-
         return __instance__;*/
     }
 
@@ -42,11 +40,11 @@ export class CourseDetailService extends HttpProxy {
             this.getCourseDetailData(),
             this.getCourseFeedsData()
         ).combineAll().map((results: Array<any>) => {
+            // console.log('RESULT', results);
             this.courseDetailData.courseDetail = results[0];
             this.courseDetailData.courseFeeds = results[1];
             return this.courseDetailData;
         });
-
     }
 
     public getListData(): Observable<any> {

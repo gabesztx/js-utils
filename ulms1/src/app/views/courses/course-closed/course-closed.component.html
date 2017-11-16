@@ -31,7 +31,6 @@
                                 [labelText]="'lbl_progress' | translate "
                                 [value]=item.resultProgress
                                 [statusIcon]=item.progressStatus
-                                [infoData]="'tt_course_progress' | translate "
                             >
                             </ulms-status-line>
                         </div>
@@ -41,7 +40,6 @@
                                 [labelText]="'lbl_measure' | translate"
                                 [value]=item.resultMeasure
                                 [statusIcon]=item.measureStatus
-                                [infoData]="'tt_course_measure' | translate "
                             >
                             </ulms-status-line>
 
@@ -54,7 +52,6 @@
                                 [className]="'active'"
                                 [labelText]="'lbl_deadline_colon' | translate"
                                 [value]=item.deadLine
-                                [infoData]="'tt_deadline' | translate "
                             >
                             </ulms-status-text>
                         </div>
@@ -64,7 +61,6 @@
                                 [className]="'active'"
                                 [labelText]="'lbl_total_time' | translate"
                                 [value]="item.totalTime | toLocalTimeSpan:{id:'active',otherValue:item.netTimeLimit}"
-                                [infoData]="'tt_total_time' | translate"
                             >
                             </ulms-status-text>
                         </div>

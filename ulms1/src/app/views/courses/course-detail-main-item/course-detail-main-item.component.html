@@ -47,7 +47,6 @@
                                 <!--Előrehaladás-->
                                 <ulms-status-line
                                     [labelText]="'lbl_progress' | translate "
-                                    [infoData]="'tt_course_progress' | translate "
                                     [value]=item.courseProgressStatus.value
                                     [statusIcon]=item.courseProgressStatus.statusIcon
                                     [requiredText]=item.courseProgressStatus.requiredText
@@ -58,7 +57,6 @@
                                 <!--Eredmény-->
                                 <ulms-status-line
                                     [labelText]="'lbl_measure' | translate"
-                                    [infoData]="'tt_course_measure' | translate "
                                     [value]=item.courseMeasureStatus.value
                                     [statusIcon]=item.courseMeasureStatus.statusIcon
                                     [requiredText]=item.courseMeasureStatus.requiredText
@@ -91,7 +89,6 @@
                                 <!--Határidő idő-->
                                 <ulms-status-text
                                     [className]=""
-                                    [infoData]="'tt_deadline' | translate "
                                     [labelText]=item.deadLine.textLabel
                                     [value]=item.deadLine.value
                                 >
@@ -102,7 +99,6 @@
                                 <ulms-status-text
                                     [className]=""
                                     [labelText]="'lbl_total_time' | translate"
-                                    [infoData]="'tt_total_time' | translate"
                                     [value]="item.totalTime.value | toLocalTimeSpan:{id:'active',otherValue:item.totalTime.netTimeLimit}"
                                 >
                                 </ulms-status-text>
@@ -115,7 +111,6 @@
                                 <ulms-status-text
                                     [className]=""
                                     [labelText]="'lbl_enrollment_date' | translate"
-                                    [infoData]="'lbl_enrollment_date' | translate "
                                     [value]=item.registrationDate
                                 >
                                 </ulms-status-text>
@@ -125,7 +120,6 @@
                                 <ulms-status-text
                                     [className]="''"
                                     [labelText]="'lbl_minimum_time_short' | translate"
-                                    [infoData]="'lbl_minimum_time_short' | translate "
                                     [value]="item.minimumTime | toLocalTimeSpan:{id:'active'}"
                                 >
                                 </ulms-status-text>

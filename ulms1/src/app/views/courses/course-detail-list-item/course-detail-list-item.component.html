@@ -43,7 +43,6 @@
                                 <!--Előrehaladás-->
                                 <ulms-status-line
                                     [labelText]="'lbl_progress' | translate "
-                                    [infoData]="'tt_course_progress' | translate "
                                     [value]=item.courseProgressStatus.value
                                     [statusIcon]=item.courseProgressStatus.statusIcon
                                     [requiredText]=item.courseProgressStatus.requiredText
@@ -55,7 +54,6 @@
                                 <!--Eredmény-->
                                 <ulms-status-line
                                     [labelText]="'lbl_measure' | translate"
-                                    [infoData]="'tt_course_measure' | translate "
                                     [value]=item.courseMeasureStatus.value
                                     [statusIcon]=item.courseMeasureStatus.statusIcon
                                     [requiredText]=item.courseMeasureStatus.requiredText
@@ -70,7 +68,6 @@
                                 <!--Lezárult vagy Határidő idő-->
                                 <ulms-status-text
                                     [className]=""
-                                    [infoData]="'tt_deadline' | translate "
                                     [labelText]=item.deadLine.textLabel
                                     [value]=item.deadLine.value
                                 >
@@ -81,7 +78,6 @@
                                 <ulms-status-text
                                     [className]=""
                                     [labelText]="'lbl_total_time' | translate"
-                                    [infoData]="'tt_total_time' | translate"
                                     [value]="item.totalTime.value | toLocalTimeSpan:{id:'active',otherValue:item.totalTime.netTimeLimit}"
                                 >
                                 </ulms-status-text>
@@ -94,7 +90,6 @@
                                 <ulms-status-text
                                     [labelText]="'lbl_first_attempt' | translate"
                                     [value]=item.resultStartDate
-                                    [infoData]="'lbl_first_attempt' | translate "
                                 >
                                 </ulms-status-text>
                             </div>
@@ -104,7 +99,6 @@
                                     [className]="item.totalTime.value >= item.minimumTime ? '' : 'warning'"
                                     [value]="item.minimumTime | toLocalTimeSpan:{id:'active'}"
                                     [labelText]="'lbl_minimum_time_short' | translate"
-                                    [infoData]="'lbl_minimum_time_short' | translate "
                                 >
                                 </ulms-status-text>
                             </div>
@@ -114,7 +108,6 @@
                                 <ulms-status-text
                                     [value]="item.suggestedTime | toLocalTimeSpan:{id:'active'}"
                                     [labelText]="'lbl_suggested_time' | translate"
-                                    [infoData]="'lbl_suggested_time' | translate "
                                 >
                                 </ulms-status-text>
                             </div>

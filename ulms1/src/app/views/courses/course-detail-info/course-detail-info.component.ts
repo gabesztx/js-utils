@@ -30,7 +30,7 @@ export class CourseDetailInfoComponent implements OnDestroy {
         this.paramsObs = this.route.params.subscribe(params => {
             clearInterval(this.currentItemInterval);
             this.contractStatusText = ContractStatus;
-            this.itemData = this.route.snapshot.data.responseData;
+            this.itemData = this.route.snapshot.data.responseData.courseDetail;
             this.currentItemData = this.transFormViewObject(this.itemData);
             this.updatePageItem(this.currentItemData);
         });
@@ -55,12 +55,10 @@ export class CourseDetailInfoComponent implements OnDestroy {
     transFormViewObject(data: any): Array<CourseDetailInfoViewModel> {
 
         const dataArray: Array<CourseDetailInfoViewModel> = [];
-
-        const courses = data.items;
+        const courses = data;
         const courseObjects = courses.courseObjects;
         const courseActivities = courses.courseActivities;
         const courseRegistration = courses.courseRegistration;
-
 
         courseObjects.forEach((courseObject, key) => {
             if (!courseObject.parent) {

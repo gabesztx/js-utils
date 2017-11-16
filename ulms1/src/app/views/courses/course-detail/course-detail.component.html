@@ -1,8 +1,9 @@
 <div class="container">
     <div class="row">
         <div class="nx-content">
-            <ulms-nav-tab [navData]=[]
-            ></ulms-nav-tab>
+            <div *ngIf="isShowTab">
+                <ulms-nav-tab [navData]=this.navTabData></ulms-nav-tab>
+            </div>
             <div *ngIf="courseDetail">
                 <ulms-course-detail-main-item [itemData]="courseDetail"></ulms-course-detail-main-item>
             </div>

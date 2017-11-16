@@ -5,7 +5,7 @@
     <div class="row">
         <div class="courseItemImgBlock col-sm-2 hidden-xs">
             <div class="imgContent">
-                <img src="{{item.imageUrl}}" alt="">
+                <img src="{{item.imageUrl}}" (click)="clickUrl(item.id)" alt="">
             </div>
         </div>
         <div class="courseItemTextBlock col-sm-7">
@@ -33,7 +33,9 @@
                             <!--Előrehaladás-->
                             <ulms-status-line
                                 [labelText]="'lbl_progress' | translate "
-                                [infoData]="'tt_course_progress' | translate "
+                                [toolTipDataLabel]="['tt_course_progress'] | tooltTip"
+
+                                [toolTipData]="['tt_course_progress', 'tt_course_object_progress_required'] | tooltTip"
                                 [value]=item.courseProgressStatus.value
                                 [statusIcon]=item.courseProgressStatus.statusIcon
                             >
@@ -43,7 +45,8 @@
                             <!--Eredmény-->
                             <ulms-status-line
                                 [labelText]="'lbl_measure' | translate"
-                                [infoData]="'tt_course_measure' | translate "
+                                [toolTipDataLabel]="['tt_course_measure'] | tooltTip"
+                                [toolTipData]="['tt_course_measure','tt_course_measure_required'] | translate "
                                 [value]=item.courseMeasureStatus.value
                                 [statusIcon]=item.courseMeasureStatus.statusIcon
                             >
@@ -56,20 +59,19 @@
                             <!--Határidő idő-->
                             <ulms-status-text
                                 [className]=""
-                                [infoData]="'tt_deadline' | translate "
+                                [toolTipData]="'tt_deadline' | translate "
                                 [labelText]=item.deadLine.textLabel
                                 [value]=item.deadLine.value
                             >
                             </ulms-status-text>
                         </div>
                         <div class="statusTextConent">
-
                             <!--Eltöltött idő-->
                             <ulms-status-text
                                 [className]=""
                                 [labelText]="'lbl_total_time' | translate"
                                 [value]="item.totalTime.value | toLocalTimeSpan:{id:'active',otherValue:item.totalTime.netTimeLimit}"
-                                [infoData]="'tt_total_time' | translate"
+                                [toolTipData]="['tt_total_time'] | tooltTip"
                             >
                             </ulms-status-text>
                         </div>

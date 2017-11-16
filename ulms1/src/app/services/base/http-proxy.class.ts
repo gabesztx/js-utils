@@ -74,9 +74,8 @@ export abstract class HttpProxy extends HttpBase {
                 this.removeBackgroundProcess(process);
             })*/;
     }
-
+    /* TODO: course detail navigation: when status:3x redirect */
     private extract(res: Response) {
-
         try {
             return res.json();
             // const body = res.json();

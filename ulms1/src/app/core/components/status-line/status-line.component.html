@@ -1,5 +1,5 @@
 <div class="statusLineComponent">
-    <div class="statusLineLabel labelText">{{labelText}}</div>
+    <div class="statusLineLabel labelText" [attr.info-data]="toolTipDataLabel">{{labelText}}</div>
     <div class="statusLineContent">
         <div class="statusLine" [ngStyle]="{'width':startValue+'%'}"></div>
     </div>
@@ -9,6 +9,5 @@
         <i *ngIf="statusIcon === false" class="glyphicon glyphicon-remove unsuccess"></i>
     </div>
     <div *ngIf="requiredText" class="statusText">{{requiredText}}</div>
-    <div class="informationIcon" [attr.info-data]="infoData"></div>
+    <div class="informationIcon" [attr.info-data]="toolTipData"></div>
 </div>
-

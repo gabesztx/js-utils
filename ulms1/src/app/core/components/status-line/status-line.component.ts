@@ -9,7 +9,8 @@ import { connectableObservableDescriptor } from "rxjs/observable/ConnectableObse
 
 export class StatusLineComponent implements OnInit, OnDestroy, OnChanges {
     @Input() labelText: string;
-    @Input() infoData: string;
+    @Input() toolTipData: string;
+    @Input() toolTipDataLabel: string;
     @Input() value: number;
     @Input() statusIcon: any;
     @Input() requiredText: string;
