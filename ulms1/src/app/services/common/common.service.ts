@@ -434,7 +434,7 @@ export class CommonService {
         return {
             isShow: !!licenseGrossTimeLimitDate || !!licenseTimeSpentInThisPeriod,
             dateValue: value,
-        }
+        };
     }
 
 
@@ -445,7 +445,7 @@ export class CommonService {
      */
     getOrganizationName(invitation) {
         const organizationName = invitation.organization;
-        return organizationName ? organizationName : this.translate('txt_not_exists');
+        return organizationName ? organizationName.name : this.translate('txt_not_exists');
     }
 
     /**
@@ -598,8 +598,8 @@ export class CommonService {
      *  @return {boolean}
      */
     isValideDate(value): boolean {
-        return value.split('-')[0] === '9999';
-        // return value.split('-')[0] === '9999' || value.split('-')[0] === '1753';
+        // return value.split('-')[0] === '9999';
+         return value.split('-')[0] === '9999' || value.split('-')[0] === '1753';
     }
 
     /**
@@ -608,7 +608,7 @@ export class CommonService {
      *  @return {string}
      */
     formatDay(date): string {
-        return moment(date).format('YYYY.MM.DD.')
+        return moment(date).format('YYYY.MM.DD.');
     }
 
 
@@ -678,7 +678,7 @@ export class CommonService {
     * */
 
     getDetialDeadLabelText(stateParam) {
-        if (stateParam == 5) {
+        if (stateParam === 5) {
             return 'lbl_closed_date';
         } else {
             return 'lbl_deadline_colon';
@@ -714,7 +714,7 @@ export class CommonService {
     **/
 
     getResultDate(value) {
-        if (value.split('-')[0] === '9999') {
+        if (this.isValideDate) {
             return this.l10nService.translate('txt_not_specified');
         }
         return value ? moment(value).format('YYYY.MM.DD.') : this.l10nService.translate('txt_not_specified');
@@ -807,7 +807,7 @@ export class CommonService {
                 date = 0;
             }
 
-            if (date > 2000 && date < 9000) {
+            if (date > 1999 && date < 9000) {
                 return true;
             } else {
                 return false;
@@ -816,18 +816,18 @@ export class CommonService {
 
 
         if (isSetTime(isEpxDate)) {
-            return moment(isEpxDate).format('YYYY.MM.DD.')
+            return moment(isEpxDate).format('YYYY.MM.DD.');
         }
         if (!isSetTime(isEpxDate) && isSetTime(isEnd)) {
-            return moment(isEnd).format('YYYY.MM.DD.')
+            return moment(isEnd).format('YYYY.MM.DD.');
 
         }
-        return this.l10nService.translate('txt_not_exists');
+        return this.l10nService.translate('txt_not_specified');
     }
 
     getLink(value: any, rule ?: any) {
         if (value && value.length) {
-            let linkData = [];
+            const linkData = [];
             value.forEach((data, key) => {
                 linkData.push({
                     'rel': data.rel,
@@ -835,7 +835,7 @@ export class CommonService {
                     'label': data.label,
                     'tooltip': data.tooltip,
                     'target': data.target
-                })
+                });
             });
             return linkData;
         }
