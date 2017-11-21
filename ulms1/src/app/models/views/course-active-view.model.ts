@@ -10,6 +10,8 @@ export interface CourseActiveView {
     totalTime: any,
     status: any,
     links: any,
+    // resultEndDate: any,
+    // grossTimeLimit: any,
 
 }
 
@@ -25,6 +27,9 @@ export class CourseActiveViewModel implements CourseActiveView {
     public totalTime: any;
     public status: any;
     public links: any;
+    // public resultEndDate: any,
+    // public grossTimeLimit: any,
 
-    constructor() {}
+    constructor() {
+    }
 }

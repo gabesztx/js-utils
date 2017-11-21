@@ -133,6 +133,21 @@ export class CommonService {
         };
     }
 
+
+    /**
+     *  getResultEndDate
+     *  @param {Object} courseActivitie
+     *  @return {String}
+     */
+    getResultEndDate(courseActivitie: any): any {
+        const totalTime = courseActivitie.result.totalTime;
+        const netTimeLimit = courseActivitie.target.requirement.netTimeLimit;
+        return {
+            'value': totalTime ? totalTime : 0,
+            'netTimeLimit': netTimeLimit,
+        };
+    }
+
     /**
      *  getActivityStatus
      *  @param {Object} courseActivitie
@@ -484,18 +499,18 @@ export class CommonService {
     }
 
 
-    /**
-     *  getResultEndDate
-     *  @param {Object} courseObject
-     *  @return
-     */
-    getResultEndDate(courseObject: any) {
-        const resultEndDate = courseObject.requirement.resultEndDate;
-        if (this.isValideDate(resultEndDate)) {
-            return this.translate('txt_not_specified');
-        }
-        return resultEndDate ? this.formatDay(resultEndDate) : this.translate('txt_not_specified');
-    }
+    // /**
+    //  *  getResultEndDate
+    //  *  @param {Object} courseObject
+    //  *  @return
+    //  */
+    // getResultEndDate(courseObject: any) {
+    //     const resultEndDate = courseObject.requirement.resultEndDate;
+    //     if (this.isValideDate(resultEndDate)) {
+    //         return this.translate('txt_not_specified');
+    //     }
+    //     return resultEndDate ? this.formatDay(resultEndDate) : this.translate('txt_not_specified');
+    // }
 
     /**
      *  getNetTimeLimit

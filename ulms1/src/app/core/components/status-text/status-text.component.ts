@@ -10,8 +10,6 @@ export class StatusTextComponent implements OnInit {
     @Input() value: string;
     @Input() className: string;
     @Input() toolTipData: string;
-
-    ngOnInit() {
-    }
-
+    @Input() toolTipTextData: string;
+    ngOnInit() {}
 }
