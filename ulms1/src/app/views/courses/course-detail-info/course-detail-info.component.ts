@@ -1,11 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { RestApiResponse } from '../../../services/base/http.class';
 import { CourseDetailInfoViewModel } from '../../../models/views/course-detail-info-view.model';
-import { UserCourseRegistrationModel } from '../../../models/userCourseRegistration.model';
-import { ContractStatus, CourseRegistrationShallow } from '../../../models/courseRegistrationShallow.model';
-import { CourseActivityModel } from '../../../models/courseActivity.model';
-import { CourseObjectModel } from '../../../models/courseObject.model';
+import { ContractStatus } from '../../../models/courseRegistrationShallow.model';
 import { slideOutInKeyFrameAnimation } from '../../../animations/course-animation';
 
 @Component({
@@ -17,8 +13,7 @@ import { slideOutInKeyFrameAnimation } from '../../../animations/course-animatio
 
 export class CourseDetailInfoComponent implements OnDestroy {
 
-    itemData: any;
-
+    public itemData: any;
     public paramsObs: any;
     public contractStatusText: any;
 
@@ -94,7 +89,7 @@ export class CourseDetailInfoComponent implements OnDestroy {
 
                     /*  Leírás */
                     description: courses.description
-                })
+                });
                 // dataArray.push(courseDetailInfo)
             }
         });

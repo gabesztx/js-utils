@@ -37,7 +37,7 @@ import { CourseListContentComponent } from './course-list-content/course-list-co
 import { CourseDetailComponent } from './course-detail/course-detail.component';
 import { CourseDetailListItemComponent } from './course-detail-list-item/course-detail-list-item.component';
 import { CourseDetailInfoComponent } from './course-detail-info/course-detail-info.component';
-import { CourseDetailFeedComponent } from './course-detail-feed/course-detail-feed.component';
+import { CourseFeedComponent } from './course-feed/course-feed.component';
 
 /* Services */
 import { CourseTabIndex } from '../../services/course-status-mapper.service';
@@ -168,7 +168,7 @@ export const routes: Routes = [{
         },
     }, {
         path: 'feed',
-        component: CourseDetailFeedComponent,
+        component: CourseFeedComponent,
         resolve: {
             responseData: courseDetailListGuard
         },

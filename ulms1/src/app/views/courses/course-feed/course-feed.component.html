@@ -1,0 +1,22 @@
+<div class="courseFeedComponent" *ngFor="let item of currentItemListaData" [@slideOutInKeyFrame]>
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-10">
+            <div class="feedContent">
+                <div class="feedTitleContent">
+                    <span class="feedTitle">{{item.title}}</span>
+                    <span class="feedDate" style="float: right;">{{item.creationDate}}</span>
+                    <div *ngIf="item.label" class="feedLabelContent">
+                        <span class="feedLabel">{{item.label}}</span>
+                    </div>
+                </div>
+                <div class="feedDescriptionContent">
+                    <ulms-description
+                        [className]="'course-list'"
+                        [description]=item.description>
+                    </ulms-description>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

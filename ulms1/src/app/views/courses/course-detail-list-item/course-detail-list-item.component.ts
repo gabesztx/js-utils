@@ -19,8 +19,6 @@ export class CourseDetailListItemComponent implements OnChanges, OnDestroy {
     currentItemData: any;
     currentItemListaData: any;
     currentItemInterval: any;
-
-    public elemItemNum = 0;
     public paramsObs: any;
 
     constructor(private route: ActivatedRoute, private commonService: CommonService) {

@@ -559,10 +559,10 @@ export class CommonService {
 
 
         if (isSetTime(isEpxDate)) {
-            return this.formatDay(isEpxDate)
+            return this.formatDay(isEpxDate);
         }
         if (!isSetTime(isEpxDate) && isSetTime(isEnd)) {
-            return this.formatDay(isEnd)
+            return this.formatDay(isEnd);
 
         }
         return this.translate('txt_not_exists');
