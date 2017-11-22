@@ -5,8 +5,7 @@ import { L10nService } from '../../services/l10n.service';
     name: 'toLocalTimeSpan'
 })
 export class ToLocalTimeSpanPipe implements PipeTransform {
-    constructor(private l10nService: L10nService) {
-    }
+    constructor(private l10nService: L10nService) {}
 
     transform(value: any, args?: any): any {
         let id;
@@ -17,15 +16,15 @@ export class ToLocalTimeSpanPipe implements PipeTransform {
         }
         const getTransformTime = (timeValue) => {
 
-            let sec_num = parseInt(timeValue, 10);
-            let hours = Math.floor(sec_num / 3600) % 24;
-            let minutes = Math.floor(sec_num / 60) % 60;
-            let seconds = sec_num % 60;
+            const sec_num = parseInt(timeValue, 10);
+            const hours = Math.floor(sec_num / 3600) % 24;
+            const minutes = Math.floor(sec_num / 60) % 60;
+            const seconds = sec_num % 60;
 
             return [hours, minutes, seconds]
-                .map(v => v < 10 ? "0" + v : v)
-                .filter((v, i) => v !== "00" || i > 0)
-                .join(":")
+                .map(v => v < 10 ? '0' + v : v)
+                .filter((v, i) => v !== '00' || i > 0)
+                .join(':');
 
         };
 
@@ -46,7 +45,7 @@ export class ToLocalTimeSpanPipe implements PipeTransform {
             if (value) {
                 activeTimeTransform = getTransformTime(value);
             } else {
-                activeTimeTransform = this.l10nService.translate('txt_not_specified')
+                activeTimeTransform = this.l10nService.translate('txt_not_specified');
             }
 
         }

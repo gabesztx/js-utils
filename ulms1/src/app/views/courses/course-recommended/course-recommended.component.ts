@@ -24,7 +24,6 @@ export class CourseRecommendedComponent implements OnChanges {
 
     ngOnChanges() {
         clearInterval(this.currentItemInterval);
-        this.currentItemData = this.transFormViewObject(this.itemData);
         if (this.itemData.items.length) {
             this.currentItemData = this.transFormViewObject(this.itemData);
             this.updatePageItem(this.currentItemData);
@@ -46,6 +45,7 @@ export class CourseRecommendedComponent implements OnChanges {
             }
             this.currentItemListaData.push(currentList[itemNum]);
             itemNum++;
+            itemNum++;
         }, 125);
     }
 
@@ -66,7 +66,7 @@ export class CourseRecommendedComponent implements OnChanges {
                 status: this.commonService.getRecommendedStatus(invitation), // Status button
                 organization: this.commonService.getOrganizationName(invitation), // Meghívó szervezet
                 resultStartDate: this.commonService.getCourseResultStartDate(courseObject), // Kurzus kezdete
-                resultEndDate: this.commonService.getResultEndDate(courseObject), // Kurzus vége
+                resultEndDate: this.commonService.getResultDate(courseObject), // Kurzus vége
                 netTimeLimit: this.commonService.getNetTimeLimit(courseObject), // Idő keret
                 suggestedTime: this.commonService.getCourseSuggestedTime(courseObject), // Várható tanulási idő
                 expirationTime: this.commonService.getExpirationTime(course), // Beiratkozás határideje

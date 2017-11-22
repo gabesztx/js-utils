@@ -14,13 +14,14 @@
                     <!-- Title -->
                     <div class="courseTitle" (click)="clickUrl(item.id)">{{item.title}}</div>
                     <!-- Label -->
-                    <div *ngIf="item.label.length || item.providerName.length" class="courseLabelContent">
-                        <span *ngIf="item.label.length" class="courseLabel">{{item.label}}</span>
+                    <span *ngIf="item.label.length || item.providerName.length" class="courseLabelContent">
+                        <span *ngIf="item.label.length" class="courseLabel"
+                              [attr.info-data]="'Kurzus kód: '+item.label">{{item.label}}</span>
                         <span *ngIf="item.label.length && item.providerName.length">-</span>
-                        <span *ngIf="item.providerName.length" class="courseProviderName">{{item.providerName}}</span>
-                    </div>
+                        <span *ngIf="item.providerName.length" class="courseProviderName"
+                              [attr.info-data]="'Kurzus szolgáltatója: '+item.providerName">{{item.providerName}}</span>
+                    </span>
                 </div>
-
                 <div class="courseItemImgBlock">
                     <div class="imgContent">
                         <img src="{{item.imageUrl}}" alt="">
@@ -34,7 +35,6 @@
                             <ulms-status-line
                                 [labelText]="'lbl_progress' | translate "
                                 [toolTipDataLabel]="['tt_course_progress'] | tooltTip"
-
                                 [toolTipData]="['tt_course_progress', 'tt_course_object_progress_required'] | tooltTip"
                                 [value]=item.courseProgressStatus.value
                                 [statusIcon]=item.courseProgressStatus.statusIcon
@@ -51,22 +51,21 @@
                                 [statusIcon]=item.courseMeasureStatus.statusIcon
                             >
                             </ulms-status-line>
-
                         </div>
                     </div>
                     <div class="courseResultList">
-                        <div class="statusTextConent">
+                        <div class="statusTextConent" style="padding: 5px 0">
                             <!--Határidő idő-->
                             <ulms-status-text
                                 [className]=""
-                                [toolTipData]="'tt_deadline' | translate "
-                                [toolTipTextData]="'tt_first_attempt_deadline_1' | translate "
+                                [toolTipData]="'tt_deadline' | translate"
+                                [toolTipTextData]="'tt_first_attempt_deadline_1' | translate:{'grosstimelimit': '(TODO: Gergővel átbeszélni)', 'resultenddate': '(TODO: Gergővel átbeszélni)'}"
                                 [labelText]=item.deadLine.textLabel
                                 [value]=item.deadLine.value
                             >
                             </ulms-status-text>
                         </div>
-                        <div class="statusTextConent">
+                        <div class="statusTextConent" style="padding: 5px 0">
                             <!--Eltöltött idő-->
                             <ulms-status-text
                                 [className]=""

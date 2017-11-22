@@ -26,6 +26,9 @@
                 white-space: normal;
                 overflow: inherit;
             }
+            &.feed {
+                opacity:0.3;
+            }
         }
 
         .descriptionTextLabel {

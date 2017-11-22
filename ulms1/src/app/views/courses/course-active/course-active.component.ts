@@ -54,6 +54,8 @@ export class CourseActiveComponent implements OnChanges {
         itemData.items.forEach((item) => {
             const course = item;
             const courseActivitie = course.courseActivities[0];
+            const grossTimeLimit = courseActivitie.target.requirement.grossTimeLimit;
+            const resultEndDate = courseActivitie.target.requirement.resultEndDate;
             courseActiveView.push({
                 id: course.id,
                 title: this.commonService.getTitle(course), // Title
@@ -66,6 +68,8 @@ export class CourseActiveComponent implements OnChanges {
                 courseMeasureStatus: this.commonService.getCourseMeasureStatus(courseActivitie), // Eredmény
                 deadLine: this.commonService.getDeadLine(courseActivitie), // Határidő
                 totalTime: this.commonService.getTotalTime(courseActivitie), // Eltöltött idő
+                grossTimeLimit: grossTimeLimit ? grossTimeLimit : '', // grossTimeLimit
+                resultEndDate: resultEndDate ? resultEndDate : '', // resultEndDate
             });
         });
         return courseActiveView;

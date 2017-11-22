@@ -7,7 +7,8 @@ import * as moment from 'moment';
 @Injectable()
 export class CommonService {
 
-    constructor(private l10nService: L10nService) {}
+    constructor(private l10nService: L10nService) {
+    }
 
     /**
      *  getTitle
@@ -125,10 +126,10 @@ export class CommonService {
      *  @return {String}
      */
     getTotalTime(courseActivitie: any): any {
-        const totalTime = courseActivitie.result.totalTime;
-        const netTimeLimit = courseActivitie.target.requirement.netTimeLimit;
+        const totalTime = courseActivitie.result ? courseActivitie.result.totalTime : 0;
+        const netTimeLimit = courseActivitie.target ? courseActivitie.target.requirement.netTimeLimit : 0;
         return {
-            'value': totalTime ? totalTime : 0,
+            'value': totalTime,
             'netTimeLimit': netTimeLimit,
         };
     }
@@ -140,10 +141,10 @@ export class CommonService {
      *  @return {String}
      */
     getResultEndDate(courseActivitie: any): any {
-        const totalTime = courseActivitie.result.totalTime;
-        const netTimeLimit = courseActivitie.target.requirement.netTimeLimit;
+        const totalTime = courseActivitie.result ? courseActivitie.result.totalTime : 0;
+        const netTimeLimit = courseActivitie.target ? courseActivitie.target.requirement.netTimeLimit : 0;
         return {
-            'value': totalTime ? totalTime : 0,
+            'value': totalTime,
             'netTimeLimit': netTimeLimit,
         };
     }
@@ -492,7 +493,7 @@ export class CommonService {
             }
         };
         if (IsResultStartDate && isSetTime(IsResultStartDate)) {
-            return this.formatDay(IsResultStartDate)
+            return this.formatDay(IsResultStartDate);
         }
         return this.translate('txt_not_exists');
 
@@ -614,7 +615,7 @@ export class CommonService {
      */
     isValideDate(value): boolean {
         // return value.split('-')[0] === '9999';
-         return value.split('-')[0] === '9999' || value.split('-')[0] === '1753';
+        return value.split('-')[0] === '9999' || value.split('-')[0] === '1753';
     }
 
     /**

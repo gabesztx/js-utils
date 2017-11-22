@@ -1,5 +1,5 @@
 <div class="descriptionComponent">
-    <div class="descriptionWrapper" *ngIf="className==='course-list'">
+    <div class="descriptionWrapper" *ngIf="className==='course-list' || className==='feed'">
         <i class="descriptionIcon glyphicon glyphicon-chevron-right"
            [ngClass]="{'open':isOpen}"
            (click)="textToggle()">
@@ -18,7 +18,6 @@
             <div class="descriptionTableContent">
                 <div class="descriptionTableEmpty">
                     {{'msg_no_course_results_to_display' | translate}}
-
                 </div>
             </div>
         </div>

@@ -5,6 +5,7 @@
             <div class="feedContent">
                 <div class="feedTitleContent">
                     <span class="feedTitle">{{item.title}}</span>
+                    <div class="feed-icon"></div>
                     <span class="feedDate" style="float: right;">{{item.creationDate}}</span>
                     <div *ngIf="item.label" class="feedLabelContent">
                         <span class="feedLabel">{{item.label}}</span>
@@ -12,7 +13,7 @@
                 </div>
                 <div class="feedDescriptionContent">
                     <ulms-description
-                        [className]="'course-list'"
+                        [className]="'feed'"
                         [description]=item.description>
                     </ulms-description>
                 </div>
