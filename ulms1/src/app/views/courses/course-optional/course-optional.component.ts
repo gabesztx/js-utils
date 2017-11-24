@@ -1,6 +1,8 @@
 import { Component, OnChanges, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonService } from '../../../services/common/common.service';
+import { RestApiResponse } from '../../../services/base/http.class';
+import { CourseOptionalViewModel } from '../../../models/views/course-optional-view.model';
 import { slideInOutKeyFrameAnimation } from '../../../animations/course-animation';
 
 @Component({
@@ -18,8 +20,7 @@ export class CourseOptionalComponent implements OnChanges {
     currentItemInterval: any;
     noItems = false;
 
-    constructor(private commonService: CommonService, private router: Router) {
-    }
+    constructor(private commonService: CommonService, private router: Router) {}
 
     ngOnChanges() {
         clearInterval(this.currentItemInterval);
@@ -46,42 +47,26 @@ export class CourseOptionalComponent implements OnChanges {
         }, 125);
     }
 
-    transFormViewObject(data) {
-        const dataArray: Array<any> = [];
-        data.items.forEach((value) => {
-            const course = value.course;
-            const courseObject = value.courseObject;
-            const invitation = value.invitation;
-            const registration = course.registration;
-            const resultStartDate = courseObject.requirement.resultStartDate;
-            const resultEndDate = courseObject.requirement.resultEndDate;
-            const exparitation = invitation ? invitation.expiration : undefined;
-            const endDate = registration ? registration.endDate : undefined;
-            const description = course.description;
-
-            let links;
-            if (value.links) {
-                value.links.forEach((valueData) => {
-                    if (valueData.rel === 'Reject') {
-                        links = valueData;
-                    }
-                });
-            }
-            dataArray.push({
+    transFormViewObject(itemData: RestApiResponse<any>) {
+        const courseOptionalView: Array<CourseOptionalViewModel> = [];
+        itemData.items.forEach((item) => {
+            const course = item.course;
+            const courseObject = item.courseObject;
+            courseOptionalView.push({
                 id: course.id,
-                imageUrl: course.imageUrl.length ? course.imageUrl : '/Content/client/assets/images/suitcase_big_icon.png',
-                title: course.title,
-                label: course.label,
-                providerName: course.provider ? course.provider.name : '',
-                resultStartDate: this.commonService.getResultDate(resultStartDate),
-                resultEndDate: this.commonService.getResultDate(resultEndDate),
-                getExpiration: this.commonService.getExpiration(exparitation, endDate),
-                suggestedTime: courseObject.requirement.suggestedTime,
-                netTimeLimit: courseObject.requirement.netTimeLimit,
-                description: description,
-                links: links ? [links] : []
+                title: this.commonService.getTitle(course), // Title
+                label: this.commonService.getLabel(course), // Label
+                providerName: this.commonService.getProviderName(course), // Label Provider name
+                imageUrl: this.commonService.getImageUrl(course), // Image
+                links: this.commonService.getLinks(item), // Launch button + links
+                resultStartDate: this.commonService.getCourseResultStartDate(courseObject), // Kurzus kezdete
+                resultEndDate: this.commonService.getResultDate(courseObject), // Kurzus vége
+                netTimeLimit: this.commonService.getNetTimeLimit(courseObject), // Idő keret
+                suggestedTime: this.commonService.getCourseSuggestedTime(courseObject), // Várható tanulási idő
+                expirationTime: this.commonService.getExpirationTime(course), // Beiratkozás határideje
+                description: this.commonService.getCourseDescription(course), // Leírás
             });
         });
-        return dataArray;
+        return courseOptionalView;
     }
 }

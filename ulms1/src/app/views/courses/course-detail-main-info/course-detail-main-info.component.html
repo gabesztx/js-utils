@@ -47,7 +47,7 @@
                             <ulms-status-text
                                 [className]="'optional'"
                                 [labelText]="'lbl_enrollment_deadline' | translate"
-                                [value]=item.expirationTime
+                                [value]=item.getExpiration
                             >
                             </ulms-status-text>
                         </div>
@@ -75,7 +75,7 @@
                 </div>
             </div>
         </div>
-        <div class="courseItemButtonBlock col-sm-3">
+     <!--   <div class="courseItemButtonBlock col-sm-3">
             <div class="buttonContent">
                 <ulms-button
                     [btnLabel]="'lbl_optional' | translate"
@@ -90,20 +90,13 @@
                     (onButtonFn)="clickUrl(item.id)"
                 ></ulms-dropdown-split>
             </div>
-        </div>
-        <div *ngIf="item.description" class="descriptionContent col-sm-12">
+        </div>-->
+      <!--  <div *ngIf="item.description" class="descriptionContent col-sm-12">
             <ulms-description
                 [description]=item.description
                 [className]="'course-list'"
             >
             </ulms-description>
-        </div>
-    </div>
-</div>
-<div class="row" *ngIf="noItems">
-    <div class="noItemstext">
-        <div class="col-sm-12">
-            {{'msg_optional_course_list_is_empty' | translate}}
-        </div>
+        </div>-->
     </div>
 </div>

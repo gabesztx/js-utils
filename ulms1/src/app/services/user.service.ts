@@ -24,12 +24,14 @@ export class UserService extends HttpProxy {
         return __instance__;
     }
 
-    getUser(): Observable<any> {
-        return this.get(`${this.apiUrl}`)
+    getUser(): Observable<boolean> {
+       /* return this.get(`${this.apiUrl}`)
             .map((result: any) => {
                 this.userData = result;
                 return result;
-            });
+            });*/
+
+       return Observable.of(true);
     }
 
     getUserData() {

@@ -4,8 +4,8 @@
             <div *ngIf="isShowTab">
                 <ulms-nav-tab [navData]=this.navTabData></ulms-nav-tab>
             </div>
-            <div *ngIf="courseDetail">
-                <ulms-course-detail-main-item [itemData]="courseDetail"></ulms-course-detail-main-item>
+            <div *ngIf="isCourseDetailMainContent">
+                <ulms-course-detail-main-content [itemData]="courseDetail"></ulms-course-detail-main-content>
             </div>
             <router-outlet></router-outlet>
         </div>

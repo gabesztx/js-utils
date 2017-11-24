@@ -11,22 +11,37 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
     public urlId: any;
     public courseDetail: any;
     public courseFeeds: any;
-    public courseDetaiState: any;
-    public isShowTab = true;
+    public isShowTab:any;
     public navTabData = [];
+
+    public courseDetailState: any;
+    public isCourseDetailMainContent = false;
+    public isCourseDetailMainInfo = false;
 
     constructor(private route: ActivatedRoute) {
         this.paramsObs = this.route.params.subscribe(params => {
             this.urlId = params.courseId;
             this.courseDetail = this.route.snapshot.data.responseData.courseDetail;
             this.courseFeeds = this.route.snapshot.data.responseData.courseFeeds;
-            this.courseDetaiState = this.courseDetail.courseState;
-            console.log('courseDetaiState', this.courseDetaiState)
+            this.courseDetailView(this.courseDetail);
             this.navigationTabView();
         });
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+    }
+
+    /**
+     * course detail nav tab property
+     */
+    courseDetailView(courseDetail: any) {
+        this.courseDetailState = courseDetail.courseState;
+        if (this.courseDetailState === 4 || this.courseDetailState === 5) {
+            this.isShowTab = true;
+            this.isCourseDetailMainContent = true;
+        }
+        console.log('isCourseDetailMainContent', this.isCourseDetailMainContent);
+    }
 
     /**
      * course detail nav tab property
@@ -34,9 +49,9 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
     navigationTabView() {
         const courseActivities = this.courseDetail.courseActivities;
         const navTabDefaultData = {
-            content: {'label': 'lbl_course_content', 'urlPath': '/courses/' + this.urlId + '/content'},
-            info: {'label': 'lbl_course_information', 'urlPath': '/courses/' + this.urlId + '/info'},
-            feed: {'label': 'lbl_feed', 'urlPath': '/courses/' + this.urlId + '/feed'}
+            content: { 'label': 'lbl_course_content', 'urlPath': '/courses/' + this.urlId + '/content' },
+            info: { 'label': 'lbl_course_information', 'urlPath': '/courses/' + this.urlId + '/info' },
+            feed: { 'label': 'lbl_feed', 'urlPath': '/courses/' + this.urlId + '/feed' }
         };
 
         // add content tab
@@ -49,7 +64,7 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
 
         // add feed tab
         if (this.courseFeeds.length) {
-            this.navTabData.push(navTabDefaultData.feed)
+            this.navTabData.push(navTabDefaultData.feed);
         }
     }
 
