@@ -29,7 +29,6 @@
                             <ulms-status-text
                                 [labelText]="'lbl_registration_organization' | translate"
                                 [value]=item.registrarOrganization
-
                             >
                             </ulms-status-text>
                         </div>
@@ -75,13 +74,16 @@
         </div>
         <div class="courseItemButtonBlock col-sm-3">
             <div class="buttonContent">
+                <!-- Status -->
                 <ulms-button
-                    [btnLabel]="item.btnLabel | translate"
-                    [btnIconClassName]="item.btnIconClassName"
+                    [isPointer]=false
+                    [btnLabel]="'lbl_course_status_' + item.status.value | translate"
+                    [btnIconClassName]=item.status.icon
                 >
                 </ulms-button>
             </div>
             <div class="dropDownContent">
+                <!-- Lunch Button -->
                 <ulms-dropdown-split
                     [groupName]="'upcoming'"
                     [labelText]="'btn_information' | translate"

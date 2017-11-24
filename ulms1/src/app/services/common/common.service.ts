@@ -77,7 +77,7 @@ export class CommonService {
             'value': lineValue,
             'statusIcon': this.getLineStatus(progress, status),
             'requiredText': this.translate(requiredText),
-        }
+        };
     }
 
     /**
@@ -95,8 +95,19 @@ export class CommonService {
             'value': lineValue,
             'statusIcon': this.getLineStatus(measure, status),
             'requiredText': this.translate(requiredText),
-        }
+        };
     }
+
+    /**
+     *  getRegistrarOrganization
+     *  @param {Object} courseRegistration
+     *  @return {Object}
+     */
+    getRegistrarOrganization(courseRegistration: any): any {
+        const registrarOrganization = courseRegistration.registrarOrganization;
+        return registrarOrganization ? registrarOrganization.name : this.translate('txt_not_exists');
+    }
+
 
     /**
      *  getDeadLine
@@ -126,21 +137,6 @@ export class CommonService {
      *  @return {String}
      */
     getTotalTime(courseActivitie: any): any {
-        const totalTime = courseActivitie.result ? courseActivitie.result.totalTime : 0;
-        const netTimeLimit = courseActivitie.target ? courseActivitie.target.requirement.netTimeLimit : 0;
-        return {
-            'value': totalTime,
-            'netTimeLimit': netTimeLimit,
-        };
-    }
-
-
-    /**
-     *  getResultEndDate
-     *  @param {Object} courseActivitie
-     *  @return {String}
-     */
-    getResultEndDate(courseActivitie: any): any {
         const totalTime = courseActivitie.result ? courseActivitie.result.totalTime : 0;
         const netTimeLimit = courseActivitie.target ? courseActivitie.target.requirement.netTimeLimit : 0;
         return {
@@ -179,7 +175,7 @@ export class CommonService {
      *  @return {Object}
      */
     getRecommendedStatus(invitation: any): any {
-        let severity = invitation.severity ? invitation.severity : 0;
+        const severity = invitation.severity ? invitation.severity : 0;
         const ICON_NAME = {
             '0': 'btn-icon',
             '1': 'btn-icon airship_icon',
@@ -465,7 +461,7 @@ export class CommonService {
     }
 
     /**
-     *  getResultStartDate
+     *  getCourseResultStartDate
      *  @param {Object} courseObject
      *  @return
      */
@@ -478,12 +474,25 @@ export class CommonService {
     }
 
     /**
-     *  getResultStartDate
-     *  @param {Object} courseRegistration
+     *  getCourseResultEndDate
+     *  @param {Object} courseObject
      *  @return
      */
-    getResultStartDate(courseRegistration: any): any {
-        const resultStartDate = courseRegistration.target.requirement.resultStartDate;
+    getCourseResultEndDate(courseObject) {
+        const resultStartDate = courseObject.requirement.resultEndDate;
+        if (this.isValideDate(resultStartDate)) {
+            return this.translate('txt_not_specified');
+        }
+        return resultStartDate ? this.formatDay(resultStartDate) : this.translate('txt_not_specified');
+    }
+
+    /**
+     *  getResultStartDate
+     *  @param {Object} courseActivities
+     *  @return
+     */
+    getResultStartDate(courseActivities: any): any {
+        const resultStartDate = courseActivities.target.requirement.resultStartDate;
         const IsResultStartDate = resultStartDate ? resultStartDate.split('-')[0] : undefined;
         const isSetTime = (date) => {
             if (date > 2000 && date < 9000) {
@@ -498,20 +507,26 @@ export class CommonService {
         return this.translate('txt_not_exists');
 
     }
-
-
-    // /**
-    //  *  getResultEndDate
-    //  *  @param {Object} courseObject
-    //  *  @return
-    //  */
-    // getResultEndDate(courseObject: any) {
-    //     const resultEndDate = courseObject.requirement.resultEndDate;
-    //     if (this.isValideDate(resultEndDate)) {
-    //         return this.translate('txt_not_specified');
-    //     }
-    //     return resultEndDate ? this.formatDay(resultEndDate) : this.translate('txt_not_specified');
-    // }
+    /**
+     *  getResultEndDate
+     *  @param {Object} courseActivities
+     *  @return
+     */
+    getResultEndDate(courseActivities: any): any {
+        const resultStartDate = courseActivities.target.requirement.resultEndDate;
+        const IsResultStartDate = resultStartDate ? resultStartDate.split('-')[0] : undefined;
+        const isSetTime = (date) => {
+            if (date > 2000 && date < 9000) {
+                return true;
+            } else {
+                return false;
+            }
+        };
+        if (IsResultStartDate && isSetTime(IsResultStartDate)) {
+            return this.formatDay(IsResultStartDate);
+        }
+        return this.translate('txt_not_exists');
+    }
 
     /**
      *  getNetTimeLimit
@@ -566,7 +581,8 @@ export class CommonService {
             return this.formatDay(isEnd);
 
         }
-        return this.translate('txt_not_exists');
+        // return this.translate('txt_not_exists');
+        return this.translate('txt_not_specified');
     }
 
 
@@ -725,16 +741,17 @@ export class CommonService {
         return moment(value).format('YYYY.MM.DD.');
     }
 
-    /*
+/*    /!*
     * Get Result Date
-    **/
+    **!/
 
     getResultDate(value) {
+        console.log('getResultDate!!!!', value);
         if (this.isValideDate) {
             return this.l10nService.translate('txt_not_specified');
         }
         return value ? moment(value).format('YYYY.MM.DD.') : this.l10nService.translate('txt_not_specified');
-    }
+    }*/
 
     /*
     * getRequiredElementText
@@ -789,11 +806,6 @@ export class CommonService {
 
          return false;
      }*/
-
-
-    getRegistrarOrganizationName(value) {
-        return value && value.name ? value.name : this.l10nService.translate('txt_not_exists');
-    }
 
 
     /* getResultStartDate(resultStartDate) {

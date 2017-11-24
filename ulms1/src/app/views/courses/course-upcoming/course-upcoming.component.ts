@@ -1,6 +1,8 @@
 import { Component, OnChanges, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonService } from '../../../services/common/common.service';
+import { RestApiResponse } from '../../../services/base/http.class';
+import { CourseUpcomingViewModel } from '../../../models/views/course-upcoming-view.model';
 import { slideInOutKeyFrameAnimation } from '../../../animations/course-animation';
 
 @Component({
@@ -18,7 +20,8 @@ export class CourseUpcomingComponent implements OnChanges {
     currentItemInterval: any;
     noItems: boolean;
 
-    constructor(private commonService: CommonService, private router: Router) {}
+    constructor(private commonService: CommonService, private router: Router) {
+    }
 
     ngOnChanges() {
         clearInterval(this.currentItemInterval);
@@ -26,7 +29,7 @@ export class CourseUpcomingComponent implements OnChanges {
             this.currentItemData = this.transFormViewObject(this.itemData);
             this.updatePageItem(this.currentItemData);
         } else {
-            this.noItems = true
+            this.noItems = true;
         }
     }
 
@@ -46,32 +49,28 @@ export class CourseUpcomingComponent implements OnChanges {
         }, 125);
     }
 
-    transFormViewObject(data) {
-        const dataArray: Array<any> = [];
-        data.items.forEach((value) => {
-            const courseActivities = value.courseActivities[0];
-            const courseRegistration = value.courseRegistration;
-            const resultStartDate = courseActivities.target.requirement.resultStartDate;
-            const resultEndDate = courseActivities.target.requirement.resultEndDate;
-            dataArray.push({
-                id: courseActivities.id,
-                imageUrl: value.imageUrl.length ? value.imageUrl : '/Content/client/assets/images/suitcase_big_icon.png',
-                remainingTime: courseActivities.result.remainingTime,
-                title: value.title,
-                label: value.label,
-                providerName: value.provider ? value.provider.name : '',
-                netTimeLimit: courseActivities.target.requirement.netTimeLimit,
-                suggestedTime: courseActivities.target.requirement.suggestedTime,
-                registrarOrganization: this.commonService.getRegistrarOrganizationName(courseRegistration.registrarOrganization),
-                resultStartDate: this.commonService.getResultDate(resultStartDate),
-                resultEndDate: this.commonService.getResultDate(resultEndDate),
-                btnLabel: 'lbl_course_status_' + courseActivities.status,
-                btnIconClassName: this.commonService.getStatusButton(courseActivities.status),
-                urlId: '',
-                links: [],
-                description: value.description
+    transFormViewObject(itemData: RestApiResponse<any>) {
+        const courseUpcomingView: Array<any> = [];
+        itemData.items.forEach((item) => {
+            const course = item;
+            const courseActivitie = item.courseActivities[0];
+            const courseRegistration = course.courseRegistration;
+            courseUpcomingView.push({
+                id: courseActivitie.id,
+                title: this.commonService.getTitle(course), // Title
+                label: this.commonService.getLabel(course), // Label
+                status: this.commonService.getActivityStatus(courseActivitie), // Status button
+                providerName: this.commonService.getProviderName(course), // Label Provider name
+                imageUrl: this.commonService.getImageUrl(course), // Image
+                links: this.commonService.getLinks(courseActivitie), // Launch button + links
+                registrarOrganization: this.commonService.getRegistrarOrganization(courseRegistration), // Beirato szervezet
+                resultStartDate: this.commonService.getResultStartDate(courseActivitie), // Kurzus kezdete
+                resultEndDate: this.commonService.getResultEndDate(courseActivitie), // Kurzus vége
+                netTimeLimit: this.commonService.getNetTimeLimit(courseActivitie.target), // Idő keret
+                suggestedTime: this.commonService.getCourseSuggestedTime(courseActivitie.target), // Várható tanulási idő
+                description: this.commonService.getCourseDescription(course), // Leírás
             });
         });
-        return dataArray;
+        return courseUpcomingView;
     }
 }

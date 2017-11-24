@@ -20,7 +20,8 @@ export class CourseOptionalComponent implements OnChanges {
     currentItemInterval: any;
     noItems = false;
 
-    constructor(private commonService: CommonService, private router: Router) {}
+    constructor(private commonService: CommonService, private router: Router) {
+    }
 
     ngOnChanges() {
         clearInterval(this.currentItemInterval);
@@ -31,6 +32,7 @@ export class CourseOptionalComponent implements OnChanges {
             this.noItems = true;
         }
     }
+
     clickUrl(id: string) {
         this.router.navigate(['courses', id]);
     }
@@ -48,7 +50,8 @@ export class CourseOptionalComponent implements OnChanges {
     }
 
     transFormViewObject(itemData: RestApiResponse<any>) {
-        const courseOptionalView: Array<CourseOptionalViewModel> = [];
+        // const courseOptionalView: Array<CourseOptionalViewModel> = [];
+        const courseOptionalView: Array<any> = [];
         itemData.items.forEach((item) => {
             const course = item.course;
             const courseObject = item.courseObject;
@@ -60,7 +63,7 @@ export class CourseOptionalComponent implements OnChanges {
                 imageUrl: this.commonService.getImageUrl(course), // Image
                 links: this.commonService.getLinks(item), // Launch button + links
                 resultStartDate: this.commonService.getCourseResultStartDate(courseObject), // Kurzus kezdete
-                resultEndDate: this.commonService.getResultDate(courseObject), // Kurzus vége
+                resultEndDate: this.commonService.getCourseResultEndDate(courseObject), // Kurzus vége
                 netTimeLimit: this.commonService.getNetTimeLimit(courseObject), // Idő keret
                 suggestedTime: this.commonService.getCourseSuggestedTime(courseObject), // Várható tanulási idő
                 expirationTime: this.commonService.getExpirationTime(course), // Beiratkozás határideje

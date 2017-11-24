@@ -49,7 +49,6 @@ export class CourseRecommendedComponent implements OnChanges {
     }
 
     transFormViewObject(itemData: RestApiResponse<any>) {
-        // const courseRecommendedView: Array<any> = [];
         const courseRecommendedView: Array<CourseRecommendedViewModel> = [];
         itemData.items.forEach((item) => {
             const course = item.course;
@@ -65,7 +64,7 @@ export class CourseRecommendedComponent implements OnChanges {
                 status: this.commonService.getRecommendedStatus(invitation), // Status button
                 organization: this.commonService.getOrganizationName(invitation), // Meghívó szervezet
                 resultStartDate: this.commonService.getCourseResultStartDate(courseObject), // Kurzus kezdete
-                resultEndDate: this.commonService.getResultDate(courseObject), // Kurzus vége
+                resultEndDate: this.commonService.getCourseResultEndDate(courseObject), // Kurzus vége
                 netTimeLimit: this.commonService.getNetTimeLimit(courseObject), // Idő keret
                 suggestedTime: this.commonService.getCourseSuggestedTime(courseObject), // Várható tanulási idő
                 expirationTime: this.commonService.getExpirationTime(course), // Beiratkozás határideje
