@@ -4,6 +4,7 @@ import { RuntimeConfigService } from '../../../services/runtime-config.service';
 import { L10nService } from '../../../services/l10n.service';
 import { UserService } from '../../../services/user.service';
 import { PreloadGuard } from '../../../services/guards/preload.guard';
+
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/combineAll';
@@ -15,7 +16,7 @@ import 'rxjs/add/operator/combineAll';
 })
 export class HeaderComponent implements OnInit {
 
-    public user: any;
+    public userData: any;
     public incomingFeedCount: number;
     public homeUrl: string; // TODO Value depends on User.Identity.IsAuthenticated
     public idpUrl: string;
@@ -26,18 +27,31 @@ export class HeaderComponent implements OnInit {
     public isMenuShow = false;
 
     constructor(public config: RuntimeConfigService,
-                public l10n: L10nService,
+                public l10nService: L10nService,
                 public preloadGuard: PreloadGuard,
-                private userService: UserService,) {
-        this.user = {name: 'Polgár Jenő hivatal'};
-        this.currentLocale = this.l10n.getLocale();
+                private userService: UserService) {
+        this.currentLocale = this.l10nService.getLocale();
         this.localeCodes = this.config.localeCodes.split(',');
         this.localeCodesMap = {};
         this.localeCodes.forEach((code) => {
             this.localeCodesMap[code] = code.substr(0, 2);
         });
 
-        /* load resources ( translate, user ) */
+        const getUser = () => {
+            setTimeout(() => {
+                if (this.userService.getUserData() && this.l10nService.getL10Data()) {
+                    this.userData = this.userService.getUserData();
+                    this.isMenuShow = true;
+                    return;
+                } else {
+                    getUser();
+                }
+            }, 250);
+        };
+        getUser();
+
+
+        /* load resources ( translate, user )
         const resourcesLoad = Observable
             .of(this.preloadGuard.loadResources())
             .combineAll().map((results: Array<boolean>) => {
@@ -47,9 +61,13 @@ export class HeaderComponent implements OnInit {
             this.isMenuShow = menuVisible;
             resourcesLoadObservable.unsubscribe();
         });
+
+        */
+
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+    }
 
     public onHidden(): void {
         console.log('Dropdown is hidden');

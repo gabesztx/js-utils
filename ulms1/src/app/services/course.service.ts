@@ -47,23 +47,3 @@ export class CourseService extends HttpProxy {
             });
     }
 }
-
-
-/* public getList(pageNum ?: number): Observable<RestApiResponse<Array<CourseDetail>>> {
-     const startItem = (pageNum - 1) * this.pageSize;
-     const endItem = startItem + this.pageSize;
-     const courseList = this.courseList;
-     const items = courseList.slice(startItem, endItem);
-     const totalPages = this.getTotalPages();
-
-     return Observable.of(items).map((list) => {
-         return {
-             hasNextPage: (pageNum < totalPages),
-             items: items,
-             currentPage: pageNum,
-             pageSize: this.pageSize,
-             total: courseList.length,
-             totalPages: totalPages
-         };
-     });
- }*/

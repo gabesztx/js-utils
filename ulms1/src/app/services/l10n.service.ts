@@ -21,11 +21,10 @@ export class L10nService extends HttpBase {
     private localeCodes: Array<string>;
     private dictionary: any;
     private defaultScope: string;
+    private l10nData: any;
 
-    constructor(
-        private http: Http,
-        private config: RuntimeConfigService
-    ) {
+    constructor(private http: Http,
+                private config: RuntimeConfigService) {
         super();
 
         if (!__instance__) {
@@ -60,6 +59,10 @@ export class L10nService extends HttpBase {
         return this.locale;
     }
 
+    getL10Data(): string {
+        return this.l10nData;
+    }
+
     protected handleError(error: Response | any): Observable<boolean> {
         return super.handleError(error).catch((message) => {
             console.error(message);
@@ -74,8 +77,9 @@ export class L10nService extends HttpBase {
             return Observable.of(true);
         } else {
             return this.http.get(url, options)
-                // NOTE We need to switch from an Observable<Result> to an Observable<boolean>
+            // NOTE We need to switch from an Observable<Result> to an Observable<boolean>
                 .switchMap((res: Response) => {
+                    this.l10nData = res.json();
                     return this.extract(res, scope);
                 })
                 .retryWhen(this.handleSessionTimeout.bind(this))

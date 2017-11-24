@@ -45,7 +45,6 @@ export class CourseRecommendedComponent implements OnChanges {
             }
             this.currentItemListaData.push(currentList[itemNum]);
             itemNum++;
-            itemNum++;
         }, 125);
     }
 

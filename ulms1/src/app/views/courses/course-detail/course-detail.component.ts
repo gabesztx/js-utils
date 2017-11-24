@@ -11,6 +11,7 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
     public urlId: any;
     public courseDetail: any;
     public courseFeeds: any;
+    public courseDetaiState: any;
     public isShowTab = true;
     public navTabData = [];
 
@@ -19,6 +20,8 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
             this.urlId = params.courseId;
             this.courseDetail = this.route.snapshot.data.responseData.courseDetail;
             this.courseFeeds = this.route.snapshot.data.responseData.courseFeeds;
+            this.courseDetaiState = this.courseDetail.courseState;
+            console.log('courseDetaiState', this.courseDetaiState)
             this.navigationTabView();
         });
     }
@@ -48,7 +51,7 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
         if (this.courseFeeds.length) {
             this.navTabData.push(navTabDefaultData.feed)
         }
-    };
+    }
 
     ngOnDestroy() {
         this.paramsObs.unsubscribe();

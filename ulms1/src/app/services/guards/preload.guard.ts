@@ -11,7 +11,6 @@ import { UserService } from '../user.service';
 
 @Injectable()
 export class PreloadGuard implements CanActivate {
-
     constructor (private l10n: L10nService, private user: UserService) { }
 
     canActivate(
@@ -20,12 +19,11 @@ export class PreloadGuard implements CanActivate {
     ): Observable<boolean> | Promise<boolean> | boolean {
         return this.loadResources();
     }
-
     public loadResources(): Observable<boolean> | boolean {
         return Observable.of(
             // Register observable preload tasks here.
             this.l10n.init(),
-            this.user.init()
+            this.user.getUser()
         ).combineAll().map((results: Array<boolean>) => {
             return results.filter(result => result === false).length === 0;
         });

@@ -1,18 +1,18 @@
 export interface CourseRecommendedView{
-    title: string,
-    label: string,
-    id: string,
-    providerName: any,
-    status: any,
-    links: any,
-    imageUrl: string,
-    organization: any,
-    resultStartDate: any,
-    resultEndDate: any,
-    netTimeLimit: any,
-    suggestedTime: any,
-    expirationTime: any,
-    description: any,
+    title: string;
+    label: string;
+    id: string;
+    providerName: any;
+    status: any;
+    links: any;
+    imageUrl: string;
+    organization: any;
+    resultStartDate: any;
+    resultEndDate: any;
+    netTimeLimit: any;
+    suggestedTime: any;
+    expirationTime: any;
+    description: any;
 }
 
 export class CourseRecommendedViewModel implements CourseRecommendedView {
