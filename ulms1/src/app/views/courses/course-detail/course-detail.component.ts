@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'ulms-course-detail',
@@ -11,36 +11,51 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
     public urlId: any;
     public courseDetail: any;
     public courseFeeds: any;
-    public isShowTab:any;
+    public isShowTab: any;
     public navTabData = [];
 
     public courseDetailState: any;
     public isCourseDetailMainContent = false;
     public isCourseDetailMainInfo = false;
 
-    constructor(private route: ActivatedRoute) {
+    constructor(private route: ActivatedRoute, private router: Router) {
         this.paramsObs = this.route.params.subscribe(params => {
             this.urlId = params.courseId;
             this.courseDetail = this.route.snapshot.data.responseData.courseDetail;
             this.courseFeeds = this.route.snapshot.data.responseData.courseFeeds;
-            this.courseDetailView(this.courseDetail);
+            this.courseDetailState = this.courseDetail.courseState;
+            // console.log('CourseDetailComponent', this.route.snapshot.data.responseData);
             this.navigationTabView();
+            this.courseDetailView();
         });
     }
 
     ngOnInit() {
     }
 
+    navigateList(urlParams: string) {
+        this.router.navigate(['courses', this.urlId, urlParams]);
+    }
+
     /**
      * course detail nav tab property
      */
-    courseDetailView(courseDetail: any) {
-        this.courseDetailState = courseDetail.courseState;
+    courseDetailView() {
+
         if (this.courseDetailState === 4 || this.courseDetailState === 5) {
             this.isShowTab = true;
             this.isCourseDetailMainContent = true;
+            this.navigateList('content');
+
+        } else if (this.courseDetailState >= 0 && this.courseDetailState <= 2 || this.courseDetailState == null) {
+            this.isShowTab = false;
+            this.isCourseDetailMainInfo = true;
+            this.navigateList('info');
+
         }
-        console.log('isCourseDetailMainContent', this.isCourseDetailMainContent);
+        console.log('courseDetailState: ', this.courseDetailState);
+        console.log('isCourseDetailMainContent: ', this.isCourseDetailMainContent);
+        console.log('isCourseDetailMainInfo: ', this.isCourseDetailMainInfo);
     }
 
     /**

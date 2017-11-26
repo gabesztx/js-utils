@@ -14,14 +14,15 @@ export class CourseDetailService extends HttpProxy {
     // private apiUrl: string;
     public courseDetailData = { courseDetail: null, courseFeeds: null };
     public courseDetailId: any;
+    public courseDetailState: any;
 
     constructor(protected http: Http, private config: RuntimeConfigService) {
         super();
-       /* if (__instance__ !== this) {
-            this.apiUrl = `${this.config.baseApiUrl}usercourses`;
-            __instance__ = this;
-        }
-        return __instance__;*/
+        /* if (__instance__ !== this) {
+             this.apiUrl = `${this.config.baseApiUrl}usercourses`;
+             __instance__ = this;
+         }
+         return __instance__;*/
     }
 
     getCourseDetailData(): Observable<any> {
@@ -40,14 +41,19 @@ export class CourseDetailService extends HttpProxy {
             this.getCourseDetailData(),
             this.getCourseFeedsData()
         ).combineAll().map((results: Array<any>) => {
-            // console.log('RESULT', results);
+            console.log('RESULT', results);
             this.courseDetailData.courseDetail = results[0];
             this.courseDetailData.courseFeeds = results[1];
             return this.courseDetailData;
         });
     }
 
+    public getCourseDetailState() {
+
+    }
+
     public getListData(): Observable<any> {
+        console.log('getListData: ', this.courseDetailData);
         return Observable.of(this.courseDetailData);
     }
 }

@@ -54,7 +54,6 @@ export class CourseDetailInfoComponent implements OnDestroy {
         const courseObjects = courses.courseObjects;
         const courseActivities = courses.courseActivities;
         const courseRegistration = courses.courseRegistration;
-
         courseObjects.forEach((courseObject, key) => {
             if (!courseObject.parent) {
                 const courseActivitie = courseActivities[key];

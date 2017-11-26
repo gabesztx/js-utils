@@ -8,8 +8,6 @@ import 'rxjs/add/observable/from';
 import { CourseService } from '../course.service';
 import { RecommendedService } from '../recommended.service';
 import { OptionalService } from '../optional.service';
-// import { UpcomingService } from '../upcoming.service';
-// import { ClosedService } from '../closed.service';
 import { CourseTabIndex } from '../course-status-mapper.service';
 
 @Injectable()

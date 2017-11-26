@@ -8,10 +8,10 @@ import { CourseDetailService_ } from '../course-detail.service_';
 @Injectable()
 
 export class CourseDetailGuard_ implements Resolve<Observable<any>> {
-    constructor(private courseDetailService: CourseDetailService_) {}
+    constructor(private courseDetailService_: CourseDetailService_) {}
     resolve(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const courseId = next.paramMap.get('courseId');
-        return this.courseDetailService.list(courseId);
+        return this.courseDetailService_.list(courseId);
     }
 }
 

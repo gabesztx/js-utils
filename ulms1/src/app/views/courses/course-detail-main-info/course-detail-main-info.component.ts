@@ -1,9 +1,5 @@
-
-
 import { Component, OnChanges, OnDestroy, OnInit, Input, TemplateRef } from '@angular/core';
-
 import { CommonService } from '../../../services/common/common.service';
-
 import { CourseDetailViewModel } from '../../../models/views/course-detail-view.model';
 
 @Component({

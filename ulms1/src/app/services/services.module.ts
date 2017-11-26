@@ -7,7 +7,12 @@ import { L10nService } from './l10n.service';
 import { RuntimeConfigService } from './runtime-config.service';
 import { UserService } from './user.service';
 import { PreloadGuard } from './guards/preload.guard';
+
+/* CoursesRoutingGuard */
 import { CoursesRoutingGuard } from './guards/courses-routing.guard';
+
+/* CoursesRoutingGuard */
+import { CoursesDetailRoutingGuard } from './guards/courses-detail-routing.guard';
 
 /* Courses */
 import { CourseService } from './course.service';
@@ -66,8 +71,10 @@ import { CourseCaniactiveQuard } from './guards/course-caniactive.quard';
         L10nService,
         RuntimeConfigService,
         UserService,
-        CoursesRoutingGuard,
         PreloadGuard,
+
+        CoursesRoutingGuard,
+        CoursesDetailRoutingGuard,
 
         CourseService,
         CourseService_,

@@ -9,9 +9,8 @@ import { CourseDetailService_ } from '../course-detail.service_';
 
 export class CourseDetailListGuard_ implements Resolve<Observable<any>> {
     constructor(private courseDetailService: CourseDetailService_) {}
-
     resolve(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        return this.courseDetailService.getListData()
+        return this.courseDetailService.getListData();
     }
 }
 

@@ -3,6 +3,7 @@ import { Routes } from '@angular/router';
 /* Guard */
 
 import { CoursesRoutingGuard } from '../../services/guards/courses-routing.guard';
+import { CoursesDetailRoutingGuard } from '../../services/guards/courses-detail-routing.guard';
 
 /* CoursesGuard Guard */
 import { CoursesGuard } from '../../services/guards/courses.guard';
@@ -151,28 +152,30 @@ export const routes: Routes = [{
     resolve: {
         responseData: courseDetailGuard
     },
-    children: [{
-        path: '',
-        redirectTo: 'content',
-    }, {
-        path: 'content',
-        component: CourseDetailListItemComponent,
-        resolve: {
-            responseData: courseDetailListGuard
-        },
-    }, {
-        path: 'info',
-        component: CourseDetailInfoComponent,
-        resolve: {
-            responseData: courseDetailListGuard
-        },
-    }, {
-        path: 'feed',
-        component: CourseFeedComponent,
-        resolve: {
-            responseData: courseDetailListGuard
-        },
-    }]
+    children: [
+        /*{
+            path: '',
+            redirectTo: 'content',
+        },*/ {
+            path: 'content',
+            component: CourseDetailListItemComponent,
+            resolve: {
+                responseData: courseDetailListGuard
+            },
+        }, {
+            path: 'info',
+            component: CourseDetailInfoComponent,
+            resolve: {
+                responseData: courseDetailListGuard
+            },
+        }, {
+            path: 'feed',
+            component: CourseFeedComponent,
+            resolve: {
+                responseData: courseDetailListGuard
+            },
+        }
+    ]
 }];
 
 /*    {

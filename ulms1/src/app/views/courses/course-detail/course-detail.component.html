@@ -7,6 +7,9 @@
             <div *ngIf="isCourseDetailMainContent">
                 <ulms-course-detail-main-content [itemData]="courseDetail"></ulms-course-detail-main-content>
             </div>
+            <div *ngIf="isCourseDetailMainInfo">
+                <ulms-course-detail-main-content [itemData]="courseDetail"></ulms-course-detail-main-content>
+            </div>
             <router-outlet></router-outlet>
         </div>
     </div>

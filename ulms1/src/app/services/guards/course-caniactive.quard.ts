@@ -7,7 +7,7 @@ export class CourseCaniactiveQuard implements CanActivate {
     canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
         return Observable
             .of(true)
-            .delay(3000)
+            .delay(3000);
     }
 
 }

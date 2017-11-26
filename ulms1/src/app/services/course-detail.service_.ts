@@ -22,16 +22,13 @@ export class CourseDetailService_ {
 
     public list(id?: any): Observable<any> {
         this.courseDetaiId = id;
-        return Observable
-            .of(this.courseList)
-            .map(() => {
-                this.courseDetailData.courseDetail = this.courseList;
-                this.courseDetailData.courseFeeds = this.courseFeed;
-                return this.courseDetailData;
-            });
+        this.courseDetailData.courseDetail = this.courseList;
+        this.courseDetailData.courseFeeds = this.courseFeed;
+        return Observable.of(this.courseDetailData);
     }
 
     public getListData(): Observable<any> {
+        console.log('getliiiiiist--------');
         return Observable.of(this.courseDetailData);
     }
 }
