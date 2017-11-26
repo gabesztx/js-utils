@@ -41,7 +41,6 @@ export class CourseDetailService extends HttpProxy {
             this.getCourseDetailData(),
             this.getCourseFeedsData()
         ).combineAll().map((results: Array<any>) => {
-            console.log('RESULT', results);
             this.courseDetailData.courseDetail = results[0];
             this.courseDetailData.courseFeeds = results[1];
             return this.courseDetailData;

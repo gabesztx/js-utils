@@ -91,6 +91,15 @@ $itemPadding: 20px;
                         .statusTextConent {
                             padding-top: 2px;
                             padding-bottom: 8px;
+
+                        }
+
+                        &.courseDetailMainInfo {
+                            .statusTextConent {
+                                padding-top: 0;
+                                padding-bottom: 5px;
+
+                            }
                         }
                     }
                     &:nth-child(3) {

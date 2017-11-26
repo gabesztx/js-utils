@@ -1,16 +1,17 @@
 import { Component, OnChanges, OnDestroy, OnInit, Input, TemplateRef } from '@angular/core';
 
+import { RestApiResponse } from '../../../services/base/http.class';
 import { CommonService } from '../../../services/common/common.service';
 
 import { CourseDetailViewModel } from '../../../models/views/course-detail-view.model';
 
 @Component({
-    selector: 'ulms-course-detail-main-content',
-    templateUrl: './course-detail-main-content.component.html',
+    selector: 'ulms-course-detail-main-item',
+    templateUrl: './course-detail-main-item.component.html',
     styleUrls: ['../course-detail.component.scss']
 })
 
-export class CourseDetailMainContentComponent implements OnChanges {
+export class CourseDetailMainItemComponent implements OnChanges {
 
     @Input() itemData: any;
     currentItemData: any;
@@ -19,7 +20,6 @@ export class CourseDetailMainContentComponent implements OnChanges {
 
     ngOnChanges() {
         this.currentItemData = this.transFormViewObject(this.itemData);
-        //console.log('CourseDetailMainInfoComponent', this.itemData);
     }
 
     transFormViewObject(itemData: any) {
