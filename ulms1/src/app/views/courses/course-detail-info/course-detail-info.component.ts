@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { CourseDetailInfoViewModel } from '../../../models/views/course-detail-info-view.model';
 import { ContractStatus } from '../../../models/courseRegistrationShallow.model';
 import { slideOutInKeyFrameAnimation } from '../../../animations/course-animation';
-import { isNullOrUndefined } from "util";
 
 @Component({
     selector: 'ulms-course-detail-info',
@@ -23,6 +22,7 @@ export class CourseDetailInfoComponent implements OnDestroy {
     public currentItemInterval: any;
 
     constructor(private route: ActivatedRoute) {
+        console.log('CourseDetailInfoComponent')
         this.paramsObs = this.route.params.subscribe(params => {
             clearInterval(this.currentItemInterval);
             this.contractStatusText = ContractStatus;
@@ -59,7 +59,10 @@ export class CourseDetailInfoComponent implements OnDestroy {
         const courseRegistration = courses.courseRegistration;
 
         const isCourseObjects = (courseState >= 0 && courseState <= 2 || !courseState);
-        const isCourseActivities = (courseState === 3 && courseActivities.length);
+        const isCourseActivities = (courseState === 3 || courseState === 4 || courseState === 5  && courseActivities.length);
+        console.log('isCourseObjects', isCourseObjects)
+        console.log('isCourseActivities', isCourseActivities)
+
         courseObjects.forEach((courseObject, key) => {
 
             if (!courseObject.parent) {
@@ -73,7 +76,7 @@ export class CourseDetailInfoComponent implements OnDestroy {
                     contractStatus: courseRegistration ? courseRegistration.contractStatus : undefined,
 
                     /* Beírató szervezet */
-                    registrarOrganization: courseRegistration.registrarOrganization ? courseRegistration.registrarOrganization.name : undefined,
+                    registrarOrganization: courseRegistration ? courseRegistration.registrarOrganization : undefined,
 
                     /* Oklevél */
                     certificateEnabled: courses.certificateEnabled,
@@ -86,6 +89,8 @@ export class CourseDetailInfoComponent implements OnDestroy {
                 });
 
                 if (isCourseObjects) {
+                    console.log('courseobj---------------')
+
                     Object.assign(infoData[0], {
                         /* Teljesítés feltétele */
                         requirement: {
@@ -97,9 +102,9 @@ export class CourseDetailInfoComponent implements OnDestroy {
                             suggestedTime: courseObject.requirement.suggestedTime,
                         },
                     });
-
                 }
-                if (isCourseActivities && courseActivitie.length) {
+                if (isCourseActivities ) {
+                    console.log('-----------------aktiv')
                     Object.assign(infoData[0], {
                         /* Teljesítés feltétele */
                         requirement: {
@@ -117,7 +122,7 @@ export class CourseDetailInfoComponent implements OnDestroy {
 
             }
         });
-        // console.log(infoData);
+        console.log('infoData', infoData);
 
         return infoData;
     }

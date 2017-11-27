@@ -34,6 +34,7 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
     }
 
     navigateList(urlParams: string) {
+        console.log('navigateList')
         this.router.navigate(['courses', this.urlId, urlParams]);
     }
 
