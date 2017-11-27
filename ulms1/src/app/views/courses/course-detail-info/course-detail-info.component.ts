@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CourseDetailInfoViewModel } from '../../../models/views/course-detail-info-view.model';
 import { ContractStatus } from '../../../models/courseRegistrationShallow.model';
 import { slideOutInKeyFrameAnimation } from '../../../animations/course-animation';
+import { isNullOrUndefined } from "util";
 
 @Component({
     selector: 'ulms-course-detail-info',
@@ -49,51 +50,76 @@ export class CourseDetailInfoComponent implements OnDestroy {
 
     transFormViewObject(data: any): Array<CourseDetailInfoViewModel> {
 
-        const dataArray: Array<CourseDetailInfoViewModel> = [];
+        // const dataArray: Array<CourseDetailInfoViewModel> = [];
+        const infoData: Array<any> = [];
         const courses = data;
+        const courseState = courses.courseState;
         const courseObjects = courses.courseObjects;
         const courseActivities = courses.courseActivities;
         const courseRegistration = courses.courseRegistration;
+
+        const isCourseObjects = (courseState >= 0 && courseState <= 2 || !courseState);
+        const isCourseActivities = (courseState === 3 && courseActivities.length);
         courseObjects.forEach((courseObject, key) => {
+
             if (!courseObject.parent) {
                 const courseActivitie = courseActivities[key];
-
-                dataArray.push({
+                infoData.push({
 
                     /* Kuryus szolgáltatója */
                     providerName: courses.provider ? courses.provider.name : '',
 
                     /* Szerződés státusza */
-                    contractStatus: courseRegistration.contractStatus,
+                    contractStatus: courseRegistration ? courseRegistration.contractStatus : undefined,
 
                     /* Beírató szervezet */
-                    registrarOrganization: courseRegistration.registrarOrganization ? courseRegistration.registrarOrganization.name : '',
-
-                    /* Teljesítés feltétele */
-                    requirement: {
-                        /* Tananyag bejárása */
-                        requiredForCompleted: courseActivitie.target.requirement.requiredForCompleted,
-                        /* Sikeres tesztkitöltés */
-                        requiredForSatisfied: courseActivitie.target.requirement.requiredForSatisfied
-                    },
+                    registrarOrganization: courseRegistration.registrarOrganization ? courseRegistration.registrarOrganization.name : undefined,
 
                     /* Oklevél */
                     certificateEnabled: courses.certificateEnabled,
 
-                    /* Várható tanulási idõ */
-                    suggestedTime: courseActivitie.target.requirement.suggestedTime,
-
-                    /*  Akkreditációs szám */
+                    /* Akkreditációs szám */
                     accreditationNum: courses.accreditationNum,
 
-                    /*  Leírás */
+                    /* Leírás */
                     description: courses.description
                 });
-                // dataArray.push(courseDetailInfo)
+
+                if (isCourseObjects) {
+                    Object.assign(infoData[0], {
+                        /* Teljesítés feltétele */
+                        requirement: {
+                            /* Tananyag bejárása */
+                            requiredForCompleted: courseObject.requirement.requiredForCompleted,
+                            /* Sikeres tesztkitöltés */
+                            requiredForSatisfied: courseObject.requirement.requiredForSatisfied,
+                            /* Várható tanulási idõ */
+                            suggestedTime: courseObject.requirement.suggestedTime,
+                        },
+                    });
+
+                }
+                if (isCourseActivities && courseActivitie.length) {
+                    Object.assign(infoData[0], {
+                        /* Teljesítés feltétele */
+                        requirement: {
+                            /* Tananyag bejárása */
+                            requiredForCompleted: courseActivitie.target.requirement.requiredForCompleted,
+                            /* Sikeres tesztkitöltés */
+                            requiredForSatisfied: courseActivitie.target.requirement.requiredForSatisfied,
+                            /* Várható tanulási idõ */
+                            suggestedTime: courseActivitie.target.requirement.suggestedTime,
+                        },
+                    });
+
+                }
+
+
             }
         });
+        // console.log(infoData);
 
-        return dataArray;
+        return infoData;
     }
 }
 

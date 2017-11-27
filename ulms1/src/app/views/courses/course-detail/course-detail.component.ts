@@ -34,7 +34,7 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
     }
 
     navigateList(urlParams: string) {
-        //this.router.navigate(['courses', this.urlId, urlParams]);
+        this.router.navigate(['courses', this.urlId, urlParams]);
     }
 
     /**
@@ -53,9 +53,9 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
             this.navigateList('info');
 
         }
-        //console.log('courseDetailState: ', this.courseDetailState);
-        //console.log('isCourseDetailMainContent: ', this.isCourseDetailMainContent);
-        //console.log('isCourseDetailMainInfo: ', this.isCourseDetailMainInfo);
+        console.log('courseDetailState: ', this.courseDetailState);
+        // console.log('isCourseDetailMainContent: ', this.isCourseDetailMainContent);
+        // console.log('isCourseDetailMainInfo: ', this.isCourseDetailMainInfo);
     }
 
     /**
