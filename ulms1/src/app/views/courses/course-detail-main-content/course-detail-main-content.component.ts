@@ -19,7 +19,6 @@ export class CourseDetailMainContentComponent implements OnChanges {
 
     ngOnChanges() {
         this.currentItemData = this.transFormViewObject(this.itemData);
-        //console.log('CourseDetailMainInfoComponent', this.itemData);
     }
 
     transFormViewObject(itemData: any) {

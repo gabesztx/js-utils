@@ -20,13 +20,13 @@
         </div>
     </div>
 
-    <!-- Recommended-->
+    <!-- Recommended && RecommendedDetial-->
     <div class="btn-group" *ngIf="groupName === 'recommended' || groupName === 'recommendedDetial'">
-        <a [href]="itemData[0].href" class="btn btn-left">{{labelText}}</a>
-        <button type="button" class="btn btn-right" [disabled]=false (click)="openDropDown()">
+        <button (click)="btnClick()" class="btn btn-left">{{labelText}}</button>
+        <button type="button" class="btn btn-right" [disabled]=!itemData.length (click)="openDropDown()">
             <span class="caret"></span>
         </button>
-        <div class="dropdownMenuContent" *ngIf="isShow">
+        <div class="dropdownMenuContent" *ngIf="isShow && itemData.length">
             <ul class="dropdownMenu" [ngClass]="{'open':isOpen}">
                 <div class="dropdown-item">
                     <li role="menuitem" (click)="btnClick()" *ngIf="groupName !== 'recommendedDetial'">
@@ -50,11 +50,11 @@
     <!-- Optional -->
     <div class="btn-group" *ngIf="groupName === 'optional'">
         <!--TODO: BUTTON CLICK AND POST -->
-        <a [href]="" class="btn btn-left">{{labelText}}</a>
-        <button type="button" class="btn btn-right" [disabled]=false (click)="openDropDown()">
+        <button (click)="btnClick()" class="btn btn-left">{{labelText}}</button>
+        <button type="button" class="btn btn-right" [disabled]=!itemData.length (click)="openDropDown()">
             <span class="caret"></span>
         </button>
-        <div class="dropdownMenuContent" *ngIf="isShow">
+        <div class="dropdownMenuContent" *ngIf="isShow && itemData.length">
             <ul class="dropdownMenu" [ngClass]="{'open':isOpen}">
                 <div class="dropdown-item">
                     <li role="menuitem" (click)="btnClick()">

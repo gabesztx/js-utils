@@ -11,7 +11,7 @@ import { data2 } from './course-detail-data-2';
 import { data3 } from './course-detail-data-3';
 import { data4 } from './course-detail-data-4';
 import { data5 } from './course-detail-data-5'; // aktualis
-import { data6 } from './course-detail-data-6'; // recommended
+import { data6 } from './course-detail-data-6'; // ajánlott
 import { data7 } from './course-detail-data-7'; // választható
 
 @Injectable()
