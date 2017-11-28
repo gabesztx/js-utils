@@ -575,13 +575,12 @@ export class CommonService {
 
 
         if (isSetTime(isEpxDate)) {
-            return this.formatDay(isEpxDate);
+            return this.formatDay(exparitation);
         }
         if (!isSetTime(isEpxDate) && isSetTime(isEnd)) {
-            return this.formatDay(isEnd);
+            return this.formatDay(endDate);
 
         }
-        // return this.translate('txt_not_exists');
         return this.translate('txt_not_specified');
     }
 
@@ -826,7 +825,7 @@ export class CommonService {
      }*/
 
 
-    getExpiration(exparitation, endDate) {
+    /*getExpiration(exparitation, endDate) {
         const isEpxDate = exparitation ? exparitation.split('-')[0] : undefined;
         const isEnd = endDate ? endDate.split('-')[0] : undefined;
 
@@ -851,7 +850,7 @@ export class CommonService {
 
         }
         return this.l10nService.translate('txt_not_specified');
-    }
+    }*/
 
     getLink(value: any, rule ?: any) {
         if (value && value.length) {

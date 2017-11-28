@@ -1,31 +1,60 @@
 export const data6 = {
-    "userInvitations": [{
-        "id": "91268293-bcb5-49b4-bc8f-4b0629460046",
-        "creationDate": "2017-11-14T15:46:45Z",
-        "invitation": {
-            "title": "Rule",
-            "description": "",
-            "organization": {
-                "name": "12 Évfolyamos Kiegészítő Görög Nyelvoktató Iskola",
-                "id": "05554cee-05f9-45f7-9f5b-d728f0a39962"
+    "userInvitations": [
+        {
+            "id": "91268293-bcb5-49b4-bc8f-4b0629460046",
+            "creationDate": "2017-11-14T15:46:45Z",
+            "invitation": {
+                "title": "Rule",
+                "description": "A Lorem Ipsum az 1.10.32 és 1.10.33-as de Finibus Bonoruem et Malorum részleteibõl származik (A Jó és Rossz határai - Cicero), Kr. E. 45-bõl. A könyv az etika elméletét tanulmányozza, ami nagyon népszerû volt a reneszánsz korban. A Lorem Ipsum elsõ sora, Lorem ipsum dolor sit amet.. a 1.10.32-es bekezdésbõl ...",
+                "organization": {
+                    "name": "12 Évfolyamos Kiegészítő Görög Nyelvoktató Iskola",
+                    "id": "05554cee-05f9-45f7-9f5b-d728f0a39962"
+                },
+                "severity": 3,
+                "expiration": "9999-12-31T23:59:59Z"
             },
-            "severity": 3,
-            "expiration": "9999-12-31T23:59:59Z"
+            "links": [{
+                "rel": "Accept",
+                "href": "https://devhome.nexiuslearning.com/invitation/k4ImkbW8tEm8j0sGKUYARg/accept",
+                "target": "_self",
+                "label": "Csatlakozás",
+                "tooltip": ""
+            }, {
+                "rel": "Reject",
+                "href": "https://devhome.nexiuslearning.com/invitation/k4ImkbW8tEm8j0sGKUYARg/decline",
+                "target": "_self",
+                "label": "Elutasítás",
+                "tooltip": ""
+            }]
         },
-        "links": [{
-            "rel": "Accept",
-            "href": "https://devhome.nexiuslearning.com/invitation/k4ImkbW8tEm8j0sGKUYARg/accept",
-            "target": "_self",
-            "label": "Csatlakozás",
-            "tooltip": ""
-        }, {
-            "rel": "Reject",
-            "href": "https://devhome.nexiuslearning.com/invitation/k4ImkbW8tEm8j0sGKUYARg/decline",
-            "target": "_self",
-            "label": "Elutasítás",
-            "tooltip": ""
-        }]
-    }],
+        {
+            "id": "91268293-bcb5-49b4-bc8f-4b0629460046",
+            "creationDate": "2017-11-14T15:46:45Z",
+            "invitation": {
+                "title": "Rule",
+                "description": "",
+                "organization": {
+                    "name": "12 Évfolyamos Kiegészítő Görög Nyelvoktató Iskola",
+                    "id": "05554cee-05f9-45f7-9f5b-d728f0a39962"
+                },
+                "severity": 3,
+                "expiration": "9999-12-31T23:59:59Z"
+            },
+            "links": [{
+                "rel": "Accept",
+                "href": "https://devhome.nexiuslearning.com/invitation/k4ImkbW8tEm8j0sGKUYARg/accept",
+                "target": "_self",
+                "label": "Csatlakozás",
+                "tooltip": ""
+            }, {
+                "rel": "Reject",
+                "href": "https://devhome.nexiuslearning.com/invitation/k4ImkbW8tEm8j0sGKUYARg/decline",
+                "target": "_self",
+                "label": "Elutasítás",
+                "tooltip": ""
+            }]
+        },
+    ],
     "courseActivities": [],
     "courseState": 2,
     "id": "c84dcda2-779c-44de-9b74-19773dafabca",

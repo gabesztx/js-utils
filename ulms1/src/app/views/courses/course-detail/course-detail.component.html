@@ -11,7 +11,7 @@
                 <ulms-course-detail-main-info [itemData]="courseDetail"></ulms-course-detail-main-info>
             </div>
             <div *ngIf="true">
-                <ulms-course-user-invitations [userInvitations]="userInvitations"></ulms-course-user-invitations>
+                <ulms-course-user-invitations [courseDetail]="courseDetail"></ulms-course-user-invitations>
             </div>
             <router-outlet></router-outlet>
         </div>

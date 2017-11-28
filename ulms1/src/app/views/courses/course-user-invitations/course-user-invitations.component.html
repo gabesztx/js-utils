@@ -1,3 +1,78 @@
-<p>
-  course-user-invitations works!
-</p>
+<!-- userInvitation Template -->
+<div class="userInvitationPageTitle">{{'lbl_invitations' | translate}}</div>
+<div class="courseListItemContainer userInvitation" *ngFor="let item of currentItemListaData">
+    <div class="row">
+        <div class=""></div>
+        <div class="courseItemImgBlock col-sm-2 hidden-xs">
+            <!--<div class="imgContent">
+                <img src="{{item.imageUrl}}" alt="">
+            </div>-->
+        </div>
+        <div class="courseItemTextBlock col-sm-7">
+            <div class="courseItemTextBlockContent userInvitation">
+                <div class="userInvitationIcon glyphicon glyphicon-envelope"></div>
+                <div class="courseResultWrapper userInvitation">
+                    <div class="courseResultList">
+                        <div class="statusTextConent">
+                            <!--Meghívó szervezet-->
+                            <ulms-status-text
+                                [className]="'userInvitation'"
+                                [labelText]="'lbl_inviter_organization' | translate"
+                                [value]=item.organization
+                            >
+                            </ulms-status-text>
+
+                        </div>
+                        <div class="statusTextConent">
+                            <!--Title-->
+                            <div class="userInvitationTitle">{{item.title}}</div>
+                        </div>
+                        <div class="statusTextConent">
+                            <!--Meghívás Dátuma-->
+                            <ulms-status-text
+                                [labelText]="'lbl_creation_date' | translate"
+                                [value]=item.creationDate
+
+                            >
+                            </ulms-status-text>
+                        </div>
+                        <div class="statusTextConent">
+                            <!--Beiratkozás határideje-->
+                            <ulms-status-text
+                                [labelText]="'lbl_enrollment_deadline' | translate"
+                                [value]=item.expirationTime
+                            >
+                            </ulms-status-text>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="item.description" class="descriptionContent">
+                    <ulms-description
+                        [description]=item.description
+                        [className]="'course-list'">
+                    </ulms-description>
+                </div>
+            </div>
+        </div>
+        <div class="courseItemButtonBlock col-sm-3">
+            <div class="buttonContent">
+                <!-- Status -->
+                <ulms-button
+                    [isPointer]=false
+                    [btnLabel]="'lbl_severity_' + item.status.value | translate"
+                    [btnIconClassName]=item.status.icon
+                >
+                </ulms-button>
+            </div>
+            <div class="dropDownContent">
+                <ulms-dropdown-split
+                    [groupName]="'recommendedDetial'"
+                    [labelText]="'btn_enrollment' | translate"
+                    [itemData]=item.links
+                    (onButtonFn)="clickUrl(item.id)"
+                ></ulms-dropdown-split>
+            </div>
+        </div>
+
+    </div>
+</div>

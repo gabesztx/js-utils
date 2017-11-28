@@ -21,7 +21,7 @@
     </div>
 
     <!-- Recommended-->
-    <div class="btn-group" *ngIf="groupName === 'recommended'">
+    <div class="btn-group" *ngIf="groupName === 'recommended' || groupName === 'recommendedDetial'">
         <a [href]="itemData[0].href" class="btn btn-left">{{labelText}}</a>
         <button type="button" class="btn btn-right" [disabled]=false (click)="openDropDown()">
             <span class="caret"></span>
@@ -29,7 +29,7 @@
         <div class="dropdownMenuContent" *ngIf="isShow">
             <ul class="dropdownMenu" [ngClass]="{'open':isOpen}">
                 <div class="dropdown-item">
-                    <li role="menuitem" (click)="btnClick()">
+                    <li role="menuitem" (click)="btnClick()" *ngIf="groupName !== 'recommendedDetial'">
                         {{'btn_information' | translate}}
                     </li>
                     <div *ngIf="itemData">
