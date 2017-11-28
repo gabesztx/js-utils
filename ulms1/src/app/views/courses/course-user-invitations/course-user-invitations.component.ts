@@ -29,9 +29,7 @@ export class CourseUserInvitationsComponent implements OnInit, OnChanges {
         const userInvitationData: Array <any> = [];
         const userInvitations = courseDetail.userInvitations;
         const courses = { registration: courseDetail.registration };
-
         userInvitations.forEach((userInvitation) => {
-            console.log(userInvitation);
             const invitation = userInvitation.invitation;
             const course = Object.assign(courses, { invitation: invitation });
             userInvitationData.push({

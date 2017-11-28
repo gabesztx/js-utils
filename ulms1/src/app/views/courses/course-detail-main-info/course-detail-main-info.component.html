@@ -61,14 +61,13 @@
                                 >
                                 </ulms-status-text>
                             </div>
-                            <div class="statusTextConent">
-                                <!-- Beirato szervezet
+                            <div class="statusTextConent" *ngIf="isUseroptionalCourse">
+                                <!--Beiratkozás határideje-->
                                 <ulms-status-text
-                                    [labelText]="'lbl_registration_organization' | translate"
-                                    [value]=item.registrarOrganization
+                                    [labelText]="'lbl_enrollment_deadline' | translate"
+                                    [value]=item.expirationTime
                                 >
                                 </ulms-status-text>
-                                -->
                             </div>
                         </div>
 

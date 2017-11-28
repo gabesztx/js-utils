@@ -21,8 +21,9 @@ export class CourseDetailInfoComponent implements OnDestroy {
     public currentItemListaData: any;
     public currentItemInterval: any;
 
+    public userInvitationsTitle: any;
+
     constructor(private route: ActivatedRoute) {
-        // console.log('CourseDetailInfoComponent')
         this.paramsObs = this.route.params.subscribe(params => {
             clearInterval(this.currentItemInterval);
             this.contractStatusText = ContractStatus;
@@ -59,9 +60,9 @@ export class CourseDetailInfoComponent implements OnDestroy {
         const courseRegistration = courses.courseRegistration;
 
         const isCourseObjects = (courseState >= 0 && courseState <= 2 || !courseState);
-        const isCourseActivities = (courseState === 3 || courseState === 4 || courseState === 5  && courseActivities.length);
-        // console.log('isCourseObjects', isCourseObjects)
-        // console.log('isCourseActivities', isCourseActivities)
+        const isCourseActivities = (courseState === 3 || courseState === 4 || courseState === 5 && courseActivities.length);
+
+        this.userInvitationsTitle = isCourseObjects;
 
         courseObjects.forEach((courseObject, key) => {
 
@@ -89,8 +90,7 @@ export class CourseDetailInfoComponent implements OnDestroy {
                 });
 
                 if (isCourseObjects) {
-                    //console.log('courseobj---------------')
-
+                    // console.log('CourseDetailInfoComponent: courseobj---------------');
                     Object.assign(infoData[0], {
                         /* Teljesítés feltétele */
                         requirement: {
@@ -103,8 +103,8 @@ export class CourseDetailInfoComponent implements OnDestroy {
                         },
                     });
                 }
-                if (isCourseActivities ) {
-                    console.log('-----------------aktiv')
+                if (isCourseActivities) {
+                    // console.log('CourseDetailInfoComponent: -----------------aktiv');
                     Object.assign(infoData[0], {
                         /* Teljesítés feltétele */
                         requirement: {

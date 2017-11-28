@@ -10,27 +10,26 @@ import { CourseDetailViewModel } from '../../../models/views/course-detail-view.
 
 export class CourseDetailMainInfoComponent implements OnChanges {
 
-    @Input() itemData: any;
+    @Input() courseDetail: any;
     currentItemData: any;
     isUseroptionalCourse: any;
 
     constructor(private commonService: CommonService) {}
-    
+
     ngOnChanges() {
-        this.currentItemData = this.transFormViewObject(this.itemData);
+        this.currentItemData = this.transFormViewObject(this.courseDetail);
     }
-    transFormViewObject(itemData: any) {
+    transFormViewObject(courseDetail: any) {
         //const courseDetailView: Array<CourseDetailViewModel> = [];
-        let courseDetailView: Array<any> = [];
-        const course = itemData;
+        const courseDetailView: Array<any> = [];
+        const course = courseDetail;
         const courseState = course.courseState;
         const courseObjects = course.courseObjects;
         const courseActivities = course.courseActivities;
         const userInvitations = course.userInvitations;
-        this.isUseroptionalCourse = courseState === 2 && !userInvitations.length;
-
         const isCourseObjects = (courseState >= 0 && courseState <= 2 || !courseState);
         const isCourseActivities = (courseState === 3 && courseActivities.length);
+        this.isUseroptionalCourse = courseState === 2 && !userInvitations.length;
 
         courseObjects.forEach((courseObject) => {
             if (!courseObject.parent) {
@@ -41,10 +40,7 @@ export class CourseDetailMainInfoComponent implements OnChanges {
                     imageUrl: this.commonService.getImageUrl(course), // Image
                     providerName: this.commonService.getProviderName(course), // Label Provider name
                     courseState: courseState, // Course State number
-                    //registrarOrganization: this.commonService.getRegistrarOrganization(courseRegistration), // Beirato szervezet
-                    //status: this.commonService.getActivityStatus(courseActivitie), // Status button
-                    //links: this.commonService.getLinks(courseActivitie), // Launch button + links
-                    //description: this.commonService.getCourseDescription(course), // Leírás
+                    expirationTime: this.commonService.getExpirationTime(course), // Beiratkozás határideje
                 });
                 if (isCourseObjects) {
                     Object.assign(courseDetailView[0], {
@@ -55,8 +51,7 @@ export class CourseDetailMainInfoComponent implements OnChanges {
                     });
 
                 }
-                if (isCourseActivities) {
-                }
+                if (isCourseActivities) {}
             }
         });
         // console.log('courseDetailView', courseDetailView);
