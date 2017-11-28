@@ -1,0 +1,133 @@
+<div class="courseDetailListItemContainer courseDetailMainItem" *ngFor="let item of currentItemData">
+    <div class="row">
+        <div class="col-sm-2 hidden-xs">
+            <div class="courseItemImgBlock">
+                <div class="imgContent">
+                    <img src="{{item.imageUrl}}" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-10">
+            <div class="courseItemListContent">
+                <div class="courseItemTextBlockContent">
+                    <div class="courseItemTextBlock">
+                        <div class="row">
+                            <div class="col-sm-9">
+                                <div class="courseTitleContent">
+                                    <!-- Title -->
+                                    <div class="courseTitle">{{item.title}}</div>
+                                    <!-- Label -->
+                                    <div *ngIf="item.label.length || item.providerName.length"
+                                         class="courseLabelContent">
+                                        <span *ngIf="item.label.length" class="courseLabel">{{item.label}}</span>
+                                        <span *ngIf="item.label.length && item.providerName.length">-</span>
+                                        <span *ngIf="item.providerName.length" class="courseProviderName">{{item.providerName}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="courseItemButtonBlock">
+                                    <div class="buttonContent">
+                                        <!-- Status -->
+                                        <ulms-button
+                                            [isPointer]=false
+                                            [btnLabel]="'lbl_course_status_' + item.status.value | translate"
+                                            [btnIconClassName]=item.status.icon
+                                        >
+                                        </ulms-button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="courseResultWrapper">
+                        <div class="courseResultList">
+                            <div class="statusTextConent">
+                                <!--Előrehaladás-->
+                                <ulms-status-line
+                                    [labelText]="'lbl_progress' | translate "
+                                    [value]=item.courseProgressStatus.value
+                                    [statusIcon]=item.courseProgressStatus.statusIcon
+                                    [requiredText]=item.courseProgressStatus.requiredText
+                                >
+                                </ulms-status-line>
+                            </div>
+                            <div class="statusTextConent">
+                                <!--Eredmény-->
+                                <ulms-status-line
+                                    [labelText]="'lbl_measure' | translate"
+                                    [value]=item.courseMeasureStatus.value
+                                    [statusIcon]=item.courseMeasureStatus.statusIcon
+                                    [requiredText]=item.courseMeasureStatus.requiredText
+                                >
+                                </ulms-status-line>
+                            </div>
+                            <div class="statusTextConent" *ngIf="item.licenseNetTimeLimit.isShow">
+                                <!--Hozzáférési idő-->
+                                <ulms-status-text
+                                    [className]=""
+                                    [labelText]="'lbl_net_license_time_limit' | translate"
+                                    [value]="item.licenseNetTimeLimit.timeUsedNumber | toLocalTimeSpan:{id:'active', otherValue:item.licenseNetTimeLimit.timeAvailableNumber}"
+                                >
+                                </ulms-status-text>
+                            </div>
+
+                            <div class="statusTextConent" *ngIf="item.licenseGrossTimeLimit.isShow">
+                                <!--Hozzáférés vége-->
+                                <ulms-status-text
+                                    [className]=""
+                                    [labelText]="'lbl_gross_license_time_limit' | translate"
+                                    [value]=item.licenseGrossTimeLimit.dateValue
+                                >
+                                </ulms-status-text>
+                            </div>
+                        </div>
+
+                        <div class="courseResultList">
+                            <div class="statusTextConent">
+                                <!--Határidő idő-->
+                                <ulms-status-text
+                                    [className]=""
+                                    [labelText]=item.deadLine.textLabel
+                                    [value]=item.deadLine.value
+                                >
+                                </ulms-status-text>
+                            </div>
+                            <div class="statusTextConent">
+                                <!--Eltöltött idő-->
+                                <ulms-status-text
+                                    [className]=""
+                                    [labelText]="'lbl_total_time' | translate"
+                                    [value]="item.totalTime.value | toLocalTimeSpan:{id:'active',otherValue:item.totalTime.netTimeLimit}"
+                                >
+                                </ulms-status-text>
+                            </div>
+                        </div>
+
+                        <div class="courseResultList">
+                            <div class="statusTextConent">
+                                <!--Beiratkozás dátuma vagy Első bejelentkezés-->
+                                <ulms-status-text
+                                    [className]=""
+                                    [labelText]="'lbl_enrollment_date' | translate"
+                                    [value]=item.registrationDate
+                                >
+                                </ulms-status-text>
+                            </div>
+                            <div class="statusTextConent">
+                                <!--Min. tanulási idő-->
+                                <ulms-status-text
+                                    [className]="''"
+                                    [labelText]="'lbl_minimum_time_short' | translate"
+                                    [value]="item.minimumTime | toLocalTimeSpan:{id:'active'}"
+                                >
+                                </ulms-status-text>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

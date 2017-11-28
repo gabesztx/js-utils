@@ -1,0 +1,109 @@
+<!-- Recommended Course Template -->
+<div class="courseListItemContainer optional" [@slideInOutKeyFrame] *ngFor="let item of currentItemListaData">
+    <div class="row">
+        <div class="courseItemImgBlock col-sm-2 hidden-xs">
+            <div class="imgContent">
+                <img src="{{item.imageUrl}}" alt="">
+            </div>
+        </div>
+        <div class="courseItemTextBlock col-sm-7">
+            <div class="courseItemTextBlockContent">
+                <div class="courseTitleContent">
+                    <!-- Title -->
+                    <div class="courseTitle" (click)="clickUrl(item.id)">{{item.title}}</div>
+                    <!-- Label -->
+                    <div *ngIf="item.label.length || item.providerName.length" class="courseLabelContent">
+                        <span *ngIf="item.label.length" class="courseLabel">{{item.label}}</span>
+                        <span *ngIf="item.label.length && item.providerName.length">-</span>
+                        <span *ngIf="item.providerName.length" class="courseProviderName">{{item.providerName}}</span>
+                    </div>
+                </div>
+                <div class="courseItemImgBlock">
+                    <div class="imgContent">
+                        <img src="{{item.imageUrl}}" alt="">
+                    </div>
+                </div>
+                <div class="courseResultWrapper">
+                    <div class="courseResultList recommended">
+                        <div class="statusTextConent">
+                            <!--Kurzus kezdete-->
+                            <ulms-status-text
+                                [labelText]="'lbl_result_start_date_course' | translate"
+                                [value]=item.resultStartDate
+
+                            >
+                            </ulms-status-text>
+                        </div>
+                        <div class="statusTextConent">
+                            <!--Kurzus vége-->
+                            <ulms-status-text
+                                [labelText]="'lbl_result_end_date_course' | translate"
+                                [value]=item.resultEndDate
+                            >
+                            </ulms-status-text>
+                        </div>
+                        <div class="statusTextConent">
+                            <!--Beiratkozás határideje-->
+                            <ulms-status-text
+                                [className]="'optional'"
+                                [labelText]="'lbl_enrollment_deadline' | translate"
+                                [value]=item.expirationTime
+                            >
+                            </ulms-status-text>
+                        </div>
+                    </div>
+                    <div class="courseResultList recommended">
+                        <div class="statusTextConent">
+                            <!--Idő keret -->
+                            <ulms-status-text
+                                [className]="'optional'"
+                                [labelText]="'lbl_net_time_limit' | translate"
+                                [value]="item.netTimeLimit | toLocalTimeSpan:{id:'optional'}"
+                            >
+                            </ulms-status-text>
+                        </div>
+                        <div class="statusTextConent">
+                            <!--Várható tanulási idő -->
+                            <ulms-status-text
+                                [className]="'optional'"
+                                [labelText]="'lbl_suggested_time' | translate"
+                                [value]="item.suggestedTime | toLocalTimeSpan:{id:'optional'}"
+                            >
+                            </ulms-status-text>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="courseItemButtonBlock col-sm-3">
+            <div class="buttonContent">
+                <ulms-button
+                    [btnLabel]="'lbl_optional' | translate"
+                >
+                </ulms-button>
+            </div>
+            <div class="dropDownContent">
+                <ulms-dropdown-split
+                    [groupName]="'optional'"
+                    [labelText]="'btn_enrollment' | translate"
+                    [itemData]=item.links
+                    (onButtonFn)="clickUrl(item.id)"
+                ></ulms-dropdown-split>
+            </div>
+        </div>
+        <div *ngIf="item.description" class="descriptionContent col-sm-12">
+            <ulms-description
+                [description]=item.description
+                [className]="'course-list'"
+            >
+            </ulms-description>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="noItems">
+    <div class="noItemstext">
+        <div class="col-sm-12">
+            {{'msg_optional_course_list_is_empty' | translate}}
+        </div>
+    </div>
+</div>

@@ -24,6 +24,7 @@ import { CourseDetailMainContentComponent } from './course-detail-main-content/c
 import { CourseDetailFeedComponent } from './course-detail-feed/course-detail-feed.component';
 import { CourseFeedComponent } from './course-feed/course-feed.component';
 import { CourseDetailMainInfoComponent } from './course-detail-main-info/course-detail-main-info.component';
+import { CourseUserInvitationsComponent } from './course-user-invitations/course-user-invitations.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { CourseDetailMainInfoComponent } from './course-detail-main-info/course-
         CourseDetailMainContentComponent,
         CourseDetailFeedComponent,
         CourseFeedComponent,
-        CourseDetailMainInfoComponent
+        CourseDetailMainInfoComponent,
+        CourseUserInvitationsComponent
     ],
     // bootstrap: [CoursesComponent],
     exports: []

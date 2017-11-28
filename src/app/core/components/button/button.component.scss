@@ -1,0 +1,94 @@
+@import '../../../../variables.scss';
+
+$blueColor: #0497bb;
+
+.buttonComponens {
+    font-size: 14px;
+    .btnContent {
+        padding: 5px 0;
+        width: 100%;
+        //max-width: 150px;
+        height: 32px;
+        text-align: center;
+        border-radius: 3px;
+        background: #dedede;
+        cursor: default;
+        &.pointer {
+            cursor: pointer;
+        }
+        .btn-icon {
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 16px;
+            &.hourglass_icon {
+                width: 22px;
+                height: 22px;
+                background: $data_uri_9;
+
+            }
+            &.pending {
+                width: 22px;
+                height: 22px;
+                background: $data_uri_1;
+            }
+            &.invite {
+                color: #0497bb
+            }
+            &.play {
+                color: $blueColor
+            }
+            &.success {
+                font-size: 18px;
+                color: $success-icon-color
+            }
+            &.unsuccessful {
+                color: $unsuccess-icon-color;
+            }
+            &.envelope {
+                margin-left: -10px;
+                margin-right: 5px;
+                color: $blueColor;
+            }
+            &.airship_icon {
+                width: 22px;
+                height: 22px;
+                background: $data_uri_3;
+            }
+            &.apple_icon {
+                width: 22px;
+                height: 22px;
+                background: $data_uri_5;
+            }
+            &.fire_icon {
+                width: 22px;
+                height: 22px;
+                background: $data_uri_7;
+            }
+        }
+        .btn-label-text {
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+    .launch_origin {
+        background: #0497bb;
+        color: white;
+    }
+    .launch_warning {
+        background: #555;
+        color: white;
+        .btn-icon {
+            display: inline-block;
+            vertical-align: middle;
+
+            &.warning {
+                color: white;
+                width: 20px;
+                height: 20px;
+                background: $data_uri_2;
+            }
+        }
+    }
+
+}
+

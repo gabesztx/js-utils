@@ -1,0 +1,112 @@
+<div class="courseDetailInfoComponent" *ngFor="let item of currentItemListaData" [@slideOutInKeyFrame]>
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-10">
+
+            <!-- Kurzus szolgáltatója -->
+            <div class="courseDetailInfoTextContent" *ngIf="item.providerName">
+                <span class="textContentLabel">
+                    {{'lbl_course_provider_name' | translate}}
+                </span>
+                <span class="textContentValue">
+                    {{item.providerName}}
+                </span>
+            </div>
+
+            <!-- Szerződés státusza -->
+            <div class="courseDetailInfoTextContent" *ngIf="item.contractStatus">
+                <span class="textContentLabel">
+                    {{'lbl_detail_info_contract_status' | translate}}
+                </span>
+                <span class="textContentValue">
+                  {{'enm_contract_status_' + contractStatusText[item.contractStatus] | lowercase | translate}}
+                </span>
+            </div>
+
+            <!-- Beírató szervezet -->
+            <div class="courseDetailInfoTextContent" *ngIf="item.registrarOrganization">
+                <span class="textContentLabel">
+                    {{'lbl_registration_organization' | translate}}
+                </span>
+                <span class="textContentValue">
+                    {{item.registrarOrganization.name}}
+                </span>
+            </div>
+
+            <!-- Teljesítés feltétele -->
+            <div class="courseDetailInfoTextContent">
+                <div class="textContentLabel">
+                    {{'lbl_requirement' | translate}}
+                </div>
+
+                <div class="textContentValue">
+                    <!-- Tananyag bejárása  -->
+                    <div class="courseDetailInfoTextContent"
+                         *ngIf="item.requirement.requiredForCompleted">
+                        <span class="textContentList">
+                            {{'txt_completion' | translate}}
+                        </span>
+                    </div>
+                    <!-- Sikeres tesztkitöltés  -->
+                    <div class="courseDetailInfoTextContent"
+                         *ngIf="item.requirement.requiredForSatisfied">
+                        <span class="textContentList">
+                            {{'txt_test_passed' | translate}}
+                        </span>
+                    </div>
+
+                    <!-- Nincs  -->
+                    <div class="courseDetailInfoTextContent"
+                         *ngIf="!item.requirement.requiredForSatisfied && item.requirement.requiredForCompleted">
+                        <span class="textContentList">
+                            {{'txt_not_exists' | translate}}
+
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Oklevél -->
+            <div class="courseDetailInfoTextContent">
+                <span class="textContentLabel">
+                    {{'lbl_certificate' | translate}}
+                </span>
+                <span class="textContentValue" *ngIf="item.certificateEnabled">
+                      {{'txt_certificate_obtained' | translate}}
+                </span>
+                <span class="textContentValue" *ngIf="!item.certificateEnabled">
+                      {{'txt_certificate_not_obtained' | translate}}
+                </span>
+            </div>
+
+            <!-- Várható tanulási idő -->
+            <div class="courseDetailInfoTextContent"
+                 *ngIf="item.suggestedTime">
+                <span class="textContentLabel">
+                    {{'lbl_suggested_time' | translate}}
+                </span>
+                <span class="textContentValue">
+                    {{item.suggestedTime}}
+                </span>
+            </div>
+
+            <!-- Akkreditációs szám -->
+            <div class="courseDetailInfoTextContent"
+                 *ngIf="item.accreditationNum">
+                <span class="textContentLabel">
+                    {{'lbl_accreditation_num' | translate}}
+                </span>
+                <span class="textContentValue">
+                    {{item.accreditationNum}}
+                </span>
+            </div>
+
+            <!-- Kurzus leírás-->
+            <div class="courseDetailInfoTextContent"
+                 *ngIf="item.description">
+                <div class="descriptionContent" [innerHTML]="item.description"></div>
+            </div>
+
+        </div>
+    </div>
+</div>

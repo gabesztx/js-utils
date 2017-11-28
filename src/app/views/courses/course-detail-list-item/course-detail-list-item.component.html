@@ -1,0 +1,175 @@
+<div *ngFor="let item of currentItemListaData" [@slideOutInKeyFrame]
+     class="courseDetailListItemContainer courseDetailListItem">
+    <div class="row">
+        <div class="col-sm-2 hidden-xs">
+            <!--<div class="courseItemImgBlock">
+                <div class="imgContent">
+                    <img src="{{item.imageUrl}}" alt="">
+                </div>
+            </div>-->
+        </div>
+        <div class="col-sm-10">
+            <div class="courseItemListContent">
+                <div class="courseItemTextBlockContent">
+                    <div class="courseItemTextBlock">
+                        <div class="row">
+                            <div class="col-sm-9">
+                                <div class="courseTitleContent">
+                                    <div class="courseTitle">{{item.title}}</div>
+                                    <div *ngIf="item.label" class="courseLabelContent">
+                                        <span class="courseProviderName">{{item.label}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="courseItemButtonBlock">
+                                    <div class="buttonContent">
+                                        <!-- Status -->
+                                        <ulms-button
+                                            [isPointer]=false
+                                            [btnLabel]="'lbl_course_status_' + item.status.value | translate"
+                                            [btnIconClassName]=item.status.icon
+                                        >
+                                        </ulms-button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="courseResultWrapper">
+                        <div class="courseResultList">
+                            <div class="statusTextConent">
+                                <!--Előrehaladás-->
+                                <ulms-status-line
+                                    [labelText]="'lbl_progress' | translate "
+                                    [value]=item.courseProgressStatus.value
+                                    [statusIcon]=item.courseProgressStatus.statusIcon
+                                    [requiredText]=item.courseProgressStatus.requiredText
+                                >
+                                </ulms-status-line>
+                            </div>
+                            <div class="statusTextConent">
+
+                                <!--Eredmény-->
+                                <ulms-status-line
+                                    [labelText]="'lbl_measure' | translate"
+                                    [value]=item.courseMeasureStatus.value
+                                    [statusIcon]=item.courseMeasureStatus.statusIcon
+                                    [requiredText]=item.courseMeasureStatus.requiredText
+                                >
+                                </ulms-status-line>
+
+                            </div>
+                        </div>
+
+                        <div class="courseResultList">
+                            <div class="statusTextConent">
+                                <!--Lezárult vagy Határidő idő-->
+                                <ulms-status-text
+                                    [className]=""
+                                    [labelText]=item.deadLine.textLabel
+                                    [value]=item.deadLine.value
+                                >
+                                </ulms-status-text>
+                            </div>
+                            <div class="statusTextConent">
+                                <!--Eltöltött idő-->
+                                <ulms-status-text
+                                    [className]=""
+                                    [labelText]="'lbl_total_time' | translate"
+                                    [value]="item.totalTime.value | toLocalTimeSpan:{id:'active',otherValue:item.totalTime.netTimeLimit}"
+                                >
+                                </ulms-status-text>
+                            </div>
+                        </div>
+
+                        <div class="courseResultList">
+                            <div class="statusTextConent">
+                                <!--Tanulás kezdete-->
+                                <ulms-status-text
+                                    [labelText]="'lbl_first_attempt' | translate"
+                                    [value]=item.resultStartDate
+                                >
+                                </ulms-status-text>
+                            </div>
+                            <div class="statusTextConent">
+                                <!--Min. tanulási idő-->
+                                <ulms-status-text
+                                    [className]="item.totalTime.value >= item.minimumTime ? '' : 'warning'"
+                                    [value]="item.minimumTime | toLocalTimeSpan:{id:'active'}"
+                                    [labelText]="'lbl_minimum_time_short' | translate"
+                                >
+                                </ulms-status-text>
+                            </div>
+
+                            <div class="statusTextConent" *ngIf="item.suggestedTime > 0">
+                                <!--Várható tanulási idő-->
+                                <ulms-status-text
+                                    [value]="item.suggestedTime | toLocalTimeSpan:{id:'active'}"
+                                    [labelText]="'lbl_suggested_time' | translate"
+                                >
+                                </ulms-status-text>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="coursePrerequisite">
+                        <div class="statusTextConent">
+                            <!--Előfeltétel-->
+                            <ulms-status-text
+                                [value]=item.prerequisite
+                                [labelText]="'lbl_prerequisite' | translate"
+                            >
+                            </ulms-status-text>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="courseButtonWrapper" *ngIf="item.launchButton">
+                    <div class="row">
+                        <div class="col-sm-9"></div>
+                        <div class="col-sm-3">
+                            <div class="buttonContent">
+                                <!--Launch Button -->
+                                <ulms-button
+                                    [isPointer]="'pointer'"
+                                    [className]=item.launchButton.className
+                                    [btnIconClassName]=item.launchButton.icon
+                                    [btnLabel]="'btn_launch_content_with_migration'"
+                                >
+                                </ulms-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="courseDescriptionContent">
+                    <div class="row">
+                        <div class="courseDescriptionBlock" [ngClass]="{'lunchBtnActive': item.launchButton}">
+                            <div class="col-sm-12">
+                                <ulms-description
+                                    [className]="'course-detail-description'"
+                                    [description]=item.description
+                                >
+                                </ulms-description>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="courseDescriptionBlock" [ngClass]="{'lunchBtnActive': item.launchButton}" *ngIf="item.serviceTechnicalProfile">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <ulms-description
+                                    [className]="'course-detail-serviceTechnicalProfile'"
+                                    [description]=item.serviceTechnicalProfile
+                                >
+                                </ulms-description>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="courseDetailListBorderWrapper"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
