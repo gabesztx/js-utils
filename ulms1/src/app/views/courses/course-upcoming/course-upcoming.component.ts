@@ -56,7 +56,7 @@ export class CourseUpcomingComponent implements OnChanges {
             const courseActivitie = item.courseActivities[0];
             const courseRegistration = course.courseRegistration;
             courseUpcomingView.push({
-                id: courseActivitie.id,
+                id: course.id,
                 title: this.commonService.getTitle(course), // Title
                 label: this.commonService.getLabel(course), // Label
                 status: this.commonService.getActivityStatus(courseActivitie), // Status button

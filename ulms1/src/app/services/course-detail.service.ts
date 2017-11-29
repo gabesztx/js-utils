@@ -47,12 +47,8 @@ export class CourseDetailService extends HttpProxy {
         });
     }
 
-    public getCourseDetailState() {
-
-    }
 
     public getListData(): Observable<any> {
-        console.log('getListData: ', this.courseDetailData);
         return Observable.of(this.courseDetailData);
     }
 }
