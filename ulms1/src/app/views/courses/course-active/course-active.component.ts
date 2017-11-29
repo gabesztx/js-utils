@@ -48,9 +48,7 @@ export class CourseActiveComponent implements OnChanges {
     }
 
     transFormViewObject(itemData: RestApiResponse<any>) {
-
         const courseActiveView: Array<CourseActiveViewModel> = [];
-
         itemData.items.forEach((item) => {
             const course = item;
             const courseActivitie = course.courseActivities[0];

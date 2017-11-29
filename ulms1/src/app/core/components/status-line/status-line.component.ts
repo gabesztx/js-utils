@@ -34,7 +34,8 @@ export class StatusLineComponent implements OnInit, OnDestroy, OnChanges {
         }, 700);
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+    }
 
     ngOnDestroy() {
         clearTimeout(this.numberTimeOut);

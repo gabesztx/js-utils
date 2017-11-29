@@ -71,12 +71,14 @@ export class CommonService {
         const status = courseActivitie.status ? courseActivitie.status : 0;
         const courseState = course ? course.courseState : 0;
         const progress = courseActivitie.result.progress ? courseActivitie.result.progress : 0;
+        const isCompleted = courseActivitie.result.completed;
         const lineValue = progress ? Math.round(progress * 100) : 0;
         const requiredForCompleted = courseActivitie.target.requirement.requiredForCompleted;
         const requiredText = requiredForCompleted ? 'lbl_required_for_satisfied' : 'lbl_not_required_for_satisfied';
+        // console.log('requiredForCompleted', requiredForCompleted)
         return {
             'value': lineValue,
-            'statusIcon': this.getLineStatus(progress, status, courseState),
+            'statusIcon': this.getLineStatus(isCompleted, status, courseState),
             'requiredText': this.translate(requiredText),
         };
     }
@@ -89,13 +91,14 @@ export class CommonService {
     getCourseMeasureStatus(courseActivitie: any, course?: any): any {
         const status = courseActivitie.status ? courseActivitie.status : 0;
         const courseState = course ? course.courseState : 0;
-        const measure = courseActivitie.result.measure;
-        const lineValue = measure ? Math.round(measure * 100) : 0;
+        const progress = courseActivitie.result.measure;
+        const isCompleted = courseActivitie.result.satisfied;
+        const lineValue = progress ? Math.round(progress * 100) : 0;
         const requiredForSatisfied = courseActivitie.target.requirement.requiredForSatisfied;
         const requiredText = requiredForSatisfied ? 'lbl_required_for_satisfied' : 'lbl_not_required_for_satisfied';
         return {
             'value': lineValue,
-            'statusIcon': this.getLineStatus(measure, status, courseState),
+            'statusIcon': this.getLineStatus(isCompleted, status, courseState),
             'requiredText': this.translate(requiredText),
         };
     }
@@ -612,15 +615,15 @@ export class CommonService {
 
     /**
      *  getLineStatus
-     *  @param {number} value
+     *  @param {number} isCompleted
      *  @param {number} status
      *  @return {}
      */
-    getLineStatus(value: any, status: any, courseState?: any) {
-        if (value === true) {
+    getLineStatus(isCompleted: any, status: any, courseState?: any) {
+        if (isCompleted === true) {
             return true;
         }
-        if (!value && status === 7 || courseState === 5) {
+        if (!isCompleted && status === 7 || courseState === 5) {
             return false;
         }
         return null;
@@ -632,7 +635,6 @@ export class CommonService {
      *  @return {boolean}
      */
     isValideDate(value): boolean {
-        // return value.split('-')[0] === '9999';
         return value.split('-')[0] === '9999' || value.split('-')[0] === '1753';
     }
 
