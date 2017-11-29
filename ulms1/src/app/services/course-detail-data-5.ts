@@ -1,6 +1,7 @@
 export const data5 = {
     "userInvitations": [],
     "profileDetail": 3,
+    "isLocked": true,
     "courseActivities": [{
         "id": "de27f9c6-ef3f-4067-93d2-0ebdd58ab97a",
         "status": 2,

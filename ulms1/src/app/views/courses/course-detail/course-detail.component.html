@@ -1,18 +1,29 @@
 <div class="container">
     <div class="row">
         <div class="nx-content">
+            <!--Message Box-->
+            <div *ngIf="!isShowMessageBox">
+                <div class="messageBoxContent">
+                    {{'msg_warning_course_not_locked'| translate }}
+                </div>
+            </div>
+            <!--Nav Tabs-->
             <div *ngIf="isShowTab">
                 <ulms-nav-tab [navData]=this.navTabData></ulms-nav-tab>
             </div>
+            <!--Course Detail Content-->
             <div *ngIf="isCourseDetailMainContent">
                 <ulms-course-detail-main-content [itemData]="courseDetail"></ulms-course-detail-main-content>
             </div>
+            <!--Course Detail Information-->
             <div *ngIf="isCourseDetailMainInfo && !isShowTab">
                 <ulms-course-detail-main-info [courseDetail]="courseDetail"></ulms-course-detail-main-info>
             </div>
+            <!--Course Detail Inactive-->
             <div *ngIf="isCourseDetailMainInfo && isShowTab && !isContentDetailTabShow">
                 <ulms-course-detail-main-info [courseDetail]="courseDetail"></ulms-course-detail-main-info>
             </div>
+            <!--Course Detail User Invitation-->
             <div *ngIf="courseDetail.userInvitations.length">
                 <ulms-course-user-invitations [courseDetail]="courseDetail"></ulms-course-user-invitations>
             </div>

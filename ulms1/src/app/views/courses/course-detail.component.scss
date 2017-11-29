@@ -168,3 +168,10 @@ $itemPadding: 20px;
     @include padding-left-reset;
 }
 
+.messageBoxContent {
+    padding: 10px 20px;
+    border: 2px solid #fdba3d;
+    background: #fee8b1;
+    //margin: 10px;
+
+}

@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
     selector: 'ulms-course-detail',
     templateUrl: './course-detail.component.html',
-    // styleUrls: ['../course-detail.component.scss']
+    styleUrls: ['../course-detail.component.scss']
 })
 export class CourseDetailComponent implements OnInit, OnDestroy {
     public paramsObs: any;
@@ -14,8 +14,9 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
     public isShowTab: any;
     public navTabData = [];
     public userInvitations: any;
-
     public courseDetailState: any;
+
+    public isShowMessageBox: false;
     public isCourseDetailMainContent = false;
     public isCourseDetailMainInfo = false;
     public isContentDetailTabShow = true;
@@ -27,6 +28,8 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
             this.courseFeeds = this.route.snapshot.data.responseData.courseFeeds;
             this.courseDetailState = this.courseDetail.courseState;
             this.userInvitations = this.courseDetail.userInvitations;
+            this.isShowMessageBox = this.courseDetail.isLocked;
+            // console.log('courseDetail:', );
             console.log('CourseDetailComponent / courseDetailState: ', this.courseDetailState);
 
             this.courseDetailView();
