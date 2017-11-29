@@ -52,7 +52,6 @@ export abstract class HttpProxy extends HttpBase {
     protected post(url: string, payload, userOptions?: RequestOptions) {
         const options: RequestOptions = this.createRequestOptions(userOptions);
         // const process: ProcessModel = this.createBackgroundProcess(options);
-
         return this.http.post(url, payload, options)
             .map(this.extract)
             // .retryWhen(this.handleSessionTimeout.bind(this))

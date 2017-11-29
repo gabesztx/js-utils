@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
@@ -12,11 +13,11 @@ import { RuntimeConfigService } from './runtime-config.service';
 @Injectable()
 export class CourseDetailService extends HttpProxy {
     // private apiUrl: string;
-    public courseDetailData = { courseDetail: null, courseFeeds: null };
+    public courseDetailData = {courseDetail: null, courseFeeds: null};
     public courseDetailId: any;
     public courseDetailState: any;
 
-    constructor(protected http: Http, private config: RuntimeConfigService) {
+    constructor(protected http: Http, private config: RuntimeConfigService, private router: Router) {
         super();
         /* if (__instance__ !== this) {
              this.apiUrl = `${this.config.baseApiUrl}usercourses`;
@@ -27,7 +28,10 @@ export class CourseDetailService extends HttpProxy {
 
     getCourseDetailData(): Observable<any> {
         const apiUrl = `${this.config.baseApiUrl}usercourses/${this.courseDetailId}`;
-        return this.get(apiUrl).map(value => value);
+        return this.get(apiUrl)
+            .map((value) => {
+                return value;
+            });
     }
 
     getCourseFeedsData(): Observable<any> {
