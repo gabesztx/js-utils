@@ -23,6 +23,7 @@ import { DescriptionComponent } from './components/description/description.compo
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { NavTabComponent } from './components/nav-tab/nav-tab.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { PopupModalComponent } from './components/popup-modal/popup-modal.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { FooterComponent } from './components/footer/footer.component';
         AccordingMenuComponent,
         DescriptionComponent,
         PaginationComponent,
-        NavTabComponent
+        NavTabComponent,
+        PopupModalComponent
     ],
     exports: [
         TranslatePipe,
@@ -64,7 +66,8 @@ import { FooterComponent } from './components/footer/footer.component';
         AccordingMenuComponent,
         DescriptionComponent,
         PaginationComponent,
-        NavTabComponent
+        NavTabComponent,
+        PopupModalComponent
     ]
 })
 export class CoreModule {
