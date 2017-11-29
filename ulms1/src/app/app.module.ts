@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { ModalModule } from 'ngx-bootstrap';
 
 
 import 'hammerjs';
@@ -23,10 +22,9 @@ import { environment } from '../environments/environment';
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
-        CoreModule,
         RouterModule.forRoot(routes),
-        ModalModule.forRoot(),
         ServicesModule,
+        CoreModule
     ],
     bootstrap: [AppComponent]
 })

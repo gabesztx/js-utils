@@ -23,15 +23,12 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
 
     constructor(private route: ActivatedRoute, private router: Router) {
         this.paramsObs = this.route.params.subscribe(params => {
-            console.log('CourseDetailComponent PARAM', params)
             this.urlId = params.courseId;
             this.courseDetail = this.route.snapshot.data.responseData.courseDetail;
             this.courseFeeds = this.route.snapshot.data.responseData.courseFeeds;
             this.courseDetailState = this.courseDetail.courseState;
             this.userInvitations = this.courseDetail.userInvitations;
             this.isShowMessageBox = this.courseDetail.isLocked;
-            // console.log('CourseDetailComponent / courseDetailState: ', this.courseDetailState);
-
             this.courseDetailView();
         });
     }
@@ -79,9 +76,9 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
     navigationTabView() {
         const courseActivities = this.courseDetail.courseActivities;
         const navTabDefaultData = {
-            content: { 'label': 'lbl_course_content', 'urlPath': '/courses/' + this.urlId + '/content' },
-            info: { 'label': 'lbl_course_information', 'urlPath': '/courses/' + this.urlId + '/info' },
-            feed: { 'label': 'lbl_feed', 'urlPath': '/courses/' + this.urlId + '/feed' }
+            content: {'label': 'lbl_course_content', 'urlPath': '/courses/' + this.urlId + '/content'},
+            info: {'label': 'lbl_course_information', 'urlPath': '/courses/' + this.urlId + '/info'},
+            feed: {'label': 'lbl_feed', 'urlPath': '/courses/' + this.urlId + '/feed'}
         };
 
         // add content tab
