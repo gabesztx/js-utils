@@ -118,7 +118,7 @@
                             <div class="statusTextConent">
                                 <!--Min. tanulási idő-->
                                 <ulms-status-text
-                                    [className]="''"
+                                    [className]="item.totalTime.value >= item.minimumTime ? '' : 'warning'"
                                     [labelText]="'lbl_minimum_time_short' | translate"
                                     [value]="item.minimumTime | toLocalTimeSpan:{id:'active'}"
                                 >
