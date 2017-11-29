@@ -14,8 +14,7 @@ export class CoursesDetailRoutingGuard implements CanActivate {
     public courseDetail: any;
 
     constructor(private router: Router,
-                private courseDetailService: CourseDetailService,
-                private courseDetailService_: CourseDetailService_) {
+                private courseDetailService: CourseDetailService) {
     }
 
     redicertPage(url: string) {
@@ -23,14 +22,17 @@ export class CoursesDetailRoutingGuard implements CanActivate {
     }
 
     canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-        // console.log('CoursesDetailRoutingGuard false');
-        // const courseService = (<any>window).env === 'serv' ? this.courseDetailService : this.courseDetailService_
-        console.log('CoursesDetailRoutingGuard', this.courseDetailService.getListData());
-
-        // this.courseDetailService.getListData()
-        /*courseDetailObservable.subscribe(params => {
-            console.log('SUBBBBBBB', params);
-        });*/
-        return true;
+        const pageId = next.paramMap.get('courseId');
+        this.courseDetailService.list(pageId).subscribe(
+            res => {
+                console.log('RES OK', res);
+                return true;
+            } ,
+            error => {
+                console.log('ERRROOR', error);
+                return error;
+            }
+        );
+        return false;
     }
 }

@@ -23,14 +23,14 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
 
     constructor(private route: ActivatedRoute, private router: Router) {
         this.paramsObs = this.route.params.subscribe(params => {
+            console.log('CourseDetailComponent PARAM', params)
             this.urlId = params.courseId;
             this.courseDetail = this.route.snapshot.data.responseData.courseDetail;
             this.courseFeeds = this.route.snapshot.data.responseData.courseFeeds;
             this.courseDetailState = this.courseDetail.courseState;
             this.userInvitations = this.courseDetail.userInvitations;
             this.isShowMessageBox = this.courseDetail.isLocked;
-            // console.log('courseDetail:', );
-            console.log('CourseDetailComponent / courseDetailState: ', this.courseDetailState);
+            // console.log('CourseDetailComponent / courseDetailState: ', this.courseDetailState);
 
             this.courseDetailView();
         });
