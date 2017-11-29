@@ -137,7 +137,7 @@ export class CommonService {
      *  @return {String}
      */
     getTotalTime(courseActivitie: any): any {
-        const totalTime = courseActivitie.result ? courseActivitie.result.totalTime : 0;
+        const totalTime = courseActivitie.result.totalTime ? courseActivitie.result.totalTime : 0;
         const netTimeLimit = courseActivitie.target ? courseActivitie.target.requirement.netTimeLimit : 0;
         return {
             'value': totalTime,
@@ -502,7 +502,7 @@ export class CommonService {
             }
         };
         if (IsResultStartDate && isSetTime(IsResultStartDate)) {
-            return this.formatDay(IsResultStartDate);
+            return this.formatDay(resultStartDate);
         }
         return this.translate('txt_not_exists');
 
@@ -513,8 +513,8 @@ export class CommonService {
      *  @return
      */
     getResultEndDate(courseActivities: any): any {
-        const resultStartDate = courseActivities.target.requirement.resultEndDate;
-        const IsResultStartDate = resultStartDate ? resultStartDate.split('-')[0] : undefined;
+        const resultEndDate = courseActivities.target.requirement.resultEndDate;
+        const IsResultStartDate = resultEndDate ? resultEndDate.split('-')[0] : undefined;
         const isSetTime = (date) => {
             if (date > 2000 && date < 9000) {
                 return true;
@@ -523,7 +523,7 @@ export class CommonService {
             }
         };
         if (IsResultStartDate && isSetTime(IsResultStartDate)) {
-            return this.formatDay(IsResultStartDate);
+            return this.formatDay(resultEndDate);
         }
         return this.translate('txt_not_exists');
     }

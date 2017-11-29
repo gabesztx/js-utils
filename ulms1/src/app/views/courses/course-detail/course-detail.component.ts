@@ -18,6 +18,7 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
     public courseDetailState: any;
     public isCourseDetailMainContent = false;
     public isCourseDetailMainInfo = false;
+    public isContentDetailTabShow = true;
 
     constructor(private route: ActivatedRoute, private router: Router) {
         this.paramsObs = this.route.params.subscribe(params => {
@@ -26,7 +27,8 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
             this.courseFeeds = this.route.snapshot.data.responseData.courseFeeds;
             this.courseDetailState = this.courseDetail.courseState;
             this.userInvitations = this.courseDetail.userInvitations;
-            this.navigationTabView();
+            console.log('CourseDetailComponent / courseDetailState: ', this.courseDetailState);
+
             this.courseDetailView();
         });
     }
@@ -35,7 +37,6 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
     }
 
     navigateList(urlParams: string) {
-        // console.log('navigateList');
         this.router.navigate(['courses', this.urlId, urlParams]);
     }
 
@@ -45,19 +46,28 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
     courseDetailView() {
 
         if (this.courseDetailState === 4 || this.courseDetailState === 5) {
+            // console.log('STATE 1');
             this.isShowTab = true;
             this.isCourseDetailMainContent = true;
+            this.isContentDetailTabShow = true;
             this.navigateList('content');
 
         } else if (this.courseDetailState >= 0 && this.courseDetailState <= 2 || this.courseDetailState == null) {
+            // console.log('STATE 2');
             this.isShowTab = false;
             this.isCourseDetailMainInfo = true;
             this.navigateList('info');
 
+        } else if (this.courseDetailState === 3) {
+            // console.log('STATE 3');
+            this.isShowTab = true;
+            this.isCourseDetailMainInfo = true;
+            this.isContentDetailTabShow = false;
+            this.navigateList('info');
+
         }
-        console.log('courseDetailState: ', this.courseDetailState);
-        // console.log('isCourseDetailMainContent: ', this.isCourseDetailMainContent);
-        // console.log('isCourseDetailMainInfo: ', this.isCourseDetailMainInfo);
+
+        this.navigationTabView();
     }
 
     /**
@@ -66,13 +76,13 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
     navigationTabView() {
         const courseActivities = this.courseDetail.courseActivities;
         const navTabDefaultData = {
-            content: {'label': 'lbl_course_content', 'urlPath': '/courses/' + this.urlId + '/content'},
-            info: {'label': 'lbl_course_information', 'urlPath': '/courses/' + this.urlId + '/info'},
-            feed: {'label': 'lbl_feed', 'urlPath': '/courses/' + this.urlId + '/feed'}
+            content: { 'label': 'lbl_course_content', 'urlPath': '/courses/' + this.urlId + '/content' },
+            info: { 'label': 'lbl_course_information', 'urlPath': '/courses/' + this.urlId + '/info' },
+            feed: { 'label': 'lbl_feed', 'urlPath': '/courses/' + this.urlId + '/feed' }
         };
 
         // add content tab
-        if (courseActivities.length) {
+        if (courseActivities.length && this.isContentDetailTabShow) {
             this.navTabData.push(navTabDefaultData.content);
         }
 

@@ -7,7 +7,10 @@
             <div *ngIf="isCourseDetailMainContent">
                 <ulms-course-detail-main-content [itemData]="courseDetail"></ulms-course-detail-main-content>
             </div>
-            <div *ngIf="isCourseDetailMainInfo">
+            <div *ngIf="isCourseDetailMainInfo && !isShowTab">
+                <ulms-course-detail-main-info [courseDetail]="courseDetail"></ulms-course-detail-main-info>
+            </div>
+            <div *ngIf="isCourseDetailMainInfo && isShowTab && !isContentDetailTabShow">
                 <ulms-course-detail-main-info [courseDetail]="courseDetail"></ulms-course-detail-main-info>
             </div>
             <div *ngIf="courseDetail.userInvitations.length">

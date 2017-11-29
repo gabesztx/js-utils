@@ -85,6 +85,7 @@ export class CourseDetailListItemComponent implements OnChanges, OnDestroy {
             }
 
         });
+        // console.log('courseDetailView', courseDetailView);
         return courseDetailView;
     }
 

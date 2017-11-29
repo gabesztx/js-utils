@@ -25,6 +25,14 @@
                 </div>
                 <div class="courseResultWrapper">
                     <div class="courseResultList recommended">
+                        <div class="statusTextConent" *ngIf="item.registrarOrganization">
+                            <!-- Beirato szervezet -->
+                            <ulms-status-text
+                                [labelText]="'lbl_registration_organization' | translate"
+                                [value]=item.registrarOrganization
+                            >
+                            </ulms-status-text>
+                        </div>
                         <div class="statusTextConent">
                             <!--Kurzus kezdete-->
                             <ulms-status-text
@@ -74,8 +82,19 @@
                 </div>
             </div>
         </div>
-        <div class="courseItemButtonBlock col-sm-3" *ngIf="isUseroptionalCourse">
-            <div class="buttonContent">
+        <div class="courseItemButtonBlock col-sm-3">
+            <div class="buttonContent" *ngIf="item.status && !isUseroptionalCourse">
+                <!-- Status -->
+                <ulms-button
+                    [isPointer]=false
+                    [btnLabel]="'lbl_course_status_' + item.status.value | translate"
+                    [btnIconClassName]=item.status.icon
+                >
+                </ulms-button>
+
+            </div>
+            <div class="buttonContent" *ngIf="isUseroptionalCourse">
+                <!-- Status -->
                 <ulms-button
                     [isPointer]=false
                     [btnLabel]="'lbl_optional' | translate"
@@ -83,7 +102,8 @@
                 </ulms-button>
 
             </div>
-            <div class="dropDownContent">
+            <div class="dropDownContent" *ngIf="isUseroptionalCourse">
+                <!-- Status -->
                 <ulms-dropdown-split
                     [groupName]="'recommendedDetial'"
                     [labelText]="'btn_enrollment' | translate"
@@ -92,12 +112,5 @@
                 ></ulms-dropdown-split>
             </div>
         </div>
-
-        <!--   <div *ngIf="item.description" class="descriptionContent col-sm-12">
-               <ulms-description
-                   [description]=item.description
-                   [className]="'course-list'">
-               </ulms-description>
-           </div>-->
     </div>
 </div>

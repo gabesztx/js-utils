@@ -15,32 +15,39 @@ export class CourseDetailMainInfoComponent implements OnChanges {
     currentItemData: any;
     isUseroptionalCourse: any;
 
-    constructor(private commonService: CommonService) {}
+    constructor(private commonService: CommonService) {
+    }
 
     ngOnChanges() {
         this.currentItemData = this.transFormViewObject(this.courseDetail);
     }
+
     clickUrl(id: string) {
         console.log('CourseDetailMainInfoComponent CLICK', id);
     }
+
     transFormViewObject(courseDetail: any) {
-        //const courseDetailView: Array<CourseDetailViewModel> = [];
 
         const courseDetailView: Array<any> = [];
+
         const course = courseDetail;
         const courseState = course.courseState;
         const courseObjects = course.courseObjects;
         const courseActivities = course.courseActivities;
+        const courseRegistration = course.courseRegistration;
         const userInvitations = course.userInvitations;
 
         const isCourseObjects = (courseState >= 0 && courseState <= 2 || !courseState);
-        const isCourseActivities = (courseState === 3 && courseActivities.length);
+        const isCourseActivities = (courseState === 3 && courseActivities.length >= 0);
 
+        const courseData = isCourseObjects ? courseObjects : courseActivities;
         this.isUseroptionalCourse = courseState === 2 && !userInvitations.length;
-        // console.log('course', course);
 
-        courseObjects.forEach((courseObject) => {
-            if (!courseObject.parent) {
+        // console.log('course', course);
+        // console.log('courseData', courseData);
+
+        courseData.forEach((courseObject) => {
+            if (!courseObject.parent && isCourseObjects || !courseObject.target.parent && isCourseActivities) {
                 courseDetailView.push({
                     id: course.id,
                     title: this.commonService.getTitle(course), // Title
@@ -50,8 +57,9 @@ export class CourseDetailMainInfoComponent implements OnChanges {
                     courseState: courseState, // Course State number
                     expirationTime: this.commonService.getExpirationTime(course), // Beiratkozás határideje
                     links: this.commonService.getLinks(course), // Launch button + links
-                    //status: this.commonService.getActivityStatus(courseActivitie), // Status button
-                    //description: this.commonService.getCourseDescription(course), // Leírás
+
+                    // status: this.commonService.getActivityStatus(courseActivitie), // Status button
+                    // description: this.commonService.getCourseDescription(course), // Leírás
                 });
                 if (isCourseObjects) {
                     Object.assign(courseDetailView[0], {
@@ -62,7 +70,17 @@ export class CourseDetailMainInfoComponent implements OnChanges {
                     });
 
                 }
-                if (isCourseActivities) {}
+                if (isCourseActivities) {
+                    Object.assign(courseDetailView[0], {
+                        status: this.commonService.getActivityStatus(courseObject), // Status button
+                        registrarOrganization: this.commonService.getRegistrarOrganization(courseRegistration), // Beirato szervezet
+                        resultStartDate: this.commonService.getResultStartDate(courseObject), // Kurzus kezdete
+                        resultEndDate: this.commonService.getResultEndDate(courseObject), // Kurzus vége
+                        netTimeLimit: this.commonService.getNetTimeLimit(courseObject.target), // Idő keret
+                        suggestedTime: this.commonService.getCourseSuggestedTime(courseObject.target), // Várható tanulási idő
+                    });
+
+                }
             }
         });
         console.log('courseDetailView', courseDetailView);

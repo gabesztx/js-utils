@@ -13,11 +13,12 @@ import { data4 } from './course-detail-data-4';
 import { data5 } from './course-detail-data-5'; // aktualis
 import { data6 } from './course-detail-data-6'; // ajánlott
 import { data7 } from './course-detail-data-7'; // választható
+import { data8 } from './course-detail-data-8'; // hamarosan
 
 @Injectable()
 export class CourseDetailService_ {
 
-    public courseList = <Array<any>>JSON.parse(JSON.stringify(data7));
+    public courseList = <Array<any>>JSON.parse(JSON.stringify(data8));
     public courseFeed = <Array<any>>JSON.parse(JSON.stringify(feedData));
     public courseDetailData = { courseDetail: null, courseFeeds: null };
     public courseDetaiId: any;
