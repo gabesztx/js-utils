@@ -83,7 +83,6 @@ export class CourseDetailMainInfoComponent implements OnChanges {
                 }
             }
         });
-        console.log('courseDetailView', courseDetailView);
         return courseDetailView;
     }
 }
