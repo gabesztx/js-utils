@@ -38,6 +38,7 @@ export class CourseClosedComponent implements OnChanges {
     }
 
     updatePageItem(currentList: any) {
+
         let itemNum = 0;
         this.currentItemListaData = [];
         this.currentItemInterval = setInterval(() => {
@@ -50,47 +51,29 @@ export class CourseClosedComponent implements OnChanges {
 
     }
 
-    transFormViewObject(data: RestApiResponse<CourseDetail[]>) {
-        const dataArray: Array<any> = [];
-        data.items.forEach((value) => {
-            const courseActivities = value.courseActivities[0];
-            const id = value.id;
-            const title = value.title;
-            const label = value.label;
-            const providerName = value.provider && value.provider.name ? value.provider.name : '';
-            const imageUrl = value.imageUrl.length ? value.imageUrl : '/Content/client/assets/images/suitcase_big_icon.png';
-
-            const status = courseActivities.status;
-            const remainingTime = courseActivities.result.remainingTime;
-            const netTimeLimit = courseActivities.target.requirement.netTimeLimit;
-            const totalTime = courseActivities.result.totalTime;
-            const links = courseActivities.links;
-            const resultProgress = courseActivities.result.progress;
-            const resultMeasure = courseActivities.result.measure;
-            const deadLine = courseActivities.result.resultEndTime;
-            const completed = courseActivities.result.completed;
-            const satisfied = courseActivities.result.satisfied;
-
-            dataArray.push({
-                id: id,
-                title: title,
-                label: label,
-                imageUrl: imageUrl,
-                remainingTime: remainingTime,
-                totalTime: totalTime,
-                netTimeLimit: netTimeLimit,
-                providerName: providerName,
-                status: status,
-                deadLine: this.commonService.getDeadLine_(deadLine),
-                btnIcon: this.commonService.getStatusButton(status),
-                resultProgress: resultProgress ? Math.round(resultProgress * 100) : 0,
-                resultMeasure: resultMeasure ? Math.round(resultMeasure * 100) : 0,
-                progressStatus: this.commonService.getLineStatus(completed, status),
-                measureStatus: this.commonService.getLineStatus(satisfied, status),
-                links: this.commonService.getLink(links),
+    transFormViewObject(itemData: RestApiResponse<CourseDetail[]>) {
+        const courseCloseView: Array<any> = [];
+        itemData.items.forEach((item) => {
+            const course = item;
+            const courseActivitie = course.courseActivities[0];
+            const grossTimeLimit = courseActivitie.target.requirement.grossTimeLimit;
+            const resultEndDate = courseActivitie.target.requirement.resultEndDate;
+            courseCloseView.push({
+                id: course.id,
+                title: this.commonService.getTitle(course), // Title
+                label: this.commonService.getLabel(course), // Label
+                providerName: this.commonService.getProviderName(course), // Label Provider name
+                imageUrl: this.commonService.getImageUrl(course), // Image
+                status: this.commonService.getActivityStatus(courseActivitie), // Status button
+                links: this.commonService.getLinks(courseActivitie), // Launch button + links
+                courseProgressStatus: this.commonService.getCourseProgressStatus(courseActivitie), // Előrehaladás
+                courseMeasureStatus: this.commonService.getCourseMeasureStatus(courseActivitie), // Eredmény
+                deadLine: this.commonService.getDeadLine(courseActivitie), // Határidő
+                totalTime: this.commonService.getTotalTime(courseActivitie), // Eltöltött idő
+                grossTimeLimit: grossTimeLimit ? grossTimeLimit : '', // grossTimeLimit
+                resultEndDate: resultEndDate ? resultEndDate : '', // resultEndDate
             });
-
         });
-        return dataArray;
+        return courseCloseView;
     }
 }
