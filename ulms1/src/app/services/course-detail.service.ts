@@ -29,9 +29,13 @@ export class CourseDetailService extends HttpProxy {
     getCourseDetailData(): Observable<any> {
         const apiUrl = `${this.config.baseApiUrl}usercourses/${this.courseDetailId}`;
         return this.get(apiUrl)
-            .map((value) => {
+            .map(value => {
                 return value;
-            });
+            })
+            // .catch(err => {
+            //     console.log('EEREERR', err)
+            //     return Observable.throw(err);
+            // });
     }
 
     getCourseFeedsData(): Observable<any> {

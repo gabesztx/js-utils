@@ -30,7 +30,6 @@ export interface Service {
  * and Effects: https://github.com/ngrx/effects/blob/master/docs/intro.md#introduction
  */
 export abstract class HttpProxy extends HttpBase {
-
     protected http: Http;
 
     constructor() {
@@ -42,7 +41,6 @@ export abstract class HttpProxy extends HttpBase {
         // const process: ProcessModel = this.createBackgroundProcess(options);
         return this.http.get(url, options)
             .map(this.extract)
-            // .retryWhen(this.handleSessionTimeout.bind(this))
             .catch(this.handleError)
             /*.finally(() => {
                 this.removeBackgroundProcess(process);
@@ -73,20 +71,22 @@ export abstract class HttpProxy extends HttpBase {
                 this.removeBackgroundProcess(process);
             })*/;
     }
+
     /* TODO: course detail navigation: when status:3x redirect */
     private extract(res: Response) {
-        try {
-            return res.json();
-            // const body = res.json();
-            // console.log('extract', body);
-            /* if (body.items && body.items.length !== undefined) {
-                 return body.items;
-             } else {
-                 return body;
-             }*/
-        } catch (err) {
-            return Observable.throw(res);
-        }
+        return res.json();
+        /* try {
+             return res.json();
+             // const body = res.json();
+             // console.log('extract', body);
+             /!* if (body.items && body.items.length !== undefined) {
+                  return body.items;
+              } else {
+                  return body;
+              }*!/
+         } catch (err) {
+             return Observable.throw(res);
+         }*/
     }
 
 }
