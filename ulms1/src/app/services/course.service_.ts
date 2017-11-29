@@ -13,10 +13,12 @@ import { data4 } from './course-service-data4';
 
 @Injectable()
 export class CourseService_ {
+
     private _MockCourseResult = data3;
 
     private pageSize = 15;
     private courseList = <Array<CourseDetail>>JSON.parse(JSON.stringify(this._MockCourseResult.slice(0)));
+    public modalInstance: any;
 
     public getTotalPages(): number {
         return Math.ceil(this.courseList.length / this.pageSize);
@@ -39,5 +41,15 @@ export class CourseService_ {
                 totalPages: totalPages
             };
         });
+    }
+
+
+    public setModalInstance(modalScope) {
+        this.modalInstance = modalScope;
+        // console.log('setModalInstance');
+        setTimeout(() => {
+            // this.modalInstance.openModal();
+            // console.log(this.modalInstance);
+        }, 3000)
     }
 }

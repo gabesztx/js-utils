@@ -33,7 +33,8 @@ export class CourseRecommendedComponent implements OnChanges {
     }
 
     clickUrl(id: string) {
-        this.router.navigate(['courses', id]);
+        console.log('CourseRecommendedComponent', id);
+        // this.router.navigate(['courses', id]);
     }
 
     updatePageItem(currentList: any) {

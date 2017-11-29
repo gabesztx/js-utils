@@ -44,6 +44,7 @@ import { UpcomingService_ } from './upcoming.service_';
 
 /* Services */
 import { CommonService } from './common/common.service';
+import { ModalHandlerService } from './modal-handler.service';
 
 import { CourseDetailGuard } from './guards/course-detail.guard';
 import { CourseDetailGuard_ } from './guards/course-detail.guard_';
@@ -116,7 +117,8 @@ import { CourseCaniactiveQuard } from './guards/course-caniactive.quard';
 
         CourseStatusMapperService,
 
-        CourseCaniactiveQuard
+        CourseCaniactiveQuard,
+        ModalHandlerService
     ]
 })
 export class ServicesModule { }

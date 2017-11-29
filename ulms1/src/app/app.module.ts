@@ -1,6 +1,7 @@
 // External imports
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ModalModule } from 'ngx-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 
@@ -23,6 +24,7 @@ import { environment } from '../environments/environment';
         BrowserModule,
         BrowserAnimationsModule,
         RouterModule.forRoot(routes),
+        ModalModule.forRoot(),
         ServicesModule,
         CoreModule
     ],

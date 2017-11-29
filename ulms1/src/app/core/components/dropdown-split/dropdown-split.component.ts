@@ -26,12 +26,20 @@ export class DropdownSplitComponent implements OnInit, OnDestroy {
         this._closeDropDown = this.closeDropDown.bind(this);
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+        console.log('itemData', this.itemData);
+    }
 
     btnClick() {
         if (this.onButtonFn.observers.length) {
             this.onButtonFn.emit();
         }
+    }
+
+
+
+    dropItemClick(rel?: any, url?: any) {
+
     }
 
     closeDropDown() {

@@ -22,7 +22,8 @@
 
     <!-- Recommended && RecommendedDetial-->
     <div class="btn-group" *ngIf="groupName === 'recommended' || groupName === 'recommendedDetial'">
-        <button (click)="btnClick()" class="btn btn-left">{{labelText}}</button>
+        <a [href]="itemData[0].href" [target]="itemData[0].target" class="btn btn-left">{{labelText}}</a>
+        <!--<button (click)="btnClick()" class="btn btn-left">{{labelText}}</button>-->
         <button type="button" class="btn btn-right" [disabled]=!itemData.length (click)="openDropDown()">
             <span class="caret"></span>
         </button>
@@ -34,12 +35,15 @@
                     </li>
                     <div *ngIf="itemData">
                         <div *ngFor="let item of itemData">
-                            <a [href]="item.href"
-                               [target]="item.target">
-                                <li role="menuitem" *ngIf="item.rel === 'Reject'">
-                                    {{item.label}}
-                                </li>
-                            </a>
+                            <li role="menuitem" (click)="dropItemClick(item.rel, item.href)" *ngIf="item.rel === 'Reject'">
+                                {{item.label}}
+                            </li>
+                            <!-- <a [href]="item.href"
+                                [target]="item.target">
+                                 <li role="menuitem" *ngIf="item.rel === 'Reject'">
+                                     {{item.label}}
+                                 </li>
+                             </a>-->
                         </div>
                     </div>
                 </div>
