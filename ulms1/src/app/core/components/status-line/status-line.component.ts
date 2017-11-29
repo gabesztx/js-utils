@@ -29,7 +29,7 @@ export class StatusLineComponent implements OnInit, OnDestroy, OnChanges {
                         return;
                     }
                     this.startValue++;
-                }, 40)
+                }, 40);
             }
         }, 700);
     }

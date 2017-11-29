@@ -14,6 +14,7 @@ import { data5 } from './course-detail-data-5'; // aktualis
 import { data6 } from './course-detail-data-6'; // ajánlott
 import { data7 } from './course-detail-data-7'; // választható
 import { data8 } from './course-detail-data-8'; // hamarosan
+import { data9 } from './course-detail-data-9'; // lezárt
 
 @Injectable()
 export class CourseDetailService_ {

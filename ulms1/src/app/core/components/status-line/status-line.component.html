@@ -6,7 +6,7 @@
     <div class="statusLineValue">{{startValue+'%'}}</div>
     <div *ngIf="statusIcon != null" class="statusIcon">
         <i *ngIf="statusIcon === true" class="glyphicon glyphicon-ok success"></i>
-        <i *ngIf="statusIcon === false" class="glyphicon glyphicon-remove unsuccess"></i>
+        <i *ngIf="statusIcon === false " class="glyphicon glyphicon-remove unsuccess"></i>
     </div>
     <div *ngIf="requiredText" class="statusText">{{requiredText}}</div>
     <div class="informationIcon" [attr.info-data]="toolTipData"></div>

@@ -67,15 +67,16 @@ export class CommonService {
      *  @param {Object} courseActivitie
      *  @return {Object}
      */
-    getCourseProgressStatus(courseActivitie: any): any {
+    getCourseProgressStatus(courseActivitie: any, course?: any): any {
         const status = courseActivitie.status ? courseActivitie.status : 0;
+        const courseState = course ? course.courseState : 0;
         const progress = courseActivitie.result.progress ? courseActivitie.result.progress : 0;
         const lineValue = progress ? Math.round(progress * 100) : 0;
         const requiredForCompleted = courseActivitie.target.requirement.requiredForCompleted;
         const requiredText = requiredForCompleted ? 'lbl_required_for_satisfied' : 'lbl_not_required_for_satisfied';
         return {
             'value': lineValue,
-            'statusIcon': this.getLineStatus(progress, status),
+            'statusIcon': this.getLineStatus(progress, status, courseState),
             'requiredText': this.translate(requiredText),
         };
     }
@@ -85,15 +86,16 @@ export class CommonService {
      *  @param {Object} courseActivitie
      *  @return {Object}
      */
-    getCourseMeasureStatus(courseActivitie: any): any {
+    getCourseMeasureStatus(courseActivitie: any, course?: any): any {
         const status = courseActivitie.status ? courseActivitie.status : 0;
+        const courseState = course ? course.courseState : 0;
         const measure = courseActivitie.result.measure;
         const lineValue = measure ? Math.round(measure * 100) : 0;
         const requiredForSatisfied = courseActivitie.target.requirement.requiredForSatisfied;
         const requiredText = requiredForSatisfied ? 'lbl_required_for_satisfied' : 'lbl_not_required_for_satisfied';
         return {
             'value': lineValue,
-            'statusIcon': this.getLineStatus(measure, status),
+            'statusIcon': this.getLineStatus(measure, status, courseState),
             'requiredText': this.translate(requiredText),
         };
     }
@@ -507,6 +509,7 @@ export class CommonService {
         return this.translate('txt_not_exists');
 
     }
+
     /**
      *  getResultEndDate
      *  @param {Object} courseActivities
@@ -613,11 +616,11 @@ export class CommonService {
      *  @param {number} status
      *  @return {}
      */
-    getLineStatus(value, status) {
+    getLineStatus(value: any, status: any, courseState?: any) {
         if (value === true) {
             return true;
         }
-        if (!value && status === 7) {
+        if (!value && status === 7 || courseState === 5) {
             return false;
         }
         return null;
@@ -740,17 +743,17 @@ export class CommonService {
         return moment(value).format('YYYY.MM.DD.');
     }
 
-/*    /!*
-    * Get Result Date
-    **!/
+    /*    /!*
+        * Get Result Date
+        **!/
 
-    getResultDate(value) {
-        console.log('getResultDate!!!!', value);
-        if (this.isValideDate) {
-            return this.l10nService.translate('txt_not_specified');
-        }
-        return value ? moment(value).format('YYYY.MM.DD.') : this.l10nService.translate('txt_not_specified');
-    }*/
+        getResultDate(value) {
+            console.log('getResultDate!!!!', value);
+            if (this.isValideDate) {
+                return this.l10nService.translate('txt_not_specified');
+            }
+            return value ? moment(value).format('YYYY.MM.DD.') : this.l10nService.translate('txt_not_specified');
+        }*/
 
     /*
     * getRequiredElementText

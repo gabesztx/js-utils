@@ -68,8 +68,8 @@ export class CourseDetailListItemComponent implements OnChanges, OnDestroy {
                     prerequisite: this.commonService.getPrerequisite(target), // Előfeltétel
                     status: this.commonService.getActivityStatus(courseActivitie), // Status button
                     links: this.commonService.getLinks(courseActivitie), // Launch button + links
-                    courseProgressStatus: this.commonService.getCourseProgressStatus(courseActivitie), // Előrehaladás
-                    courseMeasureStatus: this.commonService.getCourseMeasureStatus(courseActivitie), // Eredmény
+                    courseProgressStatus: this.commonService.getCourseProgressStatus(courseActivitie, course), // Előrehaladás
+                    courseMeasureStatus: this.commonService.getCourseMeasureStatus(courseActivitie, course), // Eredmény
                     deadLine: this.commonService.getDeadLine(courseActivitie), // Határidő
                     totalTime: this.commonService.getTotalTime(courseActivitie), // Eltöltött idő
                     minimumTime: this.commonService.getMinimumTime(courseActivitie), // Min. tanulási idő
