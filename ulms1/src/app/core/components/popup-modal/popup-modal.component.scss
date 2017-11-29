@@ -1,3 +1,27 @@
-.popupModalComponent{
+.recommendedModalContent {
+    padding: 15px;
+    .modal-header {
+        padding: 0;
+        padding-bottom: 15px;
+        .modal-title {
+            font-weight: 500;
+            color: #0497bb;
+        }
 
+    }
+    .modal-body {
+        font-size: 14px;
+        padding: 20px 0;
+        border-bottom: 1px solid #e5e5e5;
+    }
+    .modal-button-content {
+        padding-top: 15px;
+        text-align: right;
+        .rejectBtn {
+            background-color: white;
+        }
+        .acceptBtn {
+            color: white;
+        }
+    }
 }

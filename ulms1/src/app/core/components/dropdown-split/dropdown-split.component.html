@@ -35,15 +35,11 @@
                     </li>
                     <div *ngIf="itemData">
                         <div *ngFor="let item of itemData">
-                            <li role="menuitem" (click)="dropItemClick(item.rel, item.href)" *ngIf="item.rel === 'Reject'">
+                            <li *ngIf="item.rel === 'Reject'"
+                                role="menuitem"
+                                (click)="dropDownClickFn(item)">
                                 {{item.label}}
                             </li>
-                            <!-- <a [href]="item.href"
-                                [target]="item.target">
-                                 <li role="menuitem" *ngIf="item.rel === 'Reject'">
-                                     {{item.label}}
-                                 </li>
-                             </a>-->
                         </div>
                     </div>
                 </div>

@@ -9,12 +9,14 @@ import { slideInOutAnimation, slideInOutKeyFrameAnimation } from '../../../anima
     animations: [slideInOutAnimation, slideInOutKeyFrameAnimation]
 })
 export class DropdownSplitComponent implements OnInit, OnDestroy {
+
     @Input() groupName: string;
     @Input() labelText: string;
     @Input() urlId: string;
     @Input() itemData: any;
     @Input() dropDownLabel: any;
     @Output() onButtonFn = new EventEmitter<any>();
+    @Output() dropDownClick = new EventEmitter<any>();
 
     public isShow = false;
     public isOpen = false;
@@ -27,7 +29,6 @@ export class DropdownSplitComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        console.log('itemData', this.itemData);
     }
 
     btnClick() {
@@ -36,10 +37,10 @@ export class DropdownSplitComponent implements OnInit, OnDestroy {
         }
     }
 
-
-
-    dropItemClick(rel?: any, url?: any) {
-
+    dropDownClickFn(linkData: any) {
+        if (this.dropDownClick.observers.length) {
+            this.dropDownClick.emit(linkData);
+        }
     }
 
     closeDropDown() {

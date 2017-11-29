@@ -1,6 +1,7 @@
 import { Component, OnChanges, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonService } from '../../../services/common/common.service';
+import { ModalHandlerService } from '../../../services/modal-handler.service';
 import { slideInOutKeyFrameAnimation } from '../../../animations/course-animation';
 import { RestApiResponse } from '../../../services/base/http.class';
 import { CourseRecommendedViewModel } from '../../../models/views/course-recommended-view.model';
@@ -16,11 +17,17 @@ export class CourseRecommendedComponent implements OnChanges {
     @Input() itemData: any;
     @Input() courseTitleContent: any;
     currentItemData: any;
+    popUpModal: any;
     currentItemListaData: any;
     currentItemInterval: any;
     noItems = false;
 
-    constructor(private commonService: CommonService, private router: Router) {}
+    constructor(private commonService: CommonService,
+                private router: Router,
+                private modalHandlerService: ModalHandlerService) {
+
+        this.popUpModal = this.modalHandlerService.getPopUpHandlerScope();
+    }
 
     ngOnChanges() {
         clearInterval(this.currentItemInterval);
@@ -30,11 +37,6 @@ export class CourseRecommendedComponent implements OnChanges {
         } else {
             this.noItems = true;
         }
-    }
-
-    clickUrl(id: string) {
-        console.log('CourseRecommendedComponent', id);
-        // this.router.navigate(['courses', id]);
     }
 
     updatePageItem(currentList: any) {
@@ -75,4 +77,17 @@ export class CourseRecommendedComponent implements OnChanges {
 
         return courseRecommendedView;
     }
+
+
+    navigationUrl(id: string) {
+        this.router.navigate(['courses', id]);
+    }
+
+    dropDownClickFn(linkData: any) {
+        const rejectLink = linkData.href;
+        this.popUpModal.openModal((res) => {
+            window.location.href = rejectLink;
+        });
+    }
+
 }

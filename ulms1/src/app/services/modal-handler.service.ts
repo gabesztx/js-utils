@@ -3,8 +3,16 @@ import { Injectable } from '@angular/core';
 @Injectable()
 
 export class ModalHandlerService {
-    public popUpHandler: any;
-    public initPopUpInstance(scope: any) {
+
+    popUpHandler: any;
+
+    constructor() {}
+
+    initPopUpInstance(scope: any) {
         this.popUpHandler = scope;
+    }
+
+    getPopUpHandlerScope() {
+        return this.popUpHandler;
     }
 }
