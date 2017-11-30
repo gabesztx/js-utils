@@ -30,7 +30,7 @@ export class CourseListItemComponent implements OnDestroy {
         this.paramsObservable = this.route.params.subscribe(params => {
             this.itemIndex = this.route.snapshot.data.itemIndex;
             this.itemData = this.route.snapshot.data.responseData;
-            console.log('itemData: ', this.itemData);
+            //console.log('itemData: ', this.itemData);
         });
     }
 

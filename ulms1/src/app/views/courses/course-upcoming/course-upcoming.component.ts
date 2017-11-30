@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { CommonService } from '../../../services/common/common.service';
 import { RestApiResponse } from '../../../services/base/http.class';
 import { CourseUpcomingViewModel } from '../../../models/views/course-upcoming-view.model';
+import { CourseDetailService } from '../../../services/course-detail.service';
 import { slideInOutKeyFrameAnimation } from '../../../animations/course-animation';
 
 @Component({
@@ -20,7 +21,7 @@ export class CourseUpcomingComponent implements OnChanges {
     currentItemInterval: any;
     noItems: boolean;
 
-    constructor(private commonService: CommonService, private router: Router) {
+    constructor(private commonService: CommonService, private router: Router, private courseDetailService: CourseDetailService) {
     }
 
     ngOnChanges() {
@@ -33,9 +34,10 @@ export class CourseUpcomingComponent implements OnChanges {
         }
     }
 
-    clickUrl(id: string) {
-        this.router.navigate(['courses', id]);
+    navigationUrl(id: string) {
+        this.courseDetailService.courseDetailRouting(id);
     }
+
 
     updatePageItem(currentList: any) {
         let itemNum = 0;

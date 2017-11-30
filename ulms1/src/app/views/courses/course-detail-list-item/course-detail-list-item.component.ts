@@ -27,7 +27,7 @@ export class CourseDetailListItemComponent implements OnChanges, OnDestroy {
             clearInterval(this.currentItemInterval);
             this.currentItemData = this.transFormViewObject(this.itemData);
             if (this.currentItemData.length) {
-                this.updatePageItem(this.currentItemData);
+                 this.updatePageItem(this.currentItemData);
             }
         });
     }
@@ -36,8 +36,7 @@ export class CourseDetailListItemComponent implements OnChanges, OnDestroy {
         this.paramsObs.unsubscribe();
     }
 
-    ngOnChanges() {
-    }
+    ngOnChanges() {}
 
     updatePageItem(currentList: any) {
         let itemNum = 0;

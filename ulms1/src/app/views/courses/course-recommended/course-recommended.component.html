@@ -3,7 +3,7 @@
     <div class="row">
         <div class="courseItemImgBlock col-sm-2 hidden-xs">
             <div class="imgContent">
-                <img src="{{item.imageUrl}}" alt="">
+                <img src="{{item.imageUrl}}" (click)="navigationUrl(item.id)" alt="">
             </div>
         </div>
         <div class="courseItemTextBlock col-sm-7">
@@ -99,7 +99,7 @@
                     [labelText]="'btn_enrollment' | translate"
                     [itemData]=item.links
                     (onButtonFn)="navigationUrl(item.id)"
-                    (dropDownClick)="dropDownClick($event)"
+                    (dropDownClick)="dropDownClickFn($event)"
                 ></ulms-dropdown-split>
             </div>
         </div>

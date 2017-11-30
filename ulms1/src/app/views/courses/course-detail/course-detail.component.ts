@@ -33,12 +33,7 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
         });
     }
 
-    ngOnInit() {
-    }
-
-    navigateList(urlParams: string) {
-        this.router.navigate(['courses', this.urlId, urlParams]);
-    }
+    ngOnInit() {}
 
     /**
      * course detail nav tab property
@@ -50,20 +45,20 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
             this.isShowTab = true;
             this.isCourseDetailMainContent = true;
             this.isContentDetailTabShow = true;
-            this.navigateList('content');
+            // this.navigateList('content');
 
         } else if (this.courseDetailState >= 0 && this.courseDetailState <= 2 || this.courseDetailState == null) {
             // console.log('STATE 2');
             this.isShowTab = false;
             this.isCourseDetailMainInfo = true;
-            this.navigateList('info');
+            // this.navigateList('info');
 
         } else if (this.courseDetailState === 3) {
             // console.log('STATE 3');
             this.isShowTab = true;
             this.isCourseDetailMainInfo = true;
             this.isContentDetailTabShow = false;
-            this.navigateList('info');
+            // this.navigateList('info');
 
         }
 
@@ -98,18 +93,4 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.paramsObs.unsubscribe();
     }
-
 }
-
-/*
-if ($scope.courses.courseState == 0 || $scope.courses.courseState == 1 || $scope.}courses.courseState == 2 || $scope.courses.courseState == null) {
-    $scope.showTabs = false;
-    $scope.course.selectTab('infoTab');
-} else if ($scope.courses.courseState == 4 || $scope.courses.courseState == 5) {
-    $scope.showTabs = true;
-} else if ($scope.courses.courseState == 3) {
-    //inactive tipusu kurzusok eseten eltuntetjuk a tartalom tabot
-    $scope.courses.contentTabShowing = false;
-    $scope.showTabs = true;
-    $scope.course.selectTab('infoTab');
-}*/

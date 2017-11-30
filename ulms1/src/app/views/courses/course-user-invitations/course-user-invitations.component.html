@@ -68,7 +68,7 @@
                     [groupName]="'recommendedDetial'"
                     [labelText]="'btn_enrollment' | translate"
                     [itemData]=item.links
-                    (onButtonFn)="clickUrl(item.id)"
+                    (dropDownClick)="dropDownClickFn($event)"
                 ></ulms-dropdown-split>
             </div>
         </div>

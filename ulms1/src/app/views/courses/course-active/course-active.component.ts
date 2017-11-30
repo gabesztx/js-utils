@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { RestApiResponse } from '../../../services/base/http.class';
 import { CourseActiveViewModel } from '../../../models/views/course-active-view.model';
 import { CommonService } from '../../../services/common/common.service';
+import { CourseDetailService } from '../../../services/course-detail.service';
 import { slideInOutKeyFrameAnimation } from '../../../animations/course-animation';
 
 @Component({
@@ -21,7 +22,9 @@ export class CourseActiveComponent implements OnChanges {
     currentItemInterval: any;
     elemItemNum: number;
 
-    constructor(private commonService: CommonService, private router: Router) {
+    constructor(private commonService: CommonService,
+                private courseDetailService: CourseDetailService,
+                private router: Router) {
     }
 
     ngOnChanges() {
@@ -44,7 +47,8 @@ export class CourseActiveComponent implements OnChanges {
     }
 
     clickUrl(id: string) {
-        this.router.navigate(['courses', id]);
+        // this.router.navigate(['courses', id]);
+        this.courseDetailService.courseDetailRouting(id);
     }
 
     transFormViewObject(itemData: RestApiResponse<any>) {

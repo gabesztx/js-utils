@@ -1,6 +1,7 @@
 import { Component, OnChanges, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonService } from '../../../services/common/common.service';
+import { CourseDetailService } from '../../../services/course-detail.service';
 import { ModalHandlerService } from '../../../services/modal-handler.service';
 import { slideInOutKeyFrameAnimation } from '../../../animations/course-animation';
 import { RestApiResponse } from '../../../services/base/http.class';
@@ -24,9 +25,22 @@ export class CourseRecommendedComponent implements OnChanges {
 
     constructor(private commonService: CommonService,
                 private router: Router,
-                private modalHandlerService: ModalHandlerService) {
+                private modalHandlerService: ModalHandlerService,
+                private courseDetailService: CourseDetailService) {
 
         this.popUpModal = this.modalHandlerService.getPopUpHandlerScope();
+    }
+
+
+    navigationUrl(id: string) {
+        this.courseDetailService.courseDetailRouting(id);
+    }
+
+    dropDownClickFn(linkData: any) {
+        const rejectLink = linkData.href;
+        this.popUpModal.openModal((res) => {
+            window.location.href = rejectLink;
+        });
     }
 
     ngOnChanges() {
@@ -76,18 +90,6 @@ export class CourseRecommendedComponent implements OnChanges {
         });
 
         return courseRecommendedView;
-    }
-
-
-    navigationUrl(id: string) {
-        this.router.navigate(['courses', id]);
-    }
-
-    dropDownClickFn(linkData: any) {
-        const rejectLink = linkData.href;
-        this.popUpModal.openModal((res) => {
-            window.location.href = rejectLink;
-        });
     }
 
 }

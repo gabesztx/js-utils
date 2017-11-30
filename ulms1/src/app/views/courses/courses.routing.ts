@@ -153,10 +153,10 @@ export const routes: Routes = [{
         responseData: courseDetailGuard
     },
     children: [
-        /*{
+        {
             path: '',
-            redirectTo: 'content',
-        },*/ {
+            canActivate: [CoursesDetailRoutingGuard],
+        }, {
             path: 'content',
             component: CourseDetailListItemComponent,
             resolve: {

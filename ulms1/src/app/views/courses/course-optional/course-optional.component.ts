@@ -2,6 +2,7 @@ import { Component, OnChanges, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonService } from '../../../services/common/common.service';
 import { RestApiResponse } from '../../../services/base/http.class';
+import { CourseDetailService } from '../../../services/course-detail.service';
 import { CourseOptionalViewModel } from '../../../models/views/course-optional-view.model';
 import { slideInOutKeyFrameAnimation } from '../../../animations/course-animation';
 
@@ -20,7 +21,7 @@ export class CourseOptionalComponent implements OnChanges {
     currentItemInterval: any;
     noItems = false;
 
-    constructor(private commonService: CommonService, private router: Router) {
+    constructor(private commonService: CommonService, private router: Router, private courseDetailService: CourseDetailService) {
     }
 
     ngOnChanges() {
@@ -33,8 +34,8 @@ export class CourseOptionalComponent implements OnChanges {
         }
     }
 
-    clickUrl(id: string) {
-        this.router.navigate(['courses', id]);
+    navigationUrl(id: string) {
+        this.courseDetailService.courseDetailRouting(id);
     }
 
     updatePageItem(currentList: any) {

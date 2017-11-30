@@ -7,10 +7,10 @@ import { CourseDetailService } from '../course-detail.service';
 
 @Injectable()
 
-export class CourseDetailListGuard implements Resolve<Observable<any>> {
+export class CourseDetailListGuard implements Resolve<any> {
     constructor(private courseDetailService: CourseDetailService) {}
-
     resolve(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+        // console.log('RESOLVE CourseDetailListGuard  ---- 2');
         return this.courseDetailService.getListData();
     }
 }

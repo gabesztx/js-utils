@@ -2,6 +2,8 @@ import { Component, OnChanges, OnDestroy, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { RestApiResponse } from '../../../services/base/http.class';
 import { CommonService } from '../../../services/common/common.service';
+import { CourseDetailService } from '../../../services/course-detail.service';
+
 import { CourseDetail } from '../../../models/courseDetail.model';
 import { slideInOutKeyFrameAnimation } from '../../../animations/course-animation';
 
@@ -20,7 +22,7 @@ export class CourseClosedComponent implements OnChanges {
     currentItemInterval: any;
     noItems = false;
 
-    constructor(private commonService: CommonService, private router: Router) {
+    constructor(private commonService: CommonService, private router: Router, private courseDetailService: CourseDetailService) {
     }
 
     ngOnChanges() {
@@ -33,8 +35,8 @@ export class CourseClosedComponent implements OnChanges {
         }
     }
 
-    clickUrl(id: string) {
-        this.router.navigate(['courses', id]);
+    navigationUrl(id: string) {
+        this.courseDetailService.courseDetailRouting(id);
     }
 
     updatePageItem(currentList: any) {

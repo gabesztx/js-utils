@@ -1,6 +1,8 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { CommonService } from '../../../services/common/common.service';
 
+import { ModalHandlerService } from '../../../services/modal-handler.service';
+
 @Component({
     selector: 'ulms-course-user-invitations',
     templateUrl: './course-user-invitations.component.html',
@@ -10,22 +12,26 @@ export class CourseUserInvitationsComponent implements OnInit, OnChanges {
     @Input() courseDetail: any;
     userInvitations: any;
     currentItemListaData: any;
+    popUpModal: any;
 
-    constructor(private commonService: CommonService) {
+    constructor(private commonService: CommonService, private modalHandlerService: ModalHandlerService) {
+        this.popUpModal = this.modalHandlerService.getPopUpHandlerScope();
     }
 
-    ngOnInit() {
-    }
+    ngOnInit() {}
 
     ngOnChanges() {
         this.currentItemListaData = this.transFormViewObject(this.courseDetail);
     }
-    clickUrl(id: string) {
-        console.log('CourseUserInvitationsComponent CLICK', id);
+
+    dropDownClickFn(linkData: any) {
+        const rejectLink = linkData.href;
+        this.popUpModal.openModal((res) => {
+            window.location.href = rejectLink;
+        });
     }
 
     transFormViewObject(courseDetail: any) {
-        // console.log('courseDetail: ', courseDetail);
         const userInvitationData: Array <any> = [];
         const userInvitations = courseDetail.userInvitations;
         const courses = { registration: courseDetail.registration };
@@ -43,7 +49,7 @@ export class CourseUserInvitationsComponent implements OnInit, OnChanges {
                 description: this.commonService.getCourseDescription(invitation), // Leírás
             });
         });
-        // console.log('userInvitationData: ', userInvitationData);
+
         return userInvitationData;
     }
 }

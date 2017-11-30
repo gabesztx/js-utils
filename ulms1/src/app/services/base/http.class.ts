@@ -76,10 +76,12 @@ export abstract class HttpBase {
      * @return {Observable<any>}       ErrorObservable with the error message. TODO Formalize eror reporting format!
      */
     protected handleError(error: Response | any): Observable<any> {
+
         let errMsg: string;
         let errorResponse: ErrorResponse;
 
         if (error instanceof Response) {
+            console.log('ERROR BODY', error)
             const body = error.json() || '';
             const err = body.error || JSON.stringify(body);
 
@@ -94,6 +96,7 @@ export abstract class HttpBase {
                 message: errMsg
             };
         }
+        console.log('-----------------------------handleError-------------------------------------')
         return Observable.throw(errorResponse);
     }
 
