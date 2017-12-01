@@ -51,7 +51,7 @@ export abstract class HttpProxy extends HttpBase {
         const options: RequestOptions = this.createRequestOptions(userOptions);
         // const process: ProcessModel = this.createBackgroundProcess(options);
         return this.http.post(url, payload, options)
-            .map(this.extract)
+            .map(this.postExtract)
             // .retryWhen(this.handleSessionTimeout.bind(this))
             .catch(this.handleError)
             /*.finally(() => {
@@ -75,18 +75,18 @@ export abstract class HttpProxy extends HttpBase {
     /* TODO: course detail navigation: when status:3x redirect */
     private extract(res: Response) {
         return res.json();
-        /* try {
-             return res.json();
-             // const body = res.json();
-             // console.log('extract', body);
-             /!* if (body.items && body.items.length !== undefined) {
+    }
+    private postExtract(res: Response) {
+         try {
+              const body = res.json();
+              if (body.items && body.items.length !== undefined) {
                   return body.items;
               } else {
                   return body;
-              }*!/
+              }
          } catch (err) {
              return Observable.throw(res);
-         }*/
+         }
     }
 
 }

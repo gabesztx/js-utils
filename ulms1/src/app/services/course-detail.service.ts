@@ -12,7 +12,7 @@ import { RuntimeConfigService } from './runtime-config.service';
 
 @Injectable()
 export class CourseDetailService extends HttpProxy {
-    public courseDetailData = { courseDetail: null, courseFeeds: null };
+    public courseDetailData = {courseDetail: null, courseFeeds: null};
     public courseDetailId: any;
 
     constructor(protected http: Http, private config: RuntimeConfigService, private route: ActivatedRoute, private router: Router) {
@@ -29,15 +29,19 @@ export class CourseDetailService extends HttpProxy {
         return this.get(apiUrl).map(value => value.items);
     }
 
-    postCourseEnrollment(id: string) { // set Observable
-        console.log('postCourseEnrollment', id);
+    postCourseEnrollment(id: string): Observable<any> { // set Observable
+        const apiUrl = `${this.config.baseApiUrl}courseregistrations`;
+        // const data = JSON.stringify({course: {id: id}});
+        const data = {course: {id: id}};
+        return this.post(apiUrl, data).map(value => value);
+
     }
 
 
     courseDetailRouting(id?: string) {
-        this.router.navigate(['courses', id]);
+        // this.router.navigate(['courses', id]);
 
-        /*  const getDetailUrlParamValue = (courseState: any) => {
+          const getDetailUrlParamValue = (courseState: any) => {
               if (courseState === 4 || courseState === 5) {
                   return 'content';
 
@@ -48,10 +52,10 @@ export class CourseDetailService extends HttpProxy {
                   return 'info';
 
               }
-          };*/
+          };
 
 
-        /*this.getListData(id).subscribe(
+        this.getListData(id).subscribe(
             res => {
                 const courseState = res.courseDetail.courseState;
                 const urlParam = getDetailUrlParamValue(courseState);
@@ -63,7 +67,7 @@ export class CourseDetailService extends HttpProxy {
                     window.location.href = urlPath;
                 }
             }
-        );*/
+        );
     }
 
     list(): Observable<any> {

@@ -43,16 +43,22 @@ export class CourseOptionalComponent implements OnChanges {
     }
 
     enrollment(id: string) {
-        this.courseDetailService.postCourseEnrollment(id);
+     /*   this.courseDetailService.postCourseEnrollment(id).subscribe(
+            res => {
+                console.log('Success', res);
+                this.popUpModal.openModal('courseEnrollment', () => {
 
-        // válasz után
+                    //this.navigationUrl(id);
+                });
+            },
+            error => console.log('ERROR: ', error)
+        );*/
 
         this.popUpModal.openModal('courseEnrollment', () => {
-            console.log('close and navigate course detail');
+            console.log('close')
+            //this.navigationUrl(id);
         });
-
     }
-
     updatePageItem(currentList: any) {
         let itemNum = 0;
         this.currentItemListaData = [];
