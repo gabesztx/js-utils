@@ -18,7 +18,8 @@ export class CourseUserInvitationsComponent implements OnInit, OnChanges {
         this.popUpModal = this.modalHandlerService.getPopUpHandlerScope();
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+    }
 
     ngOnChanges() {
         this.currentItemListaData = this.transFormViewObject(this.courseDetail);
@@ -26,13 +27,13 @@ export class CourseUserInvitationsComponent implements OnInit, OnChanges {
 
     dropDownClickFn(linkData: any) {
         const rejectLink = linkData.href;
-        this.popUpModal.openModal((res) => {
+        this.popUpModal.openModal('invitationReject', () => {
             window.location.href = rejectLink;
         });
     }
 
     transFormViewObject(courseDetail: any) {
-        const userInvitationData: Array <any> = [];
+        const userInvitationData: Array<any> = [];
         const userInvitations = courseDetail.userInvitations;
         const courses = { registration: courseDetail.registration };
         userInvitations.forEach((userInvitation) => {

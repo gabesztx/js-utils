@@ -20,10 +20,13 @@
         </div>
     </div>
 
-    <!-- Recommended && RecommendedDetial-->
+    <!-- Recommended && User invitation sample -->
     <div class="btn-group" *ngIf="groupName === 'recommended' || groupName === 'recommendedDetial'">
+
         <a [href]="itemData[0].href" [target]="itemData[0].target" class="btn btn-left" *ngIf="itemData.length > 0">{{labelText}}</a>
+
         <button (click)="btnClick()" class="btn btn-left" *ngIf="itemData.length === 0">{{labelText}}</button>
+
         <button type="button" class="btn btn-right" [disabled]=!itemData.length (click)="openDropDown()">
             <span class="caret"></span>
         </button>

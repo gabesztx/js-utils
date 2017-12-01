@@ -19,7 +19,7 @@ import { data9 } from './course-detail-data-9'; // lezárt
 @Injectable()
 export class CourseDetailService_ {
 
-    public courseList = <Array<any>>JSON.parse(JSON.stringify(data5));
+    public courseList = <Array<any>>JSON.parse(JSON.stringify(data6));
     public courseFeed = <Array<any>>JSON.parse(JSON.stringify(feedData));
     public courseDetailData = { courseDetail: null, courseFeeds: null };
     public courseDetaiId: any;

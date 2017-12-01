@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { CommonService } from '../../../services/common/common.service';
 import { RestApiResponse } from '../../../services/base/http.class';
 import { CourseDetailService } from '../../../services/course-detail.service';
+import { ModalHandlerService } from '../../../services/modal-handler.service';
+
 import { CourseOptionalViewModel } from '../../../models/views/course-optional-view.model';
 import { slideInOutKeyFrameAnimation } from '../../../animations/course-animation';
 
@@ -19,9 +21,13 @@ export class CourseOptionalComponent implements OnChanges {
     currentItemData: any;
     currentItemListaData: any;
     currentItemInterval: any;
-    noItems = false;
+    popUpModal: any;
 
-    constructor(private commonService: CommonService, private router: Router, private courseDetailService: CourseDetailService) {
+    constructor(private commonService: CommonService,
+                private router: Router,
+                private courseDetailService: CourseDetailService,
+                private modalHandlerService: ModalHandlerService) {
+        this.popUpModal = this.modalHandlerService.getPopUpHandlerScope();
     }
 
     ngOnChanges() {
@@ -29,13 +35,22 @@ export class CourseOptionalComponent implements OnChanges {
         if (this.itemData.items.length) {
             this.currentItemData = this.transFormViewObject(this.itemData);
             this.updatePageItem(this.currentItemData);
-        } else {
-            this.noItems = true;
         }
     }
 
     navigationUrl(id: string) {
         this.courseDetailService.courseDetailRouting(id);
+    }
+
+    enrollment(id: string) {
+        this.courseDetailService.postCourseEnrollment(id);
+
+        // válasz után
+
+        this.popUpModal.openModal('courseEnrollment', () => {
+            console.log('close and navigate course detail');
+        });
+
     }
 
     updatePageItem(currentList: any) {

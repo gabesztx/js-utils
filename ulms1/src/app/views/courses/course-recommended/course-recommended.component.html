@@ -93,13 +93,13 @@
                 >
                 </ulms-button>
             </div>
-            <div class ="dropDownContent">
+            <div class="dropDownContent">
                 <ulms-dropdown-split
                     [groupName]="'recommended'"
                     [labelText]="'btn_enrollment' | translate"
                     [itemData]=item.links
                     (onButtonFn)="navigationUrl(item.id)"
-                    (dropDownClick)="dropDownClickFn($event)"
+                    (dropDownClick)="dropDownClick($event)"
                 ></ulms-dropdown-split>
             </div>
         </div>
@@ -108,13 +108,6 @@
                 [description]=item.description
                 [className]="'course-list'">
             </ulms-description>
-        </div>
-    </div>
-</div>
-<div class="row" *ngIf="noItems">
-    <div class="noItemstext">
-        <div class="col-sm-12">
-            {{'msg_recommennded_course_list_is_empty' | translate}}
         </div>
     </div>
 </div>

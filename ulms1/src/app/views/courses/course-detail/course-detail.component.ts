@@ -41,20 +41,20 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
     courseDetailView() {
 
         if (this.courseDetailState === 4 || this.courseDetailState === 5) {
-            // console.log('STATE 1');
+            console.log('STATE 1');
             this.isShowTab = true;
             this.isCourseDetailMainContent = true;
             this.isContentDetailTabShow = true;
             // this.navigateList('content');
 
         } else if (this.courseDetailState >= 0 && this.courseDetailState <= 2 || this.courseDetailState == null) {
-            // console.log('STATE 2');
+            console.log('STATE 2');
             this.isShowTab = false;
             this.isCourseDetailMainInfo = true;
             // this.navigateList('info');
 
         } else if (this.courseDetailState === 3) {
-            // console.log('STATE 3');
+            console.log('STATE 3');
             this.isShowTab = true;
             this.isCourseDetailMainInfo = true;
             this.isContentDetailTabShow = false;

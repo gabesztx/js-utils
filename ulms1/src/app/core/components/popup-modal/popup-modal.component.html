@@ -1,6 +1,6 @@
-<!-- recommended modal -->
-<ng-template #recommendedModal>
-    <div class="recommendedModalContent">
+<!-- invitationReject modal -->
+<ng-template #invitationReject>
+    <div class="modalContent">
         <div class="modal-header">
             <h4 class="modal-title pull-left">{{'lbl_reject_invitation' | translate}}</h4>
             <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
@@ -13,6 +13,26 @@
         <div class="modal-button-content">
             <button class="btn rejectBtn" (click)="closeModal()">{{'btn_close' | translate}}</button>
             <button class="btn acceptBtn" (click)="accpectModal()">{{'btn_yes' | translate}}</button>
+        </div>
+    </div>
+</ng-template>
+
+
+<!-- courseEnrollment modal -->
+<ng-template #courseEnrollment>
+    <div class="modalContent">
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">{{'lbl_reject_invitation' | translate}}</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            {{'msg_courseregistrations_200' | translate}}
+        </div>
+        <div class="modal-button-content">
+            <button class="btn rejectBtn" (click)="closeModal()">{{'btn_close' | translate}}</button>
+            <button class="btn acceptBtn" (click)="accpectModal()">{{'btn_to_course' | translate}}</button>
         </div>
     </div>
 </ng-template>

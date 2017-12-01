@@ -36,9 +36,9 @@ export class CourseRecommendedComponent implements OnChanges {
         this.courseDetailService.courseDetailRouting(id);
     }
 
-    dropDownClickFn(linkData: any) {
+    dropDownClick(linkData: any) {
         const rejectLink = linkData.href;
-        this.popUpModal.openModal((res) => {
+        this.popUpModal.openModal('invitationReject',() => {
             window.location.href = rejectLink;
         });
     }

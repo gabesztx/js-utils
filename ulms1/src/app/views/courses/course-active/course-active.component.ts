@@ -47,7 +47,6 @@ export class CourseActiveComponent implements OnChanges {
     }
 
     clickUrl(id: string) {
-        // this.router.navigate(['courses', id]);
         this.courseDetailService.courseDetailRouting(id);
     }
 

@@ -13,7 +13,7 @@
             </div>
             <!--Course Detail Content-->
             <div *ngIf="isCourseDetailMainContent">
-                <ulms-course-detail-main-content [itemData]="courseDetail"></ulms-course-detail-main-content>
+                <ulms-course-detail-main-content [courseDetail]="courseDetail"></ulms-course-detail-main-content>
             </div>
             <!--Course Detail Information-->
             <div *ngIf="isCourseDetailMainInfo && !isShowTab">

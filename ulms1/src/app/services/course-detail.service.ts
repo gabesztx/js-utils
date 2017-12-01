@@ -12,10 +12,8 @@ import { RuntimeConfigService } from './runtime-config.service';
 
 @Injectable()
 export class CourseDetailService extends HttpProxy {
-    // private apiUrl: string;
-    public courseDetailData = {courseDetail: null, courseFeeds: null};
+    public courseDetailData = { courseDetail: null, courseFeeds: null };
     public courseDetailId: any;
-    public courseDetailState: any;
 
     constructor(protected http: Http, private config: RuntimeConfigService, private route: ActivatedRoute, private router: Router) {
         super();
@@ -31,24 +29,32 @@ export class CourseDetailService extends HttpProxy {
         return this.get(apiUrl).map(value => value.items);
     }
 
-    getDetailUrlParamValue(courseState: any) {
-        if (courseState === 4 || courseState === 5) {
-            return 'content';
-
-        } else if (courseState >= 0 && courseState <= 2 || courseState == null) {
-            return 'info';
-
-        } else if (courseState === 3) {
-            return 'info';
-
-        }
+    postCourseEnrollment(id: string) { // set Observable
+        console.log('postCourseEnrollment', id);
     }
 
+
     courseDetailRouting(id?: string) {
-        this.getListData(id).subscribe(
+        this.router.navigate(['courses', id]);
+
+        /*  const getDetailUrlParamValue = (courseState: any) => {
+              if (courseState === 4 || courseState === 5) {
+                  return 'content';
+
+              } else if (courseState >= 0 && courseState <= 2 || courseState == null) {
+                  return 'info';
+
+              } else if (courseState === 3) {
+                  return 'info';
+
+              }
+          };*/
+
+
+        /*this.getListData(id).subscribe(
             res => {
                 const courseState = res.courseDetail.courseState;
-                const urlParam = this.getDetailUrlParamValue(courseState);
+                const urlParam = getDetailUrlParamValue(courseState);
                 this.router.navigate(['courses', id, urlParam]);
             },
             error => {
@@ -57,7 +63,7 @@ export class CourseDetailService extends HttpProxy {
                     window.location.href = urlPath;
                 }
             }
-        );
+        );*/
     }
 
     list(): Observable<any> {
@@ -81,7 +87,7 @@ export class CourseDetailService extends HttpProxy {
             this.courseDetailId = id;
             return this.list();
         } else {
-            console.log('Nincs kérés ------->');
+            console.log('Már van - nincs kérés ------->');
             return Observable.of(this.courseDetailData);
         }
     }

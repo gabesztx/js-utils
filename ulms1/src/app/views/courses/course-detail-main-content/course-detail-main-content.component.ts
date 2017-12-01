@@ -1,7 +1,5 @@
-import { Component, OnChanges, OnDestroy, OnInit, Input, TemplateRef } from '@angular/core';
-
+import { Component, OnChanges, OnDestroy, OnInit, Input } from '@angular/core';
 import { CommonService } from '../../../services/common/common.service';
-
 import { CourseDetailViewModel } from '../../../models/views/course-detail-view.model';
 
 @Component({
@@ -12,13 +10,13 @@ import { CourseDetailViewModel } from '../../../models/views/course-detail-view.
 
 export class CourseDetailMainContentComponent implements OnChanges {
 
-    @Input() itemData: any;
+    @Input() courseDetail: any;
     currentItemData: any;
 
     constructor(private commonService: CommonService) {}
 
     ngOnChanges() {
-        this.currentItemData = this.transFormViewObject(this.itemData);
+        this.currentItemData = this.transFormViewObject(this.courseDetail);
     }
 
     transFormViewObject(itemData: any) {

@@ -78,8 +78,7 @@
         <div class="courseItemButtonBlock col-sm-3">
             <div class="buttonContent">
                 <ulms-button
-                    [btnLabel]="'lbl_optional' | translate"
-                >
+                    [btnLabel]="'lbl_optional' | translate">
                 </ulms-button>
             </div>
             <div class="dropDownContent">
@@ -87,7 +86,7 @@
                     [groupName]="'optional'"
                     [labelText]="'btn_enrollment' | translate"
                     [itemData]=item.links
-                    (onButtonFn)="navigationUrl(item.id)"
+                    (onButtonFn)="enrollment(item.id)"
                 ></ulms-dropdown-split>
             </div>
         </div>
@@ -97,13 +96,6 @@
                 [className]="'course-list'"
             >
             </ulms-description>
-        </div>
-    </div>
-</div>
-<div class="row" *ngIf="noItems">
-    <div class="noItemstext">
-        <div class="col-sm-12">
-            {{'msg_optional_course_list_is_empty' | translate}}
         </div>
     </div>
 </div>
