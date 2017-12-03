@@ -55,6 +55,7 @@ export class PopupModalComponent implements OnInit {
         if (this.modalState === 'invitationReject') {
             this.closeModalEvent();
         } else if (this.modalState === 'courseEnrollment') {
+            this.closeModal();
             this.closeModalEvent();
         }
     }
