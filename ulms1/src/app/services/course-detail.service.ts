@@ -30,7 +30,7 @@ export class CourseDetailService extends HttpProxy {
         return this.get(apiUrl).map(value => value.items);
     }
 
-    qualificationNoticeShow(registrationId: any): Observable<any> {
+    qualificationNoticeModal(registrationId: any): Observable<any> {
         const apiUrl = `${this.config.baseUrl}qualificationnoticeshowed/index?registrationId=${registrationId}`;
         return this.get(apiUrl).map(value => value);
     }

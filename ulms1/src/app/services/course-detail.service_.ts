@@ -21,7 +21,7 @@ import { data11 } from './course-detail-data-11'; // external nav link
 @Injectable()
 export class CourseDetailService_ {
 
-    public courseList = <Array<any>>JSON.parse(JSON.stringify(data10));
+    public courseList = <Array<any>>JSON.parse(JSON.stringify(data3));
     public courseFeed = <Array<any>>JSON.parse(JSON.stringify(feedData));
     public courseDetailData = { courseDetail: null, courseFeeds: null };
     public courseDetaiId: any;

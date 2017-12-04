@@ -31,7 +31,6 @@ export class PopupModalComponent implements OnInit {
         this.modalHandlerService.initPopUpInstance(this);
     }
 
-
     closeModal() {
         this.modalRef.hide();
     }
@@ -48,7 +47,6 @@ export class PopupModalComponent implements OnInit {
         } else if (this.modalState === 'contractDownload') {
             this.modalRef = this.modalService.show(this.contractDownloadModal);
             this.closeModalEvent = closeModalEvent;
-            this.popUpData = popUpData;
         } else if (this.modalState === 'qualificationNotice') {
             this.modalRef = this.modalService.show(this.qualificationNoticeModal);
             this.closeModalEvent = closeModalEvent;
@@ -67,7 +65,7 @@ export class PopupModalComponent implements OnInit {
             this.closeModalEvent();
         } else if (this.modalState === 'contractDownload') {
             this.closeModal();
-            this.closeModalEvent(this.popUpData);
+            this.closeModalEvent();
         }else if (this.modalState === 'qualificationNotice') {
             this.closeModalEvent(this.checkBoxValue);
             this.closeModal();

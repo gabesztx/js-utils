@@ -204,6 +204,7 @@ export class CommonService {
      */
     getCurrentLink(links: any): any {
         const courseCurrentLink = [];
+        console.log('getCurrentLink', links);
         links.forEach((link) => {
             if (link.rel === LinkRel.CONTRACTAll || link.rel === LinkRel.CERTIFICATEALL || link.rel === LinkRel.EXTERNAL) {
                 return courseCurrentLink.push(link);

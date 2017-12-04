@@ -1,11 +1,11 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {LinkRel} from '../../../models/link.model';
-import {CourseActivityStatus} from '../../../models/courseActivity.model';
-import {ContractStatus} from '../../../models/courseRegistrationShallow.model';
-import {CommonService} from '../../../services/common/common.service';
-import {ModalHandlerService} from '../../../services/modal-handler.service';
-import {CourseDetailService} from '../../../services/course-detail.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { LinkRel } from '../../../models/link.model';
+import { CourseActivityStatus } from '../../../models/courseActivity.model';
+import { ContractStatus } from '../../../models/courseRegistrationShallow.model';
+import { CommonService } from '../../../services/common/common.service';
+import { ModalHandlerService } from '../../../services/modal-handler.service';
+import { CourseDetailService } from '../../../services/course-detail.service';
 
 @Component({
     selector: 'ulms-course-detail',
@@ -93,9 +93,9 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
     navigationTabView() {
         const courseActivities = this.courseDetail.courseActivities;
         const navTabDefaultData = {
-            content: {'label': 'lbl_course_content', 'urlPath': '/courses/' + this.urlId + '/content'},
-            info: {'label': 'lbl_course_information', 'urlPath': '/courses/' + this.urlId + '/info'},
-            feed: {'label': 'lbl_feed', 'urlPath': '/courses/' + this.urlId + '/feed'}
+            content: { 'label': 'lbl_course_content', 'urlPath': '/courses/' + this.urlId + '/content' },
+            info: { 'label': 'lbl_course_information', 'urlPath': '/courses/' + this.urlId + '/info' },
+            feed: { 'label': 'lbl_feed', 'urlPath': '/courses/' + this.urlId + '/feed' }
         };
 
         // add content tab
@@ -113,7 +113,7 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * course courseActivitie root
+     * get courseActivitie root
      */
 
     getCourseActivitieRoot(courseActivities) {
@@ -139,49 +139,64 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
      * course detail modal handler
      */
     courseDetailModalHandler() {
+
         const courseActivitie = this.getCourseActivitieRoot(this.courseDetail.courseActivities);
         const courseActivitieStatus = courseActivitie.status;
-        const links = this.commonService.getCurrentLink(this.navTabLinks); // TODO link bhuzása az összes esetre
-        const qualificationNoticeAppeared = this.courseRegistration.qualificationNoticeAppeared;
-        const qualificationNotice = this.courseDetail.qualificationNotice;
-        const contractStatus = this.courseRegistration.contractStatus;
-        console.log('contractStatus:', ContractStatus.None);
+        const courseRegistration = this.courseRegistration;
+        const contractStatus = courseRegistration.contractStatus;
 
         /**
-         * POPUP: gualification kurzus / download
+         * LINKS: get currentLinkValue
          */
-        if (!!qualificationNotice && courseActivitieStatus === CourseActivityStatus.Qualified && !qualificationNoticeAppeared && (contractStatus === ContractStatus.None || contractStatus === ContractStatus.Accepted)) {
-            console.log('----- gualification / download MODAL -----');
-            const popUpData = {links: links, qualificationNotice: qualificationNotice};
+        const getCurrentLinkValue = (linkRel) => {
+            return this.navTabLinks.find(item => item.rel === linkRel);
+        };
+
+
+        /**
+         * POPUP MODAL: QualificationNotice
+         */
+
+        const qualificationNotice = this.courseDetail.qualificationNotice;
+        const qualificationNoticeAppeared = this.courseRegistration.qualificationNoticeAppeared;
+        const isActivitieQualified = courseActivitieStatus === CourseActivityStatus.Qualified;
+
+        const isContractNone = contractStatus === ContractStatus.None;
+        const isContractAccepted = contractStatus === ContractStatus.Accepted;
+        const isContractRequired = contractStatus === ContractStatus.Required;
+
+        if (!!qualificationNotice && isActivitieQualified && !qualificationNoticeAppeared && (isContractNone || isContractAccepted)) {
+            console.log('----- QualificationNotice MODAL -----');
             this.popUpModal.openModal('qualificationNotice', (checkBoxValue: boolean) => {
-                const courseRegistrationId = this.courseRegistration.id;
                 if (checkBoxValue) {
-                    const qualificationNoticeShowObs = this.courseDetailService.qualificationNoticeShow(courseRegistrationId);
-                    qualificationNoticeShowObs.subscribe(
+                    this.courseDetailService.qualificationNoticeModal(this.courseRegistration.id);
+                    /*qualificationNoticeShowObs.subscribe(
                         res => console.log('qualificationNoticeShowObs RES', res),
                         error => console.log('qualificationNoticeShowObs ERROR: ', error)
-                    );
+                    );*/
                 }
-            }, popUpData);
+            }, { links: this.navTabLinks, qualificationNotice: qualificationNotice });
         }
 
 
         /**
-         * POPUP: Szerződés letöltése
+         *  POPUP MODAL: Szerződés letöltése
          */
-        if (links && links.rel === LinkRel.CONTRACTAll) {
-            console.log('----- Szerződés letöltése MODAL -----');
-            this.popUpModal.openModal('contractDownload', (link) => {
-                window.open(link.href, '_blank');
-            }, links);
+        const linkContractAll = getCurrentLinkValue(LinkRel.CONTRACTAll);
+        if (linkContractAll && courseRegistration && isContractRequired) {
+            console.log('----- Contract download MODAL -----');
+            this.popUpModal.openModal('contractDownload', () => {
+                window.open(linkContractAll.href, '_blank');
+            });
         }
 
         /**
-         * POPUP: Tanúsítvány megszerzés
+         * POPUP MODAL: Tanúsítvány megszerzés
          */
-        if (links && links.rel === LinkRel.CONTRACTREJECT && LinkRel.PROFILEUPGRADE) {
-            //TODO: megcsinálni
-        }
+        // const linkContractAll = isHasLinkValue(LinkRel.CONTRACTAll);
+        /* if (links && links.rel === LinkRel.CONTRACTREJECT && LinkRel.PROFILEUPGRADE) {
+             //TODO: megcsinálni
+         }*/
     }
 
 

@@ -37,7 +37,7 @@
 </ng-template>
 
 
-<!-- download contract modal -->
+<!-- Download contract modal -->
 <ng-template #contractDownload>
     <div class="modalContent">
         <div class="modal-header">
@@ -58,7 +58,7 @@
 </ng-template>
 
 
-<!-- download contract modal -->
+<!-- qualificationNotice modal -->
 <ng-template #qualificationNotice>
     <div class="modalContent">
         <div class="modal-header">
@@ -71,6 +71,7 @@
             <div class="modal-body-html-content" [innerHTML]="popUpData.qualificationNotice| translate"></div>
             <div class="modal-link-content" *ngIf="popUpData.links.length > 0">
                 <div class="modal-link" *ngFor="let item of popUpData.links">
+                    <!-- External -->
                     <div *ngIf="item.rel === 'External'">
                         <div class="link-item-icon glyphicon glyphicon-new-window"></div>
                         <a class="link-item"
@@ -78,6 +79,23 @@
                            [target]="item.target"
                         >{{item.dropDownItemLabel}}</a>
                     </div>
+                    <!-- Certificate -->
+                    <div *ngIf="item.rel === 'Certificate' && item.rel !== 'CertificateAll'">
+                        <div class="link-item-icon glyphicon glyphicon-download-alt"></div>
+                        <a class="link-item"
+                           [href]="item.href"
+                           [target]="item.target"
+                        >{{item.dropDownItemLabel | translate}}</a>
+                    </div>
+                    <!-- CertificateAll -->
+                    <div *ngIf="item.rel === 'CertificateAll'">
+                        <div class="link-item-icon glyphicon glyphicon-download-alt"></div>
+                        <a class="link-item"
+                           [href]="item.href"
+                           [target]="item.target"
+                        >{{item.dropDownItemLabel | translate}}</a>
+                    </div>
+
                 </div>
             </div>
             <div class="modal-check-box-content">
