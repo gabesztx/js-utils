@@ -14,7 +14,7 @@ export class CoursesGuard implements Resolve<Observable<RestApiResponse<CourseDe
     constructor(
         private courseService: CourseService,
         private courseStatusMapperService: CourseStatusMapperService
-    ) { }
+    ) {}
 
     resolve(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const pageNumParam = parseInt(next.paramMap.get('page'), 10);

@@ -7,9 +7,12 @@ export enum LinkRel {
     CERTIFICATE = 'Certificate',
     CONTRACTAll = 'ContractAll',
     CONTRACT = 'Contract',
+    CONTRACTREJECT = 'ContractReject',
+    PROFILEUPGRADE = 'ProfileUpgrade',
     LICENSEDOCUMENTALL = 'LicenseDocumentAll',
     LICENSEDOCUMENT = 'LicenseDocument',
-    EXTERNAL = 'External'
+    EXTERNAL = 'External',
+
 }
 
 export interface Link extends Base {

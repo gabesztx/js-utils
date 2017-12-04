@@ -13,7 +13,31 @@
         font-size: 14px;
         padding: 20px 0;
         border-bottom: 1px solid #e5e5e5;
-        .modal-body-html-content {}
+        .modal-body-html-content {
+        }
+        .modal-link-content {
+            padding: 10px 0;
+            .modal-link {
+                position: relative;
+                padding: 10px 15px;
+                .link-item-icon {
+                    color: #337ab7;
+                }
+                .link-item {
+                    font-size: 15px;
+                }
+            }
+        }
+        .modal-check-box-content {
+            .modal-check-box {
+                margin: 0;
+                vertical-align: middle;
+            }
+            .modal-check-box-text {
+                vertical-align: middle;
+
+            }
+        }
     }
     .modal-button-content {
         padding-top: 15px;

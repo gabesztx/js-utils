@@ -205,11 +205,11 @@ export class CommonService {
     getCurrentLink(links: any): any {
         const courseCurrentLink = [];
         links.forEach((link) => {
-            if (link.rel === LinkRel.CONTRACTAll || link.rel === LinkRel.CERTIFICATEALL) {
+            if (link.rel === LinkRel.CONTRACTAll || link.rel === LinkRel.CERTIFICATEALL || link.rel === LinkRel.EXTERNAL) {
                 return courseCurrentLink.push(link);
             }
         });
-        return courseCurrentLink[0];
+        return courseCurrentLink;
     }
 
     /**
@@ -220,7 +220,6 @@ export class CommonService {
     getLinks(courseActivitie: any): Array<any> {
         const linkData: Array<any> = [];
         const links = courseActivitie.links ? courseActivitie.links : [];
-        // console.log(links);
         const linksLabel = {
             [LinkRel.ACCEPT]: 'accept',
             [LinkRel.REJECT]: 'lnk_reject',

@@ -1,19 +1,20 @@
-import { Injectable } from '@angular/core';
-import { Router, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+import {Injectable} from '@angular/core';
+import {Router, ActivatedRoute, ActivatedRouteSnapshot} from '@angular/router';
 
-import { Http } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import {Http} from '@angular/http';
+import {Observable} from 'rxjs/Observable';
 
 import 'rxjs/add/observable/of';
 
-import { HttpProxy } from './base/http-proxy.class';
-import { RuntimeConfigService } from './runtime-config.service';
+import {HttpProxy} from './base/http-proxy.class';
+import {RuntimeConfigService} from './runtime-config.service';
 
 
 @Injectable()
 export class CourseDetailService extends HttpProxy {
     public courseDetailData = {courseDetail: null, courseFeeds: null};
     public courseDetailId: any;
+    public routeObs: any;
 
     constructor(protected http: Http, private config: RuntimeConfigService, private route: ActivatedRoute, private router: Router) {
         super();
@@ -29,49 +30,65 @@ export class CourseDetailService extends HttpProxy {
         return this.get(apiUrl).map(value => value.items);
     }
 
+    qualificationNoticeShow(registrationId: any): Observable<any> {
+        const apiUrl = `${this.config.baseUrl}qualificationnoticeshowed/index?registrationId=${registrationId}`;
+        return this.get(apiUrl).map(value => value);
+    }
+
     postCourseEnrollment(id: string): Observable<any> { // set Observable
         const apiUrl = `${this.config.baseApiUrl}courseregistrations`;
         // const data = JSON.stringify({course: {id: id}});
         const data = {course: {id: id}};
         return this.post(apiUrl, data).map(value => value);
-
     }
 
 
     courseDetailRouting(id?: string) {
         // this.router.navigate(['courses', id]);
+        const getDetailUrlParamValue = (courseState: any) => {
+            if (courseState === 4 || courseState === 5) {
+                return 'content';
 
-          const getDetailUrlParamValue = (courseState: any) => {
-              if (courseState === 4 || courseState === 5) {
-                  return 'content';
+            } else if (courseState >= 0 && courseState <= 2 || courseState == null) {
+                return 'info';
 
-              } else if (courseState >= 0 && courseState <= 2 || courseState == null) {
-                  return 'info';
+            } else if (courseState === 3) {
+                return 'info';
 
-              } else if (courseState === 3) {
-                  return 'info';
+            }
+        };
 
-              }
-          };
-
-
-        this.getListData(id).subscribe(
+        this.routeObs = this.getListData(id).subscribe(
             res => {
                 const courseState = res.courseDetail.courseState;
                 const urlParam = getDetailUrlParamValue(courseState);
+                this.routeObs.unsubscribe();
                 this.router.navigate(['courses', id, urlParam]);
             },
             error => {
+                this.routeObs.unsubscribe();
                 if (error && error.status === 302) {
                     const urlPath = JSON.parse(error.message);
                     window.location.href = urlPath;
                 }
             }
         );
+
     }
 
+    getListData(id?: string): Observable<any> {
+        if (!this.courseDetailId || (id && this.courseDetailId !== id)) {
+            // console.log('!! Új kérés !!');
+            this.courseDetailId = id;
+            return this.list();
+        } else {
+            // console.log('------- Már van - nincs kérés -------');
+            return Observable.of(this.courseDetailData);
+        }
+    }
+
+
     list(): Observable<any> {
-        // console.log('CourseDetailService - list');
         return Observable.of(
             this.getCourseDetailData(),
             this.getCourseFeedsData()
@@ -82,18 +99,5 @@ export class CourseDetailService extends HttpProxy {
         });
     }
 
-    getListData(id?: string): Observable<any> {
-        // console.log('CourseDetailService - getListData');
-        // console.log('NEW ID', id);
-        // console.log('OLD ID', this.courseDetailId);
-        if (!this.courseDetailId || (id && this.courseDetailId !== id)) {
-            console.log('Új kérés');
-            this.courseDetailId = id;
-            return this.list();
-        } else {
-            console.log('Már van - nincs kérés ------->');
-            return Observable.of(this.courseDetailData);
-        }
-    }
 
 }

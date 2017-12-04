@@ -57,3 +57,66 @@
     </div>
 </ng-template>
 
+
+<!-- download contract modal -->
+<ng-template #qualificationNotice>
+    <div class="modalContent">
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">{{'title_qualification_notice' | translate}}</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-body-html-content" [innerHTML]="popUpData.qualificationNotice| translate"></div>
+            <div class="modal-link-content" *ngIf="popUpData.links.length > 0">
+                <div class="modal-link" *ngFor="let item of popUpData.links">
+                    <div *ngIf="item.rel === 'External'">
+                        <div class="link-item-icon glyphicon glyphicon-new-window"></div>
+                        <a class="link-item"
+                           [href]="item.href"
+                           [target]="item.target"
+                        >{{item.dropDownItemLabel}}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-check-box-content">
+                <input type="checkbox"
+                       class="modal-check-box"
+                       [ngModel]="checkBoxValue"
+                       (ngModelChange)="onCheckBoxChange($event)">
+                <span class="modal-check-box-text">{{'lbl_not_show_notification' | translate}}</span>
+            </div>
+        </div>
+        <div class="modal-button-content">
+            <button class="btn rejectBtn" (click)="accpectModal()">{{'btn_close' | translate}}</button>
+        </div>
+    </div>
+
+    <!--
+<ul class="linkList">
+    <li>
+        &lt;!&ndash;ha van oklevel&ndash;&gt;
+        <a class="row col-sm-12 col-xs-12 col-md-12 externalLink textOverflow" ng-if="courses.courseActivitieRoot.linksObject.Certificate != null && courses.courseActivitieRoot.linksObject.CertificateAll == null" href="{{courses.courseActivitieRoot.linksObject.Certificate.href}}" target="{{courses.courseActivitieRoot.linksObject.Certificate.target}}">
+            <div class="{{styleHtml['certificate'].css}}"></div> {{t('lnk_download_certificate')}}
+        </a>
+        <a class="row col-sm-12 col-xs-12 col-md-12 externalLink textOverflow" ng-if="courses.courseActivitieRoot.linksObject.CertificateAll != null" href="{{courses.courseActivitieRoot.linksObject.CertificateAll.href}}" target="{{courses.courseActivitieRoot.linksObject.CertificateAll.target}}">
+            <div class="{{styleHtml['certificate'].css}}"></div> {{t('lnk_download_certificate')}}
+        </a>
+    </li>
+    &lt;!&ndash;ha nincs oklevel, akkor az elso elemet ne jelenitse meg a lenyithato lista, mert az elsodleges gombba toltodik be az elso external link &ndash;&gt;
+    <li ng-repeat="link in courses.courseActivitieRoot.linksObject.External">
+        <a class="externalLink textOverflow"
+           href="{{link.href}}"
+           target="{{link.target}}"
+           rel="{{link.rel}}"
+           title="{{link.tooltip}}">
+            <div class="{{styleHtml['open'].css}}"></div> {{link.label || link.tooltip || link.href}}
+        </a>
+    </li>
+
+</ul>-->
+
+
+</ng-template>
+

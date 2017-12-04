@@ -1,12 +1,12 @@
-import { Component, OnChanges, Input } from '@angular/core';
-import { Router } from '@angular/router';
-import { CommonService } from '../../../services/common/common.service';
-import { RestApiResponse } from '../../../services/base/http.class';
-import { CourseDetailService } from '../../../services/course-detail.service';
-import { ModalHandlerService } from '../../../services/modal-handler.service';
+import {Component, OnChanges, Input} from '@angular/core';
+import {Router} from '@angular/router';
+import {CommonService} from '../../../services/common/common.service';
+import {RestApiResponse} from '../../../services/base/http.class';
+import {CourseDetailService} from '../../../services/course-detail.service';
+import {ModalHandlerService} from '../../../services/modal-handler.service';
 
-import { CourseOptionalViewModel } from '../../../models/views/course-optional-view.model';
-import { slideInOutKeyFrameAnimation } from '../../../animations/course-animation';
+import {CourseOptionalViewModel} from '../../../models/views/course-optional-view.model';
+import {slideInOutKeyFrameAnimation} from '../../../animations/course-animation';
 
 @Component({
     selector: 'ulms-course-optional',
@@ -45,9 +45,8 @@ export class CourseOptionalComponent implements OnChanges {
     enrollment(id: string) {
         this.courseDetailService.postCourseEnrollment(id).subscribe(
             res => {
-                if(res.error.status === 201){
+                if (res.error.status === 201) {
                     this.popUpModal.openModal('courseEnrollment', () => {
-                        console.log('close');
                         this.navigationUrl(id);
                     });
                 }
@@ -58,6 +57,7 @@ export class CourseOptionalComponent implements OnChanges {
 
 
     }
+
     updatePageItem(currentList: any) {
         let itemNum = 0;
         this.currentItemListaData = [];

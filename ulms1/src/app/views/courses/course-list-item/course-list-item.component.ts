@@ -1,7 +1,7 @@
-import { Component, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
-import { CourseTabIndex } from '../../../services/course-status-mapper.service';
+import {Component, OnDestroy} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {Location} from '@angular/common';
+import {CourseTabIndex} from '../../../services/course-status-mapper.service';
 
 @Component({
     selector: 'ulms-course-list-item',
@@ -26,14 +26,20 @@ export class CourseListItemComponent implements OnDestroy {
         [CourseTabIndex.CLOSED]: 'lbl_closed_curses_title',
     };
 
+    public noItemBoxText = {
+        [CourseTabIndex.ACTIVE]: '',
+        [CourseTabIndex.RECOMMENDED]: 'msg_recommennded_course_list_is_empty',
+        [CourseTabIndex.OPTIONAL]: 'msg_optional_course_list_is_empty',
+        [CourseTabIndex.UPCOMING]: 'msg_upcoming_course_list_is_empty',
+        [CourseTabIndex.CLOSED]: 'msg_closed_course_list_is_empty',
+    };
+
     constructor(private route: ActivatedRoute) {
-        // this.itemData = [];
         this.paramsObservable = this.route.params.subscribe(params => {
             this.itemIndex = this.route.snapshot.data.itemIndex;
             this.itemData = this.route.snapshot.data.responseData;
-            // this.items = this.itemData.items;
-            this.items = [];
-            console.log('itemData: ', this.itemData);
+            this.items = this.itemData.items;
+            // this.items = [];
         });
     }
 

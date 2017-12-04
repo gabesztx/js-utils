@@ -1,9 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { LinkRel } from '../../../models/link.model';
-import { CourseActivityStatus } from '../../../models/courseActivity.model';
-import { CommonService } from '../../../services/common/common.service';
-import { ModalHandlerService } from '../../../services/modal-handler.service';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {LinkRel} from '../../../models/link.model';
+import {CourseActivityStatus} from '../../../models/courseActivity.model';
+import {ContractStatus} from '../../../models/courseRegistrationShallow.model';
+import {CommonService} from '../../../services/common/common.service';
+import {ModalHandlerService} from '../../../services/modal-handler.service';
+import {CourseDetailService} from '../../../services/course-detail.service';
 
 @Component({
     selector: 'ulms-course-detail',
@@ -15,6 +17,7 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
     public urlId: any;
     public courseDetail: any;
     public courseFeeds: any;
+    public courseRegistration: any;
     public isShowTab: any;
     public userInvitations: any;
     public courseDetailState: any;
@@ -31,6 +34,7 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
     constructor(private route: ActivatedRoute,
                 private router: Router,
                 private commonService: CommonService,
+                private courseDetailService: CourseDetailService,
                 private modalHandlerService: ModalHandlerService) {
 
         this.popUpModal = this.modalHandlerService.getPopUpHandlerScope();
@@ -40,10 +44,10 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
             this.courseDetail = this.route.snapshot.data.responseData.courseDetail;
             this.courseFeeds = this.route.snapshot.data.responseData.courseFeeds;
             this.courseDetailState = this.courseDetail.courseState;
+            this.courseRegistration = this.courseDetail.courseRegistration;
             this.userInvitations = this.courseDetail.userInvitations;
             this.isShowMessageBox = this.courseDetail.isLocked;
             this.navTabLinks = this.navigationTabDropDown();
-            // this.navigationTabDropDown()
 
             this.courseDetailView();
             this.courseDetailModalHandler();
@@ -89,9 +93,9 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
     navigationTabView() {
         const courseActivities = this.courseDetail.courseActivities;
         const navTabDefaultData = {
-            content: { 'label': 'lbl_course_content', 'urlPath': '/courses/' + this.urlId + '/content' },
-            info: { 'label': 'lbl_course_information', 'urlPath': '/courses/' + this.urlId + '/info' },
-            feed: { 'label': 'lbl_feed', 'urlPath': '/courses/' + this.urlId + '/feed' }
+            content: {'label': 'lbl_course_content', 'urlPath': '/courses/' + this.urlId + '/content'},
+            info: {'label': 'lbl_course_information', 'urlPath': '/courses/' + this.urlId + '/info'},
+            feed: {'label': 'lbl_feed', 'urlPath': '/courses/' + this.urlId + '/feed'}
         };
 
         // add content tab
@@ -119,7 +123,6 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
                 courseActivitie.push(item);
             }
         });
-
         return courseActivitie[0];
 
     }
@@ -130,8 +133,6 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
     navigationTabDropDown() {
         const courseActivitie = this.getCourseActivitieRoot(this.courseDetail.courseActivities);
         return this.commonService.getLinks(courseActivitie);
-
-
     }
 
     /**
@@ -139,19 +140,47 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
      */
     courseDetailModalHandler() {
         const courseActivitie = this.getCourseActivitieRoot(this.courseDetail.courseActivities);
-        const currentLink = this.commonService.getCurrentLink(this.navTabLinks);
-        const courseActivitieState = courseActivitie.state;
+        const courseActivitieStatus = courseActivitie.status;
+        const links = this.commonService.getCurrentLink(this.navTabLinks); // TODO link bhuzása az összes esetre
+        const qualificationNoticeAppeared = this.courseRegistration.qualificationNoticeAppeared;
+        const qualificationNotice = this.courseDetail.qualificationNotice;
+        const contractStatus = this.courseRegistration.contractStatus;
+        console.log('contractStatus:', ContractStatus.None);
 
-        /* Sikeres kurzus - ne jelenjen meg popup */
-        if (courseActivitieState === CourseActivityStatus.Qualified) {
-            console.log('SIKERES');
+        /**
+         * POPUP: gualification kurzus / download
+         */
+        if (!!qualificationNotice && courseActivitieStatus === CourseActivityStatus.Qualified && !qualificationNoticeAppeared && (contractStatus === ContractStatus.None || contractStatus === ContractStatus.Accepted)) {
+            console.log('----- gualification / download MODAL -----');
+            const popUpData = {links: links, qualificationNotice: qualificationNotice};
+            this.popUpModal.openModal('qualificationNotice', (checkBoxValue: boolean) => {
+                const courseRegistrationId = this.courseRegistration.id;
+                if (checkBoxValue) {
+                    const qualificationNoticeShowObs = this.courseDetailService.qualificationNoticeShow(courseRegistrationId);
+                    qualificationNoticeShowObs.subscribe(
+                        res => console.log('qualificationNoticeShowObs RES', res),
+                        error => console.log('qualificationNoticeShowObs ERROR: ', error)
+                    );
+                }
+            }, popUpData);
         }
 
-        /* Szerződés letöltése popup */
-        if (currentLink.rel === LinkRel.CONTRACTAll) {
+
+        /**
+         * POPUP: Szerződés letöltése
+         */
+        if (links && links.rel === LinkRel.CONTRACTAll) {
+            console.log('----- Szerződés letöltése MODAL -----');
             this.popUpModal.openModal('contractDownload', (link) => {
                 window.open(link.href, '_blank');
-            }, currentLink);
+            }, links);
+        }
+
+        /**
+         * POPUP: Tanúsítvány megszerzés
+         */
+        if (links && links.rel === LinkRel.CONTRACTREJECT && LinkRel.PROFILEUPGRADE) {
+            //TODO: megcsinálni
         }
     }
 
@@ -159,4 +188,7 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.paramsObs.unsubscribe();
     }
+
 }
+
+

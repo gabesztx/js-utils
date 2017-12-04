@@ -1,8 +1,8 @@
-import { Component, TemplateRef, OnInit, ViewChild } from '@angular/core';
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
-import { ModalHandlerService } from '../../../services/modal-handler.service';
-import { Observable } from 'rxjs/Observable';
+import {Component, TemplateRef, OnInit, ViewChild} from '@angular/core';
+import {BsModalService} from 'ngx-bootstrap/modal';
+import {BsModalRef} from 'ngx-bootstrap/modal/modal-options.class';
+import {ModalHandlerService} from '../../../services/modal-handler.service';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
     selector: 'ulms-popup-modal',
@@ -14,16 +14,14 @@ export class PopupModalComponent implements OnInit {
     @ViewChild('invitationReject') invitationRejectModal: TemplateRef<any>;
     @ViewChild('courseEnrollment') courseEnrollmentModal: TemplateRef<any>;
     @ViewChild('contractDownload') contractDownloadModal: TemplateRef<any>;
-    // @ViewChild('recommendedModal') recommendedModal: TemplateRef<any>;
-    // @ViewChild('recommendedModal') recommendedModal: TemplateRef<any>;
-    // @ViewChild('recommendedModal') recommendedModal: TemplateRef<any>;
-    // @ViewChild('recommendedModal') recommendedModal: TemplateRef<any>;
+    @ViewChild('qualificationNotice') qualificationNoticeModal: TemplateRef<any>;
 
     modalRef: BsModalRef;
     onHide: any;
     popUpData: any;
     closeModalEvent: any;
     modalState: any;
+    checkBoxValue = false;
 
     constructor(private modalService: BsModalService, private modalHandlerService: ModalHandlerService) {
         this.onHide = this.modalService.onHide;
@@ -51,7 +49,10 @@ export class PopupModalComponent implements OnInit {
             this.modalRef = this.modalService.show(this.contractDownloadModal);
             this.closeModalEvent = closeModalEvent;
             this.popUpData = popUpData;
-
+        } else if (this.modalState === 'qualificationNotice') {
+            this.modalRef = this.modalService.show(this.qualificationNoticeModal);
+            this.closeModalEvent = closeModalEvent;
+            this.popUpData = popUpData;
         }
 
         // this.onHide.subscribe(res => {});
@@ -67,7 +68,14 @@ export class PopupModalComponent implements OnInit {
         } else if (this.modalState === 'contractDownload') {
             this.closeModal();
             this.closeModalEvent(this.popUpData);
+        }else if (this.modalState === 'qualificationNotice') {
+            this.closeModalEvent(this.checkBoxValue);
+            this.closeModal();
         }
+    }
+
+    onCheckBoxChange(checkBoxValue) {
+        this.checkBoxValue = checkBoxValue;
     }
 }
 

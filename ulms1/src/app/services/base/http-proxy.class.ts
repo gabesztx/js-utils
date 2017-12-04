@@ -51,7 +51,7 @@ export abstract class HttpProxy extends HttpBase {
         const options: RequestOptions = this.createRequestOptions(userOptions);
         // const process: ProcessModel = this.createBackgroundProcess(options);
         return this.http.post(url, payload, options)
-            .map(this.postExtract)
+            .map(this.postGetExtract)
             // .retryWhen(this.handleSessionTimeout.bind(this))
             .catch(this.handleError)
             /*.finally(() => {
@@ -76,7 +76,7 @@ export abstract class HttpProxy extends HttpBase {
     private extract(res: Response) {
         return res.json();
     }
-    private postExtract(res: Response) {
+    private postGetExtract(res: Response) {
          try {
               const body = res.json();
               if (body.items && body.items.length !== undefined) {
