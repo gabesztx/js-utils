@@ -13,6 +13,7 @@ export class PopupModalComponent implements OnInit {
 
     @ViewChild('invitationReject') invitationRejectModal: TemplateRef<any>;
     @ViewChild('courseEnrollment') courseEnrollmentModal: TemplateRef<any>;
+    @ViewChild('contractDownload') contractDownloadModal: TemplateRef<any>;
     // @ViewChild('recommendedModal') recommendedModal: TemplateRef<any>;
     // @ViewChild('recommendedModal') recommendedModal: TemplateRef<any>;
     // @ViewChild('recommendedModal') recommendedModal: TemplateRef<any>;
@@ -20,6 +21,7 @@ export class PopupModalComponent implements OnInit {
 
     modalRef: BsModalRef;
     onHide: any;
+    popUpData: any;
     closeModalEvent: any;
     modalState: any;
 
@@ -45,6 +47,11 @@ export class PopupModalComponent implements OnInit {
         } else if (this.modalState === 'courseEnrollment') {
             this.modalRef = this.modalService.show(this.courseEnrollmentModal);
             this.closeModalEvent = closeModalEvent;
+        } else if (this.modalState === 'contractDownload') {
+            this.modalRef = this.modalService.show(this.contractDownloadModal);
+            this.closeModalEvent = closeModalEvent;
+            this.popUpData = popUpData;
+
         }
 
         // this.onHide.subscribe(res => {});
@@ -57,6 +64,9 @@ export class PopupModalComponent implements OnInit {
         } else if (this.modalState === 'courseEnrollment') {
             this.closeModal();
             this.closeModalEvent();
+        } else if (this.modalState === 'contractDownload') {
+            this.closeModal();
+            this.closeModalEvent(this.popUpData);
         }
     }
 }

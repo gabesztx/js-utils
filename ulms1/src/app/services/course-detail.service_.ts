@@ -15,11 +15,13 @@ import { data6 } from './course-detail-data-6'; // ajánlott
 import { data7 } from './course-detail-data-7'; // választható
 import { data8 } from './course-detail-data-8'; // hamarosan
 import { data9 } from './course-detail-data-9'; // lezárt
+import { data10 } from './course-detail-data-10'; // szerződése letöltése
+import { data11 } from './course-detail-data-11'; // external nav link
 
 @Injectable()
 export class CourseDetailService_ {
 
-    public courseList = <Array<any>>JSON.parse(JSON.stringify(data6));
+    public courseList = <Array<any>>JSON.parse(JSON.stringify(data10));
     public courseFeed = <Array<any>>JSON.parse(JSON.stringify(feedData));
     public courseDetailData = { courseDetail: null, courseFeeds: null };
     public courseDetaiId: any;

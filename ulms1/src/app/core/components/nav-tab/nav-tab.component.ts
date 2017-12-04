@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,14 +6,21 @@ import { Router } from '@angular/router';
     templateUrl: './nav-tab.component.html',
     styleUrls: ['./nav-tab.component.scss']
 })
-export class NavTabComponent implements OnInit {
+export class NavTabComponent implements OnInit, OnChanges {
+
     @Input() navData: any;
+    @Input() navTabLinks = [];
+    public isNavTabShow = false;
 
-    constructor(private router: Router) {}
+    constructor(private router: Router) {
+    }
 
-    ngOnInit() {}
+    ngOnChanges() {
+        this.isNavTabShow = this.navTabLinks.length > 0;
+        // console.log('this.isNavTabShow', this.isNavTabShow);
+        // console.log('this.navTabLinks', this.navTabLinks);
+    }
 
-    navigateUrl() {}
-
-    isActive() {}
+    ngOnInit() {
+    }
 }

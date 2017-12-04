@@ -155,7 +155,7 @@ export const routes: Routes = [{
     children: [
         {
             path: '',
-            // canActivate: [CoursesDetailRoutingGuard],
+            canActivate: [CoursesDetailRoutingGuard],
         }, {
             path: 'content',
             component: CourseDetailListItemComponent,

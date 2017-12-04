@@ -314,7 +314,7 @@
     "txt_certificate_obtained": "A kurzusban oklevél szerezhető",
     "txt_certificate_with_contract_decision": "<p>Ebben a kurzusban akkor szerezhet oklevelet (tanúsítványt), ha sikeresen teljesíti a kurzust és szerződést köt a képző szervezettel.</p>\n<p>A szerződéshez további személyes adatok megadása szükséges.<br /> </p>",
     "txt_completion": "Tananyag bejárása",
-    "txt_contract_downloadable": "<p>A szerződés elérhető. Ahhoz, hogy a szerződés érvényes legyen, aláírásával hitelesítenie kell azt. </p>\n<p>Ezért kérjük: <ul><li>Töltse le a szerződést,</li><li>Nyomtassa ki és írja alá,</li><li>Postázza a letöltött dokumentumban található címre.</li></ul></p>",
+    "txt_contract_downloadable": "<p>A szerződés elérhető. Ahhoz, hogy a szerződés érvényes legyen, aláírásával hitelesítenie kell azt. </p>\n<p>Ezért kérjük: <ul style=color:red;><li>Töltse le a szerződést,</li><li>Nyomtassa ki és írja alá,</li><li>Postázza a letöltött dokumentumban található címre.</li></ul></p>",
     "txt_no_date": "Nincs dátum",
     "txt_not_exists": "Nincs",
     "txt_not_specified": "Nincs megadva",

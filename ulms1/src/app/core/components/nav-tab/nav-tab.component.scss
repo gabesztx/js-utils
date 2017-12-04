@@ -4,6 +4,38 @@ $paddings: 12px;
 .navTabComponens {
     width: 100%;
     padding-top: 20px;
+
+    &.navDropDown {
+        .navTabContent {
+            width: 72%;
+            display: inline-block;
+        }
+        .dropDownContent {
+            float: right;
+            display: inline-block;
+            margin-top: 2px;
+            width: 26.5%;
+            border-radius: 2px;
+
+        }
+        @media(max-width: $md-min-width) {
+            .navTabContent {
+                width: 74%;
+            }
+            .dropDownContent {
+                width: 24.5%;
+            }
+        }
+        @media(max-width: $sm-min-width) {
+            .navTabContent {
+                width: 100%;
+            }
+            .dropDownContent {
+                display: none;
+
+            }
+        }
+    }
     .navTabContent {
         background-color: #0497bb;
         width: 100%;
@@ -14,11 +46,11 @@ $paddings: 12px;
             display: inline-block;
             padding: 0 4px;
             &:focus {
-                outline:0;
+                outline: 0;
             }
             .tabBtn {
-                text-decoration:none;
-                cursor:pointer;
+                text-decoration: none;
+                cursor: pointer;
                 color: white;
                 font-size: 14px;
                 padding: 4px $paddings + 10 $paddings $paddings + 10;

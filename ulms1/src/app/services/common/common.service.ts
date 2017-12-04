@@ -198,6 +198,21 @@ export class CommonService {
     }
 
     /**
+     *  getCurrentLink
+     *  @param {object} links
+     *  @return {Array}
+     */
+    getCurrentLink(links: any): any {
+        const courseCurrentLink = [];
+        links.forEach((link) => {
+            if (link.rel === LinkRel.CONTRACTAll || link.rel === LinkRel.CERTIFICATEALL) {
+                return courseCurrentLink.push(link);
+            }
+        });
+        return courseCurrentLink[0];
+    }
+
+    /**
      *  getLinks
      *  @param {Object} courseActivitie
      *  @return {Array}
@@ -205,6 +220,7 @@ export class CommonService {
     getLinks(courseActivitie: any): Array<any> {
         const linkData: Array<any> = [];
         const links = courseActivitie.links ? courseActivitie.links : [];
+        // console.log(links);
         const linksLabel = {
             [LinkRel.ACCEPT]: 'accept',
             [LinkRel.REJECT]: 'lnk_reject',
@@ -212,12 +228,17 @@ export class CommonService {
             [LinkRel.CERTIFICATE]: 'lnk_download_certificate_pdf',
             [LinkRel.CONTRACTAll]: 'btn_download_contract_zip',
             [LinkRel.CONTRACT]: 'btn_download_contract_pdf',
-            [LinkRel.LICENSEDOCUMENTALL]: '',
-            [LinkRel.LICENSEDOCUMENT]: '',
+            // [LinkRel.LICENSEDOCUMENTALL]: '',
+            // [LinkRel.LICENSEDOCUMENT]: '',
+            // [LinkRel.EXTERNAL]: '',
         };
 
         if (links.length) {
             links.forEach((link) => {
+                if (link.rel === LinkRel.EXTERNAL) {
+                    link.dropDownItemLabel = link.label;
+                    linkData.push(link);
+                }
                 if (linksLabel.hasOwnProperty(link.rel)) {
                     link.dropDownItemLabel = linksLabel[link.rel];
                     linkData.push(link);

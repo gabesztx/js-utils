@@ -81,7 +81,7 @@ export abstract class HttpBase {
         let errorResponse: ErrorResponse;
 
         if (error instanceof Response) {
-            console.log('ERROR BODY', error)
+            // console.log('ERROR BODY', error)
             const body = error.json() || '';
             const err = body.error || JSON.stringify(body);
 

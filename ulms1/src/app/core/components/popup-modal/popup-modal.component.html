@@ -36,3 +36,24 @@
     </div>
 </ng-template>
 
+
+<!-- download contract modal -->
+<ng-template #contractDownload>
+    <div class="modalContent">
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">{{'lbl_dialog_download_contract' | translate}}</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-body-html-content" [innerHTML]="'txt_contract_downloadable' | translate"></div>
+
+        </div>
+        <div class="modal-button-content">
+            <button class="btn rejectBtn" (click)="closeModal()">{{'btn_cancel' | translate}}</button>
+            <button class="btn acceptBtn" (click)="accpectModal()">{{'btn_download_contract' | translate}}</button>
+        </div>
+    </div>
+</ng-template>
+

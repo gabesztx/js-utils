@@ -9,7 +9,6 @@ $dropDownHeight: 32px;
         button, a {
             margin-left: 0;
             outline: 0;
-            //height: $dropDownHeight;
 
         }
         .caret {
@@ -33,12 +32,16 @@ $dropDownHeight: 32px;
             background-color: #0497bb;
             color: white;
             width: 80%;
+
             overflow: hidden;
             text-overflow: ellipsis;
             border-bottom-left-radius: 3px;
             border-top-left-radius: 3px;
             &:hover {
                 background-color: #04aad4;
+            }
+            &.navTabLinks {
+                //height: 40px;
             }
         }
 
@@ -53,6 +56,9 @@ $dropDownHeight: 32px;
                 &:hover {
                     background-color: #04aad4;
                 }
+            }
+            &.navTabLinks {
+                //height: 40px;
             }
         }
         @media(max-width: $md-min-width) {
@@ -104,7 +110,7 @@ $dropDownHeight: 32px;
                     cursor: pointer;
                     color: #0497bb;
                     a {
-
+                        display: block;
                     }
                     &:hover {
                         background-color: #e5f4f7;

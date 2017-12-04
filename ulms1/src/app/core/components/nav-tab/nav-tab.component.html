@@ -1,4 +1,4 @@
-<div class="navTabComponens">
+<div class="navTabComponens" [ngClass]="{'navDropDown': isNavTabShow}">
     <div class="navTabContent" role="tablist">
         <div *ngFor="let item of navData"
              class="tabItem"
@@ -7,6 +7,15 @@
             <span class="tabBtn">{{ item.label | translate }}</span>
         </div>
     </div>
+    <div class="dropDownContent" *ngIf="isNavTabShow">
+        <ulms-dropdown-split
+            [groupName]="'navTabLinks'"
+            [labelText]="'btn_to_course' | translate"
+            [itemData]=navTabLinks
+        >
+        </ulms-dropdown-split>
+    </div>
+
 </div>
 
 <!--Count Bubble-->

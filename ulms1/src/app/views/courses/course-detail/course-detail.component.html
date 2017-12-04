@@ -9,7 +9,10 @@
             </div>
             <!--Nav Tabs-->
             <div *ngIf="isShowTab">
-                <ulms-nav-tab [navData]=this.navTabData></ulms-nav-tab>
+                <ulms-nav-tab
+                    [navData]="navTabData"
+                    [navTabLinks]="navTabLinks">
+                </ulms-nav-tab>
             </div>
             <!--Course Detail Content-->
             <div *ngIf="isCourseDetailMainContent">

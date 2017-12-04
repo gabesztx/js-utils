@@ -30,6 +30,7 @@ export class CourseActiveComponent implements OnChanges {
     ngOnChanges() {
         clearInterval(this.currentItemInterval);
         this.elemItemNum = 0;
+        // this.transFormViewObject(this.itemData);
         this.currentItemData = this.transFormViewObject(this.itemData);
         this.updatePageItem(this.currentItemData);
     }
@@ -47,7 +48,8 @@ export class CourseActiveComponent implements OnChanges {
     }
 
     clickUrl(id: string) {
-        this.courseDetailService.courseDetailRouting(id);
+        // this.courseDetailService.courseDetailRouting(id);
+        this.router.navigate(['courses', id, 'content']);
     }
 
     transFormViewObject(itemData: RestApiResponse<any>) {
