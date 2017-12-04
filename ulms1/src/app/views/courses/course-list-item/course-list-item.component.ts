@@ -16,6 +16,7 @@ export class CourseListItemComponent implements OnDestroy {
     public itemIndex: string;
     public paramsObservable: any;
     public courseTabIndex = CourseTabIndex;
+    public items: any;
 
     public pageTitle = {
         [CourseTabIndex.ACTIVE]: 'lbl_active_courses_title',
@@ -30,7 +31,9 @@ export class CourseListItemComponent implements OnDestroy {
         this.paramsObservable = this.route.params.subscribe(params => {
             this.itemIndex = this.route.snapshot.data.itemIndex;
             this.itemData = this.route.snapshot.data.responseData;
-            //console.log('itemData: ', this.itemData);
+            // this.items = this.itemData.items;
+            this.items = [];
+            console.log('itemData: ', this.itemData);
         });
     }
 

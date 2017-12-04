@@ -1,11 +1,43 @@
 @import '../../../../variables.scss';
 
 .courseListItemComponent {
+    .noItemBoxContent {
+        display: inline-block;
+        text-align: center;
+        .noItemBoxWrapper {
+            //background: red;
+            //max-width: 350px;
+            //text-align: center;
+            padding: 20px;
+            margin-top: 60px;
+            border: 2px solid #0497bb;
+            border-radius: 3px;
+            .noItemBox {
+                display: inline-block;
+                vertical-align: middle;
+                width: 50px;
+                height: 50px;
+                background-image: url($data_uri_19_big);
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: center;
+
+            }
+            .noItemBoxText {
+                display: inline-block;
+                vertical-align: middle;
+                font-size: 16px;
+
+            }
+        }
+    }
+
     .boxAnim {
         font-size: 20px;
         padding: 20px;
         background-color: red;
     }
+
     .courseTitleAdress {
         padding-top: 20px;
         padding-bottom: 10px;
@@ -21,4 +53,5 @@
         }
 
     }
+
 }

@@ -1,59 +1,70 @@
 <!-- Course Template Content -->
 <div class="courseListItemComponent">
-    <div class="courseTitleAdress">
-        <div class="row">
-            <div class="col-sm-6 pageTitle">{{pageTitle[itemIndex] | translate }}</div>
-
-            <div class="col-sm-6 navigation">
-                <ulms-pagination
-                    [totalItemsNumber]="itemData.total"
-                    [totalPages]="itemData.totalPages"
-                    [currentPage]="itemData.currentPage"
-                    [itemsPerPage]="itemData.pageSize"
-                    [itemIndex]="itemIndex">
-                </ulms-pagination>
+    <!--Message Box-->
+    <div *ngIf="!items.length">
+        <div class="text-center">
+            <div class="noItemBoxContent">
+                <div class="noItemBoxWrapper">
+                    <div class="noItemBox"></div>
+                    <div class="noItemBoxText">
+                        {{'msg_recommennded_course_list_is_empty'| translate }}
+                    </div>
+                </div>
             </div>
-
         </div>
     </div>
-    <!--Active Course Component-->
-    <div *ngIf="itemIndex === courseTabIndex.ACTIVE" class="activeContent">
-        <ulms-course-active
-            [itemData]="itemData"
-        ></ulms-course-active>
-    </div>
+    <div *ngIf="items.length">
+        <div class="courseTitleAdress">
+            <div class="row">
+                <div class="col-sm-6 pageTitle">{{pageTitle[itemIndex] | translate }}</div>
+                <div class="col-sm-6 navigation">
+                    <ulms-pagination
+                        [totalItemsNumber]="itemData.total"
+                        [totalPages]="itemData.totalPages"
+                        [currentPage]="itemData.currentPage"
+                        [itemsPerPage]="itemData.pageSize"
+                        [itemIndex]="itemIndex">
+                    </ulms-pagination>
+                </div>
 
-    <!--Recommended Course Component-->
-    <div *ngIf="itemIndex === courseTabIndex.RECOMMENDED" class="recommendedContent">
-        <ulms-course-recommended
-            [itemData]="itemData"
-        ></ulms-course-recommended>
-    </div>
+            </div>
+        </div>
+        <!--Active Course Component-->
+        <div *ngIf="itemIndex === courseTabIndex.ACTIVE" class="activeContent">
+            <ulms-course-active
+                [itemData]="itemData"
+            ></ulms-course-active>
+        </div>
 
-    <!--Optional Course Component-->
-    <div *ngIf="itemIndex === courseTabIndex.OPTIONAL" class="optionalContent">
-        <ulms-course-optional
-            [itemData]="itemData"
-        ></ulms-course-optional>
-    </div>
+        <!--Recommended Course Component-->
+        <div *ngIf="itemIndex === courseTabIndex.RECOMMENDED" class="recommendedContent">
+            <ulms-course-recommended
+                [itemData]="itemData"
+            ></ulms-course-recommended>
+        </div>
 
-    <!--Upcoming Course Component-->
-    <div *ngIf="itemIndex === courseTabIndex.UPCOMING" class="upcomingContent">
-        <ulms-course-upcoming
-            [itemData]="itemData"
-        ></ulms-course-upcoming>
-    </div>
+        <!--Optional Course Component-->
+        <div *ngIf="itemIndex === courseTabIndex.OPTIONAL" class="optionalContent">
+            <ulms-course-optional
+                [itemData]="itemData"
+            ></ulms-course-optional>
+        </div>
 
-    <!--Closed Course Component-->
-    <div *ngIf="itemIndex === courseTabIndex.CLOSED" class="closedContent">
-        <ulms-course-closed
-            [itemData]="itemData"
-        ></ulms-course-closed>
+        <!--Upcoming Course Component-->
+        <div *ngIf="itemIndex === courseTabIndex.UPCOMING" class="upcomingContent">
+            <ulms-course-upcoming
+                [itemData]="itemData"
+            ></ulms-course-upcoming>
+        </div>
+
+        <!--Closed Course Component-->
+        <div *ngIf="itemIndex === courseTabIndex.CLOSED" class="closedContent">
+            <ulms-course-closed
+                [itemData]="itemData"
+            ></ulms-course-closed>
+        </div>
     </div>
 </div>
-
-
-
 
 
 <!-- Course Title Template-->
