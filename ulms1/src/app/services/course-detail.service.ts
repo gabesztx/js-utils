@@ -31,13 +31,12 @@ export class CourseDetailService extends HttpProxy {
     }
 
     qualificationNoticeModal(registrationId: any): Observable<any> {
-        const apiUrl = `${this.config.baseUrl}qualificationnoticeshowed/index?registrationId=${registrationId}`;
-        return this.get(apiUrl).map(value => value);
+        const baseUrl = `${this.config.baseUrl}qualificationnoticeshowed/index?registrationId=${registrationId}`;
+        return this.get(baseUrl).map(value => value);
     }
 
-    postCourseEnrollment(id: string): Observable<any> { // set Observable
+    postCourseEnrollment(id: string): Observable<any> {
         const apiUrl = `${this.config.baseApiUrl}courseregistrations`;
-        // const data = JSON.stringify({course: {id: id}});
         const data = {course: {id: id}};
         return this.post(apiUrl, data).map(value => value);
     }

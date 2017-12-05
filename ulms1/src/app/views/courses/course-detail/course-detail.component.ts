@@ -165,15 +165,16 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
         const isContractAccepted = contractStatus === ContractStatus.Accepted;
         const isContractRequired = contractStatus === ContractStatus.Required;
 
+        const linkContractAll = getCurrentLinkValue(LinkRel.CONTRACTAll);
+        const linkContractReject = getCurrentLinkValue(LinkRel.CONTRACTREJECT);
+        const linkProfileUpgrade = getCurrentLinkValue(LinkRel.PROFILEUPGRADE);
+
         if (!!qualificationNotice && isActivitieQualified && !qualificationNoticeAppeared && (isContractNone || isContractAccepted)) {
             console.log('----- QualificationNotice MODAL -----');
             this.popUpModal.openModal('qualificationNotice', (checkBoxValue: boolean) => {
                 if (checkBoxValue) {
+                    /* send server */
                     this.courseDetailService.qualificationNoticeModal(this.courseRegistration.id);
-                    /*qualificationNoticeShowObs.subscribe(
-                        res => console.log('qualificationNoticeShowObs RES', res),
-                        error => console.log('qualificationNoticeShowObs ERROR: ', error)
-                    );*/
                 }
             }, { links: this.navTabLinks, qualificationNotice: qualificationNotice });
         }
@@ -182,21 +183,28 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
         /**
          *  POPUP MODAL: Szerződés letöltése
          */
-        const linkContractAll = getCurrentLinkValue(LinkRel.CONTRACTAll);
-        if (linkContractAll && courseRegistration && isContractRequired) {
+
+        if (courseRegistration && isContractRequired && linkContractAll) {
             console.log('----- Contract download MODAL -----');
             this.popUpModal.openModal('contractDownload', () => {
+                // TODO: KÉRDÉS: elküldeni servernek a letöltés állapotot (cancel, download)
                 window.open(linkContractAll.href, '_blank');
             });
         }
 
         /**
-         * POPUP MODAL: Tanúsítvány megszerzés
+         * POPUP MODAL: Szerződés tanustvány letöltése
          */
-        // const linkContractAll = isHasLinkValue(LinkRel.CONTRACTAll);
-        /* if (links && links.rel === LinkRel.CONTRACTREJECT && LinkRel.PROFILEUPGRADE) {
-             //TODO: megcsinálni
-         }*/
+        if (courseRegistration && isContractRequired && linkContractReject && linkProfileUpgrade) {
+            console.log('----- Contract required MODAL -----');
+            this.popUpModal.openModal('certificateCondition', (checkBoxValue: boolean) => {
+                console.log(this.navTabLinks);
+                if (checkBoxValue) {
+                    /* send server */
+                    // this.courseDetailService.qualificationNoticeModal(this.courseRegistration.id);
+                }
+            });
+        }
     }
 
 

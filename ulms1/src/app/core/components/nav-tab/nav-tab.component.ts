@@ -1,5 +1,4 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
     selector: 'ulms-nav-tab',
@@ -10,15 +9,20 @@ export class NavTabComponent implements OnInit, OnChanges {
 
     @Input() navData: any;
     @Input() navTabLinks = [];
+
     public isNavTabShow = false;
 
-    constructor(private router: Router) {
+    constructor() {
     }
 
     ngOnChanges() {
-        this.isNavTabShow = this.navTabLinks.length > 0;
-        // console.log('this.isNavTabShow', this.isNavTabShow);
-        // console.log('this.navTabLinks', this.navTabLinks);
+        let itemNum = 0;
+        this.navTabLinks.forEach((link, key) => {
+            if (link.rel !== 'ContractReject' && link.rel !== 'ProfileUpgrade' && link.rel !== 'Accept' && link.rel !== 'Reject') {
+                itemNum = key;
+            }
+        });
+        this.isNavTabShow = !!itemNum;
     }
 
     ngOnInit() {

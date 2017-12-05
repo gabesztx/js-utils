@@ -3,7 +3,7 @@
     <div class="btn-group" *ngIf="groupName === 'navTabLinks'">
         <a class="btn btn-left navTabLinks"
            [href]="tabLaunch.href"
-           [target]="tabLaunch.href">
+           [target]="tabLaunch.target">
             {{tabLaunch.dropDownItemLabel | translate }}
         </a>
         <button type="button" class="btn btn-right navTabLinks" [disabled]=!tabDropDown.length (click)="openDropDown()">
@@ -12,12 +12,14 @@
         <div class="dropdownMenuContent" *ngIf="tabDropDown.length">
             <ul class="dropdownMenu" [ngClass]="{'open':isOpen}">
                 <div class="dropdown-item">
-                    <li role="menuitem" *ngFor="let item of tabDropDown">
-                        <a [href]="item.href"
-                           [target]="item.target">
-                            {{item.dropDownItemLabel | translate}}
-                        </a>
-                    </li>
+                    <div *ngFor="let item of tabDropDown">
+                        <li role="menuitem" *ngIf="item.rel !=='ContractReject' && item.rel !=='ProfileUpgrade'">
+                            <a [href]="item.href"
+                               [target]="item.target">
+                                {{item.dropDownItemLabel | translate}}
+                            </a>
+                        </li>
+                    </div>
                 </div>
             </ul>
         </div>
@@ -32,12 +34,16 @@
         <div class="dropdownMenuContent" *ngIf="itemData.length">
             <ul class="dropdownMenu" [ngClass]="{'open':isOpen}">
                 <div class="dropdown-item">
-                    <li role="menuitem" *ngFor="let item of itemData">
-                        <a [href]="item.href"
-                           [target]="item.target">
-                            {{item.dropDownItemLabel | translate}}
-                        </a>
-                    </li>
+                    <div *ngFor="let item of itemData">
+                        <li role="menuitem" *ngIf="item.rel !=='ContractReject' && item.rel !=='ProfileUpgrade'">
+                            <a
+                                [href]="item.href"
+                                [target]="item.target">
+                                {{item.dropDownItemLabel | translate}}
+                            </a>
+                        </li>
+                    </div>
+
                 </div>
             </ul>
         </div>

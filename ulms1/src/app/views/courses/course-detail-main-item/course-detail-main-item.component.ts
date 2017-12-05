@@ -16,7 +16,8 @@ export class CourseDetailMainItemComponent implements OnChanges {
     @Input() itemData: any;
     currentItemData: any;
 
-    constructor(private commonService: CommonService) {}
+    constructor(private commonService: CommonService) {
+    }
 
     ngOnChanges() {
         this.currentItemData = this.transFormViewObject(this.itemData);

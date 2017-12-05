@@ -198,22 +198,6 @@ export class CommonService {
     }
 
     /**
-     *  getCurrentLink
-     *  @param {object} links
-     *  @return {Array}
-     */
-    getCurrentLink(links: any): any {
-        const courseCurrentLink = [];
-        console.log('getCurrentLink', links);
-        links.forEach((link) => {
-            if (link.rel === LinkRel.CONTRACTAll || link.rel === LinkRel.CERTIFICATEALL || link.rel === LinkRel.EXTERNAL) {
-                return courseCurrentLink.push(link);
-            }
-        });
-        return courseCurrentLink;
-    }
-
-    /**
      *  getLinks
      *  @param {Object} courseActivitie
      *  @return {Array}
@@ -221,6 +205,7 @@ export class CommonService {
     getLinks(courseActivitie: any): Array<any> {
         const linkData: Array<any> = [];
         const links = courseActivitie.links ? courseActivitie.links : [];
+        // console.log('links', links);
         const linksLabel = {
             [LinkRel.ACCEPT]: 'accept',
             [LinkRel.REJECT]: 'lnk_reject',
@@ -235,6 +220,17 @@ export class CommonService {
 
         if (links.length) {
             links.forEach((link) => {
+                // console.log(link);
+                if (link.rel === LinkRel.CONTRACTREJECT) {
+                    link.dropDownItemLabel = '';
+                    linkData.push(link);
+
+                }
+                if (link.rel === LinkRel.PROFILEUPGRADE) {
+                    link.dropDownItemLabel = '';
+                    linkData.push(link);
+                }
+
                 if (link.rel === LinkRel.EXTERNAL) {
                     link.dropDownItemLabel = link.label;
                     linkData.push(link);

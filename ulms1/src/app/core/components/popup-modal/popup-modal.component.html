@@ -37,7 +37,7 @@
 </ng-template>
 
 
-<!-- Download contract modal -->
+<!-- Contract modal -->
 <ng-template #contractDownload>
     <div class="modalContent">
         <div class="modal-header">
@@ -57,8 +57,37 @@
     </div>
 </ng-template>
 
+<!-- Contract modal -->
+<ng-template #certificateCondition>
+    <div class="modalContent">
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">{{'lbl_certificate_conditions' | translate}}</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-body-html-content"
+                 [innerHTML]="'txt_certificate_with_contract_decision' | translate"></div>
+            <div class="modal-check-box-content">
+                <input type="checkbox"
+                       class="modal-check-box"
+                       [ngModel]="checkBoxValue"
+                       (ngModelChange)="onCheckBoxChange($event)">
+                <span class="modal-check-box-text">{{'lbl_no_notification_and_certificate_needed' | translate}}</span>
+            </div>
+        </div>
 
-<!-- qualificationNotice modal -->
+        <div class="modal-button-content">
+            <button class="btn rejectBtn" (click)="accpectModal()">{{'btn_answer_later' | translate}}</button>
+            <button *ngIf="!checkBoxValue" class="btn acceptBtn" (click)="accpectModal()">{{'btn_profile_upgrade' | translate}}</button>
+            <button *ngIf="checkBoxValue" class="btn acceptBtn" (click)="accpectModal()">{{'btn_contract_reject' | translate}}</button>
+        </div>
+    </div>
+</ng-template>
+
+
+<!-- QualificationNotice Modal -->
 <ng-template #qualificationNotice>
     <div class="modalContent">
         <div class="modal-header">
