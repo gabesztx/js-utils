@@ -16,7 +16,7 @@ import { data6 } from './course-service-data6'; // external
 @Injectable()
 export class CourseService_ {
 
-    private _MockCourseResult = data5;
+    private _MockCourseResult = data3;
 
     private pageSize = 15;
     private courseList = <Array<CourseDetail>>JSON.parse(JSON.stringify(this._MockCourseResult.slice(0)));

@@ -1,5 +1,5 @@
-import { Component, Input, Output, EventEmitter, OnDestroy, OnInit, OnChanges } from '@angular/core';
-import { slideInOutAnimation, slideInOutKeyFrameAnimation } from '../../../animations/course-animation';
+import {Component, Input, Output, EventEmitter, OnDestroy, OnInit, OnChanges} from '@angular/core';
+import {slideInOutAnimation, slideInOutKeyFrameAnimation} from '../../../animations/course-animation';
 
 
 @Component({
@@ -26,6 +26,7 @@ export class DropdownSplitComponent implements OnInit, OnDestroy, OnChanges {
 
     public tabLaunch: any;
     public tabDropDown = [];
+    public isActiveDropDown = true;
 
     constructor() {
         this._closeDropDown = this.closeDropDown.bind(this);
@@ -40,10 +41,17 @@ export class DropdownSplitComponent implements OnInit, OnDestroy, OnChanges {
                     this.tabDropDown.push(item);
                 }
             });
+        } else {
+            this.itemData.forEach((item) => {
+                if (item.rel === 'ContractReject' || item.rel === 'ProfileUpgrade') {
+                    this.isActiveDropDown = false;
+                }
+            });
         }
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+    }
 
     btnClick() {
         if (this.onButtonFn.observers.length) {

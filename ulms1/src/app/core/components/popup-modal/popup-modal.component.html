@@ -57,7 +57,7 @@
     </div>
 </ng-template>
 
-<!-- Contract modal -->
+<!-- Contract Required modal -->
 <ng-template #certificateCondition>
     <div class="modalContent">
         <div class="modal-header">
@@ -80,8 +80,33 @@
 
         <div class="modal-button-content">
             <button class="btn rejectBtn" (click)="accpectModal()">{{'btn_answer_later' | translate}}</button>
-            <button *ngIf="!checkBoxValue" class="btn acceptBtn" (click)="accpectModal()">{{'btn_profile_upgrade' | translate}}</button>
-            <button *ngIf="checkBoxValue" class="btn acceptBtn" (click)="accpectModal()">{{'btn_contract_reject' | translate}}</button>
+            <button *ngIf="!checkBoxValue" class="btn acceptBtn" (click)="accpectModal()">{{'btn_profile_upgrade' |
+                translate}}
+            </button>
+            <button *ngIf="checkBoxValue" class="btn acceptBtn" (click)="accpectModal()">{{'btn_contract_reject' |
+                translate}}
+            </button>
+        </div>
+    </div>
+</ng-template>
+
+<!-- Documentum Notification modal -->
+<ng-template #documentumNotification>
+    <div class="modalContent">
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">{{'lbl_download_license_document_notification' | translate:{ DocumentType: popUpData.licenseDocumentType } }}</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-body-html-content"
+                 [innerHTML]="'txt_download_license_document_notification' | translate:{ DocumentType: popUpData.licenseDocumentType }"></div>
+        </div>
+
+        <div class="modal-button-content">
+            <button class="btn rejectBtn" (click)="closeModal()">{{'btn_close' | translate}}</button>
+            <button class="btn acceptBtn" (click)="accpectModal()">{{'btn_download_license_document' | translate}}</button>
         </div>
     </div>
 </ng-template>
@@ -139,31 +164,5 @@
             <button class="btn rejectBtn" (click)="accpectModal()">{{'btn_close' | translate}}</button>
         </div>
     </div>
-
-    <!--
-<ul class="linkList">
-    <li>
-        &lt;!&ndash;ha van oklevel&ndash;&gt;
-        <a class="row col-sm-12 col-xs-12 col-md-12 externalLink textOverflow" ng-if="courses.courseActivitieRoot.linksObject.Certificate != null && courses.courseActivitieRoot.linksObject.CertificateAll == null" href="{{courses.courseActivitieRoot.linksObject.Certificate.href}}" target="{{courses.courseActivitieRoot.linksObject.Certificate.target}}">
-            <div class="{{styleHtml['certificate'].css}}"></div> {{t('lnk_download_certificate')}}
-        </a>
-        <a class="row col-sm-12 col-xs-12 col-md-12 externalLink textOverflow" ng-if="courses.courseActivitieRoot.linksObject.CertificateAll != null" href="{{courses.courseActivitieRoot.linksObject.CertificateAll.href}}" target="{{courses.courseActivitieRoot.linksObject.CertificateAll.target}}">
-            <div class="{{styleHtml['certificate'].css}}"></div> {{t('lnk_download_certificate')}}
-        </a>
-    </li>
-    &lt;!&ndash;ha nincs oklevel, akkor az elso elemet ne jelenitse meg a lenyithato lista, mert az elsodleges gombba toltodik be az elso external link &ndash;&gt;
-    <li ng-repeat="link in courses.courseActivitieRoot.linksObject.External">
-        <a class="externalLink textOverflow"
-           href="{{link.href}}"
-           target="{{link.target}}"
-           rel="{{link.rel}}"
-           title="{{link.tooltip}}">
-            <div class="{{styleHtml['open'].css}}"></div> {{link.label || link.tooltip || link.href}}
-        </a>
-    </li>
-
-</ul>-->
-
-
 </ng-template>
 

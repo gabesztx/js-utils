@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { L10nService } from '../l10n.service';
-import { LinkRel } from '../../models/link.model';
-import { CourseState } from '../../models/courseActivity.model';
+import {Injectable} from '@angular/core';
+import {L10nService} from '../l10n.service';
+import {LinkRel, DocumentumTypeValu} from '../../models/link.model';
+import {CourseState} from '../../models/courseActivity.model';
 import * as moment from 'moment';
 
 @Injectable()
@@ -194,7 +194,6 @@ export class CommonService {
             'value': severity,
             'icon': ICON_NAME[severity]
         };
-
     }
 
     /**
@@ -203,60 +202,50 @@ export class CommonService {
      *  @return {Array}
      */
     getLinks(courseActivitie: any): Array<any> {
+
         const linkData: Array<any> = [];
         const links = courseActivitie.links ? courseActivitie.links : [];
-        // console.log('links', links);
+        const licenseDocumentType = courseActivitie.licenseDocumentType;
         const linksLabel = {
             [LinkRel.ACCEPT]: 'accept',
             [LinkRel.REJECT]: 'lnk_reject',
             [LinkRel.CERTIFICATEALL]: 'lnk_download_certificate_zip',
             [LinkRel.CERTIFICATE]: 'lnk_download_certificate_pdf',
             [LinkRel.CONTRACTAll]: 'btn_download_contract_zip',
-            [LinkRel.CONTRACT]: 'btn_download_contract_pdf',
-            // [LinkRel.LICENSEDOCUMENTALL]: '',
-            // [LinkRel.LICENSEDOCUMENT]: '',
-            // [LinkRel.EXTERNAL]: '',
+            [LinkRel.CONTRACT]: 'btn_download_contract_pdf'
         };
 
         if (links.length) {
             links.forEach((link) => {
-                // console.log(link);
-                if (link.rel === LinkRel.CONTRACTREJECT) {
-                    link.dropDownItemLabel = '';
+                if (linksLabel.hasOwnProperty(link.rel)) {
+                    link.dropDownItemLabel = linksLabel[link.rel];
                     linkData.push(link);
-
+                }
+                if (link.rel === LinkRel.CONTRACTREJECT) {
+                    linkData.push(link);
                 }
                 if (link.rel === LinkRel.PROFILEUPGRADE) {
-                    link.dropDownItemLabel = '';
                     linkData.push(link);
                 }
-
                 if (link.rel === LinkRel.EXTERNAL) {
                     link.dropDownItemLabel = link.label;
                     linkData.push(link);
                 }
-                if (linksLabel.hasOwnProperty(link.rel)) {
-                    link.dropDownItemLabel = linksLabel[link.rel];
+                if (link.rel === LinkRel.LICENSEDOCUMENTALL && licenseDocumentType) {
+                    link.dropDownItemLabel = 'lnk_download_' + DocumentumTypeValu[licenseDocumentType] + '_zip';
+                    link.lblDocumentType = 'lnk_download_' + DocumentumTypeValu[licenseDocumentType] + '_zip';
+                    link.licenseDocumentType = this.translate('enm_document_type_' + DocumentumTypeValu[licenseDocumentType]);
+                    linkData.push(link);
+                }
+                if (link.rel === LinkRel.LICENSEDOCUMENT && licenseDocumentType) {
+                    link.dropDownItemLabel = 'lnk_download_' + DocumentumTypeValu[licenseDocumentType] + '_pdf';
+                    link.lblDocumentType = 'lnk_download_' + DocumentumTypeValu[licenseDocumentType] + '_pdf';
+                    link.licenseDocumentType = this.translate('enm_document_type_' + DocumentumTypeValu[licenseDocumentType]);
                     linkData.push(link);
                 }
             });
         }
         return linkData;
-
-
-        //TODO: licenseDocumentTypeKey megvizsgálni
-
-        /* if ($scope.linkObjects.LicenseDocumentAll && $scope.licenseDocumentTypeKey) {
-                $scope.linkObjects.LicenseDocumentAll.label = $scope.t({ label: 'lnk_download_' + $scope.licenseDocumentTypeKey + '_zip' });
-                links.push($scope.linkObjects.LicenseDocumentAll);
-            }
-
-            // License link (pdf)
-            if ($scope.linkObjects.LicenseDocument && $scope.licenseDocumentTypeKey) {
-                $scope.linkObjects.LicenseDocument.label = $scope.t({ label: 'lnk_download_' + $scope.licenseDocumentTypeKey + '_pdf' });
-                links.push($scope.linkObjects.LicenseDocument);
-            }
-     */
     }
 
     /**
@@ -270,7 +259,6 @@ export class CommonService {
             return this.translate('txt_not_specified');
         }
         return registrationDate ? this.formatDay(registrationDate) : this.translate('txt_not_specified');
-
     }
 
     /**
@@ -281,7 +269,6 @@ export class CommonService {
     getSuggestedTime(courseActivitie: any): any {
         const suggestedTime = courseActivitie.target.requirement.suggestedTime;
         return suggestedTime ? suggestedTime : 0;
-
     }
 
     /**
@@ -299,6 +286,7 @@ export class CommonService {
      *  @param {Object} courseActivitie
      *  @return
      */
+
     getLaunchButton(courseActivitie: any): any {
         const links = courseActivitie.links ? courseActivitie.links : [];
         const state = courseActivitie.state ? courseActivitie.state : 0;
@@ -328,15 +316,6 @@ export class CommonService {
                 }
             }
         }
-
-        /*   if (links.length && state !== 5) {
-        if (links[0].rel == 'Launch' && links[1].rel == 'Migration') {
-            return {
-                icon: 'btn-icon warning',
-                className: 'launch_warning'
-            }
-        }
-         */
         return false;
     }
 
@@ -350,69 +329,69 @@ export class CommonService {
         const serviceTechnicalProfile = courseActivitie.target.serviceTechnicalProfile;
         const serviceTechnicalProfileData = {
             1: {
-                "profile": [
+                'profile': [
                     {
-                        "name": "desktop",
-                        "hardware": "1 Ghz Dual-Core CPU, 2 Gb RAM",
-                        "display": "13″ (XGA - 1024x768)",
-                        "browser": [
-                            "Internet Explorer 9+ (Flash Player 10+)",
-                            "Firefox 28+  (Flash Player 10+)",
-                            "Chrome 30+  (Flash Player 10+)",
-                            "Safari 6.1+  (Flash Player 10+)"
+                        'name': 'desktop',
+                        'hardware': '1 Ghz Dual-Core CPU, 2 Gb RAM',
+                        'display': '13″ (XGA - 1024x768)',
+                        'browser': [
+                            'Internet Explorer 9+ (Flash Player 10+)',
+                            'Firefox 28+  (Flash Player 10+)',
+                            'Chrome 30+  (Flash Player 10+)',
+                            'Safari 6.1+  (Flash Player 10+)'
                         ]
                     }
                 ]
             },
             2: {
-                "profile": [
+                'profile': [
                     {
-                        "name": "desktop",
-                        "hardware": "1 GHz Dual-Core CPU, 2 Gb RAM",
-                        "display": "13″ (XGA - 1024x768)",
-                        "browser": [
-                            "Internet Explorer 9+ (Flash Player 10+)",
-                            "Internet Explorer 11+",
-                            "Firefox 28+",
-                            "Chrome 30+",
-                            "Safari 6.1+"
+                        'name': 'desktop',
+                        'hardware': '1 GHz Dual-Core CPU, 2 Gb RAM',
+                        'display': '13″ (XGA - 1024x768)',
+                        'browser': [
+                            'Internet Explorer 9+ (Flash Player 10+)',
+                            'Internet Explorer 11+',
+                            'Firefox 28+',
+                            'Chrome 30+',
+                            'Safari 6.1+'
                         ]
                     },
                     {
-                        "name": "mobile",
-                        "hardware": "1 GHz Dual-Core CPU, 1 Gb RAM",
-                        "display": "7″ (XGA - 1024x768)",
-                        "browser": [
-                            "Chrome 30+",
-                            "Android Browser 4.4+",
-                            "iOS Safari 7.1+",
-                            "IE Mobile 11+"
+                        'name': 'mobile',
+                        'hardware': '1 GHz Dual-Core CPU, 1 Gb RAM',
+                        'display': '7″ (XGA - 1024x768)',
+                        'browser': [
+                            'Chrome 30+',
+                            'Android Browser 4.4+',
+                            'iOS Safari 7.1+',
+                            'IE Mobile 11+'
                         ]
                     }
                 ]
             },
             3: {
-                "profile": [
+                'profile': [
                     {
-                        "name": "desktop",
-                        "hardware": "1 GHz Dual-Core CPU, 2 Gb RAM",
-                        "display": "13″ (XGA - 1024x768)",
-                        "browser": [
-                            "Internet Explorer 11+",
-                            "Firefox 28+",
-                            "Chrome 30+",
-                            "Safari 6.1+"
+                        'name': 'desktop',
+                        'hardware': '1 GHz Dual-Core CPU, 2 Gb RAM',
+                        'display': '13″ (XGA - 1024x768)',
+                        'browser': [
+                            'Internet Explorer 11+',
+                            'Firefox 28+',
+                            'Chrome 30+',
+                            'Safari 6.1+'
                         ]
                     },
                     {
-                        "name": "mobile",
-                        "hardware": "1 GHz Dual-Core CPU, 1 Gb RAM",
-                        "display": "7″ (XGA - 1024x768)",
-                        "browser": [
-                            "Chrome 30+",
-                            "Android Browser 4.4+",
-                            "iOS Safari 7.1+",
-                            "IE Mobile 11+"
+                        'name': 'mobile',
+                        'hardware': '1 GHz Dual-Core CPU, 1 Gb RAM',
+                        'display': '7″ (XGA - 1024x768)',
+                        'browser': [
+                            'Chrome 30+',
+                            'Android Browser 4.4+',
+                            'iOS Safari 7.1+',
+                            'IE Mobile 11+'
                         ]
                     }
                 ]
@@ -464,7 +443,7 @@ export class CommonService {
         const licenseGrossTimeLimitDate = courseRegistration.licenseGrossTimeLimitDate;
         const licenseTimeSpentInThisPeriod = courseRegistration.licenseTimeSpentInThisPeriod;
         const hasTimeLimit = !!licenseGrossTimeLimitDate && !this.isValideDate(licenseGrossTimeLimitDate);
-        const value = hasTimeLimit ? this.formatDay(licenseGrossTimeLimitDate) : this.translate('lbl_unlimited')
+        const value = hasTimeLimit ? this.formatDay(licenseGrossTimeLimitDate) : this.translate('lbl_unlimited');
         return {
             isShow: !!licenseGrossTimeLimitDate || !!licenseTimeSpentInThisPeriod,
             dateValue: value,
@@ -626,8 +605,8 @@ export class CommonService {
      *  @param {String} transletValue
      *  @return {String} transletValue
      */
-    translate(transletValue: string): string {
-        return this.l10nService.translate(transletValue);
+    translate(transletValue: string, transletValueParam?: any): string {
+        return this.l10nService.translate(transletValue, transletValueParam);
     }
 
     /**
@@ -762,32 +741,12 @@ export class CommonService {
         return moment(value).format('YYYY.MM.DD.');
     }
 
-    /*    /!*
-        * Get Result Date
-        **!/
-
-        getResultDate(value) {
-            console.log('getResultDate!!!!', value);
-            if (this.isValideDate) {
-                return this.l10nService.translate('txt_not_specified');
-            }
-            return value ? moment(value).format('YYYY.MM.DD.') : this.l10nService.translate('txt_not_specified');
-        }*/
-
-    /*
-    * getRequiredElementText
-    **/
-
     getRequiredText(requiredFor) {
         if (requiredFor === true) {
             return this.l10nService.translate('lbl_required_for_satisfied');
         }
         return this.l10nService.translate('lbl_not_required_for_satisfied');
     }
-
-    /*
-    * isShowLunchButton
-    **/
 
     // TODO LINKS object dinamikus átalaktása
     /* getLaunchButton(links, state, course) {

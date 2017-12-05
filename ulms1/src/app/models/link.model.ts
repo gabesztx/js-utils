@@ -12,7 +12,15 @@ export enum LinkRel {
     LICENSEDOCUMENTALL = 'LicenseDocumentAll',
     LICENSEDOCUMENT = 'LicenseDocument',
     EXTERNAL = 'External',
+}
 
+export enum DocumentumTypeValu {
+    unknown,
+    statement,
+    contract,
+    certificate,
+    training_certificate,
+    tender_form,
 }
 
 export interface Link extends Base {

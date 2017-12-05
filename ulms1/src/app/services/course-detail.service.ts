@@ -35,6 +35,11 @@ export class CourseDetailService extends HttpProxy {
         return this.get(baseUrl).map(value => value);
     }
 
+    contractRequiredReject(apiUrl: string): Observable<any> {
+        // const baseUrl = `${this.config.baseUrl}qualificationnoticeshowed/index?registrationId=${registrationId}`;
+        return this.get(apiUrl).map(value => value);
+    }
+
     postCourseEnrollment(id: string): Observable<any> {
         const apiUrl = `${this.config.baseApiUrl}courseregistrations`;
         const data = {course: {id: id}};

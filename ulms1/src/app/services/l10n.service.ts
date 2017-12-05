@@ -1,14 +1,14 @@
 // External imports
-import { Injectable } from '@angular/core';
-import { Http, Headers, Response, RequestOptions, ResponseContentType } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
+import {Http, Headers, Response, RequestOptions, ResponseContentType} from '@angular/http';
+import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/retryWhen';
 import 'rxjs/add/operator/catch';
 // Internal imports
-import { HttpBase } from './base/http.class';
-import { RuntimeConfigService } from './runtime-config.service';
+import {HttpBase} from './base/http.class';
+import {RuntimeConfigService} from './runtime-config.service';
 
 declare const document: any;
 

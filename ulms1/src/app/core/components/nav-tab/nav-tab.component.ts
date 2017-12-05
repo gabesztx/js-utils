@@ -9,11 +9,9 @@ export class NavTabComponent implements OnInit, OnChanges {
 
     @Input() navData: any;
     @Input() navTabLinks = [];
-
     public isNavTabShow = false;
 
-    constructor() {
-    }
+    constructor() {}
 
     ngOnChanges() {
         let itemNum = 0;
@@ -23,6 +21,7 @@ export class NavTabComponent implements OnInit, OnChanges {
             }
         });
         this.isNavTabShow = !!itemNum;
+        // csak akkor aktív ha minimum 2 letöltési link van (ez nem biztos hogy így jó lesz)
     }
 
     ngOnInit() {

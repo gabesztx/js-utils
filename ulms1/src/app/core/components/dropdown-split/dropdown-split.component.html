@@ -1,5 +1,5 @@
 <div class="dropdownSplitComponent">
-    <!-- navTabLinks -->
+    <!-- NavTabLinks -->
     <div class="btn-group" *ngIf="groupName === 'navTabLinks'">
         <a class="btn btn-left navTabLinks"
            [href]="tabLaunch.href"
@@ -28,7 +28,7 @@
     <!-- Active & Closed -->
     <div class="btn-group" *ngIf="groupName === 'active' || groupName === 'closed'">
         <button (click)="btnClick()" class="btn btn-left">{{labelText}}</button>
-        <button type="button" class="btn btn-right" [disabled]=!itemData.length (click)="openDropDown()">
+        <button type="button" class="btn btn-right" [disabled]="!itemData.length || !isActiveDropDown" (click)="openDropDown()">
             <span class="caret"></span>
         </button>
         <div class="dropdownMenuContent" *ngIf="itemData.length">
@@ -43,7 +43,6 @@
                             </a>
                         </li>
                     </div>
-
                 </div>
             </ul>
         </div>
@@ -51,11 +50,8 @@
 
     <!-- Recommended && User invitation sample -->
     <div class="btn-group" *ngIf="groupName === 'recommended' || groupName === 'recommendedDetial'">
-
         <a [href]="itemData[0].href" [target]="itemData[0].target" class="btn btn-left" *ngIf="itemData.length > 0">{{labelText}}</a>
-
         <button (click)="btnClick()" class="btn btn-left" *ngIf="itemData.length === 0">{{labelText}}</button>
-
         <button type="button" class="btn btn-right" [disabled]=!itemData.length (click)="openDropDown()">
             <span class="caret"></span>
         </button>

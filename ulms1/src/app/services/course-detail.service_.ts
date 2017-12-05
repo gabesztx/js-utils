@@ -7,7 +7,7 @@ import { RestApiResponse } from './base/http.class';
 
 import { feedData } from './course-detail-feed-data';
 import { data1 } from './course-detail-data-1';
-import { data2 } from './course-detail-data-2';
+import { data2 } from './course-detail-data-2'; // tanusítvány megszerzése
 import { data3 } from './course-detail-data-3';
 import { data4 } from './course-detail-data-4';
 import { data5 } from './course-detail-data-5'; // aktualis
@@ -17,6 +17,7 @@ import { data8 } from './course-detail-data-8'; // hamarosan
 import { data9 } from './course-detail-data-9'; // lezárt
 import { data10 } from './course-detail-data-10'; // szerződése letöltése
 import { data11 } from './course-detail-data-11'; // external nav link
+import { data12 } from './course-detail-data-12'; // documentum letöltése
 
 @Injectable()
 export class CourseDetailService_ {

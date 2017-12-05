@@ -1,7 +1,7 @@
-import { Component, TemplateRef, OnInit, ViewChild } from '@angular/core';
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
-import { ModalHandlerService } from '../../../services/modal-handler.service';
+import {Component, TemplateRef, OnInit, ViewChild} from '@angular/core';
+import {BsModalService} from 'ngx-bootstrap/modal';
+import {BsModalRef} from 'ngx-bootstrap/modal/modal-options.class';
+import {ModalHandlerService} from '../../../services/modal-handler.service';
 
 @Component({
     selector: 'ulms-popup-modal',
@@ -15,6 +15,7 @@ export class PopupModalComponent implements OnInit {
     @ViewChild('contractDownload') contractDownloadModal: TemplateRef<any>;
     @ViewChild('qualificationNotice') qualificationNoticeModal: TemplateRef<any>;
     @ViewChild('certificateCondition') certificateConditionModal: TemplateRef<any>;
+    @ViewChild('documentumNotification') documentumNotificationModal: TemplateRef<any>;
 
     modalRef: BsModalRef;
     onHide: any;
@@ -51,9 +52,13 @@ export class PopupModalComponent implements OnInit {
             this.modalRef = this.modalService.show(this.qualificationNoticeModal);
             this.closeModalEvent = closeModalEvent;
             this.popUpData = popUpData;
-        }else if (this.modalState === 'certificateCondition') {
+        } else if (this.modalState === 'certificateCondition') {
             this.modalRef = this.modalService.show(this.certificateConditionModal);
             this.closeModalEvent = closeModalEvent;
+        } else if (this.modalState === 'documentumNotification') {
+            this.modalRef = this.modalService.show(this.documentumNotificationModal);
+            this.closeModalEvent = closeModalEvent;
+            this.popUpData = popUpData;
         }
 
         // this.onHide.subscribe(res => {});
@@ -72,7 +77,10 @@ export class PopupModalComponent implements OnInit {
         } else if (this.modalState === 'qualificationNotice') {
             this.closeModalEvent(this.checkBoxValue);
             this.closeModal();
-        }else if (this.modalState === 'certificateCondition') {
+        } else if (this.modalState === 'certificateCondition') {
+            this.closeModalEvent(this.checkBoxValue);
+            // this.closeModal();
+        } else if (this.modalState === 'documentumNotification') {
             this.closeModalEvent();
             this.closeModal();
         }
@@ -80,7 +88,6 @@ export class PopupModalComponent implements OnInit {
 
     onCheckBoxChange(checkBoxValue) {
         this.checkBoxValue = checkBoxValue;
-        console.log('checkBoxValue', this.checkBoxValue);
     }
 }
 

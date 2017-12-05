@@ -16,7 +16,6 @@ import { slideInOutKeyFrameAnimation } from '../../../animations/course-animatio
 
 export class CourseActiveComponent implements OnChanges {
     @Input() itemData: any;
-
     currentItemData: any;
     currentItemListaData: any;
     currentItemInterval: any;
