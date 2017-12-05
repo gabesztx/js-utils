@@ -12,11 +12,12 @@ import { data3 } from './course-service-data3';
 import { data4 } from './course-service-data4';
 import { data5 } from './course-service-data5'; // szerződése letöltése
 import { data6 } from './course-service-data6'; // external
+import { data7 } from './course-service-data7'; // oklevél letöltése + external doc
 
 @Injectable()
 export class CourseService_ {
 
-    private _MockCourseResult = data3;
+    private _MockCourseResult = data7;
 
     private pageSize = 15;
     private courseList = <Array<CourseDetail>>JSON.parse(JSON.stringify(this._MockCourseResult.slice(0)));

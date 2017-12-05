@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter, OnDestroy, OnInit, OnChanges} from '@angular/core';
+import {Component, Input, Output, EventEmitter, OnDestroy, OnChanges} from '@angular/core';
 import {slideInOutAnimation, slideInOutKeyFrameAnimation} from '../../../animations/course-animation';
 
 
@@ -8,7 +8,7 @@ import {slideInOutAnimation, slideInOutKeyFrameAnimation} from '../../../animati
     styleUrls: ['./dropdown-split.component.scss'],
     animations: [slideInOutAnimation, slideInOutKeyFrameAnimation]
 })
-export class DropdownSplitComponent implements OnInit, OnDestroy, OnChanges {
+export class DropdownSplitComponent implements OnDestroy, OnChanges {
 
     @Input() groupName: string;
     @Input() labelText: string;
@@ -33,9 +33,10 @@ export class DropdownSplitComponent implements OnInit, OnDestroy, OnChanges {
     }
 
     ngOnChanges() {
+
         if (this.groupName === 'navTabLinks') {
             this.itemData.forEach((item) => {
-                if (item.rel === 'ContractAll' || item.rel === 'CertificateAll' || item.rel === 'LicenseDocumentAll' || item.rel === 'External') {
+                if (item.rel === 'ContractAll' || item.rel === 'CertificateAll' || item.rel === 'LicenseDocumentAll') {
                     this.tabLaunch = item;
                 } else {
                     this.tabDropDown.push(item);
@@ -48,9 +49,6 @@ export class DropdownSplitComponent implements OnInit, OnDestroy, OnChanges {
                 }
             });
         }
-    }
-
-    ngOnInit() {
     }
 
     btnClick() {
