@@ -297,8 +297,19 @@ export class CommonService {
     getLaunchButton(courseActivitie: any): any {
         const links = courseActivitie.links ? courseActivitie.links : [];
         const state = courseActivitie.state ? courseActivitie.state : 0;
+        const disturbingContent = courseActivitie.target.disturbingContent;
+        const isClose = state === CourseState.Closed;
 
-        if (links.length && state === CourseState.Closed) {
+        if (links.length) {
+            console.log('state: ', state);
+            console.log('disturbingContent: ', disturbingContent);
+            console.log('isClose: ', isClose);
+            console.log('links: ', links);
+        }
+
+
+        if (links.length && isClose) {
+            console.log('--- LAUNCH 1 ---');
             if (links[0].rel === 'Launch') {
                 return {
                     icon: 'btn-icon fa fa-exclamation-triangle',
@@ -308,21 +319,27 @@ export class CommonService {
         }
 
         /* TODO: Migrationra rákérdezni és normálisan megcsinálni ezt a feltételt */
-        if (links.length && state !== CourseState.Closed) {
+
+        if (links.length && !isClose) {
+            console.log('--- LAUNCH 2 ---');
             if (links[0].rel === 'Launch' && links[0].rel !== 'Migration') {
                 if (!courseActivitie.target.disturbingContent) {
+                    console.log('--- LAUNCH 2/1 ---');
                     return {
                         className: 'launch_origin'
                     };
                 }
                 if (courseActivitie.target.disturbingContent) {
+                    console.log('--- LAUNCH 2/2 ---');
                     return {
                         icon: 'btn-icon fa fa-exclamation-triangle',
-                        className: 'launch_warning'
+                        className: 'launch_origin'
+                        // className: 'launch_warning'
                     };
                 }
             }
         }
+
         return false;
     }
 
@@ -469,34 +486,35 @@ export class CommonService {
     }
 
 
- /*   /!**
-     *  getGrossTimeLimit
-     *  @param {Object} courseActivitie
-     *  @return
-     *!/
-    getGrossTimeLimit(courseActivitie) {
-        const grossTimeLimit = courseActivitie.target.requirement.grossTimeLimit;
-        return grossTimeLimit ? grossTimeLimit : '';
-    }*/
+    /*   /!**
+        *  getGrossTimeLimit
+        *  @param {Object} courseActivitie
+        *  @return
+        *!/
+       getGrossTimeLimit(courseActivitie) {
+           const grossTimeLimit = courseActivitie.target.requirement.grossTimeLimit;
+           return grossTimeLimit ? grossTimeLimit : '';
+       }*/
 
     /**
      *  getResultEndDateToolTip
      *  @param {Object} courseActivitie
      *  @return
      */
-/*    getResultEndDateToolTip(courseActivitie) {
-        const resultEndDate = courseActivitie.target.requirement.resultEndDate;
-        if (resultEndDate.split('-')[0] === '9999') {
-            console.log('9999');
-           console.log()
-        } else {
-            // console.log('normaé darte', this.formatDay(resultEndDate));
-            return this.formatDay(resultEndDate);
 
-        }
-        // console.log(this.isValideDate(resultEndDate))
-        // return resultEndDate ? resultEndDate : '';
-    }*/
+    /*    getResultEndDateToolTip(courseActivitie) {
+            const resultEndDate = courseActivitie.target.requirement.resultEndDate;
+            if (resultEndDate.split('-')[0] === '9999') {
+                console.log('9999');
+               console.log()
+            } else {
+                // console.log('normaé darte', this.formatDay(resultEndDate));
+                return this.formatDay(resultEndDate);
+
+            }
+            // console.log(this.isValideDate(resultEndDate))
+            // return resultEndDate ? resultEndDate : '';
+        }*/
 
     /**
      *  getCourseResultStartDate
