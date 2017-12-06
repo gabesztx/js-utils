@@ -1,7 +1,10 @@
 <div class="statusLineComponent">
-    <div class="statusLineLabel labelText" [attr.info-data]="toolTipDataLabel">{{labelText}}</div>
+    <!--<div class="statusLineLabel labelText" [attr.info-data]="toolTipDataLabel">{{labelText}}</div>-->
+    <div class="statusLineLabel labelText" tooltip="{{toolTipDataLabel}}" container="body" containerClass="toolTipContent">{{labelText}}</div>
     <div class="statusLineContent">
-        <div class="statusLine" [ngStyle]="{'width':startValue+'%'}"></div>
+        <div class="statusLine"
+             [ngClass]="{isNotRequired:statusColorLine === false}"
+             [ngStyle]="{'width':startValue+'%'}"></div>
     </div>
     <div class="statusLineValue">{{startValue+'%'}}</div>
     <div *ngIf="statusIcon != null" class="statusIcon">

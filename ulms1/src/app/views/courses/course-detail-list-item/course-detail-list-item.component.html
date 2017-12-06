@@ -45,6 +45,7 @@
                                     [labelText]="'lbl_progress' | translate "
                                     [value]=item.courseProgressStatus.value
                                     [statusIcon]=item.courseProgressStatus.statusIcon
+                                    [statusColorLine]=item.courseProgressStatus.statusColorLine
                                     [requiredText]=item.courseProgressStatus.requiredText
                                 >
                                 </ulms-status-line>
@@ -56,6 +57,7 @@
                                     [labelText]="'lbl_measure' | translate"
                                     [value]=item.courseMeasureStatus.value
                                     [statusIcon]=item.courseMeasureStatus.statusIcon
+                                    [statusColorLine]=item.courseMeasureStatus.statusColorLine
                                     [requiredText]=item.courseMeasureStatus.requiredText
                                 >
                                 </ulms-status-line>
@@ -155,7 +157,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="courseDescriptionBlock" [ngClass]="{'lunchBtnActive': item.launchButton}" *ngIf="item.serviceTechnicalProfile">
+                    <div class="courseDescriptionBlock" [ngClass]="{'lunchBtnActive': item.launchButton}"
+                         *ngIf="item.serviceTechnicalProfile">
                         <div class="row">
                             <div class="col-sm-12">
                                 <ulms-description

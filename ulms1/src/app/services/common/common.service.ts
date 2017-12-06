@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {L10nService} from '../l10n.service';
-import {LinkRel, DocumentumTypeValu} from '../../models/link.model';
-import {CourseState} from '../../models/courseActivity.model';
+import { Injectable } from '@angular/core';
+import { L10nService } from '../l10n.service';
+import { LinkRel, DocumentumTypeValu } from '../../models/link.model';
+import { CourseState } from '../../models/courseActivity.model';
 import * as moment from 'moment';
 
 @Injectable()
@@ -75,11 +75,11 @@ export class CommonService {
         const lineValue = progress ? Math.round(progress * 100) : 0;
         const requiredForCompleted = courseActivitie.target.requirement.requiredForCompleted;
         const requiredText = requiredForCompleted ? 'lbl_required_for_satisfied' : 'lbl_not_required_for_satisfied';
-        // console.log('requiredForCompleted', requiredForCompleted)
         return {
             'value': lineValue,
             'statusIcon': this.getLineStatus(isCompleted, status, courseState),
             'requiredText': this.translate(requiredText),
+            'statusColorLine': requiredForCompleted ? requiredForCompleted : false,
         };
     }
 
@@ -100,6 +100,7 @@ export class CommonService {
             'value': lineValue,
             'statusIcon': this.getLineStatus(isCompleted, status, courseState),
             'requiredText': this.translate(requiredText),
+            'statusColorLine': requiredForSatisfied ? requiredForSatisfied : false,
         };
     }
 

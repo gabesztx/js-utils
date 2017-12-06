@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, OnChanges, Input, SimpleChange } from '@angular/core';
-import { connectableObservableDescriptor } from "rxjs/observable/ConnectableObservable";
+
 
 @Component({
     selector: 'ulms-status-line',
@@ -13,6 +13,7 @@ export class StatusLineComponent implements OnInit, OnDestroy, OnChanges {
     @Input() toolTipDataLabel: string;
     @Input() value: number;
     @Input() statusIcon: any;
+    @Input() statusColorLine: any;
     @Input() requiredText: string;
     numberTimeOut: any;
     numberInterval: any;
@@ -21,6 +22,7 @@ export class StatusLineComponent implements OnInit, OnDestroy, OnChanges {
     public endValue;
 
     ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
+
         this.numberTimeOut = setTimeout(() => {
             if (this.value) {
                 this.numberInterval = setInterval(() => {
@@ -35,6 +37,7 @@ export class StatusLineComponent implements OnInit, OnDestroy, OnChanges {
     }
 
     ngOnInit() {
+        // console.log('STATUS color', this.statusColorLine);
     }
 
     ngOnDestroy() {

@@ -24,6 +24,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { NavTabComponent } from './components/nav-tab/nav-tab.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PopupModalComponent } from './components/popup-modal/popup-modal.component';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { PopupModalComponent } from './components/popup-modal/popup-modal.compon
         BsDropdownModule.forRoot(),
         AccordionModule.forRoot(),
         PaginationModule.forRoot(),
+        TooltipModule.forRoot()
     ],
     declarations: [
         TranslatePipe,

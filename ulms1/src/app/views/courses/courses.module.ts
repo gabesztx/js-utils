@@ -1,5 +1,7 @@
 // External imports
 import { NgModule } from '@angular/core';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+// import { TooltipModule } from 'ngx-tooltip';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MomentModule } from 'angular2-moment';
@@ -32,7 +34,9 @@ import { CourseUserInvitationsComponent } from './course-user-invitations/course
         CommonModule,
         CoreModule,
         MomentModule,
-        RouterModule.forChild(routes)
+        RouterModule.forChild(routes),
+        // TooltipModule,
+        TooltipModule.forRoot()
     ],
     declarations: [
         CoursesComponent,
