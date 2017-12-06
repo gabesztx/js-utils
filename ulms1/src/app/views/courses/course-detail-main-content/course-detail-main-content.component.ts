@@ -23,12 +23,15 @@ export class CourseDetailMainContentComponent implements OnChanges {
 
         const courseDetailView: Array<CourseDetailViewModel> = [];
         const course = itemData;
+
         const courseActivities = course.courseActivities;
         const courseRegistration = course.courseRegistration;
 
         courseActivities.forEach((item) => {
             if (!item.target.parent) {
                 const courseActivitie = item;
+                const grossTimeLimit = courseActivitie.target.requirement.grossTimeLimit;
+                const resultEndDate = courseActivitie.target.requirement.resultEndDate;
                 courseDetailView.push({
                     title: this.commonService.getTitle(course), // Title
                     label: this.commonService.getLabel(course), // Label
@@ -44,6 +47,8 @@ export class CourseDetailMainContentComponent implements OnChanges {
                     registrationDate: this.commonService.getRegistrationDate(courseRegistration), // Beiratkozás dátuma
                     licenseNetTimeLimit: this.commonService.getLicenseNetTimeLimit(courseRegistration), // Hozzáférési idő
                     licenseGrossTimeLimit: this.commonService.getLicenseGrossTimeLimit(courseRegistration), // Hozzáférési vége
+                    grossTimeLimit: grossTimeLimit ? grossTimeLimit : '', // grossTimeLimit
+                    resultEndDate: resultEndDate ? this.commonService.formatDay(resultEndDate) : '', // resultEndDate
                 });
             }
         });

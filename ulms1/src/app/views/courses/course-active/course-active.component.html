@@ -15,23 +15,16 @@
                     <span class="courseTitle"
                           placement="bottom"
                           tooltip="{{item.title}}"
-                          containerClass="toolTipContent"
                           (click)="clickUrl(item.id)">
                         {{item.title}}
                     </span>
                     <!-- Label -->
                     <div class="courseLabelContent" *ngIf="item.label.length || item.providerName.length">
-                    <span *ngIf="item.label.length"
-                          class="courseLabel"
-                          containerClass="toolTipContent"
-                          placement="bottom"
-                          tooltip="'Kurzus kód: '{{item.label}}"
-                          container="body"
+                    <span *ngIf="item.label.length" class="courseLabel" placement="bottom"
+                          tooltip="'Kurzus kód: '{{item.label}}" container="body"
                     >{{item.label}} </span>
                         <span *ngIf="item.label.length && item.providerName.length">-</span>
-                        <span *ngIf="item.providerName.length"
-                              class="courseProviderName"
-                              containerClass="toolTipContent"
+                        <span *ngIf="item.providerName.length" class="courseProviderName"
                               placement="bottom"
                               tooltip="'Kurzus szolgáltatója: '{{item.providerName}}">
                         {{item.providerName}}
@@ -74,8 +67,9 @@
                             <!--Határidő idő-->
                             <ulms-status-text
                                 [className]=""
+                                [toolTipIsShow]="item.deadLine.isShowToolTip"
                                 [toolTipData]="'tt_deadline' | translate"
-                                [toolTipTextData]="'tt_first_attempt_deadline_1' | translate:{'grosstimelimit': '(TODO: Gergővel átbeszélni)', 'resultenddate': '(TODO: Gergővel átbeszélni)'}"
+                                [toolTipTextData]="'tt_first_attempt_deadline_1' | translate:{grosstimelimit: item.grossTimeLimit | toLocalTimeSpan:{id:'active'}, resultenddate: item.resultEndDate}"
                                 [labelText]=item.deadLine.textLabel
                                 [value]=item.deadLine.value
                             >

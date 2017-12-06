@@ -15,9 +15,9 @@
                         <div class="row">
                             <div class="col-sm-8">
                                 <div class="courseTitleContent">
-                                    <div class="courseTitle">{{item.title}}</div>
+                                    <span class="courseTitle" placement="bottom" tooltip="{{item.title}}">{{item.title}}</span>
                                     <div *ngIf="item.label" class="courseLabelContent">
-                                        <span class="courseProviderName">{{item.label}}</span>
+                                        <span class="courseProviderName" placement="bottom" tooltip="{{item.label}}">{{item.label}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -44,6 +44,9 @@
                                 <ulms-status-line
                                     [labelText]="'lbl_progress' | translate "
                                     [value]=item.courseProgressStatus.value
+                                    [toolTipDataLabel]="['tt_course_progress'] | tooltTip"
+                                    [toolTipData]="['tt_course_progress', 'tt_course_object_progress_required'] | tooltTip"
+                                    [requiredToolTipText]=item.courseProgressStatus.requiredToolTipText
                                     [statusIcon]=item.courseProgressStatus.statusIcon
                                     [statusColorLine]=item.courseProgressStatus.statusColorLine
                                     [requiredText]=item.courseProgressStatus.requiredText
@@ -56,6 +59,9 @@
                                 <ulms-status-line
                                     [labelText]="'lbl_measure' | translate"
                                     [value]=item.courseMeasureStatus.value
+                                    [toolTipDataLabel]="['tt_course_progress'] | tooltTip"
+                                    [toolTipData]="['tt_course_progress', 'tt_course_object_progress_required'] | tooltTip"
+                                    [requiredToolTipText]="item.courseMeasureStatus.requiredToolTipText"
                                     [statusIcon]=item.courseMeasureStatus.statusIcon
                                     [statusColorLine]=item.courseMeasureStatus.statusColorLine
                                     [requiredText]=item.courseMeasureStatus.requiredText
@@ -71,6 +77,9 @@
                                 <ulms-status-text
                                     [className]=""
                                     [labelText]=item.deadLine.textLabel
+                                    [toolTipData]="item.deadLine.textLabel"
+                                    [toolTipIsShow]="item.deadLine.isShowToolTip"
+                                    [toolTipTextData]="'tt_first_attempt_deadline_1' | translate:{grosstimelimit: item.grossTimeLimit | toLocalTimeSpan:{id:'active'}, resultenddate: item.resultEndDate}"
                                     [value]=item.deadLine.value
                                 >
                                 </ulms-status-text>
@@ -80,6 +89,7 @@
                                 <ulms-status-text
                                     [className]=""
                                     [labelText]="'lbl_total_time' | translate"
+                                    [toolTipData]="'lbl_total_time' | translate"
                                     [value]="item.totalTime.value | toLocalTimeSpan:{id:'active',otherValue:item.totalTime.netTimeLimit}"
                                 >
                                 </ulms-status-text>
@@ -91,6 +101,7 @@
                                 <!--Tanulás kezdete-->
                                 <ulms-status-text
                                     [labelText]="'lbl_first_attempt' | translate"
+                                    [toolTipData]="'lbl_first_attempt' | translate"
                                     [value]=item.resultStartDate
                                 >
                                 </ulms-status-text>
@@ -100,6 +111,7 @@
                                 <ulms-status-text
                                     [className]="item.totalTime.value >= item.minimumTime ? '' : 'warning'"
                                     [value]="item.minimumTime | toLocalTimeSpan:{id:'active'}"
+                                    [toolTipData]="'lbl_minimum_time_short' | translate"
                                     [labelText]="'lbl_minimum_time_short' | translate"
                                 >
                                 </ulms-status-text>
@@ -109,6 +121,7 @@
                                 <!--Várható tanulási idő-->
                                 <ulms-status-text
                                     [value]="item.suggestedTime | toLocalTimeSpan:{id:'active'}"
+                                    [toolTipData]="'lbl_suggested_time' | translate"
                                     [labelText]="'lbl_suggested_time' | translate"
                                 >
                                 </ulms-status-text>

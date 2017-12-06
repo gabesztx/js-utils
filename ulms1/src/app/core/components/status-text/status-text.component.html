@@ -1,6 +1,6 @@
 <div class="statusTextComponent" [ngClass]="className">
-    <div class="statusTextLabel" [attr.info-data]="toolTipData">{{labelText}}</div>
-    <div class="statusTextValue" [attr.info-data]="toolTipTextData">
+    <div class="statusTextLabel" tooltip="{{toolTipData}}" container="body">{{labelText}}</div>
+    <div class="statusTextValue" tooltip="{{toolTipTextData}}" [isDisabled]="!toolTipIsShow" container="body">
         {{value}}
         <i *ngIf="className ==='warning'" class="fa fa-exclamation-circle" aria-hidden="true"></i>
     </div>

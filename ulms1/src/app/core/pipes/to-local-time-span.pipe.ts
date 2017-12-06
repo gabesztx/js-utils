@@ -30,6 +30,7 @@ export class ToLocalTimeSpanPipe implements PipeTransform {
 
         let activeTimeTransform = '';
 
+
         if (id === 'active' || id === 'closed') {
             if (value) {
                 activeTimeTransform = getTransformTime(value);

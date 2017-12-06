@@ -22,8 +22,7 @@ export class CourseClosedComponent implements OnChanges {
     currentItemInterval: any;
     noItems = false;
 
-    constructor(private commonService: CommonService, private router: Router, private courseDetailService: CourseDetailService) {
-    }
+    constructor(private commonService: CommonService, private router: Router, private courseDetailService: CourseDetailService) {}
 
     ngOnChanges() {
         clearInterval(this.currentItemInterval);
@@ -73,7 +72,7 @@ export class CourseClosedComponent implements OnChanges {
                 deadLine: this.commonService.getDeadLine(courseActivitie), // Határidő
                 totalTime: this.commonService.getTotalTime(courseActivitie), // Eltöltött idő
                 grossTimeLimit: grossTimeLimit ? grossTimeLimit : '', // grossTimeLimit
-                resultEndDate: resultEndDate ? resultEndDate : '', // resultEndDate
+                resultEndDate: resultEndDate ? this.commonService.formatDay(resultEndDate) : '', // resultEndDate
             });
         });
         return courseCloseView;

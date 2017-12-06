@@ -9,24 +9,19 @@ $toolTipZIndex: 100;
 .tooltip.in {
     opacity: 1 !important;
 }
-
-.toolTipContent {
-
-    .tooltip-inner {
-        border: 1px solid $toolTipBorderColor;
-        background-color: $toolTipBgColor;
-        color: #464646;
-        text-align: left;
-        font-size: 11px;
-        line-height: 1.2;
-        padding: 5px;
-        box-shadow: 0 0 8px 0 rgba(50, 50, 50, 0.3);
-    }
-    .arrow {
-        border-bottom-color: #464646 !important;
-        border-top-color: #464646 !important;
-
-    }
+.tooltip-inner {
+    border: 1px solid $toolTipBorderColor;
+    background-color: $toolTipBgColor;
+    color: #464646;
+    text-align: left;
+    font-size: 11px;
+    line-height: 1.2;
+    padding: 5px;
+    box-shadow: 0 0 8px 0 rgba(50, 50, 50, 0.3);
+}
+.tooltip-arrow {
+    border-bottom-color: #464646 !important;
+    border-top-color: #464646 !important;
 }
 
 [info-data] {

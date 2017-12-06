@@ -19,6 +19,8 @@ export interface CourseDetailView {
     description?: any,
     launchButton?: any,
     serviceTechnicalProfile?: any,
+    grossTimeLimit?: any,
+    resultEndDate?: any,
 
 }
 
@@ -43,6 +45,8 @@ export class CourseDetailViewModel implements CourseDetailView {
     public description?: any;
     public launchButton?: any;
     public serviceTechnicalProfile?: any;
+    public grossTimeLimit?: any;
+    public resultEndDate?: any;
 
     constructor() {}
 }

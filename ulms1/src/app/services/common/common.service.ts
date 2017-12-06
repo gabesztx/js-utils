@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { L10nService } from '../l10n.service';
-import { LinkRel, DocumentumTypeValu } from '../../models/link.model';
-import { CourseState } from '../../models/courseActivity.model';
+import {Injectable} from '@angular/core';
+import {L10nService} from '../l10n.service';
+import {LinkRel, DocumentumTypeValu} from '../../models/link.model';
+import {CourseState} from '../../models/courseActivity.model';
 import * as moment from 'moment';
 
 @Injectable()
@@ -75,11 +75,14 @@ export class CommonService {
         const lineValue = progress ? Math.round(progress * 100) : 0;
         const requiredForCompleted = courseActivitie.target.requirement.requiredForCompleted;
         const requiredText = requiredForCompleted ? 'lbl_required_for_satisfied' : 'lbl_not_required_for_satisfied';
+        const requiredToolTipText = requiredForCompleted ? 'tt_course_object_progress_required' : 'tt_course_object_progress_not_required';
+
         return {
             'value': lineValue,
             'statusIcon': this.getLineStatus(isCompleted, status, courseState),
             'requiredText': this.translate(requiredText),
             'statusColorLine': requiredForCompleted ? requiredForCompleted : false,
+            'requiredToolTipText': this.translate(requiredToolTipText),
         };
     }
 
@@ -96,11 +99,13 @@ export class CommonService {
         const lineValue = progress ? Math.round(progress * 100) : 0;
         const requiredForSatisfied = courseActivitie.target.requirement.requiredForSatisfied;
         const requiredText = requiredForSatisfied ? 'lbl_required_for_satisfied' : 'lbl_not_required_for_satisfied';
+        const requiredToolTipText = requiredForSatisfied ? 'tt_course_measure_required' : 'tt_course_measure_not_required';
         return {
             'value': lineValue,
             'statusIcon': this.getLineStatus(isCompleted, status, courseState),
             'requiredText': this.translate(requiredText),
             'statusColorLine': requiredForSatisfied ? requiredForSatisfied : false,
+            'requiredToolTipText': this.translate(requiredToolTipText),
         };
     }
 
@@ -114,7 +119,6 @@ export class CommonService {
         return registrarOrganization ? registrarOrganization.name : this.translate('txt_not_exists');
     }
 
-
     /**
      *  getDeadLine
      *  @param {Object} courseActivitie
@@ -125,6 +129,7 @@ export class CommonService {
         const state = courseActivitie.state ? courseActivitie.state : 0;
         const textLabel = state === CourseState.Closed ? this.translate('lbl_closed_date') : this.translate('lbl_deadline_colon');
         let value = this.formatDay(resultEndTime);
+        // let isShowToolTip = this.formatDay(resultEndTime);
         if (!resultEndTime) {
             value = this.translate('txt_after_first_launch');
         }
@@ -134,6 +139,7 @@ export class CommonService {
         return {
             value: value,
             textLabel: textLabel,
+            isShowToolTip: !resultEndTime,
         };
     }
 
@@ -461,6 +467,36 @@ export class CommonService {
         const organizationName = invitation.organization;
         return organizationName ? organizationName.name : this.translate('txt_not_exists');
     }
+
+
+ /*   /!**
+     *  getGrossTimeLimit
+     *  @param {Object} courseActivitie
+     *  @return
+     *!/
+    getGrossTimeLimit(courseActivitie) {
+        const grossTimeLimit = courseActivitie.target.requirement.grossTimeLimit;
+        return grossTimeLimit ? grossTimeLimit : '';
+    }*/
+
+    /**
+     *  getResultEndDateToolTip
+     *  @param {Object} courseActivitie
+     *  @return
+     */
+/*    getResultEndDateToolTip(courseActivitie) {
+        const resultEndDate = courseActivitie.target.requirement.resultEndDate;
+        if (resultEndDate.split('-')[0] === '9999') {
+            console.log('9999');
+           console.log()
+        } else {
+            // console.log('normaé darte', this.formatDay(resultEndDate));
+            return this.formatDay(resultEndDate);
+
+        }
+        // console.log(this.isValideDate(resultEndDate))
+        // return resultEndDate ? resultEndDate : '';
+    }*/
 
     /**
      *  getCourseResultStartDate

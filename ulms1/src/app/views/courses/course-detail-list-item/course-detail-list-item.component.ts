@@ -60,6 +60,8 @@ export class CourseDetailListItemComponent implements OnChanges, OnDestroy {
         courseActivities.forEach((item) => {
             if (item.target.parent) {
                 const courseActivitie = item;
+                const grossTimeLimit = courseActivitie.target.requirement.grossTimeLimit;
+                const resultEndDate = courseActivitie.target.requirement.resultEndDate;
                 const target = courseActivitie.target;
                 courseDetailView.push({
                     title: this.commonService.getTitle(target), // Title
@@ -78,6 +80,8 @@ export class CourseDetailListItemComponent implements OnChanges, OnDestroy {
                     launchButton: this.commonService.getLaunchButton(courseActivitie), // Launch
                     description: this.commonService.getDescription(courseActivitie), // Részletek
                     serviceTechnicalProfile: this.commonService.getServiceTechnicalProfile(courseActivitie), // Technikai feltételek
+                    grossTimeLimit: grossTimeLimit ? grossTimeLimit : '', // grossTimeLimit
+                    resultEndDate: resultEndDate ? this.commonService.formatDay(resultEndDate) : '', // resultEndDate
                     // providerName: this.commonService.getProviderName(course), // Label Provider name
                     // imageUrl: this.commonService.getImageUrl(course), // Image,
                 });

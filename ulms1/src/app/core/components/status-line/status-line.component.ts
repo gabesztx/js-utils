@@ -15,6 +15,7 @@ export class StatusLineComponent implements OnInit, OnDestroy, OnChanges {
     @Input() statusIcon: any;
     @Input() statusColorLine: any;
     @Input() requiredText: string;
+    @Input() requiredToolTipText: string;
     numberTimeOut: any;
     numberInterval: any;
 

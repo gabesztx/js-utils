@@ -1,11 +1,11 @@
-import { Component, OnChanges, OnDestroy, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import {Component, OnChanges, OnDestroy, OnInit, Input} from '@angular/core';
+import {Router} from '@angular/router';
 
-import { RestApiResponse } from '../../../services/base/http.class';
-import { CourseActiveViewModel } from '../../../models/views/course-active-view.model';
-import { CommonService } from '../../../services/common/common.service';
-import { CourseDetailService } from '../../../services/course-detail.service';
-import { slideInOutKeyFrameAnimation } from '../../../animations/course-animation';
+import {RestApiResponse} from '../../../services/base/http.class';
+import {CourseActiveViewModel} from '../../../models/views/course-active-view.model';
+import {CommonService} from '../../../services/common/common.service';
+import {CourseDetailService} from '../../../services/course-detail.service';
+import {slideInOutKeyFrameAnimation} from '../../../animations/course-animation';
 
 @Component({
     selector: 'ulms-course-active',
@@ -23,8 +23,7 @@ export class CourseActiveComponent implements OnChanges {
 
     constructor(private commonService: CommonService,
                 private courseDetailService: CourseDetailService,
-                private router: Router) {
-    }
+                private router: Router) {}
 
     ngOnChanges() {
         clearInterval(this.currentItemInterval);
@@ -46,7 +45,6 @@ export class CourseActiveComponent implements OnChanges {
     }
 
     clickUrl(id: string) {
-        // this.courseDetailService.courseDetailRouting(id);
         this.router.navigate(['courses', id, 'content']);
     }
 
@@ -70,7 +68,7 @@ export class CourseActiveComponent implements OnChanges {
                 deadLine: this.commonService.getDeadLine(courseActivitie), // Határidő
                 totalTime: this.commonService.getTotalTime(courseActivitie), // Eltöltött idő
                 grossTimeLimit: grossTimeLimit ? grossTimeLimit : '', // grossTimeLimit
-                resultEndDate: resultEndDate ? resultEndDate : '', // resultEndDate
+                resultEndDate: resultEndDate ? this.commonService.formatDay(resultEndDate) : '', // resultEndDate
             });
         });
         return courseActiveView;
