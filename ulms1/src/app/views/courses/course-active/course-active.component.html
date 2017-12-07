@@ -1,7 +1,5 @@
 <!--(@slideInOutKeyFrame.done)="animationEnd($event)-->
-<div class="courseListItemContainer active"
-     *ngFor="let item of currentItemListaData"
-     [@slideInOutKeyFrame]>
+<div class="courseListItemContainer active" *ngFor="let item of currentItemListaData" [@slideInOutKeyFrame]>
     <div class="row">
         <div class="courseItemImgBlock col-sm-2 hidden-xs">
             <div class="imgContent">
@@ -31,7 +29,6 @@
                     </span>
                     </div>
                 </div>
-
                 <div class="courseItemImgBlock">
                     <div class="imgContent">
                         <img src="{{item.imageUrl}}" alt="">

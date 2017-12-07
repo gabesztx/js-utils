@@ -142,7 +142,6 @@ export class CommonService {
             isShowToolTip: !resultEndTime,
         };
     }
-
     /**
      *  getTotalTime
      *  @param {Object} courseActivitie
@@ -156,7 +155,6 @@ export class CommonService {
             'netTimeLimit': netTimeLimit,
         };
     }
-
     /**
      *  getActivityStatus
      *  @param {Object} courseActivitie
@@ -173,14 +171,11 @@ export class CommonService {
             '6': 'success glyphicon glyphicon-ok',
             '7': 'unsuccessful glyphicon glyphicon-remove',
         };
-
         return {
             'value': status,
             'icon': ICON_NAME[status]
         };
-
     }
-
     /**
      *  getRecommendedStatus
      *  @param {Object} invitation
@@ -202,14 +197,12 @@ export class CommonService {
             'icon': ICON_NAME[severity]
         };
     }
-
     /**
      *  getLinks
      *  @param {Object} courseActivitie
      *  @return {Array}
      */
     getLinks(courseActivitie: any): Array<any> {
-
         const linkData: Array<any> = [];
         const links = courseActivitie.links ? courseActivitie.links : [];
         const licenseDocumentType = courseActivitie.licenseDocumentType;
@@ -221,7 +214,6 @@ export class CommonService {
             [LinkRel.CONTRACTAll]: 'btn_download_contract_zip',
             [LinkRel.CONTRACT]: 'btn_download_contract_pdf'
         };
-
         if (links.length) {
             links.forEach((link) => {
                 if (linksLabel.hasOwnProperty(link.rel)) {
@@ -254,7 +246,6 @@ export class CommonService {
         }
         return linkData;
     }
-
     /**
      *  getRegistrationDate
      *  @param {Object} courseRegistration
@@ -267,7 +258,6 @@ export class CommonService {
         }
         return registrationDate ? this.formatDay(registrationDate) : this.translate('txt_not_specified');
     }
-
     /**
      *  getSuggestedTime
      *  @param {Object} courseActivitie
@@ -277,7 +267,6 @@ export class CommonService {
         const suggestedTime = courseActivitie.target.requirement.suggestedTime;
         return suggestedTime ? suggestedTime : 0;
     }
-
     /**
      *  getDescription
      *  @param {Object} courseActivitie
@@ -299,16 +288,13 @@ export class CommonService {
         const state = courseActivitie.state ? courseActivitie.state : 0;
         const disturbingContent = courseActivitie.target.disturbingContent;
         const isClose = state === CourseState.Closed;
+        const isLinks = links.length;
+        //TODO: befejezni a szürke + warning lejárt indítást
+        /*if (isLinks) {
+            console.log('courseActivitie: ', courseActivitie);
+        }*/
 
-        if (links.length) {
-            console.log('state: ', state);
-            console.log('disturbingContent: ', disturbingContent);
-            console.log('isClose: ', isClose);
-            console.log('links: ', links);
-        }
-
-
-        if (links.length && isClose) {
+        if (isLinks && isClose) {
             console.log('--- LAUNCH 1 ---');
             if (links[0].rel === 'Launch') {
                 return {
@@ -318,18 +304,16 @@ export class CommonService {
             }
         }
 
-        /* TODO: Migrationra rákérdezni és normálisan megcsinálni ezt a feltételt */
-
-        if (links.length && !isClose) {
+        if (isLinks && !isClose) {
             console.log('--- LAUNCH 2 ---');
-            if (links[0].rel === 'Launch' && links[0].rel !== 'Migration') {
-                if (!courseActivitie.target.disturbingContent) {
+            if (links[0].rel === 'Launch') {
+                if (!disturbingContent) {
                     console.log('--- LAUNCH 2/1 ---');
                     return {
                         className: 'launch_origin'
                     };
                 }
-                if (courseActivitie.target.disturbingContent) {
+                if (disturbingContent) {
                     console.log('--- LAUNCH 2/2 ---');
                     return {
                         icon: 'btn-icon fa fa-exclamation-triangle',
@@ -339,7 +323,6 @@ export class CommonService {
                 }
             }
         }
-
         return false;
     }
 

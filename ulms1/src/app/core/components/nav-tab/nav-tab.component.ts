@@ -24,6 +24,5 @@ export class NavTabComponent implements OnInit, OnChanges {
         // csak akkor aktív ha minimum 2 letöltési link van (ez nem biztos hogy így jó lesz)
     }
 
-    ngOnInit() {
-    }
+    ngOnInit() {}
 }

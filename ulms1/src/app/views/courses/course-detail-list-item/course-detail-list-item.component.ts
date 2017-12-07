@@ -5,7 +5,6 @@ import { CommonService } from '../../../services/common/common.service';
 import { CourseDetailViewModel } from '../../../models/views/course-detail-view.model';
 import { slideOutInKeyFrameAnimation } from '../../../animations/course-animation';
 
-
 @Component({
     selector: 'ulms-course-detail-list-item',
     templateUrl: './course-detail-list-item.component.html',
@@ -86,7 +85,6 @@ export class CourseDetailListItemComponent implements OnChanges, OnDestroy {
                     // imageUrl: this.commonService.getImageUrl(course), // Image,
                 });
             }
-
         });
         return courseDetailView;
     }

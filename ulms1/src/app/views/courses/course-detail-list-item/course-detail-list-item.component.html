@@ -28,15 +28,13 @@
                                         <ulms-button
                                             [isPointer]=false
                                             [btnLabel]="'lbl_course_status_' + item.status.value | translate"
-                                            [btnIconClassName]=item.status.icon
-                                        >
+                                            [btnIconClassName]=item.status.icon>
                                         </ulms-button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <div class="courseResultWrapper">
                         <div class="courseResultList">
                             <div class="statusTextConent">
@@ -54,7 +52,6 @@
                                 </ulms-status-line>
                             </div>
                             <div class="statusTextConent">
-
                                 <!--Eredmény-->
                                 <ulms-status-line
                                     [labelText]="'lbl_measure' | translate"
@@ -68,7 +65,6 @@
                                 </ulms-status-line>
                             </div>
                         </div>
-
                         <div class="courseResultList">
                             <div class="statusTextConent">
                                 <!--Lezárult vagy Határidő idő-->
@@ -126,7 +122,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="coursePrerequisite">
                         <div class="statusTextConent">
                             <!--Előfeltétel-->
@@ -135,7 +130,6 @@
                                 [labelText]="'lbl_prerequisite' | translate"
                             >
                             </ulms-status-text>
-
                         </div>
                     </div>
                 </div>
@@ -152,7 +146,6 @@
                                     [btnLabel]="'btn_launch_content_with_migration'"
                                 >
                                 </ulms-button>
-
                             </div>
                         </div>
                     </div>
@@ -169,8 +162,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="courseDescriptionBlock" [ngClass]="{'lunchBtnActive': item.launchButton}"
-                         *ngIf="item.serviceTechnicalProfile">
+                    <div class="courseDescriptionBlock" [ngClass]="{'lunchBtnActive': item.launchButton}" *ngIf="item.serviceTechnicalProfile">
                         <div class="row">
                             <div class="col-sm-12">
                                 <ulms-description
@@ -187,4 +179,3 @@
         </div>
     </div>
 </div>
-

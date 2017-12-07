@@ -5,6 +5,7 @@ import { ObjectResult } from './objectResult.model';
 import { Link } from './link.model';
 
 export enum CourseActivityStatus {
+
     Unknown,
     Disabled,
     NotAttempted,
