@@ -50,7 +50,7 @@ export class HeaderComponent implements OnInit {
                 }
             }, 250);
         };
-        // getUser();
+        getUser();
 
     }
     ngOnInit() {}

@@ -41,6 +41,8 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
         this.popUpModal = this.modalHandlerService.getPopUpHandlerScope();
         this.paramsObs = this.route.params.subscribe(params => {
             this.urlId = params.courseId;
+
+            console.log(this.route.snapshot.data.responseData);
             this.courseDetail = this.route.snapshot.data.responseData.courseDetail;
             this.courseFeeds = this.route.snapshot.data.responseData.courseFeeds;
             this.courseDetailState = this.courseDetail.courseState;
@@ -90,6 +92,7 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
      * Course detail nav tab property
      */
     navigationTabView() {
+
         const courseActivities = this.courseDetail.courseActivities;
         const navTabDefaultData = {
             content: { 'label': 'lbl_course_content', 'urlPath': '/courses/' + this.urlId + '/content' },
@@ -104,6 +107,8 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
         this.navTabData.push(navTabDefaultData.info);
 
         // add feed tab
+        console.log('courseFeeds---------', this.courseFeeds);
+        console.log('courseFeeds length', this.courseFeeds.length);
         if (this.courseFeeds.length) {
             this.navTabData.push(navTabDefaultData.feed);
         }
