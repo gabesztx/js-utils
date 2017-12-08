@@ -6,7 +6,6 @@ import { RuntimeConfigService } from './runtime-config.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
-
 let __instance__: UserService = null;
 
 @Injectable()
@@ -30,7 +29,6 @@ export class UserService extends HttpProxy {
                 this.userData = result;
                 return result;
             });*/
-
        return Observable.of(true);
     }
 

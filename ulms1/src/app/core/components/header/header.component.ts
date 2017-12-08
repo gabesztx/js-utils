@@ -48,7 +48,7 @@ export class HeaderComponent implements OnInit {
                 }
             }, 250);
         };
-        getUser();
+        // getUser();
 
 
         /* load resources ( translate, user )

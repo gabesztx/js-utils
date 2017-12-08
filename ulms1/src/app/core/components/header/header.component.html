@@ -12,56 +12,60 @@
                             <span class="icon-bar"></span>
                         </button>
                     </div>
-                    <div class="collapse nx-navbar-collapse navbar-collapse" id="nx-navbar" *ngIf="isMenuShow">
+                    <div class="collapse nx-navbar-collapse navbar-collapse" id="nx-navbar" *ngIf="!isMenuShow">
                         <ul class="nav navbar-nav nx-navbar-nav">
                             <li class="nx-header-menu__item">
-                                <a href="javascript:void(0);">
-                                    <span class="nx-header-menu__item-icon nx-header-menu__item-icon--feeds"> </span>
+                                <a href="javascript:void(0);" class="menu_item_bt">
+                                    <span class="nx-header-menu__item-icon nx-header-menu__item-icon--feeds icon-nx-payment"> </span>
                                     <!--<span>{{'lbl_billing' | translate }}</span>-->
                                     <span>Számlázás</span>
                                 </a>
                             </li>
                             <li class="nx-header-menu__item">
-                                <a href="javascript:void(0);">
-                                    <span class="nx-header-menu__item-icon nx-header-menu__item-icon--admin "> </span>
+                                <a href="javascript:void(0);" class="menu_item_bt">
+                                    <span class="nx-header-menu__item-icon nx-header-menu__item-icon--admin icon-nx-admin"> </span>
                                     <span>Admin</span>
                                     <!--<span>{{ 'lbl_admin' | translate }}</span>-->
                                 </a>
                             </li>
                             <li class="nx-header-menu__item">
-                                <a href="javascript:void(0);">
-                                    <div class="nx-header-menu__item-icon feed-icon"></div>
-                                    {{ 'lbl_feed' | translate }}
-
+                                <a href="javascript:void(0);" class="menu_item_bt">
+                                    <div class="nx-header-menu__item-icon feed-icon icon-nx-feeds"></div>
+                                    <!--{{ 'lbl_feed' | translate }}-->
+                                    Hírek
                                     <span class="nx-count-badge pull-right hidden">
                                      <span class="nx-count-badge__count"></span>
                                  </span>
                                 </a>
                             </li>
                             <li class="nx-header-menu__item">
-                                <a href="/">
-                                    <span class="nx-header-menu__item-icon nx-header-menu__item-icon--courses"></span>
-                                    {{ 'lbl_my_courses' | translate }}
+                                <a href="/" class="menu_item_bt">
+                                    <span class="nx-header-menu__item-icon nx-header-menu__item-icon--courses icon-nx-courses"></span>
+                                    <!--{{ 'lbl_my_courses' | translate }}-->
+                                    Kurzusaim
                                 </a>
                             </li>
                             <li class="nx-dropdown nx-header-menu__item nx-header-menu__item--dropdown dropdown">
                                 <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"
                                    aria-haspopup="true" aria-expanded="false">
-                                    <span class="nx-header-menu__item-icon nx-header-menu__item-icon--user"></span>
-                                    <span class="nx-header-menu__item-label">
-                                        {{userData.name}}
-                                    </span>
+                                    <span class="nx-header-menu__item-icon nx-header-menu__item-icon--user icon-nx-user"></span>
+                                    <div class="nx-header-menu__item-label">
+                                        <!--{{userData.name}}-->
+                                        Martus Gabesz
+                                    </div>
                                     <b class="caret"></b>
                                 </a>
                                 <ul class="nx-dropdown-menu dropdown-menu">
                                     <li class="">
                                         <a href="javascript:void(0);">
-                                            {{ 'btn_Profile' | translate }}
+                                            Profile
+                                            <!--{{ 'btn_Profile' | translate }}-->
                                         </a>
                                     </li>
                                     <li class="">
                                         <a href="javascript:void(0);">
-                                            {{ 'btn_logout' | translate }}
+                                            Kijelentkezés
+                                            <!--{{ 'btn_logout' | translate }}-->
                                         </a>
                                     </li>
                                 </ul>

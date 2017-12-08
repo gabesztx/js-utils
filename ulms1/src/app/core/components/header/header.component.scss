@@ -1,8 +1,75 @@
 @import '../../../../variables.scss';
+$paddings: 12px 8px;
+.headerComponens {
 
-.headerComponens{
-    .feed-icon{
-        background: $data_uri_13;
-        height: 20px !important;
+    .nx-header-menu__item {
+        .menu_item_bt {
+            padding: $paddings;
+
+            .icon-nx-payment {
+                width: 25px;
+            }
+            .icon-nx-admin {
+            }
+            .icon-nx-feeds {
+                background: $data_uri_13;
+                height: 20px;
+            }
+            .icon-nx-courses {
+                margin-right: 0;
+            }
+
+
+        }
+
+    }
+    .nx-dropdown {
+        .dropdown-toggle {
+            padding: $paddings;
+            padding-left: 0;
+            .nx-header-menu__item-label{
+                display: inline-block;
+                vertical-align: middle;
+            }
+        }
+    }
+    @media(max-width: $md-min-width) {
+        .nx-header-menu__item {
+            .menu_item_bt {
+                padding: 12px 4px;
+            }
+        }
+        .nx-dropdown {
+            .dropdown-toggle {
+                padding: 12px 2px;
+                .nx-header-menu__item-label{
+                    max-width: 80px;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    white-space: nowrap;
+
+                }
+            }
+        }
+    }
+    @media(max-width: $sm-min-width) {
+        .nx-header-menu__item {
+            .menu_item_bt {
+                padding: $paddings;
+            }
+        }
+        .nx-dropdown {
+            .dropdown-toggle {
+                padding: $paddings;
+                .nx-header-menu__item-label{
+                    max-width: inherit;
+                    text-overflow: ellipsis;
+                    overflow: auto;
+                    white-space: normal;
+
+                }
+            }
+        }
+
     }
 }
