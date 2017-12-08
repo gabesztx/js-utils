@@ -6,7 +6,7 @@ import 'rxjs/add/operator/delay';
 import { RestApiResponse } from './base/http.class';
 
 import { feedData } from './course-detail-feed-data';
-import { data1 } from './course-detail-data-1';
+// import { data1 } from './course-detail-data-1';
 import { data2 } from './course-detail-data-2'; // tanusítvány megszerzése
 import { data3 } from './course-detail-data-3';
 import { data4 } from './course-detail-data-4';
@@ -21,6 +21,7 @@ import { data12 } from './course-detail-data-12'; // documentum letöltése
 import { data13 } from './course-detail-data-13'; // oklevél letöltése
 import { data14 } from './course-detail-data-14'; // tananyag indítás / nyugalom megzavarása popup
 import { data15 } from './course-detail-data-15'; // tananyag indítás / nyugalom megzavarása popup
+import { data16 } from './course-detail-data-16'; // STATE 2 (no tab)
 
 @Injectable()
 export class CourseDetailService_ {

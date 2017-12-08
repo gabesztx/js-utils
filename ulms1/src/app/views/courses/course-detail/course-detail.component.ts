@@ -1,12 +1,12 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {LinkRel} from '../../../models/link.model';
-import {CourseActivityStatus} from '../../../models/courseActivity.model';
-import {ContractStatus} from '../../../models/courseRegistrationShallow.model';
-import {CommonService} from '../../../services/common/common.service';
-import {ModalHandlerService} from '../../../services/modal-handler.service';
-import {CourseDetailService} from '../../../services/course-detail.service';
-import {calcPossibleSecurityContexts} from '@angular/compiler/src/template_parser/binding_parser';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { LinkRel } from '../../../models/link.model';
+import { CourseActivityStatus } from '../../../models/courseActivity.model';
+import { ContractStatus } from '../../../models/courseRegistrationShallow.model';
+import { CommonService } from '../../../services/common/common.service';
+import { ModalHandlerService } from '../../../services/modal-handler.service';
+import { CourseDetailService } from '../../../services/course-detail.service';
+import { calcPossibleSecurityContexts } from '@angular/compiler/src/template_parser/binding_parser';
 
 @Component({
     selector: 'ulms-course-detail',
@@ -43,14 +43,13 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
             this.urlId = params.courseId;
             this.courseDetail = this.route.snapshot.data.responseData.courseDetail;
             this.courseFeeds = this.route.snapshot.data.responseData.courseFeeds;
-            console.log('courseDetail', this.courseDetail)
-           // this.courseDetailState = this.courseDetail.courseState;
-           // this.courseRegistration = this.courseDetail.courseRegistration;
-           // this.userInvitations = this.courseDetail.userInvitations;
-           // this.isShowMessageBox = this.courseDetail.isLocked;
-            //this.navTabLinks = this.navigationTabDropDown();
-            //this.courseDetailView();
-            //this.courseDetailModalHandler();
+            this.courseDetailState = this.courseDetail.courseState;
+            this.courseRegistration = this.courseDetail.courseRegistration;
+            this.userInvitations = this.courseDetail.userInvitations;
+            this.isShowMessageBox = this.courseDetail.isLocked;
+            this.courseDetailView();
+
+
         });
     }
 
@@ -61,23 +60,27 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
      * Course detail nav tab property
      */
     courseDetailView() {
-
+        console.log('Course detail state: ', this.courseDetailState);
         if (this.courseDetailState === 4 || this.courseDetailState === 5) {
-            // console.log('STATE 1');
+            console.log('STATE 1');
+            this.navTabLinks = this.navigationTabDropDown();
             this.isShowTab = true;
             this.isCourseDetailMainContent = true;
             this.isContentDetailTabShow = true;
+            this.courseDetailModalHandler();
             // this.navigateList('content');
         } else if (this.courseDetailState >= 0 && this.courseDetailState <= 2 || this.courseDetailState == null) {
-            // console.log('STATE 2');
+            console.log('STATE 2');
             this.isShowTab = false;
             this.isCourseDetailMainInfo = true;
             // this.navigateList('info');
         } else if (this.courseDetailState === 3) {
-            // console.log('STATE 3');
+            console.log('STATE 3');
+            this.navTabLinks = this.navigationTabDropDown();
             this.isShowTab = true;
             this.isCourseDetailMainInfo = true;
             this.isContentDetailTabShow = false;
+            this.courseDetailModalHandler();
             // this.navigateList('info');
         }
         this.navigationTabView();
@@ -89,9 +92,9 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
     navigationTabView() {
         const courseActivities = this.courseDetail.courseActivities;
         const navTabDefaultData = {
-            content: {'label': 'lbl_course_content', 'urlPath': '/courses/' + this.urlId + '/content'},
-            info: {'label': 'lbl_course_information', 'urlPath': '/courses/' + this.urlId + '/info'},
-            feed: {'label': 'lbl_feed', 'urlPath': '/courses/' + this.urlId + '/feed'}
+            content: { 'label': 'lbl_course_content', 'urlPath': '/courses/' + this.urlId + '/content' },
+            info: { 'label': 'lbl_course_information', 'urlPath': '/courses/' + this.urlId + '/info' },
+            feed: { 'label': 'lbl_feed', 'urlPath': '/courses/' + this.urlId + '/feed' }
         };
         // add content tab
         if (courseActivities.length && this.isContentDetailTabShow) {
@@ -131,8 +134,8 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
      * Course detail modal handler
      */
     courseDetailModalHandler() {
+        console.log('courseDetailModalHandler');
         const courseActivitie = this.getCourseActivitieRoot(this.courseDetail.courseActivities);
-
         const courseActivitieStatus = courseActivitie.status;
         const courseRegistration = this.courseRegistration;
         const contractStatus = courseRegistration.contractStatus;
@@ -171,7 +174,7 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
                     this.courseDetailService.qualificationNoticeModal(this.courseRegistration.id);
 
                 }
-            }, {links: this.navTabLinks, qualificationNotice: qualificationNotice});
+            }, { links: this.navTabLinks, qualificationNotice: qualificationNotice });
         }
 
         /**
