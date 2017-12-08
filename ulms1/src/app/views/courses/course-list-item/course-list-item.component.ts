@@ -35,11 +35,9 @@ export class CourseListItemComponent implements OnDestroy {
     };
 
     constructor(private route: ActivatedRoute) {
-        // console.log('---- CourseListItemComponent ---- ');
+         //console.log('---- CourseListItemComponent ---- ');
         this.paramsObservable = this.route.params.subscribe(params => {
             this.itemIndex = this.route.snapshot.data.itemIndex;
-            // console.log('itemIndex: ', this.route.snapshot.data.itemIndex);
-            // console.log('responseData: ', this.route.snapshot.data.responseData);
             this.itemData = this.route.snapshot.data.responseData;
             this.items = this.itemData.items;
             // this.items = [];

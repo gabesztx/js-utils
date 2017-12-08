@@ -39,6 +39,7 @@ export class CourseService extends HttpProxy {
         }
         return this.get(`${this.apiUrl}`, opts)
             .map((result: any) => {
+
                 const data = {
                     hasNextPage: result.hasNextPage,
                     items: result.items,
@@ -47,15 +48,16 @@ export class CourseService extends HttpProxy {
                     total: result.total,
                     totalPages: result.totalPages
                 };
-                console.log('RESOLVE OK', courseState);
+                //console.log('DATA', data);
                 this.courseListDataProvoider[courseState] = data;
                 return data;
             });
     }
 
     getListData(courseState: any, search: SearchModel, params?: any): Observable<any> {
-        console.log('courseListDataProvoider----', this.courseListDataProvoider[courseState]);
-        console.log('FILTER', courseState);
+       // console.log('courseListDataProvoider----', this.courseListDataProvoider[courseState]);
+        //console.log('FILTER', courseState);
+        //console.log('SEARCH', search);
         if (this.courseListDataProvoider[courseState]) {
             console.log('--- MÁR VAN MEHET TOVÁBB ---');
             return Observable.of(this.courseListDataProvoider[courseState]);

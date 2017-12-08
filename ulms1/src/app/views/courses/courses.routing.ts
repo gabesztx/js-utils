@@ -72,14 +72,14 @@ export const routes: Routes = [{
 }, {
     path: 'list',
     component: CourseListContentComponent,
-    /*resolve: {
-        coursesGuard: coursesGuard,
-        recommendedGuard: recommendedGuard,
-        optionalGuard: optionalGuard,
-        upcomingGuard: upcomingGuard,
-        clouseGuard: clouseGuard
+     resolve: {
+        //coursesGuard: coursesGuard,
+         //recommendedGuard: recommendedGuard,
+         //optionalGuard: optionalGuard,
+         //upcomingGuard: upcomingGuard,
+         //clouseGuard: clouseGuard
     },
-    canActivate: [CourseListApiLoaderGuard],*/
+    //canActivate: [CourseListApiLoaderGuard],
     children: [{
         path: 'active',
         children: [{

@@ -18,10 +18,12 @@ export class CoursesGuard implements Resolve<Observable<any>> {
 
     resolve(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const pageNumParam = parseInt(next.paramMap.get('page'), 10);
+
         const pageSize = 10;
         const courseState = this.courseStatusMapperService.mapCourseTabIndexToCourseState(CourseTabIndex.ACTIVE);
         const filter = new FilterModel('state', courseState);
         const search = new SearchModel(pageNumParam, 0, pageSize, [filter]);
+        console.log('pageNumParam - -- - - - - -', pageNumParam)
         return this.courseService.getListData(courseState, search);
     }
 }

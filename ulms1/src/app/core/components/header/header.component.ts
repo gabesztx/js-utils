@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
     public localeCodes: Array<string>;
     public localeCodesMap: { [key: string]: string };
     public currentLocale: string;
-    public isMenuShow = true;
+    public isMenuShow = false;
 
     constructor(public config: RuntimeConfigService,
                 public l10nService: L10nService,
