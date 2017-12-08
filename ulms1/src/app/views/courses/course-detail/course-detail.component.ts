@@ -43,13 +43,14 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
             this.urlId = params.courseId;
             this.courseDetail = this.route.snapshot.data.responseData.courseDetail;
             this.courseFeeds = this.route.snapshot.data.responseData.courseFeeds;
-            this.courseDetailState = this.courseDetail.courseState;
-            this.courseRegistration = this.courseDetail.courseRegistration;
-            this.userInvitations = this.courseDetail.userInvitations;
-            this.isShowMessageBox = this.courseDetail.isLocked;
-            this.navTabLinks = this.navigationTabDropDown();
-            this.courseDetailView();
-            this.courseDetailModalHandler();
+            console.log('courseDetail', this.courseDetail)
+           // this.courseDetailState = this.courseDetail.courseState;
+           // this.courseRegistration = this.courseDetail.courseRegistration;
+           // this.userInvitations = this.courseDetail.userInvitations;
+           // this.isShowMessageBox = this.courseDetail.isLocked;
+            //this.navTabLinks = this.navigationTabDropDown();
+            //this.courseDetailView();
+            //this.courseDetailModalHandler();
         });
     }
 
