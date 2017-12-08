@@ -8,10 +8,15 @@ import { RuntimeConfigService } from './runtime-config.service';
 import { UserService } from './user.service';
 import { PreloadGuard } from './guards/preload.guard';
 
-/* CoursesRoutingGuard */
+
+/* Course List Api Loader */
+import { CourseListApiLoaderService } from './course-list-api-loader.service';
+import { CourseListApiLoaderGuard } from './guards/course-list-api-loader.guard';
+
+/* Courses Routing Guard */
 import { CoursesRoutingGuard } from './guards/courses-routing.guard';
 
-/* CoursesRoutingGuard */
+/* Courses Details Routing Guard */
 import { CoursesDetailRoutingGuard } from './guards/courses-detail-routing.guard';
 
 /* Courses */
@@ -118,7 +123,10 @@ import { CourseCaniactiveQuard } from './guards/course-caniactive.quard';
         CourseStatusMapperService,
 
         CourseCaniactiveQuard,
-        ModalHandlerService
+        ModalHandlerService,
+
+        CourseListApiLoaderService,
+        CourseListApiLoaderGuard,
     ]
 })
 export class ServicesModule { }

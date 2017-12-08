@@ -8,6 +8,7 @@ import { CourseStatusMapperService } from '../../services/course-status-mapper.s
 import { SearchModel, FilterModel } from '../../models/search.model';
 
 import { CourseObject } from '../../models/courseObject.model';
+import {CourseTabIndex} from '../course-status-mapper.service';
 
 @Injectable()
 
@@ -21,9 +22,9 @@ export class RecommendedGuard implements Resolve<Observable<RestApiResponse<any>
     resolve(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const pageNumParam = parseInt(next.paramMap.get('page'), 10);
         const pageSize = 15;
-        const courseState = this.courseStatusMapperService.mapCourseTabIndexToCourseState(next.data.itemIndex);
+        const courseState = this.courseStatusMapperService.mapCourseTabIndexToCourseState(CourseTabIndex.RECOMMENDED);
         const filter = new FilterModel('state', courseState);
         const search = new SearchModel(pageNumParam, 0, pageSize, [filter]);
-        return this.recommendedService.list(search);
+        return this.recommendedService.getListData(courseState, search);
     }
 }

@@ -44,9 +44,9 @@ export class CourseActiveComponent implements OnChanges {
         }, 125);
     }
 
-    clickUrl(id: string) {
-        this.courseDetailService.courseDetailRouting(id);
-        // this.router.navigate(['courses', id, 'content']);
+    navigationUrl(id: string) {
+        // this.courseDetailService.courseDetailRouting(id);
+        this.router.navigate(['courses', id, 'content']);
     }
 
     transFormViewObject(itemData: RestApiResponse<any>) {

@@ -27,7 +27,7 @@ export class CourseListItemComponent implements OnDestroy {
     };
 
     public noItemBoxText = {
-        [CourseTabIndex.ACTIVE]: '',
+        [CourseTabIndex.ACTIVE]: 'msg_recommennded_course_list_is_empty',
         [CourseTabIndex.RECOMMENDED]: 'msg_recommennded_course_list_is_empty',
         [CourseTabIndex.OPTIONAL]: 'msg_optional_course_list_is_empty',
         [CourseTabIndex.UPCOMING]: 'msg_upcoming_course_list_is_empty',
@@ -35,8 +35,11 @@ export class CourseListItemComponent implements OnDestroy {
     };
 
     constructor(private route: ActivatedRoute) {
+        // console.log('---- CourseListItemComponent ---- ');
         this.paramsObservable = this.route.params.subscribe(params => {
             this.itemIndex = this.route.snapshot.data.itemIndex;
+            // console.log('itemIndex: ', this.route.snapshot.data.itemIndex);
+            // console.log('responseData: ', this.route.snapshot.data.responseData);
             this.itemData = this.route.snapshot.data.responseData;
             this.items = this.itemData.items;
             // this.items = [];

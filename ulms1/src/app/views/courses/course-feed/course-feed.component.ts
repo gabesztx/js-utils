@@ -19,10 +19,11 @@ export class CourseFeedComponent implements OnInit, OnChanges, OnDestroy {
 
     constructor(private route: ActivatedRoute, private commonService: CommonService) {
         this.paramsObs = this.route.params.subscribe(params => {
-            this.itemData = this.route.snapshot.data.responseData.courseFeeds;
-            this.currentItemData = this.transFormViewObject(this.itemData);
-            clearInterval(this.currentItemInterval);
-            this.updatePageItem(this.currentItemData);
+            console.log('Course feeed')
+            // this.itemData = this.route.snapshot.data.responseData.courseFeeds;
+            // this.currentItemData = this.transFormViewObject(this.itemData);
+            // clearInterval(this.currentItemInterval);
+            // this.updatePageItem(this.currentItemData);
         });
     }
 

@@ -140,6 +140,8 @@
     "err_2066": "Előfeltétel nem törölhető / új nem hozható létre futó kurzusban!",
     "err_2067": "Előfeltétel beállításai nem módosíthatóak futó kurzusban!",
     "err_2068": "A szolgáltatás technikai profilja nem maradhat üresen!",
+    "lbl_billing": "Számlázás",
+    "lbl_admin": "Admin",
     "lbl_feed": "Hírek",
     "lbl_accreditation_num": "Akkreditációs szám:",
     "lbl_active_courses_short": "Aktuális",

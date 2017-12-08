@@ -12,19 +12,19 @@
                     <!-- Title -->
                     <span class="courseTitle"
                           placement="bottom"
-                          tooltip="{{item.title}}"
+                          title="{{item.title}}"
                           (click)="navigationUrl(item.id)">
                         {{item.title}}
                     </span>
                     <!-- Label -->
                     <div class="courseLabelContent" *ngIf="item.label.length || item.providerName.length">
                     <span *ngIf="item.label.length" class="courseLabel" placement="bottom"
-                          tooltip="'Kurzus kód: '{{item.label}}" container="body"
+                          title="'Kurzus kód: '{{item.label}}" container="body"
                     >{{item.label}} </span>
                         <span *ngIf="item.label.length && item.providerName.length">-</span>
                         <span *ngIf="item.providerName.length" class="courseProviderName"
                               placement="bottom"
-                              tooltip="'Kurzus szolgáltatója: '{{item.providerName}}">
+                              title="'Kurzus szolgáltatója: '{{item.providerName}}">
                         {{item.providerName}}
                     </span>
                     </div>

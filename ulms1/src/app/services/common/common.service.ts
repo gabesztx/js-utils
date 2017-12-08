@@ -295,7 +295,7 @@ export class CommonService {
         }*/
 
         if (isLinks && isClose) {
-            console.log('--- LAUNCH 1 ---');
+            // console.log('--- LAUNCH 1 ---');
             if (links[0].rel === 'Launch') {
                 return {
                     icon: 'btn-icon fa fa-exclamation-triangle',
@@ -305,16 +305,16 @@ export class CommonService {
         }
 
         if (isLinks && !isClose) {
-            console.log('--- LAUNCH 2 ---');
+            // console.log('--- LAUNCH 2 ---');
             if (links[0].rel === 'Launch') {
                 if (!disturbingContent) {
-                    console.log('--- LAUNCH 2/1 ---');
+                    // console.log('--- LAUNCH 2/1 ---');
                     return {
                         className: 'launch_origin'
                     };
                 }
                 if (disturbingContent) {
-                    console.log('--- LAUNCH 2/2 ---');
+                    // console.log('--- LAUNCH 2/2 ---');
                     return {
                         icon: 'btn-icon fa fa-exclamation-triangle',
                         className: 'launch_origin'

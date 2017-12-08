@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
-import { RequestOptions, Http } from '@angular/http';
-import { HttpProxy } from './base/http-proxy.class';
-import { RuntimeConfigService } from './runtime-config.service';
-import { Observable } from 'rxjs/Observable';
+import {RequestOptions, Http} from '@angular/http';
+import {HttpProxy} from './base/http-proxy.class';
+import {RuntimeConfigService} from './runtime-config.service';
+import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import 'rxjs/operator/delay';
 
 let __instance__: UserService = null;
 
@@ -16,7 +17,6 @@ export class UserService extends HttpProxy {
     constructor(protected http: Http, private config: RuntimeConfigService) {
         super();
         if (__instance__ !== this) {
-            // url: api/userinfo
             this.apiUrl = `${this.config.baseApiUrl}userinfo`;
             __instance__ = this;
         }
@@ -24,12 +24,12 @@ export class UserService extends HttpProxy {
     }
 
     getUser(): Observable<boolean> {
-       /* return this.get(`${this.apiUrl}`)
-            .map((result: any) => {
-                this.userData = result;
-                return result;
-            });*/
-       return Observable.of(true);
+        /* return this.get(`${this.apiUrl}`)
+             .map((result: any) => {
+                 this.userData = result;
+                 return result;
+             });*/
+        return Observable.of(true);
     }
 
     getUserData() {

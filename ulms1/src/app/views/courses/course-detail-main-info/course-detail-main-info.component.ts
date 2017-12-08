@@ -47,7 +47,7 @@ export class CourseDetailMainInfoComponent implements OnChanges {
         // console.log('courseData', courseData);
 
         courseData.forEach((courseObject) => {
-            if (!courseObject.parent && isCourseObjects || !courseObject.target.parent && isCourseActivities) {
+            if (isCourseObjects && !courseObject.parent ||  isCourseActivities && !courseObject.target.parent) {
                 courseDetailView.push({
                     id: course.id,
                     title: this.commonService.getTitle(course), // Title

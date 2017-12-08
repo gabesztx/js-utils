@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Router, ActivatedRoute, ActivatedRouteSnapshot} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 
 import {Http} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
@@ -36,7 +36,6 @@ export class CourseDetailService extends HttpProxy {
     }
 
     contractRequiredReject(apiUrl: string): Observable<any> {
-        // const baseUrl = `${this.config.baseUrl}qualificationnoticeshowed/index?registrationId=${registrationId}`;
         return this.get(apiUrl).map(value => value);
     }
 
@@ -48,7 +47,6 @@ export class CourseDetailService extends HttpProxy {
 
 
     courseDetailRouting(id?: string) {
-        // this.router.navigate(['courses', id]);
         const getDetailUrlParamValue = (courseState: any) => {
             if (courseState === 4 || courseState === 5) {
                 return 'content';

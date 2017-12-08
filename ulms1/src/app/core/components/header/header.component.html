@@ -12,27 +12,27 @@
                             <span class="icon-bar"></span>
                         </button>
                     </div>
-                    <div class="collapse nx-navbar-collapse navbar-collapse" id="nx-navbar" *ngIf="!isMenuShow">
+                    <div class="collapse nx-navbar-collapse navbar-collapse" id="nx-navbar" *ngIf="isMenuShow">
                         <ul class="nav navbar-nav nx-navbar-nav">
                             <li class="nx-header-menu__item">
                                 <a href="javascript:void(0);" class="menu_item_bt">
                                     <span class="nx-header-menu__item-icon nx-header-menu__item-icon--feeds icon-nx-payment"> </span>
-                                    <!--<span>{{'lbl_billing' | translate }}</span>-->
-                                    <span>Számlázás</span>
+                                    <span>{{'lbl_billing' | translate }}</span>
+                                    <!--<span>Számlázás</span>-->
                                 </a>
                             </li>
                             <li class="nx-header-menu__item">
                                 <a href="javascript:void(0);" class="menu_item_bt">
                                     <span class="nx-header-menu__item-icon nx-header-menu__item-icon--admin icon-nx-admin"> </span>
-                                    <span>Admin</span>
-                                    <!--<span>{{ 'lbl_admin' | translate }}</span>-->
+                                    <!--<span>Admin</span>-->
+                                    <span>{{ 'lbl_admin' | translate }}</span>
                                 </a>
                             </li>
                             <li class="nx-header-menu__item">
-                                <a href="javascript:void(0);" class="menu_item_bt">
+                                <a href="javascript:void(0);" (click)="navigationUrl()" class="menu_item_bt">
                                     <div class="nx-header-menu__item-icon feed-icon icon-nx-feeds"></div>
-                                    <!--{{ 'lbl_feed' | translate }}-->
-                                    Hírek
+                                    {{ 'lbl_feed' | translate }}
+                                    <!--Hírek-->
                                     <span class="nx-count-badge pull-right hidden">
                                      <span class="nx-count-badge__count"></span>
                                  </span>
@@ -41,8 +41,8 @@
                             <li class="nx-header-menu__item">
                                 <a href="/" class="menu_item_bt">
                                     <span class="nx-header-menu__item-icon nx-header-menu__item-icon--courses icon-nx-courses"></span>
-                                    <!--{{ 'lbl_my_courses' | translate }}-->
-                                    Kurzusaim
+                                    {{ 'lbl_my_courses' | translate }}
+                                    <!--Kurzusaim-->
                                 </a>
                             </li>
                             <li class="nx-dropdown nx-header-menu__item nx-header-menu__item--dropdown dropdown">
@@ -57,15 +57,15 @@
                                 </a>
                                 <ul class="nx-dropdown-menu dropdown-menu">
                                     <li class="">
-                                        <a href="javascript:void(0);">
-                                            Profile
-                                            <!--{{ 'btn_Profile' | translate }}-->
+                                        <a [href]="this.config.baseUrl + 'profile/index'">
+                                            <!--Profile-->
+                                            {{ 'btn_Profile' | translate }}
                                         </a>
                                     </li>
                                     <li class="">
-                                        <a href="javascript:void(0);">
-                                            Kijelentkezés
-                                            <!--{{ 'btn_logout' | translate }}-->
+                                        <a [href]="this.config.logoutUrl">
+                                            <!--Kijelentkezés-->
+                                            {{ 'btn_logout' | translate }}
                                         </a>
                                     </li>
                                 </ul>

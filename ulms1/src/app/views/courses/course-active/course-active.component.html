@@ -3,7 +3,7 @@
     <div class="row">
         <div class="courseItemImgBlock col-sm-2 hidden-xs">
             <div class="imgContent">
-                <img src="{{item.imageUrl}}" (click)="clickUrl(item.id)" alt="">
+                <img src="{{item.imageUrl}}" (click)="navigationUrl(item.id)" alt="">
             </div>
         </div>
         <div class="courseItemTextBlock col-sm-7">
@@ -13,7 +13,7 @@
                     <span class="courseTitle"
                           placement="bottom"
                           title="{{item.title}}"
-                          (click)="clickUrl(item.id)">
+                          (click)="navigationUrl(item.id)">
                         {{item.title}}
                     </span>
                     <!-- Label -->
@@ -103,7 +103,7 @@
                     [labelText]="'btn_to_course' | translate"
                     [itemData]=item.links
                     [dropDownLabel]=''
-                    (onButtonFn)="clickUrl(item.id)"
+                    (onButtonFn)="navigationUrl(item.id)"
                 >
                 </ulms-dropdown-split>
             </div>
