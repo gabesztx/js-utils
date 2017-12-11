@@ -22,6 +22,7 @@ export class UpcomingGuard implements Resolve<Observable<RestApiResponse<CourseD
         const courseState = this.courseStatusMapperService.mapCourseTabIndexToCourseState(CourseTabIndex.UPCOMING);
         const filter = new FilterModel('state', courseState);
         const search = new SearchModel(pageNumParam, 0, pageSize, [filter]);
-        return this.courseService.getListData(courseState, search);
+        return this.courseService.list(courseState, search);
+        // return this.courseService.getListData(courseState, search);
     }
 }

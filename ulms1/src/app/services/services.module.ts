@@ -19,6 +19,11 @@ import { CoursesRoutingGuard } from './guards/courses-routing.guard';
 /* Courses Details Routing Guard */
 import { CoursesDetailRoutingGuard } from './guards/courses-detail-routing.guard';
 
+/* Feeds */
+import { CourseFeedsService } from './course-feeds.service';
+import { CourseFeedsGuard } from './guards/course-feeds.guard';
+
+
 /* Courses */
 import { CourseService } from './course.service';
 import { CourseService_ } from './course.service_';
@@ -127,6 +132,9 @@ import { CourseCaniactiveQuard } from './guards/course-caniactive.quard';
 
         CourseListApiLoaderService,
         CourseListApiLoaderGuard,
+
+        CourseFeedsService,
+        CourseFeedsGuard
     ]
 })
 export class ServicesModule { }

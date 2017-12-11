@@ -21,6 +21,7 @@ export class ClosedGuard implements Resolve<Observable<RestApiResponse<any>>> {
         const courseState = this.courseStatusMapperService.mapCourseTabIndexToCourseState(CourseTabIndex.CLOSED);
         const filter = new FilterModel('state', courseState);
         const search = new SearchModel(pageNumParam, 0, pageSize, [filter]);
-        return this.courseService.getListData(courseState, search);
+        return this.courseService.list(courseState, search);
+        // return this.courseService.getListData(courseState, search);
     }
 }

@@ -1,5 +1,4 @@
 @import '../../../variables.scss';
-
 .courseFeedComponent {
     .feedContent {
         margin-left: -30px;
@@ -31,4 +30,16 @@
             margin-bottom: 15px;
         }
     }
+    @media(max-width: $sm-min-width) {
+        .feedContent {
+            margin-left: 0;
+        }
+    }
+
+}
+.feedPageTitle{
+    padding-top: 30px;
+    padding-bottom: 10px;
+    color: #0497bb;
+    font-size: 22px;
 }

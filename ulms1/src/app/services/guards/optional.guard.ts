@@ -23,6 +23,7 @@ export class OptionalGuard implements Resolve<Observable<RestApiResponse<any>>> 
         const courseState = this.courseStatusMapperService.mapCourseTabIndexToCourseState(CourseTabIndex.OPTIONAL);
         const filter = new FilterModel('state', courseState);
         const search = new SearchModel(pageNumParam, 0, pageSize, [filter]);
-        return this.optionalService.getListData(courseState, search);
+        return this.optionalService.list(courseState, search);
+        // return this.optionalService.getListData(courseState, search);
     }
 }

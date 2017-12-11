@@ -62,9 +62,9 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
      * Course detail nav tab property
      */
     courseDetailView() {
-        console.log('Course detail state: ', this.courseDetailState);
+        // console.log('Course detail state: ', this.courseDetailState);
         if (this.courseDetailState === 4 || this.courseDetailState === 5) {
-            console.log('STATE 1');
+            // console.log('STATE 1');
             this.navTabLinks = this.navigationTabDropDown();
             this.isShowTab = true;
             this.isCourseDetailMainContent = true;
@@ -72,12 +72,12 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
             this.courseDetailModalHandler();
             // this.navigateList('content');
         } else if (this.courseDetailState >= 0 && this.courseDetailState <= 2 || this.courseDetailState == null) {
-            console.log('STATE 2');
+            // console.log('STATE 2');
             this.isShowTab = false;
             this.isCourseDetailMainInfo = true;
             // this.navigateList('info');
         } else if (this.courseDetailState === 3) {
-            console.log('STATE 3');
+            // console.log('STATE 3');
             this.navTabLinks = this.navigationTabDropDown();
             this.isShowTab = true;
             this.isCourseDetailMainInfo = true;
@@ -107,8 +107,8 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
         this.navTabData.push(navTabDefaultData.info);
 
         // add feed tab
-        console.log('courseFeeds---------', this.courseFeeds);
-        console.log('courseFeeds length', this.courseFeeds.length);
+        // console.log('courseFeeds---------', this.courseFeeds);
+        // console.log('courseFeeds length', this.courseFeeds.length);
         if (this.courseFeeds.length) {
             this.navTabData.push(navTabDefaultData.feed);
         }
@@ -139,7 +139,7 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
      * Course detail modal handler
      */
     courseDetailModalHandler() {
-        console.log('courseDetailModalHandler');
+        // console.log('courseDetailModalHandler');
         const courseActivitie = this.getCourseActivitieRoot(this.courseDetail.courseActivities);
         const courseActivitieStatus = courseActivitie.status;
         const courseRegistration = this.courseRegistration;
@@ -204,7 +204,7 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
                     // console.log('UPDATE');
                     window.open(linkProfileUpgrade.href, linkProfileUpgrade.target);
                 } else {
-                    console.log('REJECT Contract!!!!');
+                    // console.log('REJECT Contract!!!!');
                     this.courseDetailService.contractRequiredReject(linkContractReject.href);
                 }
             });

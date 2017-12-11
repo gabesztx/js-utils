@@ -25,6 +25,7 @@ export class RecommendedGuard implements Resolve<Observable<RestApiResponse<any>
         const courseState = this.courseStatusMapperService.mapCourseTabIndexToCourseState(CourseTabIndex.RECOMMENDED);
         const filter = new FilterModel('state', courseState);
         const search = new SearchModel(pageNumParam, 0, pageSize, [filter]);
-        return this.recommendedService.getListData(courseState, search);
+        return this.recommendedService.list(courseState, search);
+        // return this.recommendedService.getListData(courseState, search);
     }
 }

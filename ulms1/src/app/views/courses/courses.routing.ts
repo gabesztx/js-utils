@@ -37,6 +37,11 @@ import {CourseDetailGuard_} from '../../services/guards/course-detail.guard_';
 import {CourseDetailListGuard} from '../../services/guards/course-detail-list.guard';
 import {CourseDetailListGuard_} from '../../services/guards/course-detail-list.guard_';
 
+
+/* Courses Feeds */
+import {CourseFeedsGuard} from '../../services/guards/course-feeds.guard';
+
+
 /* Component */
 import {CourseListItemComponent} from './course-list-item/course-list-item.component';
 import {CourseListContentComponent} from './course-list-content/course-list-content.component';
@@ -51,17 +56,16 @@ import {CourseTabIndex} from '../../services/course-status-mapper.service';
 import {CourseCaniactiveQuard} from '../../services/guards/course-caniactive.quard';
 import {CourseCaniactiveChildQuard} from '../../services/guards/course-caniactive-child.quard';
 
+// const coursesGuard = (<any>window).env === 'serv' ? CoursesGuard : CoursesGuard_;
 const coursesGuard = (<any>window).env === 'serv' ? CoursesGuard : CoursesGuard_;
 const recommendedGuard = (<any>window).env === 'serv' ? RecommendedGuard : RecommendedGuard_;
 const optionalGuard = (<any>window).env === 'serv' ? OptionalGuard : OptionalGuard_;
 const upcomingGuard = (<any>window).env === 'serv' ? UpcomingGuard : UpcomingGuard_;
 const clouseGuard = (<any>window).env === 'serv' ? ClosedGuard : ClosedGuard_;
-
 const courseDetailGuard = (<any>window).env === 'serv' ? CourseDetailGuard : CourseDetailGuard_;
 const courseDetailListGuard = (<any>window).env === 'serv' ? CourseDetailListGuard : CourseDetailListGuard_;
-
+const courseFeedsGuard = (<any>window).env === 'serv' ? CourseFeedsGuard : CourseFeedsGuard;
 const courseListApiLoaderGuard = (<any>window).env === 'serv' ? CourseDetailListGuard : CourseDetailListGuard_;
-
 
 export const routes: Routes = [{
     path: '',
@@ -69,15 +73,21 @@ export const routes: Routes = [{
 }, {
     path: 'feed',
     component: CourseFeedComponent,
+    resolve: {
+        responseData: courseFeedsGuard
+    },
+    data: {
+        class: 'main'
+    }
 }, {
     path: 'list',
     component: CourseListContentComponent,
-     resolve: {
+    resolve: {
         //coursesGuard: coursesGuard,
-         //recommendedGuard: recommendedGuard,
-         //optionalGuard: optionalGuard,
-         //upcomingGuard: upcomingGuard,
-         //clouseGuard: clouseGuard
+        //recommendedGuard: recommendedGuard,
+        //optionalGuard: optionalGuard,
+        //upcomingGuard: upcomingGuard,
+        //clouseGuard: clouseGuard
     },
     //canActivate: [CourseListApiLoaderGuard],
     children: [{

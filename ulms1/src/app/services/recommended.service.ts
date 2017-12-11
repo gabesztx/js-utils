@@ -47,15 +47,14 @@ export class RecommendedService extends HttpProxy {
                     total: result.total,
                     totalPages: result.totalPages
                 };
-                console.log('RESOLVE OK', courseState);
                 this.courseListDataProvoider[courseState] = data;
                 return data;
             });
     }
 
     getListData(courseState: any, search: SearchModel, params?: any): Observable<any> {
-        console.log('courseListDataProvoider----', this.courseListDataProvoider[courseState]);
-        console.log('FILTER', courseState);
+        // console.log('courseListDataProvoider----', this.courseListDataProvoider[courseState]);
+        // console.log('FILTER', courseState);
         if (this.courseListDataProvoider[courseState]) {
             console.log('--- MÁR VAN MEHET TOVÁBB ---');
             return Observable.of(this.courseListDataProvoider[courseState]);
