@@ -12,17 +12,13 @@ import {CourseTabIndex} from '../course-status-mapper.service';
 
 // export class CoursesGuard implements Resolve<Observable<RestApiResponse<CourseDetail[]>>> {
 export class CoursesGuard implements Resolve<Observable<any>> {
-    constructor(private courseService: CourseService,
-                private courseStatusMapperService: CourseStatusMapperService) {
-    }
+    constructor(private courseService: CourseService, private courseStatusMapperService: CourseStatusMapperService) {}
     resolve(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const pageNumParam = parseInt(next.paramMap.get('page'), 10);
-        const pageSize = 10;
+        const pageSize = 15;
         const courseState = this.courseStatusMapperService.mapCourseTabIndexToCourseState(CourseTabIndex.ACTIVE);
         const filter = new FilterModel('state', courseState);
         const search = new SearchModel(pageNumParam, 0, pageSize, [filter]);
-        // console.log('pageNumParam - -- - - - - -', pageNumParam)
         return this.courseService.list(courseState, search);
-        // return this.courseService.getListData(courseState, search);
     }
 }

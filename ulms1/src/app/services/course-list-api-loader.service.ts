@@ -1,18 +1,19 @@
-import {Injectable} from '@angular/core';
-import {CourseState} from '../models/courseActivity.model';
+import { Injectable } from '@angular/core';
+import { CourseState } from '../models/courseActivity.model';
 
 @Injectable()
 export class CourseListApiLoaderService {
 
     public courseListDataProvoider = {
-        [CourseState.Listed]: null,
-        [CourseState.Open]: null,
-        [CourseState.Inactive]: null,
-        [CourseState.Active]: null,
-        [CourseState.Closed]: null,
+        [CourseState.Listed]: {},
+        [CourseState.Open]: {},
+        [CourseState.Inactive]: {},
+        [CourseState.Active]: {},
+        [CourseState.Closed]: {},
     };
 
-    constructor() {}
+    constructor() {
+    }
 
     getCourseListDataProvoider(filterValue: any): any {
         return this.courseListDataProvoider;

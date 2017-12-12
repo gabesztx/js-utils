@@ -18,7 +18,6 @@ export class RecommendedGuard implements Resolve<Observable<RestApiResponse<any>
         private recommendedService: RecommendedService,
         private courseStatusMapperService: CourseStatusMapperService
     ) {}
-
     resolve(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const pageNumParam = parseInt(next.paramMap.get('page'), 10);
         const pageSize = 15;

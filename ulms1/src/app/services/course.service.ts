@@ -1,14 +1,14 @@
-import {Injectable} from '@angular/core';
-import {Http, RequestOptions} from '@angular/http';
-import {Observable} from 'rxjs/Observable';
+import { Injectable } from '@angular/core';
+import { Http, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/observable/of';
 
-import {RestApiResponse} from './base/http.class';
-import {HttpProxy} from './base/http-proxy.class';
-import {SearchModel} from '../models/search.model';
-import {RuntimeConfigService} from './runtime-config.service';
-import {CourseListApiLoaderService} from './course-list-api-loader.service';
+import { RestApiResponse } from './base/http.class';
+import { HttpProxy } from './base/http-proxy.class';
+import { SearchModel } from '../models/search.model';
+import { RuntimeConfigService } from './runtime-config.service';
+import { CourseListApiLoaderService } from './course-list-api-loader.service';
 
 let __instance__: CourseService = null;
 
@@ -27,38 +27,41 @@ export class CourseService extends HttpProxy {
             __instance__ = this;
         }
 
+
         return __instance__;
     }
 
     list(courseState: any, search: SearchModel, params?: any): Observable<RestApiResponse<any>> {
         let opts: RequestOptions = null;
+        const page = search.page;
         if (search) {
             opts = new RequestOptions({
                 search: search.getURLSearchParameters()
             });
         }
+        if (this.courseListDataProvoider[courseState].hasOwnProperty(page)) {
+            console.log('MÁR VAN VISSZAADOM AZ ELMENTETTET!');
+            return this.courseListDataProvoider[courseState][page];
+        }
+        console.log('LISTA LEKÉRÉS');
         return this.get(`${this.apiUrl}`, opts)
             .map((result: any) => {
+                const currentPage = result.currentPage;
+                const totalPages = result.totalPages;
                 const data = {
                     hasNextPage: result.hasNextPage,
                     items: result.items,
-                    currentPage: result.currentPage,
+                    currentPage: currentPage,
                     pageSize: result.pageSize,
                     total: result.total,
-                    totalPages: result.totalPages
+                    totalPages: totalPages
                 };
-                this.courseListDataProvoider[courseState] = data;
+                this.courseListDataProvoider[courseState][currentPage] = data;
                 return data;
             });
     }
 
     getListData(courseState: any, search: SearchModel, params?: any): Observable<any> {
-        if (this.courseListDataProvoider[courseState]) {
-            console.log('--- MÁR VAN MEHET TOVÁBB ---');
-            return Observable.of(this.courseListDataProvoider[courseState]);
-        } else {
-            console.log('--- LEKÉR ---');
-            return this.list(courseState, search, params);
-        }
+        return this.list(courseState, search, params);
     }
 }
