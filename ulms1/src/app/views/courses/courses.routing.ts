@@ -83,9 +83,9 @@ export const routes: Routes = [{
     path: 'list',
     component: CourseListContentComponent,
     resolve: {
-        //coursesGuard: coursesGuard,
-        //recommendedGuard: recommendedGuard,
-        //optionalGuard: optionalGuard,
+        coursesGuard: coursesGuard,
+        recommendedGuard: recommendedGuard,
+        optionalGuard: optionalGuard,
         //upcomingGuard: upcomingGuard,
         //clouseGuard: clouseGuard
     },

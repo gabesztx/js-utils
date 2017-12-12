@@ -37,30 +37,26 @@ export class RecommendedService extends HttpProxy {
                 search: search.getURLSearchParameters()
             });
         }
+        const page = search.page;
+        if (this.courseListDataProvoider[courseState].hasOwnProperty(page)) {
+            console.log('MÁR VAN RECOMMENDED LISTA VISSZAADOM AZ ELMENTETTET!');
+            return this.courseListDataProvoider[courseState][page];
+        }
+        console.log('RECOMMENDED LISTA LEKÉRÉS');
         return this.get(`${this.apiUrl}`, opts)
             .map((result: any) => {
+                const currentPage = result.currentPage;
+                const totalPages = result.totalPages;
                 const data = {
                     hasNextPage: result.hasNextPage,
                     items: result.items,
-                    currentPage: result.currentPage,
+                    currentPage: currentPage,
                     pageSize: result.pageSize,
                     total: result.total,
-                    totalPages: result.totalPages
+                    totalPages: totalPages
                 };
-                this.courseListDataProvoider[courseState] = data;
+                this.courseListDataProvoider[courseState][currentPage] = data;
                 return data;
             });
-    }
-
-    getListData(courseState: any, search: SearchModel, params?: any): Observable<any> {
-        // console.log('courseListDataProvoider----', this.courseListDataProvoider[courseState]);
-        // console.log('FILTER', courseState);
-        if (this.courseListDataProvoider[courseState]) {
-            console.log('--- MÁR VAN MEHET TOVÁBB ---');
-            return Observable.of(this.courseListDataProvoider[courseState]);
-        } else {
-            console.log('--- LEKÉR ---');
-            return this.list(courseState, search, params);
-        }
     }
 }

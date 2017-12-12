@@ -16,12 +16,12 @@ export class ClosedGuard implements Resolve<Observable<RestApiResponse<any>>> {
     }
 
     resolve(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        const pageNumParam = parseInt(next.paramMap.get('page'), 10);
-        const pageSize = 15;
         const courseState = this.courseStatusMapperService.mapCourseTabIndexToCourseState(CourseTabIndex.CLOSED);
+        const pageNumParam = parseInt(next.paramMap.get('page'), 10);
+        const pageIndex = pageNumParam ? pageNumParam : 1;
+        const pageSize = 15;
         const filter = new FilterModel('state', courseState);
-        const search = new SearchModel(pageNumParam, 0, pageSize, [filter]);
+        const search = new SearchModel(pageIndex, 0, pageSize, [filter]);
         return this.courseService.list(courseState, search);
-        // return this.courseService.getListData(courseState, search);
     }
 }

@@ -33,17 +33,17 @@ export class CourseService extends HttpProxy {
 
     list(courseState: any, search: SearchModel, params?: any): Observable<RestApiResponse<any>> {
         let opts: RequestOptions = null;
-        const page = search.page;
         if (search) {
             opts = new RequestOptions({
                 search: search.getURLSearchParameters()
             });
         }
+        const page = search.page;
         if (this.courseListDataProvoider[courseState].hasOwnProperty(page)) {
-            console.log('MÁR VAN VISSZAADOM AZ ELMENTETTET!');
+            //console.log('MÁR VAN COURSE LISTA VISSZAADOM AZ ELMENTETTET!');
             return this.courseListDataProvoider[courseState][page];
         }
-        console.log('LISTA LEKÉRÉS');
+        //console.log('COURSE LISTA LEKÉRÉS');
         return this.get(`${this.apiUrl}`, opts)
             .map((result: any) => {
                 const currentPage = result.currentPage;
@@ -59,9 +59,5 @@ export class CourseService extends HttpProxy {
                 this.courseListDataProvoider[courseState][currentPage] = data;
                 return data;
             });
-    }
-
-    getListData(courseState: any, search: SearchModel, params?: any): Observable<any> {
-        return this.list(courseState, search, params);
     }
 }

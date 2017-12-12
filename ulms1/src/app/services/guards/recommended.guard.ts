@@ -19,12 +19,12 @@ export class RecommendedGuard implements Resolve<Observable<RestApiResponse<any>
         private courseStatusMapperService: CourseStatusMapperService
     ) {}
     resolve(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        const pageNumParam = parseInt(next.paramMap.get('page'), 10);
-        const pageSize = 15;
         const courseState = this.courseStatusMapperService.mapCourseTabIndexToCourseState(CourseTabIndex.RECOMMENDED);
+        const pageNumParam = parseInt(next.paramMap.get('page'), 10);
+        const pageIndex = pageNumParam ? pageNumParam : 1;
+        const pageSize = 15;
         const filter = new FilterModel('state', courseState);
-        const search = new SearchModel(pageNumParam, 0, pageSize, [filter]);
+        const search = new SearchModel(pageIndex, 0, pageSize, [filter]);
         return this.recommendedService.list(courseState, search);
-        // return this.recommendedService.getListData(courseState, search);
     }
 }
