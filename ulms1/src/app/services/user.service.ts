@@ -9,12 +9,13 @@ import 'rxjs/operator/delay';
 
 let __instance__: UserService = null;
 
-const LOCALUSER = {
-    "userGuid": "7e2bf990-8496-4523-9138-8573b4c52579",
-    "loggedIn": true,
-    "name": "Martus Gábor",
-    "email": "martus.gabor@nexius.hu",
-    "role": 6
+const LOCAL_USER = {
+    userGuid: '7e2bf990-8496-4523-9138-8573b4c52579',
+    loggedIn: true,
+    name: 'Martus Gábor',
+    email: 'martus.gabor@nexius.hu',
+    role: 1,
+    // contextLogin: true
 };
 
 @Injectable()
@@ -40,7 +41,7 @@ export class UserService extends HttpProxy {
                     return result;
                 });
         } else {
-            this.userData = LOCALUSER;
+            this.userData = LOCAL_USER ;
             return Observable.of(this.userData);
         }
 

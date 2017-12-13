@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+// import { NgModule } from '@angular/core';
+import { Routes } from '@angular/router';
 import { PreloadGuard } from './services/guards/preload.guard';
 
 export const routes: Routes = [

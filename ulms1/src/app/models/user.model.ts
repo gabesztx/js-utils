@@ -4,6 +4,18 @@ import { Login } from './login.model';
 import { UserOrganization } from './userOrganization.model';
 import { UserApplication } from './userApplication.model';
 
+export enum UserStatus {
+    Unknown,
+    User,
+    Valami,
+    Administrator,
+    SysSupport,
+    AccountAdmin,
+    SysAdmin,
+    InternalApp,
+    DocAdmin,
+}
+
 export enum TwoFactorAuthenticationStatus {
     Unknown,
     NotNeeded,
