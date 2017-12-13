@@ -6,7 +6,7 @@ import { ContractStatus } from '../../../models/courseRegistrationShallow.model'
 import { CommonService } from '../../../services/common/common.service';
 import { ModalHandlerService } from '../../../services/modal-handler.service';
 import { CourseDetailService } from '../../../services/course-detail.service';
-import { calcPossibleSecurityContexts } from '@angular/compiler/src/template_parser/binding_parser';
+// import { calcPossibleSecurityContexts } from '@angular/compiler/src/template_parser/binding_parser';
 
 @Component({
     selector: 'ulms-course-detail',
@@ -41,8 +41,7 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
         this.popUpModal = this.modalHandlerService.getPopUpHandlerScope();
         this.paramsObs = this.route.params.subscribe(params => {
             this.urlId = params.courseId;
-
-            console.log(this.route.snapshot.data.responseData);
+            // console.log(this.route.snapshot.data.responseData);
             this.courseDetail = this.route.snapshot.data.responseData.courseDetail;
             this.courseFeeds = this.route.snapshot.data.responseData.courseFeeds;
             this.courseDetailState = this.courseDetail.courseState;

@@ -1,185 +1,356 @@
 export const data15 = {
-    'userInvitations': [],
-    'certificateEnabled': true,
-    'profileDetail': 3,
-    'courseActivities': [{
-        'id': '0daf6004-c406-490b-a150-438ccfd91d67',
-        'status': 2,
-        'state': 4,
-        'target': {
-            'id': 'd6665831-45e4-455b-88de-4d7cba2e2996',
-            'title': 'Root course object (Copy)',
-            'description': '',
-            'createdAt': '2017-10-30T09:55:57Z',
-            'requirement': {
-                'id': 'd6665831-45e4-455b-88de-4d7cba2e2996',
-                'resultStartDate': '1753-01-01T12:00:00Z',
-                'resultEndDate': '9999-12-31T23:59:59Z',
-                'requiredForCompleted': true,
-                'requiredForSatisfied': true,
-                'rollupMethod': 2,
-                'progressWeight': 1.0,
-                'measureWeight': 1.0,
-                'grossLimitBase': 1
+    "userInvitations": [],
+    "profileDetail": 3,
+    "courseActivities": [{
+        "id": "e72459c1-214c-4cde-afab-55c444538603",
+        "status": 2,
+        "state": 4,
+        "target": {
+            "id": "04fcb7cc-f7d7-4c01-97ed-6521ed530800",
+            "index": 4,
+            "title": "3. lecke",
+            "description": "",
+            "parent": { "id": "301a1a76-4458-4325-ab13-b5bb024b8e99" },
+            "createdAt": "2017-08-24T11:03:49Z",
+            "requirement": {
+                "id": "04fcb7cc-f7d7-4c01-97ed-6521ed530800",
+                "resultStartDate": "1753-01-01T12:00:00Z",
+                "resultEndDate": "9999-12-31T23:59:59Z",
+                "requiredForCompleted": true,
+                "requiredForSatisfied": true,
+                "rollupMethod": 2,
+                "progressWeight": 1.0,
+                "measureWeight": 1.0,
+                "grossTimeLimit": 44640,
+                "grossLimitBase": 1,
+                "alwaysAvailable": true
             },
-            'prerequisite': [],
-            'label': ''
+            "prerequisite": [],
+            "serviceTechnicalProfile": 2,
+            "label": ""
         },
-        'result': {'remainingTime': 2147483647, 'id': '0daf6004-c406-490b-a150-438ccfd91d67'},
-        'links': []
-    }, {
-        'id': '9b92c5ff-5306-4328-8fe3-c97d01a0b525',
-        'status': 2,
-        'state': 4,
-        'target': {
-            'id': 'e4d0b901-3872-4c10-a8a0-8f763bbeaee0',
-            'index': 2,
-            'title': 'Tananyag 2',
-            'description': '',
-            'parent': {'id': 'd6665831-45e4-455b-88de-4d7cba2e2996'},
-            'createdAt': '2017-10-30T13:18:37Z',
-            'requirement': {
-                'id': 'e4d0b901-3872-4c10-a8a0-8f763bbeaee0',
-                'resultStartDate': '1753-01-01T12:00:00Z',
-                'resultEndDate': '9999-12-31T23:59:59Z',
-                'requiredForCompleted': true,
-                'requiredForSatisfied': true,
-                'rollupMethod': 2,
-                'progressWeight': 1.0,
-                'measureWeight': 1.0,
-                'grossLimitBase': 1
-            },
-            'prerequisite': [],
-            'label': ''
-        },
-        'result': {'remainingTime': 2147483647, 'id': '9b92c5ff-5306-4328-8fe3-c97d01a0b525'},
-        'links': []
-    }, {
-        'id': 'fbbf3537-2e38-4a10-8669-d7573e14a8c7',
-        'status': 2,
-        'state': 4,
-        'target': {
-            'id': '14c7b38b-7dde-4f7c-abee-f5211d6df4d4',
-            'index': 1,
-            'title': 'Tananyag 1',
-            'description': 'dfsdf',
-            'parent': {'id': 'd6665831-45e4-455b-88de-4d7cba2e2996'},
-            'createdAt': '2017-10-30T13:18:13Z',
-            'requirement': {
-                'id': '14c7b38b-7dde-4f7c-abee-f5211d6df4d4',
-                'resultStartDate': '1753-01-01T12:00:00Z',
-                'resultEndDate': '9999-12-31T23:59:59Z',
-                'requiredForCompleted': true,
-                'requiredForSatisfied': true,
-                'rollupMethod': 2,
-                'progressWeight': 1.0,
-                'measureWeight': 1.0,
-                'grossLimitBase': 1
-            },
-            'prerequisite': [],
-            'serviceTechnicalProfile': 3,
-            'label': 'ydfy',
-            'disturbingContent': true
-        },
-        'result': {'remainingTime': 2147483647, 'id': 'fbbf3537-2e38-4a10-8669-d7573e14a8c7'},
-        'links': [{
-            'rel': 'Launch',
-            'href': 'https://devhome.nexiuslearning.com/ServiceStarter?courseActivityId=fbbf3537-2e38-4a10-8669-d7573e14a8c7&courseId=a65b50bd-614d-4511-9ebb-c5e5b0ce7ef9&userId=d7c534b2-ae8d-4970-8dda-193f6cefbb67&oauth_callback=about%3ablank&oauth_nonce=bd3e03f7-4cae-44e7-b66b-a05973310a1f&oauth_consumer_key=hh234SFAASf_f3DSfasdf234SDAd22asdaS3sr33wF2323sd2&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1512657284&oauth_version=1.0&oauth_signature=2Mx14OX%2fOaFbZueu08DcX7SLxy8%3d',
-            'target': '_self',
-            'label': '',
-            'tooltip': ''
+        "result": { "remainingTime": 44640, "id": "e72459c1-214c-4cde-afab-55c444538603" },
+        "links": [{
+            "rel": "Launch",
+            "href": "https://nxtesthome.azurewebsites.net/ServiceStarter?courseActivityId=e72459c1-214c-4cde-afab-55c444538603&courseId=b92f384d-2ac2-4152-bb00-7b79154dbd6a&userId=38c12ecb-0e9f-4cb2-b718-b54c3349a3e2&oauth_callback=about%3ablank&oauth_nonce=b39c11c9-c0c0-4f25-ac89-6e5bfe32fcf9&oauth_consumer_key=hh234SFAASf_f3DSfasdf234SDAd22asdaS3sr33wF2323sd2&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1513125076&oauth_version=1.0&oauth_signature=k4i%2bywM83ssIY%2bSwvs8lOt2D8j0%3d",
+            "target": "_self",
+            "label": "",
+            "tooltip": ""
         }, {
-            'rel': 'Result',
-            'href': 'https://devhome.nexiuslearning.com/api/serviceresultdetails?serviceid=rossz&registrationid=2f6702f9-2f6c-4e5c-acdf-ae7ff0257abc',
-            'target': '_self',
-            'label': '',
-            'tooltip': ''
+            "rel": "Result",
+            "href": "https://nxtesthome.azurewebsites.net/api/serviceresultdetails?serviceid=4da3ee3d-d129-96bc-9c09-8c81c46ca1af&registrationid=b20cc6d3-1484-41cf-be50-968146506aba",
+            "target": "_self",
+            "label": "",
+            "tooltip": ""
+        }]
+    }, {
+        "id": "4c513f02-4f76-4410-803f-72729182c57b",
+        "status": 7,
+        "state": 5,
+        "target": {
+            "id": "c01c1139-9012-43e0-8e14-e38eea273d88",
+            "index": 1,
+            "title": "Alapok",
+            "description": "",
+            "parent": { "id": "301a1a76-4458-4325-ab13-b5bb024b8e99" },
+            "createdAt": "2017-08-16T07:56:44Z",
+            "requirement": {
+                "id": "c01c1139-9012-43e0-8e14-e38eea273d88",
+                "resultStartDate": "2017-08-16T07:54:00Z",
+                "resultEndDate": "2017-08-20T07:54:00Z",
+                "requiredForCompleted": true,
+                "requiredForSatisfied": true,
+                "rollupMethod": 2,
+                "progressWeight": 1.0,
+                "measureWeight": 1.0,
+                "averageTime": 1,
+                "suggestedTime": 1,
+                "grossLimitBase": 1
+            },
+            "prerequisite": [],
+            "serviceTechnicalProfile": 3,
+            "label": ""
+        },
+        "result": {
+            "remainingTime": 2147483647,
+            "id": "4c513f02-4f76-4410-803f-72729182c57b",
+            "firstAttemptTime": "2017-08-30T11:14:28Z",
+            "lastAttemptTime": "2017-08-30T11:14:59Z",
+            "finalResultDate": "2017-08-30T10:35:48Z",
+            "resultEndTime": "2017-08-20T07:54:00Z"
+        },
+        "links": [{
+            "rel": "Launch",
+            "href": "https://nxtesthome.azurewebsites.net/ServiceStarter?courseActivityId=4c513f02-4f76-4410-803f-72729182c57b&courseId=b92f384d-2ac2-4152-bb00-7b79154dbd6a&userId=38c12ecb-0e9f-4cb2-b718-b54c3349a3e2&oauth_callback=about%3ablank&oauth_nonce=0d5cdd8f-09d0-4e16-9eb4-1fd88740e3e5&oauth_consumer_key=hh234SFAASf_f3DSfasdf234SDAd22asdaS3sr33wF2323sd2&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1513125076&oauth_version=1.0&oauth_signature=edaM56ZJZs96VrXIE0idibbwm7Y%3d",
+            "target": "_self",
+            "label": "",
+            "tooltip": ""
+        }, {
+            "rel": "Result",
+            "href": "https://nxtesthome.azurewebsites.net/api/serviceresultdetails?serviceid=c5d9482d-d246-aeab-4a63-ef1fd2ad366f&registrationid=b20cc6d3-1484-41cf-be50-968146506aba",
+            "target": "_self",
+            "label": "",
+            "tooltip": ""
+        }]
+    }, {
+        "id": "4a15ff42-46e8-4f9a-b063-9ad2b13b85dd",
+        "status": 2,
+        "state": 4,
+        "target": {
+            "id": "65d96067-b39d-446a-8907-29fdc8a84897",
+            "index": 3,
+            "title": "2. lecke",
+            "description": "",
+            "parent": { "id": "301a1a76-4458-4325-ab13-b5bb024b8e99" },
+            "createdAt": "2017-08-16T08:00:18Z",
+            "requirement": {
+                "id": "65d96067-b39d-446a-8907-29fdc8a84897",
+                "resultStartDate": "1753-01-01T12:00:00Z",
+                "resultEndDate": "9999-12-31T23:59:59Z",
+                "exemptionForSatisfied": true,
+                "requiredForSatisfied": true,
+                "rollupMethod": 2,
+                "measureWeight": 0.5,
+                "averageTime": 1,
+                "suggestedTime": 1,
+                "grossLimitBase": 1
+            },
+            "prerequisite": [{
+                "qualified": true,
+                "id": "4ede9462-0b6c-4165-937a-1d6df2d3c70a",
+                "targetId": "c01c1139-9012-43e0-8e14-e38eea273d88",
+                "targetTitle": "Alapok"
+            }],
+            "serviceTechnicalProfile": 3,
+            "label": ""
+        },
+        "result": { "remainingTime": 49477, "id": "4a15ff42-46e8-4f9a-b063-9ad2b13b85dd" },
+        "links": [{
+            "rel": "Launch",
+            "href": "https://nxtesthome.azurewebsites.net/ServiceStarter?courseActivityId=4a15ff42-46e8-4f9a-b063-9ad2b13b85dd&courseId=b92f384d-2ac2-4152-bb00-7b79154dbd6a&userId=38c12ecb-0e9f-4cb2-b718-b54c3349a3e2&oauth_callback=about%3ablank&oauth_nonce=42704160-e366-4d5d-99de-8575b2adce19&oauth_consumer_key=hh234SFAASf_f3DSfasdf234SDAd22asdaS3sr33wF2323sd2&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1513125076&oauth_version=1.0&oauth_signature=RUhMNSC81qHV%2f4syjUpnx8DutMk%3d",
+            "target": "_self",
+            "label": "",
+            "tooltip": ""
+        }, {
+            "rel": "Result",
+            "href": "https://nxtesthome.azurewebsites.net/api/serviceresultdetails?serviceid=4da3ee3d-d129-96bc-9c09-8c81c46ca1af&registrationid=b20cc6d3-1484-41cf-be50-968146506aba",
+            "target": "_self",
+            "label": "",
+            "tooltip": ""
+        }]
+    }, {
+        "id": "f9d5630a-8c39-41ed-a5d2-cedb129e9c14",
+        "status": 2,
+        "state": 4,
+        "target": {
+            "id": "301a1a76-4458-4325-ab13-b5bb024b8e99",
+            "title": "Root course object",
+            "description": "",
+            "createdAt": "2017-08-16T07:44:27Z",
+            "requirement": {
+                "id": "301a1a76-4458-4325-ab13-b5bb024b8e99",
+                "resultStartDate": "2017-08-16T08:08:00Z",
+                "resultEndDate": "2018-01-16T09:08:00Z",
+                "requiredForCompleted": true,
+                "requiredForSatisfied": true,
+                "rollupMethod": 2,
+                "progressWeight": 1.0,
+                "measureWeight": 1.0,
+                "grossLimitBase": 1,
+                "alwaysAvailable": true
+            },
+            "prerequisite": [],
+            "label": ""
+        },
+        "result": { "remainingTime": 49477, "id": "f9d5630a-8c39-41ed-a5d2-cedb129e9c14" },
+        "links": []
+    }, {
+        "id": "38b4e1b3-a32d-40cf-85fc-d7d5d9085940",
+        "status": 7,
+        "state": 5,
+        "target": {
+            "id": "67b5c89c-46ba-4ace-b9f8-f587972cd966",
+            "index": 2,
+            "title": "1.lecke",
+            "description": "",
+            "parent": { "id": "301a1a76-4458-4325-ab13-b5bb024b8e99" },
+            "createdAt": "2017-08-16T07:58:40Z",
+            "requirement": {
+                "id": "67b5c89c-46ba-4ace-b9f8-f587972cd966",
+                "resultStartDate": "2017-08-31T07:57:00Z",
+                "resultEndDate": "2017-09-16T07:57:00Z",
+                "requiredForSatisfied": true,
+                "rollupMethod": 2,
+                "progressWeight": 1.0,
+                "measureWeight": 1.0,
+                "minimumTime": 3,
+                "grossLimitBase": 1
+            },
+            "prerequisite": [],
+            "serviceTechnicalProfile": 2,
+            "label": ""
+        },
+        "result": {
+            "remainingTime": 2147483647,
+            "id": "38b4e1b3-a32d-40cf-85fc-d7d5d9085940",
+            "firstAttemptTime": "2017-08-30T11:15:37Z",
+            "lastAttemptTime": "2017-08-30T11:15:37Z",
+            "finalResultDate": "2017-09-16T19:02:00Z",
+            "resultEndTime": "2017-09-16T07:57:00Z"
+        },
+        "links": [{
+            "rel": "Launch",
+            "href": "https://nxtesthome.azurewebsites.net/ServiceStarter?courseActivityId=38b4e1b3-a32d-40cf-85fc-d7d5d9085940&courseId=b92f384d-2ac2-4152-bb00-7b79154dbd6a&userId=38c12ecb-0e9f-4cb2-b718-b54c3349a3e2&oauth_callback=about%3ablank&oauth_nonce=b63194c0-4ff2-4787-95cc-374e36790793&oauth_consumer_key=hh234SFAASf_f3DSfasdf234SDAd22asdaS3sr33wF2323sd2&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1513125076&oauth_version=1.0&oauth_signature=O207ye1nT6VMTUHAQHm0FL3DhU8%3d",
+            "target": "_self",
+            "label": "",
+            "tooltip": ""
+        }, {
+            "rel": "Result",
+            "href": "https://nxtesthome.azurewebsites.net/api/serviceresultdetails?serviceid=74d59a7b-68a7-03dc-8b9a-0e5f72127528&registrationid=b20cc6d3-1484-41cf-be50-968146506aba",
+            "target": "_self",
+            "label": "",
+            "tooltip": ""
         }]
     }],
-    'courseRegistration': {
-        'id': '2f6702f9-2f6c-4e5c-acdf-ae7ff0257abc',
-        'registrationDate': '2017-11-14T15:46:45Z',
-        'forCredit': true,
-        'contractStatus': 1
+    "courseRegistration": {
+        "id": "b20cc6d3-1484-41cf-be50-968146506aba",
+        "registrationDate": "2017-08-30T10:35:48Z",
+        "forCredit": true,
+        "registrarOrganization": { "name": "Csupi", "id": "6382a5df-4658-4c18-8821-5d46cff71ea0" },
+        "contractStatus": 1
     },
-    'courseState': 4,
-    'id': 'a65b50bd-614d-4511-9ebb-c5e5b0ce7ef9',
-    'title': 'Refoktor_aktív',
-    'description': 'fafasydfcsydf',
-    'imageUrl': 'https://blog.valdosta.edu/it/wp-content/uploads/sites/19/2015/02/Bussines-Information-Technology-Images.jpg',
-    'label': 'sdfyadfsd',
-    'registration': {
-        'id': 'a65b50bd-614d-4511-9ebb-c5e5b0ce7ef9',
-        'startDate': '1753-01-01T12:00:00Z',
-        'endDate': '9999-12-31T23:59:59Z',
-        'code': '',
-        'public': true,
-        'invitation': true,
-        'enroll': true
+    "courseState": 4,
+    "id": "b92f384d-2ac2-4152-bb00-7b79154dbd6a",
+    "title": "Felfedező kurzus",
+    "description": "",
+    "imageUrl": "https://images.pexels.com/photos/2336/trees-grass-lawn-park.jpg?w=1260&h=750&auto=compress&cs=tinysrgb",
+    "label": "",
+    "registration": {
+        "id": "b92f384d-2ac2-4152-bb00-7b79154dbd6a",
+        "startDate": "2017-08-16T07:45:00Z",
+        "endDate": "2017-12-16T08:45:00Z",
+        "code": "",
+        "public": true,
+        "invitation": true,
+        "enroll": true
     },
-    'courseObjects': [{
-        'id': 'd6665831-45e4-455b-88de-4d7cba2e2996',
-        'title': 'Root course object (Copy)',
-        'description': '',
-        'createdAt': '2017-10-30T09:55:57Z',
-        'requirement': {
-            'id': 'd6665831-45e4-455b-88de-4d7cba2e2996',
-            'resultStartDate': '1753-01-01T12:00:00Z',
-            'resultEndDate': '9999-12-31T23:59:59Z',
-            'requiredForCompleted': true,
-            'requiredForSatisfied': true,
-            'rollupMethod': 2,
-            'progressWeight': 1.0,
-            'measureWeight': 1.0,
-            'grossLimitBase': 1
+    "courseObjects": [{
+        "id": "04fcb7cc-f7d7-4c01-97ed-6521ed530800",
+        "index": 4,
+        "title": "3. lecke",
+        "description": "",
+        "parent": { "id": "301a1a76-4458-4325-ab13-b5bb024b8e99" },
+        "createdAt": "2017-08-24T11:03:49Z",
+        "requirement": {
+            "id": "04fcb7cc-f7d7-4c01-97ed-6521ed530800",
+            "resultStartDate": "1753-01-01T12:00:00Z",
+            "resultEndDate": "9999-12-31T23:59:59Z",
+            "requiredForCompleted": true,
+            "requiredForSatisfied": true,
+            "rollupMethod": 2,
+            "progressWeight": 1.0,
+            "measureWeight": 1.0,
+            "grossTimeLimit": 44640,
+            "grossLimitBase": 1,
+            "alwaysAvailable": true
         },
-        'prerequisite': [],
-        'label': ''
+        "prerequisite": [],
+        "serviceTechnicalProfile": 2,
+        "label": ""
     }, {
-        'id': 'e4d0b901-3872-4c10-a8a0-8f763bbeaee0',
-        'index': 2,
-        'title': 'Tananyag 2',
-        'description': '',
-        'parent': {'id': 'd6665831-45e4-455b-88de-4d7cba2e2996'},
-        'createdAt': '2017-10-30T13:18:37Z',
-        'requirement': {
-            'id': 'e4d0b901-3872-4c10-a8a0-8f763bbeaee0',
-            'resultStartDate': '1753-01-01T12:00:00Z',
-            'resultEndDate': '9999-12-31T23:59:59Z',
-            'requiredForCompleted': true,
-            'requiredForSatisfied': true,
-            'rollupMethod': 2,
-            'progressWeight': 1.0,
-            'measureWeight': 1.0,
-            'grossLimitBase': 1
+        "id": "c01c1139-9012-43e0-8e14-e38eea273d88",
+        "index": 1,
+        "title": "Alapok",
+        "description": "",
+        "parent": { "id": "301a1a76-4458-4325-ab13-b5bb024b8e99" },
+        "createdAt": "2017-08-16T07:56:44Z",
+        "requirement": {
+            "id": "c01c1139-9012-43e0-8e14-e38eea273d88",
+            "resultStartDate": "2017-08-16T07:54:00Z",
+            "resultEndDate": "2017-08-20T07:54:00Z",
+            "requiredForCompleted": true,
+            "requiredForSatisfied": true,
+            "rollupMethod": 2,
+            "progressWeight": 1.0,
+            "measureWeight": 1.0,
+            "averageTime": 1,
+            "suggestedTime": 1,
+            "grossLimitBase": 1
         },
-        'prerequisite': [],
-        'label': ''
+        "prerequisite": [],
+        "serviceTechnicalProfile": 3,
+        "label": ""
     }, {
-        'id': '14c7b38b-7dde-4f7c-abee-f5211d6df4d4',
-        'index': 1,
-        'title': 'Tananyag 1',
-        'description': 'dfsdf',
-        'parent': {'id': 'd6665831-45e4-455b-88de-4d7cba2e2996'},
-        'createdAt': '2017-10-30T13:18:13Z',
-        'requirement': {
-            'id': '14c7b38b-7dde-4f7c-abee-f5211d6df4d4',
-            'resultStartDate': '1753-01-01T12:00:00Z',
-            'resultEndDate': '9999-12-31T23:59:59Z',
-            'requiredForCompleted': true,
-            'requiredForSatisfied': true,
-            'rollupMethod': 2,
-            'progressWeight': 1.0,
-            'measureWeight': 1.0,
-            'grossLimitBase': 1
+        "id": "65d96067-b39d-446a-8907-29fdc8a84897",
+        "index": 3,
+        "title": "2. lecke",
+        "description": "",
+        "parent": { "id": "301a1a76-4458-4325-ab13-b5bb024b8e99" },
+        "createdAt": "2017-08-16T08:00:18Z",
+        "requirement": {
+            "id": "65d96067-b39d-446a-8907-29fdc8a84897",
+            "resultStartDate": "1753-01-01T12:00:00Z",
+            "resultEndDate": "9999-12-31T23:59:59Z",
+            "exemptionForSatisfied": true,
+            "requiredForSatisfied": true,
+            "rollupMethod": 2,
+            "measureWeight": 0.5,
+            "averageTime": 1,
+            "suggestedTime": 1,
+            "grossLimitBase": 1
         },
-        'prerequisite': [],
-        'serviceTechnicalProfile': 3,
-        'label': 'ydfy',
-        'disturbingContent': true
+        "prerequisite": [{
+            "qualified": true,
+            "id": "4ede9462-0b6c-4165-937a-1d6df2d3c70a",
+            "targetId": "c01c1139-9012-43e0-8e14-e38eea273d88",
+            "targetTitle": "Alapok"
+        }],
+        "serviceTechnicalProfile": 3,
+        "label": ""
+    }, {
+        "id": "301a1a76-4458-4325-ab13-b5bb024b8e99",
+        "title": "Root course object",
+        "description": "",
+        "createdAt": "2017-08-16T07:44:27Z",
+        "requirement": {
+            "id": "301a1a76-4458-4325-ab13-b5bb024b8e99",
+            "resultStartDate": "2017-08-16T08:08:00Z",
+            "resultEndDate": "2018-01-16T09:08:00Z",
+            "requiredForCompleted": true,
+            "requiredForSatisfied": true,
+            "rollupMethod": 2,
+            "progressWeight": 1.0,
+            "measureWeight": 1.0,
+            "grossLimitBase": 1,
+            "alwaysAvailable": true
+        },
+        "prerequisite": [],
+        "label": ""
+    }, {
+        "id": "67b5c89c-46ba-4ace-b9f8-f587972cd966",
+        "index": 2,
+        "title": "1.lecke",
+        "description": "",
+        "parent": { "id": "301a1a76-4458-4325-ab13-b5bb024b8e99" },
+        "createdAt": "2017-08-16T07:58:40Z",
+        "requirement": {
+            "id": "67b5c89c-46ba-4ace-b9f8-f587972cd966",
+            "resultStartDate": "2017-08-31T07:57:00Z",
+            "resultEndDate": "2017-09-16T07:57:00Z",
+            "requiredForSatisfied": true,
+            "rollupMethod": 2,
+            "progressWeight": 1.0,
+            "measureWeight": 1.0,
+            "minimumTime": 3,
+            "grossLimitBase": 1
+        },
+        "prerequisite": [],
+        "serviceTechnicalProfile": 2,
+        "label": ""
     }],
-    'createdAt': '2017-10-30T09:55:57Z',
-    'provider': {'name': '\"Hajdútánc" Alapfokú Művészeti Iskola', 'id': '688ad4e6-f124-43f0-93e7-00ece53bb315'},
-    'forCredit': true,
-    'accreditationNum': ''
+    "createdAt": "2017-08-16T07:44:25Z",
+    "provider": { "name": "Csupi", "id": "6382a5df-4658-4c18-8821-5d46cff71ea0" },
+    "forCredit": true,
+    "accreditationNum": "",
+    "isLocked": true
 };

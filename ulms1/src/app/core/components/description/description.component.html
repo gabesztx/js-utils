@@ -7,7 +7,7 @@
         <div class="descriptionTextValue" [ngClass]="{'open':isOpen}">{{description}}</div>
     </div>
 
-    <div class="descriptionWrapper" *ngIf="className === 'course-detail-description'">
+    <span class="descriptionWrapper" *ngIf="className === 'course-detail-description'">
         <i class="descriptionIcon glyphicon glyphicon-chevron-right"
            [ngClass]="{'open':isOpen}"
            (click)="textToggle()">
@@ -21,9 +21,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </span>
 
-    <div class="descriptionWrapper" *ngIf="className === 'course-detail-serviceTechnicalProfile'">
+    <span class="descriptionWrapper" *ngIf="className === 'course-detail-serviceTechnicalProfile'">
         <i class="descriptionIcon glyphicon glyphicon-chevron-right" [ngClass]="{'open':isOpen}" (click)="textToggle()"></i>
         <span class="descriptionTextLabel" (click)="textToggle()">{{'lbl_technical_requirements' | translate}}</span>
         <span class="descriptionTechnicalIcon">
@@ -63,5 +63,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </span>
 </div>

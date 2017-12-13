@@ -4,6 +4,7 @@ import { RestApiResponse } from '../../../services/base/http.class';
 import { CommonService } from '../../../services/common/common.service';
 import { CourseDetailViewModel } from '../../../models/views/course-detail-view.model';
 import { slideOutInKeyFrameAnimation } from '../../../animations/course-animation';
+import { ModalHandlerService } from '../../../services/modal-handler.service';
 
 @Component({
     selector: 'ulms-course-detail-list-item',
@@ -19,23 +20,42 @@ export class CourseDetailListItemComponent implements OnChanges, OnDestroy {
     currentItemListaData: any;
     currentItemInterval: any;
     public paramsObs: any;
+    public popUpModal: any;
 
-    constructor(private route: ActivatedRoute, private commonService: CommonService) {
+    constructor(private route: ActivatedRoute,
+                private commonService: CommonService,
+                private modalHandlerService: ModalHandlerService) {
+
+        this.popUpModal = this.modalHandlerService.getPopUpHandlerScope();
         this.paramsObs = this.route.params.subscribe(params => {
             this.itemData = this.route.snapshot.data.responseData.courseDetail;
             clearInterval(this.currentItemInterval);
             this.currentItemData = this.transFormViewObject(this.itemData);
             if (this.currentItemData.length) {
-                 this.updatePageItem(this.currentItemData);
+                this.updatePageItem(this.currentItemData);
             }
         });
     }
 
-    ngOnDestroy() {
-        this.paramsObs.unsubscribe();
-    }
-
     ngOnChanges() {}
+
+    navigationUrl(item) {
+        const url = item.href;
+        const target = item.target;
+        const type = item.type;
+        if (type === 'disturbing') {
+            this.popUpModal.openModal('disturbingContent', () => {
+                window.open(url, target);
+            });
+            return;
+        } else if (type === 'warning') {
+            this.popUpModal.openModal('launchWarning', () => {
+                window.open(url, target);
+            });
+            return;
+        }
+        window.open(url, target);
+    }
 
     updatePageItem(currentList: any) {
         let itemNum = 0;
@@ -87,5 +107,9 @@ export class CourseDetailListItemComponent implements OnChanges, OnDestroy {
             }
         });
         return courseDetailView;
+    }
+
+    ngOnDestroy() {
+        this.paramsObs.unsubscribe();
     }
 }

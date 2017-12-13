@@ -16,6 +16,8 @@ export class PopupModalComponent implements OnInit {
     @ViewChild('qualificationNotice') qualificationNoticeModal: TemplateRef<any>;
     @ViewChild('certificateCondition') certificateConditionModal: TemplateRef<any>;
     @ViewChild('documentumNotification') documentumNotificationModal: TemplateRef<any>;
+    @ViewChild('disturbingContent') disturbingContentModal: TemplateRef<any>;
+    @ViewChild('launchWarning') launchWarningModal: TemplateRef<any>;
 
     modalRef: BsModalRef;
     onHide: any;
@@ -59,8 +61,13 @@ export class PopupModalComponent implements OnInit {
             this.modalRef = this.modalService.show(this.documentumNotificationModal);
             this.closeModalEvent = closeModalEvent;
             this.popUpData = popUpData;
+        } else if (this.modalState === 'disturbingContent') {
+            this.modalRef = this.modalService.show(this.disturbingContentModal);
+            this.closeModalEvent = closeModalEvent;
+        } else if (this.modalState === 'launchWarning') {
+            this.modalRef = this.modalService.show(this.launchWarningModal);
+            this.closeModalEvent = closeModalEvent;
         }
-
         // this.onHide.subscribe(res => {});
     }
 
@@ -81,6 +88,12 @@ export class PopupModalComponent implements OnInit {
             this.closeModalEvent(this.checkBoxValue);
             // this.closeModal();
         } else if (this.modalState === 'documentumNotification') {
+            this.closeModalEvent();
+            this.closeModal();
+        }else if (this.modalState === 'disturbingContent') {
+            this.closeModalEvent();
+            this.closeModal();
+        }else if (this.modalState === 'launchWarning') {
             this.closeModalEvent();
             this.closeModal();
         }

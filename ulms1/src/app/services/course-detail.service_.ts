@@ -20,19 +20,19 @@ import { data11 } from './course-detail-data-11'; // external nav link
 import { data12 } from './course-detail-data-12'; // documentum letöltése
 import { data13 } from './course-detail-data-13'; // oklevél letöltése
 import { data14 } from './course-detail-data-14'; // tananyag indítás / nyugalom megzavarása popup
-import { data15 } from './course-detail-data-15'; // tananyag indítás / nyugalom megzavarása popup
+import { data15 } from './course-detail-data-15'; // tananyag indítás / lejárt időszak
 import { data16 } from './course-detail-data-16'; // STATE 2 (no tab)
 
 @Injectable()
 export class CourseDetailService_ {
 
-    public courseList = <Array<any>>JSON.parse(JSON.stringify(data12));
+    public courseList = <Array<any>>JSON.parse(JSON.stringify(data15));
     public courseFeed = <Array<any>>JSON.parse(JSON.stringify(feedData));
     public courseDetailData = { courseDetail: null, courseFeeds: null };
     public courseDetaiId: any;
 
     public list(id?: any): Observable<any> {
-        console.log('LIST');
+        // console.log('LIST');
         this.courseDetaiId = id;
         this.courseDetailData.courseDetail = this.courseList;
         this.courseDetailData.courseFeeds = this.courseFeed;
@@ -40,7 +40,7 @@ export class CourseDetailService_ {
     }
 
     public getListData(): Observable<any> {
-        console.log('getListData');
+        // console.log('getListData');
         return Observable.of(this.courseDetailData);
     }
 }

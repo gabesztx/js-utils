@@ -113,27 +113,23 @@ $itemPadding: 20px;
         }
 
         .courseButtonWrapper {
+            position: absolute;
+            width: 100%;
             transform: translateY($itemPadding + 5);
             -webkit-transform: translateY($itemPadding + 5);
         }
         .courseDescriptionContent {
-            position: relative;
+            //position: relative;
+            margin-top: 20px;
             .courseDescriptionBlock {
-                &:nth-child(1) {
-                    margin-top: 20px;
-                }
+                &:nth-child(1) {}
                 &:nth-child(2) {
-                    margin-top: 10px;
+                    margin-top: 5px;
                 }
 
                 &.lunchBtnActive {
-                    &:nth-child(1) {
-                        margin-top: -15px;
-
-                    }
-                    &:nth-child(2) {
-                        margin-top: 10px;
-                    }
+                    &:nth-child(1) {}
+                    &:nth-child(2) {}
                 }
 
             }

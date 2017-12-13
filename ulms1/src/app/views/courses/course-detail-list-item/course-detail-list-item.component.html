@@ -15,7 +15,8 @@
                         <div class="row">
                             <div class="col-sm-8">
                                 <div class="courseTitleContent">
-                                    <span class="courseTitle" placement="bottom" tooltip="{{item.title}}">{{item.title}}</span>
+                                    <span class="courseTitle" placement="bottom"
+                                          tooltip="{{item.title}}">{{item.title}}</span>
                                     <div *ngIf="item.label" class="courseLabelContent">
                                         <span class="courseProviderName" placement="bottom" tooltip="{{item.label}}">{{item.label}}</span>
                                     </div>
@@ -133,6 +134,8 @@
                         </div>
                     </div>
                 </div>
+
+                <!--Tananyag indtása-->
                 <div class="courseButtonWrapper" *ngIf="item.launchButton">
                     <div class="row">
                         <div class="col-sm-8"></div>
@@ -144,6 +147,7 @@
                                     [className]=item.launchButton.className
                                     [btnIconClassName]=item.launchButton.icon
                                     [btnLabel]="'btn_launch_content_with_migration'"
+                                    (onButtonFn)="navigationUrl(item.launchButton)"
                                 >
                                 </ulms-button>
                             </div>
@@ -151,27 +155,21 @@
                     </div>
                 </div>
                 <div class="courseDescriptionContent">
-                    <div class="row">
-                        <div class="courseDescriptionBlock" [ngClass]="{'lunchBtnActive': item.launchButton}">
-                            <div class="col-sm-12">
-                                <ulms-description
-                                    [className]="'course-detail-description'"
-                                    [description]=item.description
-                                >
-                                </ulms-description>
-                            </div>
-                        </div>
+                    <!--<div class="courseDescriptionBlock" [ngClass]="{'lunchBtnActive': item.launchButton}">-->
+                    <div class="courseDescriptionBlock">
+                        <ulms-description
+                            [className]="'course-detail-description'"
+                            [description]=item.description
+                        >
+                        </ulms-description>
                     </div>
-                    <div class="courseDescriptionBlock" [ngClass]="{'lunchBtnActive': item.launchButton}" *ngIf="item.serviceTechnicalProfile">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <ulms-description
-                                    [className]="'course-detail-serviceTechnicalProfile'"
-                                    [description]=item.serviceTechnicalProfile
-                                >
-                                </ulms-description>
-                            </div>
-                        </div>
+                    <div class="courseDescriptionBlock" [ngClass]="{'lunchBtnActive': item.launchButton}"
+                         *ngIf="item.serviceTechnicalProfile">
+                        <ulms-description
+                            [className]="'course-detail-serviceTechnicalProfile'"
+                            [description]=item.serviceTechnicalProfile
+                        >
+                        </ulms-description>
                     </div>
                 </div>
                 <div class="courseDetailListBorderWrapper"></div>

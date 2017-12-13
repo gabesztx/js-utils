@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {L10nService} from '../l10n.service';
-import {LinkRel, DocumentumTypeValu} from '../../models/link.model';
-import {CourseState} from '../../models/courseActivity.model';
+import { Injectable } from '@angular/core';
+import { L10nService } from '../l10n.service';
+import { LinkRel, DocumentumTypeValu } from '../../models/link.model';
+import { CourseState } from '../../models/courseActivity.model';
 import * as moment from 'moment';
 
 @Injectable()
@@ -142,6 +142,7 @@ export class CommonService {
             isShowToolTip: !resultEndTime,
         };
     }
+
     /**
      *  getTotalTime
      *  @param {Object} courseActivitie
@@ -155,6 +156,7 @@ export class CommonService {
             'netTimeLimit': netTimeLimit,
         };
     }
+
     /**
      *  getActivityStatus
      *  @param {Object} courseActivitie
@@ -176,6 +178,7 @@ export class CommonService {
             'icon': ICON_NAME[status]
         };
     }
+
     /**
      *  getRecommendedStatus
      *  @param {Object} invitation
@@ -197,6 +200,7 @@ export class CommonService {
             'icon': ICON_NAME[severity]
         };
     }
+
     /**
      *  getLinks
      *  @param {Object} courseActivitie
@@ -246,6 +250,7 @@ export class CommonService {
         }
         return linkData;
     }
+
     /**
      *  getRegistrationDate
      *  @param {Object} courseRegistration
@@ -258,6 +263,7 @@ export class CommonService {
         }
         return registrationDate ? this.formatDay(registrationDate) : this.translate('txt_not_specified');
     }
+
     /**
      *  getSuggestedTime
      *  @param {Object} courseActivitie
@@ -267,6 +273,7 @@ export class CommonService {
         const suggestedTime = courseActivitie.target.requirement.suggestedTime;
         return suggestedTime ? suggestedTime : 0;
     }
+
     /**
      *  getDescription
      *  @param {Object} courseActivitie
@@ -284,20 +291,29 @@ export class CommonService {
      */
 
     getLaunchButton(courseActivitie: any): any {
+
         const links = courseActivitie.links ? courseActivitie.links : [];
+        const isLinks = links.length;
         const state = courseActivitie.state ? courseActivitie.state : 0;
         const disturbingContent = courseActivitie.target.disturbingContent;
         const isClose = state === CourseState.Closed;
-        const isLinks = links.length;
-        //TODO: befejezni a szürke + warning lejárt indítást
-        /*if (isLinks) {
-            console.log('courseActivitie: ', courseActivitie);
-        }*/
+        // const disturbingContent = false;
+        // const isClose = true;
+
+        if (isLinks) {
+            // console.log('link', links);
+            // console.log('state: ', state);
+            // console.log('isClose: ', isClose);
+            // console.log('disturbingContent: ', disturbingContent);
+        }
 
         if (isLinks && isClose) {
             // console.log('--- LAUNCH 1 ---');
             if (links[0].rel === 'Launch') {
                 return {
+                    type: 'warning',
+                    href: links[0].href,
+                    target: links[0].target,
                     icon: 'btn-icon fa fa-exclamation-triangle',
                     className: 'launch_warning'
                 };
@@ -310,15 +326,20 @@ export class CommonService {
                 if (!disturbingContent) {
                     // console.log('--- LAUNCH 2/1 ---');
                     return {
+                        type: 'origin',
+                        href: links[0].href,
+                        target: links[0].target,
                         className: 'launch_origin'
                     };
                 }
                 if (disturbingContent) {
                     // console.log('--- LAUNCH 2/2 ---');
                     return {
+                        type: 'disturbing',
+                        href: links[0].href,
+                        target: links[0].target,
                         icon: 'btn-icon fa fa-exclamation-triangle',
                         className: 'launch_origin'
-                        // className: 'launch_warning'
                     };
                 }
             }

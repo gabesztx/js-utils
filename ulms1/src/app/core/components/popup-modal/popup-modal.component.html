@@ -1,3 +1,42 @@
+<!-- launchWarning modal -->
+<ng-template #launchWarning>
+    <div class="modalContent">
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">{{'lbl_warning' | translate}}</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            {{'tt_launch_warning' | translate}}
+        </div>
+        <div class="modal-button-content">
+            <button class="btn rejectBtn" (click)="closeModal()">{{'btn_cancel' | translate}}</button>
+            <button class="btn acceptBtn" (click)="accpectModal()">{{'lbl_launch_content' | translate}}</button>
+        </div>
+    </div>
+</ng-template>
+
+
+<!-- disturbingContent modal -->
+<ng-template #disturbingContent>
+    <div class="modalContent">
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">{{'lbl_warning' | translate}}</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            {{'msg_disturbing_content' | translate}}
+        </div>
+        <div class="modal-button-content">
+            <button class="btn rejectBtn" (click)="closeModal()">{{'btn_cancel' | translate}}</button>
+            <button class="btn acceptBtn" (click)="accpectModal()">{{'lbl_launch_content' | translate}}</button>
+        </div>
+    </div>
+</ng-template>
+
 <!-- invitationReject modal -->
 <ng-template #invitationReject>
     <div class="modalContent">
