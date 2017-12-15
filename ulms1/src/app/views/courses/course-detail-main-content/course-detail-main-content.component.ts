@@ -1,5 +1,6 @@
 import { Component, OnChanges, OnDestroy, OnInit, Input } from '@angular/core';
 import { CommonService } from '../../../services/common/common.service';
+import { UserService } from '../../../services/user.service';
 import { CourseDetailViewModel } from '../../../models/views/course-detail-view.model';
 
 @Component({
@@ -13,17 +14,16 @@ export class CourseDetailMainContentComponent implements OnChanges {
     @Input() courseDetail: any;
     currentItemData: any;
 
-    constructor(private commonService: CommonService) {}
+    constructor(private commonService: CommonService, private userService: UserService) {}
 
     ngOnChanges() {
         this.currentItemData = this.transFormViewObject(this.courseDetail);
     }
 
     transFormViewObject(itemData: any) {
-
+        const isLTI = this.userService.getUserData().contextLogin;
         const courseDetailView: Array<CourseDetailViewModel> = [];
         const course = itemData;
-
         const courseActivities = course.courseActivities;
         const courseRegistration = course.courseRegistration;
 
@@ -32,9 +32,13 @@ export class CourseDetailMainContentComponent implements OnChanges {
                 const courseActivitie = item;
                 const grossTimeLimit = courseActivitie.target.requirement.grossTimeLimit;
                 const resultEndDate = courseActivitie.target.requirement.resultEndDate;
+
+                const courseTitle = isLTI ? courseRegistration.externalContextTitle : this.commonService.getTitle(course);
+                const courseLabel = isLTI ? courseRegistration.externalContextLabel : this.commonService.getLabel(course);
+
                 courseDetailView.push({
-                    title: this.commonService.getTitle(course), // Title
-                    label: this.commonService.getLabel(course), // Label
+                    title: courseTitle, // Title
+                    label: courseLabel, // Label
                     providerName: this.commonService.getProviderName(course), // Label Provider name
                     imageUrl: this.commonService.getImageUrl(course), // Image
                     status: this.commonService.getActivityStatus(courseActivitie), // Status button

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { RequestOptions, Http } from '@angular/http';
+import { Http } from '@angular/http';
 import { HttpProxy } from './base/http-proxy.class';
 import { RuntimeConfigService } from './runtime-config.service';
 import { Observable } from 'rxjs/Observable';

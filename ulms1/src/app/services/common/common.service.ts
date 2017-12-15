@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { L10nService } from '../l10n.service';
-import { LinkRel, DocumentumTypeValu } from '../../models/link.model';
-import { CourseState } from '../../models/courseActivity.model';
+import {Injectable} from '@angular/core';
+import {L10nService} from '../l10n.service';
+import {LinkRel, DocumentumTypeValu} from '../../models/link.model';
+import {CourseState} from '../../models/courseActivity.model';
 import * as moment from 'moment';
 
 @Injectable()
@@ -700,6 +700,19 @@ export class CommonService {
      */
     formatDay(date): string {
         return moment(date).format('YYYY.MM.DD.');
+    }
+
+    /**
+     *  dateValue
+     *  @param {string} date
+     *  @return {string}
+     */
+    dateValue(date): any {
+        if (date) {
+            return moment.utc(date).toDate().valueOf();
+        } else {
+            return null;
+        }
     }
 
 

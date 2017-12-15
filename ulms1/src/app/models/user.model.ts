@@ -23,6 +23,12 @@ export enum TwoFactorAuthenticationStatus {
     Set
 }
 
+export enum PreferencesApiKey {
+    api_InvitedCourses = 'api_InvitedCourses',
+    api_UserOptionalCourseList = 'api_UserOptionalCourseList',
+    api_CourseFeeds = 'api_CourseFeeds',
+    api_UserFeeds = 'api_UserFeeds'
+}
 export interface User extends UserShallow {
     passowrd: string;
     redirectOnNextLogon: string;

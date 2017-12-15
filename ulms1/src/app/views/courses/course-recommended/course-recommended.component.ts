@@ -26,6 +26,7 @@ export class CourseRecommendedComponent implements OnChanges {
     constructor(private commonService: CommonService,
                 private router: Router,
                 private modalHandlerService: ModalHandlerService,
+                // private preferencesService: PreferencesService,
                 private courseDetailService: CourseDetailService) {
 
         this.popUpModal = this.modalHandlerService.getPopUpHandlerScope();
@@ -38,7 +39,7 @@ export class CourseRecommendedComponent implements OnChanges {
 
     dropDownClick(linkData: any) {
         const rejectLink = linkData.href;
-        this.popUpModal.openModal('invitationReject',() => {
+        this.popUpModal.openModal('invitationReject', () => {
             window.location.href = rejectLink;
         });
     }

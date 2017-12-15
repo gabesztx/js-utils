@@ -41,7 +41,6 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
         this.popUpModal = this.modalHandlerService.getPopUpHandlerScope();
         this.paramsObs = this.route.params.subscribe(params => {
             this.urlId = params.courseId;
-            // console.log(this.route.snapshot.data.responseData);
             this.courseDetail = this.route.snapshot.data.responseData.courseDetail;
             this.courseFeeds = this.route.snapshot.data.responseData.courseFeeds;
             this.courseDetailState = this.courseDetail.courseState;
@@ -54,8 +53,7 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
         });
     }
 
-    ngOnInit() {
-    }
+    ngOnInit() {}
 
     /**
      * Course detail nav tab property
@@ -69,7 +67,6 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
             this.isCourseDetailMainContent = true;
             this.isContentDetailTabShow = true;
             this.courseDetailModalHandler();
-            // this.navigateList('content');
         } else if (this.courseDetailState >= 0 && this.courseDetailState <= 2 || this.courseDetailState == null) {
             // console.log('STATE 2');
             this.isShowTab = false;
@@ -82,7 +79,6 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
             this.isCourseDetailMainInfo = true;
             this.isContentDetailTabShow = false;
             this.courseDetailModalHandler();
-            // this.navigateList('info');
         }
         this.navigationTabView();
     }
@@ -104,10 +100,7 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
         }
         // add information tab
         this.navTabData.push(navTabDefaultData.info);
-
         // add feed tab
-        // console.log('courseFeeds---------', this.courseFeeds);
-        // console.log('courseFeeds length', this.courseFeeds.length);
         if (this.courseFeeds.length) {
             this.navTabData.push(navTabDefaultData.feed);
         }

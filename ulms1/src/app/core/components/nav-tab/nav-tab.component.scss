@@ -43,6 +43,7 @@ $paddings: 12px;
         padding: $paddings 0;
         border-radius: 2px;
         .tabItem {
+            position: relative;
             display: inline-block;
             padding: 0 4px;
             &:focus {
@@ -64,6 +65,19 @@ $paddings: 12px;
                 transition: background-color $animationDuration $animationEase;
                 -webkit-transition: background-color $animationDuration $animationEase;
 
+            }
+            .countValueContent{
+                position: absolute;
+                font-size: 11px;
+                border-radius: 2px;
+                font-weight: bold;
+                top: -10px;
+                right: 0;
+                .countValue{
+                    color: white;
+                    padding: 1px 3px;
+                    background-color: #E9451F;
+                }
             }
         }
         .active {

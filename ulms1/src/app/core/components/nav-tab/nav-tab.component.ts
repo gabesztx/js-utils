@@ -21,8 +21,6 @@ export class NavTabComponent implements OnInit, OnChanges {
             }
         });
         this.isNavTabShow = !!itemNum;
-        // csak akkor aktív ha minimum 2 letöltési link van (ez nem biztos hogy így jó lesz)
     }
-
     ngOnInit() {}
 }

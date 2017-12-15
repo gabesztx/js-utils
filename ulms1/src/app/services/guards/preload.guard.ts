@@ -8,10 +8,13 @@ import 'rxjs/add/operator/map';
 // Internal imports
 import { L10nService } from '../l10n.service';
 import { UserService } from '../user.service';
+import { PreferencesService } from '../preferences.service';
 
 @Injectable()
 export class PreloadGuard implements CanActivate {
-    constructor (private l10n: L10nService, private user: UserService) { }
+    constructor (private l10n: L10nService,
+                 private preferences: PreferencesService,
+                 private user: UserService) { }
 
     canActivate(
         next: ActivatedRouteSnapshot,
@@ -21,9 +24,9 @@ export class PreloadGuard implements CanActivate {
     }
     public loadResources(): Observable<boolean> | boolean {
         return Observable.of(
-            // Register observable preload tasks here.
             this.l10n.init(),
-            this.user.getUser()
+            this.user.getUser(),
+            this.preferences.getPreferences(),
         ).combineAll().map((results: Array<boolean>) => {
             return results.filter(result => result === false).length === 0;
         });

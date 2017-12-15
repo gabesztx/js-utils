@@ -8,6 +8,8 @@ import { RuntimeConfigService } from './runtime-config.service';
 import { UserService } from './user.service';
 import { PreloadGuard } from './guards/preload.guard';
 
+/* Preferences */
+import { PreferencesService } from './preferences.service';
 
 /* Course List Api Loader */
 import { CourseListApiLoaderService } from './course-list-api-loader.service';
@@ -83,6 +85,7 @@ import { CourseCaniactiveQuard } from './guards/course-caniactive.quard';
         RuntimeConfigService,
         UserService,
         PreloadGuard,
+        PreferencesService,
 
         CoursesRoutingGuard,
         CoursesDetailRoutingGuard,

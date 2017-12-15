@@ -27,8 +27,6 @@ import { environment } from '../environments/environment';
         BrowserAnimationsModule,
         RouterModule.forRoot(routes),
         ModalModule.forRoot(),
-
-
         ServicesModule,
         CoreModule
     ],

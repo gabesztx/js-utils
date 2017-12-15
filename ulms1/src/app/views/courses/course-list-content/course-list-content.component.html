@@ -2,14 +2,8 @@
     <div class="row">
         <div class="nx-content">
             <ulms-nav-tab
-                [navData]="[
-                {'label': 'lbl_active_courses_short', 'urlPath':'active' },
-                {'label': 'lbl_recommended_courses_short', 'urlPath':'recommended' },
-                {'label': 'lbl_optional', 'urlPath':'optional' },
-                {'label': 'lbl_inactive_courses_short', 'urlPath':'upcoming' },
-                {'label': 'lbl_closed_courses', 'urlPath':'closed' }]"
+                [navData]="navData"
             ></ulms-nav-tab>
-
             <router-outlet></router-outlet>
         </div>
     </div>

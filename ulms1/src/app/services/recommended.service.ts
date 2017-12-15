@@ -1,14 +1,17 @@
-import {Injectable} from '@angular/core';
-import {RequestOptions, Http} from '@angular/http';
-import {Observable} from 'rxjs/Observable';
+import { Injectable } from '@angular/core';
+import { RequestOptions, Http } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/observable/of';
 
-import {RestApiResponse} from './base/http.class';
-import {HttpProxy} from './base/http-proxy.class';
-import {SearchModel} from '../models/search.model';
-import {RuntimeConfigService} from './runtime-config.service';
-import {CourseListApiLoaderService} from './course-list-api-loader.service';
+import { RestApiResponse } from './base/http.class';
+import { HttpProxy } from './base/http-proxy.class';
+import { SearchModel } from '../models/search.model';
+import { RuntimeConfigService } from './runtime-config.service';
+import { CourseListApiLoaderService } from './course-list-api-loader.service';
+
+import { PreferencesApiKey } from '../models/user.model';
+import { PreferencesService } from './preferences.service';
 
 let __instance__: RecommendedService = null;
 
@@ -16,14 +19,17 @@ let __instance__: RecommendedService = null;
 export class RecommendedService extends HttpProxy {
     private apiUrl: string;
     public courseListDataProvoider: any;
-    public apiIndex = 'userinvitations';
+    public apiKey = 'userinvitations';
 
-    constructor(protected http: Http, private config: RuntimeConfigService, private courseListApiLoaderService: CourseListApiLoaderService) {
+    constructor(protected http: Http,
+                private config: RuntimeConfigService,
+                private preferences: PreferencesService,
+                private courseListApiLoaderService: CourseListApiLoaderService) {
         super();
         this.courseListDataProvoider = this.courseListApiLoaderService.courseListDataProvoider;
         if (__instance__ !== this) {
 
-            this.apiUrl = `${this.config.baseApiUrl}${this.apiIndex}`;
+            this.apiUrl = `${this.config.baseApiUrl}${this.apiKey}`;
             __instance__ = this;
         }
 
@@ -37,12 +43,13 @@ export class RecommendedService extends HttpProxy {
                 search: search.getURLSearchParameters()
             });
         }
+
         const page = search.page;
+
         if (this.courseListDataProvoider[courseState].hasOwnProperty(page)) {
-            console.log('MÁR VAN RECOMMENDED LISTA VISSZAADOM AZ ELMENTETTET!');
             return this.courseListDataProvoider[courseState][page];
         }
-        console.log('RECOMMENDED LISTA LEKÉRÉS');
+
         return this.get(`${this.apiUrl}`, opts)
             .map((result: any) => {
                 const currentPage = result.currentPage;
@@ -50,11 +57,14 @@ export class RecommendedService extends HttpProxy {
                 const data = {
                     hasNextPage: result.hasNextPage,
                     items: result.items,
+                    //notificationData: result.items,
                     currentPage: currentPage,
                     pageSize: result.pageSize,
                     total: result.total,
                     totalPages: totalPages
                 };
+
+                this.preferences.setCurrentPreference(PreferencesApiKey.api_InvitedCourses, result.items);
                 this.courseListDataProvoider[courseState][currentPage] = data;
                 return data;
             });

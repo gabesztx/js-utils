@@ -16,7 +16,7 @@
                     <div class="collapse nx-navbar-collapse navbar-collapse" id="nx-navbar" *ngIf="isMenuShow">
                         <ul class="nav navbar-nav nx-navbar-nav">
                             <!--Számlázás-->
-                            <li class="nx-header-menu__item">
+                            <li class="nx-header-menu__item" *ngIf="!isLTI">
                                 <a href="javascript:void(0);" class="menu_item_bt">
                                     <span
                                         class="nx-header-menu__item-icon nx-header-menu__item-icon--feeds icon-nx-payment"> </span>
@@ -32,35 +32,45 @@
                                 </a>
                             </li>
                             <!--Hírek-->
-                            <li class="nx-header-menu__item">
+                            <li class="nx-header-menu__item" *ngIf="!isLTI">
                                 <a href="javascript:void(0);" (click)="navigationUrl()" class="menu_item_bt">
                                     <div class="nx-header-menu__item-icon feed-icon icon-nx-feeds"></div>
                                     {{ 'lbl_feed' | translate }}
                                     <span class="nx-count-badge pull-right hidden">
-                                     <span class="nx-count-badge__count"></span>
-                                 </span>
+                                        <span class="nx-count-badge__count"></span>
+                                    </span>
+                                    <span class="countValueContent" *ngIf="notification">
+                                        <span class="countValue">{{notification.length}}</span>
+                                    </span>
                                 </a>
                             </li>
                             <!--Kurzusaim-->
-                            <li class="nx-header-menu__item">
+                            <li class="nx-header-menu__item" *ngIf="!isLTI">
                                 <a href="/courses" class="menu_item_bt">
                                     <span
                                         class="nx-header-menu__item-icon nx-header-menu__item-icon--courses icon-nx-courses"></span>
                                     {{ 'lbl_my_courses' | translate }}
+
                                 </a>
                             </li>
+                            <!-- LTI vissza gomb -->
+                            <li class="nx-header-menu__item ltiBackBtn" *ngIf="isLTI && LTIData">
+                                <a [href]="LTIData.returnUrl" class="menu_item_bt">
+                                    <span class="glyphicon glyphicon-chevron-left chevron_icon"></span>
+                                    {{ LTIButtonLabel}}
+                                </a>
+                            </li>
+
                             <!--User-->
                             <li class="nx-dropdown nx-header-menu__item nx-header-menu__item--dropdown dropdown">
-                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"
+                                <a class="dropdown-toggle" [ngClass]="{'hideMenu': isLTI}" data-toggle="dropdown"
                                    aria-haspopup="true" aria-expanded="false">
                                     <span
                                         class="nx-header-menu__item-icon nx-header-menu__item-icon--user icon-nx-user"></span>
-                                    <div class="nx-header-menu__item-label">
-                                        {{userData.name}}
-                                    </div>
-                                    <b class="caret"></b>
+                                    <div class="nx-header-menu__item-label">{{userData.name}}</div>
+                                    <b class="caret" *ngIf="!isLTI"></b>
                                 </a>
-                                <ul class="nx-dropdown-menu dropdown-menu">
+                                <ul class="nx-dropdown-menu dropdown-menu" *ngIf="!isLTI">
                                     <!--Profile-->
                                     <li class="">
                                         <a [href]="configData.baseUrl + 'profile/index'">
@@ -72,6 +82,23 @@
                                         <a [href]="configData.logoutUrl">
                                             {{ 'btn_logout' | translate }}
                                         </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <!--Nyelvválasztó-->
+                            <li class="nx-dropdown languageDropDown" *ngIf="isLTI">
+                                <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                                   aria-expanded="false">
+                                    <div class="nx-header-menu__item-label">{{localeCodesMap[0]}}</div>
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="nx-dropdown-menu dropdown-menu">
+                                    <li class="">
+                                        <a [href]="">{{localeCodesMap[0]}}</a>
+                                    </li>
+                                    <li class="">
+                                        <a [href]="">{{localeCodesMap[1]}}</a>
                                     </li>
                                 </ul>
                             </li>

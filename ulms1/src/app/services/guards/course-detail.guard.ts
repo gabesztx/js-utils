@@ -10,7 +10,6 @@ export class CourseDetailGuard implements Resolve<any> {
     constructor(private courseDetailService: CourseDetailService) {}
     resolve(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const pageId = next.paramMap.get('courseId');
-        // console.log('RESOLVE CourseDetailGuard ---- 1');
         return this.courseDetailService.getListData(pageId);
     }
 }

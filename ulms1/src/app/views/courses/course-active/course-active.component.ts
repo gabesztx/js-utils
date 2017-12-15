@@ -6,7 +6,7 @@ import {CourseActiveViewModel} from '../../../models/views/course-active-view.mo
 import {CommonService} from '../../../services/common/common.service';
 import {CourseDetailService} from '../../../services/course-detail.service';
 import {slideInOutKeyFrameAnimation} from '../../../animations/course-animation';
-
+import * as moment from 'moment';
 @Component({
     selector: 'ulms-course-active',
     templateUrl: './course-active.component.html',

@@ -65,7 +65,7 @@ const clouseGuard = (<any>window).env === 'serv' ? ClosedGuard : ClosedGuard_;
 const courseDetailGuard = (<any>window).env === 'serv' ? CourseDetailGuard : CourseDetailGuard_;
 const courseDetailListGuard = (<any>window).env === 'serv' ? CourseDetailListGuard : CourseDetailListGuard_;
 const courseFeedsGuard = (<any>window).env === 'serv' ? CourseFeedsGuard : CourseFeedsGuard;
-const courseListApiLoaderGuard = (<any>window).env === 'serv' ? CourseDetailListGuard : CourseDetailListGuard_;
+// const courseListApiLoaderGuard = (<any>window).env === 'serv' ? CourseDetailListGuard : CourseDetailListGuard_;
 
 export const routes: Routes = [{
     path: '',
@@ -87,6 +87,7 @@ export const routes: Routes = [{
         coursesGuard: coursesGuard,
         recommendedGuard: recommendedGuard,
         optionalGuard: optionalGuard,
+        feeds: courseFeedsGuard,
         //upcomingGuard: upcomingGuard,
         //clouseGuard: clouseGuard
     },

@@ -10,6 +10,9 @@ import {SearchModel} from '../models/search.model';
 import {RuntimeConfigService} from './runtime-config.service';
 import {CourseListApiLoaderService} from './course-list-api-loader.service';
 
+import {PreferencesApiKey} from '../models/user.model';
+import {PreferencesService} from './preferences.service';
+
 let __instance__: OptionalService = null;
 
 @Injectable()
@@ -18,7 +21,11 @@ export class OptionalService extends HttpProxy {
     public courseListDataProvoider: any;
     public apiIndex = 'useroptionalcourselist';
 
-    constructor(protected http: Http, private config: RuntimeConfigService, private courseListApiLoaderService: CourseListApiLoaderService) {
+    constructor(
+        protected http: Http,
+        private config: RuntimeConfigService,
+        private preferences: PreferencesService,
+        private courseListApiLoaderService: CourseListApiLoaderService) {
         super();
         this.courseListDataProvoider = this.courseListApiLoaderService.courseListDataProvoider;
         if (__instance__ !== this) {
@@ -38,10 +45,9 @@ export class OptionalService extends HttpProxy {
         }
         const page = search.page;
         if (this.courseListDataProvoider[courseState].hasOwnProperty(page)) {
-            console.log('MÁR VAN OPTINAL LISTA VISSZAADOM AZ ELMENTETTET!');
             return this.courseListDataProvoider[courseState][page];
         }
-        console.log('OPTINAL LISTA LEKÉRÉS');
+
         return this.get(`${this.apiUrl}`, opts)
             .map((result: any) => {
                 const currentPage = result.currentPage;
@@ -54,6 +60,8 @@ export class OptionalService extends HttpProxy {
                     total: result.total,
                     totalPages: totalPages
                 };
+
+                this.preferences.setCurrentPreference(PreferencesApiKey.api_UserOptionalCourseList, result.items);
                 this.courseListDataProvoider[courseState][currentPage] = data;
                 return data;
             });

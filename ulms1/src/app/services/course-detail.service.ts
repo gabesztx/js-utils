@@ -14,6 +14,7 @@ import {RuntimeConfigService} from './runtime-config.service';
 export class CourseDetailService extends HttpProxy {
     public courseDetailData = {courseDetail: null, courseFeeds: null};
     public courseDetailId: any;
+    public courseDetailDataSession: any;
     public routeObs: any;
 
     constructor(protected http: Http, private config: RuntimeConfigService, private route: ActivatedRoute, private router: Router) {
@@ -87,6 +88,10 @@ export class CourseDetailService extends HttpProxy {
             // console.log('------- Már van - nincs kérés -------');
             return Observable.of(this.courseDetailData);
         }
+    }
+
+    getLTIListData(): any {
+        return this.courseDetailData.courseDetail ? this.courseDetailData.courseDetail.courseRegistration : null;
     }
 
 
