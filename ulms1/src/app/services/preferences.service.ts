@@ -18,13 +18,13 @@ export class PreferencesService extends HttpProxy {
     public __courseListContentInstance__: any;
     public preferencesData = {
         user: {
-            [PreferencesApiKey.api_InvitedCourses]: {dateState: 0},
-            [PreferencesApiKey.api_UserOptionalCourseList]: {dateState: 0},
-            [PreferencesApiKey.api_CourseFeeds]: {dateState: 0},
-            [PreferencesApiKey.api_UserFeeds]: {dateState: 0},
+            [PreferencesApiKey.api_InvitedCourses]: { dateState: 0 },
+            [PreferencesApiKey.api_UserOptionalCourseList]: { dateState: 0 },
+            [PreferencesApiKey.api_CourseFeeds]: { dateState: 0 },
+            [PreferencesApiKey.api_UserFeeds]: { dateState: 0 },
         }
     };
-    public preferencesPostData:any;
+    public preferencesPostData: any;
 
     constructor(protected http: Http, private config: RuntimeConfigService, private commonService: CommonService) {
         super();
@@ -43,19 +43,20 @@ export class PreferencesService extends HttpProxy {
                 return this.preferencesData;
             });
     }
+
     postPreferencesData(apikey: string) {
         const newDateState = this.getPreferencesData(apikey);
-        if(newDateState.length){
+        if (newDateState && newDateState.length) {
             console.log('postPreferencesData POST');
             this.preferencesPostData.user[apikey].dateState = newDateState[0];
             this.post(this.apiUrl, this.preferencesPostData)
                 .map(value => value)
                 .subscribe(
                     (result) => {
-                        console.log('RESULT OK', result);
+                        console.log('postPreferencesData POST Success', result);
                         if (apikey === (PreferencesApiKey.api_InvitedCourses || PreferencesApiKey.api_UserOptionalCourseList)) {
                             this.__courseListContentInstance__.updateNotification(apikey);
-                        } else if (apikey === PreferencesApiKey.api_UserFeeds ) {
+                        } else if (apikey === PreferencesApiKey.api_UserFeeds) {
                             this.__headerInstance__.setNotification([]);
                         }
                     },
