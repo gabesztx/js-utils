@@ -15,6 +15,7 @@ let __instance__: PreferencesService = null;
 export class PreferencesService extends HttpProxy {
     public apiUrl: any;
     public __headerInstance__: any;
+    public __courseListContentInstance__: any;
     public preferencesData = {
         user: {
             [PreferencesApiKey.api_InvitedCourses]: {dateState: 0},
@@ -23,6 +24,7 @@ export class PreferencesService extends HttpProxy {
             [PreferencesApiKey.api_UserFeeds]: {dateState: 0},
         }
     };
+    public preferencesPostData:any;
 
     constructor(protected http: Http, private config: RuntimeConfigService, private commonService: CommonService) {
         super();
@@ -36,26 +38,40 @@ export class PreferencesService extends HttpProxy {
     getPreferences(): Observable<boolean> | any {
         return this.get(`${this.apiUrl}`)
             .map((result: any) => {
+                this.preferencesPostData = JSON.parse(result);
                 this.preferencesData = JSON.parse(result);
-                // console.log('this.preferencesData', this.preferencesData)
                 return this.preferencesData;
             });
+    }
+    postPreferencesData(apikey: string) {
+        const newDateState = this.getPreferencesData(apikey);
+        if(newDateState.length){
+            console.log('postPreferencesData POST');
+            this.preferencesPostData.user[apikey].dateState = newDateState[0];
+            this.post(this.apiUrl, this.preferencesPostData)
+                .map(value => value)
+                .subscribe(
+                    (result) => {
+                        console.log('RESULT OK', result);
+                        if (apikey === (PreferencesApiKey.api_InvitedCourses || PreferencesApiKey.api_UserOptionalCourseList)) {
+                            this.__courseListContentInstance__.updateNotification(apikey);
+                        } else if (apikey === PreferencesApiKey.api_UserFeeds ) {
+                            this.__headerInstance__.setNotification([]);
+                        }
+                    },
+                    (error) => error
+                );
+        }
     }
 
     getPreferencesData(apiKey?): any {
         return this.preferencesData.user[apiKey].notification;
     }
 
-    postPreferencesData(apikey: string) {
-        // console.log('postPreferencesData');
-        // console.log(this.preferencesData)
-    }
-
     setCurrentPreference(apikey: string, items: any) {
-        // console.log(this.preferencesData)
         if (this.preferencesData && (items && items.length > 0)) {
-            const dateList = [];
             let keyIndex;
+            const dateList = [];
             const newDateList = [];
             const currentPreferenceData = this.preferencesData.user[apikey];
             const currentPreferenceLastDate = currentPreferenceData.dateState;
@@ -63,13 +79,11 @@ export class PreferencesService extends HttpProxy {
             items.forEach((item, key) => {
                 let date;
                 if (apikey === (PreferencesApiKey.api_UserFeeds)) {
-                    // console.log('api_UserFeeds');
                     date = this.commonService.dateValue(item.creationDate);
                     dateList.push(date);
                 }
                 if (apikey === (PreferencesApiKey.api_InvitedCourses)) {
                     date = this.commonService.dateValue(item.creationDate);
-                    // console.log('api_InvitedCourses');
                     dateList.push(date);
                 }
                 if (apikey === PreferencesApiKey.api_UserOptionalCourseList) {
@@ -84,19 +98,14 @@ export class PreferencesService extends HttpProxy {
 
             keyIndex = newDateList[0];
 
-            const notificationData = dateList.slice(0, keyIndex);
             if (newDateList.length === 0 && dateList.length === 1 && dateList[0] > currentPreferenceLastDate) {
                 keyIndex = 1;
             }
+
             if (apikey === (PreferencesApiKey.api_UserFeeds) && dateList.length > 0) {
-                // console.log('__headerInstance__', this.__headerInstance__);
-                this.__headerInstance__.setNotification(notificationData);
+                this.__headerInstance__.setNotification(dateList.slice(0, keyIndex));
             }
-            currentPreferenceData.notification = notificationData;
-            // console.log('keyIndex', keyIndex);
-            // console.log('dateList', dateList);
-            // console.log('lastDate', currentPreferenceLastDate);
-            // console.log('total', dateList.slice(0, keyIndex));
+            currentPreferenceData.notification = dateList.slice(0, keyIndex);
         }
     }
 }

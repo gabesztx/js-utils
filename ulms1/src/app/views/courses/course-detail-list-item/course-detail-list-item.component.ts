@@ -41,7 +41,7 @@ export class CourseDetailListItemComponent implements OnChanges, OnDestroy {
     }
 
     navigationUrl(item) {
-        console.log('ITEM', item);
+        console.log('navigationUrl', item);
         const url = item.href;
         const target = item.target;
         const type = item.type;
@@ -106,8 +106,6 @@ export class CourseDetailListItemComponent implements OnChanges, OnDestroy {
                     serviceTechnicalProfile: this.commonService.getServiceTechnicalProfile(courseActivitie), // Technikai feltételek
                     grossTimeLimit: grossTimeLimit ? grossTimeLimit : '', // grossTimeLimit
                     resultEndDate: resultEndDate ? this.commonService.formatDay(resultEndDate) : '', // resultEndDate
-                    // providerName: this.commonService.getProviderName(course), // Label Provider name
-                    // imageUrl: this.commonService.getImageUrl(course), // Image,
                 });
             }
         });

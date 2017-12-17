@@ -15,20 +15,26 @@ export class DescriptionComponent implements OnInit {
 
     constructor(private courseResultDetailService: CourseResultDetail) {}
     ngOnInit() {}
+
     textToggle() {
         this.isOpen = !this.isOpen;
     }
+
     getResultDetailActivities(link) {
-        const url = link.href;
-        this.courseResultDetailService.getCourseResultDetail(url).then(
-            (result) => {
-                this.transformCourseResultDetail(result);
-                this.isOpen = !this.isOpen;
-            },
-            (error) => {
-                console.log('Error Promise: ', error);
-            }
-        );
+        if(!this.isOpen){
+            const url = link.href;
+            this.courseResultDetailService.getCourseResultDetail(url).then(
+                (result) => {
+                    if(result){
+                        this.transformCourseResultDetail(result);
+                    }
+                    this.isOpen = true;
+                },
+                error => error
+            );
+        }else{
+            this.isOpen = false;
+        }
     }
 
     transformCourseResultDetail(data) {

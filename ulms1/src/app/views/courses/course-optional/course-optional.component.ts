@@ -4,6 +4,8 @@ import { CommonService } from '../../../services/common/common.service';
 import { RestApiResponse } from '../../../services/base/http.class';
 import { CourseDetailService } from '../../../services/course-detail.service';
 import { ModalHandlerService } from '../../../services/modal-handler.service';
+import { PreferencesService } from '../../../services/preferences.service';
+import { PreferencesApiKey } from '../../../models/user.model';
 
 import { CourseOptionalViewModel } from '../../../models/views/course-optional-view.model';
 import { slideInOutKeyFrameAnimation } from '../../../animations/course-animation';
@@ -26,8 +28,10 @@ export class CourseOptionalComponent implements OnChanges {
     constructor(private commonService: CommonService,
                 private router: Router,
                 private courseDetailService: CourseDetailService,
+                private preferencesService: PreferencesService,
                 private modalHandlerService: ModalHandlerService) {
         this.popUpModal = this.modalHandlerService.getPopUpHandlerScope();
+        this.preferencesService.postPreferencesData(PreferencesApiKey.api_UserOptionalCourseList);
     }
 
     ngOnChanges() {

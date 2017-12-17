@@ -43,6 +43,7 @@ export class CourseListItemComponent implements OnDestroy {
         });
     }
 
+
     ngOnDestroy() {
         this.paramsObservable.unsubscribe();
     }

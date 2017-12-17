@@ -3,6 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {PreferencesService} from '../../../services/preferences.service';
 import {CourseTabIndex} from '../../../services/course-status-mapper.service';
 import {PreferencesApiKey} from '../../../models/user.model';
+import {formArrayNameProvider} from '@angular/forms/src/directives/reactive_directives/form_group_name';
 
 @Component({
     selector: 'ulms-course-list-content',
@@ -12,6 +13,7 @@ import {PreferencesApiKey} from '../../../models/user.model';
 export class CourseListContentComponent implements OnInit {
     public navData = [];
     constructor(private preferencesService: PreferencesService) {
+        this.preferencesService.__courseListContentInstance__ = this;
         this.navData = [
             {
                 label: 'lbl_active_courses_short',
@@ -38,4 +40,12 @@ export class CourseListContentComponent implements OnInit {
         ];
     }
     ngOnInit() {}
+
+    updateNotification(apikey) {
+        if(apikey === PreferencesApiKey.api_InvitedCourses){
+            this.navData[1].notification = [];
+        }else if(apikey === PreferencesApiKey.api_UserOptionalCourseList){
+            this.navData[2].notification = [];
+        }
+    }
 }

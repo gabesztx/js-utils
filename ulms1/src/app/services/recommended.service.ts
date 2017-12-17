@@ -52,6 +52,7 @@ export class RecommendedService extends HttpProxy {
 
         return this.get(`${this.apiUrl}`, opts)
             .map((result: any) => {
+
                 const currentPage = result.currentPage;
                 const totalPages = result.totalPages;
                 const data = {

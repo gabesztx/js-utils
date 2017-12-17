@@ -1,7 +1,9 @@
-import { Component, OnChanges, Input } from '@angular/core';
+import { Component, OnChanges,OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonService } from '../../../services/common/common.service';
 import { CourseDetailService } from '../../../services/course-detail.service';
+import { PreferencesService } from '../../../services/preferences.service';
+import { PreferencesApiKey } from '../../../models/user.model';
 import { ModalHandlerService } from '../../../services/modal-handler.service';
 import { slideInOutKeyFrameAnimation } from '../../../animations/course-animation';
 import { RestApiResponse } from '../../../services/base/http.class';
@@ -26,12 +28,12 @@ export class CourseRecommendedComponent implements OnChanges {
     constructor(private commonService: CommonService,
                 private router: Router,
                 private modalHandlerService: ModalHandlerService,
-                // private preferencesService: PreferencesService,
+                 private preferencesService: PreferencesService,
                 private courseDetailService: CourseDetailService) {
 
         this.popUpModal = this.modalHandlerService.getPopUpHandlerScope();
+        this.preferencesService.postPreferencesData(PreferencesApiKey.api_InvitedCourses);
     }
-
 
     navigationUrl(id: string) {
         this.courseDetailService.courseDetailRouting(id);

@@ -1,6 +1,8 @@
 import {Component, OnChanges, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {CommonService} from '../../../services/common/common.service';
+import { PreferencesService } from '../../../services/preferences.service';
+import { PreferencesApiKey } from '../../../models/user.model';
 import {slideOutInKeyFrameAnimation} from '../../../animations/course-animation';
 
 @Component({
@@ -18,12 +20,14 @@ export class CourseFeedComponent implements OnInit, OnChanges, OnDestroy {
     public currentItemData = [];
     public isMainFeeds = false;
 
-    constructor(private route: ActivatedRoute, private commonService: CommonService) {
+    constructor(private route: ActivatedRoute, private commonService: CommonService, private preferencesService: PreferencesService,) {
+        this.isMainFeeds = this.route.snapshot.data.class === 'main';
+        if(this.isMainFeeds){
+            this.preferencesService.postPreferencesData(PreferencesApiKey.api_UserFeeds);
+        }
         this.paramsObs = this.route.params.subscribe(params => {
-            this.isMainFeeds = this.route.snapshot.data.class === 'main';
             this.itemData = this.route.snapshot.data.responseData.courseFeeds;
             this.currentItemData = this.transFormViewObject(this.itemData);
-            // this.currentItemData = [];
             if (this.currentItemData.length > 0) {
                 clearInterval(this.currentItemInterval);
                 this.updatePageItem(this.currentItemData);
@@ -51,11 +55,9 @@ export class CourseFeedComponent implements OnInit, OnChanges, OnDestroy {
         const feeds = itemData;
 
         feeds.forEach((item) => {
-            // console.log(item)
             courseDetailFeeds.push({
                 title: item.title ? item.title : '', // Title
                 label: item.course ? item.course.title : '', // Label
-                // label: item.course ? item.course.title : 'lbl_system_message', // Label
                 creationDate: this.commonService.formatDay(item.creationDate), // Date
                 description: item.description, // Description
             });

@@ -13,14 +13,17 @@ export class CourseResultDetail extends HttpProxy {
     }
 
     getCourseResultDetail(url: string): Promise<any> {
+
         const isServer = (<any>window).env === 'serv';
         return new Promise((resolve, reject) => {
             if (!isServer) {
                 resolve(data1);
-                // console.log('getCourseResultDetail', url);
             } else {
-                // this.get(url).map(result => {});
+                this.get(url)
+                    .map(result => result)
+                    .subscribe(res => resolve(res), error => reject(error));
             }
+
         });
     }
 

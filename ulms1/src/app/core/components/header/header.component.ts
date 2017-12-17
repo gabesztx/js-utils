@@ -5,6 +5,7 @@ import {UserStatus} from '../../../models/user.model';
 import {RuntimeConfigService} from '../../../services/runtime-config.service';
 import {L10nService} from '../../../services/l10n.service';
 import {UserService} from '../../../services/user.service';
+import {PreloadGuard} from '../../../services/guards/preload.guard';
 import {CourseDetailService} from '../../../services/course-detail.service';
 import {PreferencesService} from '../../../services/preferences.service';
 
@@ -32,8 +33,12 @@ export class HeaderComponent implements OnInit {
                 private l10nService: L10nService,
                 private courseDetailService: CourseDetailService,
                 private preferencesService: PreferencesService,
+                private preloadGuard: PreloadGuard,
                 private userService: UserService) {
+
         this.preferencesService.__headerInstance__ = this;
+        this.preloadGuard.__headerInstance__ = this;
+
         this.configData = this.config;
         this.currentLocale = this.l10nService.getLocale();
         this.localeCodes = this.config.localeCodes.split(',');
@@ -41,8 +46,7 @@ export class HeaderComponent implements OnInit {
         this.localeCodes.forEach((code) => {
             this.localeCodesMap.push(code.substr(0, 2).toUpperCase());
         });
-        // console.log('HeaderComponent');
-        this.getUser();
+         //console.log('HeaderComponent');
     }
 
     ngOnInit() {}
@@ -68,37 +72,15 @@ export class HeaderComponent implements OnInit {
         }, 250);
     }
 
-    getUser() {
-        setTimeout(() => {
-            if (this.userService.getUserData() && this.l10nService.getL10Data()) {
-                this.userData = this.userService.getUserData();
-                this.isUserAdmin = this.userData.role === UserStatus.SysAdmin;
-                this.isMenuShow = true;
-                this.isLTI = !!this.userData.contextLogin;
-                if (this.isLTI) {
-                    this.getLTIData();
-                }
-                return;
-            } else {
-                this.getUser();
-            }
-        }, 250);
-    }
+    setUserData(userData: any) {
+        this.userData = userData;
+        this.isUserAdmin = this.userData.role === UserStatus.SysAdmin;
+        this.isMenuShow = true;
+        this.isLTI = !!this.userData.contextLogin;
+        if (this.isLTI) {
+            this.getLTIData();
+        }
 
-    /*public onHidden(): void {
-        console.log('Dropdown is hidden');
     }
-
-    public onShown(): void {
-        console.log('Dropdown is shown');
-    }
-
-    public isOpenChange(): void {
-        console.log('Dropdown state is changed');
-    }
-
-    public setLanguage(lang: string): void {
-        console.log('Ez most szettelte a lengvidzset ' + lang + '-ra!');
-    }*/
 
 }
