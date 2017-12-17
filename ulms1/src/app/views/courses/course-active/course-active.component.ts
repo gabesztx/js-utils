@@ -6,7 +6,7 @@ import {CourseActiveViewModel} from '../../../models/views/course-active-view.mo
 import {CommonService} from '../../../services/common/common.service';
 import {CourseDetailService} from '../../../services/course-detail.service';
 import {slideInOutKeyFrameAnimation} from '../../../animations/course-animation';
-import * as moment from 'moment';
+
 @Component({
     selector: 'ulms-course-active',
     templateUrl: './course-active.component.html',
@@ -45,8 +45,8 @@ export class CourseActiveComponent implements OnChanges {
     }
 
     navigationUrl(id: string) {
-        // this.courseDetailService.courseDetailRouting(id);
-        this.router.navigate(['courses', id, 'content']);
+        this.courseDetailService.courseDetailRouting(id);
+        // this.router.navigate(['courses', id, 'content']);
     }
 
     transFormViewObject(itemData: RestApiResponse<any>) {
