@@ -82,6 +82,7 @@ $paddings: 12px;
         }
         .active {
             .tabBtn {
+
                 cursor: default;
                 background-color: #fff;
                 color: #0497bb;
@@ -104,11 +105,11 @@ $paddings: 12px;
     }
     @media(max-width: $sm-mobil) {
         .navTabContent {
-
             .tabItem {
                 padding: 0;
                 .tabBtn {
-                    //padding: 5px $paddings $paddings $paddings;
+                    margin-left: 5px;
+                    padding: 5px 8px 12px 8px;
                     font-size: 12px;
                 }
             }
@@ -120,7 +121,7 @@ $paddings: 12px;
             .tabItem {
                 padding: 0;
                 .tabBtn {
-                    padding: 10px $paddings / 2 $paddings $paddings / 2;
+                    padding: 5px 8px 12px 8px;
                     font-size: 11px;
                 }
             }

@@ -10,7 +10,6 @@
         vertical-align: middle;
         text-align: right;
         width: 75px;
-        //background-color: blue;
     }
     .statusLineContent {
         position: relative;
@@ -18,7 +17,6 @@
         vertical-align: middle;
         width: 100px;
         height: 10px;
-        //background-color: red;
         border: 1px solid #999;;
         .statusLine {
             width: 0;
@@ -35,8 +33,11 @@
         }
     }
     @media(max-width: $sm-min-width) {
+        .statusLineLabel {
+            width: inherit;
+        }
         .statusLineContent {
-            width: 70px;
+            width: 150px;
         }
     }
     @media(max-width: $sm-mobil-ios) {

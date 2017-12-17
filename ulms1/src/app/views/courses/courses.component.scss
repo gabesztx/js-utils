@@ -6,7 +6,7 @@
     margin-bottom: 20px;
     border: 3px solid #dedede;
     border-radius: 2px;
-    &.courseDetailMainInfo{
+    &.courseDetailMainInfo {
         border-top: 0;
         border-right: 0;
         border-left: 0;
@@ -56,7 +56,6 @@
                     color: #0497bb;
                     margin-bottom: 5px;
 
-
                 }
                 .courseLabelContent {
                     text-overflow: ellipsis;
@@ -71,7 +70,6 @@
                 }
 
             }
-
 
             @media(max-width: $md-min-width) {
                 .courseTitleContent {
@@ -96,35 +94,56 @@
                 }
             }
             .courseResultWrapper {
-                display: inline-block;
                 padding-top: 10px;
                 &.userInvitation {
                     padding-top: 0;
-                    .userInvitation-icon {
-                    }
                 }
                 .courseResultList {
                     display: inline-block;
                     vertical-align: top;
                     &:nth-child(1) {
-                        padding-right: 15px;
+
                         .statusTextConent {
                             padding: 3px 0;
                         }
+                        &.active {
+                            padding-right: 30px;
+                        }
+                        &.recommended {
+                            float: left;
+                        }
+
                     }
                     &:nth-child(2) {
                         .statusTextConent {
                             padding: 3px 0;
+                        }
+                        &.active {
+                            .statusTextConent {
+                                padding: 5px 0;
+                            }
+                        }
+                        &.recommended {
+                            float: right;
+                            margin-right: 15px;
                         }
                     }
                 }
                 @media(max-width: $md-min-width) {
                     .courseResultList {
                         padding-top: 0;
-                        &:nth-child(2) {
-                            //padding-right: 10px;
+                        &:nth-child(1) {
+                            &.active {}
                             &.recommended {
+                                float: inherit;
+                            }
+                        }
+                        &:nth-child(2) {
+                            &.active {}
+                            &.recommended {
+                                float: inherit;
                                 display: block;
+                                margin-right: 0;
                                 padding-left: 0;
                             }
                         }
@@ -134,25 +153,46 @@
                     .courseResultList {
                         display: block;
                         &:nth-child(1) {
-                            //padding-bottom: 20px;
+                            &.active {
+                                .statusTextConent {
+                                    padding: 0;
+                                }
+                            }
                             &.recommended {
                                 padding-bottom: 0;
                             }
                         }
                         &:nth-child(2) {
-                            //padding-top: 0;
-                            //padding-left: 0;
+                            &.active {
+                                .statusTextConent {
+                                    padding: 3px 0;
+                                }
+                            }
                             &.recommended {
                                 padding-bottom: 10px;
                             }
 
                         }
-
                     }
                 }
                 @media(max-width: $sm-mobil-ios) {
                     .courseResultList {
-                        //padding-top: 20px;
+                        &:nth-child(1) {
+                            &.active {
+                                .statusTextConent {
+                                    padding: 3px 0;
+                                }
+                            }
+
+                        }
+                        &:nth-child(2) {
+                            .statusTextConent {
+                                &.active {
+                                    //padding: 0;
+                                }
+                                //padding: 5px 0;
+                            }
+                        }
 
                     }
                 }
@@ -161,8 +201,21 @@
             .courseItemImgBlock {
                 display: inline-block;
             }
+            @media(max-width: $md-min-width) {
+                .courseResultWrapper {
+                    padding-top: 0;
+
+                }
+            }
+            @media(max-width: $sm-min-width) {
+                .courseResultWrapper {
+                    padding-top: 15px;
+
+                }
+            }
             @media(max-width: $sm-mobil-ios) {
                 .courseResultWrapper {
+                    //padding-top: 10px;
                     display: block !important;
 
                 }

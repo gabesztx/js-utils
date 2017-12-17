@@ -1,6 +1,6 @@
+@import '../../../../variables.scss';
 .statusTextComponent {
     font-size: 12px;
-    //line-height: 10px;
     .statusTextLabel {
         display: inline-block;
         vertical-align: middle;
@@ -10,6 +10,10 @@
         display: inline-block;
         vertical-align: middle;
         color: #0497bb;
+        max-width: 170px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
 
     }
     &.warning {
@@ -31,5 +35,17 @@
     }
     &.userInvitation{
         font-size: 14px;
+    }
+    @media(max-width: $md-min-width) {
+        .statusTextValue {
+            max-width: 260px;
+
+        }
+    }
+    @media(max-width: $sm-min-width) {
+        .statusTextValue {
+            max-width: inherit;
+
+        }
     }
 }
