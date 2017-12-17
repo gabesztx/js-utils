@@ -27,7 +27,7 @@
                 overflow: inherit;
             }
             &.feed {
-                opacity:0.3;
+                opacity: 0.3;
             }
         }
 
@@ -61,7 +61,6 @@
         .descriptionHideTextValue {
             font-size: 13px;
             padding-top: 20px;
-            //padding-left: 18px;
             display: none;
             &.open {
                 display: block;
@@ -69,14 +68,14 @@
             .descriptionTableContent {
                 padding: 10px 0;
                 .descriptionTableEmpty {
-                    border: 2px solid #dedede;
+                    border: 1px solid #dedede;
                     text-align: center;
                     padding: 10px 0;
                     background: #f4f4f4;
                 }
             }
             .descriptionTechnicalTableContent {
-                border: 2px solid #dedede;
+                border: 1px solid #dedede;
                 background: #f4f4f4;
                 .technicalTitle {
                     color: #0497bb;
@@ -101,6 +100,104 @@
                             font-size: 12px;
                         }
 
+                    }
+                }
+            }
+            $titleWidth:50%;
+            $progressWidth:20%;
+            $resultWidth:20%;
+            $timeWidth:10%;
+            .resultDetailContent {
+                margin: 10px 0;
+                border: 1px solid #dedede;
+                .resultDetailTitleContent {
+                    background: #e8e8e8;
+                    padding: 5px 0 5px 5px;
+                    color: #0497bb;
+                    font-size: 0;
+                    .cont {
+                        font-size: 12px;
+                        font-weight: 600;
+                        display: inline-block;
+                    }
+                    .titleCont {
+                        width: $titleWidth;
+                        //background-color: red;
+                    }
+                    .progressCont {
+                        width: $progressWidth;
+                        //background-color: green;
+                    }
+                    .resultCont {
+                        width: $resultWidth;
+                        //background-color: bisque;
+                    }
+                    .timeCont {
+                        text-align: center;
+                        width: $timeWidth;
+                        //background-color: blue;
+                    }
+                }
+
+                .resultDetailValueContent {
+                    .resultDetailValue {
+                        font-size: 0;
+                        background-color: #f4f4f4;
+                        border-bottom: 1px solid #e6e6e6;
+                        .cont {
+                            padding: 6px 0 3px 3px;
+                            font-size: 12px;
+                            display: inline-block;
+                            vertical-align: middle;
+                        }
+                        .titleCont {
+                            width: $titleWidth;
+                            padding-right: 10px;
+                            &.title {
+                                text-overflow: ellipsis;
+                                overflow: hidden;
+                                white-space: nowrap;
+                            }
+                        }
+
+                        .progressCont {
+                            width: $progressWidth;
+                            position: relative;
+                            padding-right: 10px;
+                        }
+                        .resultCont {
+                            width: $resultWidth;
+                        }
+                        .timeCont {
+                            text-align: center;
+                            width: $timeWidth;
+                        }
+
+                        .progressContent{
+                            width: 100%;
+                            height: 100%;
+                            font-size: 0;
+                            .progressLineCont{
+                                width: 70%;
+                                height: 10px;
+                                display: inline-block;
+                                vertical-align: middle;
+                                border: 1px solid #999;
+                                border-radius: 2px;
+                                .progressLine{
+                                    width: 50%;
+                                    height: 100%;
+                                    background-color: #0497bb;
+                                }
+                            }
+                            .progressValue{
+                                width: 30%;
+                                font-size: 12px;
+                                text-align: center;
+                                display: inline-block;
+                                vertical-align: middle;
+                            }
+                        }
                     }
                 }
             }

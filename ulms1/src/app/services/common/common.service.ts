@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {L10nService} from '../l10n.service';
-import {LinkRel, DocumentumTypeValu} from '../../models/link.model';
-import {CourseState} from '../../models/courseActivity.model';
+import { Injectable } from '@angular/core';
+import { L10nService } from '../l10n.service';
+import { LinkRel, DocumentumTypeValu } from '../../models/link.model';
+import { CourseState } from '../../models/courseActivity.model';
 import * as moment from 'moment';
 
 @Injectable()
@@ -199,6 +199,16 @@ export class CommonService {
             'value': severity,
             'icon': ICON_NAME[severity]
         };
+    }
+
+    /**
+     *  getCurrentLinkRel
+     *  @param {Array} links
+     *  @return {Array} link
+     */
+    getCurrentLinkRel(links?: any, linkRel?: any) {
+        // console.log('LINKS', links);
+        return links.find(item => item.rel === linkRel);
     }
 
     /**

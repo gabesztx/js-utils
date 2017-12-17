@@ -14,6 +14,7 @@ import { MainMenuComponent } from './components/main-menu/main-menu.component';
 import { MenuButtonComponent } from './components/main-menu/menu-button/menu-button.component';
 import { ToLocalTimeSpanPipe } from './pipes/to-local-time-span.pipe';
 import { TooltipPipe } from './pipes/tooltip.pipe';
+import { ToReadableTime } from './pipes/to-readable-time';
 import { ButtonComponent } from './components/button/button.component';
 import { StatusLineComponent } from './components/status-line/status-line.component';
 import { StatusTextComponent } from './components/status-text/status-text.component';
@@ -45,6 +46,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
         MenuButtonComponent,
         ToLocalTimeSpanPipe,
         TooltipPipe,
+        ToReadableTime,
         ButtonComponent,
         StatusLineComponent,
         StatusTextComponent,

@@ -26,7 +26,7 @@ export class PreloadGuard implements CanActivate {
         return Observable.of(
             this.l10n.init(),
             this.user.getUser(),
-            this.preferences.getPreferences(),
+            // this.preferences.getPreferences(),
         ).combineAll().map((results: Array<boolean>) => {
             return results.filter(result => result === false).length === 0;
         });

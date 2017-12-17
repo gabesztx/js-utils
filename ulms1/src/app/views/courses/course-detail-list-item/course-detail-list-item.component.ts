@@ -37,12 +37,15 @@ export class CourseDetailListItemComponent implements OnChanges, OnDestroy {
         });
     }
 
-    ngOnChanges() {}
+    ngOnChanges() {
+    }
 
     navigationUrl(item) {
+        console.log('ITEM', item);
         const url = item.href;
         const target = item.target;
         const type = item.type;
+
         if (type === 'disturbing') {
             this.popUpModal.openModal('disturbingContent', () => {
                 window.open(url, target);
@@ -54,7 +57,7 @@ export class CourseDetailListItemComponent implements OnChanges, OnDestroy {
             });
             return;
         }
-        window.open(url, target);
+        // window.open(url, target);
     }
 
     updatePageItem(currentList: any) {
@@ -82,6 +85,7 @@ export class CourseDetailListItemComponent implements OnChanges, OnDestroy {
                 const grossTimeLimit = courseActivitie.target.requirement.grossTimeLimit;
                 const resultEndDate = courseActivitie.target.requirement.resultEndDate;
                 const target = courseActivitie.target;
+                const links = courseActivitie.links;
                 courseDetailView.push({
                     title: this.commonService.getTitle(target), // Title
                     label: this.commonService.getLabel(target), // Label
@@ -97,6 +101,7 @@ export class CourseDetailListItemComponent implements OnChanges, OnDestroy {
                     resultStartDate: this.commonService.getResultStartDate(courseActivitie), // Tanulás kezdete
                     suggestedTime: this.commonService.getSuggestedTime(courseActivitie), // Várható tanulási idő
                     launchButton: this.commonService.getLaunchButton(courseActivitie), // Launch
+                    detailButton: this.commonService.getCurrentLinkRel(links, 'Result'), // Details url
                     description: this.commonService.getDescription(courseActivitie), // Részletek
                     serviceTechnicalProfile: this.commonService.getServiceTechnicalProfile(courseActivitie), // Technikai feltételek
                     grossTimeLimit: grossTimeLimit ? grossTimeLimit : '', // grossTimeLimit

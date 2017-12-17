@@ -7,27 +7,14 @@
         <div class="descriptionTextValue" [ngClass]="{'open':isOpen}">{{description}}</div>
     </div>
 
-    <span class="descriptionWrapper" *ngIf="className === 'course-detail-description'">
-        <i class="descriptionIcon glyphicon glyphicon-chevron-right"
-           [ngClass]="{'open':isOpen}"
-           (click)="textToggle()">
-        </i>
-        <span class="descriptionTextLabel" (click)="textToggle()">{{'btn_details' | translate}}</span>
-        <div class="descriptionHideTextValue" [ngClass]="{'open':isOpen}">
-            {{description}}
-            <div class="descriptionTableContent">
-                <div class="descriptionTableEmpty">
-                    {{'msg_no_course_results_to_display' | translate}}
-                </div>
-            </div>
-        </div>
-    </span>
 
     <span class="descriptionWrapper" *ngIf="className === 'course-detail-serviceTechnicalProfile'">
-        <i class="descriptionIcon glyphicon glyphicon-chevron-right" [ngClass]="{'open':isOpen}" (click)="textToggle()"></i>
+        <i class="descriptionIcon glyphicon glyphicon-chevron-right" [ngClass]="{'open':isOpen}"
+           (click)="textToggle()"></i>
         <span class="descriptionTextLabel" (click)="textToggle()">{{'lbl_technical_requirements' | translate}}</span>
         <span class="descriptionTechnicalIcon">
-            <i *ngFor="let item of description.profile" class="fa" [ngClass]="['fa-'+item.name, item.name]" (click)="textToggle()" aria-hidden="true"></i>
+            <i *ngFor="let item of description.profile" class="fa" [ngClass]="['fa-'+item.name, item.name]"
+               (click)="textToggle()" aria-hidden="true"></i>
         </span>
         <div class="descriptionHideTextValue" [ngClass]="{'open':isOpen}">
             <div class="descriptionTechnicalTableContent">
@@ -62,6 +49,62 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </span>
+
+
+    <span class="descriptionWrapper" *ngIf="className === 'course-detail-description'">
+        <i class="descriptionIcon glyphicon glyphicon-chevron-right" [ngClass]="{'open':isOpen}"
+           (click)="textToggle()"></i>
+        <span class="descriptionTextLabel" (click)="getResultDetailActivities(descriptionData)">{{'btn_details' | translate}}</span>
+        <div class="descriptionHideTextValue" [ngClass]="{'open':isOpen}">{{description}}
+
+            <div class="resultDetailContent" *ngIf="resultDetailActivities.length > 0">
+                <div class="resultDetailTitleContent">
+                    <div class="titleCont cont">
+                        <div class="technicalTitle">{{'lbl_lesson_title' | translate}}</div>
+                    </div>
+                    <div class="progressCont cont">
+                        <div class="technicalTitle">{{'lbl_progress' | translate}}</div>
+                    </div>
+                    <div class="resultCont cont">
+                        <div class="technicalTitle">{{'lbl_test_result' | translate}}</div>
+                    </div>
+                    <div class="timeCont cont">
+                        <div class="technicalTitle">{{'lbl_total_time' | translate}}</div>
+                    </div>
+                </div>
+                <div class="resultDetailValueContent">
+                    <div class="resultDetailValue" *ngFor="let item of resultDetailActivities">
+                        <div class="titleCont cont title">
+                            {{item.title}}
+                        </div>
+                        <div class="progressCont cont">
+                            <div class="progressContent">
+                                <div class="progressLineCont">
+                                    <div class="progressLine" [ngStyle]="{'width':item.completionAmount+'%'}"></div>
+                                </div>
+                                <div class="progressValue">{{item.completionAmount + '%'}}</div>
+                            </div>
+                        </div>
+                        <div class="resultCont cont">
+                             <div class="progressContent">
+                              <div class="progressLineCont">
+                                    <div class="progressLine" [ngStyle]="{'width':item.scoreUnformatted+'%'}"></div>
+                                </div>
+                                <div class="progressValue">{{item.scoreUnformatted + '%'}}</div>
+                            </div>
+                        </div>
+                        <div class="timeCont cont">{{item.timeTaken | toReadableTime}}</div>
+                    </div>
+                </div>
+            </div>
+            <!--empty content-->
+             <div class="descriptionTableContent" *ngIf="resultDetailActivities.length === 0">
+                  <div class="descriptionTableEmpty">
+                      {{'msg_no_course_results_to_display' | translate}}
+                  </div>
+             </div>
         </div>
     </span>
 </div>

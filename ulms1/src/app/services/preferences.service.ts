@@ -47,8 +47,8 @@ export class PreferencesService extends HttpProxy {
     }
 
     postPreferencesData(apikey: string) {
-        console.log('postPreferencesData')
-        console.log(this.preferencesData)
+        // console.log('postPreferencesData');
+        // console.log(this.preferencesData)
     }
 
     setCurrentPreference(apikey: string, items: any) {

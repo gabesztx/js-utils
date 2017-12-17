@@ -15,13 +15,13 @@
                             <div class="col-sm-8">
                                 <div class="courseTitleContent">
                                     <!-- Title -->
-                                    <span class="courseTitle" placement="bottom" tooltip="{{item.title}}">{{item.title}}</span>
+                                    <span class="courseTitle" placement="bottom" title="{{item.title}}">{{item.title}}</span>
                                     <!-- Label -->
                                     <div *ngIf="item.label.length || item.providerName.length"
                                          class="courseLabelContent">
-                                        <span placement="bottom" tooltip="{{item.label}}" *ngIf="item.label.length" class="courseLabel">{{item.label}}</span>
+                                        <span placement="bottom" title="{{item.label}}" *ngIf="item.label.length" class="courseLabel">{{item.label}}</span>
                                         <span *ngIf="item.label.length && item.providerName.length">-</span>
-                                        <span placement="bottom" tooltip="{{item.providerName}}" *ngIf="item.providerName.length" class="courseProviderName">{{item.providerName}}</span>
+                                        <span placement="bottom" title="{{item.providerName}}" *ngIf="item.providerName.length" class="courseProviderName">{{item.providerName}}</span>
                                     </div>
                                 </div>
                             </div>
