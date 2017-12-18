@@ -1,4 +1,4 @@
-<div class="courseListItemContainer active" [@slideInOutKeyFrame] *ngFor="let item of currentItemListaData">
+<div class="courseListItemContainer closed" [@slideInOutKeyFrame] *ngFor="let item of currentItemListaData">
     <div class="row">
         <div class="courseItemImgBlock col-sm-2 hidden-xs">
             <div class="imgContent">
@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div class="courseResultWrapper">
-                    <div class="courseResultList active">
+                    <div class="courseResultList closed">
                         <div class="statusTextConent">
                             <!--Előrehaladás-->
                             <ulms-status-line

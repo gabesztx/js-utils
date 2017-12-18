@@ -112,6 +112,9 @@
                         &.recommended {
                             float: left;
                         }
+                        &.closed {
+                            padding-right: 30px;
+                        }
 
                     }
                     &:nth-child(2) {
@@ -136,6 +139,9 @@
                             &.active {}
                             &.recommended {
                                 float: inherit;
+                            }
+                            &.closed {
+                                padding-right: 0;
                             }
                         }
                         &:nth-child(2) {
