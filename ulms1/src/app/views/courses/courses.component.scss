@@ -168,9 +168,7 @@
                                     padding: 3px 0;
                                 }
                             }
-                            &.recommended {
-                                padding-bottom: 10px;
-                            }
+                            &.recommended {}
 
                         }
                     }
@@ -187,10 +185,8 @@
                         }
                         &:nth-child(2) {
                             .statusTextConent {
-                                &.active {
-                                    //padding: 0;
-                                }
-                                //padding: 5px 0;
+                                &.active {}
+
                             }
                         }
 
