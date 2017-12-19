@@ -9,7 +9,7 @@
 
 .nx-main-container {
     padding-top: 20px;
-    padding-bottom: 90px;
+    padding-bottom: 70px;
 }
 
 .nx-footer-content {
@@ -90,7 +90,7 @@
 
 @media(max-width: $sm-min-width) {
     .nx-main-container {
-        //padding-top: 30px;
+        padding-top: 0;
     }
     .nx-footer-content {
         .nx-footer-versio-content {
@@ -106,9 +106,11 @@
     }
 }
 
-//@media (max-width: $sm-mobil) and (max-height: $sm-height) {
 @media (max-width: $sm-mobil) {
     .nx-content-container {
         padding-bottom: 20px;
+    }
+    .nx-main-container {
+        padding-bottom: 190px;
     }
 }

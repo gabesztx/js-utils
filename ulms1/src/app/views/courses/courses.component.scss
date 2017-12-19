@@ -55,7 +55,6 @@
                     font-size: 16px;
                     color: #0497bb;
                     margin-bottom: 5px;
-
                 }
                 .courseLabelContent {
                     text-overflow: ellipsis;
@@ -68,13 +67,11 @@
                         font-weight: 500;
                     }
                 }
-
             }
 
             @media(max-width: $md-min-width) {
                 .courseTitleContent {
                     padding-bottom: 10px;
-
                 }
             }
             @media(max-width: $sm-min-width) {
@@ -136,7 +133,9 @@
                     .courseResultList {
                         padding-top: 0;
                         &:nth-child(1) {
-                            &.active {}
+                            &.active {
+                                padding-right: 10px;
+                            }
                             &.recommended {
                                 float: inherit;
                             }
@@ -192,7 +191,6 @@
                         &:nth-child(2) {
                             .statusTextConent {
                                 &.active {}
-
                             }
                         }
 
@@ -212,7 +210,6 @@
             @media(max-width: $sm-min-width) {
                 .courseResultWrapper {
                     padding-top: 15px;
-
                 }
             }
             @media(max-width: $sm-mobil-ios) {

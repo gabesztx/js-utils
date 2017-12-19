@@ -2,9 +2,7 @@
 
 .statusLineComponent {
     font-size: 12px;
-    //line-height: 10px;
     position: relative;
-
     .statusLineLabel {
         display: inline-block;
         vertical-align: middle;
@@ -35,6 +33,7 @@
     @media(max-width: $sm-min-width) {
         .statusLineLabel {
             width: inherit;
+
         }
         .statusLineContent {
             width: 150px;
@@ -45,16 +44,14 @@
             width: inherit;
         }
         .statusLineContent {
-            width: 45%;
+            width: 100px;
         }
     }
     .statusLineValue {
         display: inline-block;
         vertical-align: middle;
         color: #999;
-        //width: 20px;
     }
-
     .statusText {
         display: inline-block;
         vertical-align: middle;
@@ -70,16 +67,13 @@
             font-size: 18px;
             top: -2px;
             color: $success-icon-color;
-
         }
         .unsuccess {
             position: absolute;
             font-size: 16px;
-            //top: -2px;
             color: $unsuccess-icon-color;
         }
     }
-
     .informationIcon {
         display: inline-block;
         vertical-align: middle;
@@ -96,6 +90,5 @@
         .informationIcon {
             display: none;
         }
-
     }
 }

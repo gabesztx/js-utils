@@ -5,6 +5,7 @@ $itemPadding: 20px;
     position: relative;
     padding: $itemPadding 0;
     border-bottom: 3px solid #dedede;
+
     &.courseDetailListItem {
         padding-top: $itemPadding;
         padding-bottom: 0;
@@ -67,7 +68,6 @@ $itemPadding: 20px;
                     }
                 }
             }
-
             .courseResultWrapper {
                 display: inline-block;
                 padding-top: $itemPadding;
@@ -78,12 +78,6 @@ $itemPadding: 20px;
                         padding-right: 30px;
                         .statusTextConent {
                             padding-bottom: 5px;
-                            &:nth-child(2) {
-                                //padding-bottom: 8px;
-                            }
-                            &:nth-child(3) {
-                                //padding-bottom: 0;
-                            }
                         }
                     }
                     &:nth-child(2) {
@@ -91,14 +85,12 @@ $itemPadding: 20px;
                         .statusTextConent {
                             padding-top: 2px;
                             padding-bottom: 8px;
-
                         }
 
                         &.courseDetailMainInfo {
                             .statusTextConent {
                                 padding-top: 0;
                                 padding-bottom: 5px;
-
                             }
                         }
                     }
@@ -109,27 +101,59 @@ $itemPadding: 20px;
                         }
                     }
                 }
+                @media(max-width: $sm-min-width) {
+                    .courseResultList {
+                        padding-right: 0;
+                        display: block;
+                    }
+                }
+                @media(max-width: $sm-mobil) {
+                    .courseResultList {
+                        &:nth-child(1) {
+                            .statusTextConent {
+                                padding-bottom: 10px;
+                            }
+                        }
+                    }
+                }
             }
-        }
+            @media(max-width: $sm-min-width) {
+                .courseResultWrapper {
+                    padding-top: 0;
+                }
+            }
 
+        }
         .courseButtonWrapper {
             position: absolute;
             width: 100%;
             transform: translateY($itemPadding + 5);
             -webkit-transform: translateY($itemPadding + 5);
         }
+        @media(max-width: $md-min-width) {
+            .courseButtonWrapper {
+                width: 95%;
+            }
+        }
+        @media(max-width: $sm-min-width) {
+            .courseButtonWrapper {
+                width: 100%;
+            }
+        }
         .courseDescriptionContent {
-            //position: relative;
             margin-top: 20px;
             .courseDescriptionBlock {
-                &:nth-child(1) {}
+                &:nth-child(1) {
+                }
                 &:nth-child(2) {
                     margin-top: 5px;
                 }
 
                 &.lunchBtnActive {
-                    &:nth-child(1) {}
-                    &:nth-child(2) {}
+                    &:nth-child(1) {
+                    }
+                    &:nth-child(2) {
+                    }
                 }
 
             }

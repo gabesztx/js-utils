@@ -23,7 +23,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-4">
-                                <div class="courseItemButtonBlock">
+                                <div class="courseItemButtonBlock hidden-xs">
                                     <div class="buttonContent">
                                         <!-- Status -->
                                         <ulms-button
@@ -132,6 +132,16 @@
                             >
                             </ulms-status-text>
                         </div>
+                    </div>
+                </div>
+                <div class="courseItemButtonBlock visible-xs" style="padding: 15px 0">
+                    <div class="buttonContent">
+                        <!-- Status -->
+                        <ulms-button
+                            [isPointer]=false
+                            [btnLabel]="'lbl_course_status_' + item.status.value | translate"
+                            [btnIconClassName]=item.status.icon>
+                        </ulms-button>
                     </div>
                 </div>
 
