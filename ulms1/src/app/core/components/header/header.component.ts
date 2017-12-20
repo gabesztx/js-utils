@@ -42,11 +42,10 @@ export class HeaderComponent implements OnInit {
         this.configData = this.config;
         this.currentLocale = this.l10nService.getLocale();
         this.localeCodes = this.config.localeCodes.split(',');
-
+        //
         this.localeCodes.forEach((code) => {
             this.localeCodesMap.push(code.substr(0, 2).toUpperCase());
         });
-         //console.log('HeaderComponent');
     }
 
     ngOnInit() {}
