@@ -17,10 +17,8 @@ export class CourseService extends HttpProxy {
     private apiUrl: string;
     public courseListDataProvoider: any;
     public apiIndex = 'usercourselist';
-
     constructor(protected http: Http, private config: RuntimeConfigService, private courseListApiLoaderService: CourseListApiLoaderService) {
         super();
-
         this.courseListDataProvoider = this.courseListApiLoaderService.courseListDataProvoider;
         if (__instance__ !== this) {
             this.apiUrl = `${this.config.baseApiUrl}${this.apiIndex}`;
@@ -40,10 +38,10 @@ export class CourseService extends HttpProxy {
         }
         const page = search.page;
         if (this.courseListDataProvoider[courseState].hasOwnProperty(page)) {
-            //console.log('MÁR VAN COURSE LISTA VISSZAADOM AZ ELMENTETTET!');
+            console.log('CourseService OK!');
             return this.courseListDataProvoider[courseState][page];
         }
-        //console.log('COURSE LISTA LEKÉRÉS');
+        console.log('CourseService GET LIST!');
         return this.get(`${this.apiUrl}`, opts)
             .map((result: any) => {
                 const currentPage = result.currentPage;

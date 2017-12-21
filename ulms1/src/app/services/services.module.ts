@@ -8,6 +8,8 @@ import { RuntimeConfigService } from './runtime-config.service';
 import { UserService } from './user.service';
 import { PreloadGuard } from './guards/preload.guard';
 
+/* Spinner */
+import { SpinnerService } from './spinner.service';
 /* Preferences */
 import { PreferencesService } from './preferences.service';
 
@@ -83,6 +85,7 @@ import { CourseCaniactiveQuard } from './guards/course-caniactive.quard';
     ],
     declarations: [],
     providers: [
+        SpinnerService,
         L10nService,
         RuntimeConfigService,
         UserService,

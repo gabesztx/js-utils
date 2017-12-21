@@ -1,21 +1,21 @@
 // External imports
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { ModalModule } from 'ngx-bootstrap/modal';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {ModalModule} from 'ngx-bootstrap/modal';
+// import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
-
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule } from '@angular/router';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {RouterModule} from '@angular/router';
 
 
 import 'hammerjs';
 // Internal imports
-import { routes } from './app.routing';
-import { AppComponent } from './app.component';
-import { ServicesModule } from './services/services.module';
-import { CoreModule } from './core/core.module';
+import {routes} from './app.routing';
+import {AppComponent} from './app.component';
+import {ServicesModule} from './services/services.module';
+import {CoreModule} from './core/core.module';
+import {environment} from '../environments/environment';
 
-import { environment } from '../environments/environment';
 (<any>window).env = environment.envName;
 
 @NgModule({
@@ -33,5 +33,5 @@ import { environment } from '../environments/environment';
     bootstrap: [AppComponent]
 })
 export class AppModule {
-
+    constructor() {}
 }

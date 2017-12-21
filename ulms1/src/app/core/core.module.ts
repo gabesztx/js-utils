@@ -7,6 +7,7 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { RouterModule } from '@angular/router';
 
+
 // Internal imports
 import { TranslatePipe } from './pipes/translate.pipe';
 import { HeaderComponent } from './components/header/header.component';
@@ -26,7 +27,7 @@ import { NavTabComponent } from './components/nav-tab/nav-tab.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PopupModalComponent } from './components/popup-modal/popup-modal.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
-
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
     imports: [
@@ -55,7 +56,8 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
         DescriptionComponent,
         PaginationComponent,
         NavTabComponent,
-        PopupModalComponent
+        PopupModalComponent,
+        SpinnerComponent
     ],
     exports: [
         TranslatePipe,
@@ -71,7 +73,8 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
         DescriptionComponent,
         PaginationComponent,
         NavTabComponent,
-        PopupModalComponent
+        PopupModalComponent,
+        SpinnerComponent
     ]
 })
 export class CoreModule {

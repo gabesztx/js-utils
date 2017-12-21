@@ -3,7 +3,7 @@
     <header class="nx-header-content">
         <div class="container">
             <div class="row">
-                <nav class="nx-navbar-content nx-content">
+                <nav class="nx-navbar-content nx-content" *ngIf="isMenuShow">
                     <a href="/courses" class="nx-navbar__logo"></a>
                     <div class="navbar-header nx-navbar__header">
                         <button type="button" class="navbar-toggle nx-navbar-toggle collapsed" data-toggle="collapse"
@@ -13,7 +13,7 @@
                             <span class="icon-bar"></span>
                         </button>
                     </div>
-                    <div class="collapse nx-navbar-collapse navbar-collapse" id="nx-navbar" *ngIf="isMenuShow">
+                    <div class="collapse nx-navbar-collapse navbar-collapse" id="nx-navbar">
                         <ul class="nav navbar-nav nx-navbar-nav">
                             <!--Számlázás-->
                             <li class="nx-header-menu__item" *ngIf="!isLTI">
