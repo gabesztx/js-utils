@@ -8,6 +8,6 @@ import {CourseFeedsService} from '../course-feeds.service';
 export class CourseFeedsGuard implements Resolve<Observable<any>> {
     constructor(private courseFeedsService: CourseFeedsService) {}
     resolve(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        return this.courseFeedsService.getFeeds();
+        return this.courseFeedsService.list();
     }
 }

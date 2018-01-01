@@ -47,9 +47,10 @@ export class RecommendedService extends HttpProxy {
         const page = search.page;
 
         if (this.courseListDataProvoider[courseState].hasOwnProperty(page)) {
+            console.log('RecommendedService OK!');
             return this.courseListDataProvoider[courseState][page];
         }
-
+        console.log('RecommendedService GET LIST!');
         return this.get(`${this.apiUrl}`, opts)
             .map((result: any) => {
 
@@ -58,7 +59,6 @@ export class RecommendedService extends HttpProxy {
                 const data = {
                     hasNextPage: result.hasNextPage,
                     items: result.items,
-                    //notificationData: result.items,
                     currentPage: currentPage,
                     pageSize: result.pageSize,
                     total: result.total,

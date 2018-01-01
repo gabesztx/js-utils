@@ -3,7 +3,7 @@
     <div class="row">
         <div class="courseItemImgBlock col-sm-2 hidden-xs">
             <div class="imgContent">
-                <img src="{{item.imageUrl}}" (click)="navigationUrl(item.id)" alt="">
+                <ulms-image [imageUrl]="item.imageUrl" (click)="navigationUrl(item.id)"></ulms-image>
             </div>
         </div>
         <div class="courseItemTextBlock col-sm-7">
@@ -31,7 +31,7 @@
                 </div>
                 <div class="courseItemImgBlock">
                     <div class="imgContent">
-                        <img src="{{item.imageUrl}}" alt="">
+                        <ulms-image [imageUrl]="item.imageUrl" (click)="navigationUrl(item.id)"></ulms-image>
                     </div>
                 </div>
                 <div class="courseResultWrapper">

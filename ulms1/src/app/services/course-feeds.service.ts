@@ -15,18 +15,16 @@ export class CourseFeedsService extends HttpProxy {
         super();
     }
 
-    getFeeds(): Observable<any> {
+    list(): Observable<any> {
         if (this.feedsData) {
-            //console.log('már van feeds!');
+            console.log('CourseFeedsService OK!');
             return this.feedsData;
         }
-        // console.log('feeds lekérés');
         const apiUrl = `${this.config.baseApiUrl}feeds`;
-
+        console.log('CourseFeedsService GET LIST!');
         return this.get(apiUrl).map(value => {
             this.feedsData = {
-                courseFeeds: value.items,
-                // notification: this.preferences.getPreferencesData(PreferencesApiKey.api_UserFeeds)
+                courseFeeds: value.items
             };
 
             this.preferences.setCurrentPreference(PreferencesApiKey.api_UserFeeds, value.items);

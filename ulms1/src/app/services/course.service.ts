@@ -25,8 +25,6 @@ export class CourseService extends HttpProxy {
             this.apiUrl = `${this.config.baseApiUrl}${this.apiIndex}`;
             __instance__ = this;
         }
-
-
         return __instance__;
     }
 

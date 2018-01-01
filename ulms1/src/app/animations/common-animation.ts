@@ -13,7 +13,7 @@ export const fadeImageKeyFrameAnimation =
     trigger('fadeImageKeyFrame', [
         state('in', style({ opacity: 1 })),
         transition(':enter', [
-            animate('1s ease-out', keyframes([
+            animate('.8s ease-out', keyframes([
                 style({ opacity: 0 }),
                 style({ opacity: 1 }),
             ]))
