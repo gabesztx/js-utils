@@ -4,11 +4,13 @@ import { UserService } from '../../../services/user.service';
 import { L10nService } from '../../../services/l10n.service';
 import {PreloadGuard} from '../../../services/guards/preload.guard';
 import {UserStatus} from '../../../models/user.model';
+import { fadeInKeyFrameAnimation } from '../../../animations/common-animation';
 
 @Component({
     selector: 'ulms-footer',
     templateUrl: './footer.component.html',
-    styleUrls: ['./footer.component.scss']
+    styleUrls: ['./footer.component.scss'],
+    animations: [fadeInKeyFrameAnimation]
 })
 
 export class FooterComponent implements OnInit {

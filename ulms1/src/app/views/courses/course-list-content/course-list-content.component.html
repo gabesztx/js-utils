@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="nx-content">
+        <div class="nx-content" *ngIf="navData.length" [@fadeInKeyFrame]>
             <ulms-nav-tab [navData]="navData"></ulms-nav-tab>
             <router-outlet></router-outlet>
         </div>

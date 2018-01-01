@@ -1,0 +1,13 @@
+<div class="imageComponent">
+    <div class="imageContent">
+        <img [src]="imageSrc"
+             *ngIf="imageSrc"
+             (click)="clickElement()"
+             [@fadeImageKeyFrame]>
+        <div class="spinnerContent" *ngIf="!imageSrc">
+            <ulms-spinner></ulms-spinner>
+        </div>
+    </div>
+</div>
+
+<!--(@fadeImageKeyFrame.start)="imageLoadStart($event)"-->

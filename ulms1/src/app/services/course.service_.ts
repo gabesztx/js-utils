@@ -17,7 +17,7 @@ import { data7 } from './course-service-data7'; // oklevél letöltése + extern
 @Injectable()
 export class CourseService_ {
 
-    private _MockCourseResult = data2;
+    private _MockCourseResult = data3;
 
     private pageSize = 15;
     private courseList = <Array<CourseDetail>>JSON.parse(JSON.stringify(this._MockCourseResult.slice(0)));

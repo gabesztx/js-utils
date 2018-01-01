@@ -1,18 +1,20 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 // Internal imports
-import {Router} from '@angular/router';
-import {UserStatus} from '../../../models/user.model';
-import {RuntimeConfigService} from '../../../services/runtime-config.service';
-import {L10nService} from '../../../services/l10n.service';
-import {UserService} from '../../../services/user.service';
-import {PreloadGuard} from '../../../services/guards/preload.guard';
-import {CourseDetailService} from '../../../services/course-detail.service';
-import {PreferencesService} from '../../../services/preferences.service';
+import { Router } from '@angular/router';
+import { UserStatus } from '../../../models/user.model';
+import { RuntimeConfigService } from '../../../services/runtime-config.service';
+import { L10nService } from '../../../services/l10n.service';
+import { UserService } from '../../../services/user.service';
+import { PreloadGuard } from '../../../services/guards/preload.guard';
+import { CourseDetailService } from '../../../services/course-detail.service';
+import { PreferencesService } from '../../../services/preferences.service';
+import { fadeInKeyFrameAnimation } from '../../../animations/common-animation';
 
 @Component({
     selector: 'ulms-header',
     templateUrl: './header.component.html',
-    styleUrls: ['./header.component.scss']
+    styleUrls: ['./header.component.scss'],
+    animations: [fadeInKeyFrameAnimation]
 })
 export class HeaderComponent implements OnInit {
 
@@ -48,7 +50,8 @@ export class HeaderComponent implements OnInit {
         });
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+    }
 
     navigationUrl() {
         this.router.navigate(['courses', 'feed']);

@@ -1,0 +1,26 @@
+.imageComponent {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    .imageContent {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #c9c9c92e;
+        .spinnerContent {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+        img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+}

@@ -1,11 +1,11 @@
-import {Component, OnChanges, OnDestroy, OnInit, Input} from '@angular/core';
-import {Router} from '@angular/router';
+import { Component, OnChanges, OnDestroy, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
-import {RestApiResponse} from '../../../services/base/http.class';
-import {CourseActiveViewModel} from '../../../models/views/course-active-view.model';
-import {CommonService} from '../../../services/common/common.service';
-import {CourseDetailService} from '../../../services/course-detail.service';
-import {slideInOutKeyFrameAnimation} from '../../../animations/course-animation';
+import { RestApiResponse } from '../../../services/base/http.class';
+import { CourseActiveViewModel } from '../../../models/views/course-active-view.model';
+import { CommonService } from '../../../services/common/common.service';
+import { CourseDetailService } from '../../../services/course-detail.service';
+import { slideInOutKeyFrameAnimation } from '../../../animations/course-animation';
 
 @Component({
     selector: 'ulms-course-active',
@@ -23,7 +23,8 @@ export class CourseActiveComponent implements OnChanges {
 
     constructor(private commonService: CommonService,
                 private courseDetailService: CourseDetailService,
-                private router: Router) {}
+                private router: Router) {
+    }
 
     ngOnChanges() {
         clearInterval(this.currentItemInterval);
@@ -45,8 +46,8 @@ export class CourseActiveComponent implements OnChanges {
     }
 
     navigationUrl(id: string) {
-        this.courseDetailService.courseDetailRouting(id);
-        // this.router.navigate(['courses', id, 'content']);
+        // this.courseDetailService.courseDetailRouting(id);
+        this.router.navigate(['courses', id, 'content']);
     }
 
     transFormViewObject(itemData: RestApiResponse<any>) {

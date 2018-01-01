@@ -3,7 +3,8 @@
     <header class="nx-header-content">
         <div class="container">
             <div class="row">
-                <nav class="nx-navbar-content nx-content" *ngIf="isMenuShow">
+                <nav class="nx-navbar-content nx-content" *ngIf="isMenuShow" [@fadeInKeyFrame]>
+                <!--<nav class="nx-navbar-content nx-content" [hidden]="false">-->
                     <a href="/courses" class="nx-navbar__logo"></a>
                     <div class="navbar-header nx-navbar__header">
                         <button type="button" class="navbar-toggle nx-navbar-toggle collapsed" data-toggle="collapse"

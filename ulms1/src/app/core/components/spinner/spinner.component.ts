@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, OnChanges} from '@angular/core';
-import {SpinnerService} from '../../../services/spinner.service';
+// import {SpinnerService} from '../../../services/spinner.service';
 
 @Component({
     selector: 'ulms-spinner',
@@ -8,18 +8,13 @@ import {SpinnerService} from '../../../services/spinner.service';
 })
 export class SpinnerComponent implements OnInit, OnChanges {
     @Input() className: string;
-    public instance = {};
-
-    constructor(private spinnerService: SpinnerService) {
-        // console.log('SpinnerComponent');
-    }
-
+    // public instance = {};
+    constructor() {}
     ngOnChanges() {
-        this.instance[this.className] = this;
+        // this.instance[this.className] = this;
     }
 
-    ngOnInit() {
-    }
+    ngOnInit() {}
 
     showSpinner() {
         console.log('showSpinner');

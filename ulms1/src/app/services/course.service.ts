@@ -17,6 +17,7 @@ export class CourseService extends HttpProxy {
     private apiUrl: string;
     public courseListDataProvoider: any;
     public apiIndex = 'usercourselist';
+
     constructor(protected http: Http, private config: RuntimeConfigService, private courseListApiLoaderService: CourseListApiLoaderService) {
         super();
         this.courseListDataProvoider = this.courseListApiLoaderService.courseListDataProvoider;
@@ -36,10 +37,9 @@ export class CourseService extends HttpProxy {
                 search: search.getURLSearchParameters()
             });
         }
-        const page = search.page;
-        if (this.courseListDataProvoider[courseState].hasOwnProperty(page)) {
+        if (this.courseListDataProvoider[courseState].hasOwnProperty(search.page)) {
             console.log('CourseService OK!');
-            return this.courseListDataProvoider[courseState][page];
+            return this.courseListDataProvoider[courseState][search.page];
         }
         console.log('CourseService GET LIST!');
         return this.get(`${this.apiUrl}`, opts)

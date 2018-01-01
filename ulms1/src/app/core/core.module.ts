@@ -28,6 +28,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { PopupModalComponent } from './components/popup-modal/popup-modal.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { ImageComponent } from './components/image/image.component';
 
 @NgModule({
     imports: [
@@ -57,7 +58,8 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
         PaginationComponent,
         NavTabComponent,
         PopupModalComponent,
-        SpinnerComponent
+        SpinnerComponent,
+        ImageComponent
     ],
     exports: [
         TranslatePipe,
@@ -74,7 +76,8 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
         PaginationComponent,
         NavTabComponent,
         PopupModalComponent,
-        SpinnerComponent
+        SpinnerComponent,
+        ImageComponent
     ]
 })
 export class CoreModule {
