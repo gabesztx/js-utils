@@ -30,7 +30,7 @@
                 </div>
                 <div class="courseItemImgBlock">
                     <div class="imgContent">
-                        <img src="{{item.imageUrl}}" alt="">
+                        <ulms-image [imageUrl]="item.imageUrl" (click)="navigationUrl(item.id)"></ulms-image>
                     </div>
                 </div>
                 <div class="courseResultWrapper">

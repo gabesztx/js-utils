@@ -11,7 +11,7 @@ export class CourseListApiLoaderGuard implements CanActivate {
         private courseService: CourseService,
     ) {}
     canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-        return false;
+        return Observable.of(true).delay(1000);
     }
 
 

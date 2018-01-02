@@ -3,7 +3,7 @@ export const fadeInKeyFrameAnimation =
     trigger('fadeInKeyFrame', [
         state('in', style({ opacity: 0 })),
         transition(':enter', [
-            animate('.4s ease-out', keyframes([
+            animate('.5s ease-out', keyframes([
                 style({ opacity: 0 }),
                 style({ opacity: 1 }),
             ]))

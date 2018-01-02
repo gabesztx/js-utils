@@ -88,7 +88,7 @@ export const routes: Routes = [{
         children: [{
             path: ':page',
             component: CourseListItemComponent,
-            // canActivate: [CourseListApiLoaderGuard],
+            canActivate: [CourseListApiLoaderGuard],
             resolve: {
                 responseData: coursesGuard
             },
@@ -198,13 +198,3 @@ export const routes: Routes = [{
         }
     ]
 }];
-/*    {
-        path: '',
-        redirectTo: '/app/courses/list/active/1',
-        pathMatch: 'full'
-    },
-    {
-        path: '**',
-        redirectTo: '/app/courses/list/active/1',
-        pathMatch: 'full'
-    },*/
