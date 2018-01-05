@@ -67,6 +67,6 @@ export class PreloadGuard implements CanActivate {
             this.__footerInstance__.setUserData(results[1]);
             return results.filter(result => result === false).length === 0;
             // return false;
-        }).delay(500);
+        }).delay(400);
     }
 }

@@ -10,16 +10,16 @@
                         <div class="nx-footer-item-content">
                             <ul class="nav nav-tabs nx-footer__items">
                                 <li class="">
-                                    <a href="javascript:void(0);" class="footer-logo">l</a>
+                                    <a class="footer-logo">l</a>
                                 </li>
                                 <li class="">
-                                    <a [href]="baseURL+'home/terms'">{{'btn_terms_of_use' | translate}}</a>
+                                    <a [href]="configData.termsUrl">{{'btn_terms_of_use' | translate}}</a>
                                 </li>
                                 <li class="">
-                                    <a [href]="baseURL+'home/help'">{{'btn_help' | translate}}</a>
+                                    <a [href]="configData.helpUrl">{{'btn_help' | translate}}</a>
                                 </li>
                                 <li class="">
-                                    <a [href]="baseURL+'home/help'">{{'lbl_contact_site' | translate}}</a>
+                                    <a [href]="configData.helpUrl">{{'lbl_contact_site' | translate}}</a>
                                 </li>
                             </ul>
                         </div>

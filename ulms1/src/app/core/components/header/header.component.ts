@@ -37,7 +37,6 @@ export class HeaderComponent implements OnInit {
                 private preferencesService: PreferencesService,
                 private preloadGuard: PreloadGuard,
                 private userService: UserService) {
-
         this.preferencesService.__headerInstance__ = this;
         this.preloadGuard.__headerInstance__ = this;
 
@@ -50,8 +49,7 @@ export class HeaderComponent implements OnInit {
         });
     }
 
-    ngOnInit() {
-    }
+    ngOnInit() {}
 
     navigationUrl() {
         this.router.navigate(['courses', 'feed']);

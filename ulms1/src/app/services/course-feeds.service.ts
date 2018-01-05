@@ -14,7 +14,6 @@ export class CourseFeedsService extends HttpProxy {
     constructor(protected http: Http, private config: RuntimeConfigService, private preferences: PreferencesService) {
         super();
     }
-
     list(): Observable<any> {
         if (this.feedsData) {
             console.log('CourseFeedsService OK!');
@@ -26,10 +25,8 @@ export class CourseFeedsService extends HttpProxy {
             this.feedsData = {
                 courseFeeds: value.items
             };
-
             this.preferences.setCurrentPreference(PreferencesApiKey.api_UserFeeds, value.items);
             return this.feedsData;
         });
     }
-
 }

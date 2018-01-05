@@ -1,10 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { RuntimeConfigService } from '../../../services/runtime-config.service';
-import { UserService } from '../../../services/user.service';
-import { L10nService } from '../../../services/l10n.service';
+import {Component, OnInit} from '@angular/core';
+import {RuntimeConfigService} from '../../../services/runtime-config.service';
+import {L10nService} from '../../../services/l10n.service';
 import {PreloadGuard} from '../../../services/guards/preload.guard';
-import {UserStatus} from '../../../models/user.model';
-import { fadeInKeyFrameAnimation } from '../../../animations/common-animation';
+import {fadeInKeyFrameAnimation} from '../../../animations/common-animation';
 
 @Component({
     selector: 'ulms-footer',
@@ -17,20 +15,20 @@ export class FooterComponent implements OnInit {
     public baseURL: string;
     public version: string;
     public userData: any;
+    public configData: any;
     public isLTI: boolean;
     public isFooterShow = false;
 
     constructor(private config: RuntimeConfigService,
                 private l10nService: L10nService,
-                private preloadGuard: PreloadGuard,
-                private userService: UserService) {
+                private preloadGuard: PreloadGuard) {
         this.preloadGuard.__footerInstance__ = this;
-        this.baseURL = this.config.baseUrl;
+        this.configData = this.config;
+        this.baseURL = this.configData.baseUrl;
         this.version = 'Neptun.Net LMS - ' + this.config.version;
     }
 
     ngOnInit() {}
-
 
     setUserData(userData: any) {
         this.userData = userData;

@@ -88,7 +88,7 @@ export const routes: Routes = [{
         children: [{
             path: ':page',
             component: CourseListItemComponent,
-            canActivate: [CourseListApiLoaderGuard],
+            //canActivate: [CourseListApiLoaderGuard],
             resolve: {
                 responseData: coursesGuard
             },
