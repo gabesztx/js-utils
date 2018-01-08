@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>A meta tageket még hozzá kell adni</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="57x57" href="./assets/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="./assets/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="./assets/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="./assets/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="./assets/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="./assets/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="./assets/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="./assets/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="./assets/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="./assets/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="./assets/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="./assets/android-chrome-192x192.png" sizes="192x192">
+    <meta name="msapplication-square70x70logo" content="./assets/smalltile.png" />
+    <meta name="msapplication-square150x150logo" content="./assets/mediumtile.png" />
+    <meta name="msapplication-wide310x150logo" content="./assets/widetile.png" />
+    <meta name="msapplication-square310x310logo" content="./assets/largetile.png" />
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Nexius Learning">
+    <meta name="msapplication-TileColor" content="#3372DF">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+</head>
+
+<body>
+
+    <div class="flex flex-column h-100 nx-root">
+        <div class="flex-auto h-100 w-100">
+            <header class="w-100">
+                <!-- Banner  -->
+                <div class="w-100 nx-banner--top">
+                    <img class="img-fluid w-100 h-100 db cover nx-cover-pic">
+                    <!--ideiglenes megoldás webpack miatt ide img src kell-->
+                </div>
+                <div class="w-100 bt bw2 navbar-static-top nx-bd-tertiary-color nx-navbar-positioned">
+                    <div class="w-70 center ph3 nx-container--bg-white nx-container nx-nav-container">
+                        <!-- navbar container -->
+                        <nav class="navbar w-100 br--bottom mb0 nx-bg-primary-color nx-mt-negativ-sm">
+                            <div class="navbar-header">
+                                <button id="feedsHamburgerCountValue" type="button" class="navbar-toggle collapsed nx-navbar-toggle" data-toggle="collapse"
+                                    data-target=".navbar-collapse">
+                                    <span class="nx-icon-bar icon-bar"></span>
+                                    <span class="nx-icon-bar icon-bar"></span>
+                                    <span class="nx-icon-bar icon-bar"></span>
+                                </button>
+                                <!-- LOGO!     @if (User.Identity.IsAuthenticated) {
+                        <a id="topLogo" class="navbar-brand" href="@Url.Action(" Index ", "Courses ")"></a>
+                        } else {
+                        <a id="topLogo" class="navbar-brand" href="@Url.Action(" Index ", "Home ")"></a>
+                        }-->
+                                <a href="#" class="navbar-left nx-navbar__logo"></a>
+                            </div>
+                            <!--/.navbar-collapse BEGIN-->
+
+                            <div class="navbar-collapse collapse pull-right" id="topMenu">
+                                <ul class="nav navbar-nav">
+                                    <!--  @if (User.Identity.IsAuthenticated) { if (!string.IsNullOrEmpty(role) && (role == SystemRole.SysAdmin.ToString() || role
+                            == SystemRole.SysSupport.ToString() || role == SystemRole.Administrator.ToString() || role ==
+                            SystemRole.DocAdmin.ToString())) {-->
+                                    <li>
+                                        <a href="/admin" id="linkAdmin" class="ttu">
+                                            <!--@CommonResources.lnk_admin_site-->Admin</a>
+                                    </li>
+                                    <!--  } if (contextId == null || !contextId.HasValue()) {-->
+                                    <li class="@Html.IsActive(" Feed ", "Index ") ">
+                                        <a id="myFeedsBtn" href="@Url.Action(" Index ","Feed ")" class="ttu">
+                                            <!-- @CommonResources.btn_my_feed
+                                   span id="feedsCountValue" class="pull-right" ng-if="countValues[urlIds.api_UserFeeds].countValue > 0">
+                                            <span class="countValueButtonInner">
+                                                {{countValues[urlIds.api_UserFeeds].text}}
+                                            </span>
+                                        </span-->
+                                            Hírek
+                                        </a>
+                                    </li>
+                                    <!--@* -->
+                                    <li>
+                                        <a id="paymentsButton" href="@ConfigurationManager.AppSettings.Get(" PaymentBaseUrl ")" title="@Commonresources.btn_payments_and_billing"
+                                            class="ttu">
+                                            <!-- @Commonresources.btn_billing -->Számlázás
+                                        </a>
+                                    </li>
+                                    <!-- *@ -->
+                                    <li class="@Html.IsActive(" CourseList ", "Index ")">
+                                        <a id="myCoursesBtn" href="@Url.Action(" Index ", "Courses ")" class="ttu">
+                                            <!--@CommonResources.btn_my_courses-->Kurzusaim
+                                        </a>
+                                    </li>
+
+                                    <li class="dropdown hidden-xs">
+                                        <a href class="dropdown-toggle hidden-xs" data-toggle="dropdown">
+                                            <span class="ttu">
+                                                <!--@User.Identity.Name-->Felhasználó</span>
+                                            <b class="caret"></b>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li class="@Html.IsActive(" Feed ", "Index ") hidden-sm hidden-md hidden-lg">@Html.ActionLink(CommonResources.btn_my_feed, "Index", "Feed")</li>
+                                            <li class="hidden-xs">
+                                                <a id="profile-btn" href="@ConfigurationManager.AppSettings.Get(" IdpUrl ")profile/index" class="ttu">@CommonResources.btn_profile
+                                                    <b class="flag"></b>
+                                                </a>
+                                            </li>
+                                            <li class="hidden-xs ttu">
+                                                <a href="@ConfigurationManager.AppSettings.Get(" IdpUrl ")account/logoff">@CommonResources.btn_logout</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <!-- showing only XS size -->
+                                    <!--
+                                <li>
+                                    <a href="@ConfigurationManager.AppSettings.Get(" IdpUrl ")profile/index" class="hidden-sm hidden-md hidden-lg">
+                                        <span class="uLMSicons student_icon"></span>
+                                        <span class="userName textOverflow">@User.Identity.Name</span>
+                                    </a>
+                                </li>
+                                <!-- <li class="hidden-sm hidden-md hidden-lg"><a href="@ConfigurationManager.AppSettings.Get("IdpUrl")profile/index"> @CommonResources.btn_profile</a></li>
+                                <li class="hidden-sm hidden-md hidden-lg">
+                                    <a href="@ConfigurationManager.AppSettings.Get(" IdpUrl ")account/logoff">
+                                        <span class="glyphicon glyphicon-off"></span>@CommonResources.btn_logout</a>
+                                </li> 
+                                <!-- showing only XS size 
+
+                                } else {
+                                <li class="dropdown">
+                                    <a href="javascript:void(null)" class="dropdown-toggle" data-toggle="dropdown">
+                                        <span class="uLMSicons student_icon"></span> @User.Identity.Name
+                                        <b class="caret"></b>
+                                    </a>
+                                </li>
+                                <li class="dropdown language-selector">
+                                    <a href="javascript:void(null)" class="dropdown-toggle" data-toggle="dropdown">
+                                        <span>HU
+                                            <b class="flag flag-hu"></b>
+                                        </span>
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu"></ul>
+                                </li>
+                                } } else {
+                                <li id="login-link-btn">
+                                    <a href="@Url.Action(" Index ", "Courses ", new { @area = " "})">
+                                        <span class="icon icon-lock"></span>@CommonResources.btn_login</a>
+                                </li>
+
+                                <li class="dropdown language-selector">
+                                    <a href="javascript:void(null)" class="dropdown-toggle" data-toggle="dropdown">
+                                        <span>HU
+                                            <b class="flag flag-hu"></b>
+                                        </span>
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu"></ul>
+                                </li>
+                                } -->
+                                </ul>
+                            </div>
+                        </nav>
+
+                    </div>
+                </div>
+
+            </header>
+            <!--Main content-->
+            <div class="nx-container w-70 h-100 pl3 pr3 center nx-container--bg-white">
+
+            </div>
+            <!--/Main content -->
+            <!-- footer -->
+            <footer class="w-100 bb bw2 mb0 nx-bd-tertiary-color">
+                <div class="w-70 mb0 center nx-container--bg-white nx-footer-container nx-container">
+                    <div class="relative mb0 w-100 pl3 pr3 nx-nav-container">
+                        <div class="w-100 h3 mv0 center br2 br--top relative nx-bottom-ngt nx-footer-bg">
+                            <a href="#" class="fr mr5 nx-navbar__logo"></a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!--/footer -->
+        </div>
+        <!-- nx-container--bg-white -->
+
+    </div>
+    <!-- nx-root 
+
+    <script>
+        var context = {};
+        context.Id = "@contextId";
+    </script>
+    <!--
+    @Scripts.Render("~/bundles/client")
+
+    @RenderSection("scripts", required: false)
+    @{ Html.RenderPartial("_GoogleAnalytics");}-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(window).bind('scroll', function () {
+                var navHeight = $(window).height() - $('.nx-cover-pic').height();
+                if ($(window).scrollTop() > navHeight) {
+                    $('.nx-navbar-positioned').removeClass('navbar-static-top').addClass(
+                        'navbar-fixed-top');
+                } else {
+                    $('.nx-navbar-positioned').removeClass('navbar-fixed-top').addClass(
+                        'navbar-static-top');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

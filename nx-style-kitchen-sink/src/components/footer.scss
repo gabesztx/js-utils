@@ -1,0 +1,40 @@
+.nx-footer-container {
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.nx-footer-container{
+
+    height: 50px;
+}
+
+.nx-footer-list-container{
+
+    max-height: 50px;
+    max-width: 942px;
+}
+
+.nx-footer--height{
+    height: 50px;
+}
+
+.nx-footer-bg {
+    background-color: $contrast;
+}
+
+.nx-navbar__logo {
+    
+    &.nx-navbar__logo--bottom {
+        min-height: 100%;
+        max-height: 100%;
+        padding-bottom: 0;
+    }
+
+}
+
+@media (max-width: 767px) {
+    .nx-footer-bg {
+        border-radius: 0px;
+    }
+}

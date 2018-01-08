@@ -1,0 +1,15 @@
+
+.nx-root {
+    height: 100%;
+}
+
+.nx-container {
+    width: 100%;
+    max-width: 970px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.nx-container--bg-white {
+    background-color: $content-bg;
+}

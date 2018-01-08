@@ -1,0 +1,33 @@
+@import './header.scss';
+@import './footer.scss';
+
+
+.nx-mt-negative-sm {
+    top: -0.32rem;
+}
+
+.nx-mt-sm{
+
+    margin-top: 1px;
+}
+
+.nx-mb-negative-sm {
+    margin-bottom: -4px;
+}
+
+.nx-bottom-ngt {
+    bottom: -0.25rem;
+}
+
+.nx-disabled {
+    color: $bg-dark !important;
+}
+
+.nx-border-left-dotted{
+ border-left: dotted 1px white;
+
+}
+
+.nx-line-height-30{
+    line-height: 30px;
+}

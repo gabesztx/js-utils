@@ -1,0 +1,151 @@
+/***********************
+ * Tachyon CSS imports *
+************************/
+// Reset
+@import './node_modules/tachyons-sass/scss/normalize.scss';
+@import './node_modules/tachyons-sass/scss/media-queries.scss';
+@import './node_modules/tachyons-sass/scss/box-sizing.scss';
+@import './node_modules/tachyons-sass/scss/images.scss';
+@import './node_modules/tachyons-sass/scss/lists.scss';
+@import './node_modules/tachyons-sass/scss/forms.scss';
+// Typography
+@import './node_modules/tachyons-sass/scss/type-scale.scss';
+@import './node_modules/tachyons-sass/scss/typography.scss';
+@import './node_modules/tachyons-sass/scss/line-height.scss';
+@import './node_modules/tachyons-sass/scss/letter-spacing.scss';
+@import './node_modules/tachyons-sass/scss/font-weight.scss';
+@import './node_modules/tachyons-sass/scss/font-style.scss';
+@import './node_modules/tachyons-sass/scss/vertical-align.scss';
+@import './node_modules/tachyons-sass/scss/text-align.scss';
+@import './node_modules/tachyons-sass/scss/text-transform.scss';
+@import './node_modules/tachyons-sass/scss/text-decoration.scss';
+@import './node_modules/tachyons-sass/scss/white-space.scss';
+// Layout
+@import './node_modules/tachyons-sass/scss/widths.scss';
+@import './node_modules/tachyons-sass/scss/max-widths.scss';
+@import './node_modules/tachyons-sass/scss/heights.scss';
+@import './node_modules/tachyons-sass/scss/spacing.scss';
+@import './node_modules/tachyons-sass/scss/flexbox.scss';
+@import './node_modules/tachyons-sass/scss/floats.scss';
+@import './node_modules/tachyons-sass/scss/clears.scss';
+@import './node_modules/tachyons-sass/scss/display.scss';
+@import './node_modules/tachyons-sass/scss/position.scss';
+@import './node_modules/tachyons-sass/scss/coordinates.scss';
+@import './node_modules/tachyons-sass/scss/z-index.scss';
+@import './node_modules/tachyons-sass/scss/utilities.scss';
+// Theming
+@import './node_modules/tachyons-sass/scss/hovers.scss';
+@import './node_modules/tachyons-sass/scss/background-size.scss';
+@import './node_modules/tachyons-sass/scss/borders.scss';
+@import './node_modules/tachyons-sass/scss/border-style.scss';
+@import './node_modules/tachyons-sass/scss/border-widths.scss';
+@import './node_modules/tachyons-sass/scss/border-radius.scss';
+@import './node_modules/tachyons-sass/scss/box-shadow.scss';
+@import './node_modules/tachyons-sass/scss/opacity.scss';
+// Elements
+@import './node_modules/tachyons-sass/scss/links.scss';
+
+
+
+
+html,
+body {
+    height: 100%;
+    padding: 0;
+    font-size: 14px;
+}
+
+body {
+    background-color: $bg;
+    color: $default-txt;
+    line-height: 1.1;
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+}
+
+form,
+article,
+section,
+div,
+header,
+footer {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: $nx-white;
+    text-decoration: none;
+}
+
+input[type="text"],
+select {
+    /*border: 2px solid $bg;
+    @include border-radius(3px);*/
+}
+
+input[type="text"]:hover,
+input[type="text"]:focus,
+select:hover,
+select:focus {
+    /*border: 2px solid rgba(0, 0, 0, 0.37);*/
+}
+
+input[type="email"],
+select {
+    /*border: 2px solid $bg;
+    @include border-radius(3px);*/
+}
+
+input[type="email"]:hover,
+input[type="email"]:focus,
+select:hover,
+select:focus {
+    /*border: 2px solid rgba(0, 0, 0, 0.37);*/
+}
+
+input[type="password"],
+select {
+    /*border: 2px solid $bg;
+    @include border-radius(3px);*/
+}
+
+input[type="password"]:hover,
+input[type="password"]:focus,
+select:hover,
+select:focus {
+    /*border: 2px solid rgba(0, 0, 0, 0.37);*/
+}
+
+button {
+    /*background-color: $nx-blue !important;
+    border: 2px solid $nx-blue !important;
+    border-radius: 2px !important;*/
+}
+
+.nx-bg-primary-color {
+    background-color: $nx-primary-color;
+}
+
+.nx-bd-secondary-color {
+    border-color: $nx-secondary-color;
+}
+
+.nx-bg-secondary-color{
+    background-color: $nx-secondary-color;
+}
+
+.nx-bg-tertiary-color {
+    background-color: $nx-tertiary-color;
+}
+
+.nx-bd-tertiary-color {
+    border-color: $nx-tertiary-color;
+}
+
+.nx-text-primary-color {
+    color: $nx-primary-color;
+}
+
+.nx-text-secondary-color{
+    color: $nx-secondary-color;
+}
