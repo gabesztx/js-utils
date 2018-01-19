@@ -45,10 +45,10 @@ export class OptionalService extends HttpProxy {
         }
         const page = search.page;
         if (this.courseListDataProvoider[courseState].hasOwnProperty(page)) {
-            console.log('OptionalService OK!');
+            //console.log('OptionalService OK!');
             return this.courseListDataProvoider[courseState][page];
         }
-        console.log('OptionalService GET LIST!');
+        //console.log('OptionalService GET LIST!');
         return this.get(`${this.apiUrl}`, opts)
             .map((result: any) => {
                 const currentPage = result.currentPage;

@@ -18,7 +18,7 @@
                         <ul class="nav navbar-nav nx-navbar-nav">
                             <!--Számlázás-->
                             <li class="nx-header-menu__item" *ngIf="!isLTI">
-                                <a href="javascript:void(0);" class="menu_item_bt">
+                                <a [href]="configData.paymentBaseUrl" class="menu_item_bt">
                                     <span
                                         class="nx-header-menu__item-icon nx-header-menu__item-icon--feeds icon-nx-payment"> </span>
                                     <span>{{'lbl_billing' | translate }}</span>

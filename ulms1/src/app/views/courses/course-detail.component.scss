@@ -195,3 +195,8 @@ $itemPadding: 20px;
     //margin: 10px;
 
 }
+@media(max-width: $sm-min-width) {
+    .messageBoxContent {
+        margin-top: 20px;
+    }
+}

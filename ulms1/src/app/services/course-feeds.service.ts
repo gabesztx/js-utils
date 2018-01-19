@@ -16,11 +16,11 @@ export class CourseFeedsService extends HttpProxy {
     }
     list(): Observable<any> {
         if (this.feedsData) {
-            console.log('CourseFeedsService OK!');
+            //console.log('CourseFeedsService OK!');
             return this.feedsData;
         }
         const apiUrl = `${this.config.baseApiUrl}feeds`;
-        console.log('CourseFeedsService GET LIST!');
+        //console.log('CourseFeedsService GET LIST!');
         return this.get(apiUrl).map(value => {
             this.feedsData = {
                 courseFeeds: value.items
