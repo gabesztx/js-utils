@@ -6,9 +6,9 @@ import {Component, OnInit, Input} from '@angular/core';
     styleUrls: ['./status-text.component.scss']
 })
 export class StatusTextComponent implements OnInit {
+    @Input() className: string;
     @Input() labelText: string;
     @Input() value: string;
-    @Input() className: string;
     @Input() toolTipData: string;
     @Input() toolTipIsShow: boolean;
     @Input() toolTipTextData: string;

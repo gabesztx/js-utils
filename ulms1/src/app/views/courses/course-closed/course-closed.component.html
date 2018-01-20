@@ -37,6 +37,7 @@
                         <div class="statusTextConent">
                             <!--Előrehaladás-->
                             <ulms-status-line
+                                [className]="'active'"
                                 [labelText]="'lbl_progress' | translate "
                                 [toolTipDataLabel]="['tt_course_progress'] | tooltTip"
                                 [toolTipData]="['tt_course_progress', 'tt_course_object_progress_required'] | tooltTip"
@@ -48,6 +49,7 @@
                         <div class="statusTextConent">
                             <!--Eredmény-->
                             <ulms-status-line
+                                [className]="'active'"
                                 [labelText]="'lbl_measure' | translate"
                                 [toolTipDataLabel]="['tt_course_measure'] | tooltTip"
                                 [toolTipData]="['tt_course_measure','tt_course_measure_required'] | tooltTip "
@@ -62,7 +64,7 @@
                         <div class="statusTextConent" style="padding: 5px 0">
                             <!--Határidő-->
                             <ulms-status-text
-                                [className]=""
+                                [className]="'active'"
                                 [toolTipIsShow]="item.deadLine.isShowToolTip"
                                 [toolTipData]="'tt_deadline' | translate"
                                 [toolTipTextData]="'tt_first_attempt_deadline_1' | translate:{grosstimelimit: item.grossTimeLimit | toLocalTimeSpan:{id:'active'}, resultenddate: item.resultEndDate}"
@@ -73,7 +75,7 @@
                         <div class="statusTextConent" style="padding: 5px 0">
                             <!--Eltöltött idő-->
                             <ulms-status-text
-                                [className]=""
+                                [className]="'active'"
                                 [labelText]="'lbl_total_time' | translate"
                                 [toolTipData]="['tt_total_time'] | tooltTip"
                                 [value]="item.totalTime.value | toLocalTimeSpan:{id:'active',otherValue:item.totalTime.netTimeLimit}">

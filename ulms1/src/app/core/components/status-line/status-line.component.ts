@@ -8,6 +8,7 @@ import { Component, OnInit, OnDestroy, OnChanges, Input, SimpleChange } from '@a
 })
 
 export class StatusLineComponent implements OnInit, OnDestroy, OnChanges {
+    @Input() className: string;
     @Input() labelText: string;
     @Input() toolTipData: string;
     @Input() toolTipDataLabel: string;

@@ -65,6 +65,15 @@
                                     [requiredText]=item.courseMeasureStatus.requiredText>
                                 </ulms-status-line>
                             </div>
+                            <div class="statusTextConent detiallist">
+                                <!--Előfeltétel-->
+                                <ulms-status-text
+                                    [className]="'detiallist'"
+                                    [value]=item.prerequisite
+                                    [labelText]="'lbl_prerequisite' | translate"
+                                >
+                                </ulms-status-text>
+                            </div>
                         </div>
                         <div class="courseResultList">
                             <div class="statusTextConent">
@@ -123,16 +132,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="coursePrerequisite">
+                  <!--  <div class="coursePrerequisite">
                         <div class="statusTextConent">
-                            <!--Előfeltétel-->
+                            &lt;!&ndash;Előfeltétel&ndash;&gt;
                             <ulms-status-text
                                 [value]=item.prerequisite
                                 [labelText]="'lbl_prerequisite' | translate"
                             >
                             </ulms-status-text>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
                 <div class="courseItemButtonBlock visible-xs" style="padding: 15px 0">
                     <div class="buttonContent">

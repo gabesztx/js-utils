@@ -1,10 +1,17 @@
 @import '../../../../variables.scss';
+
 .statusTextComponent {
     font-size: 12px;
+    &.detiallist{
+
+    }
     .statusTextLabel {
         display: inline-block;
         vertical-align: middle;
         text-align: right;
+        &.detiallist{
+            width: $sm-width;
+        }
     }
     .statusTextValue {
         display: inline-block;
@@ -24,7 +31,7 @@
 
             i {
                 position: absolute;
-                top:0;
+                top: 0;
                 left: 100%;
                 margin-top: -4px;
                 margin-left: 4px;
@@ -33,7 +40,7 @@
         }
 
     }
-    &.userInvitation{
+    &.userInvitation {
         font-size: 14px;
     }
     @media(max-width: $md-min-width) {
@@ -43,6 +50,12 @@
         }
     }
     @media(max-width: $sm-min-width) {
+        .statusTextLabel {
+            &.active{
+                width: $sm-width;
+            }
+
+        }
         .statusTextValue {
             max-width: inherit;
 

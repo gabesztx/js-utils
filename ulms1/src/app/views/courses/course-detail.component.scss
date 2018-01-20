@@ -78,6 +78,9 @@ $itemPadding: 20px;
                         padding-right: 30px;
                         .statusTextConent {
                             padding-bottom: 5px;
+                            &:nth-child(3) {
+                                padding-top: 4px;
+                            }
                         }
                     }
                     &:nth-child(2) {

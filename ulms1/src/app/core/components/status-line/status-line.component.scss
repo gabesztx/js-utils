@@ -7,7 +7,7 @@
         display: inline-block;
         vertical-align: middle;
         text-align: right;
-        width: 75px;
+        width: $sm-width;
     }
     .statusLineContent {
         position: relative;
@@ -32,7 +32,7 @@
     }
     @media(max-width: $sm-min-width) {
         .statusLineLabel {
-            width: inherit;
+            //width: inherit;
 
         }
         .statusLineContent {
@@ -41,7 +41,7 @@
     }
     @media(max-width: $sm-mobil-ios) {
         .statusLineLabel {
-            width: inherit;
+            //width: inherit;
         }
         .statusLineContent {
             width: 100px;
