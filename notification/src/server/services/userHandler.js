@@ -46,7 +46,7 @@ const checkUser = (req, res) => {
     if (!getCookie(req)) {
         console.log('Nincs cookie');
         registerUser();
-        // console.log(`"${tag}"`)
+        // console.log()
         return;
     }
 
@@ -58,10 +58,11 @@ const checkUser = (req, res) => {
  *  Register user
  */
 async function registerUser() {
+    console.log('registerUser');
     const userDataObj = await getUserDataFromJSON();
     console.log('userDataObj: ', userDataObj);
     const userDataObjNext = await setUserDataToJSON(userDataObj);
-    console.log('userDataObjNext: ', userDataObjNext)
+    console.log('-- userDataObjNext --: ', userDataObjNext);
     //TODO: cookiet lerakni
 }
 
