@@ -79,7 +79,7 @@ $itemPadding: 20px;
                         .statusTextConent {
                             padding-bottom: 5px;
                             &:nth-child(3) {
-                                padding-top: 4px;
+                                padding-top: 5px;
                             }
                         }
                     }
@@ -101,6 +101,16 @@ $itemPadding: 20px;
                         .statusTextConent {
                             padding-top: 2px;
                             padding-bottom: 8px;
+                        }
+                    }
+                }
+                @media(max-width: $md-min-width) {
+                    .courseResultList {
+                        &:nth-child(1) {
+                            padding-right: 10px;
+                        }
+                        &:nth-child(2) {
+                            padding-right: 10px;
                         }
                     }
                 }
@@ -198,6 +208,7 @@ $itemPadding: 20px;
     //margin: 10px;
 
 }
+
 @media(max-width: $sm-min-width) {
     .messageBoxContent {
         margin-top: 20px;
