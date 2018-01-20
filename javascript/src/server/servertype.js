@@ -1,7 +1,7 @@
 import express from 'express';
 import http from 'http';
 import webpack from 'webpack';
-import path from 'path';
+// import path from 'path';
 
 import webpackMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';

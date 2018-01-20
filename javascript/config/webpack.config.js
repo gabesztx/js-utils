@@ -4,12 +4,12 @@ const webpack = require('webpack');
 const sourcePath = path.resolve(__dirname, '../src/app');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const babelLoaderTransformConfig = require('./babel-loader-transform-config');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+// const babelLoaderTransformConfig = require('./babel-loader-transform-config');
 // const ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
 // const ManifestPlugin = require('webpack-manifest-plugin');
-const AssetsPlugin = require('assets-webpack-plugin');
-const SplitByPathPlugin = require('webpack-split-by-path');
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+// const AssetsPlugin = require('assets-webpack-plugin');
+// const SplitByPathPlugin = require('webpack-split-by-path');
 
 
 
@@ -144,8 +144,7 @@ let getPlugin = (env) => {
           reload: false
         }
       ),
-      new webpack.HotModuleReplacementPlugin(),
-      new webpack.NoEmitOnErrorsPlugin()
+      new webpack.HotModuleReplacementPlugin()
     )
   }
   return plugin;
@@ -162,32 +161,27 @@ module.exports = (environment) => {
     devtool: getDevTool(isProd),
     stats: {
       colors: true,
-      assets: true,
-      hash: false,
-      timings: true,
       chunks: false,
+      hash: false,
       children: false,
-      progress: true,
+      timings: true,
+      // assets: true,
+      // progress: true,
     },
     module: {
       rules: [
         {
-          test: /\.jsx?$/,
+          test: /\.js?$/,
           exclude: /node_modules/,
           loader: 'babel-loader',
-          /*query: isProd ? {
-              babelrc: false,
-              presets: 'stage-0',
-              plugins: babelLoaderTransformConfig,
-            } : {}*/
 
         },
-        {
+/*        {
           test: /\.tsx?$/,
           loader: 'ts-loader',
           exclude: /node_modules/,
           // loader: 'awesome-typescript-loader',
-        },
+        },*/
 
         {
           test: /\.(scss|css)$/,

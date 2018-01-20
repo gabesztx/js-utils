@@ -1,13 +1,14 @@
-import {runDev, runProd} from './server'
+import { runDev, runProd } from './server';
+
 const start = (env) => {
 
-  if (env === 'development') {
-    runDev('dev');
-  }
+	if (env === 'development') {
+		runDev('dev');
+	}
 
-  if (env === 'production') {
-    runProd('prod');
-  }
+	if (env === 'production') {
+		runProd('prod');
+	}
 
 };
 start(process.env.NODE_ENV);
