@@ -69,6 +69,14 @@ body {
   }
 }
 */
+
+$sm-mobil-ios: 400px;
+$sm-mobil: 550px;
+$sm-height: 680px;
+$sm-min-width: 767px;
+$md-min-width: 992px;
+$lg-min-width: 1200px;
+
 .wrapper {
   width: 100%;
   background-color: wheat;
@@ -115,7 +123,7 @@ body {
       &:nth-child(5) {
         order: 5;
         background-color: #a5157c;
-        flex-basis: $third + $third;
+        flex-basis: $third * 2;
         font-size: 18px;
       }
       &:nth-child(6) {
@@ -128,7 +136,7 @@ body {
         order: 7;
         font-size: 12px;
         color: white;
-        flex-basis: $third + $third;
+        flex-basis: $third * 2;
         background-color: #464646;
       }
       &:nth-child(8) {
@@ -138,5 +146,12 @@ body {
         font-size: 20px;
       }
     }
+
+    @media(max-width: $sm-min-width) {
+      .flex-item {
+        //flex-basis:50% !important;
+      }
+    }
+
   }
 }
