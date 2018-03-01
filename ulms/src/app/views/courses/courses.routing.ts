@@ -57,14 +57,13 @@ import {CourseCaniactiveQuard} from '../../services/guards/course-caniactive.qua
 import {CourseCaniactiveChildQuard} from '../../services/guards/course-caniactive-child.quard';
 
 // const coursesGuard = (<any>window).env === 'serv' ? CoursesGuard : CoursesGuard_;
-const coursesGuard = (<any>window).env === 'serv' ? CoursesGuard : CoursesGuard_;
-const recommendedGuard = (<any>window).env === 'serv' ? RecommendedGuard : RecommendedGuard_;
-const optionalGuard = (<any>window).env === 'serv' ? OptionalGuard : OptionalGuard_;
-const upcomingGuard = (<any>window).env === 'serv' ? UpcomingGuard : UpcomingGuard_;
-const clouseGuard = (<any>window).env === 'serv' ? ClosedGuard : ClosedGuard_;
-const courseDetailGuard = (<any>window).env === 'serv' ? CourseDetailGuard : CourseDetailGuard_;
-const courseDetailListGuard = (<any>window).env === 'serv' ? CourseDetailListGuard : CourseDetailListGuard_;
-const courseFeedsGuard = (<any>window).env === 'serv' ? CourseFeedsGuard : CourseFeedsGuard;
+// const recommendedGuard = (<any>window).env === 'serv' ? RecommendedGuard : RecommendedGuard_;
+// const optionalGuard = (<any>window).env === 'serv' ? OptionalGuard : OptionalGuard_;
+// const upcomingGuard = (<any>window).env === 'serv' ? UpcomingGuard : UpcomingGuard_;
+// const clouseGuard = (<any>window).env === 'serv' ? ClosedGuard : ClosedGuard_;
+// const courseDetailGuard = (<any>window).env === 'serv' ? CourseDetailGuard : CourseDetailGuard_;
+// const courseDetailListGuard = (<any>window).env === 'serv' ? CourseDetailListGuard : CourseDetailListGuard_;
+// const courseFeedsGuard = (<any>window).env === 'serv' ? CourseFeedsGuard : CourseFeedsGuard;
 // const courseListApiLoaderGuard = (<any>window).env === 'serv' ? CourseDetailListGuard : CourseDetailListGuard_;
 
 export const routes: Routes = [{
@@ -74,7 +73,7 @@ export const routes: Routes = [{
     path: 'feed',
     component: CourseFeedComponent,
     resolve: {
-        responseData: courseFeedsGuard
+        responseData: CourseFeedsGuard
     },
     data: {
         class: 'main'
@@ -82,15 +81,15 @@ export const routes: Routes = [{
 }, {
     path: 'list',
     component: CourseListContentComponent,
-   /* canActivate: [CourseListApiLoaderGuard],*/
+    //canActivate: [CourseListApiLoaderGuard],
     children: [{
         path: 'active',
         children: [{
             path: ':page',
             component: CourseListItemComponent,
-            //canActivate: [CourseListApiLoaderGuard],
+            canActivate: [CourseListApiLoaderGuard],
             resolve: {
-                responseData: coursesGuard
+                responseData: CoursesGuard
             },
             data: {
                 itemIndex: CourseTabIndex.ACTIVE
@@ -106,7 +105,7 @@ export const routes: Routes = [{
             component: CourseListItemComponent,
             canActivate: [/*CoursesRoutingGuard*/],
             resolve: {
-                responseData: recommendedGuard
+                responseData: RecommendedGuard
             },
             data: {
                 itemIndex: CourseTabIndex.RECOMMENDED
@@ -122,7 +121,7 @@ export const routes: Routes = [{
             component: CourseListItemComponent,
             canActivate: [/*CoursesRoutingGuard*/],
             resolve: {
-                responseData: optionalGuard
+                responseData: OptionalGuard
             },
             data: {
                 itemIndex: CourseTabIndex.OPTIONAL
@@ -138,7 +137,7 @@ export const routes: Routes = [{
             component: CourseListItemComponent,
             canActivate: [/*CoursesRoutingGuard*/],
             resolve: {
-                responseData: upcomingGuard
+                responseData: UpcomingGuard
             },
             data: {
                 itemIndex: CourseTabIndex.UPCOMING
@@ -154,7 +153,7 @@ export const routes: Routes = [{
             component: CourseListItemComponent,
             canActivate: [/*CoursesRoutingGuard*/],
             resolve: {
-                responseData: clouseGuard
+                responseData: ClosedGuard
             },
             data: {
                 itemIndex: CourseTabIndex.CLOSED
@@ -171,7 +170,7 @@ export const routes: Routes = [{
     path: ':courseId',
     component: CourseDetailComponent,
     resolve: {
-        responseData: courseDetailGuard
+        responseData: CourseDetailGuard
     },
     children: [
         {
@@ -181,19 +180,19 @@ export const routes: Routes = [{
             path: 'content',
             component: CourseDetailListItemComponent,
             resolve: {
-                responseData: courseDetailListGuard
+                responseData: CourseDetailListGuard
             },
         }, {
             path: 'info',
             component: CourseDetailInfoComponent,
             resolve: {
-                responseData: courseDetailListGuard
+                responseData: CourseDetailListGuard
             },
         }, {
             path: 'feed',
             component: CourseFeedComponent,
             resolve: {
-                responseData: courseDetailListGuard
+                responseData: CourseDetailListGuard
             },
         }
     ]

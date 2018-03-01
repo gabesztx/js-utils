@@ -36,10 +36,10 @@ export class CourseService extends HttpProxy {
             });
         }
         if (this.courseListDataProvoider[courseState].hasOwnProperty(search.page)) {
-            //console.log('CourseService OK!');
+            // console.log('CourseService OK!');
             return this.courseListDataProvoider[courseState][search.page];
         }
-        //console.log('CourseService GET LIST!');
+        console.log('CourseService GET LIST!');
         return this.get(`${this.apiUrl}`, opts)
             .map((result: any) => {
                 const currentPage = result.currentPage;

@@ -65,7 +65,7 @@ export class CourseRecommendedComponent implements OnChanges {
             }
             this.currentItemListaData.push(currentList[itemNum]);
             itemNum++;
-        }, 125);
+        }, 100);
     }
 
     transFormViewObject(itemData: RestApiResponse<any>) {

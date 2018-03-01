@@ -1,12 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { LinkRel } from '../../../models/link.model';
-import { CourseActivityStatus } from '../../../models/courseActivity.model';
-import { ContractStatus } from '../../../models/courseRegistrationShallow.model';
-import { CommonService } from '../../../services/common/common.service';
-import { ModalHandlerService } from '../../../services/modal-handler.service';
-import { CourseDetailService } from '../../../services/course-detail.service';
-// import { calcPossibleSecurityContexts } from '@angular/compiler/src/template_parser/binding_parser';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import {ActivatedRoute, Router} from '@angular/router';
+import {LinkRel} from '../../../models/link.model';
+import {CourseActivityStatus} from '../../../models/courseActivity.model';
+import {ContractStatus} from '../../../models/courseRegistrationShallow.model';
+import {CommonService} from '../../../services/common/common.service';
+import {ModalHandlerService} from '../../../services/modal-handler.service';
+import {CourseDetailService} from '../../../services/course-detail.service';
 
 @Component({
     selector: 'ulms-course-detail',
@@ -36,13 +36,15 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
                 private router: Router,
                 private commonService: CommonService,
                 private courseDetailService: CourseDetailService,
-                private modalHandlerService: ModalHandlerService) {
+                private modalHandlerService: ModalHandlerService,
+                private titleService: Title) {
 
         this.popUpModal = this.modalHandlerService.getPopUpHandlerScope();
         this.paramsObs = this.route.params.subscribe(params => {
             this.urlId = params.courseId;
             this.courseDetail = this.route.snapshot.data.responseData.courseDetail;
             this.courseFeeds = this.route.snapshot.data.responseData.courseFeeds;
+            this.titleService.setTitle(this.courseDetail.title);
             this.courseDetailState = this.courseDetail.courseState;
             this.courseRegistration = this.courseDetail.courseRegistration;
             this.userInvitations = this.courseDetail.userInvitations;
@@ -53,7 +55,8 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
         });
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+    }
 
     /**
      * Course detail nav tab property
@@ -90,9 +93,9 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
 
         const courseActivities = this.courseDetail.courseActivities;
         const navTabDefaultData = {
-            content: { 'label': 'lbl_course_content', 'urlPath': '/courses/' + this.urlId + '/content' },
-            info: { 'label': 'lbl_course_information', 'urlPath': '/courses/' + this.urlId + '/info' },
-            feed: { 'label': 'lbl_feed', 'urlPath': '/courses/' + this.urlId + '/feed' }
+            content: {'label': 'lbl_course_content', 'urlPath': '/courses/' + this.urlId + '/content'},
+            info: {'label': 'lbl_course_information', 'urlPath': '/courses/' + this.urlId + '/info'},
+            feed: {'label': 'lbl_feed', 'urlPath': '/courses/' + this.urlId + '/feed'}
         };
         // add content tab
         if (courseActivities.length && this.isContentDetailTabShow) {
@@ -171,7 +174,7 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
                     this.courseDetailService.qualificationNoticeModal(this.courseRegistration.id);
 
                 }
-            }, { links: this.navTabLinks, qualificationNotice: qualificationNotice });
+            }, {links: this.navTabLinks, qualificationNotice: qualificationNotice});
         }
 
         /**

@@ -77,7 +77,7 @@ export class CommonService {
         const requiredText = requiredForCompleted ? 'lbl_required_for_satisfied' : 'lbl_not_required_for_satisfied';
         const requiredToolTipText = requiredForCompleted ? 'tt_course_object_progress_required' : 'tt_course_object_progress_not_required';
 
-        return {
+            return {
             'value': lineValue,
             'statusIcon': this.getLineStatus(isCompleted, status, courseState),
             'requiredText': this.translate(requiredText),

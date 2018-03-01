@@ -47,6 +47,7 @@ export class CourseListContentComponent implements OnInit {
     }
 
     updateNotification(apikey) {
+        console.log('updateNotification', apikey)
         if (apikey === PreferencesApiKey.api_InvitedCourses) {
             this.navData[1].notification = [];
         } else if (apikey === PreferencesApiKey.api_UserOptionalCourseList) {

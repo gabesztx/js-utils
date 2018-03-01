@@ -33,9 +33,9 @@ export class StatusLineComponent implements OnInit, OnDestroy, OnChanges {
                         return;
                     }
                     this.startValue++;
-                }, 40);
+                }, 5);
             }
-        }, 700);
+        }, 250);
     }
 
     ngOnInit() {

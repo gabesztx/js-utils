@@ -1,7 +1,9 @@
 import {Component, OnDestroy} from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 import {CourseTabIndex} from '../../../services/course-status-mapper.service';
+import {L10nService} from '../../../services/l10n.service';
 
 @Component({
     selector: 'ulms-course-list-item',
@@ -34,9 +36,10 @@ export class CourseListItemComponent implements OnDestroy {
         [CourseTabIndex.CLOSED]: 'msg_closed_course_list_is_empty',
     };
 
-    constructor(private route: ActivatedRoute) {
+    constructor(private route: ActivatedRoute, private titleService: Title, private l10nService: L10nService) {
         this.paramsObservable = this.route.params.subscribe(params => {
             this.itemIndex = this.route.snapshot.data.itemIndex;
+            this.titleService.setTitle(this.l10nService.translate(this.pageTitle[this.itemIndex]));
             this.itemData = this.route.snapshot.data.responseData;
             this.items = this.itemData.items;
             // this.items = [];

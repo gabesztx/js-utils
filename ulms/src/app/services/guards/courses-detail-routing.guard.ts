@@ -9,6 +9,7 @@ export class CoursesDetailRoutingGuard implements CanActivate {
     canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
         const pageId = next.paramMap.get('courseId');
         console.log('CoursesDetailRoutingGuard--URL PATH ROUTING');
+        console.log('page ID', pageId);
         this.courseDetailService.courseDetailRouting(pageId);
         return false;
     }

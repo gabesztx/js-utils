@@ -24,7 +24,7 @@ export const slideInOutKeyFrameAnimation =
     trigger('slideInOutKeyFrame', [
         state('in', style({ transform: 'translateY(0) scale(1)', opacity: 1 })),
         transition(':enter', [
-            animate('0.7s cubic-bezier(0, 0.32, 0.07, 1.03)', keyframes([
+            animate('0.4s cubic-bezier(0, 0.32, 0.07, 1.03)', keyframes([
                 style({ transform: 'translateY(80px)', opacity: 0 }),
                 style({ transform: 'translateY(0)', opacity: 1 })
             ]))

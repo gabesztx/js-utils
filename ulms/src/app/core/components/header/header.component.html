@@ -16,6 +16,14 @@
                     </div>
                     <div class="collapse nx-navbar-collapse navbar-collapse" id="nx-navbar">
                         <ul class="nav navbar-nav nx-navbar-nav">
+                            <!--Admin-->
+                            <li class="nx-header-menu__item" *ngIf="isUserAdmin">
+                                <a href="/admin" class="menu_item_bt">
+                                    <span
+                                        class="nx-header-menu__item-icon nx-header-menu__item-icon--admin icon-nx-admin"> </span>
+                                    <span>{{'btn_admin' | translate }}</span>
+                                </a>
+                            </li>
                             <!--Számlázás-->
                             <li class="nx-header-menu__item" *ngIf="!isLTI">
                                 <a [href]="configData.paymentBaseUrl" class="menu_item_bt">
@@ -24,19 +32,11 @@
                                     <span>{{'lbl_billing' | translate }}</span>
                                 </a>
                             </li>
-                            <!--Admin-->
-                            <li class="nx-header-menu__item" *ngIf="isUserAdmin">
-                                <a href="/admin" class="menu_item_bt">
-                                    <span
-                                        class="nx-header-menu__item-icon nx-header-menu__item-icon--admin icon-nx-admin"> </span>
-                                    <span>{{ 'lbl_admin' | translate }}</span>
-                                </a>
-                            </li>
                             <!--Hírek-->
                             <li class="nx-header-menu__item" *ngIf="!isLTI">
                                 <a href="javascript:void(0);" (click)="navigationUrl()" class="menu_item_bt">
                                     <div class="nx-header-menu__item-icon feed-icon icon-nx-feeds"></div>
-                                    {{ 'lbl_feed' | translate }}
+                                    {{ 'lbl_feeds' | translate }}
                                     <span class="nx-count-badge pull-right hidden">
                                         <span class="nx-count-badge__count"></span>
                                     </span>
@@ -75,7 +75,7 @@
                                     <!--Profile-->
                                     <li class="">
                                         <a [href]="configData.baseUrl + 'profile/index'">
-                                            {{ 'btn_Profile' | translate }}
+                                            {{ 'btn_profile' | translate }}
                                         </a>
                                     </li>
                                     <!--Kijelentkezés-->

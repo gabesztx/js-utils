@@ -24,6 +24,8 @@ export class CourseActiveComponent implements OnChanges {
     constructor(private commonService: CommonService,
                 private courseDetailService: CourseDetailService,
                 private router: Router) {
+
+        // console.log('----- CourseActiveComponent -----');
     }
 
     ngOnChanges() {
@@ -42,12 +44,12 @@ export class CourseActiveComponent implements OnChanges {
             }
             this.currentItemListaData.push(currentList[itemNum]);
             itemNum++;
-        }, 125);
+        }, 100);
     }
 
     navigationUrl(id: string) {
-        // this.courseDetailService.courseDetailRouting(id);
-        this.router.navigate(['courses', id, 'content']);
+        this.courseDetailService.courseDetailRouting(id);
+        // this.router.navigate(['courses', id, 'content']);
     }
 
     transFormViewObject(itemData: RestApiResponse<any>) {

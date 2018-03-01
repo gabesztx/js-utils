@@ -22,6 +22,7 @@ import { CourseClosedComponent } from './course-closed/course-closed.component';
 import { CourseOptionalComponent } from './course-optional/course-optional.component';
 import { CourseUpcomingComponent } from './course-upcoming/course-upcoming.component';
 import { CourseDetailListItemComponent } from './course-detail-list-item/course-detail-list-item.component';
+import { CourseDetailMainItemComponent } from './course-detail-main-item/course-detail-main-item.component';
 import { CourseDetailMainContentComponent } from './course-detail-main-content/course-detail-main-content.component';
 import { CourseDetailFeedComponent } from './course-detail-feed/course-detail-feed.component';
 import { CourseFeedComponent } from './course-feed/course-feed.component';
@@ -53,6 +54,7 @@ import { CourseUserInvitationsComponent } from './course-user-invitations/course
         CourseDetailMainContentComponent,
         CourseDetailFeedComponent,
         CourseFeedComponent,
+        CourseDetailMainItemComponent,
         CourseDetailMainInfoComponent,
         CourseUserInvitationsComponent
     ],

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
+import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {CourseService} from '../course.service';
 import {SearchModel, FilterModel} from '../../models/search.model';
@@ -8,10 +8,15 @@ import {CourseTabIndex} from '../course-status-mapper.service';
 @Injectable()
 export class CourseListApiLoaderGuard implements CanActivate {
     constructor(
+        private router: Router,
         private courseService: CourseService,
     ) {}
     canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-        return Observable.of(true).delay(1000);
+        // console.log('CourseListApiLoaderGuard');
+        // return Observable.of(true).delay(10);
+
+        return true;
+
     }
 
 

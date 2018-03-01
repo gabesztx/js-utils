@@ -53,9 +53,7 @@ $dropDownHeight: 32px;
             width: 20%;
             &:disabled {
                 cursor: default;
-                &:hover {
-                    background-color: #04aad4;
-                }
+                opacity: 0.4;
             }
             &.navTabLinks {
                 //height: 40px;

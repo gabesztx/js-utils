@@ -7,11 +7,13 @@ body {
     padding: 0;
     margin: 0;
     min-height: 100%;
+    overflow-y: scroll;
 }
 
 body {
     color: $default-txt;
     line-height: 1.1;
+    overflow: hidden;
     //height: auto !important;
     background: url('./assets/970x1.png') 50% repeat-y $bg;
 

@@ -57,7 +57,7 @@ export class CourseDetailListItemComponent implements OnChanges, OnDestroy {
             });
             return;
         }
-        // window.open(url, target);
+         window.open(url, target);
     }
 
     updatePageItem(currentList: any) {

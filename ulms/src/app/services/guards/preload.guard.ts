@@ -56,13 +56,14 @@ export class PreloadGuard implements CanActivate {
         return Observable.of(
             this.l10n.init(),
             this.user.getUser(),
-            //this.preferences.getPreferences(),
-            //this.courseService.list(courseActiveState, courseSearchActive), // Activate
-            //this.recommendedService.list(courseRecommendedState, courseSearchRecommended), // Recommended
-            //this.optionalService.list(courseOptionalState, courseSearchOptional), // Optional
-            //this.courseFeedsService.list(), // Feeds
+            this.preferences.getPreferences(),
+            this.courseService.list(courseActiveState, courseSearchActive), // Activate
+            this.recommendedService.list(courseRecommendedState, courseSearchRecommended), // Recommended
+            this.optionalService.list(courseOptionalState, courseSearchOptional), // Optional
+            this.courseFeedsService.list(), // Feeds
         ).combineAll().map((results: Array<boolean>) => {
             $('.fullPageSpinner').remove();
+            // console.log(results)
             this.__headerInstance__.setUserData(results[1]);
             this.__footerInstance__.setUserData(results[1]);
             return results.filter(result => result === false).length === 0;

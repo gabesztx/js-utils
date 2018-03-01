@@ -44,6 +44,7 @@ export class L10nService extends HttpBase {
     }
 
     init(): Observable<boolean> {
+        // console.log('LOCAL EEENV:',  (<any>window).env)
         const urlPath = (<any>window).env === 'serv' ? 'content/client/assets/locales/' : 'assets/locales/';
         const url = this.config.baseUrl + urlPath + this.locale + '.json';
         this.defaultScope = this.locale;

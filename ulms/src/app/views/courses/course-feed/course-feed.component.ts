@@ -47,7 +47,7 @@ export class CourseFeedComponent implements OnInit, OnChanges, OnDestroy {
             }
             this.currentItemListaData.push(currentList[itemNum]);
             itemNum++;
-        }, 130);
+        }, 100);
     }
 
     transFormViewObject(itemData: any) {

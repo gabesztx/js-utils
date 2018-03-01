@@ -51,7 +51,7 @@ export class CourseOptionalComponent implements OnChanges {
         this.courseDetailService.postCourseEnrollment(id).subscribe(
             res => {
                 //TODO ha BEZÁRRA kattint akkor frissítem a listát
-                console.log('RES ---- ', res);
+                console.log('enrollment RES', res);
                 if (res.error.status === 201) {
                     this.popUpModal.openModal('courseEnrollment', () => {
                         this.navigationUrl(id);
@@ -71,7 +71,7 @@ export class CourseOptionalComponent implements OnChanges {
             }
             this.currentItemListaData.push(currentList[itemNum]);
             itemNum++;
-        }, 125);
+        }, 100);
     }
 
     transFormViewObject(itemData: RestApiResponse<any>) {

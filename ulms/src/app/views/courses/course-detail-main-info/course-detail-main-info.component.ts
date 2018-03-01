@@ -1,6 +1,8 @@
 import { Component, OnChanges, Input } from '@angular/core';
 import { CommonService } from '../../../services/common/common.service';
 import { CourseDetailViewModel } from '../../../models/views/course-detail-view.model';
+import {CourseDetailService} from '../../../services/course-detail.service';
+import {ModalHandlerService} from '../../../services/modal-handler.service';
 
 @Component({
     selector: 'ulms-course-detail-main-info',
@@ -14,8 +16,14 @@ export class CourseDetailMainInfoComponent implements OnChanges {
     @Input() courseDetail: any;
     currentItemData: any;
     isUseroptionalCourse: any;
+    popUpModal: any;
 
-    constructor(private commonService: CommonService) {
+    constructor(
+        private commonService: CommonService,
+        private courseDetailService: CourseDetailService,
+        private modalHandlerService: ModalHandlerService
+        ) {
+        this.popUpModal = this.modalHandlerService.getPopUpHandlerScope();
     }
 
     ngOnChanges() {
@@ -24,6 +32,18 @@ export class CourseDetailMainInfoComponent implements OnChanges {
 
     clickUrl(id: string) {
         console.log('CourseDetailMainInfoComponent CLICK', id);
+        this.courseDetailService.postCourseEnrollment(id).subscribe(
+            res => {
+                //TODO ha BEZÁRRA kattint akkor frissítem a listát
+                console.log('enrollment RES', res);
+                if (res.error.status === 201) {
+                    this.popUpModal.openModal('courseEnrollment', () => {
+                        this.courseDetailService.courseDetailRouting(id);
+                    });
+                }
+            },
+            error => console.log('enrollment ERROR: ', error)
+        );
     }
 
     transFormViewObject(courseDetail: any) {

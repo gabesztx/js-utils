@@ -27,12 +27,12 @@ $itemPadding: 20px;
         .courseItemTextBlockContent {
             .courseItemTextBlock {
                 .courseTitleContent {
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    white-space: nowrap;
                     .courseTitle {
                         font-size: 16px;
                         color: #0497bb;
-                        text-overflow: ellipsis;
-                        overflow: hidden;
-                        white-space: nowrap;
                     }
                     .courseLabelContent {
                         padding-top: 5px;

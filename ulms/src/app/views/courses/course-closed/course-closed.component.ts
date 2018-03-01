@@ -48,7 +48,7 @@ export class CourseClosedComponent implements OnChanges {
             }
             this.currentItemListaData.push(currentList[itemNum]);
             itemNum++;
-        }, 125);
+        }, 100);
 
     }
 
