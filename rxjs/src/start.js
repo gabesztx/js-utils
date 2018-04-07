@@ -1,2 +1,2 @@
-import {startDevelep} from './server/server'
+import {startDevelep} from './server/server';
 startDevelep();
