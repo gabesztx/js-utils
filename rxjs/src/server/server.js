@@ -12,16 +12,16 @@ const port = process.env.PORT || 5000;
 const server = http.createServer(app);
 
 
-export const startDevelep = () => {
-    console.log('-- Start Dev Server --');
-    const config = webpackConfig;
-    const compiler = webpack(config);
-    const middleware = webpackMiddleware(compiler, {
-        publicPath: config.output.publicPath,
-        stats: config.stats
-    });
-    app
-        .use(middleware)
-        .use(webpackHotMiddleware(compiler));
-    server.listen(port);
+export const startDevelep = () =>{
+  console.log('-- Start Dev Server --');
+  const config = webpackConfig;
+  const compiler = webpack(config);
+  const middleware = webpackMiddleware(compiler, {
+    publicPath: config.output.publicPath,
+    stats: config.stats
+  });
+  app
+    .use(middleware)
+    .use(webpackHotMiddleware(compiler));
+  server.listen(port);
 };
