@@ -15,6 +15,7 @@ const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
  * Get npm lifecycle event to identify the environment
  */
 const ENV = process.env.npm_lifecycle_event;
+
 const isTestWatch = ENV === 'test-watch';
 const isTest = ENV === 'test' || isTestWatch;
 const isProd = ENV === 'build';
@@ -25,6 +26,9 @@ module.exports = function makeWebpackConfig () {
    * Reference: http://webpack.github.io/docs/configuration.html
    * This is the object where all configuration gets set
    */
+
+  console.log('isTest: ', isTest);
+  console.log('isProd: ', isProd);
   const config = {};
 
   /**
@@ -284,17 +288,18 @@ module.exports = function makeWebpackConfig () {
       }])
     );
   }
-  /* /!**
+   /**
    * Dev server configuration
    * Reference: http://webpack.github.io/docs/configuration.html#devserver
    * Reference: http://webpack.github.io/docs/webpack-dev-server.html
-   *!/
+   */
+
    config.devServer = {
    contentBase: './src/public',
    historyApiFallback: true,
    quiet: true,
    stats: 'minimal' // none (or false), errors-only, minimal, normal (or true) and verbose
-   };*/
+   };
 
   return config;
 }();
