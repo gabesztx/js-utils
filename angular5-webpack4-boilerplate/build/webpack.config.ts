@@ -1,14 +1,16 @@
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ngcWebpack = require('ngc-webpack');
-console.log('Env', process.env.NODE_ENV);
-
+const {CheckerPlugin} = require('awesome-typescript-loader')
+// console.log('Env', process.env.NODE_ENV);
+const ENV = process.env.NODE_ENV;
 export const config = {
     entry: {
         app: './src/index.ts'
     },
     target: 'node',
-    devtool: process.env.NODE_ENV === 'production' ? false : 'inline-source-map',
+    // mode: 'development',
+    devtool: ENV === 'production' ? false : 'inline-source-map',
 
     /*optimization: {
         splitChunks: {
@@ -33,11 +35,11 @@ export const config = {
                     system: true
                 }
             },
-
             // Typescript
             {
                 test: /\.ts$/,
                 exclude: /node_modules/,
+                // loader: 'awesome-typescript-loader',
                 use: '@ngtools/webpack'
             },
 
@@ -89,20 +91,21 @@ export const config = {
             mainPath: './src/index.ts'
         }),
         new webpack.DefinePlugin({
-            PRODUCTION: JSON.stringify(process.env.NODE_ENV === 'production'),
+            PRODUCTION: JSON.stringify(ENV === 'production'),
             BUILDTIMESTAMP: JSON.stringify(Date.now()),
         }),
-       /* new CopyWebpackPlugin([
-            {
-                from: './src/assets/images',
-                to: './assets/images',
-                toType: 'dir'
-            },
-            {
-                from: './src/assets/shim',
-                to: './assets',
-                toType: 'dir'
-            }
-        ]),*/
+        // new CheckerPlugin()
+        /* new CopyWebpackPlugin([
+             {
+                 from: './src/assets/images',
+                 to: './assets/images',
+                 toType: 'dir'
+             },
+             {
+                 from: './src/assets/shim',
+                 to: './assets',
+                 toType: 'dir'
+             }
+         ]),*/
     ],
 };
