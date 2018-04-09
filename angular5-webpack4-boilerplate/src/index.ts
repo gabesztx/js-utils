@@ -1,6 +1,6 @@
-import './index.html';
+/*import './index.html';
 import './assets/app.less';
-import './vendor';
+import './vendor';*/
 
 import {AppModule} from './app/app.module';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
@@ -12,10 +12,10 @@ declare const PRODUCTION;
 declare const BUILDTIMESTAMP;
 
 if (PRODUCTION) {
-	console.log('PROD mode');
-	enableProdMode();
+    console.log('PROD mode');
+    enableProdMode();
 } else {
-	console.log('DEV mode');
+    console.log('DEV mode');
 }
 console.log('Built at:', new Date(BUILDTIMESTAMP));
 
