@@ -7,7 +7,7 @@ export const config = {
     entry: {
         app: './src/index.ts'
     },
-    target: 'web',
+    target: 'node',
     devtool: process.env.NODE_ENV === 'production' ? false : 'inline-source-map',
 
     /*optimization: {
