@@ -9,6 +9,7 @@ export const config = {
     },
     target: 'web',
     devtool: process.env.NODE_ENV === 'production' ? false : 'inline-source-map',
+
     /*optimization: {
         splitChunks: {
             cacheGroups: {
