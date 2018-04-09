@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class DisplayDataComponent implements OnInit {
 	name: string;
-	users: [string];
+	users: any;
 	@Input('display') display: string;
 
 	constructor() {

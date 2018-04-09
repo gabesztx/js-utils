@@ -9,6 +9,7 @@ import '../style/app.scss';
 export class AppComponent {
 	title: string;
 	componentParam: string;
+
 	constructor() {
 		this.componentParam = 'Component String Params';
 		this.title = 'App Init';

@@ -46,63 +46,63 @@ import { Page3Component } from './routing/page3/page3.component';
 import { PageNotFoundComponent } from './routing/page-not-found/page-not-found.component';*/
 
 @NgModule({
-  imports: [
-    BrowserModule,
-   /* FormsModule,
-    HttpModule,
-    AppRoutingModule,*/
-  ],
-  declarations: [
-    AppComponent,
-/*    DisplayDataComponent,
-    HeroParentComponent,
-    HeroChildComponent,
-    NameParentComponent,
-    NameChildComponent,
-    VersionChildComponent,
-    VersionParentComponent,
-    VoterComponent,
-    VoterParentComponent,
-    CountdownTimerComponent,
-    CountdownParentComponent,
-    CountdownViewchildParentComponent,
-    CountdownViewchildTimerComponent,
-    CommponentCommunicateComponent,
-    CommponentMessageComponent,
-    CommponentStylesComponent,
-    AfterContentParentComponent,
-    AfterContentComponent,
-    ChildComponent,
-    AfterViewParentComponent,
-    AfterViewComponent,
-    ChildViewComponent,
-    LoaderComponent,
-    FontComponentComponent,
-    routedComponents*/
-  ],
-  // providers: [MessageService],
-  bootstrap: [AppComponent]
+	imports: [
+		BrowserModule,
+		/* FormsModule,
+		 HttpModule,
+		 AppRoutingModule,*/
+	],
+	declarations: [
+		AppComponent,
+		/*    DisplayDataComponent,
+				HeroParentComponent,
+				HeroChildComponent,
+				NameParentComponent,
+				NameChildComponent,
+				VersionChildComponent,
+				VersionParentComponent,
+				VoterComponent,
+				VoterParentComponent,
+				CountdownTimerComponent,
+				CountdownParentComponent,
+				CountdownViewchildParentComponent,
+				CountdownViewchildTimerComponent,
+				CommponentCommunicateComponent,
+				CommponentMessageComponent,
+				CommponentStylesComponent,
+				AfterContentParentComponent,
+				AfterContentComponent,
+				ChildComponent,
+				AfterViewParentComponent,
+				AfterViewComponent,
+				ChildViewComponent,
+				LoaderComponent,
+				FontComponentComponent,
+				routedComponents*/
+	],
+	// providers: [MessageService],
+	bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(public appRef: ApplicationRef) {
-    console.log('AppModule');
-  }
+	constructor(public appRef: ApplicationRef) {
+		console.log('AppModule 1, 2,4, 3');
+	}
 
-  hmrOnInit(store) {
-    // console.log('HMR store', store);
-  }
+	hmrOnInit(store: any) {
+		// console.log('HMR store', store);
+	}
 
-  hmrOnDestroy(store) {
-    let cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement);
-    // recreate elements
-    store.disposeOldHosts = createNewHosts(cmpLocation);
-    // remove styles
-    removeNgStyles();
-  }
+	hmrOnDestroy(store: any) {
+		let cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement);
+		// recreate elements
+		store.disposeOldHosts = createNewHosts(cmpLocation);
+		// remove styles
+		removeNgStyles();
+	}
 
-  hmrAfterDestroy(store) {
-    // display new elements
-    store.disposeOldHosts();
-    delete store.disposeOldHosts;
-  }
+	hmrAfterDestroy(store: any) {
+		// display new elements
+		store.disposeOldHosts();
+		delete store.disposeOldHosts;
+	}
 }

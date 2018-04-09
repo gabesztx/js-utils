@@ -1,5 +1,6 @@
 import { Component, OnInit, } from '@angular/core';
-import { JsonPipe  } from '@angular/common';
+import { JsonPipe } from '@angular/common';
+
 @Component({
 	selector: 'my-form',
 	templateUrl: './font-component.component.html',
@@ -26,7 +27,7 @@ export class FontComponentComponent implements OnInit {
 	}
 
 
-	onModelChange(value) {
+	onModelChange(value: any) {
 		// console.log('onModelChange', this.model);
 		this.modelJson = JSON.stringify(this.model);
 	}
@@ -35,7 +36,7 @@ export class FontComponentComponent implements OnInit {
 		// console.log('changeInputValue', this.model);
 	}
 
-	onSubmit(form:any) {
+	onSubmit(form: any) {
 		console.log('SUBMIT');
 		console.log(form);
 		// this.submitted = true;

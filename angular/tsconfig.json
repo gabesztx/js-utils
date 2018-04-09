@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "noImplicitAny": true,
+    "removeComments": true,
     "target": "ES5",
     "module": "commonjs",
     "emitDecoratorMetadata": true,
