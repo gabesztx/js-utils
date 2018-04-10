@@ -5,24 +5,24 @@ const ngcWebpack = require('ngc-webpack');
 // const {CheckerPlugin} = require('awesome-typescript-loader')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ENV = process.env.NODE_ENV;
+console.log('ENV', root('./src/public'));
 
 const isProduction = ENV === 'production';
-
-export const config = {
+module.exports = {
     entry: {
         app: './src/index.ts'
     },
     output: {
 
-        path: root('../src/public'),
+        path: root('./src/public'),
         // publicPath: isProduction ? '/' : 'http://localhost:8080/',
         // publicPath: '/',
-        filename: isProduction ? '[name].[hash].js' : '[name].js',
-        chunkFilename: isProduction ? '[id].[hash].chunk.js' : '[id].chunk.js'
+        filename: '[name].[hash].js',
+        chunkFilename: '[id].[hash].chunk.js'
     },
-    // target: 'node',
-    // mode: 'development',
-    // devtool: isProduction ? false : 'inline-source-map',
+    target: 'node',
+    mode: 'development',
+    devtool: 'inline-source-map',
 
     /*optimization: {
         splitChunks: {
@@ -51,14 +51,14 @@ export const config = {
             {
                 test: /\.ts$/,
                 exclude: /node_modules/,
-                loader: 'awesome-typescript-loader',
-                // use: '@ngtools/webpack' // production
+                // loader: 'awesome-typescript-loader',
+                use: '@ngtools/webpack' // production
             },
 
             // Templates
             {
                 test: /\.html$/,
-                exclude: root('../src/public'),
+                // exclude: root('./src/public'),
                 use: [
                     {
                         loader: 'raw-loader'
@@ -103,7 +103,7 @@ export const config = {
             mainPath: './src/index.ts'
         }),
         new webpack.DefinePlugin({
-            PRODUCTION: JSON.stringify(ENV === 'production'),
+            // PRODUCTION: JSON.stringify(ENV === 'production'),
             BUILDTIMESTAMP: JSON.stringify(Date.now()),
         }),
         new HtmlWebpackPlugin({
@@ -131,9 +131,9 @@ export const config = {
     devServer: {
         contentBase: './src/public',
         // port: 9000
-        historyApiFallback: true,
-        quiet: true,
-        stats: 'minimal' // none (or false), errors-only, minimal, normal (or true) and verbose
+        // historyApiFallback: true,
+        // quiet: true,
+        // stats: 'minimal' // none (or false), errors-only, minimal, normal (or true) and verbose
     }
 };
 

@@ -1,3 +1,4 @@
+/*
 import {AppModule} from './app/app.module';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {enableProdMode} from '@angular/core';
@@ -14,4 +15,7 @@ if (PRODUCTION) {
 }
 console.log('Built at:', new Date(BUILDTIMESTAMP));
 
-platformBrowserDynamic().bootstrapModule(AppModule);
+platformBrowserDynamic().bootstrapModule(AppModule);*/
+
+
+console.log('hee');
