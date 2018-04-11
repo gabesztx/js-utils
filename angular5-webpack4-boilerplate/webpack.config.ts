@@ -5,7 +5,7 @@ const ngcWebpack = require('ngc-webpack');
 // const {CheckerPlugin} = require('awesome-typescript-loader')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ENV = process.env.NODE_ENV;
-console.log('ENV', root('./src/public'));
+console.log('ENV VARIBLE: ', root('./src/public'));
 
 const isProduction = ENV === 'production';
 module.exports = {
@@ -24,7 +24,7 @@ module.exports = {
     mode: 'development',
     devtool: 'inline-source-map',
 
-    /*optimization: {
+    optimization: {
         splitChunks: {
             cacheGroups: {
                 vendor: {
@@ -35,7 +35,7 @@ module.exports = {
                 }
             }
         }
-    },*/
+    },
     resolve: {
         extensions: ['.js', '.ts', '.html']
     },
