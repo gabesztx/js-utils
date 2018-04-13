@@ -8,18 +8,16 @@ const webpack = require('webpack');
 // const ContextReplacementPlugin = webpack
 // const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const {CheckerPlugin} = require('awesome-typescript-loader');
 // const ExtractTextPlugin = require('extract-text-webpack-plugin');
 // const CopyWebpackPlugin = require('copy-webpack-plugin');
-// const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 /**
  * Env
  * Get npm lifecycle event to identify the environment
  */
 const ENV = process.env.npm_lifecycle_event;
-
 const isTestWatch = ENV === 'test-watch';
 const isTest = ENV === 'test' || isTestWatch;
 const isProd = ENV === 'build';
@@ -48,42 +46,63 @@ module.exports = function makeWebpackConfig() {
      * Reference: http://webpack.github.io/docs/configuration.html#entry
      */
     config.entry = {
-        // 'polyfills': './src/polyfills.ts',
+        'polyfills': './src/polyfills.ts',
         'vendor': './src/vendor.ts',
-        'app': './src/main.ts' // our angular app
+        // 'app': ['./src/app.js', 'webpack-hot-middleware/client']
+        // 'app': ['webpack-hot-middleware/client?reload=true', './src/main.ts']
+        'app': ['webpack-hot-middleware/client?reload=true', './src/app.js']
+        // 'app': './src/main.ts' // our angular app
     };
 
-
-    /**
-     * Output
-     * Reference: http://webpack.github.io/docs/configuration.html#output
-     */
     config.output = {
-        path: root('dist'),
+        // path: root('dist'),
+        path: '/',
         publicPath: '/',
         filename: 'js/[name].js',
         chunkFilename: '[id].chunk.js'
     };
 
+    config.optimization = {
+        splitChunks: {
+            cacheGroups: {
+                vendor: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendor',
+                    chunks: 'initial',
+                    enforce: true
+                }
+            }
+        }
+    };
+
     config.resolve = {
-        // only discover files that have those extensions
         extensions: ['.ts', '.tsx', '.js', '.jsx']
     };
 
-    /*config.optimization = {
-        splitChunks: {
-            chunks: 'all',
-        }
-    };*/
 
     config.module = {
         rules: [
+            {
+                test: /.js$/,
+                parser: {
+                    system: true
+                }
+            },
+            {
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader'
+
+            },
             // Support for .ts files.
             {
                 test: /\.ts$/,
-                // loaders: ['awesome-typescript-loader', 'angular2-template-loader', '@angularclass/hmr-loader'],
-                loaders: 'awesome-typescript-loader',
-                // exclude: /node_modules/,
+                exclude: /node_modules/,
+                loaders: [
+                    '@angularclass/hmr-loader',
+                    'awesome-typescript-loader',
+                    'angular2-template-loader',
+                ],
             },
             {
                 test: /\.html$/,
@@ -91,15 +110,9 @@ module.exports = function makeWebpackConfig() {
                 exclude: root('src', 'public')
             },
             {
-                test: /\.ts$/,
-                enforce: 'pre',
-                loader: 'tslint-loader',
-                options:{
-                    configFile: false,
-                    emitErrors: false,
-                    fix: false,
-                }
-            }
+                test: /\.(png|svg|jpg|gif)$/,
+                use: ['file-loader']
+            },
         ]
     };
 
@@ -112,13 +125,35 @@ module.exports = function makeWebpackConfig() {
 
         new webpack.ContextReplacementPlugin(
             new RegExp(/angular(\\|\/)core(\\|\/)(@angular|esm5)/),
-            root('./src')
+            root('src')
         ),
 
         new HtmlWebpackPlugin({
             template: './src/public/index.html',
+            chunksSortMode: 'dependency'
             // chunksSortMode: 'none'
         }),
+
+        new webpack.HotModuleReplacementPlugin(),
+
+        /* new BrowserSyncPlugin({
+                 host: 'localhost',
+                 port: 3000,
+                 open: true,
+                 proxy: 'http://localhost:8080',
+                 notify: false,
+                 files: ['src/public/!**!/!*.*'],
+                 ghostMode: {
+                     scroll: true
+                 },
+                 ui: {
+                     port: 3010
+                 }
+             },
+             {
+                 reload: false
+             }
+         )*/
 
         /* new webpack.LoaderOptionsPlugin({
              options: {

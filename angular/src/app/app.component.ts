@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-// import '../style/app.scss';
 
 @Component({
 	selector: 'my-app',
@@ -11,7 +10,7 @@ export class AppComponent {
 	componentParam: string;
 
 	constructor() {
-		// this.componentParam = 'Component String Params';
-		// this.title = 'App Init';
+		console.log('Appaasas');
+		this.title = 'Jo';
 	}
 }

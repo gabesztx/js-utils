@@ -5,7 +5,7 @@ const ngcWebpack = require('ngc-webpack');
 // const {CheckerPlugin} = require('awesome-typescript-loader')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ENV = process.env.NODE_ENV;
-console.log('ENV VARIBLE: ', root('./src/public'));
+// console.log('ENV VARIBLE: ', root('./src/public'));
 
 const isProduction = ENV === 'production';
 module.exports = {
@@ -41,12 +41,12 @@ module.exports = {
     },
     module: {
         rules: [
-            {
+            /*{
                 test: /.js$/,
                 parser: {
                     system: true
                 }
-            },
+            },*/
             // Typescript
             {
                 test: /\.ts$/,
@@ -127,14 +127,7 @@ module.exports = {
                  toType: 'dir'
              }
          ]),*/
-    ],
-    devServer: {
-        contentBase: './src/public',
-        // port: 9000
-        // historyApiFallback: true,
-        // quiet: true,
-        // stats: 'minimal' // none (or false), errors-only, minimal, normal (or true) and verbose
-    }
+    ]
 };
 
 // Helper functions
