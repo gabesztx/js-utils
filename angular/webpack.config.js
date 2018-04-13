@@ -6,11 +6,11 @@ const webpack = require('webpack');
 
 // Webpack Plugins
 // const ContextReplacementPlugin = webpack
-// const autoprefixer = require('autoprefixer');
+const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const {CheckerPlugin} = require('awesome-typescript-loader');
-// const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 // const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 /**
@@ -48,10 +48,7 @@ module.exports = function makeWebpackConfig() {
     config.entry = {
         'polyfills': './src/polyfills.ts',
         'vendor': './src/vendor.ts',
-        // 'app': ['./src/app.js', 'webpack-hot-middleware/client']
-        // 'app': ['webpack-hot-middleware/client?reload=true', './src/main.ts']
-        'app': ['webpack-hot-middleware/client?reload=true', './src/app.js']
-        // 'app': './src/main.ts' // our angular app
+        'app': ['webpack-hot-middleware/client?reload=true', './src/main.ts']
     };
 
     config.output = {
@@ -89,6 +86,13 @@ module.exports = function makeWebpackConfig() {
                 }
             },
             {
+                test: /\.css$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: "css-loader"
+                })
+            },
+            {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader'
@@ -113,6 +117,14 @@ module.exports = function makeWebpackConfig() {
                 test: /\.(png|svg|jpg|gif)$/,
                 use: ['file-loader']
             },
+       /*     {
+                test: /\.(scss|sass)$/,
+                // exclude: /node_modules/,
+                loader: ExtractTextPlugin_.extract({
+                    fallback: 'style-loader',
+                    use: ['css-loader', 'postcss-loader', 'sass-loader']
+                })
+            }*/
         ]
     };
 
@@ -135,50 +147,48 @@ module.exports = function makeWebpackConfig() {
         }),
 
         new webpack.HotModuleReplacementPlugin(),
+        new BrowserSyncPlugin({
+                host: 'localhost',
+                port: 3000,
+                open: true,
+                proxy: 'http://localhost:8080',
+                notify: false,
+                files: ['src/public/**/*.*'],
+                ghostMode: {
+                    scroll: true
+                },
+                ui: {
+                    port: 3010
+                }
+            },
+            {
+                reload: false
+            }
+        ),
 
-        /* new BrowserSyncPlugin({
-                 host: 'localhost',
-                 port: 3000,
-                 open: true,
-                 proxy: 'http://localhost:8080',
-                 notify: false,
-                 files: ['src/public/!**!/!*.*'],
-                 ghostMode: {
-                     scroll: true
-                 },
-                 ui: {
-                     port: 3010
-                 }
-             },
-             {
-                 reload: false
-             }
-         )*/
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                /**
+                 * Apply the tslint loader as pre/postLoader
+                 * Reference: https://github.com/wbuchwalter/tslint-loader
+                 */
+                tslint: {
+                    emitErrors: false,
+                    failOnHint: false
+                },
 
-        /* new webpack.LoaderOptionsPlugin({
-             options: {
-                 /!**
-                  * Apply the tslint loader as pre/postLoader
-                  * Reference: https://github.com/wbuchwalter/tslint-loader
-                  *!/
-                 tslint: {
-                     emitErrors: false,
-                     failOnHint: false
-                 },
-
-                 /!**
-                  * PostCSS
-                  * Reference: https://github.com/postcss/autoprefixer-core
-                  * Add vendor prefixes to your css
-                  *!/
-                /!* postcss: [
+                /**
+                 * PostCSS
+                 * Reference: https://github.com/postcss/autoprefixer-core
+                 * Add vendor prefixes to your css
+                 */
+                 postcss: [
                      autoprefixer({
                          browsers: ['last 2 version']
                      })
-                 ]*!/
-             }
-         })
- */
+                 ]
+            }
+        })
 
         // new CheckerPlugin(),
     ];

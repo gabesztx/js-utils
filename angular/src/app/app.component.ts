@@ -8,9 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
 	title: string;
 	componentParam: string;
-
 	constructor() {
-		console.log('Appaasas');
-		this.title = 'Jo';
+		this.title = 'Ez egy title';
 	}
 }
