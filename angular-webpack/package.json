@@ -10,8 +10,8 @@
     "clean-start": "npm run clean-install && npm start",
     "watch": "webpack --watch --prog--progress --profile --bail",
     "test-watch": "karma start --no-single-run --auto-watch",
-    "start": "NODE_ENV=development babel-node src/server/start.js",
-    "start_windows": "set NODE_ENV=development&&babel-node src/server/start.js"
+    "start": "NODE_ENV=development babel-node server/start.js",
+    "start_windows": "set NODE_ENV=development&&babel-node server/start.js"
   },
   "dependencies": {
     "@angular/common": "5.2.9",

@@ -7,8 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 	title: string;
-	componentParam: string;
 	constructor() {
-		this.title = 'Ezswwwsssss';
+		this.title = 'E7';
 	}
 }
