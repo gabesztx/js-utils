@@ -19,15 +19,12 @@ const runDevelop = (env) => {
 	const compiler = webpack(config);
 	const middleware = webpackMiddleware(compiler, {
 		publicPath: config.output.publicPath,
-		stats: {
-			colors: true,
-			assets: true,
-			hash: false,
-			timings: true,
-			chunks: false,
-			children: false,
-			progress: true,
-		},
+        stats: {
+            hash: true,
+            colors: true,
+            entrypoints: true,
+            modules: false,
+        },
 	});
 	app
 		.use(express.static(path.resolve(__dirname, '../')))

@@ -9,6 +9,6 @@ export class AppComponent {
 	title: string;
 	componentParam: string;
 	constructor() {
-		this.title = 'Ez egy titl22e  1';
+		this.title = 'Ez egdddddy 122ss222';
 	}
 }
