@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const ngcWebpack = require('ngc-webpack');
-// const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 // const {CheckerPlugin} = require('awesome-typescript-loader')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ENV = process.env.NODE_ENV;
@@ -65,6 +65,13 @@ module.exports = {
                     }
                 ]
             },
+          /*  {
+                test: /\.css$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: "css-loader"
+                })
+            }*/
 
             // index file
             /*          {

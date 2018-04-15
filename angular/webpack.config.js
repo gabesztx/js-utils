@@ -10,7 +10,10 @@ const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const {CheckerPlugin} = require('awesome-typescript-loader');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const extractCSS = new ExtractTextPlugin('style/[name].css');
+const NamedModulesPlugin = require('webpack/lib/NamedModulesPlugin');
+const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 // const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 /**
@@ -52,10 +55,10 @@ module.exports = function makeWebpackConfig() {
     };
 
     config.output = {
-        // path: root('dist'),
-        path: '/',
-        publicPath: '/',
-        filename: 'js/[name].js',
+        path: root('dist'),
+        // path: '/',
+        // publicPath: '/',
+        filename: '[name].js',
         chunkFilename: '[id].chunk.js'
     };
 
@@ -86,19 +89,66 @@ module.exports = function makeWebpackConfig() {
                 }
             },
             {
-                test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: "css-loader"
-                })
+                test: /\.(scss|sass)$/,
+                exclude: root('src', 'app'),
+                use: [{
+                    loader: 'style-loader'
+                }, {
+                    loader: 'css-loader' // translates CSS into CommonJS
+                }, {
+                    loader: 'sass-loader' // compiles Sass to CSS
+                }, /*{
+                    loader: 'postcss-loader',
+                    options: {
+                        plugins: () => {
+                            return [
+                                require('autoprefixer')()
+                            ];
+                        }
+                    }
+
+                }*/]
             },
+
+            {
+                test: /\.(scss|sass)$/,
+                exclude: root('src', 'style'),
+                use: [{
+                    loader: 'raw-loader'
+                },
+                    /* {
+                         loader: 'postcss-loader',
+                         options: {
+                             plugins: () => {
+                                 return [
+                                     require('autoprefixer')()
+                                 ];
+                             },
+                             sourceMap: true
+                         }
+
+                     },*/
+                ]
+            },
+
+            /* {
+                 test: /\.scss$/,
+                 exclude: root('src', 'style'),
+                 loader: 'raw-loader!sass-loader'
+             },*/
+            /*  {
+                  test: /\.css$/,
+                  use: [
+                      {loader: 'style-loader'},
+                      {loader: 'css-loader'},
+                  ],
+              },*/
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader'
 
             },
-            // Support for .ts files.
             {
                 test: /\.ts$/,
                 exclude: /node_modules/,
@@ -116,15 +166,7 @@ module.exports = function makeWebpackConfig() {
             {
                 test: /\.(png|svg|jpg|gif)$/,
                 use: ['file-loader']
-            },
-       /*     {
-                test: /\.(scss|sass)$/,
-                // exclude: /node_modules/,
-                loader: ExtractTextPlugin_.extract({
-                    fallback: 'style-loader',
-                    use: ['css-loader', 'postcss-loader', 'sass-loader']
-                })
-            }*/
+            }
         ]
     };
 
@@ -146,7 +188,20 @@ module.exports = function makeWebpackConfig() {
             // chunksSortMode: 'none'
         }),
 
+        new NamedModulesPlugin(),
+        new LoaderOptionsPlugin({
+            debug: true,
+            options: {
+                postcss: [
+                    autoprefixer({
+                        browsers: ['last 2 version']
+                    })
+                ]
+            }
+        }),
+
         new webpack.HotModuleReplacementPlugin(),
+
         new BrowserSyncPlugin({
                 host: 'localhost',
                 port: 3000,
@@ -166,44 +221,33 @@ module.exports = function makeWebpackConfig() {
             }
         ),
 
-        new webpack.LoaderOptionsPlugin({
+
+        /*new webpack.LoaderOptionsPlugin({
             options: {
-                /**
+                /!**
                  * Apply the tslint loader as pre/postLoader
                  * Reference: https://github.com/wbuchwalter/tslint-loader
-                 */
-                tslint: {
+                 *!/
+            /!*    tslint: {
                     emitErrors: false,
                     failOnHint: false
                 },
-
-                /**
+*!/
+                /!**
                  * PostCSS
                  * Reference: https://github.com/postcss/autoprefixer-core
                  * Add vendor prefixes to your css
-                 */
+                 *!/
                  postcss: [
                      autoprefixer({
                          browsers: ['last 2 version']
                      })
                  ]
             }
-        })
+        })*/
 
         // new CheckerPlugin(),
     ];
-
-
-    config.devServer = {
-        contentBase: './src/public',
-        historyApiFallback: true,
-        // quiet: false,
-        stats: {
-            warnings: false,
-        },
-
-
-    };
 
     return config;
 }();
