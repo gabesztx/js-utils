@@ -35,6 +35,7 @@ module.exports = function makeWebpackConfig() {
 
     /* mode value */
     config.mode = 'development';
+    // config.mode = 'production';
 
 
     /**
