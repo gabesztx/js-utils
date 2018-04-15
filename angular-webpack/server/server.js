@@ -5,24 +5,27 @@ import {root} from '../helper'
 
 import webpackMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
-import webpackConfig from '../config/webpack.config';
+// import webpackConfig from '../config/webpack.common';
 
 const app = express();
 const historyApiFallback = require('connect-history-api-fallback');
 const port = process.env.PORT || 8080;
 const server = http.createServer(app);
+// const webpackDCommonConfig = require('../config/webpack.common.js');
+const webpackDevConfig = require('../config/webpack.dev.js');
 
 // return;
 const runDevelop = () => {
-
-    const config = webpackConfig;
+    // console.log(webpackDevConfig);
+    const config = webpackDevConfig;
     const compiler = webpack(config);
+
     const middleware = webpackMiddleware(compiler, {
         publicPath: config.output.publicPath,
         stats: {
             hash: false,
             colors: true,
-            entrypoints: false,
+            entrypoints: true,
             modules: false,
             children: false,
             chunks: false,
