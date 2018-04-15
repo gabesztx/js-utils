@@ -14,36 +14,38 @@ const server = http.createServer(app);
 
 // return;
 const runDevelop = (env) => {
-	console.log('-------- Run development mode --------');
-	const config = webpackConfig;
-	const compiler = webpack(config);
-	const middleware = webpackMiddleware(compiler, {
-		publicPath: config.output.publicPath,
+    console.log('-------- Run development mode --------');
+    const config = webpackConfig;
+    const compiler = webpack(config);
+    const middleware = webpackMiddleware(compiler, {
+        publicPath: config.output.publicPath,
         stats: {
-            hash: true,
+            hash: false,
             colors: true,
-            entrypoints: true,
+            entrypoints: false,
             modules: false,
+            children: false,
+            chunks: false,
         },
-	});
-	app
-		.use(express.static(path.resolve(__dirname, '../')))
-		.use(historyApiFallback())
-		.use(middleware)
-		.use(webpackHotMiddleware(compiler));
-	server.listen(port);
+    });
+    app
+        .use(express.static(path.resolve(__dirname, '../')))
+        .use(historyApiFallback())
+        .use(middleware)
+        .use(webpackHotMiddleware(compiler));
+    server.listen(port);
 };
 
 const runProduction = (env) => {
-	console.log('-------- Production development mode --------');
-	const compiler = webpack(webpackConfig(env));
-	compiler.apply(new webpack.ProgressPlugin());
-	compiler.run(function (err, stats) {
-		console.log('-------- Production build finished --------');
-	});
+    console.log('-------- Production development mode --------');
+    const compiler = webpack(webpackConfig(env));
+    compiler.apply(new webpack.ProgressPlugin());
+    compiler.run(function (err, stats) {
+        console.log('-------- Production build finished --------');
+    });
 };
 
 module.exports = {
-	runDev: runDevelop,
-	runProd: runProduction,
+    runDev: runDevelop,
+    runProd: runProduction,
 };

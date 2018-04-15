@@ -1,10 +1,10 @@
 import {NgModule, ApplicationRef} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {removeNgStyles, createNewHosts} from '@angularclass/hmr';
+import {AppComponent} from './app.component';
 
 import '../style/main.scss'
 
-import {AppComponent} from './app.component';
 /* Component */
 
 @NgModule({

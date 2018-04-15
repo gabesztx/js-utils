@@ -20,10 +20,6 @@ const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
  * Env
  * Get npm lifecycle event to identify the environment
  */
-const ENV = process.env.npm_lifecycle_event;
-const isTestWatch = ENV === 'test-watch';
-const isTest = ENV === 'test' || isTestWatch;
-const isProd = ENV === 'build';
 
 module.exports = function makeWebpackConfig() {
     /**
@@ -51,8 +47,9 @@ module.exports = function makeWebpackConfig() {
      */
     config.entry = {
         'polyfills': './src/polyfills.ts',
-        'vendor': './src/vendor.ts',
         'app': ['webpack-hot-middleware/client?reload=true', './src/main.ts']
+        // 'app': ['./src/main.ts'],
+        // 'vendor': './src/vendor.ts'
     };
 
     config.resolve = {
@@ -61,27 +58,26 @@ module.exports = function makeWebpackConfig() {
 
     config.output = {
         path: root('dist'),
-        // path: '/',
-        publicPath: '/',
         filename: '[name].js',
-        chunkFilename: '[id].chunk.js'
+        chunkFilename: '[id].[chunkhash].js',
+        publicPath: '/',
     };
+
 
     config.optimization = {
         splitChunks: {
             cacheGroups: {
                 vendor: {
-                    test: /[\\/]node_modules[\\/]/,
-                    name: 'vendor',
                     chunks: 'initial',
+                    name: 'vendor',
+                    test: /node_modules/,
                     enforce: true
-                }
+                },
             }
-        }
+        },
+        // runtimeChunk: true
+
     };
-
-
-
 
     config.module = {
         rules: [
@@ -192,16 +188,16 @@ module.exports = function makeWebpackConfig() {
         }),
 
         new NamedModulesPlugin(),
-        new LoaderOptionsPlugin({
-            debug: true,
-            options: {
-                postcss: [
-                    autoprefixer({
-                        browsers: ['last 2 version']
-                    })
-                ]
-            }
-        }),
+        /* new LoaderOptionsPlugin({
+             debug: true,
+             options: {
+                 postcss: [
+                     autoprefixer({
+                         browsers: ['last 2 version']
+                     })
+                 ]
+             }
+         }),*/
 
         new webpack.HotModuleReplacementPlugin(),
 
