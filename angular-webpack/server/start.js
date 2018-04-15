@@ -3,10 +3,9 @@ const start = (env) => {
   if (env === 'development') {
     runDev();
   }
-
- /* if (env === 'production') {
+  if (env === 'production') {
     runProd('prod');
-  }*/
+  }
 
 };
 start(process.env.NODE_ENV);

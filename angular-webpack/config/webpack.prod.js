@@ -2,6 +2,9 @@ import {root} from '../helper'
 
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
 
 module.exports = merge(common, {
     /**
@@ -16,10 +19,8 @@ module.exports = merge(common, {
      */
     output: {
         path: root('dist'),
-        publicPath: '/',
-        filename: '[name].bundle.js',
-        chunkFilename: '[id].chunk.js',
-        // sourceMapFilename: '[file].map'
+        filename: '[name].[chunkhash].bundle.js',
+        chunkFilename: '[name].[chunkhash].chunk.js'
     },
     /**
      * Mode (development or production)
@@ -39,65 +40,22 @@ module.exports = merge(common, {
                 test: /\.ts$/,
                 exclude: /node_modules/,
                 loaders: [
-                    '@angularclass/hmr-loader',
                     'awesome-typescript-loader',
                     'angular2-template-loader',
                 ],
-            },
-
-            /**
-             * Sass-loader include
-             * */
-            {
-                test: /\.(scss|sass)$/,
-                include: root('src', 'style'),
-                use: [
-                    {loader: 'style-loader'},
-                    {loader: 'css-loader'},
-                    {loader: 'sass-loader'}
-                ]
-            },
-
-            /**
-             * File loader / Sass
-             * */
-            {
-                test: /\.(scss|sass)$/,
-                exclude: root('src', 'style'),
-                use: [
-                    {loader: 'raw-loader'}
-                ]
-
-            },
+            }
         ]
     },
     /**
      * Plugins config
      * */
     plugins: [
-        /*new EvalSourceMapDevToolPlugin({
-            sourceURLTemplate: '[all-loaders][resource]'
-            // exclude: ['vendor.js']
-        }),*/
-        new NamedModulesPlugin(),
-        new HotModuleReplacementPlugin(),
-        new BrowserSyncPlugin({
-                host: 'localhost',
-                port: 3000,
-                open: true,
-                proxy: 'http://localhost:8080',
-                notify: false,
-                files: [root('src', 'public/**/*.*')],
-                ghostMode: {
-                    scroll: true
-                },
-                ui: {
-                    port: 3010
-                }
-            },
-            {
-                reload: false
-            }
-        )
+        new CleanWebpackPlugin(['dist'], {
+            root: root(),
+            // exclude:  ['shared.js'],
+            verbose: true,
+            dry: false
+        }),
+        new HtmlWebpackPlugin({template: root('src', 'public/index.html')}),
     ]
 });

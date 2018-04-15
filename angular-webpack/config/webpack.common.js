@@ -1,12 +1,12 @@
 import {root} from '../helper'
 import webpack from 'webpack';
 
-const autoprefixer = require('autoprefixer');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
-const NamedModulesPlugin = require('webpack/lib/NamedModulesPlugin');
-const HotModuleReplacementPlugin = require('webpack/lib/HotModuleReplacementPlugin');
-// const CleanWebpackPlugin = require('clean-webpack-plugin');
+// const autoprefixer = require('autoprefixer');
+
+// const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+// const NamedModulesPlugin = require('webpack/lib/NamedModulesPlugin');
+// const HotModuleReplacementPlugin = require('webpack/lib/HotModuleReplacementPlugin');
+
 // const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 // const CopyWebpackPlugin = require('copy-webpack-plugin');
 
@@ -88,13 +88,9 @@ module.exports = {
      * Plugins config
      * */
     plugins: [
-        // new CleanWebpackPlugin([root('dist')]),
         new webpack.ContextReplacementPlugin(
             new RegExp(/angular(\\|\/)core(\\|\/)(@angular|esm5)/), root('src')
         ),
-        new HtmlWebpackPlugin({
-            template: root('src', 'public/index.html'),
-            // chunksSortMode: 'dependency'
-        })
+
     ]
 };

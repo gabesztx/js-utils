@@ -1,11 +1,11 @@
 import {root} from '../helper'
 
 const merge = require('webpack-merge');
+const common = require('./webpack.common.js');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const NamedModulesPlugin = require('webpack/lib/NamedModulesPlugin');
 const HotModuleReplacementPlugin = require('webpack/lib/HotModuleReplacementPlugin');
-// const EvalSourceMapDevToolPlugin = require('webpack/lib/EvalSourceMapDevToolPlugin');
-const common = require('./webpack.common.js');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = merge(common, {
     /**
@@ -20,10 +20,9 @@ module.exports = merge(common, {
      */
     output: {
         path: root('dist'),
-        publicPath: '/',
+        // publicPath: '/',
         filename: '[name].bundle.js',
-        chunkFilename: '[id].chunk.js',
-        // sourceMapFilename: '[file].map'
+        chunkFilename: '[id].chunk.js'
     },
     /**
      * Mode (development or production)
@@ -34,6 +33,8 @@ module.exports = merge(common, {
      * Devtool
      */
     devtool: 'inline-source-map',
+
+    stats: "normal",
 
     /**
      * Modules config
@@ -84,12 +85,13 @@ module.exports = merge(common, {
      * Plugins config
      * */
     plugins: [
-        /*new EvalSourceMapDevToolPlugin({
-            sourceURLTemplate: '[all-loaders][resource]'
-            // exclude: ['vendor.js']
-        }),*/
+
         new NamedModulesPlugin(),
         new HotModuleReplacementPlugin(),
+        new HtmlWebpackPlugin({
+            template: root('src', 'public/index.html'),
+            // chunksSortMode: 'dependency'
+        }),
         new BrowserSyncPlugin({
                 host: 'localhost',
                 port: 3000,

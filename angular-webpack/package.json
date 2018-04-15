@@ -11,6 +11,7 @@
     "watch": "webpack --watch --prog--progress --profile --bail",
     "test-watch": "karma start --no-single-run --auto-watch",
     "start": "NODE_ENV=development babel-node server/start.js",
+    "build": "NODE_ENV=production babel-node server/start.js",
     "start_windows": "set NODE_ENV=development&&babel-node server/start.js"
   },
   "dependencies": {
@@ -22,6 +23,7 @@
     "@angular/platform-browser": "5.2.9",
     "@angular/platform-browser-dynamic": "5.2.9",
     "@angular/router": "5.2.9",
+    "@types/clean-webpack-plugin": "^0.1.2",
     "connect-history-api-fallback": "1.5.0",
     "core-js": "2.5.5",
     "express": "4.16.3",
@@ -46,6 +48,7 @@
     "babel-preset-stage-0": "6.24.1",
     "browser-sync": "2.23.6",
     "browser-sync-webpack-plugin": "2.2.2",
+    "clean-webpack-plugin": "^0.1.19",
     "codelyzer": "4.2.1",
     "css-loader": "0.28.11",
     "file-loader": "1.1.11",
