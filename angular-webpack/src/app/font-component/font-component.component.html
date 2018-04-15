@@ -1,0 +1,55 @@
+<div class="form-component">
+    <form (ngSubmit)="onSubmit(form.value)" class="form-content" #form="ngForm">
+        <div class="formgroup" id="name-form">
+            <label for="name">Your name</label>
+            <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    autocomplete="off"
+                    (change)="changeInputValue()"
+                    (keyup)="onModelChange($event)"
+                    required
+                    minlength="3"
+                    maxlength="10"
+                    [(ngModel)]="model.name"
+                    #name="ngModel"
+            />
+            <div *ngIf="name.errors && !name.errors.required && (name.dirty || name.touched)" class="alert alert-danger">
+                <!--<div [hidden]="!name.errors.required">Name is required</div>-->
+                <div [hidden]="!name.errors.minlength">Name must be at least 3 characters long.</div>
+            </div>
+        </div>
+        <div class="formgroup" id="email-form">
+            <label for="email">Your e-mail*</label>
+            <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    autocomplete="off"
+                    (change)="changeInputValue()"
+                    (keyup)="onModelChange($event)"
+                    required
+                    pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                    [(ngModel)]="model.email"
+                    #email="ngModel"
+            />sou
+                <div class="alertContent" *ngIf="email.errors && email.errors.pattern">Email is required!</div>
+
+            </div>
+            <!--<div class="formgroup" id="message-form">-->
+            <!--<label for="message">Your message</label>-->
+            <!--<textarea id="message" name="message"></textarea>-->
+        <!--</div>-->
+        <!---->
+        <!--<div>Error: {{name.errors | json}}</div>-->
+        <!--<div>Name valid: {{name.valid}}</div>-->
+        <!--<div>Name pristine: {{name.pristine}}</div>-->
+        <!--<div>Name dirty : {{name.dirty }}</div>-->
+        <!--<div>Name touched : {{name.touched }}</div>-->
+        <!--<div>If vlaue : {{name.valid && name.dirty }}</div>-->
+        <div class="submitContent">
+            <button class="submitBtn" type="submit" [disabled]="!form.valid">Send your message</button>
+        </div>
+    </form>
+</div>
