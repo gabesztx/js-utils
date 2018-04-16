@@ -9,5 +9,8 @@ export class AppComponent {
 	title: string;
 	constructor() {
 		this.title = 'E7wdddfff';
+		setTimeout(() => {
+			console.log('Go');
+		},3000)
 	}
 }

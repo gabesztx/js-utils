@@ -43,10 +43,37 @@ const runDevelop = () => {
 const runProduction = () => {
     console.log('-------- Production development mode --------');
     const compiler = webpack(webpackProdConfig);
-    compiler.apply(new webpack.ProgressPlugin());
-    compiler.run(function (err, stats) {
-        console.log('-------- Production build finished --------');
+    const watching = compiler.watch({
+
+        // aggregateTimeout: 300,
+        poll: undefined
+    }, (err, stats) => {
+        // Print watch/build result here...
+        console.log(stats.toString({
+            hash: true,
+            colors: true,
+            entrypoints: false,
+            modules: false,
+            children: false,
+            chunks: false,
+            warnings: false,
+        }));
     });
+    /*compiler.run((err, stats) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        // console.log('-------- Production development finished! --------');
+        console.log(stats.toString({
+            hash: false,
+            colors: true,
+            entrypoints: false,
+            modules: false,
+            children: false,
+            chunks: false,
+        }));
+    })*/
 };
 
 module.exports = {
