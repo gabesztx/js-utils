@@ -1,12 +1,14 @@
 import {root} from '../helper'
 import webpack from 'webpack';
+
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-
-
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const devMode = process.env.NODE_ENV !== 'production'
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = merge(common, {
     /**
      * Entry files
@@ -20,12 +22,12 @@ module.exports = merge(common, {
      */
     output: {
         path: root('dist'),
-        filename: '[name].bundle.js',
-        chunkFilename: '[name].chunk.js'
+        filename: '[name].[hash].bundle.js',
+        chunkFilename: '[id].[hash].chunk.js'
         // filename: '[name].[chunkhash].bundle.js',
         // chunkFilename: '[name].[chunkhash].chunk.js'
     },
-    target: 'node',
+    // target: 'node',
     /**
      * Mode
      */
@@ -47,7 +49,30 @@ module.exports = merge(common, {
                     'awesome-typescript-loader',
                     'angular2-template-loader',
                 ],
-            }
+            },
+            /**
+             * Sass-loader include
+             * */
+            {
+                test: /\.(scss|sass)$/,
+                // include: root('src', 'style'),
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    'sass-loader',
+
+                ]
+
+           /*     loader: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: [
+                        {loader: 'css-loader'},
+                        {loader: 'postcss-loader'},
+                        {loader: 'sass-loader'},
+
+                    ]
+                })*/
+            },
         ]
     },
     /**
@@ -58,27 +83,38 @@ module.exports = merge(common, {
             root: root(),
             verbose: true,
             dry: false
-            // exclude:  ['shared.js'],
         }),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': '"production"'
         }),
-       /* new UglifyJsPlugin({
 
+        new MiniCssExtractPlugin({
+            filename: "[name].[hash].css",
+            chunkFilename: "[id].[hash].css"
+        }),
+
+/*
+        new ExtractTextPlugin({
+            filename: devMode ? '[name].css' : '[name].[hash].css',
+            chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+        }),
+*/
+
+/*        new UglifyJsPlugin({
             // sourceMap: true
+
             uglifyOptions: {
-                compress: {
+                // mangle: {keep_fnames: true},
+               /!* compress: {
                     unused: false
-                },
-                /!*compress:true,
+                },*!/
+                /!*
                 warning: false,
                 output: {
                     comments: false,
                     beautify: false
                 }*!/
             },
-
-
         }),*/
         new HtmlWebpackPlugin({template: root('src', 'public/index.html')}),
     ]
