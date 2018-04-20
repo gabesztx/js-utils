@@ -25,6 +25,8 @@ module.exports = {
         extensions: ['.ts', '.tsx', '.js', '.jsx']
     },
 
+
+
     optimization: {
         /**
          * Split files, vendor, common, runtime files
@@ -32,7 +34,8 @@ module.exports = {
         splitChunks: {
             cacheGroups: {
                 vendor: {
-                    chunks: 'initial',
+                    // chunks: 'initial',
+                    chunks: 'all',
                     name: 'vendor',
                     test: /node_modules/,
                     enforce: true

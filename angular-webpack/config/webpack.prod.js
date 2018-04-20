@@ -25,7 +25,7 @@ module.exports = merge(common, {
         // filename: '[name].[chunkhash].bundle.js',
         // chunkFilename: '[name].[chunkhash].chunk.js'
     },
-    // target: 'node',
+    target: 'node',
     /**
      * Mode
      */
@@ -60,12 +60,26 @@ module.exports = merge(common, {
             dry: false
             // exclude:  ['shared.js'],
         }),
-        new UglifyJsPlugin({
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': '"production"'
+        }),
+       /* new UglifyJsPlugin({
+
             // sourceMap: true
             uglifyOptions: {
-                // warning: false
-            }
-        }),
+                compress: {
+                    unused: false
+                },
+                /!*compress:true,
+                warning: false,
+                output: {
+                    comments: false,
+                    beautify: false
+                }*!/
+            },
+
+
+        }),*/
         new HtmlWebpackPlugin({template: root('src', 'public/index.html')}),
     ]
 });
