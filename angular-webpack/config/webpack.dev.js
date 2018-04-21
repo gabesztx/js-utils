@@ -4,6 +4,7 @@ const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const NamedModulesPlugin = require('webpack/lib/NamedModulesPlugin');
+const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
 const HotModuleReplacementPlugin = require('webpack/lib/HotModuleReplacementPlugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -43,6 +44,15 @@ module.exports = merge(common, {
 
         rules: [
             /**
+             * js System import
+             * */
+            {
+                test: /.js$/,
+                parser: {
+                    system: true
+                }
+            },
+            /**
              * TypeScript
              * */
             {
@@ -59,33 +69,23 @@ module.exports = merge(common, {
              * Sass-loader include
              * */
             {
-                test: /\.(scss|sass)$/,
+                test: /\.(scss|css)$/,
                 include: root('src', 'style'),
                 use: [
-                    {loader: 'style-loader'},
-                    {loader: 'css-loader'},
-                    {loader: 'sass-loader'}
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader'
                 ]
-            },
-
-            /**
-             * File loader / Sass
-             * */
-            {
-                test: /\.(scss|sass)$/,
-                exclude: root('src', 'style'),
-                use: [
-                    {loader: 'raw-loader'}
-                ]
-
-            },
+            }
         ]
     },
     /**
      * Plugins config
      * */
     plugins: [
-
+        new ContextReplacementPlugin(
+            new RegExp(/angular(\\|\/)core(\\|\/)(@angular|esm5)/), root('src')
+        ),
         new NamedModulesPlugin(),
         new HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({

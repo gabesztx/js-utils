@@ -1,7 +1,5 @@
 import {root} from '../helper'
-import webpack from 'webpack';
 
-// const autoprefixer = require('autoprefixer');
 
 // const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 // const NamedModulesPlugin = require('webpack/lib/NamedModulesPlugin');
@@ -26,7 +24,6 @@ module.exports = {
     },
 
 
-
     optimization: {
         /**
          * Split files, vendor, common, runtime files
@@ -35,11 +32,22 @@ module.exports = {
             cacheGroups: {
                 vendor: {
                     // chunks: 'initial',
-                    chunks: 'initial',
+                    chunks: 'all',
                     name: 'vendor',
                     test: /node_modules/,
                     enforce: true
                 },
+                /* js: {
+                     test: /\.js$/,
+                     name: 'commons',
+                     chunks: 'all',
+                 },*/
+                /* styles: {
+                     name: 'styles',
+                     test: /\.css$/,
+                     chunks: 'all',
+                     enforce: true
+                 }*/
             }
         },
         // runtimeChunk: true
@@ -50,13 +58,7 @@ module.exports = {
          * Rules config
          * */
         rules: [
-            {
-                test: /.js$/,
-                // exclude: /node_modules/,
-                parser: {
-                    system: true
-                }
-            },
+
 
             /**
              * JS/ES6
@@ -65,7 +67,9 @@ module.exports = {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
                 use: [
-                    {loader: 'babel-loader'},
+                    {
+                        loader: 'babel-loader'
+                    },
                 ]
 
             },
@@ -76,24 +80,22 @@ module.exports = {
                 test: /\.html$/,
                 exclude: root('src', 'public'),
                 use: [
-                    {loader: 'raw-loader'}
+                    {
+                        loader: 'raw-loader'
+                    }
                 ]
             },
+            {
+                test: /\.(scss|css)$/,
+                exclude: root('src', 'style'),
+                use: ['to-string-loader', 'raw-loader']
 
-            /*{
-                test: /\.(png|svg|jpg|gif)$/,
-                use: ['file-loader']
-            }*/
+            }
         ]
     },
 
     /**
      * Plugins config
      * */
-    plugins: [
-        new webpack.ContextReplacementPlugin(
-            new RegExp(/angular(\\|\/)core(\\|\/)(@angular|esm5)/), root('src')
-        ),
-
-    ]
+    plugins: []
 };

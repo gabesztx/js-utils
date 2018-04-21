@@ -73,6 +73,9 @@ const runProduction = () => {
             chunks: false,
             warnings: false,
         }));
+
+        app.use(express.static(root('dist')));
+        server.listen(port);
     })
 
 };
