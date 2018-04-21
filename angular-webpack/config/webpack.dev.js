@@ -13,7 +13,8 @@ module.exports = merge(common, {
      * Entry files
      */
     entry: {
-        'app': ['webpack-hot-middleware/client?reload=true', './src/main.ts']
+        'app': ['./src/main.ts']
+        // 'app': ['webpack-hot-middleware/client?reload=true', './src/main.ts']
     },
 
     /**
@@ -59,7 +60,7 @@ module.exports = merge(common, {
                 test: /\.ts$/,
                 exclude: /node_modules/,
                 loaders: [
-                    '@angularclass/hmr-loader',
+                    // '@angularclass/hmr-loader',
                     'awesome-typescript-loader',
                     'angular2-template-loader',
                 ],

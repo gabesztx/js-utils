@@ -34,7 +34,8 @@ module.exports = {
                     // chunks: 'initial',
                     chunks: 'all',
                     name: 'vendor',
-                    test: /node_modules/,
+                    test: /[\\/]node_modules[\\/]/,
+                    priority: -20,
                     enforce: true
                 },
                 /* js: {
@@ -66,11 +67,7 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                use: [
-                    {
-                        loader: 'babel-loader'
-                    },
-                ]
+                use: ['babel-loader']
 
             },
             /**
@@ -79,11 +76,7 @@ module.exports = {
             {
                 test: /\.html$/,
                 exclude: root('src', 'public'),
-                use: [
-                    {
-                        loader: 'raw-loader'
-                    }
-                ]
+                use: ['raw-loader']
             },
             {
                 test: /\.(scss|css)$/,

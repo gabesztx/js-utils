@@ -7,8 +7,12 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
     title: string;
+    public showComponent = false;
     constructor() {
         this.title = 'App Content';
-        // setTimeout(() => {},3000)
+
+        setTimeout(() => {
+            this.showComponent = true;
+        }, 3000)
     }
 }

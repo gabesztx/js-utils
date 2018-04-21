@@ -23,6 +23,7 @@ const runDevelop = () => {
 
     const middleware = webpackMiddleware(compiler, {
         publicPath: config.output.publicPath,
+        // lazy: true,
         stats: {
             hash: false,
             colors: true,
@@ -43,40 +44,44 @@ const runDevelop = () => {
 const runProduction = () => {
     console.log('-------- Production development mode --------');
     const compiler = webpack(webpackProdConfig);
-    /* const watching = compiler.watch({
-         // aggregateTimeout: 300,
-         poll: undefined
-     }, (err, stats) => {
-         // Print watch/build result here...
-         console.log(stats.toString({
-             hash: true,
-             colors: true,
-             entrypoints: false,
-             modules: false,
-             children: false,
-             chunks: false,
-             warnings: false,
-         }));
-     });*/
-    compiler.run((err, stats) => {
-        if (err) {
-            console.error(err);
-            return;
-        }
-        console.log('-------- Production development finished! --------');
-        console.log(stats.toString({
-            hash: false,
-            colors: true,
-            entrypoints: false,
-            modules: false,
-            children: false,
-            chunks: false,
-            warnings: false,
-        }));
+    const watching = compiler.watch({
+            // aggregateTimeout: 300,
+            poll: undefined
+        },
+        (err, stats) => {
+            // Print watch/build result here...
+            console.log(stats.toString({
+                hash: true,
+                colors: true,
+                entrypoints: false,
+                modules: false,
+                children: false,
+                chunks: false,
+                warnings: false,
+            }));
+            app.use(express.static(root('dist')));
+            server.listen(port);
+        });
 
-        app.use(express.static(root('dist')));
-        server.listen(port);
-    })
+    /*   compiler.run((err, stats) => {
+           if (err) {
+               console.error(err);
+               return;
+           }
+           console.log('-------- Production development finished! --------');
+           console.log(stats.toString({
+               hash: false,
+               colors: true,
+               entrypoints: false,
+               modules: false,
+               children: false,
+               chunks: false,
+               warnings: false,
+           }));
+
+           app.use(express.static(root('dist')));
+           server.listen(port);
+       })*/
 
 };
 

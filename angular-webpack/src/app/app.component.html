@@ -1,5 +1,7 @@
 <div class="appComponent">
     <div>{{title}}</div>
-    <my-header></my-header>
+    <div *ngIf="showComponent">
+        <my-header></my-header>
+    </div>
     <my-footer></my-footer>
 </div>
