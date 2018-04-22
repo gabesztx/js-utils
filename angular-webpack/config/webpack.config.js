@@ -19,17 +19,17 @@ module.exports = {
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx']
     },
-    devtool: 'inline-source-map',
+    // devtool: 'inline-source-map',
 
     module: {
         rules: [
 
-            {
+          /*  {
                 test: /.js$/,
                 parser: {
                     system: true
                 }
-            },
+            },*/
 
             {
                 test: /\.jsx?$/,

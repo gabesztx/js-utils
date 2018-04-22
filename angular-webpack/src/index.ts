@@ -8,11 +8,11 @@ const button = document.createElement('button');
 button.innerHTML = 'Click me!';
 button.onclick = e => {
     /* Lodash load */
-   /* import('lodash').then((lodash) => {
+    import('lodash').then((lodash) => {
         console.log('loadsh loaded');
         const _ =  lodash['default'];
         console.log(_.join(['Hello', 'webpack'], 'sff'));
-    })*/
+    })
 
     /* Moment js load */
     /*

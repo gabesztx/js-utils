@@ -16,7 +16,8 @@ const webpackProdConfig = require('../config/webpack.prod.js');
 const webpackConfigBasic = require('../config/webpack.config.js');
 
 const runDevelop = () => {
-    const config = webpackConfigBasic;
+    // const config = webpackConfigBasic;
+    const config = webpackDevConfig;
     const compiler = webpack(config);
     const middleware = webpackMiddleware(compiler, {
         publicPath: config.output.publicPath,

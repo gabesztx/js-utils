@@ -38,10 +38,10 @@ export class AppComponent {
         return element;
     }
 
-    getComponent() {
-        return import(/* webpackChunkName: "lodash" */ 'lodash').then(_ => {
+  /*  getComponent() {
+        return import(/!* webpackChunkName: "lodash" *!/ 'lodash').then(_ => {
             const element = document.createElement('div');
             element.innerHTML = _.join(['Hello', 'webpack'], ' ');
         }).catch(error => 'An error occurred while loading the component');
-    }
+    }*/
 }

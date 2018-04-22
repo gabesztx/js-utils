@@ -12,26 +12,26 @@ module.exports = {
     /**
      * Entry files
      */
-    entry: {
+  /*  entry: {
         'polyfills': './src/polyfills.ts'
-    },
+    },*/
 
     /**
      * Resolve file type
      */
-    resolve: {
+   /* resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx']
-    },
+    },*/
 
     /*optimization: {
         occurrenceOrder: true // To keep filename consistent between different modes (for example building only)
     },*/
 
 
-    optimization: {
-        /**
+  /*  optimization: {
+        /!**
          * Split files, vendor, common, runtime files
-         */
+         *!/
         splitChunks: {
             cacheGroups: {
                 vendor: {
@@ -44,7 +44,7 @@ module.exports = {
                 }
             }
         }
-    },
+    },*/
     module: {
         /**
          * Rules config
@@ -70,7 +70,7 @@ module.exports = {
             {
                 test: /\.(scss|css)$/,
                 exclude: root('src', 'style'),
-                use: ['to-string-loader', 'raw-loader']
+                use: ['raw-loader']
 
             }
         ]

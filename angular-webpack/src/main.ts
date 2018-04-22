@@ -1,4 +1,7 @@
-import {enableProdMode} from '@angular/core';
+console.log('HELLLO');
+
+
+/*import {enableProdMode} from '@angular/core';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {AppModule} from './app/app.module';
 
@@ -17,4 +20,4 @@ if (document.readyState === 'complete') {
     main();
 } else {
     document.addEventListener('DOMContentLoaded', main);
-}
+}*/
