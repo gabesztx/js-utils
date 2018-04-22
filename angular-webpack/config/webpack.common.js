@@ -23,6 +23,10 @@ module.exports = {
         extensions: ['.ts', '.tsx', '.js', '.jsx']
     },
 
+    /*optimization: {
+        occurrenceOrder: true // To keep filename consistent between different modes (for example building only)
+    },*/
+
 
     optimization: {
         /**
@@ -35,25 +39,12 @@ module.exports = {
                     chunks: 'all',
                     name: 'vendor',
                     test: /[\\/]node_modules[\\/]/,
-                    priority: -20,
+                    // priority: -20,
                     enforce: true
-                },
-                /* js: {
-                     test: /\.js$/,
-                     name: 'commons',
-                     chunks: 'all',
-                 },*/
-                /* styles: {
-                     name: 'styles',
-                     test: /\.css$/,
-                     chunks: 'all',
-                     enforce: true
-                 }*/
+                }
             }
-        },
-        // runtimeChunk: true
+        }
     },
-
     module: {
         /**
          * Rules config

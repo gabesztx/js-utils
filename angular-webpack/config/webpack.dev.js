@@ -13,8 +13,9 @@ module.exports = merge(common, {
      * Entry files
      */
     entry: {
-        'app': ['./src/main.ts']
-        // 'app': ['webpack-hot-middleware/client?reload=true', './src/main.ts']
+        // 'app': './src/main.ts',
+        // 'print': './src/print.js'
+        'app': ['webpack-hot-middleware/client?reload=true', './src/main.ts']
     },
 
     /**
@@ -24,7 +25,8 @@ module.exports = merge(common, {
         path: root('dist'),
         // publicPath: '/',
         filename: '[name].bundle.js',
-        chunkFilename: '[id].chunk.js'
+        chunkFilename: '[name].bundle.js',
+        // chunkFilename: '[id].chunk.js'
     },
     /**
      * Mode (development or production)
@@ -36,7 +38,7 @@ module.exports = merge(common, {
      */
     devtool: 'inline-source-map',
 
-    stats: "normal",
+    stats: 'normal',
 
     /**
      * Modules config
@@ -60,7 +62,7 @@ module.exports = merge(common, {
                 test: /\.ts$/,
                 exclude: /node_modules/,
                 loaders: [
-                    // '@angularclass/hmr-loader',
+                    '@angularclass/hmr-loader',
                     'awesome-typescript-loader',
                     'angular2-template-loader',
                 ],
@@ -87,7 +89,15 @@ module.exports = merge(common, {
         new ContextReplacementPlugin(
             new RegExp(/angular(\\|\/)core(\\|\/)(@angular|esm5)/), root('src')
         ),
+
+        //TODO:
+        /*
+        *
+        * NoEmitOnErrorsPlugin -> optimization.noEmitOnErrors (on by default in production mode) ModuleConcatenationPlugin -> optimization.concatenateModules (on by default in prod mode) NamedModulesPlugin -> optimization.namedModules (on by default in dev mode)
+        *
+        * */
         new NamedModulesPlugin(),
+
         new HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
             template: root('src', 'public/index.html'),

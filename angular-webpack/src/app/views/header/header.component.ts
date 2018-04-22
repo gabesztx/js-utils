@@ -9,7 +9,7 @@ import {Component} from '@angular/core';
 })
 export class HeaderComponent {
     constructor() {
-        console.log('Hello Header');
+        // console.log('Hello Header');
        /* import('moment').then(moment => {
             console.log('MOMENT OK');
             console.log(moment.locale()); // en

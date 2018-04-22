@@ -44,6 +44,7 @@ const runDevelop = () => {
 const runProduction = () => {
     console.log('-------- Production development mode --------');
     const compiler = webpack(webpackProdConfig);
+    //TODO: progress The ProgressPlugin (--progress) now displays plugin names
     const watching = compiler.watch({
             // aggregateTimeout: 300,
             poll: undefined
@@ -56,7 +57,7 @@ const runProduction = () => {
                 entrypoints: false,
                 modules: false,
                 children: false,
-                chunks: false,
+                chunks: true,
                 warnings: false,
             }));
             app.use(express.static(root('dist')));
