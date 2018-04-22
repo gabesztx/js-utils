@@ -50,8 +50,6 @@ module.exports = {
          * Rules config
          * */
         rules: [
-
-
             /**
              * JS/ES6
              * */

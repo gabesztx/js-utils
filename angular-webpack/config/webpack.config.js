@@ -6,23 +6,37 @@ const HotModuleReplacementPlugin = require('webpack/lib/HotModuleReplacementPlug
 module.exports = {
     entry: {
         // app: ['webpack-hot-middleware/client?reload=true', root('src', 'index.js')]
-        main: ['webpack-hot-middleware/client?reload=true', root('src', 'index.js')]
+        main: ['webpack-hot-middleware/client?reload=true', root('src', 'index.ts')]
         // main: [root('src', 'index.js')]
     },
     output: {
         path: root('dist'),
         publicPath: '/',
         filename: '[name].bundle.js',
-        chunkFilename: '[name].bundle.js',
-        // filename: 'main.js',
-        // chunkFilename: '[id].chunk.js'
+        chunkFilename: '[name].bundle.js'
     },
-    mode: 'none',
+    mode: 'development',
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx']
     },
+    devtool: 'inline-source-map',
+
     module: {
         rules: [
+
+            {
+                test: /.js$/,
+                parser: {
+                    system: true
+                }
+            },
+
+            {
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                use: ['babel-loader']
+
+            },
 
             {
                 test: /\.html$/,
@@ -43,7 +57,7 @@ module.exports = {
         new BrowserSyncPlugin({
                 host: 'localhost',
                 port: 3000,
-                open: true,
+                open: false,
                 proxy: 'http://localhost:8080',
                 notify: false,
                 files: [root('src', 'public/**/*.*')],
