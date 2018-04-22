@@ -23,7 +23,7 @@ module.exports = merge(common, {
      */
     output: {
         path: root('dist'),
-        // publicPath: '/',
+        publicPath: '/',
         filename: '[name].bundle.js',
         chunkFilename: '[name].bundle.js',
         // chunkFilename: '[id].chunk.js'

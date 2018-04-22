@@ -5,34 +5,32 @@ import {root} from '../helper'
 
 import webpackMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
-// import webpackConfig from '../config/webpack.common';
 
 const app = express();
 const historyApiFallback = require('connect-history-api-fallback');
 const port = process.env.PORT || 8080;
 const server = http.createServer(app);
-// const webpackDCommonConfig = require('../config/webpack.common.js');
+
 const webpackDevConfig = require('../config/webpack.dev.js');
 const webpackProdConfig = require('../config/webpack.prod.js');
+const webpackBasic = require('../config/webpack.config.js');
 
-// return;
 const runDevelop = () => {
-    // console.log(webpackDevConfig);
-    const config = webpackDevConfig;
+    const config = webpackBasic;
     const compiler = webpack(config);
-
     const middleware = webpackMiddleware(compiler, {
         publicPath: config.output.publicPath,
-        // lazy: true,
         stats: {
-            hash: false,
+            hash: true,
             colors: true,
             entrypoints: true,
             modules: false,
             children: false,
-            chunks: false,
+            chunks: true,
+            warnings: false,
         },
     });
+
     app
         .use(express.static(root('src')))
         .use(historyApiFallback())
@@ -42,7 +40,6 @@ const runDevelop = () => {
 };
 
 const runProduction = () => {
-    console.log('-------- Production development mode --------');
     const compiler = webpack(webpackProdConfig);
     //TODO: progress The ProgressPlugin (--progress) now displays plugin names
     const watching = compiler.watch({
@@ -54,7 +51,7 @@ const runProduction = () => {
             console.log(stats.toString({
                 hash: true,
                 colors: true,
-                entrypoints: false,
+                entrypoints: true,
                 modules: false,
                 children: false,
                 chunks: true,
@@ -90,3 +87,25 @@ module.exports = {
     runDev: runDevelop,
     runProd: runProduction,
 };
+
+
+/*compiler.run((err, stats) => {
+    if (err) {
+        console.error(err);
+        return;
+    }
+    console.log(stats.toString({
+        hash: true,
+        colors: true,
+        entrypoints: true,
+        modules: false,
+        children: false,
+        chunks: true,
+        warnings: false,
+    }));
+
+    app.use(express.static(root('dist')));
+    server.listen(port);
+
+
+})*/
