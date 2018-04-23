@@ -13,7 +13,8 @@ module.exports = merge(common, {
      * Entry files
      */
     entry: {
-        'app': ['webpack-hot-middleware/client?reload=true', root('src', 'main.ts')]
+        // 'main': ['webpack-hot-middleware/client?reload=true', root('src', 'main.ts')]
+        'main': ['webpack-hot-middleware/client?reload=true', root('src', 'main.ts')]
     },
 
     /**
@@ -37,8 +38,6 @@ module.exports = merge(common, {
      */
     // devtool: 'inline-source-map',
 
-    // stats: 'normal',
-
     /**
      * Modules config
      * */
@@ -48,12 +47,12 @@ module.exports = merge(common, {
             /**
              * js System import
              * */
-           /* {
-                test: /.js$/,
-                parser: {
-                    system: true
-                }
-            },*/
+          /*   {
+                 test: /.js$/,
+                 parser: {
+                     system: true
+                 }
+             },*/
             /**
              * TypeScript
              * */
@@ -70,38 +69,36 @@ module.exports = merge(common, {
             /**
              * Sass-loader include
              * */
-           /* {
-                test: /\.(scss|css)$/,
-                include: root('src', 'style'),
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    'sass-loader'
-                ]
-            }*/
+            /* {
+                 test: /\.(scss|css)$/,
+                 include: root('src', 'style'),
+                 use: [
+                     'style-loader',
+                     'css-loader',
+                     'sass-loader'
+                 ]
+             }*/
         ]
     },
     /**
      * Plugins config
      * */
     plugins: [
-        new ContextReplacementPlugin(
+       /* new ContextReplacementPlugin(
             new RegExp(/angular(\\|\/)core(\\|\/)(@angular|esm5)/), root('src')
-        ),
+        ),*/
 
-        //TODO:
         /*
         *
         * NoEmitOnErrorsPlugin -> optimization.noEmitOnErrors (on by default in production mode) ModuleConcatenationPlugin -> optimization.concatenateModules (on by default in prod mode) NamedModulesPlugin -> optimization.namedModules (on by default in dev mode)
         *
         * */
-        // new NamedModulesPlugin(),
 
         new HotModuleReplacementPlugin(),
 
         new HtmlWebpackPlugin({
-            template: root('src', 'public/main.html'),
-            // template: root('src', 'public/index.html'),
+            // template: root('src', 'public/main.html'),
+            template: root('src', 'public/index.html'),
             // chunksSortMode: 'dependency'
         }),
         new BrowserSyncPlugin({

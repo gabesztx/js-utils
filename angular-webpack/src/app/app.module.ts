@@ -1,13 +1,10 @@
 import {NgModule, ApplicationRef} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {removeNgStyles, createNewHosts} from '@angularclass/hmr';
+// import {removeNgStyles, createNewHosts} from '@angularclass/hmr';
 import {AppComponent} from './app.component';
-import {HeaderComponent} from './views/header/header.component';
-import {FooterComponent} from './views/footer/footer.component';
-import '../style/main.scss'
-
-// import './print.js';
-// import {arrayify} from 'tslint/lib/utils';
+// import {HeaderComponent} from './views/header/header.component';
+// import {FooterComponent} from './views/footer/footer.component';
+// import '../style/main.scss'
 
 
 @NgModule({
@@ -16,8 +13,8 @@ import '../style/main.scss'
     ],
     declarations: [
         AppComponent,
-        HeaderComponent,
-        FooterComponent
+        // HeaderComponent,
+        // FooterComponent
     ],
     bootstrap: [AppComponent]
 })
@@ -28,7 +25,7 @@ export class AppModule {
     }
 
 
-    hmrOnInit(store: any) {
+    /*hmrOnInit(store: any) {
     }
 
     hmrOnDestroy(store: any) {
@@ -43,5 +40,5 @@ export class AppModule {
         // display new elements
         store.disposeOldHosts();
         delete store.disposeOldHosts;
-    }
+    }*/
 }

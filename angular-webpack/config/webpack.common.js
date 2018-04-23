@@ -12,39 +12,67 @@ module.exports = {
     /**
      * Entry files
      */
-  /*  entry: {
-        'polyfills': './src/polyfills.ts'
-    },*/
+    /*  entry: {
+          'polyfills': './src/polyfills.ts'
+      },*/
 
     /**
      * Resolve file type
      */
-   /* resolve: {
+    resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx']
-    },*/
-
+    },
     /*optimization: {
         occurrenceOrder: true // To keep filename consistent between different modes (for example building only)
     },*/
 
 
-  /*  optimization: {
-        /!**
+    optimization: {
+        /**
          * Split files, vendor, common, runtime files
-         *!/
+         */
         splitChunks: {
             cacheGroups: {
-                vendor: {
+                commons: {
+                    name: "commons",
+                    chunks: "initial",
+                    minChunks: 2
+                }
+                /*vendor: {
+                    test: /node_modules/,
+                    chunks: 'initial',
+                    name: 'vendor',
+                    enforce: true
+                },*/
+                /*        vendor: {
+                            test: /[\\/]node_modules[\\/]/,
+                            name: 'vendor',
+                            chunks: 'all',
+                            // chunks: "initial",
+                            // enforce: true
+                        },*/
+                /*commons: {
+                    name: "commons",
+                    chunks: "initial",
+                    // enforce: true
+                    // minChunks: 2
+                }*/
+        /*        commons: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    chunks: 'all'
+                }*/
+                /*vendor: {
                     // chunks: 'initial',
                     chunks: 'all',
                     name: 'vendor',
                     test: /[\\/]node_modules[\\/]/,
-                    // priority: -20,
+                    priority: -20,
                     enforce: true
-                }
+                }*/
             }
         }
-    },*/
+    },
     module: {
         /**
          * Rules config
