@@ -27,7 +27,7 @@ const runDevelop = () => {
             entrypoints: true,
             modules: false,
             children: false,
-            chunks: true,
+            chunks: false,
             warnings: false,
         },
     });
@@ -55,7 +55,7 @@ const runProduction = () => {
                 entrypoints: true,
                 modules: false,
                 children: false,
-                chunks: true,
+                chunks: false,
                 warnings: false,
             }));
             app.use(express.static(root('dist')));

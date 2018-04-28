@@ -4,11 +4,15 @@
     "removeComments": true,
     "target": "ES5",
     "module": "commonjs",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
     "sourceMap": true,
     "noEmitHelpers": false,
     "noUnusedLocals": false,
+    "importHelpers": true,
+    "moduleResolution": "node",
+
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
     "noUnusedParameters": false,
     "lib": ["es2015", "dom"]
   },

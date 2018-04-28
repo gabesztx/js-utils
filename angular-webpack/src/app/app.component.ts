@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+
 // import * as moment from 'moment'
 @Component({
     selector: 'root-app',
@@ -13,7 +14,6 @@ export class AppComponent {
     constructor() {
         this.title = 'App Content';
         this.showComponent = true;
-
         console.log('AppComponent: ');
         document.body.appendChild(this.component());
         // setTimeout(() => {}, 1000)
@@ -27,10 +27,10 @@ export class AppComponent {
         element.appendChild(button);
         button.onclick = e => {
             console.log('Click');
-            /* this.getComponent().then(component => {
-                 console.log('HUUUUU OK');
-
-             })*/
+           /* import('lodash').then((lodash) => {
+                const _ = lodash['default'];
+                console.log(_.join(['Hello', 'webpack'], '_loadsh'));
+            })*/
 
         };
         return element;
