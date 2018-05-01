@@ -1,39 +1,52 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-// import * as moment from 'moment'
 @Component({
     selector: 'root-app',
     templateUrl: './app.component.html',
     // styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-    title: string;
-
+export class AppComponent implements OnInit {
+    public title: string;
     public showComponent = false;
 
     constructor() {
         this.title = 'App Content';
-        this.showComponent = true;
-        console.log('AppComponent: ');
-        document.body.appendChild(this.component());
-        // setTimeout(() => {}, 1000)
+    }
+
+    ngOnInit() {
+        this.component();
     }
 
 
     component() {
         const element = document.createElement('div');
+        const element1 = document.createElement('div');
         const button = document.createElement('button');
-        button.innerHTML = 'Click me and look at the console!';
-        element.appendChild(button);
-        button.onclick = e => {
-            console.log('Click');
-           /* import('lodash').then((lodash) => {
+        const button1 = document.createElement('button');
+
+        button.innerHTML = 'Click 1';
+        button1.innerHTML = 'Click 2';
+
+        /*button.onclick = e => {
+            this.showComponent = true;
+            import('lodash').then((lodash) => {
                 const _ = lodash['default'];
                 console.log(_.join(['Hello', 'webpack'], '_loadsh'));
-            })*/
-
+            })
+        };*/
+        button1.onclick = e => {
+            import('moment/moment.js').then((moment_) => {
+                const moment = moment_['default'];
+                const time = moment().format();
+                console.log('Time: ', time);
+            })
         };
-        return element;
+
+        element.appendChild(button);
+        element1.appendChild(button1);
+        document.body.appendChild(element);
+        document.body.appendChild(element1);
+        // return element;
     }
 
     /*  getComponent() {

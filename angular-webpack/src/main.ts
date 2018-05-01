@@ -1,7 +1,7 @@
 import {enableProdMode} from '@angular/core';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {AppModule} from './app/app.module';
-
+// console.log(enableProdMode);
 // console.log('NODE ENV: ', process.env.NODE_ENV);
 
 if (process.env.NODE_ENV === 'production') {
@@ -18,6 +18,7 @@ if (document.readyState === 'complete') {
 } else {
     document.addEventListener('DOMContentLoaded', main);
 }
+
 
 
 

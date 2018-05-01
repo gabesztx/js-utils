@@ -29,7 +29,7 @@ const runDevelop = () => {
             children: false,
             chunks: false,
             warnings: false,
-        },
+        }
     });
 
     app
@@ -42,71 +42,48 @@ const runDevelop = () => {
 
 const runProduction = () => {
     const compiler = webpack(webpackProdConfig);
-    //TODO: progress The ProgressPlugin (--progress) now displays plugin names
-    const watching = compiler.watch({
-            // aggregateTimeout: 300,
-            poll: undefined
-        },
-        (err, stats) => {
-            // Print watch/build result here...
-            console.log(stats.toString({
-                hash: true,
-                colors: true,
-                entrypoints: true,
-                modules: false,
-                children: false,
-                chunks: false,
-                warnings: false,
-            }));
-            app.use(express.static(root('dist')));
-            server.listen(port);
-        });
+    /*  const watching = compiler.watch({
+              // aggregateTimeout: 300,
+              poll: undefined
+          },
+          (err, stats) => {
+              // Print watch/build result here...
+              console.log(stats.toString({
+                  hash: true,
+                  colors: true,
+                  entrypoints: true,
+                  modules: false,
+                  children: false,
+                  chunks: false,
+                  warnings: false,
+              }));
+              app.use(express.static(root('dist')));
+              server.listen(port);
+          });
+          */
 
-    /*   compiler.run((err, stats) => {
-           if (err) {
-               console.error(err);
-               return;
-           }
-           console.log('-------- Production development finished! --------');
-           console.log(stats.toString({
-               hash: false,
-               colors: true,
-               entrypoints: false,
-               modules: false,
-               children: false,
-               chunks: false,
-               warnings: false,
-           }));
+    compiler.run((err, stats) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        console.log('-------- Production development finished! --------');
+        console.log(stats.toString({
+            hash: false,
+            colors: true,
+            entrypoints: false,
+            modules: false,
+            children: false,
+            chunks: false,
+            warnings: false,
+        }));
 
-           app.use(express.static(root('dist')));
-           server.listen(port);
-       })*/
-
+        app.use(express.static(root('dist')));
+        server.listen(port);
+    })
 };
 
 module.exports = {
     runDev: runDevelop,
     runProd: runProduction,
 };
-
-
-/*compiler.run((err, stats) => {
-    if (err) {
-        console.error(err);
-        return;
-    }
-    console.log(stats.toString({
-        hash: true,
-        colors: true,
-        entrypoints: true,
-        modules: false,
-        children: false,
-        chunks: true,
-        warnings: false,
-    }));
-
-    app.use(express.static(root('dist')));
-    server.listen(port);
-
-
-})*/

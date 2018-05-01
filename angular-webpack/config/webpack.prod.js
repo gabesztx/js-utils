@@ -6,11 +6,9 @@ const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const devMode = process.env.NODE_ENV !== 'production'
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
 module.exports = merge(common, {
     /**
      * Entry files
@@ -24,20 +22,42 @@ module.exports = merge(common, {
      */
     output: {
         path: root('dist'),
-        filename: '[name].[hash].bundle.js',
-        chunkFilename: '[id].[hash].chunk.js'
+        filename: '[name].[chunkhash].bundle.js',
+        chunkFilename: '[name].[chunkhash].chunk.js',
+        // filename: '[name].bundle.js',
+        // chunkFilename: '[name].chunk.js'
     },
-    // target: 'node',
+    // target: 'web',
     /**
      * Mode
      */
     mode: 'production', // development or production
-
+    optimization: {
+         // runtimeChunk: true,
+       /* minimizer: [
+            new UglifyJsPlugin({
+                // cache: false,
+                uglifyOptions: {
+                    // compress: false,
+                    output: {
+                        // ecma: 8,
+                        // comments: false,
+                        beautify: false, // minim file
+                    },
+                    // compress: true,
+                    // comments: false,
+                    // mangle: false,
+                    // toplevel: false,
+                    // keep_classnames: true, // <-- doesn't exist, I guess. It's in harmony branch
+                    // keep_fnames: true //
+                }
+            })
+        ]*/
+    },
     /**
      * Modules config
      * */
     module: {
-
         rules: [
             /**
              * TypeScript
@@ -77,8 +97,8 @@ module.exports = merge(common, {
     /**
      * Plugins config
      * */
-    //TODO: ugly
     plugins: [
+        new webpack.ProgressPlugin(),
         new CleanWebpackPlugin(['dist'], {
             root: root(),
             verbose: true,
@@ -87,10 +107,10 @@ module.exports = merge(common, {
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': "'production'"
         }),
-        // new OptimizeCSSAssetsPlugin({}),
+        // new webpack.HashedModuleIdsPlugin(),
         new MiniCssExtractPlugin({
-            filename: '[name].[hash].css',// cache: filename: "[contenthash].css"
-            chunkFilename: '[id].[hash].css'
+            filename: '[name].[chunkhash].css',// cache: filename: "[contenthash].css"
+            // chunkFilename: '[id].[hash].css'
         }),
         new HtmlWebpackPlugin({
             template: root('src', 'public/index.html')

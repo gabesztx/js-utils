@@ -8,6 +8,6 @@ import {Component} from '@angular/core';
 })
 export class HeaderComponent {
     constructor() {
-        console.log('hea');
+        console.log('HeaderComponent');
     }
 }

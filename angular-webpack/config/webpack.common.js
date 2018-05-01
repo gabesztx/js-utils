@@ -27,6 +27,7 @@ module.exports = {
         /**
          * Split files, vendor, common, runtime files
          */
+        // noEmitOnErrors:true,
         splitChunks: {
             cacheGroups: {
               /*  commons: {
@@ -39,13 +40,27 @@ module.exports = {
                      name: 'vendors',
                      chunks: 'all'
                  },*/
+
+               /* commons: {
+                    chunks: 'initial',
+                    minChunks: 2,
+                    maxInitialRequests: 5, // The default limit is too small to showcase the effect
+                    minSize: 0 // This is example is too small to create commons chunks
+                },*/
                 vendor: {
+                    test: /node_modules/,
+                    chunks: 'all',
+                    name: 'vendor',
+                    priority: -20,
+                    enforce: true
+                }
+                /*vendor: {
                     test: /[\\/]node_modules[\\/]/,
                     chunks: 'all',
                     name: 'vendor',
                     priority: -20,
                     enforce: true
-                },
+                },*/
             }
         }
     },
@@ -61,7 +76,6 @@ module.exports = {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
                 use: ['babel-loader']
-
             },
             /**
              * File loader / Html
