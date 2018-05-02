@@ -19,34 +19,35 @@ export class AppComponent implements OnInit {
 
 
     component() {
-        const element = document.createElement('div');
+        /*const element = document.createElement('div');
         const element1 = document.createElement('div');
         const button = document.createElement('button');
         const button1 = document.createElement('button');
 
-        button.innerHTML = 'Click 1';
-        button1.innerHTML = 'Click 2';
+        button.innerHTML = 'Click1';
+        button1.innerHTML = 'Click2';
 
-        /*button.onclick = e => {
+        button.onclick = e => {
             this.showComponent = true;
             import('lodash').then((lodash) => {
                 const _ = lodash['default'];
-                console.log(_.join(['Hello', 'webpack'], '_loadsh'));
+                console.log('lodash OK');
+               
             })
-        };*/
+        };
         button1.onclick = e => {
             import('moment/moment.js').then((moment_) => {
                 const moment = moment_['default'];
                 const time = moment().format();
-                console.log('Time: ', time);
+                console.log('moment Done');
+                // console.log('Hello Time Time: ', time);
             })
         };
 
         element.appendChild(button);
         element1.appendChild(button1);
         document.body.appendChild(element);
-        document.body.appendChild(element1);
-        // return element;
+        document.body.appendChild(element1);*/
     }
 
     /*  getComponent() {

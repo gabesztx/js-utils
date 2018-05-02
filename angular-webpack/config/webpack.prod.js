@@ -8,7 +8,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 module.exports = merge(common, {
     /**
      * Entry files
@@ -22,8 +22,8 @@ module.exports = merge(common, {
      */
     output: {
         path: root('dist'),
-        filename: '[name].[chunkhash].bundle.js',
-        chunkFilename: '[name].[chunkhash].chunk.js',
+        filename: '[name].[contenthash].bundle.js',
+        chunkFilename: '[name].[contenthash].chunk.js',
         // filename: '[name].bundle.js',
         // chunkFilename: '[name].chunk.js'
     },
@@ -34,8 +34,14 @@ module.exports = merge(common, {
     mode: 'production', // development or production
     optimization: {
          // runtimeChunk: true,
-       /* minimizer: [
+        minimizer: [
             new UglifyJsPlugin({
+                cache: true,
+                parallel: true, // Use multi-process parallel running to improve the build speed
+                sourceMap: true // set to true if you want JS source maps
+            }),
+            new OptimizeCSSAssetsPlugin({})
+            /*new UglifyJsPlugin({
                 // cache: false,
                 uglifyOptions: {
                     // compress: false,
@@ -51,8 +57,8 @@ module.exports = merge(common, {
                     // keep_classnames: true, // <-- doesn't exist, I guess. It's in harmony branch
                     // keep_fnames: true //
                 }
-            })
-        ]*/
+            })*/
+        ]
     },
     /**
      * Modules config
@@ -109,7 +115,7 @@ module.exports = merge(common, {
         }),
         // new webpack.HashedModuleIdsPlugin(),
         new MiniCssExtractPlugin({
-            filename: '[name].[chunkhash].css',// cache: filename: "[contenthash].css"
+            filename: '[name].[contenthash].css',// cache: filename: "[contenthash].css"
             // chunkFilename: '[id].[hash].css'
         }),
         new HtmlWebpackPlugin({

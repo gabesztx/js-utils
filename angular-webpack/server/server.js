@@ -13,7 +13,6 @@ const server = http.createServer(app);
 
 const webpackDevConfig = require('../config/webpack.dev.js');
 const webpackProdConfig = require('../config/webpack.prod.js');
-const webpackConfigBasic = require('../config/webpack.config.js');
 
 const runDevelop = () => {
     // const config = webpackConfigBasic;

@@ -1,5 +1,4 @@
 import {root} from '../helper'
-
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
@@ -53,7 +52,7 @@ module.exports = merge(common, {
                 test: /\.ts$/,
                 exclude: /node_modules/,
                 loaders: [
-                    '@angularclass/hmr-loader',
+                    // '@angularclass/hmr-loader',
                     'awesome-typescript-loader',
                     'angular2-template-loader',
                 ],
@@ -62,7 +61,7 @@ module.exports = merge(common, {
             /**
              * Sass-loader include
              */
-            /* {
+             {
                  test: /\.(scss|css)$/,
                  include: root('src', 'style'),
                  use: [
@@ -70,7 +69,7 @@ module.exports = merge(common, {
                      'css-loader',
                      'sass-loader'
                  ]
-             }*/
+             }
         ]
     },
     /**
@@ -83,14 +82,12 @@ module.exports = merge(common, {
 
         new HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
-            // template: root('src', 'public/main.html'),
-            template: root('src', 'public/index.html'),
-            // chunksSortMode: 'dependency'
+            template: root('src', 'public/index.html')
         }),
         new BrowserSyncPlugin({
                 host: 'localhost',
                 port: 3000,
-                open: false,
+                open: true,
                 proxy: 'http://localhost:8080',
                 notify: false,
                 files: [root('src', 'public/**/*.*')],
