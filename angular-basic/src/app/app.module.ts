@@ -1,18 +1,37 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-
-import { AppComponent } from './app.component';
-
+import {NgModule, ApplicationRef} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {AppComponent} from './app.component';
+import {HeaderComponent} from './views/header/header.component';
+import {FooterComponent} from './views/footer/footer.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    imports: [
+        BrowserModule,
+    ],
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        FooterComponent
+    ],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
+
+export class AppModule {
+    constructor(public appRef: ApplicationRef) {
+    }
+
+    // TODO: HMR use only dev
+    /*  hmrOnInit(store: any) {}
+      hmrOnDestroy(store: any) {
+          let cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement);
+          // recreate elements
+          store.disposeOldHosts = createNewHosts(cmpLocation);
+          // remove styles
+          removeNgStyles();
+      }
+      hmrAfterDestroy(store: any) {
+          // display new elements
+          store.disposeOldHosts();
+          delete store.disposeOldHosts;
+      }*/
+}

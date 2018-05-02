@@ -13,8 +13,8 @@ module.exports = merge(common, {
     entry: {
         // 'main': [root('src', 'index.ts')]
         // 'main': ['webpack-hot-middleware/client?reload=true', root('src', 'index.ts')]
-        // 'main': [root('src', 'main.ts')]
-        'main': ['webpack-hot-middleware/client?reload=true', root('src', 'main.ts')]
+        'main': [root('src', 'main.ts')]
+        // 'main': ['webpack-hot-middleware/client?reload=true', root('src', 'main.ts')]
     },
 
     /**
@@ -80,7 +80,7 @@ module.exports = merge(common, {
             new RegExp(/angular(\\|\/)core(\\|\/)(@angular|esm5)/), root('src')
         ),
 
-        new HotModuleReplacementPlugin(),
+        // new HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
             template: root('src', 'public/index.html')
         }),

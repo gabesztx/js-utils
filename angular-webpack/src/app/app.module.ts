@@ -5,8 +5,7 @@ import {HeaderComponent} from './views/header/header.component';
 import {FooterComponent} from './views/footer/footer.component';
 
 // import {removeNgStyles, createNewHosts} from '@angularclass/hmr';
-
-import '../style/main.scss'
+// import '../style/main.scss'
 
 @NgModule({
     imports: [

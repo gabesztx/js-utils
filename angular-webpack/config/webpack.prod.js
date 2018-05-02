@@ -22,8 +22,8 @@ module.exports = merge(common, {
      */
     output: {
         path: root('dist'),
-        filename: '[name].[contenthash].bundle.js',
-        chunkFilename: '[name].[contenthash].chunk.js',
+        filename: '[name].[hash].bundle.js',
+        chunkFilename: '[name].[hash].chunk.js',
         // filename: '[name].bundle.js',
         // chunkFilename: '[name].chunk.js'
     },
@@ -33,12 +33,28 @@ module.exports = merge(common, {
      */
     mode: 'production', // development or production
     optimization: {
-         // runtimeChunk: true,
+        // runtimeChunk: true,
         minimizer: [
             new UglifyJsPlugin({
-                cache: true,
-                parallel: true, // Use multi-process parallel running to improve the build speed
-                sourceMap: true // set to true if you want JS source maps
+                // sourceMap: true,
+                // extractComments: true,
+                uglifyOptions: {
+                    // ecma:5,
+                    compress: {
+                        // drop_console:true // delete console.log
+                    },
+                    output: {
+                        // ecma: 5,
+                        comments: false,
+                        beautify: false, // minim file
+                    },
+                   /* mangle: {
+                        keep_fnames: true
+                    }*/
+                }
+                // cache: true,
+                // parallel: true, // Use multi-process parallel running to improve the build speed
+                // sourceMap: true // set to true if you want JS source maps
             }),
             new OptimizeCSSAssetsPlugin({})
             /*new UglifyJsPlugin({
@@ -110,12 +126,21 @@ module.exports = merge(common, {
             verbose: true,
             dry: false
         }),
+        /*     new webpack.optimize.AggressiveSplittingPlugin(
+                 {
+                     minSize: 30000, //Byte, split point. Default: 30720
+                     maxSize: 50000, //Byte, maxsize of per file. Default: 51200
+                     chunkOverhead: 0, //Default: 0
+                     entryChunkMultiplicator: 1, //Default: 1
+                 }
+             ),*/
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': "'production'"
+            // 'process.env.NODE_ENV': "'production'"
+            'process.env.NODE_ENV': JSON.stringify('production')
         }),
         // new webpack.HashedModuleIdsPlugin(),
         new MiniCssExtractPlugin({
-            filename: '[name].[contenthash].css',// cache: filename: "[contenthash].css"
+            filename: '[name].[hash].css',// cache: filename: "[contenthash].css"
             // chunkFilename: '[id].[hash].css'
         }),
         new HtmlWebpackPlugin({
