@@ -30,7 +30,7 @@ module.exports = function (options) {
   const isProd = options.env === 'production';
   const APP_CONFIG = require(process.env.ANGULAR_CONF_FILE || (isProd ? './config.prod.json' : './config.dev.json'));
 
-  const METADATA = Object.assign({}, buildUtils.DEFAULT_METADATA,options.metadata || {});
+  const METADATA = Object.assign({}, buildUtils.DEFAULT_METADATA, options.metadata || {});
   const GTM_API_KEY = process.env.GTM_API_KEY || APP_CONFIG.gtmKey;
 
   const ngcWebpackConfig = buildUtils.ngcWebpackSetup(isProd, METADATA);
@@ -38,7 +38,7 @@ module.exports = function (options) {
 
   const entry = {
     polyfills: './src/polyfills.browser.ts',
-    main:      './src/main.browser.ts'
+    main: './src/main.browser.ts'
   };
 
   Object.assign(ngcWebpackConfig.plugin, {
@@ -54,6 +54,7 @@ module.exports = function (options) {
      * See: https://webpack.js.org/configuration/entry-context/#entry
      */
     entry: entry,
+    // mode: 'development',
 
     /**
      * Options affecting the resolving of modules.
@@ -61,7 +62,7 @@ module.exports = function (options) {
      * See: https://webpack.js.org/configuration/resolve/
      */
     resolve: {
-      mainFields: [ ...(supportES2015 ? ['es2015'] : []), 'browser', 'module', 'main' ],
+      mainFields: [...(supportES2015 ? ['es2015'] : []), 'browser', 'module', 'main'],
 
       /**
        * An array of extensions that should be used to resolve modules.
@@ -220,10 +221,10 @@ module.exports = function (options) {
        * See: https://www.npmjs.com/package/copy-webpack-plugin
        */
       new CopyWebpackPlugin([
-        { from: 'src/assets', to: 'assets' },
-        { from: 'src/meta'}
-      ],
-        isProd ? { ignore: [ 'mock-data/**/*' ] } : undefined
+          {from: 'src/assets', to: 'assets'},
+          {from: 'src/meta'}
+        ],
+        isProd ? {ignore: ['mock-data/**/*']} : undefined
       ),
 
       /*
@@ -238,7 +239,7 @@ module.exports = function (options) {
         template: 'src/index.html',
         title: METADATA.title,
         chunksSortMode: function (a, b) {
-          const entryPoints = ["inline","polyfills","sw-register","styles","vendor","main"];
+          const entryPoints = ["inline", "polyfills", "sw-register", "styles", "vendor", "main"];
           return entryPoints.indexOf(a.names[0]) - entryPoints.indexOf(b.names[0]);
         },
         metadata: METADATA,
@@ -252,7 +253,7 @@ module.exports = function (options) {
         } : false
       }),
 
-       /**
+      /**
        * Plugin: ScriptExtHtmlWebpackPlugin
        * Description: Enhances html-webpack-plugin functionality
        * with different deployment options for your scripts including:
