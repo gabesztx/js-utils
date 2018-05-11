@@ -42,20 +42,20 @@ module.exports = {
                      chunks: 'all'
                  },*/
 
-                commons: {
+                /*commons: {
                     chunks: 'initial',
                     minChunks: 2,
                     maxInitialRequests: 5, // The default limit is too small to showcase the effect
                     minSize: 0, // This is example is too small to create commons chunks
                     enforce: true
-                },
-               /* vendor: {
+                },*/
+                vendor: {
                     test: /node_modules/,
                     chunks: 'all',
                     name: 'vendor',
                     priority: -20,
                     enforce: true
-                }*/
+                }
             }
         }
     },
