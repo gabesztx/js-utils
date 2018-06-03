@@ -2,13 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { Routes, RouterModule } from '@angular/router';
-import { EagerComponent } from './eager.component';
+import { EagerComponent } from './lazy-routing/eager.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: 'eager', pathMatch: 'full' },
   { path: 'eager', component: EagerComponent },
-  { path: 'lazy', loadChildren: './lazy/lazy.module#LazyModule' }
+  { path: 'lazy', loadChildren: './lazy-routing/lazy.module#LazyModule' }
 ];
 
 
