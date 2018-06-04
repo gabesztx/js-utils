@@ -1,28 +1,73 @@
 <div class="container">
   <h1>Model Drive Form</h1>
-  <form (submit)="onSubmit()" novalidate>
+  <form #modelDriveForm="ngForm" (submit)="onSubmit(modelDriveForm)">
+    <h1>{{submitted}}</h1>
     <div class="form-group">
-      <label for="name">Name</label>
+      <label for="name">Teljes név</label>
       <input type="text"
              class="form-control"
              id="name"
-             name="name"
-             [(ngModel)]="model.name"
-      >
+             autocomplete="off"
+             [(ngModel)]="model.name" name="name"
+             #name="ngModel"
+             required>
+      <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+        Name is required
+      </div>
     </div>
     <div class="form-group">
-      <label for="power">Hero Power</label>
+      <label for="email">E-mail</label>
+      <input type="email"
+             class="form-control"
+             id="email"
+             autocomplete="off"
+             [(ngModel)]="model.email" name="email"
+             #email="ngModel"
+             required>
+      <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+        Name is required
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="locale">Válasszon nyelvet</label>
       <select class="form-control"
-              name="power"
-              id="power"
-              [(ngModel)]="model.power"
-      >
-        <option value="">Select value</option>
-        <option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
+              id="locale"
+              [(ngModel)]="model.locale" name="locale">
+        <option *ngFor="let lang of langs" [value]="lang">{{lang}}</option>
       </select>
     </div>
-    <button type="button" class="btn btn-success" (click)="onResetForm()">Reset</button>
-    <button type="submit" class="btn btn-success">Submit</button>
+    <!--   <p>
+         <button type="button" class="btn btn-default" (click)="onResetForm()">Reset</button>
+       </p>-->
+    <p>
+      <button type="submit" class="btn btn-success" [disabled]="!modelDriveForm.form.valid">Submit</button>
+    </p>
   </form>
-  <pre>{{diagnostic}}</pre>
+  <div>
+    <h3>Name validates:</h3>
+    <div><strong>valid:</strong> {{ name.valid}}</div>
+    <div><strong>invalid:</strong> {{ name.invalid}}</div>
+    <div><strong>dirty:</strong> {{ name.dirty}}</div>
+    <div><strong>pristin:</strong> {{ name.pristine}}</div>
+    <div><strong>touched:</strong> {{ name.touched}}</div>
+    <div><strong>unTouched:</strong> {{ name.untouched}}</div>
+  </div>
+
+  <!--<div>
+    <h3>Selection validates:</h3>
+    <div><strong>valid:</strong> {{ power.valid}}</div>
+    <div><strong>invalid:</strong> {{ power.invalid}}</div>
+    <div><strong>dirty:</strong> {{ power.dirty}}</div>
+    <div><strong>pristin:</strong> {{ power.pristine}}</div>
+    <div><strong>touched:</strong> {{ power.touched}}</div>
+    <div><strong>unTouched:</strong> {{ power.untouched}}</div>
+  </div>-->
+
+  <!--<div>
+    <h3>Model data log:</h3>
+    <p>
+      {{diagnostic}}
+    </p>
+  </div>-->
+
 </div>

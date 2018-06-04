@@ -8,19 +8,21 @@ import {FormDataModel} from '../../model/form-data-model';
 })
 
 export class FormComponent {
-  
-  powers = ['Value 1', 'Value 2', 'Value 3', 'Value 4'];
-  model = new FormDataModel(18, 'Gabesz', this.powers[0], '');
-  submitted = false;
+  langs = ['Magyar', 'Angol', 'Német'];
+  model = new FormDataModel('', '', this.langs[0]);
+  // submitted = false;
 
-  onSubmit() {
-    this.submitted = true;
-    console.log(this.model);
+  onSubmit(form: any) {
+    // this.submitted = true;
+    console.log('FormData: ', form);
+    // console.log(this.model);
   }
 
-  onResetForm() {
-    this.model = new FormDataModel(18, '', '', '');
-  }
+/*  onResetForm() {
+    console.log('reset');
+    this.model = new FormDataModel('', '', this.langs[0]);
+    this.submitted = false;
+  }*/
 
   get diagnostic() {
     return JSON.stringify(this.model);
