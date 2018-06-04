@@ -1,10 +1,10 @@
 <div class="container">
   <h1>Model Drive Form</h1>
   <form #modelDriveForm="ngForm" (submit)="onSubmit(modelDriveForm)">
+    <input type="text" name="name" style="display:none" value="fake input"/>
+    <input type="email" name="email" style="display:none" value="fake input"/>
     <div class="form-group">
       <label for="name">Teljes név</label>
-      <input type="text" name="name" style="display:none" value="fake input" />
-      <input type="email" name="email" style="display:none" value="fake input" />
       <input type="text"
              class="form-control"
              autocomplete="nope"
@@ -26,10 +26,10 @@
              [(ngModel)]="model.email" name="email"
              #email="ngModel"
              required>
-      <!--TODO: email validation -->
-      <!--<div [hidden]="email.valid || email.untouched" class="alert alert-danger">
+
+      <div [hidden]="email.valid || email.untouched" class="alert alert-danger">
         Email is required
-      </div>-->
+      </div>
     </div>
     <div class="form-group">
       <label for="locale">Válasszon nyelvet</label>
