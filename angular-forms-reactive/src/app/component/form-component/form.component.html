@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Reactive Forms</h1>
-  <form [formGroup]="myform" (submit)="onSubmitClick()" novalidate>
+  <form [formGroup]="formData" (submit)="onSubmit()" novalidate>
     <input type="text" name="name" style="display:none" value="fake input"/>
     <input type="email" name="email" style="display:none" value="fake input"/>
 
@@ -12,7 +12,7 @@
              autocomplete="nope"
              id="name">
 
-      <div [hidden]="myform.controls.name.valid || myform.controls.name.pristine"
+      <div [hidden]="formData.controls.name.valid || formData.controls.name.pristine"
            class="alert alert-danger">Name is required
       </div>
     </div>
@@ -25,7 +25,7 @@
              formControlName="email"
              id="email">
     </div>
-    <div [hidden]="myform.controls.email.valid || myform.controls.email.pristine"
+    <div [hidden]="formData.controls.email.valid || formData.controls.email.pristine"
          class="alert alert-danger">Email is required
     </div>
 
@@ -43,9 +43,9 @@
     <p>
       <button type="submit"
               class="btn btn-success"
-              [disabled]="!myform.valid">Submit
+              [disabled]="!formData.valid">Submit
       </button>
     </p>
-    <pre>{{myform.value | json}}</pre>
+    <pre>{{formData.value | json}}</pre>
   </form>
 </div>

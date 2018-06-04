@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
-import {FormDataModel} from '../../model/form-data-model';
+
 
 @Component({
   selector: 'app-form',
@@ -9,7 +9,7 @@ import {FormDataModel} from '../../model/form-data-model';
 })
 
 export class FormComponent implements OnInit {
-  myform: FormGroup;
+  formData: FormGroup;
   langs: string[] = [
     'Magyar',
     'Angol',
@@ -18,7 +18,7 @@ export class FormComponent implements OnInit {
 
   // submitted = false;
   ngOnInit() {
-    this.myform = new FormGroup({
+    this.formData = new FormGroup({
       name: new FormControl('', Validators.required),
       email: new FormControl('', [
         Validators.required,
@@ -29,9 +29,7 @@ export class FormComponent implements OnInit {
 
   }
 
-  onSubmitClick() {
-    // this.submitted = true;
-    console.log('Submit: ');
-    // console.log(this.model);
+  onSubmit() {
+    console.log('Submit');
   }
 }
