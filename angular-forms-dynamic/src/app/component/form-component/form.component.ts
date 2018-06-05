@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {FormDataService} from '../../service/form-data.service';
+import {FormDataModel} from '../../model/form-data-model';
+import {Observable} from 'rxjs/index';
+import {finalize} from 'rxjs/operators';
 
 
 @Component({
@@ -9,24 +12,22 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
 })
 
 export class FormComponent implements OnInit {
-  formData: FormGroup;
-  langs: string[] = [
-    'Magyar',
-    'Angol',
-    'Német',
-  ];
 
-  // submitted = false;
+  formData: Observable<FormDataModel[]>;
+
+  constructor(private formDataService: FormDataService) {
+  }
+
   ngOnInit() {
-/*    this.formData = new FormGroup({
-      name: new FormControl('', Validators.required),
-      email: new FormControl('', [
-        Validators.required,
-        Validators.pattern('^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$')
-      ]),
-      locale: new FormControl(this.langs[0]),
-    });*/
+    setTimeout(() => {
+      this.getForm();
+    }, 500)
 
+  }
+
+  getForm() {
+    this.formData = this.formDataService.getFormData();
+    // this.selectedForm = this.formData;
   }
 
   onSubmit() {
