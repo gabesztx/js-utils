@@ -1,5 +1,5 @@
 import { browser, by } from "protractor";
-import { waitForElement } from "../../features/support/wait_for_element";
+import { waitForElement } from "../../page_objects/nexius.page";
 
 export = function hooks(){
 

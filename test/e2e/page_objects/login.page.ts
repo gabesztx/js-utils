@@ -1,9 +1,9 @@
-import { browser, element, by, Key, $, $$, ElementArrayFinder } from "protractor";
-import { waitForElement } from "../features/support/wait_for_element";
+import { browser, element, by, Key } from "protractor";
+import { waitForElement } from "./nexius.page";
+import { UserCourseList } from "./user_course_list.page";
 
 export class LoginPage {
     
-    myCourses: ElementArrayFinder;
     static get() {
         browser.get('https://testaccount.nexiuslearning.com/');
         return new LoginPage();
@@ -11,21 +11,17 @@ export class LoginPage {
 
     private email;
     private password;
+    private name;
 
     constructor(){
         this.email = element(by.name('UserName'));
         this.password = element(by.name('PasswordTop'));
-
-        this.myCourses = $$('div.courseListItemContainer');
+        this.name='próba jános';
     }
 
     login(){
-        this.email.sendKeys('nexiustest999@mailinator.com');   //aaaaa12@mailinator.com
-        this.password.sendKeys('aaaaaa');
-        element(by.css('.btn[value="Bejelentkezés"]')).click();
-    }
-
-    getCoursesSize(){
-        return this.myCourses.count();
+        this.email.sendKeys('aaaaa12@mailinator.com');
+        this.password.sendKeys('aaaaaa', Key.ENTER);
+        return new UserCourseList();
     }
 }

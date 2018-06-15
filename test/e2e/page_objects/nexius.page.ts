@@ -2,7 +2,6 @@ import { $, browser, ElementFinder, promise, by  } from "protractor";
 
 import { config } from '../../conf';
 import { By, until } from "selenium-webdriver";
-import { waitForElement } from "../features/support/wait_for_element";
 
 
 export class NexiusPage {
@@ -26,6 +25,15 @@ export class NexiusPage {
     getHeaderText() {
         return this.mainHeader.getText();
     }
+
     
 }
 
+export function waitForElement(locator: By): promise.Promise<boolean> {
+    const driver = browser.driver;
+    return driver.wait(until.elementLocated(locator), 20 * 1000)
+        .then(function (element) {
+                return driver.wait(until.elementIsVisible(element), 10 * 1000);
+            }
+        );
+}
