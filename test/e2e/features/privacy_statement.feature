@@ -1,6 +1,6 @@
 # language: hu
 
-@smoke @focus
+@smoke
 Jellemző: adatkezelési nyilatkozat kezelés
 
     Forgatókönyv: új menüpont a láblécben kurzus lista oldal (IDP logout)
