@@ -1,25 +1,48 @@
-import { browser, element, by, Key } from "protractor";
+import {browser, element, by} from "protractor";
 
 export class RegisterPage {
-    static get(){
-        console.log('RegisterPage');
+    static get() {
+        browser.get('https://testaccount.nexiuslearning.com/account/register');
         return new RegisterPage();
     };
-    public inputUserName;
-    constructor(){
-        console.log('REGISTER PAGE CONSTRUCTOR');
-        setTimeout(() => {
 
-        this.inputUserName = element(by.css('#FullName'));
-        },2000)
-        // this.innerText = element(by.css('.Q8LRLc'));
-        // this.valueText = element(by.name("btnK"));
+    public userName;
+    public email;
+    public emailAgain;
+    public password;
+    public passwordAgain;
+    public userAgeYes;
+
+    constructor() {
+        this.userName = element(by.css('#FullName'));
+        this.email = element(by.css('#Email'));
+        this.emailAgain = element(by.css('#EmailAgain'));
+        this.password = element(by.css('#Password'));
+        this.passwordAgain = element(by.css('#PasswordConfirm'));
+        this.userAgeYes = element(by.css('#incapableYes'));
     }
-    public async typeRegisterInput(){
-        setTimeout(() => {
-            this.inputUserName = element(by.css('#FullName'));
-            this.inputUserName.sendKeys('cucumber');
-        },1000)
-        // this.inputField.sendKeys('cucumber');
+
+    // public async typeRegisterInput(){
+    public typeRegisterInput() {
+        // console.log(this.captcha);
+        this.userName.sendKeys('Test Ödön');
+        this.email.sendKeys('cucumber@mailinator.com');
+        this.emailAgain.sendKeys('cucumber@mailinator.com');
+        this.password.sendKeys('0000');
+        this.passwordAgain.sendKeys('0000');
+        browser.sleep(1000);
+        this.userAgeYes.click();
+        browser.sleep(1000);
+
     }
 }
+
+/*public clickCaptcha() {
+    browser.switchTo().frame(0).then(function () {
+        const checkbox = element(by.css('.recaptcha-checkbox-checkmark'));
+        browser.actions().mouseMove(checkbox).perform();
+        browser.sleep(1000);
+        checkbox.click();
+    });
+    browser.sleep(1000);
+}*/

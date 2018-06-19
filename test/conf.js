@@ -2,7 +2,7 @@ exports.config = {
 
     //baseUrl: 'https://nexiuslearning.com',
     directConnect: true,
-    
+
     // seleniumAddress: 'http://hub-cloud.browserstack.com/wd/hub',
     // seleniumAddress: 'http://localhost:4444/wd/hub',
 
@@ -18,14 +18,14 @@ exports.config = {
     },
     */
 
-    
+
     capabilities: {
         // allows different specs to run in parallel.
         // If this is set to be true, specs will be sharded by file
         // (i.e. all files to be run by this set of capabilities will run in parallel).
         // Default is false.
         //shardTestFiles: true,
-        
+
         // Maximum number of browser instances that can run in parallel for this
         // set of capabilities. This is only needed if shardTestFiles is true.
         // Default is 1.
@@ -57,27 +57,27 @@ exports.config = {
         require: ['e2e/features/**/*.ts'], // loads step definitions
         format: 'pretty',               // enable console output
         compiler: 'ts:ts-node/register'//,   // interpret step definitions as TypeScript
-       // tags: '@focus'
+        // tags: '@focus'
     },
 
     allScriptsTimeout: 90000,
 
     onPrepare: function () {
-        console.log('conf.js: onPrepare');
-        browser.manage().window().maximize();
+        console.log('--- onPrepare ---');
+        // browser.manage().window().maximize();
         browser.waitForAngularEnabled(false);
     },
 
     onComplete: function () {
-        console.log('conf.js: onComplete');
+        console.log('--- onComplete ---');
     },
 
     onCleanUp: function () {
-        console.log('conf.js: onCleanUp');
+        console.log('--- onCleanUp ---');
     },
 
     afterLaunch: function () {
-        console.log('conf.js: afterLaunch');
+        console.log('--- afterLaunch ---');
     }
-    
+
 };
