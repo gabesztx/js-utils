@@ -1,5 +1,4 @@
 import { browser, element, by, Key } from "protractor";
-import { waitForElement } from "./nexius.page";
 import { UserCourseList } from "./user_course_list.page";
 
 export class LoginPage {
@@ -14,7 +13,6 @@ export class LoginPage {
     private name;
 
     constructor(){
-        this.email = element(by.name('UserName'));
         this.email = element(by.name('UserName'));
         this.password = element(by.name('PasswordTop'));
         this.name='próba jános';

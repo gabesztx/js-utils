@@ -3,7 +3,7 @@
 @smoke
 Jellemző: bejelentkezés a különféle rendszerekbe
 
-    Forgatókönyv: bejelentkezés IDP-ből
+    Forgatókönyv: Bejelentkezés IDP-ből
     Forgatókönyv: elfelejtett jelszó oldal
         Adott hogy a bejelentkezési oldalon állok
         És megnyomom az elfelejtett jelszó gombot
