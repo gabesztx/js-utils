@@ -1,6 +1,4 @@
 import { browser, element, by, Key } from "protractor";
-import { BADFLAGS } from "dns";
-import { S_IRGRP } from "constants";
 
 export class MytestPage {
     static get(){
@@ -9,10 +7,12 @@ export class MytestPage {
         return new MytestPage();
     };
     public inputField;
-    public innerText;
+    // public inputUserName;
     public valueText;
     constructor(){
         this.inputField = element(by.id("inboxfield"));
+        console.log('MYTEST CONSTRUCTOR');
+        // this.inputUserName = element(by.css('#FullName'));
         // this.innerText = element(by.css('.Q8LRLc'));
         // this.valueText = element(by.name("btnK"));
     }
@@ -20,4 +20,5 @@ export class MytestPage {
         // this.inputField.sendKeys('cucumber');
         this.inputField.sendKeys('cucumber', Key.ENTER);
     }
+
 }

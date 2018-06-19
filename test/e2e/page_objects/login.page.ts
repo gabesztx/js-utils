@@ -15,6 +15,7 @@ export class LoginPage {
 
     constructor(){
         this.email = element(by.name('UserName'));
+        this.email = element(by.name('UserName'));
         this.password = element(by.name('PasswordTop'));
         this.name='próba jános';
     }

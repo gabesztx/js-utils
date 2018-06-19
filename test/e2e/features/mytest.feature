@@ -7,7 +7,11 @@ Jellemző: Új felhasználó regisztrálás
     Amikor beìrom a felhasználó email címét
     Akkor belépek a Mailinator oldalára
 
-  Forgatókönyv: Felhasználó regisztrálás
-    Adott hogy átlépek a regisztrációs oldalon
+  Forgatókönyv: Felhasználó regisztrálás oldal
+    Adott hogy átlépek a regisztrációs oldalra
     Akkor megjelenik a Nexius test logo
+
+  Forgatókönyv: Regisztráció kitöltése
+    Adott Input init
+    Akkor megadom a felhasználói adatokat
 
