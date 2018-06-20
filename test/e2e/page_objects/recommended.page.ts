@@ -10,7 +10,7 @@ export class RecommendedPage {
     }
 
     navigatePage() {
-        browser.sleep(500);
+        browser.sleep(1000);
         this.tabButton.click();
     }
 
@@ -18,6 +18,5 @@ export class RecommendedPage {
         browser.sleep(1000);
         this.courseListLinkButton.first().click();
     }
-
 
 }

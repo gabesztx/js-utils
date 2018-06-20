@@ -13,3 +13,5 @@ Jellemző: Kurzus beíratkozások
 
   Forgatókönyv: Ajánlott kurzusok beíratás
     Adott hogy rákattintok az első kurzus beiratkozó gombjára
+    Amikor látom a sikeres oldalt
+    Akkor vissza navigálok a kurzus detail oldalra

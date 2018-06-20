@@ -13,13 +13,16 @@ export class InvitesPage {
     }
 
     getPage() {
-        return browser.get('https://devaccount.nexiuslearning.com/');
+        return browser.get('https://testhome.nexiuslearning.com/');
+        // return browser.get('https://devaccount.nexiuslearning.com/');
     }
 
     loginPage(email?: string, password?: any) {
-        this.email.sendKeys('mostoha.tamas@nexius.hu');
-        this.password.sendKeys('Password1');
-        this.submitButton.click();
+        // this.email.sendKeys('mostoha.tamas@nexius.hu');
+        // this.password.sendKeys('Password1', Key.ENTER);
+        this.email.sendKeys('martus.gabor@nexius.hu');
+        this.password.sendKeys('0000', Key.ENTER);
+        // this.submitButton.click();
     }
 
 }
