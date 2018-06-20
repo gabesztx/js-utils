@@ -1,17 +1,25 @@
 import { browser, element, by, Key } from "protractor";
 
 export class InvitesPage {
-    static get(){
-        browser.get('https://testaccount.nexiuslearning.com');
-        return new InvitesPage();
-    };
-    public inputField;
-    constructor(){
-        this.inputField = element(by.id("inboxfield"));
+
+    private email;
+    private password;
+    private submitButton;
+
+    constructor() {
+        this.email = element(by.id('email'));
+        this.password = element(by.id('PasswordTop'));
+        this.submitButton = element(by.id('submitBtn'));
     }
-    public async typeEmailInput(){
-        // this.inputField.sendKeys('cucumber');
-        this.inputField.sendKeys('cucumber', Key.ENTER);
+
+    getPage() {
+        return browser.get('https://devaccount.nexiuslearning.com/');
+    }
+
+    loginPage(email?: string, password?: any) {
+        this.email.sendKeys('mostoha.tamas@nexius.hu');
+        this.password.sendKeys('Password1');
+        this.submitButton.click();
     }
 
 }
