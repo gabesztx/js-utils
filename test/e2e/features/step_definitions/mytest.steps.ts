@@ -1,5 +1,5 @@
 import {browser, element, by} from 'protractor';
-import {expect} from '../../../../protractor/e2e/features/support/expect';
+import {expect} from '../../features/support/expect';
 import {MytestPage} from '../../page_objects/mytest.page';
 import {RegisterPage} from '../../page_objects/register.page';
 

@@ -6,6 +6,7 @@ export class UserCourseList{
     
     constructor(){
         this.myCourses = $$('div.courseListItemContainer');
+        console.log('------------ myCourses ------------');
     }
 
     static getWithoutLogin() {
@@ -16,4 +17,4 @@ export class UserCourseList{
     getCoursesSize(){
         return this.myCourses.count();
     }
-};
+}

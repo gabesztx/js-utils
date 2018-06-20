@@ -4,6 +4,8 @@ Jellemző: Kurzus beíratkozások
 
   Forgatókönyv: Bejelentkezés a kurzus oldalra
     Adott hogy a bejelentkezési oldalon állok
+    És bejelentkezek
+    Akkor látnom kell az új adatkezelési linket a láblécben
 
 
 #    Amikor beìrom a felhasználó email címét
