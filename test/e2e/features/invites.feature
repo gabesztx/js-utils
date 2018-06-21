@@ -1,6 +1,6 @@
 # language: hu
 @smoke @focus
-Jellemző: Kurzus meghvó beíratkozások
+Jellemző: Kurzus meghvó beíratkozás elfogadása
 
   Forgatókönyv: Bejelentkezés a kurzus oldalra
     Adott hogy a login oldalon állok
