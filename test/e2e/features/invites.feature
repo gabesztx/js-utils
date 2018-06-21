@@ -1,6 +1,6 @@
 # language: hu
 @smoke @focus
-Jellemző: Kurzus beíratkozások
+Jellemző: Kurzus meghvó beíratkozások
 
   Forgatókönyv: Bejelentkezés a kurzus oldalra
     Adott hogy a login oldalon állok
@@ -13,5 +13,6 @@ Jellemző: Kurzus beíratkozások
 
   Forgatókönyv: Ajánlott kurzusok beíratás
     Adott hogy rákattintok az első kurzus beiratkozó gombjára
-    Amikor látom a sikeres oldalt
-    Akkor vissza navigálok a kurzus detail oldalra
+    És látom a sikeres oldalt
+    És rákattintk az elfogdásra
+    Akkor visszakerülök a kurzus lista oldalra

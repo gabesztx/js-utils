@@ -1,17 +1,13 @@
-import { browser, by } from "protractor";
-import { waitForElement } from "../../page_objects/nexius.page";
+import {browser, by} from 'protractor';
+import {waitForElement} from '../../page_objects/nexius.page';
 
-export = function hooks(){
-    /*this.BeforeAll(function(){
-        console.log('Before');
-        browser.get('https://testaccount.nexiuslearning.com/account/logoff');
-        return browser.sleep(500);
-    });
-    this.After(function(){
+export = function hooks() {
+    // const loginForm =
+/*    this.After(function () {
+        console.log('----- After ----');
         // waitForElement(by.id('login-form'));
-        console.log('After');
         // browser.get('https://testaccount.nexiuslearning.com/account/logoff');
         // waitForElement(by.id('login-form'));
-         return browser.sleep(500);
+        // return ;
     });*/
 }
