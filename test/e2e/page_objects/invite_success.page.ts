@@ -10,7 +10,7 @@ export class Invite_successPage {
     }
 
     clickHandler() {
-        browser.sleep(2000);
+        browser.sleep(1000);
         return this.inviteAcceptBtn.first().click();
     }
 

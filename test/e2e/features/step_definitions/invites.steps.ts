@@ -2,8 +2,8 @@ import {by, element, browser, $$} from 'protractor';
 import {InvitesPage} from '../../page_objects/invites.page';
 import {RecommendedPage} from '../../page_objects/recommended.page';
 import {Invite_successPage} from '../../page_objects/invite_success.page';
-import {expect} from "../support/expect";
-import {waitForElement} from "../../page_objects/nexius.page";
+import {expect} from '../support/expect';
+import {waitForElement} from '../../page_objects/nexius.page';
 
 export = function invitesSteps() {
 
@@ -25,6 +25,7 @@ export = function invitesSteps() {
         expect(element(by.css('.nx-navbar__logo')).isPresent()).to.eventually.equals(true)
     });
 
+
     this.When(/^hogy az ajánlat oldalon állok$/, function () {
         console.log('----- hogy az ajánlat oldalon állok ------');
         recommendedPage.navigatePage();
@@ -34,6 +35,7 @@ export = function invitesSteps() {
         console.log('----- látom az ajánlott listát ------');
         expect(recommendedPage.courseListItems.isPresent()).to.eventually.equals(true)
     });
+
 
     this.When(/^hogy rákattintok az első kurzus beiratkozó gombjára$/, function () {
         console.log('----- hogy rákattintok az első kurzus beiratkozó gombjára ------');
@@ -61,6 +63,33 @@ export = function invitesSteps() {
         // invite_successPage.clickHandler();
         // return waitForElement(by.css('.nx-navbar__logo'));
     });
+
+
+
+/*    this.When(/^hogy rákattintok a lenyíló menüre$/, function () {
+        console.log('----- hogy rákattintok a lenyíló menüre ------');
+        recommendedPage.dropDownClick();
+        return waitForElement(by.css('.dropdownMenuContent'));
+    });
+
+    this.When(/^rákattintok az elutasít gombra/, function () {
+        console.log('----- rákattintok az elutasít gombra ------');
+        recommendedPage.refuseClick();
+        return waitForElement(by.css('.modal-dialog'));
+    });
+
+    this.When(/^popupban rákattintok az igen gombra/, function () {
+        console.log('----- popupban rákattintok az igen gombra ------');
+        recommendedPage.refuseAccept();
+        return waitForElement(by.id('topLogo'));
+    });
+
+    this.When(/^meghívó státusz oldalon rákattintok a vissza a kurzusok gombra/, function () {
+        console.log('----- meghívó státusz oldalon rákattintok a vissza a kurzusok gombra ------');
+        invite_successPage.clickHandler();
+        return waitForElement(by.css('.nx-navbar__logo'));
+    });*/
+
 };
 
 // Text: expect(element(by.css('.pageTitle')).getText()).to.eventually.equals('Aktuális kurzusaim')
