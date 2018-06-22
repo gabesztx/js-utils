@@ -6,7 +6,7 @@ export class Invite_successPage {
 
     constructor() {
         this.pageIcon = element(by.id('topLogo'));
-        this.inviteAcceptBtn = element.all(by.css('.container a'));
+        this.inviteAcceptBtn = element.all(by.css('.successContent a'));
     }
 
     clickHandler() {

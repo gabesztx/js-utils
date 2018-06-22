@@ -31,11 +31,11 @@ export = function invitesSteps() {
         recommendedPage.navigatePage();
         return waitForElement(by.css('.courseListItemContainer'));
     });
+
     this.Then(/^látom az ajánlott listát$/, function () {
         console.log('----- látom az ajánlott listát ------');
         expect(recommendedPage.courseListItems.isPresent()).to.eventually.equals(true)
     });
-
 
     this.When(/^hogy rákattintok az első kurzus beiratkozó gombjára$/, function () {
         console.log('----- hogy rákattintok az első kurzus beiratkozó gombjára ------');
@@ -51,22 +51,29 @@ export = function invitesSteps() {
     this.When(/^rákattintk az elfogdásra$/, function () {
         console.log('----- rákattintk az elfogdásra ------');
         invite_successPage.clickHandler();
+        return waitForElement(by.css('.courseDetailListItemContainer'));
+    });
+
+    this.Then(/^látom a meghívott a kurzus detail oldalt$/, function () {
+        console.log('----- látom a meghívott a kurzus detail oldalt ------');
+        expect(element(by.css('.courseDetailListItemContainer')).isPresent()).to.eventually.equals(true);
+        browser.sleep(1000);
+        invitePage.getPage();
+        browser.sleep(1000);
         return waitForElement(by.css('.nx-navbar__logo'));
     });
-    this.Then(/^visszakerülök a kurzus lista oldalra$/, function () {
-        console.log('----- visszakerülök a kurzus lista oldalra ------');
-        expect(element(by.css('.nx-navbar__logo')).isPresent()).to.eventually.equals(true);
-        browser.sleep(2500);
-        browser.get('https://testaccount.nexiuslearning.com/account/logoff');
-        browser.sleep(3000);
 
-        // invite_successPage.clickHandler();
-        // return waitForElement(by.css('.nx-navbar__logo'));
-    });
-
+    /* this.Then(/^látom a meghívott a kurzus detail oldalt$/, function () {
+         console.log('----- látom a meghívott a kurzus detail oldalt ------');
+         expect(element(by.css('.courseDetailListItemContainer')).isPresent()).to.eventually.equals(true);
+         browser.sleep(1000);
+         invitePage.getPage();
+         browser.sleep(1000);
+         return waitForElement(by.css('.nx-navbar__logo'));
+     });*/
 
 
-/*    this.When(/^hogy rákattintok a lenyíló menüre$/, function () {
+    this.When(/^hogy rákattintok a lenyíló menüre$/, function () {
         console.log('----- hogy rákattintok a lenyíló menüre ------');
         recommendedPage.dropDownClick();
         return waitForElement(by.css('.dropdownMenuContent'));
@@ -88,8 +95,29 @@ export = function invitesSteps() {
         console.log('----- meghívó státusz oldalon rákattintok a vissza a kurzusok gombra ------');
         invite_successPage.clickHandler();
         return waitForElement(by.css('.nx-navbar__logo'));
-    });*/
+    });
+
+    this.Then(/^visszakerülök a kurzus lista oldalra$/, function () {
+        console.log('----- visszakerülök a kurzus lista oldalra ------');
+        expect(element(by.css('.nx-navbar__logo')).isPresent()).to.eventually.equals(true);
+        browser.sleep(2000);
+        browser.get('https://testaccount.nexiuslearning.com/account/logoff');
+        browser.sleep(2000);
+    });
 
 };
+
+
+// browser.get('https://testaccount.nexiuslearning.com/account/logoff');
+// browser.sleep(3000);
+// invite_successPage.clickHandler();
+// return waitForElement(by.css('.nx-navbar__logo'));
+
+
+/* this.Then(/^látom az kurzus detial oldalt$/, function () {
+     console.log('----- látom az ajánlott listát ------');
+     expect(recommendedPage.courseDetailListItem.isPresent()).to.eventually.equals(true)
+     browser.sleep(3000);
+ });*/
 
 // Text: expect(element(by.css('.pageTitle')).getText()).to.eventually.equals('Aktuális kurzusaim')
