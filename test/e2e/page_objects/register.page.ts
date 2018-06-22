@@ -26,9 +26,13 @@ export class RegisterPage {
     public typeRegisterInput() {
         // console.log(this.captcha);
         this.userName.sendKeys('Test Ödön');
+        browser.sleep(1000);
         this.email.sendKeys('cucumber@mailinator.com');
+        browser.sleep(1000);
         this.emailAgain.sendKeys('cucumber@mailinator.com');
+        browser.sleep(1000);
         this.password.sendKeys('0000');
+        browser.sleep(1000);
         this.passwordAgain.sendKeys('0000');
         browser.sleep(1000);
         this.userAgeYes.click();

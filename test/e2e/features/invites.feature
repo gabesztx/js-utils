@@ -41,8 +41,6 @@ Jellemző: Kurzus meghvó beíratkozás elfogadása
 #    Akkor látom a meghívott csatlakozott kurzus detail oldalt
 
 
-
-#
 #  Forgatókönyv: Ajánlott kurzusok
 #    Adott hogy az ajánlat oldalon állok
 #    Akkor látom az ajánlott listát
@@ -53,11 +51,6 @@ Jellemző: Kurzus meghvó beíratkozás elfogadása
 #    És rákattintk az elutasításra
 #    És látom az elfogadott utánai sikeres oldalt ahol rákattintok a tovább gombra
 #    Akkor látom a meghívott csatlakozott kurzus detail oldalt
-
-
-
-
-
 
 
 #  Forgatókönyv: Ajánlott kurzusok

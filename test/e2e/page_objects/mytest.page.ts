@@ -11,6 +11,7 @@ export class MytestPage {
     }
     public async typeEmailInput(){
         // this.inputField.sendKeys('cucumber');
+        browser.sleep(2000)
         this.inputField.sendKeys('cucumber', Key.ENTER);
     }
 
