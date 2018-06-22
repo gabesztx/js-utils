@@ -48,6 +48,7 @@ export = function invitesSteps() {
         return expect(invite_successPage.pageIcon.isPresent()).to.eventually.equals(true);
     });
 
+
     this.When(/^rákattintk az elfogdásra$/, function () {
         console.log('----- rákattintk az elfogdásra ------');
         invite_successPage.clickHandler();
@@ -63,14 +64,6 @@ export = function invitesSteps() {
         return waitForElement(by.css('.nx-navbar__logo'));
     });
 
-    /* this.Then(/^látom a meghívott a kurzus detail oldalt$/, function () {
-         console.log('----- látom a meghívott a kurzus detail oldalt ------');
-         expect(element(by.css('.courseDetailListItemContainer')).isPresent()).to.eventually.equals(true);
-         browser.sleep(1000);
-         invitePage.getPage();
-         browser.sleep(1000);
-         return waitForElement(by.css('.nx-navbar__logo'));
-     });*/
 
 
     this.When(/^hogy rákattintok a lenyíló menüre$/, function () {
@@ -104,6 +97,84 @@ export = function invitesSteps() {
         browser.get('https://testaccount.nexiuslearning.com/account/logoff');
         browser.sleep(2000);
     });
+
+    /*this.When(/^látom a warning oldalt$/, function () {
+        console.log('----- látom a warning oldalt ------');
+        return expect(invite_successPage.pageIcon.isPresent()).to.eventually.equals(true);
+    });
+
+    this.When(/^rákattintk az csatlakozásra/, function () {
+        console.log('----- rákattintk az csatlakozásra ------');
+        invite_successPage.clickAccpetHandler();
+        return waitForElement(by.id('join-organisation-form'));
+    });
+
+    this.When(/^látom az organisation oldalt ahova beírom a jelszót$/, function () {
+        console.log('----- látom az organisation oldalt ahova beírom a jelszót és csatlakozok ------');
+        invite_successPage.typePassword();
+        return waitForElement(by.id('topLogo'));
+    });
+
+    this.When(/^látom az elfogadott utánai sikeres oldalt ahol rákattintok a tovább gombra$/, function () {
+        invite_successPage.clickHandler();
+        return waitForElement(by.css('.courseDetailListItemContainer'));
+    });
+
+    this.Then(/^látom a meghívott csatlakozott kurzus detail oldalt$/, function () {
+        console.log('----- látom a meghívott csatlakozott kurzus detail oldalt ------');
+        expect(element(by.css('.courseDetailListItemContainer')).isPresent()).to.eventually.equals(true);
+        return waitForElement(by.css('.nx-navbar__logo'));
+    });*/
+
+
+
+
+    /*
+
+
+        /!* CH *!/
+        this.When(/^rákattintk az csatlakozásra/, function () {
+            console.log('----- rákattintk az csatlakozásra ------');
+            invite_successPage.clickAccpetHandler();
+            return waitForElement(by.id('join-organisation-form'));
+        });
+
+        /!* CH *!/
+        this.When(/^rákattintk az elutasításra/, function () {
+            console.log('----- rákattintk az elutasításra ------');
+            invite_successPage.clickResultHandler();
+            return waitForElement(by.id('topLogo'));
+        });
+        /!* CH *!/
+        this.When(/^látom az organisation oldalt ahova beírom a jelszót$/, function () {
+            console.log('----- látom az organisation oldalt ahova beírom a jelszót és csatlakozok ------');
+            invite_successPage.typePassword();
+            return waitForElement(by.id('topLogo'));
+        });
+        /!* CH *!/
+        this.When(/^látom az elfogadott utánai sikeres oldalt ahol rákattintok a tovább gombra$/, function () {
+            invite_successPage.clickHandler();
+            return waitForElement(by.css('.courseDetailListItemContainer'));
+        });
+        /!* CH *!/
+        this.Then(/^látom a meghívott csatlakozott kurzus detail oldalt$/, function () {
+            console.log('----- látom a meghívott csatlakozott kurzus detail oldalt ------');
+            expect(element(by.css('.courseDetailListItemContainer')).isPresent()).to.eventually.equals(true);
+            return waitForElement(by.css('.nx-navbar__logo'));
+        });*/
+
+
+    /*   this.When(/^hogy rákattintok az első kurzus beiratkozó gombjára$/, function () {
+           console.log('----- hogy rákattintok az első kurzus beiratkozó gombjára ------');
+           recommendedPage.enrollmentClickHandler();
+           return waitForElement(by.id('topLogo'));
+       });
+
+
+
+
+       ;*/
+
 
 };
 

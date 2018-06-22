@@ -11,7 +11,7 @@ Jellemző: Kurzus meghvó beíratkozás elfogadása
     Adott hogy az ajánlat oldalon állok
     Akkor látom az ajánlott listát
 
-  Forgatókönyv: Ajánlott kurzus beíratás
+  Forgatókönyv: Ajánlott kurzus meghívása
     Adott hogy rákattintok az első kurzus beiratkozó gombjára
     És látom a sikeres oldalt
     És rákattintk az elfogdásra
@@ -27,6 +27,37 @@ Jellemző: Kurzus meghvó beíratkozás elfogadása
     És popupban rákattintok az igen gombra
     És meghívó státusz oldalon rákattintok a vissza a kurzusok gombra
     Akkor visszakerülök a kurzus lista oldalra
+
+#  Forgatókönyv: Ajánlott kurzusok
+#    Adott hogy az ajánlat oldalon állok
+#    Akkor látom az ajánlott listát
+#
+#  Forgatókönyv: Ajánlott kurzus meghívása szervezet csatlakozással
+#    Adott hogy rákattintok az első kurzus beiratkozó gombjára
+#    És látom a warning oldalt
+#    És rákattintk az csatlakozásra
+#    És látom az organisation oldalt ahova beírom a jelszót
+#    És látom az elfogadott utánai sikeres oldalt ahol rákattintok a tovább gombra
+#    Akkor látom a meghívott csatlakozott kurzus detail oldalt
+
+
+
+#
+#  Forgatókönyv: Ajánlott kurzusok
+#    Adott hogy az ajánlat oldalon állok
+#    Akkor látom az ajánlott listát
+#
+#  Forgatókönyv: Ajánlott kurzus elutasítása szervezet csatlakozással
+#    Adott hogy rákattintok az első kurzus beiratkozó gombjára
+#    És látom a warning oldalt
+#    És rákattintk az elutasításra
+#    És látom az elfogadott utánai sikeres oldalt ahol rákattintok a tovább gombra
+#    Akkor látom a meghívott csatlakozott kurzus detail oldalt
+
+
+
+
+
 
 
 #  Forgatókönyv: Ajánlott kurzusok
