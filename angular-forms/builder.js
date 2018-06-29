@@ -1,12 +1,12 @@
 const shell = require('shelljs');
 
 const logMessage = (scope, status) => {
-  console.log(`Status: ${scope} Production Build: ${status}`);
+  console.log(`---------- ${scope} Production Build Status: ${status} ----------`);
 };
 
 const productionBuild = shell.exec('npm run prod', {
   async: true,
-  silent: true
+  silent: false
 });
 
 logMessage('ULMS', 'In progress..');
