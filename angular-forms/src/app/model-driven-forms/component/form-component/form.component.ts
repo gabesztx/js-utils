@@ -4,7 +4,7 @@ import {FormDataModel} from '../../model/form-data-model';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css']
+  styleUrls: ['./form.component.scss']
 })
 
 export class FormComponent {
