@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 
 import * as fromRoot from '../reducers';
 import * as layout from '../actions/layout';
+import * as numberHandler from '../actions/numberHandler';
 
 
 @Component({
@@ -23,8 +24,9 @@ import * as layout from '../actions/layout';
       <bc-toolbar (openMenu)="openSidenav()">
         Book Collection
       </bc-toolbar>
-
       <router-outlet></router-outlet>
+      <bc-box1></bc-box1>
+      <bc-box2></bc-box2>
     </bc-layout>
   `
 })
@@ -36,16 +38,17 @@ export class AppComponent {
      * Selectors can be applied with the `select` operator which passes the state
      * tree to the provided selector
      */
+
     this.showSidenav$ = this.store.select(fromRoot.getShowSidenav);
+
+ /*   this.showSidenav$.subscribe(
+      (res) => {
+        console.log('Data', res);
+      })*/
+
   }
 
   closeSidenav() {
-    /**
-     * All state updates are handled through dispatched actions in 'container'
-     * components. This provides a clear, reproducible history of state
-     * updates and user interaction through the life of our
-     * application.
-     */
     this.store.dispatch(new layout.CloseSidenavAction());
   }
 

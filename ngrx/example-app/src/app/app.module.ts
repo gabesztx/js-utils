@@ -28,6 +28,8 @@ import { GoogleBooksService } from './services/google-books';
 import { routes } from './routes';
 import { reducer } from './reducers';
 import { schema } from './db';
+import { Box1Component } from './components/box1/box1.component';
+import { Box2Component } from './components/box2/box2.component';
 
 
 
@@ -88,7 +90,9 @@ import { schema } from './db';
     SelectedBookPageComponent,
     ViewBookPageComponent,
     CollectionPageComponent,
-    NotFoundPageComponent
+    NotFoundPageComponent,
+    Box1Component,
+    Box2Component
   ],
   providers: [
     BookExistsGuard,

@@ -41,6 +41,7 @@ import * as fromSearch from './search';
 import * as fromBooks from './books';
 import * as fromCollection from './collection';
 import * as fromLayout from './layout';
+import * as fromNumberHandler from './numberHandler';
 
 
 /**
@@ -48,6 +49,7 @@ import * as fromLayout from './layout';
  * our top level state interface is just a map of keys to inner state types.
  */
 export interface State {
+  numberHandler: fromNumberHandler.State;
   search: fromSearch.State;
   books: fromBooks.State;
   collection: fromCollection.State;
@@ -64,6 +66,7 @@ export interface State {
  * the result from right to left.
  */
 const reducers = {
+  numberHandler: fromNumberHandler.reducer,
   search: fromSearch.reducer,
   books: fromBooks.reducer,
   collection: fromCollection.reducer,
@@ -110,10 +113,10 @@ export const getBooksState = (state: State) => state.books;
  * The created selectors can also be composed together to select different
  * pieces of state.
  */
- export const getBookEntities = createSelector(getBooksState, fromBooks.getEntities);
- export const getBookIds = createSelector(getBooksState, fromBooks.getIds);
- export const getSelectedBookId = createSelector(getBooksState, fromBooks.getSelectedId);
- export const getSelectedBook = createSelector(getBooksState, fromBooks.getSelected);
+export const getBookEntities = createSelector(getBooksState, fromBooks.getEntities);
+export const getBookIds = createSelector(getBooksState, fromBooks.getIds);
+export const getSelectedBookId = createSelector(getBooksState, fromBooks.getSelectedId);
+export const getSelectedBook = createSelector(getBooksState, fromBooks.getSelected);
 
 
 /**
@@ -136,24 +139,35 @@ export const getSearchResults = createSelector(getBookEntities, getSearchBookIds
 });
 
 
-
 export const getCollectionState = (state: State) => state.collection;
 
 export const getCollectionLoaded = createSelector(getCollectionState, fromCollection.getLoaded);
 export const getCollectionLoading = createSelector(getCollectionState, fromCollection.getLoading);
 export const getCollectionBookIds = createSelector(getCollectionState, fromCollection.getIds);
 
-export const getBookCollection = createSelector(getBookEntities, getCollectionBookIds, (entities, ids) => {
-  return ids.map(id => entities[id]);
-});
+export const getBookCollection = createSelector(getBookEntities, getCollectionBookIds,
+  (entities, ids) => {
+    return ids.map(id => entities[id]);
+  });
 
-export const isSelectedBookInCollection = createSelector(getCollectionBookIds, getSelectedBookId, (ids, selected) => {
-  return ids.indexOf(selected) > -1;
-});
+export const isSelectedBookInCollection = createSelector(getCollectionBookIds, getSelectedBookId,
+  (ids, selected) => {
+    return ids.indexOf(selected) > -1;
+  });
 
 /**
  * Layout Reducers
  */
-export const getLayoutState = (state: State) => state.layout;
-
+export const getLayoutState = (state: State) => {
+  return state.layout;
+};
 export const getShowSidenav = createSelector(getLayoutState, fromLayout.getShowSidenav);
+
+
+/**
+ * Number Value Reducers
+ */
+export const getNumberHandlerState = (state: State) => {
+  return state.numberHandler;
+};
+export const getHandlerNumberValue = createSelector(getNumberHandlerState, fromNumberHandler.getHandlerNumber);

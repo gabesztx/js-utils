@@ -5,7 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --open",
     "lint": "ng lint",
     "test": "ng test --code-coverage",
     "e2e": "ng e2e",
