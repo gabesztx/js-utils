@@ -11,8 +11,20 @@ import * as fromRoot from "../../reducers";
 })
 export class Box2Component implements OnInit {
   valueHandler$: Observable<number>;
+  idHandler$: Observable<string>;
   constructor(private store: Store<fromRoot.State>) {
-    this.valueHandler$ = this.store.select(fromRoot.getHandlerNumberValue);
+    this.valueHandler$ = this.store.select(fromRoot.getNumberValue);
+    this.idHandler$ = this.store.select(fromRoot.getNumberId);
+    this.valueHandler$.subscribe(
+      (value) => {
+        console.log('Value: ',value);
+      }
+    )
+    this.idHandler$.subscribe(
+      (id) => {
+        console.log('ID: ',id);
+      }
+    )
   }
   ngOnInit() {}
 

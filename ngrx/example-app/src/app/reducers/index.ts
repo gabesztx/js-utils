@@ -167,7 +167,6 @@ export const getShowSidenav = createSelector(getLayoutState, fromLayout.getShowS
 /**
  * Number Value Reducers
  */
-export const getNumberHandlerState = (state: State) => {
-  return state.numberHandler;
-};
-export const getHandlerNumberValue = createSelector(getNumberHandlerState, fromNumberHandler.getHandlerNumber);
+export const getNumberValueState = (state: State) => state.numberHandler;
+export const getNumberValue = createSelector(getNumberValueState, fromNumberHandler.getNumberValue);
+export const getNumberId = createSelector(getNumberValueState, fromNumberHandler.getNumberId);
