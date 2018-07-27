@@ -2,3 +2,4 @@
 // import './typescript/index.js';
 // import './javascript';
 // alert('jo');
+console.log('JO');
