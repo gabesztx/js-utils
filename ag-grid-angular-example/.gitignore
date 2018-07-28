@@ -1,0 +1,43 @@
+.idea/
+*.iml
+
+node_modules/
+typings/
+
+npm-debug.log
+
+# other
+update_from_source.sh
+.DS_Store
+_test-output
+
+# systemjs_aot
+systemjs_aot/app/**/*.js
+systemjs_aot/app/**/*.js.map
+systemjs_aot/e2e/**/*.js
+systemjs_aot/e2e/**/*.js.map
+systemjs_aot/aot/e2e
+systemjs_aot/e2e/app.e2e-spec.js
+systemjs_aot/e2e/app.e2e-spec.js.map
+systemjs_aot/aot/aot
+systemjs_aot/aot/app
+systemjs_aot/aot/dist
+
+# webpack
+webpack/dist
+webpack/e2e/*.js
+webpack/e2e/*.js.map
+webpack/app/*.js
+webpack/app/*.js.map
+
+# webpack 2
+webpack2/dist
+webpack2/e2e/*.js
+webpack2/e2e/*.js.map
+webpack2/app/*.js
+webpack2/app/*.js.map
+
+# webpack 3
+webpack3/dist
+webpack3/app/*.js
+webpack3/app/*.js.map
