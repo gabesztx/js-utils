@@ -1,0 +1,19 @@
+{
+    "btn_admin": "Admin",
+    "btn_edit": "Edit",
+    "btn_logout": "Logout",
+    "btn_profile": "Profile",
+    "btn_view": "View",
+    "lbl_course_provider_short": "Provider",
+    "lbl_courses": "Courses",
+    "lbl_help": "Help",
+    "lbl_my_courses": "My courses",
+    "lbl_my_feed": "News",
+    "lbl_name": "Name",
+    "lbl_registration_end_date": "Registration end",
+    "lbl_registration_start_date": "Registration start",
+    "lbl_result_end_date": "Result end",
+    "lbl_result_start_date": "Result start",
+    "lbl_title": "Title",
+    "msg_access_denied": "Access denied. You don't have permission to open this page."
+}

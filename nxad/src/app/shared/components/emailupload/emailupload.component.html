@@ -1,0 +1,25 @@
+<div class="emailUploadComponent" [ngClass]="{'active':isActive !== null && !isActive}">
+    <div class="emailUploadWrapper">
+        <div class="emailUploadContent">
+            <span class="emailUploadTitleContent" (click)="toggleActive()">
+                <div class="circleContent">
+                    <div class="circle" [ngClass]="{'active':isActive !== null && !isActive}"></div>
+                </div>
+                <span class="emailUploadTitle">Címzettek hozzáadása</span>
+            </span>
+            <div *ngIf="isValide" style="color: red; position: absolute; top:70px">Max karakter 2000!</div>
+            <div class="emailContent">
+                <div class="emailInputlabel">
+                    <span class="labelText">E-mail címek hozzáadása</span>
+                    <span class="labelIcon">*</span>
+                </div>
+                <div class="emailInputContent">
+                    <span class="emailPlaceHolder" *ngIf="!emailData.length">Email címek</span>
+                    <textarea class="emailInputArea"
+                              (input)="changeTextInput($event.target)"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,19 @@
+.nx-dropdown {
+
+    &.open > a {
+        background-color: $nx-is-active-blue !important;
+    }
+
+    .nx-dropdown-menu {
+        li {
+            a {  
+                color: $nx-blue;
+                &:hover {
+                    color: $nx-blue;
+                    background-color: $nx-is-active-blue;
+                }
+            }
+        }
+    }
+
+}

@@ -1,0 +1,16 @@
+<div class="inviteEmailComponent">
+    <div class="inviteEmailContainer">
+        <div class="inviteContents">
+            <nx-fileupload></nx-fileupload>
+        </div>
+        <div class="inviteContents">
+            <nx-emailupload></nx-emailupload>
+        </div>
+    </div>
+    <div class="uploadBtnContent">
+        <button class="uploadButton"
+                (click)="submitUpload()"
+                [disabled]="!isFileActive && !isEmailActive">Küldés
+        </button>
+    </div>
+</div>

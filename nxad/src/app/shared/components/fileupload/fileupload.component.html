@@ -1,0 +1,33 @@
+<div class="fileUploadComponent" [ngClass]="{'active':isActive !== null && isActive}">
+    <div class="fileUploadWrapper">
+        <div class="fileUploadContent">
+            <span class="fileUploadTitleContent" (click)="toggleActive()">
+                <div class="circleContent">
+                    <div class="circle" [ngClass]="{'active':isActive !== null && isActive}"></div>
+                </div>
+                <span class="fileUploadTitle">Címzettek tömegese hozzáadása</span>
+            </span>
+            <div class="fileContent">
+                <label class="uploadBtn" for="file">
+                    <div>File feltöltése</div>
+                    <div>(*.CSV)</div>
+                </label>
+                <input type="file" name="file" id="file"
+                       (change)="changeFile($event.target.files)">
+                <div class="fileNameContent">
+                    <div class="fileError" *ngIf="isValide" style="padding-bottom: 20px">
+                        <div *ngIf="!fileSize" style="color: red">File mérete max 1 Mb!</div>
+                        <div *ngIf="!fileType" style="color: red">File formátum csak CSV lehet!</div>
+                    </div>
+                    <span class="fileEmpty" *ngIf="!fileName">
+                        <span><</span><span>Nincs file kiválasztva</span><span>></span>
+                    </span>
+                    <span class="fileName" *ngIf="fileName">
+                    <span>file: </span>
+                    <strong>{{fileName}}</strong>
+                </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

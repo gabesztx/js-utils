@@ -1,0 +1,19 @@
+{
+    "btn_admin": "Admin",
+    "btn_edit": "Szerkesztés",
+    "btn_logout": "Kijelentkezés",
+    "btn_profile": "Profil",
+    "btn_view": "Megtekint",
+    "lbl_course_provider_short": "Szolgáltató",
+    "lbl_courses": "Kurzusok",
+    "lbl_help": "Súgó",
+    "lbl_my_courses": "Kurzusaim",
+    "lbl_my_feed": "Hírek",
+    "lbl_name": "Név",
+    "lbl_registration_end_date": "Regisztráció vége",
+    "lbl_registration_start_date": "Regisztráció kezdete",
+    "lbl_result_end_date": "Eredményszerzés vége",
+    "lbl_result_start_date": "Eredményszerzés kezdete",
+    "lbl_title": "Cím",
+    "msg_access_denied": "Önnek nincs jogosultsága a kért oldal megtekintéséhez."
+}

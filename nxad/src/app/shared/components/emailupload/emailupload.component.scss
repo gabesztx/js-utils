@@ -1,0 +1,129 @@
+.emailUploadComponent {
+    height: 100%;
+    background-color: #EDEDED;
+    padding: 10px;
+    transition: background-color 0.5s ease;
+    &.active{
+        background-color: #E5F4F8;
+    }
+    .emailUploadWrapper {
+        border-radius: 4px;
+        height: 100%;
+        .emailUploadContent {
+            height: 100%;
+            border-bottom: 2px solid #5F5F5F;
+            .emailUploadTitleContent {
+                cursor: pointer;
+                $circleContentWidth: 18px;
+                $circleWidth: $circleContentWidth - 10;
+                $borderSize: 3px;
+                position: relative;
+                font-size: 14px;
+                height: $circleContentWidth;
+                line-height: $circleContentWidth + $borderSize;
+                .circleContent {
+                    position: absolute;
+                    width: $circleContentWidth;
+                    height: $circleContentWidth;
+                    border: $borderSize solid #787A7B;
+                    border-radius: $circleContentWidth / 2;
+                    //background-color: blue;
+                    .circle {
+
+                        position: absolute;
+                        width: $circleWidth;
+                        height: $circleWidth;
+                        left: 50%;
+                        top: 50%;
+                        border-radius: $circleWidth / 2;
+                        margin-left: -$circleWidth / 2;
+                        margin-top: -$circleWidth / 2;
+                        background-color: #0497BB;
+                        transform: scale(0);
+                        transition: all .2s ease-out;
+                        &.active{
+                            transform: scale(1);
+                        }
+                    }
+                }
+                .emailUploadTitle {
+                    margin-left: $circleContentWidth + 8;
+                    color: #0497BB;
+                    text-transform: uppercase;
+                }
+            }
+            .emailContent {
+                margin-top: 30px;
+                .emailInputlabel {
+                    font-size: 11px;
+                    .labelText {}
+                    .labelIcon {
+                        color: red;
+                    }
+                }
+                .emailInputContent{
+                    position: relative;
+                    width: 100%;
+                    height: 165px;
+                    .emailPlaceHolder{
+                        position: absolute;
+                        bottom:0;
+                        color: #5F5F5F;
+                    }
+                    .emailInputArea {
+                        border: none;
+                        overflow: auto;
+                        outline: none;
+                        box-shadow: none;
+                        resize: none;
+                        width: 100%;
+                        height: 100%;
+                        background-color: transparent;
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+/*
+.emailUploadComponent {
+    height: 100%;
+    .emailUploadContent {
+        height: 100%;
+        border-radius: 4px;
+        background-color: #EDEDED;
+        .emailUploadTitleContent {
+            .emailUploadTitle {
+                color: #0497bb;
+                text-transform: uppercase;
+            }
+        }
+        .emailContent {
+            .emailInputlabel{
+                font-size: 11px;
+                .labelText{
+
+                }
+                .labelIcon{
+                    color: red;
+                }
+            }
+            .emailInputArea {
+                border: none;
+                overflow: auto;
+                outline: none;
+                box-shadow: none;
+                resize: none;
+                width: 100%;
+                height: 150px;
+                background-color: transparent;
+            }
+        }
+        .fileNameContent {
+        }
+
+    }
+}
+*/

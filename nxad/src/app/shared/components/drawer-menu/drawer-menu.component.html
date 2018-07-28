@@ -1,0 +1,30 @@
+<div class="nx-sidebar-nav">
+    <mat-sidenav-container class="nx-mat-sidenav-container">
+        <mat-sidenav class="nx-mat-sidenav" #sidenav mode="side" opened="false">
+            <!-- Constant sideav items -->
+            <div class="nx-sidebar-nav__content">
+                <h3 class="nx-sidebar-nav__content-row nx-sidebar-nav__content-row--home">Admin</h3>
+            </div>
+            <div class="nx-sidebar-nav__content">
+                <h3 class="nx-sidebar-nav__content-row nx-sidebar-nav__content-row--menu-toggle">{{ 'lbl_manu' | translate }}</h3>
+            </div>
+            <!-- Dynamic sidenav items -->
+            <div class="nx-sidebar-nav__content" *ngFor="let item of sidebarNavComfiguration$ | async as items">
+                <h3 class="nx-sidebar-nav__content-row">{{ item.label | translate }}</h3>
+            </div>
+        </mat-sidenav>
+        <div class="nx-sidebar-nav__icons">
+            <!-- Constant sideav items -->
+            <div class="nx-sidebar-nav__icon nx-sidebar-nav__icon--home">
+                <mat-icon fontIcon="fa-home"></mat-icon>
+            </div>
+            <div class="nx-sidebar-nav__icon nx-sidebar-nav__icon--toggle-menu" (click)="onClickToggleSidenav()">
+                <mat-icon fontIcon="fa-bars"></mat-icon>
+            </div>
+            <!-- Dynamic sidenav items -->
+            <div class="nx-sidebar-nav__icon" *ngFor="let item of sidebarNavComfiguration$ | async as items">
+                <mat-icon fontIcon="{{ item.fontIcon }}"></mat-icon>
+            </div>
+        </div>
+    </mat-sidenav-container>
+</div>

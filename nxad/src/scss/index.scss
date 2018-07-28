@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import './nx-ag-theme-variables.scss';
+
+@import "~ag-grid/src/styles/ag-grid";
+@import "~ag-grid/src/styles/ag-theme-balham";
+
+@import './nx-ag-theme-overrides.scss';
+
+@import './config.scss';
+@import './assets/icons/fa/scss/font-awesome.scss';
+@import './mixins.scss';
+@import './base/_base.scss';
+@import './layout/_layout.scss';
+@import './components/_components.scss';
+

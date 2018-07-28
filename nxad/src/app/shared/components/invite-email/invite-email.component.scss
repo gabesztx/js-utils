@@ -1,0 +1,29 @@
+.inviteEmailComponent {
+    margin: 25px;
+    .inviteEmailContainer {
+        display: flex;
+        width: 800px;
+        height: 250px;
+        flex-flow: nowrap;
+        //justify-content: center;
+        .inviteContents {
+            margin-right: 20px;
+            width: 360px;
+        }
+    }
+    .uploadBtnContent {
+        padding-top: 20px;
+        width: 740px;
+        text-align: right;
+        .uploadButton {
+            text-transform: uppercase;
+            border-radius: 6px;
+            color: white;
+            padding: 8px 30px;
+            transition: opacity .5s ease;
+            &:disabled{
+                opacity: 0.4;
+            }
+        }
+    }
+}

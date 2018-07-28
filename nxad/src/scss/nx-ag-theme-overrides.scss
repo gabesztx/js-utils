@@ -1,0 +1,34 @@
+
+.ag-theme-balham .ag-header {
+    color: #FFF;
+}
+
+.ag-body-viewport .ag-layout-normal{
+ background: #FFF;
+}
+
+.ag-theme-balham .ag-row-even{
+    background: rgba(4, 150, 187, 0.1);
+}
+
+.ag-theme-balham .ag-row{
+    border: none;
+}
+
+.ag-theme-balham .ag-cell{
+    border: none;
+    line-height: 32px;
+}
+
+.ag-theme-balham .ag-header-row{
+    border:none;
+}
+
+.ag-theme-balham .ag-row-even.ag-row-hover,
+.ag-theme-balham .ag-row-odd.ag-row-hover {
+    background: rgba(253, 186, 61, 0.3);
+}
+
+.ag-theme-balham .ag-header-cell-resize::after{
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}

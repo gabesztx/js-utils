@@ -1,0 +1,72 @@
+<div class="headerComponens">
+    <header class="nx-header-content">
+        <div class="">
+            <div class="row">
+                <nav class="nx-navbar-content nx-content" *ngIf="isReady$ | async">
+                    <a href="{{commonRuntimeConfig.baseUrl + 'lmsadmin'}}" id="nexius-logo" class="nx-navbar__logo"></a>
+                    <div class="collapse nx-navbar-collapse navbar-collapse" id="">
+                        <ul class="nav navbar-nav nx-navbar-nav">
+                            <!--Admin-->
+                            <li class="nx-header-menu__item" *ngIf="isUserAdmin">
+                                <a href="/admin" class="menu_item_bt">
+                                    <span
+                                        class="nx-header-menu__item-icon nx-header-menu__item-icon--admin icon-nx-admin"> </span>
+                                    <span>{{'btn_admin' | translate }}</span>
+                                </a>
+                            </li>
+                            <!--Hírek-->
+                            <li class="nx-header-menu__item">
+                                <a href="javascript:void(0)"
+                                   class="menu_item_bt">
+                                    <div class="nx-header-menu__item-icon feed-icon icon-nx-feeds"></div>
+                                    {{ 'lbl_my_feed' | translate }}
+                                    <span class="nx-count-badge pull-right hidden">
+                                        <span class="nx-count-badge__count"></span>
+                                    </span>
+                                </a>
+                            </li>
+                            <!--Kurzusaim-->
+                            <li class="nx-header-menu__item">
+                                <a href="javascript:void(0);"
+                                   class="menu_item_bt">
+                                    <span
+                                        class="nx-header-menu__item-icon nx-header-menu__item-icon--courses icon-nx-courses"></span>
+                                    {{ 'lbl_my_courses' | translate }}
+
+                                </a>
+                            </li>
+                            <!--User-->
+                            <li class="nx-dropdown nx-header-menu__item nx-header-menu__item--dropdown dropdown"
+                                *ngIf="user$ | async; let userData">
+                                <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                                   aria-expanded="false">
+                                    <span
+                                        class="nx-header-menu__item-icon nx-header-menu__item-icon--user icon-nx-user"></span>
+                                    <!--<div class="nx-header-menu__item-label">gabesz</div>-->
+                                    <div class="nx-header-menu__item-label">{{userData.name}}</div>
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="nx-dropdown-menu dropdown-menu">
+                                    <!--Profile-->
+                                    <li class="">
+                                        <a [href]="profileSettingsUrl">
+                                            <span class="nx-profile--label">{{ 'btn_profile' | translate }}</span>
+                                            <span class="nx-flag"
+                                                  [ngClass]="{'flag-hu': isHunFlag, 'flag-en': isEnFlag, 'flag-de': isDeFlag }"></span>
+                                        </a>
+                                    </li>
+                                    <!--Kijelentkezés-->
+                                    <li class="">
+                                        <a [href]="logoutUrl">
+                                            {{ 'btn_logout' | translate }}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+</div>

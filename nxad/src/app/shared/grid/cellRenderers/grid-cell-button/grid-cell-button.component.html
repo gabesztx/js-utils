@@ -1,0 +1,13 @@
+<div class="button-context">
+    <mat-icon class="material-icons lock" *ngIf="forceLocked || (lockable && locked) || !available">lock</mat-icon>
+    <button mat-raised-button color="accent"
+        *ngIf="!forceLocked && available && ((lockable && !locked) || !lockable)"
+        (click)="onClick()"
+        [ngClass]="{'has-icon': !!iconClass}"
+        [matTooltip]="label | translate"
+        [matTooltipPosition]="tooltipPosition"
+        [matTooltipDisabled]="!iconClass">
+        <span *ngIf="!iconClass">{{ label | translate }}</span>
+        <mat-icon *ngIf="iconClass" [fontIcon]="iconClass"></mat-icon>
+    </button>
+</div>

@@ -1,0 +1,14 @@
+<div class="nx-title-component">
+    <div class="nx-title">{{ titleKey | translate }}</div>
+
+    <div *ngIf="helpTextKey" class="nx-help-btn" data-toggle="modal" data-target=".helpModal">{{ helpLabelKey | translate }}</div>
+</div>
+
+<!-- modal dialog for help button -->
+<div class="modal fade helpModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content well">
+            <p>{{ helpTextKey | translate }}</p>
+        </div>
+    </div>
+</div>

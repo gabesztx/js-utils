@@ -1,0 +1,19 @@
+{
+    "btn_admin": "Admin",
+    "btn_edit": "Edit",
+    "btn_logout": "Ausloggen",
+    "btn_profile": "Profil",
+    "btn_view": "View",
+    "lbl_course_provider_short": "Träger",
+    "lbl_courses": "Courses",
+    "lbl_help": "Hilfe",
+    "lbl_my_courses": "Meine Kurse",
+    "lbl_my_feed": "Neuigkeiten",
+    "lbl_name": "Name",
+    "lbl_registration_end_date": "Registration end",
+    "lbl_registration_start_date": "Registration start",
+    "lbl_result_end_date": "Ergebnisse bis",
+    "lbl_result_start_date": "Ergebnisse ab",
+    "lbl_title": "Title",
+    "msg_access_denied": "Sie haben keine Berechtigung, die gewünschte Seite anzusehen."
+}

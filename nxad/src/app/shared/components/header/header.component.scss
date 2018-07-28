@@ -1,0 +1,90 @@
+@import '../../../../variables.scss';
+
+$paddings: 12px 8px;
+.headerComponens {
+    .nx-header-menu__item {
+        .menu_item_bt {
+            position: relative;
+            padding: $paddings;
+            .icon-nx-payment {
+                width: 25px;
+            }
+            .icon-nx-admin {
+            }
+            .icon-nx-feeds {
+                background: $data_uri_13;
+                height: 20px;
+            }
+            .icon-nx-courses {
+                margin-right: 0;
+            }
+
+            .countValueContent{
+                position: absolute;
+                font-size: 11px;
+                border-radius: 2px;
+                font-weight: bold;
+                left: -2px;
+                bottom: 1px;
+                .countValue{
+                    color: white;
+                    padding: 1px 3px;
+                    background-color: #E9451F;
+                }
+            }
+        }
+    }
+    .nx-dropdown {
+        .dropdown-toggle {
+            padding: $paddings;
+            cursor: pointer;
+            &.hideMenu {
+                background-color: transparent !important;
+                &:active {
+                    background-color: transparent !important;
+                }
+
+                &:visited {
+                    background-color: transparent !important;
+                }
+                &:hover {
+                    background-color: transparent !important;;
+                }
+            }
+
+            .nx-header-menu__item-label {
+                display: inline-block;
+                vertical-align: middle;
+            }
+        }
+        .nx-dropdown-menu {
+            min-width: 100%;
+            right: 0;
+            left: auto;
+            li {
+                a {
+                    padding: 5px 10px;
+                }
+            }
+            .nx-profile--label{
+                vertical-align: middle;
+            }
+            .nx-flag{
+                display: inline-block;
+                vertical-align: middle;
+                margin-left: 5px;
+                height: 16px;
+                width: 16px;
+            }
+            .flag-hu{
+                background: $img_flag_hu;
+            }
+            .flag-en{
+                background: $img_flag_en;
+            }
+            .flag-de{
+                background: $img_flag_de;
+            }
+        }
+    }
+}
