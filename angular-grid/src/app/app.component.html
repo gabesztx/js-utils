@@ -1,5 +1,17 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="gridWrapper">
-
+  <!--<button (click)="getSelectedRows()">Get Selected Rows</button>-->
+  <ag-grid-angular
+    #agGrid
+    style="width: 500px; height: 500px;"
+    class="ag-theme-balham"
+    [gridOptions]="gridOptions"
+  >
+  </ag-grid-angular>
 </div>
 
+<!--
+[rowData]="rowData"
+[columnDefs]="columnDefs"
+[enableSorting]="false"
+[enableFilter]="false"-->

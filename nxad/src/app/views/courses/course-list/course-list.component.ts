@@ -35,7 +35,7 @@ export class CourseListComponent extends GridController implements OnInit, OnDes
      * @private
      * @memberof SidebarNavComponent
      */
-    protected subscriptions: { [s: string]: Subscription };
+    protected subscriptions: {[s: string]: Subscription};
 
     /**
      * @property gridOptions

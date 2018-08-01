@@ -6,3 +6,11 @@ body{
   padding: 0;
   background-color: floralwhite;
 }
+/* remove cell boorder */
+.ag-cell-focus,.ag-cell-no-focus{
+  border:none !important;
+}
+.no-border.ag-cell:focus{
+  border:none !important;
+  outline: none;
+}
