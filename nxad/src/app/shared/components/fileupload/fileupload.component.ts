@@ -3,13 +3,14 @@ import { Store } from '@ngrx/store';
 import { BaseSmartComponent } from '../base-smart-component.class';
 import { Observable } from 'rxjs';
 import * as fromRoot from '../../../reducers/index.reducer';
-import * as fromInviteEmailAction from '../invite-email/invite-email.actions';
-
+import * as fromInviteEmailAction from '../../../views/courses/course-detail/invite-email/invite-email.actions';
+declare const $: any;
 @Component({
     selector: 'nx-fileupload',
     templateUrl: './fileupload.component.html',
     styleUrls: ['./fileupload.component.scss']
 })
+
 export class FileuploadComponent extends BaseSmartComponent implements OnInit {
     public isActive: any;
     public fileName: string;
@@ -18,17 +19,33 @@ export class FileuploadComponent extends BaseSmartComponent implements OnInit {
     public isValide: boolean;
     public file: File;
     isActive$: Observable<any>;
+    fileData$: Observable<any>;
 
     constructor(private store: Store<fromRoot.AppState>) {
         super();
-        this.subscriptions = {'isActive': null};
+        this.subscriptions = {
+            isActive: null,
+            fileData: null
+        };
     }
 
     ngOnInit() {
         this.isActive$ = this.store.select(fromRoot.getInviteIsActive);
+        this.fileData$ = this.store.select(fromRoot.getInviteFile);
         this.subscriptions.isActive = this.isActive$.subscribe(
             (isActive) => {
                 this.isActive = isActive;
+            }
+        );
+        this.subscriptions.fileData = this.fileData$.subscribe(
+            (file) => {
+                if (file === undefined) {
+                    this.file = null;
+                    this.isValide = false;
+                    this.fileName = '';
+                    // TODO: FomrControllerrel vezérelni a textArea valuet
+                    $('#file').val('');
+                }
             }
         );
     }
@@ -44,8 +61,7 @@ export class FileuploadComponent extends BaseSmartComponent implements OnInit {
         if (!this.fileSize || !this.fileType) {
             this.isValide = true;
             this.fileName = '';
-            this.file = null;
-            this.store.dispatch(new fromInviteEmailAction.SetFileData(this.file));
+            this.store.dispatch(new fromInviteEmailAction.SetFileData(null));
             return;
         }
         this.fileName = this.file.name;

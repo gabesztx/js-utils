@@ -21,11 +21,13 @@ import { CoreState, reducers as coreReducers, selectors as coreSelectors } from 
  *
  * More: https://egghead.io/lessons/javascript-redux-implementing-combinereducers-from-scratch
  */
-// import { combineReducers } from '@ngrx/store';
 
-import * as fromCourses from '../shared/entities/course/course.reducer';
+import * as fromCourseResult from '../views/courses/course-detail/course-results/course-results.reducer';
+import * as fromDropDown from '../shared/components/selectdropdown/selectdropDown.reducer';
+import * as fromInviteEmail from '../views/courses/course-detail/invite-email/invite-email.reducer';
+import * as fromInvitations from '../shared/entities/invitation-template/invitation-template.reducer';
 import * as fromDrawerMenu from '../shared/components/drawer-menu/drawer-menu.reducer';
-import * as fromInviteEmail from '../shared/components/invite-email/invite-email.reducer';
+import * as fromUserInvitations from '../shared/entities/user-invitation/user-invitation.reducer';
 import * as fromSystem from './system.reducer';
 
 /**
@@ -36,10 +38,13 @@ import * as fromSystem from './system.reducer';
  */
 
 export interface AppState extends CoreState {
-    courses: fromCourses.State;
+    courseResult: fromCourseResult.State;
+    dropDown: fromDropDown.State;
+    invitations: fromInvitations.State;
     system: fromSystem.State;
     drawerMenu: fromDrawerMenu.State;
     inviteEmail: fromInviteEmail.State;
+    userInvitations: fromUserInvitations.State;
 }
 
 /**
@@ -64,9 +69,13 @@ export interface AppState extends CoreState {
 // export const reducers = mergeWithCoreState<AppState>(appState);
 export const reducers: ActionReducerMap<AppState> = {
     system: fromSystem.reducer,
-    courses: fromCourses.reducer,
+    courseResult: fromCourseResult.reducer,
+    dropDown: fromDropDown.reducer,
+    invitations: fromInvitations.reducer,
+    // courses: fromCourses.reducer,
     drawerMenu: fromDrawerMenu.reducer,
     inviteEmail: fromInviteEmail.reducer,
+    userInvitations: fromUserInvitations.reducer,
     ...coreReducers
 };
 
@@ -96,10 +105,14 @@ export const reducers: ActionReducerMap<AppState> = {
  * ```
  *
  */
-export const getCoursesState = (state: AppState) => state.courses;
-export const getDrawerMenuState = (state: AppState) => state.drawerMenu;
-export const getInviteEmailState = (state: AppState) => state.inviteEmail;
-export const getSystemState = (state: AppState) => state.system;
+// const getCoursesState = (state: AppState) => state.courses;
+const getDropDownState = (state: AppState) => state.dropDown;
+const getSelectedCourseResultState = (state: AppState) => state.courseResult;
+const getInvitationsState = (state: AppState) => state.invitations;
+const getUserInvitationsState = (state: AppState) => state.userInvitations;
+const getDrawerMenuState = (state: AppState) => state.drawerMenu;
+const getInviteEmailState = (state: AppState) => state.inviteEmail;
+const getSystemState = (state: AppState) => state.system;
 
 /**
  * Every reducer module exports selector functions, however child reducers
@@ -115,20 +128,29 @@ export const getSystemState = (state: AppState) => state.system;
  * every time you call the selector, you will get back the same result
  * observable. Each subscription to the resultant observable
  * is shared across all subscribers.
-**/
+ **/
 
 // Selectors from the Core library
 export const CoreSelectors = coreSelectors;
 
 // Course entity selectors
-export const getCourseEntities = createSelector(getCoursesState, fromCourses.getEntities);
+/*export const getCourseEntities = createSelector(getCoursesState, fromCourses.getEntities);
 export const getCourseIds = createSelector(getCoursesState, fromCourses.getIds);
-export const getSelecteCourse = createSelector(getCoursesState, fromCourses.getSelecteEntity);
+export const getSelectedCourse = createSelector(getCoursesState, fromCourses.getSelecteEntity);
 export const getCourses = createSelector(getCourseEntities, getCourseIds, (entities, ids) => {
     return ids.map(id => {
         return entities[id];
     });
-});
+});*/
+
+// Course result selector
+export const getCourseResult = createSelector(getSelectedCourseResultState, fromCourseResult.getSelectedCourseResult);
+
+// Drop Down selectors
+export const getdropDownAddState = createSelector(getDropDownState, fromDropDown.getDropDownAdd);
+export const getdropDownRemoveState = createSelector(getDropDownState, fromDropDown.getDropDownRemove);
+export const getdropDownState = createSelector(getDropDownState, fromDropDown.getDropDownState);
+
 
 // Drawer Menu selectors
 export const getDrawerMenuCollapseState = createSelector(getDrawerMenuState, fromDrawerMenu.getSidebarNavCollapseState);
@@ -138,8 +160,28 @@ export const getDrawerMenuConfiguration = createSelector(getDrawerMenuState, fro
 export const getSystemReadyState = createSelector(getSystemState, fromSystem.getSystemReadyState);
 
 // Invite E-mail selectors
+export const getInviteEmail = createSelector(getInviteEmailState, fromInviteEmail.getInviteEmail);
+export const getInviteFile = createSelector(getInviteEmailState, fromInviteEmail.getInviteFile);
 export const getInviteIsActive = createSelector(getInviteEmailState, fromInviteEmail.getInviteIsActive);
 export const getInviteState = createSelector(getInviteEmailState, fromInviteEmail.getInviteState);
+export const getInviteInvitationState = createSelector(getInviteEmailState, fromInviteEmail.getInviteInvitation);
 
+// Invitations entity selectors
+export const getInvitationEntities = createSelector(getInvitationsState, fromInvitations.getEntities);
+export const getInvitationIds = createSelector(getInvitationsState, fromInvitations.getIds);
+export const getSelectedInvitation = createSelector(getInvitationsState, fromInvitations.getSelecteEntity);
+export const getInvitations = createSelector(getInvitationEntities, getInvitationIds, (entities, ids) => {
+    return ids.map(id => {
+        return entities[id];
+    });
+});
 
-
+// User Invitation entity selectors
+export const getUserInvitationEntities = createSelector(getUserInvitationsState, fromUserInvitations.getUserInvitationEntities);
+export const getUserInvitationIds = createSelector(getUserInvitationsState, fromUserInvitations.getUserInvitationIds);
+export const getSelectedUserInvitation = createSelector(getUserInvitationsState, fromUserInvitations.getSelecteUserInvitation);
+export const getUserInvitations = createSelector(getUserInvitationEntities, getUserInvitationIds, (entities, ids) => {
+    return ids.map(id => {
+        return entities[id];
+    });
+});

@@ -1,3 +1,63 @@
 @import './header.scss';
 @import './dropdown.scss';
 @import './footer.scss';
+
+.modalComponent {
+    .modal-header {
+        .modal-title {
+            text-transform: capitalize;
+            display: none;
+        }
+        border-bottom: none;
+        padding-right: 10px;
+        padding-bottom: 0px;
+    }
+    .modal-body{
+        padding: 0px 15px 15px 15px;
+
+        h1{
+            color: $nx-blue;
+            font-size: 22px;
+            margin-top: 0px;
+            
+        }
+        h2{
+            color: $nx-blue;
+            font-size: 20px;
+        }  
+        
+        h3{
+            color: $nx-blue;
+            font-size: 18px;
+        }
+
+        p{
+            font-size: 14px;
+            line-height: 20px;
+        }
+        td{
+            padding: 2px 5px;
+            border: 1px solid rgb(221, 221, 221);
+        } 
+        th{
+            padding: 2px 5px;
+            border: 1px solid rgb(221, 221, 221);
+        }
+        table{
+            margin-bottom: 5px;
+        }
+    }
+}
+
+.successModal {
+    position: relative;
+    .successModalClose{
+        position: absolute;
+        right: 5px;
+        top: 2px;
+
+    }
+    .successModalContent {
+        padding: 25px;
+    }
+}

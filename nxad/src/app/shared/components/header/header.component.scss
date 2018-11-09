@@ -11,6 +11,10 @@ $paddings: 12px 8px;
             }
             .icon-nx-admin {
             }
+            .nx-header-menu__item-icon--lmsadmin{
+                background: url('../../../../assets/icons/lmsadmin_icon.png');
+                height: 20px;
+            }
             .icon-nx-feeds {
                 background: $data_uri_13;
                 height: 20px;

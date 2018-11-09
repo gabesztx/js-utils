@@ -31,7 +31,7 @@ export class CourseModel extends BaseModel implements Course {
     resultEndDate: string;
     provider: ReferenceBase;
 
-    constructor(data: any) {
+    constructor(data?: any) {
         super(data);
 
         this.registrationStartDate = moment(MIN_DATE).format(DATE_SERVER_FORMAT);

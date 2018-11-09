@@ -1,5 +1,3 @@
-// External imports
-// Internal imports
 import * as drawerMenuActions from './drawer-menu.actions';
 import { DrawerMenuItem } from './drawer-menu-config.interfaces';
 

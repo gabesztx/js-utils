@@ -1,0 +1,10 @@
+<div class="selectDropDownComponent">
+    <mat-form-field>
+        <mat-select [(value)]="selected"
+                    [disableRipple]="true"
+                    [placeholder]="filterConfig.placeHolder"
+                    (selectionChange)="selectionChange($event)">
+            <mat-option *ngFor="let item of filterConfig.option" [value]="item.value">{{item.title}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>

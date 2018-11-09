@@ -4,17 +4,18 @@
     padding: 10px;
     transition: background-color 0.5s ease;
     &.active{
-        background-color: #E5F4F8;
+        background-color: #CDEAF1;
     }
     .emailUploadWrapper {
         border-radius: 4px;
         height: 100%;
         .emailUploadContent {
+            position: relative;
             height: 100%;
             border-bottom: 2px solid #5F5F5F;
             .emailUploadTitleContent {
                 cursor: pointer;
-                $circleContentWidth: 18px;
+                $circleContentWidth: 17px;
                 $circleWidth: $circleContentWidth - 10;
                 $borderSize: 3px;
                 position: relative;
@@ -27,9 +28,7 @@
                     height: $circleContentWidth;
                     border: $borderSize solid #787A7B;
                     border-radius: $circleContentWidth / 2;
-                    //background-color: blue;
                     .circle {
-
                         position: absolute;
                         width: $circleWidth;
                         height: $circleWidth;
@@ -59,6 +58,12 @@
                     .labelText {}
                     .labelIcon {
                         color: red;
+                    }
+                    .counter{
+                        float: right;
+                        &.error{
+                            color: red;
+                        }
                     }
                 }
                 .emailInputContent{

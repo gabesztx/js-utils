@@ -5,16 +5,21 @@
                 <div class="circleContent">
                     <div class="circle" [ngClass]="{'active':isActive !== null && !isActive}"></div>
                 </div>
-                <span class="emailUploadTitle">Címzettek hozzáadása</span>
+                <span class="emailUploadTitle">{{'lbl_adress_add' | translate}}</span>
             </span>
-            <div *ngIf="isValide" style="color: red; position: absolute; top:70px">Max karakter 2000!</div>
+            <div *ngIf="isValide"
+                 style="color: red; position: absolute; top:25px;">
+                {{'msg_error_email_character' | translate}}
+            </div>
             <div class="emailContent">
                 <div class="emailInputlabel">
-                    <span class="labelText">E-mail címek hozzáadása</span>
+                    <span class="labelText">{{'lbl_email_adress_add' | translate}}</span>
                     <span class="labelIcon">*</span>
+                    <span class="counter" [ngClass]="{'error':isValide}">({{counterNum}})</span>
                 </div>
                 <div class="emailInputContent">
-                    <span class="emailPlaceHolder" *ngIf="!emailData.length">Email címek</span>
+                    <span class="emailPlaceHolder"
+                          *ngIf="!emailData.length">{{'placeholder_email_address' | translate}}</span>
                     <textarea class="emailInputArea"
                               (input)="changeTextInput($event.target)"></textarea>
                 </div>

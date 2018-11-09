@@ -1,0 +1,86 @@
+<div class="course-results-container">
+    <div class="course-results-wrapper">
+        <nx-title titleKey="lbl_course_results" helpTextKey="msg_help_course_invite_detail"></nx-title>
+        <div class="course-results-view-container">
+            <div class="course-results-list-container">
+                <div class="courseFilterContent">
+                    <div class="course-list__filter">
+                        <nxc-list-filter
+                            [searchModel]="data.dataSource.searchModel"
+                            [config]="filterConfig">
+                        </nxc-list-filter>
+                    </div>
+                     <div class="course-list__filter">
+                         <nx-selectdropdown
+                             [searchModel]="data.dataSource.searchModel"
+                             [filterConfig]="filterStatusConfig">
+                         </nx-selectdropdown>
+                     </div>
+                </div>
+                <div class="courseResultContent">
+                    <div class="course-results-list">
+                        <div class="gridContent">
+                            <ag-grid-angular #agGrid
+                                             style="width: 100%; height: 100%"
+                                             class="ag-theme-balham"
+                                             [gridOptions]="data.gridOptions"
+                                             (gridReady)="onReady()"
+                                             (firstDataRendered)="onFirstDataRendered()"
+                                             (modelUpdated)="onModelUpdated()">
+                            </ag-grid-angular>
+                        </div>
+                    </div>
+                    <div class="course-results-detail-container">
+                        <div class="course-results-detail" *ngIf="courseResultDetail$ | async; let result">
+                            <div class="inviteEmailViewTitle">{{ result.valami }}:</div>
+                            <div class="inviteEmailViewTitle">{{ result.valami }}:</div>
+                            <div class="inviteEmailViewTitle">{{ result.valami }}:</div>
+                            <div class="inviteEmailViewTitle">{{ result.valami }}:</div>
+                            <div class="inviteEmailViewTitle">{{ result.valami }}:</div>
+                            <div class="inviteEmailViewTitle">{{ result.valami }}:</div>
+                        </div>
+                        <div class="course-results-detail" *ngIf="!courseResultDetail$">
+                            <div class="course-results-detail-item">
+                                <div class="course-results-detail-item__title">
+                                    Érték neve:
+                                </div>
+                                <div class="course-results-detail-item__value">
+                                    Érték
+                                </div>
+                            </div>
+                            <div class="course-results-detail-item">
+                                <div class="course-results-detail-item__title">
+                                    Érték neve:
+                                </div>
+                                <div class="course-results-detail-item__value">
+                                    Érték
+                                </div>
+                            </div>
+                            <div class="course-results-detail-item">
+                                <div class="course-results-detail-item__title">
+                                    Érték neve:
+                                </div>
+                                <div class="course-results-detail-item__value">
+                                    Érték
+                                </div>
+                            </div>
+                            <div class="course-results-detail-item">
+                                <div class="course-results-detail-item__title">
+                                    Érték neve:
+                                </div>
+                                <div class="course-results-detail-item__value">
+                                    Érték
+                                </div>
+                            </div>
+                        </div>
+                        <div class="course-results-detail-container__preloader" *ngIf="showPreloader">
+                            <!-- Itt egy spinner valami -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="!hasPermission" class="alert alert-danger text-center">{{ 'msg_access_denied' | translate }}</div>
+

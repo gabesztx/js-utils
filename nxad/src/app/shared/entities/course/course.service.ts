@@ -3,46 +3,34 @@ import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
+import { Actions } from '@ngrx/effects';
+
 // Nexius Core imports
-import { HttpProxy, CommonRuntimeConfig, SearchModel } from '@nexius/core';
+import { EntityService, CommonRuntimeConfig, SessionService } from '@nexius/core';
 // Internal imports
 import * as fromRoot from '../../../reducers/index.reducer';
 import * as courseActions from './course.actions';
 import { SharedModule } from '../../shared.module';
-import { Course, CourseModel, CourseSchema } from '../../../models/course.model';
+import { CourseModel } from '../../../models/course.model';
+import { CourseSelect } from './course.actions';
+import { EntityTypes } from '../../entities/entity-types.enum';
 
 @Injectable({
     providedIn: SharedModule
 })
-export class CourseService extends HttpProxy {
+export class CourseService extends EntityService {
 
-    private apiUrl: string;
+    // private apiUrl: string;
+    public courseDetailData: any;
 
     constructor(
         protected http: HttpClient,
         protected store: Store<fromRoot.AppState>,
-        private config: CommonRuntimeConfig
+        private action$: Actions,
+        private sessionService: SessionService,
     ) {
-        super();
-        this.apiUrl = `${this.config.baseApiUrl}lms/admin/courses`;
-    }
-
-    list(search?: SearchModel): Observable<Course[]> {
-        let opts: any = null;
-
-        if (search) {
-            opts = {
-                params: search.getURLSearchParameters()
-            };
-        }
-
-        return this.get<Course[]>(`${this.apiUrl}`, opts).pipe(
-            tap((c) => {
-                if (CourseModel.are(c, CourseSchema)) {
-                    this.store.dispatch(new courseActions.ListCoursesAction(c));
-                }
-            })
-        );
+        // TODOD: Entity typeot configból használni
+        super(EntityTypes.COURSE, new CourseModel(), http, store, action$, sessionService);
     }
 
 }

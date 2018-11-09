@@ -1,4 +1,4 @@
-<footer class="nx-footer-container">
+<footer class="nx-footer-container" *ngIf="isReady$ | async">
     <div class="">
         <div class="row">
             <div class="nx-content-row">
@@ -13,22 +13,18 @@
                                     <a class="footer-logo">l</a>
                                 </li>
                                 <li class="">
-                                    <!--<a [href]="configData.termsUrl">{{'btn_terms_of_use' | translate}}</a>-->
-                                    <a [href]="">ÁSZF</a>
+                                    <a [href]="config.termsUrl">{{'btn_terms_of_use' | translate}}</a>
                                 </li>
                                 <li class="">
-                                    <!--<a [href]="configData.privacyStatementUrl">{{'btn_privacy_statement' | translate}}</a>-->
-                                    <a [href]="">Adatkezelési tájékoztatzó</a>
+                                    <a [href]="config.privacyStatementUrl">{{'btn_privacy_statement' | translate}}</a>
                                 </li>
 
                                 <li class="">
-                                    <!--<a [href]="configData.helpUrl">{{'btn_help' | translate}}</a>-->
-                                    <a [href]="">Súgó</a>
+                                    <a [href]="config.helpUrl">{{'btn_help' | translate}}</a>
                                 </li>
 
                                 <li class="">
-                                    <!--<a [href]="configData.helpUrl">{{'lbl_contact_site' | translate}}</a>-->
-                                    <a [href]="">Kapcsolat</a>
+                                    <a [href]="config.contactUrl">{{'lbl_contact_site' | translate}}</a>
                                 </li>
                             </ul>
                         </div>
@@ -37,8 +33,7 @@
                 <div class="nx-footer-content">
                     <div class="nx-content">
                         <div class="nx-footer-versio-content nx-footer-versio-content--margin-bottom-sm">
-                            <sub class="nx-container__version">powered by:</sub>
-                            <!--<sub class="nx-container__version">powered by: {{version}}</sub>-->
+                            <sub class="nx-container__version">powered by: {{version}}</sub>
                         </div>
                     </div>
                 </div>

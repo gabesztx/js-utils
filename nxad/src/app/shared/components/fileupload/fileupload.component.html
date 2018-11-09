@@ -5,22 +5,27 @@
                 <div class="circleContent">
                     <div class="circle" [ngClass]="{'active':isActive !== null && isActive}"></div>
                 </div>
-                <span class="fileUploadTitle">Címzettek tömegese hozzáadása</span>
+                <span class="fileUploadTitle">{{'lbl_more_adress_add' | translate}}</span>
             </span>
             <div class="fileContent">
                 <label class="uploadBtn" for="file">
-                    <div>File feltöltése</div>
-                    <div>(*.CSV)</div>
+                    <div>{{'lbl_file_upload' | translate}}</div>
+                    <div>{{'lbl_file_upload_property' |translate}}</div>
+                    <span>
+                        <strong>{{'lbl_file_upload_limit' | translate}}</strong>
+                    </span>
                 </label>
-                <input type="file" name="file" id="file"
+                <input type="file"
+                       name="file"
+                       id="file"
                        (change)="changeFile($event.target.files)">
                 <div class="fileNameContent">
                     <div class="fileError" *ngIf="isValide" style="padding-bottom: 20px">
-                        <div *ngIf="!fileSize" style="color: red">File mérete max 1 Mb!</div>
-                        <div *ngIf="!fileType" style="color: red">File formátum csak CSV lehet!</div>
+                        <div *ngIf="!fileSize" style="color: red">{{'msg_error_file_size' | translate}}</div>
+                        <div *ngIf="!fileType" style="color: red">{{'msg_error_file_format' | translate}}</div>
                     </div>
                     <span class="fileEmpty" *ngIf="!fileName">
-                        <span><</span><span>Nincs file kiválasztva</span><span>></span>
+                        <span><</span><span>{{'lbl_file_not_choose' | translate}}</span><span>></span>
                     </span>
                     <span class="fileName" *ngIf="fileName">
                     <span>file: </span>

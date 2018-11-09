@@ -6,27 +6,29 @@ $font-size-big: 12px;
 $default-font-family: 'Open Sans', Arial;
 
 .nx-title-component {
+
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
-    background-color: $title-container-bg ;
     color: $primary-color;
-    padding: 10px 20px;
+    font-size: 12px;
+    padding: 15px 20px;
     border-radius: 5px;
-    font-family: $default-font-family;
-    font-size: $font-size-big;
-    margin-bottom: 20px;
-    
-        .nx-title {
-            align-self: flex-start;
-            align-self: stretch;
-            text-transform: uppercase
-        }
+    background-color: #CDEAF1;
+    margin-bottom: 15px;
 
-        .nx-help-btn {
-            align-self: flex-end;
-            text-align: center;
-            text-decoration: underline;
-            cursor: pointer;
-        }
+    .nx-title {
+        align-self: flex-start;
+        align-self: stretch;
+        text-transform: uppercase
+
+    }
+
+    .nx-help-btn {
+        align-self: flex-end;
+        text-align: center;
+        text-transform: capitalize;
+        text-decoration: underline;
+        cursor: pointer;
+    }
 }

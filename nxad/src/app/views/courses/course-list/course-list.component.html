@@ -1,13 +1,30 @@
-<div class="course-list-wrapper" *ngIf="!hasPermission">
-    <nx-title titleKey="lbl_courses" helpTextKey="msg_access_denied"></nx-title>
+<div class="course-list-wrapper" *ngIf="hasPermission">
+    <nx-title titleKey="lbl_courses" helpTextKey="msg_help_course_list"></nx-title>
+    <div class="courseFilterContent">
+        <div class="course-list__filter">
+            <nxc-list-filter
+                [searchModel]="data.dataSource.searchModel"
+                [config]="filterConfig">
+            </nxc-list-filter>
+        </div>
+        <div class="course-list__filter">
+            <nx-selectdropdown
+                [searchModel]="data.dataSource.searchModel"
+                [filterConfig]="filterStatusConfig">
+            </nx-selectdropdown>
+        </div>
+    </div>
     <div class="course-list">
         <div class="grid-wrapper">
-            <ag-grid-angular #agGrid style="width: 100%; height: 100%"
-                class="ag-theme-balham"
-                [gridOptions]="vm.gridOptions"
-                (gridReady)="onReady()">
+            <ag-grid-angular #agGrid style="width: 100%; height: 730px"
+                             class="ag-theme-balham"
+                             [gridOptions]="data.gridOptions"
+                             (gridReady)="onReady()"
+                             (firstDataRendered)="onFirstDataRendered()"
+                             (modelUpdated)="onModelUpdated()">
             </ag-grid-angular>
         </div>
     </div>
 </div>
-<div *ngIf="hasPermission" class="alert alert-danger text-center">{{ 'msg_access_denied' | translate }}</div>
+<div *ngIf="!hasPermission" class="alert alert-danger text-center">{{ 'msg_access_denied' | translate }}</div>
+

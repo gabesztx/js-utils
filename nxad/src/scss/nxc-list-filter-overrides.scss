@@ -1,0 +1,13 @@
+.nxc-list-filter {
+    padding: 0;
+    .nxc-list-filter__input-container {
+        flex: 0  auto;
+    }
+}
+
+.mat-form-field-label{
+    color: black;
+}
+.mat-form-field.mat-focused .mat-form-field-label {
+    color: gray;
+}

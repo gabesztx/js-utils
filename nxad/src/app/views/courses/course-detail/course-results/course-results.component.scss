@@ -1,0 +1,67 @@
+@import '../../../../../scss/mixins';
+
+:host {
+    display: flex;
+    flex-grow: 1;
+    min-height: 100%;
+    height: 100%;
+}
+
+.course-results-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    .course-results-wrapper {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        .course-results-view-container {
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+            flex-flow: nowrap;
+            flex-grow: 1;
+            .course-results-list-container {
+                flex-grow: 1;
+                height: 100%;
+                margin-right: 10px;
+                @include courseFilter();
+                .courseResultContent {
+                    display: flex;
+                    flex-flow: nowrap;
+                    flex-grow: 1;
+                    .course-results-list {
+                        margin-right: 15px;
+                        margin-bottom: 20px;
+                        background-color: wheat;
+                        width: 100%;
+                        height: 450px;
+                        .gridContent {
+                            height: 100%;
+                        }
+                    }
+                    .course-results-detail-container {
+                        width: 300px;
+                        height: 300px;
+                        background-color: #cdeaf1;
+                        .course-results-detail {
+                            height: 400px;
+                            margin-left: 5px;
+                            margin-right: 10px;
+                            margin-top: 15px;
+                            .course-results-detail-item {
+                                font: normal 14px/1.2em Arial;
+                                padding: 5px;
+                                .course-results-detail-item__value {
+                                    color: #0497bb;
+                                    font-weight: bold;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -31,10 +31,9 @@ export class GridCellButtonComponent implements OnInit {
     private requiredUserLevel: UserLevel;
     private acceptHigherLevel: boolean;
 
-    constructor(private l10n: L10nService, private auth: AuthService) { }
+    constructor(private l10n: L10nService, private auth: AuthService) {}
 
-    ngOnInit() {
-    }
+    ngOnInit() {}
 
     agInit(params: any) {
         this.params = params;

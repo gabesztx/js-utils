@@ -1,0 +1,77 @@
+.mat-raised-button.mat-accent {
+    font-size: 12px;
+    background-color: #0497bb !important;
+}
+
+.mat-form-field-wrapper {
+    padding-bottom: 15px !important;
+}
+
+.mat-select-arrow {
+    color: #0497bb !important;
+}
+
+.mat-option-text {
+    color: black !important;
+}
+
+.mat-form-field-underline {
+    //background-color: transparent !important;
+}
+
+::ng-deep .mat-input-underline {
+    display: none;
+}
+
+.mat-form-field-infix {
+    border-top: 0 !important;
+}
+
+.mat-form-field-ripple {
+    display: none !important;
+}
+
+/* search icon */
+.courseFilterContent {
+    .course-list__filter {
+        position: relative;
+        .nxc-list-filter {
+            align-items: inherit;
+            $iconWidth: 20px;
+            .nxc-list-filter__button-container {
+                align-items: inherit;
+                margin-top: 5px;
+                width: $iconWidth;
+                height: $iconWidth;
+                border-bottom: 1px rgba(0,0,0,.42) solid;
+                .nxc-list-filter__search-button-container {
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    margin: 0;
+                    padding: 0;
+                    background-image: url("../assets/icons/search-icon.svg");
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    //background-size: 75%;
+                    transform: scale(0.75);
+                    transition: all 0.3s ease-out;
+                    &:hover {
+                        transform: scale(0.95);
+                    }
+                    button {
+                        opacity: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: transparent;
+                    }
+                }
+            }
+        }
+    }
+}
+/* preloader spinner */
+.nxc-grid-loading-overlay {
+    background-color: rgba(242, 242, 242, 0.95) !important;
+}

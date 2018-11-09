@@ -1,3 +1,115 @@
-.courseDetailComponent{
+.courseDetailComponent {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-flow: nowrap;
+    //padding-bottom: 60px;
+    .courseDetailMenu {
+        width: 200px;
+        border-right: 2px solid #CDEAF1;
+        .menuHeader {
+            width: 100%;
+            height: 40px;
+            color: white;
+            background-color: #5F5F5F;
+            .menuText {
+                font-size: 15px;
+                text-transform: uppercase;
+                margin-left: 15px;
+                line-height: 40px;
+                float: left;
+            }
+            .menuIcon {
+                margin-right: 15px;
+                font-size: 18px;
+                float: right;
+                line-height: 40px;
+            }
+        }
+        .inviteEmailChoosedContent{
+            background-color: #dfdfdf;
+            padding-bottom: 15px;
+   
+            .inviteEmailChoosedTitle{
+                padding: 10px;
+                font-size: 11px;
+            }
+            .inviteEmailChoosed{
+                cursor: pointer;
+                padding: 6px 10px;
+                margin-right: 10px;
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+                -moz-border-top-right-radius: 5px;
+                -moz-border-bottom-right-radius: 5px;
+                background-color: #0497bb;
+                span {
+                    max-height: 31px;
+                    overflow: hidden;
+                    font: normal 12px/1.3em Arial;
+                    color: #ffffff;
+                    display: block;
+                }
 
+            }
+        }
+        .inviteEmailChoosedContent--disabled{
+            background-color:#ff0000;
+            padding-bottom: 15px;
+   
+            .inviteEmailChoosedTitle{
+                padding: 10px;
+                font-size: 11px;
+                color: #ffffff;
+            }
+            .inviteEmailChoosed{
+                cursor: pointer;
+                padding: 6px 10px;
+                margin-right: 10px;
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+                -moz-border-top-right-radius: 5px;
+                -moz-border-bottom-right-radius: 5px;
+                background-color: #0497bb;
+                span {
+                    max-height: 31px;
+                    overflow: hidden;
+                    font: normal 12px/1.3em Arial;
+                    color: #ffffff;
+                    display: block;
+                }
+
+            }
+        }
+        .menuNavigation {
+            padding-top: 15px;
+            a {
+                font: normal 12px/1.2em Arial;
+                color: #0699ba;
+                text-transform: uppercase;
+                text-align: right;
+                padding: 12px 10px;
+                display: block;
+                
+                &:hover{
+                    background-color: rgba($color: #ceeaf0, $alpha: 0.5);
+                }
+                
+                &.active {
+                    background-color: #ceeaf0;
+                    font-weight: bold;
+                }
+
+            }
+        }
+    }
+    .courseDetailPage {
+        flex-grow: 1;
+        display: flex;
+        .courseDetailMain{
+            display: flex;
+            width: 100%;
+            margin-left: 15px;
+        }
+    }
 }

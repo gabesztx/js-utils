@@ -1,21 +1,21 @@
 // External imports
-import { Observable, Subscription } from 'rxjs';
-import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { filter, take } from 'rxjs/operators';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 // Nexius Core import
-import { L10nService, GoTo } from '@nexius/core';
+import { GoTo, L10nService, GridController, NxGridOptions, CommonRuntimeConfig, ListFilterConfig, FilterModel } from '@nexius/core';
 // Internal imports
 import * as fromRoot from '../../../reducers/index.reducer';
 import * as fromCourseModel from '../../../models/course.model';
 import { UserLevel } from '../../../models/user.model';
 import { CourseService } from '../../../shared/entities/course/course.service';
-import { NxGridOptions } from '../../../shared/grid/grid-model.class';
-import { GridController } from '../../../shared/grid/grid-controller.class';
 import { GridCellButtonComponent } from '../../../shared/grid/cellRenderers/grid-cell-button/grid-cell-button.component';
-import { dateRenderer } from '../../../shared/utils';
+import { dateRenderer, isCloseCourse } from '../../../shared/utils';
 import { AuthService } from '../../../shared/services/auth.service';
 
+declare let window: any;
 
 @Component({
     selector: 'nx-course-list',
@@ -24,56 +24,87 @@ import { AuthService } from '../../../shared/services/auth.service';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseListComponent extends GridController implements OnInit, OnDestroy {
-
     hasPermission: boolean;
+    selectedAddDropDown$: any;
+    public filterStatusConfig = {
+        filterName: 'isactivestate',
+        placeHolder: this.l10n.translate('lbl_courses_status'),
+        option: [
+            {
+                value: 0,
+                title: this.l10n.translate('lbl_all')
+            },
+            {
+                value: true,
+                title: this.l10n.translate('lbl_active')
+            },
+            {
+                value: false,
+                title: this.l10n.translate('lbl_closed_courses')
+            },
+        ],
+        initialFilter: new FilterModel('isactivestate', true),
+    };
+    public filterConfig: ListFilterConfig = {
+        fields: [{
+            name: 'coursetitle',
+            label: 'lbl_title'
+        }, {
+            name: 'providername',
+            label: 'lbl_course_provider_short'
+        }],
+        fireOnInputChange: true, // can we do it without pressEnterLabelKey?
+        showResetButton: false,
+        showSearchButton: true,
+        filterButtonLabel: '.',
+        filterFieldSelectPlaceholder: this.l10n.translate('lbl_filter_field'),
+        filterTextFieldPlaceholder: this.l10n.translate('lbl_filter_text'),
+        resetButtonLabel: this.l10n.translate('btn_reset_grid'),
+        pressEnterLabelKey: this.l10n.translate('lbl_press_enter'),
+    };
 
-    courses$: Observable<fromCourseModel.Course[]>;
-    /**
-     * @property subscriptions
-     * @description
-     * A map of subscriptions used by the Component. OnDestroys unsubscribes all enlisted subscriptions.
-     * @private
-     * @memberof SidebarNavComponent
-     */
-    protected subscriptions: {[s: string]: Subscription};
-
-    /**
-     * @property gridOptions
-     * @type NxGridOptions
-     * @description
-     * Define options for the Content List ag-Grid instance here.
-     */
     private gridOptions: NxGridOptions = {
+        enableColResize: true,
+        defaultColDef: {
+            suppressFilter: true,
+            suppressMenu: true
+        },
         columnDefs: [{
             headerName: 'lbl_title',
-            field: 'title'
+            field: 'title',
         }, {
             headerName: 'lbl_course_provider_short',
+            colId: 'providername',
             field: 'provider.name', // Name of the field in source data object to bind to the column
-            width: 250,
-            suppressSizeToFit: true
         }, {
-            headerName: 'lbl_registration_start_date',
+            headerName: 'lbl_enrollment_period_begins',
             field: 'registrationStartDate', // Name of the field in source data object to bind to the column
-            cellRenderer: (params) => dateRenderer(params.data.registrationStartDate),
-            width: 250,
-            suppressSizeToFit: true
+            cellRenderer: (params) => dateRenderer(params.value),
+            colId: 'startdate'
         }, {
-            headerName: 'lbl_registration_end_date',
+            headerName: 'lbl_enrollment_period_ends',
             field: 'registrationEndDate', // Name of the field in source data object to bind to the column
-            cellRenderer: (params) => dateRenderer(params.data.registrationEndDate),
-            width: 250,
-            suppressSizeToFit: true
+            cellRenderer: (params) => dateRenderer(params.value),
+            colId: 'enddate'
         }, {
             headerName: 'lbl_result_start_date',
             field: 'resultStartDate', // Name of the field in source data object to bind to the column
-            cellRenderer: (params) => dateRenderer(params.data.resultStartDate),
-            width: 250,
-            suppressSizeToFit: true
+            cellRenderer: (params) => dateRenderer(params.value),
+            colId: 'resultstartdate'
         }, {
             headerName: 'lbl_result_end_date',
             field: 'resultEndDate', // Name of the field in source data object to bind to the column
-            cellRenderer: (params) => dateRenderer(params.data.resultEndDate),
+            cellRenderer: (params) => dateRenderer(params.value),
+            colId: 'resultenddate'
+        }, {
+            headerName: 'lbl_course_status',
+            field: 'isActive', // Name of the field in source data object to bind to the column
+            cellRenderer: (params) => {
+                const isActive = params.value || false;
+                const closed = this.l10n.translate('lbl_closed_courses');
+                const active = this.l10n.translate('lbl_active');
+                return isActive ? active : '<div style="color:red">' + closed + '</div>';
+            },
             width: 250,
             suppressSizeToFit: true
         }, {
@@ -83,61 +114,56 @@ export class CourseListComponent extends GridController implements OnInit, OnDes
             width: 150,
             cellRendererFramework: GridCellButtonComponent,
             action: this.onClickEdit.bind(this),
-            suppressMenu: true,
-            suppressFilter: true,
             suppressSorting: true,
             suppressResize: true,
             suppressSizeToFit: true
-        }]
+        }],
+        onRowDoubleClicked: this.rowDoubleClicked.bind(this),
+        initialFilters: this.filterStatusConfig.hasOwnProperty('initialFilter') ? [this.filterStatusConfig.initialFilter] : []
     };
 
     constructor(
         private route: ActivatedRoute,
-        private store: Store<fromRoot.AppState>,
-        private l10n: L10nService,
+        protected store: Store<fromRoot.AppState>,
+        protected l10n: L10nService,
         private auth: AuthService,
-        private courseService: CourseService
-    ) {
-        super(l10n);
-
-        this.subscriptions = {
-            courses: null
-        };
-        this.vm.setGridOptions(this.gridOptions);
+        private config: CommonRuntimeConfig,
+        private courseService: CourseService) {
+        super(store, window, l10n);
+        this.gridOptions.apiUrl = `${this.config.baseApiUrl}lmsadmin/courses`;
+        this.gridOptions.entityService = this.courseService;
+        this.setGridOptions(this.gridOptions);
     }
 
     ngOnInit() {
-        // Print courses array when its not empty - for testing
-        this.courses$ = this.store.select(fromRoot.getCourses);
-        // Call list method on course service to load the course list to the Store.
-        this.courseService.list(this.search).subscribe();
         // Check permission
-        this.hasPermission = this.auth.isInRole(UserLevel.Administrator);
+        this.selectedAddDropDown$ = this.store.select(fromRoot.getdropDownState);
+        this.hasPermission = this.auth.isOrganizationAdmin()
+            || (this.auth.isInRole(UserLevel.SysSupport, false)
+                || this.auth.isInRole(UserLevel.SysAdmin, false));
     }
 
-    onReady(): void {
-        // Optionally call GridController's onReady implementation.
+    onReady() {
         super.onReady();
-        this.subscriptions.courses = this.courses$.subscribe((courses) => {
-            this.vm.gridOptions.api.setRowData(courses);
-        });
-    }
-
-    ngOnDestroy() {
-        for (const sub in this.subscriptions) {
-            if (this.subscriptions[sub] instanceof Subscription) {
-                this.subscriptions[sub].unsubscribe();
-            }
-        }
     }
 
     onClickEdit(widgetData: fromCourseModel.Course) {
         this.store.dispatch(new GoTo({
             path: ['details', widgetData.id],
-            extras: { relativeTo: this.route.parent }
+            extras: {relativeTo: this.route.parent}
         }));
-
     }
 
+    rowDoubleClicked(row: any) {
+        const widgetData = row.data;
+        this.store.dispatch(new GoTo({
+            path: ['details', widgetData.id],
+            extras: {relativeTo: this.route.parent}
+        }));
+    }
 
+    ngOnDestroy() {
+        this.removeSize();
+        super.ngOnDestroy();
+    }
 }

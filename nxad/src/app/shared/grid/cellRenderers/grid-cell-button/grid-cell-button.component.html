@@ -5,6 +5,7 @@
         (click)="onClick()"
         [ngClass]="{'has-icon': !!iconClass}"
         [matTooltip]="label | translate"
+        [disableRipple]= "true"
         [matTooltipPosition]="tooltipPosition"
         [matTooltipDisabled]="!iconClass">
         <span *ngIf="!iconClass">{{ label | translate }}</span>

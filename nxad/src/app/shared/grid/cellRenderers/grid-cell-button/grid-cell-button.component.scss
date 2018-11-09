@@ -2,9 +2,10 @@ div.button-context {
     width: 100%;
 
     button {
-        display: block;
-        margin: 1px auto;
-        line-height: 26px;
+        display: inline-block;
+        margin: auto;
+        vertical-align: middle;
+        line-height: 20px;
         padding: 0px;
         // Firefox gives much better performance without shadows and transforms.
         box-shadow: none;

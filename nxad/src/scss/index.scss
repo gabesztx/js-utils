@@ -1,10 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import './nx-ag-theme-variables.scss';
+@import './material-override.scss';
 
 @import "~ag-grid/src/styles/ag-grid";
 @import "~ag-grid/src/styles/ag-theme-balham";
 
+@import "~@nexius/core/styles/styles.scss";
+
 @import './nx-ag-theme-overrides.scss';
+@import './nxc-list-filter-overrides.scss';
 
 @import './config.scss';
 @import './assets/icons/fa/scss/font-awesome.scss';
@@ -12,4 +17,3 @@
 @import './base/_base.scss';
 @import './layout/_layout.scss';
 @import './components/_components.scss';
-

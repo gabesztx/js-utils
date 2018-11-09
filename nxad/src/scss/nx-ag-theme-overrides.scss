@@ -1,11 +1,49 @@
 
+//ag -header overrides
+
 .ag-theme-balham .ag-header {
     color: #FFF;
 }
 
+.ag-theme-balham .ag-header-cell{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.ag-theme-balham .ag-header-row{
+    border:none;
+}
+
+.ag-header-cell{
+    font-weight: 400;
+}
+
+.ag-header-cell .ag-header-cell-sorted-none{
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.ag-header-cell .ag-header-cell-sorted-asc{
+    padding-left: 12px;
+    padding-right: 12px;
+    font-weight: 600;
+    background:rgba(95, 95, 95, 0.8);
+}
+
+.ag-header-cell .ag-header-cell-sorted-desc{
+    padding-left: 12px;
+    padding-right: 12px;
+    font-weight: 600;
+    background:rgba(95, 95, 95, 0.8);
+}
+
+//ag- body overrides
+
 .ag-body-viewport .ag-layout-normal{
  background: #FFF;
 }
+
+//ag -rows overrides
 
 .ag-theme-balham .ag-row-even{
     background: rgba(4, 150, 187, 0.1);
@@ -20,15 +58,74 @@
     line-height: 32px;
 }
 
-.ag-theme-balham .ag-header-row{
-    border:none;
-}
 
 .ag-theme-balham .ag-row-even.ag-row-hover,
 .ag-theme-balham .ag-row-odd.ag-row-hover {
-    background: rgba(253, 186, 61, 0.3);
+    background-color: rgba(253, 186, 61, 0.1);
 }
+.ag-theme-balham .ag-row-selected{
+    background-color: rgba(253, 186, 61, 0.3);
+    font-weight: bold;
 
+    &:hover{
+        background-color: rgba(253, 186, 61, 0.3);
+    }
+}
 .ag-theme-balham .ag-header-cell-resize::after{
     border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+
+
+/* remove cell border */
+.ag-cell-focus, .ag-cell-no-focus {
+    border: none !important;
+    outline: none;
+}
+.no-border.ag-cell:focus {
+    border: none !important;
+    outline: none;
+}
+
+//custom 
+
+$circleContentWidth: 17px;
+$circleWidth: $circleContentWidth - 10;
+$borderSize: 3px;
+.rowCircleContent{
+    display: flex;
+    position: relative;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: center;
+    .rowCircle{
+        position: absolute;
+        width: $circleContentWidth;
+        height: $circleContentWidth;
+        border: $borderSize solid #787A7B;
+        border-radius: $circleContentWidth / 2;
+        margin-right: 15px;
+        .circle{
+            position: absolute;
+            width: $circleWidth;
+            height: $circleWidth;
+            left: 50%;
+            top: 50%;
+            border-radius: $circleWidth / 2;
+            margin-left: -$circleWidth / 2;
+            margin-top: -$circleWidth / 2;
+            background-color: #0497BB;
+            transform: scale(0);
+            transition: all .2s ease-out;
+            &.active{
+                transform: scale(1);
+            }
+        }
+    }
+    .textValue{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-left: $circleContentWidth + 8;
+    }
 }

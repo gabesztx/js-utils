@@ -1,0 +1,122 @@
+:host {
+    display: flex;
+    flex-grow: 1;
+}
+
+.inviteEmailComponent {
+    display: flex;
+    width: 100%;
+    .inviteEmailWrapper {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        .inviteEmailTitleContent {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            color: #0497BB;
+            font-size: 12px;
+            padding: 15px 20px;
+            border-radius: 5px;
+            background-color: #CDEAF1;
+            .inviteEmailTitle {
+                text-transform: uppercase;
+            }
+            .inviteEmailHelp {
+                text-decoration: underline;
+                text-transform: capitalize;
+            }
+        }
+
+        .inviteEmailSendViewContent {
+            display: flex;
+            flex-flow: nowrap;
+            flex-grow: 1;
+            .inviteEmailSendContent {
+                flex-grow: 1;
+                margin-right: 10px;
+                border-right: 2px solid #CDEAF1;
+                .inviteEmailChoosedContent {
+                    display: flex;
+                    flex-wrap: nowrap;
+                    justify-content: space-between;
+                    margin-right: 15px;
+                    height: 150px;
+                    align-items: center;
+                    .inviteEmailChoosedTitle {}
+                    .inviteEmailChoosed {
+                        border-radius: 5px;
+                        color: white;
+                        max-width: 450px;
+                        padding: 10px 5px;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        background-color: #5F5F5F;
+                    }
+                }
+                .inviteEmailDataContent {
+                    margin-top: 15px;
+                    margin-right: 15px;
+                    margin-bottom: 20px;
+                    height: 200px;
+                    background-color: wheat;
+                    .gridContent {
+                        display: block;
+                        box-sizing: border-box;
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+                .inviteEmailUploadContent {
+                    display: flex;
+                    flex-flow: nowrap;
+                    .inviteContents {
+                        width: 50%;
+                        margin-right: 15px;
+                    }
+                }
+                .uploadBtnContent {
+                    padding-top: 20px;
+                    padding-right: 15px;
+                    text-align: right;
+                    .uploadButton {
+                        text-transform: uppercase;
+                        border-radius: 6px;
+                        color: white;
+                        width: 100px;
+                        height: 30px;
+                        transition: opacity .25s ease;
+                        &:disabled {
+                            opacity: 0.4;
+                        }
+                        .spinner-content{
+                            width: 100%;
+                            height: 100%;
+                        }
+                        &.processing{
+                            &:disabled{
+                                opacity: 0.6;
+
+                            }
+                        }
+                    }
+                }
+            }
+            .inviteEmailViewContainer {
+                width: 300px;
+                .inviteEmailView {
+                    margin-left: 5px;
+                    margin-right: 10px;
+                    margin-top: 15px;
+                    .inviteEmailViewTitle {
+                        //color: #0497BB;
+                    }
+                    .inviteEmailPreView {
+                        padding-top: 10px;
+                    }
+                }
+            }
+        }
+    }
+}

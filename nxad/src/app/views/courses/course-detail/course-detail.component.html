@@ -1,12 +1,31 @@
-<div class="courseDetailComponent">
-    <p>MENÜ</p>
-    <p>
-        <a [routerLink]="['sendinvitation']">Meghvíók küdése</a>
-    </p>
-    <p>
-        <a [routerLink]="['sentinvitation']">Elküldött meghívók</a>
-    </p>
-    <p>
-        <router-outlet></router-outlet>
-    </p>
+<div class="courseDetailComponent" *ngIf="hasPermission">
+    <div class="courseDetailMenu">
+        <div class="menuHeader">
+            <div class="menuText">{{'lbl_menu_title' | translate}}</div>
+            <div class="menuIcon"></div>
+        </div>
+        <!-- <div class="inviteEmailChoosedContent" *ngIf="course$ |async; let course"> -->
+        <div [ngClass]="{'inviteEmailChoosedContent--disabled': isClosed,
+                         'inviteEmailChoosedContent' : !isClosed }"
+                         *ngIf="courseDetail$ |async; let course">
+            <div class="inviteEmailChoosedTitle">{{'lbl_current_course' | translate}}
+                <span *ngIf="isClosed">{{'lbl_closed_courses' | translate}}</span>
+            </div>
+            <div class="inviteEmailChoosed" (click)="navigateBack()">
+                <span>{{course.title}}</span>
+            </div>
+        </div>
+        <div class="menuNavigation">
+            <a [routerLink]="['courseresults']" routerLinkActive="active">{{'lbl_course_results' | translate}}</a>
+            <a [routerLink]="['sendinvitation']" routerLinkActive="active">{{'lbl_invite_send' | translate}}</a>
+            <a [routerLink]="['sentinvitation']" routerLinkActive="active">{{'lbl_invited_send' | translate}}</a>
+        </div>
+    </div>
+    <div class="courseDetailPage">
+        <div class="courseDetailMain">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
 </div>
+<div *ngIf="!hasPermission" class="alert alert-danger text-center">{{ 'msg_access_denied' | translate }}</div>
+

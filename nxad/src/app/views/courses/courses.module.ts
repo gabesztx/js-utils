@@ -6,13 +6,14 @@ import { AgGridModule } from 'ag-grid-angular';
 // Nexius Core imports
 import { NxCoreModule } from '@nexius/core';
 // Internal imports
+import { routes } from './courses.routing';
 import { SharedModule } from '../../shared/shared.module';
 import { CourseListComponent } from './course-list/course-list.component';
 import { CourseDetailComponent } from './course-detail/course-detail.component';
-// Nexius Core imorts
-// ...
+import { UserInvitationsComponent } from './course-detail/user-invitations/user-invitations.component';
+import { InviteEmailComponent } from './course-detail/invite-email/invite-email.component';
+import { CourseResultsComponent } from './course-detail/course-results/course-results.component';
 
-import { routes } from './courses.routing';
 
 @NgModule({
     imports: [
@@ -24,7 +25,10 @@ import { routes } from './courses.routing';
     ],
     declarations: [
         CourseListComponent,
-        CourseDetailComponent
+        CourseDetailComponent,
+        InviteEmailComponent,
+        UserInvitationsComponent,
+        CourseResultsComponent
     ]
 })
 export class CoursesModule { }

@@ -3,11 +3,19 @@
         <div class="">
             <div class="row">
                 <nav class="nx-navbar-content nx-content" *ngIf="isReady$ | async">
-                    <a href="{{commonRuntimeConfig.baseUrl + 'lmsadmin'}}" id="nexius-logo" class="nx-navbar__logo"></a>
+                    <a href="{{commonRuntimeConfig.baseUrl + 'lmsadmin'}}" id="nexius-logo" class="nx-navbar__logo"[ngClass]="{testLogo:isTest}"></a>
                     <div class="collapse nx-navbar-collapse navbar-collapse" id="">
                         <ul class="nav navbar-nav nx-navbar-nav">
+                            <!--LMSAdmin-->
+                            <li class="nx-header-menu__item" *ngIf="hasAdminPermission">
+                                <a href="{{commonRuntimeConfig.baseUrl + 'lmsadmin'}}" class="menu_item_bt">
+                                    <span
+                                        class="nx-header-menu__item-icon nx-header-menu__item-icon--lmsadmin icon-nx-admin"> </span>
+                                    <span>{{'lbl_lmsadmin' | translate }}</span>
+                                </a>
+                            </li>
                             <!--Admin-->
-                            <li class="nx-header-menu__item" *ngIf="isUserAdmin">
+                            <li class="nx-header-menu__item" *ngIf="hasPermission">
                                 <a href="/admin" class="menu_item_bt">
                                     <span
                                         class="nx-header-menu__item-icon nx-header-menu__item-icon--admin icon-nx-admin"> </span>
@@ -16,7 +24,7 @@
                             </li>
                             <!--Hírek-->
                             <li class="nx-header-menu__item">
-                                <a href="javascript:void(0)"
+                                <a [href]="baseUrl+'app/courses/feed'"
                                    class="menu_item_bt">
                                     <div class="nx-header-menu__item-icon feed-icon icon-nx-feeds"></div>
                                     {{ 'lbl_my_feed' | translate }}
@@ -27,7 +35,7 @@
                             </li>
                             <!--Kurzusaim-->
                             <li class="nx-header-menu__item">
-                                <a href="javascript:void(0);"
+                                <a [href]="baseUrl+'app/courses'"
                                    class="menu_item_bt">
                                     <span
                                         class="nx-header-menu__item-icon nx-header-menu__item-icon--courses icon-nx-courses"></span>

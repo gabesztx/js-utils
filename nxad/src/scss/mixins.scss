@@ -5,6 +5,38 @@
 // This clearfix is for IE8+
 // http://caniuse.com/#feat=css-gencontent
 // http://caniuse.com/#feat=css-table
+@mixin courseFilter() {
+    .courseFilterContent {
+        display: flex;
+        padding-top: 10px;
+        padding-left: 10px;
+        .course-list__filter {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            .courseFilterTitle {
+                margin-top: 10px;
+                font-size: 11px;
+            }
+        }
+    }
+}
+@mixin courseFilterContent() {
+    .courseFilterContent {
+        display: flex;
+        padding-top: 10px;
+        padding-left: 10px;
+        .course-list__filter {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            .courseFilterTitle {
+                margin-top: 10px;
+                font-size: 11px;
+            }
+        }
+    }
+}
 @mixin clearfix() {
     &:before,
     &:after {
