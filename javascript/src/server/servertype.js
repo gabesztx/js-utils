@@ -12,7 +12,7 @@ const port = process.env.PORT || 5000;
 const server = http.createServer(app);
 // const env = process.env.NODE_ENV;
 
-const runDevelop = (env) => {
+export const runDevelop = (env) => {
   console.log('-------- Run development mode --------');
   const config = webpackConfig(env);
   const compiler = webpack(config);
@@ -27,18 +27,13 @@ const runDevelop = (env) => {
   server.listen(port);
 };
 
-const runProduction = (env) => {
+export const runProduction = (env) => {
   console.log('-------- Production development mode --------');
   const compiler = webpack(webpackConfig(env));
   compiler.apply(new webpack.ProgressPlugin());
   compiler.run(function (err, stats) {
     console.log('-------- Production build finished --------');
   });
-};
-
-module.exports = {
-  runDev: runDevelop,
-  runProd: runProduction,
 };
 
 /*

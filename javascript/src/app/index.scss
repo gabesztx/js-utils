@@ -1,75 +1,3 @@
-body {
-  margin: 0;
-  padding: 0;
-}
-
-/*
-.wrapper {
-  position: relative;
-  max-width: 900px;
-  height: 400px;
-  margin: auto;
-  background-color: #04aad4;
-  .flex-container {
-    //display: flex;
-    !* --- Flex Direction --- *!
-    //flex-direction: row; // Default
-    //flex-direction: column;
-
-    !* --- Flex Wrap --- *!
-    //flex-wrap: nowrap; // Default
-    //flex-wrap: wrap-reverse;
-    //flex-wrap: wrap;
-
-    !* --- Flex Flow --- *!
-    //flex-flow: row wrap; // Default
-
-    !* --- Justify Content --- *!
-    //justify-content: flex-start; // Default
-    //justify-content:flex-end;
-    //justify-content:center;
-    //justify-content:space-between;
-    //justify-content:space-around;
-
-    !* --- Align Items --- *!
-    //align-items: stretch; // Default
-    //align-items: flex-start;
-    //align-items: flex-end;
-    //align-items: center;
-    //align-items: baseline;
-
-    !* --- Align Content --- *!
-    //align-content: stretch; // Default
-    //align-content: flex-start;
-    //align-content: center;
-    //align-content: space-between;
-    //align-content: space-around;
-
-    .flex-item {
-      //flex-grow: 0;
-      //flex-shrink: 0;
-      //flex-basis: 0;
-      //flex: 0 1 auto; // Default
-
-      !* --- Order --- *!
-      //order: 1;
-
-      !* --- Flex Grow --- *!
-      //flex-grow: 0; // Default
-      //flex-grow: 1;
-
-      !* --- Flex Shrink --- *!
-      //flex-shrink: 0; // Default
-      //flex-shrink: 1;
-
-      !* --- Flex Basic --- *!
-      //flex-basis : auto; // Default
-      //flex-basis : 100px;
-    }
-  }
-}
-*/
-
 $sm-mobil-ios: 400px;
 $sm-mobil: 550px;
 $sm-height: 680px;
@@ -77,6 +5,10 @@ $sm-min-width: 767px;
 $md-min-width: 992px;
 $lg-min-width: 1200px;
 
+body {
+  margin: 0;
+  padding: 0;
+}
 .wrapper {
   width: 100%;
   background-color: wheat;

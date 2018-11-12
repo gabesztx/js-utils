@@ -19,4 +19,4 @@ let someValue: any = "this is a string";
 
 // let strLength: number = someValue.length;
 let strLength: number = (someValue as string).length;
-console.log(strLength);
+console.log(someValue, strLength);

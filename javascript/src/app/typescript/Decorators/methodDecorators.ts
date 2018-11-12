@@ -18,5 +18,6 @@ class GreeterMethod {
     }
 }
 let greetClass = new GreeterMethod('Gabesz');
-console.log(greetClass.greet());
+console.log('hello decor');
+// console.log(greetClass.greet());
 

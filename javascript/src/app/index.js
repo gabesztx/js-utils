@@ -1,5 +1,4 @@
-// import './index.scss';
-// import './typescript/index.js';
+import './index.scss';
 // import './javascript';
+import './typescript';
 // alert('jo');
-console.log('JO');

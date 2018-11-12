@@ -14,7 +14,8 @@ const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const getEntry = (env) => {
 
     const entry = {
-        app: ['./index.js'],
+        // app: ['./index.js'],
+        app: ['./typescript/index.ts'],
         // publicApp: ['./publicApp.js'],
     };
 
@@ -36,7 +37,7 @@ let getOutput = (env) => {
     return {
         path: path.resolve(__dirname, '../src/public/dist'),
         publicPath: '/',
-        filename: env === 'prod' ? '[name]-[chunkhash].js' : '[name].js',
+        filename: '[name].js',
         // chunkFilename: env == 'prod' ? '[name]-[chunkhash].js' : '[name].js'
     }
 };
@@ -101,7 +102,7 @@ let getPlugin = (env) => {
                     port: 3000,
                     open: true,
                     proxy: 'http://localhost:5000',
-                    notify: false,
+                    notify: true,
                     files: ['src/public/**/*.*', '*.html'],
                     ghostMode: {
                         scroll: true

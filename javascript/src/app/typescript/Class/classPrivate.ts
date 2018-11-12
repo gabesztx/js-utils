@@ -19,7 +19,7 @@ class Rhino extends Animal2 {
 }
 
 class Employee {
-    private name: string;
+    name: string;
     constructor(theName: string) {
         this.name = theName;
     }

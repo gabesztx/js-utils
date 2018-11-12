@@ -1,6 +1,0 @@
-{
-  "name": "dragEndDrop",
-  "version": "0.0.0",
-  "private": true,
-  "main": "./dragEndDrop.js"
-}
