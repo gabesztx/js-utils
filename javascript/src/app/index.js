@@ -1,4 +1,4 @@
-import './index.scss';
+// import './index.scss';
 // import './javascript';
-import './typescript';
+// import './typescript';
 // alert('jo');

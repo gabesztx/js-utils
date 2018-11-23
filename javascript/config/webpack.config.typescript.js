@@ -87,7 +87,7 @@ let getPlugin = (env) => {
 
 
 module.exports = (environment) => {
-    let env = environment == undefined ? 'prod' : environment;
+    let env = environment === undefined ? 'prod' : environment;
     let isProd = env === 'prod';
     return {
         context: sourcePath,
