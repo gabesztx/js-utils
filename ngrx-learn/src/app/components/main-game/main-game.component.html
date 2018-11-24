@@ -1,0 +1,7 @@
+<div class="mainGameComponent">
+  <h1>Counter</h1>
+  <h2 *ngIf="controller$ | async; let res">Value: {{res.counterValue}} </h2>
+  <button (click)="addValue()">Add Value</button>
+  <button (click)="removeValue()">Remove Value</button>
+</div>
+

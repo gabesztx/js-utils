@@ -84,7 +84,7 @@ export function fullDateRenderer(date: string) {
 
 /**
  * Cell renderer for close courses
- * @param date <string>
+ * @param resultEndDate <string>
  */
 export function isCloseCourse(resultEndDate: string) {
     return moment().isAfter(resultEndDate);

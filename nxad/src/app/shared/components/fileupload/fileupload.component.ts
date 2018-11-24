@@ -31,7 +31,7 @@ export class FileuploadComponent extends BaseSmartComponent implements OnInit {
 
     ngOnInit() {
         this.isActive$ = this.store.select(fromRoot.getInviteIsActive);
-        this.fileData$ = this.store.select(fromRoot.getInviteFile);
+        this.fileData$ = this.store.select(fromRoot.);
         this.subscriptions.isActive = this.isActive$.subscribe(
             (isActive) => {
                 this.isActive = isActive;
