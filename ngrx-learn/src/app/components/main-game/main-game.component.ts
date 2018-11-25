@@ -24,13 +24,9 @@ export class MainGameComponent implements OnInit, OnChanges, AfterContentInit {
   ngAfterContentInit() {}
 
   addValue() {
-    console.log('addValue');
     this.store.dispatch(new controllerAction.AddCounter());
-
   }
-
   removeValue() {
-    console.log('removeValue');
     this.store.dispatch(new controllerAction.RemoveCounter());
   }
 }
