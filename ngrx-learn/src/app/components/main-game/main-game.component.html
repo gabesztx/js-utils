@@ -1,13 +1,5 @@
 <div class="mainGameComponent">
-  <h1>Counter</h1>
-  <!--<h2 *ngIf="controller$ | async">Value: {{value}} </h2>-->
-  <h2>Other value: {{otherValue}} </h2>
-  <h2>Positions: {{config.position}}</h2>
-  <!--<h2 *ngIf="controller$ | async; let state">Async Value: {{state.counterValue}} </h2>-->
-  <!--<h2>Config Positions: {{conf}}</h2>-->
-  <!--<h2>Value: {{value}} </h2>-->
-  <h3>{{triggerVal1}}</h3>
-  <h3>{{triggerVal2}}</h3>
+  <h2 *ngIf="controller$ | async; let state">Value: {{state.counterValue}} </h2>
   <button (click)="removeValue()">Remove</button>
   <button (click)="addValue()">Add</button>
 </div>

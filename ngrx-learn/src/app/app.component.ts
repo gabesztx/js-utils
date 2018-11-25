@@ -1,35 +1,19 @@
-import { AfterContentInit, ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit, AfterContentInit {
+export class AppComponent implements OnInit {
   config = {
     position: 'top'
   };
-
-  ngOnInit() {
-    // console.log('ngOnInit');
-  }
-
-  ngAfterContentInit() {
-    console.log('ngAfterContentInit');
-    setTimeout(() => {
-      console.log('Trigger config');
-      this.config = {
-        position: 'bottom'
-      };
-    }, 3000);
-  }
+  ngOnInit() {}
 
   onClick() {
-    console.log('click');
-    // this.config.position = 'bottom :) ';
     this.config = {
       position: 'bottom'
     };
   }
 }
-
