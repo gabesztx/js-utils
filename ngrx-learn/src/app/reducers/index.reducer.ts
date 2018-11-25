@@ -1,15 +1,14 @@
 import { ActionReducerMap, createSelector } from '@ngrx/store';
 
-import * as fromControllerState from '../reducers/controller.reducer';
-
+import * as fromControllerReducer from '../reducers/controller.reducer';
 
 export interface MainState {
-  controller: fromControllerState.State;
+  controller: fromControllerReducer.State;
 }
+
 export const reducers: ActionReducerMap<MainState> = {
-  controller: fromControllerState.reducer
+  controller: fromControllerReducer.reducer
 };
 
-
 const controllerState = (state: MainState) => state.controller;
-export const getControlllerState = createSelector(controllerState, fromControllerState.getControllerState);
+export const getControlller = createSelector(controllerState, fromControllerReducer.getControllerState);

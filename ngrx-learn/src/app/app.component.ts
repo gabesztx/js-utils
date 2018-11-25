@@ -6,5 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ngrx-learn';
+  config = {
+    position: 'top'
+  };
+
+  onClick() {
+    console.log('click');
+    // this.config.position = 'bottom :) ';
+    this.config = {
+      position: 'bottom'
+    };
+  }
 }
+
