@@ -1,6 +1,6 @@
 <div class="mainGameComponent">
   <h2 *ngIf="controller$ | async; let state">Value: {{state.counterValue}} </h2>
-  <button (click)="removeValue()">Remove</button>
   <button (click)="addValue()">Add</button>
+  <button (click)="removeValue()">Remove</button>
 </div>
 

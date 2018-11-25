@@ -1,4 +1,4 @@
-import { Input, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnChanges, OnInit } from '@angular/core';
+import { Input, AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnChanges, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import * as fromRoot from '../../reducers/index.reducer';
@@ -11,32 +11,34 @@ import * as controllerAction from '../../actions/controller.action';
   styleUrls: ['./main-game.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MainGameComponent implements OnInit, OnChanges {
-  // @Input() config: any;
+export class MainGameComponent implements OnInit, OnChanges, AfterContentInit {
+  @Input() config: any;
   controller$: Observable<controllerReducer.State>;
+
   constructor(private store: Store<fromRoot.MainState>, private cdr: ChangeDetectorRef) {
+    this.controller$ = this.store.pipe(select(fromRoot.getControlller));
   }
 
   ngOnChanges() {}
-
-  ngOnInit() {
-    console.log('ngOnInit');
-      this.controller$ = this.store.pipe(select(fromRoot.getControlller));
-      // this.addValue();
-    // this.controller$ .subscribe((res) => { this.value += 1000; });
-  }
+  ngOnInit() {}
+  ngAfterContentInit() {}
 
   addValue() {
-    // console.log('addValue');
+    console.log('addValue');
     this.store.dispatch(new controllerAction.AddCounter());
+
   }
 
   removeValue() {
-    // console.log('removeValue');
+    console.log('removeValue');
     this.store.dispatch(new controllerAction.RemoveCounter());
   }
 }
 
+
+
+// this.controller$ .subscribe((res) => { this.value += 1000; });
+// setTimeout(() => {});
 // this.cdr.detectChanges();
 // this.cdr.markForCheck();
 /*

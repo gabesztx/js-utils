@@ -10,10 +10,9 @@ export class AppComponent implements OnInit {
     position: 'top'
   };
   ngOnInit() {}
-
-  onClick() {
+ /* onClick() {
     this.config = {
       position: 'bottom'
     };
-  }
+  }*/
 }
