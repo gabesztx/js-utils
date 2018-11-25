@@ -1,15 +1,14 @@
-<!--<h1>Config: {{config.position}}</h1>-->
-<h1>Counter: {{count}}</h1>
-<button (click)="add()">Trigger change detection</button>
-<h1>{{runChangeDetection1}}</h1>
-<h1>{{runChangeDetection2}}</h1>
-
-<!--
 <div class="mainGameComponent">
   <h1>Counter</h1>
-  <h2 *ngIf="controller$ | async; let res">Value: {{res.counterValue}} </h2>
-  <button (click)="addValue()">Add Value</button>
-  <button (click)="removeValue()">Remove Value</button>
+  <!--<h2 *ngIf="controller$ | async">Value: {{value}} </h2>-->
+  <h2>Other value: {{otherValue}} </h2>
+  <h2>Positions: {{config.position}}</h2>
+  <!--<h2 *ngIf="controller$ | async; let state">Async Value: {{state.counterValue}} </h2>-->
+  <!--<h2>Config Positions: {{conf}}</h2>-->
+  <!--<h2>Value: {{value}} </h2>-->
+  <h3>{{triggerVal1}}</h3>
+  <h3>{{triggerVal2}}</h3>
+  <button (click)="removeValue()">Remove</button>
+  <button (click)="addValue()">Add</button>
 </div>
--->
 
