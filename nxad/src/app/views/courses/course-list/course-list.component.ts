@@ -60,7 +60,7 @@ export class CourseListComponent extends GridController implements OnInit, OnDes
         filterFieldSelectPlaceholder: this.l10n.translate('lbl_filter_field'),
         filterTextFieldPlaceholder: this.l10n.translate('lbl_filter_text'),
         resetButtonLabel: this.l10n.translate('btn_reset_grid'),
-        pressEnterLabelKey: this.l10n.translate('lbl_press_enter'),
+        // pressEnterLabelKey: this.l10n.translate('lbl_press_enter'),
     };
 
     private gridOptions: NxGridOptions = {

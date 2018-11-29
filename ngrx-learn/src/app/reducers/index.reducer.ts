@@ -3,7 +3,7 @@ import { ActionReducerMap, createSelector } from '@ngrx/store';
 import * as fromControllerReducer from '../reducers/controller.reducer';
 
 export interface MainState {
-  controller: fromControllerReducer.State;
+  controller: fromControllerReducer.IState;
 }
 
 export const reducers: ActionReducerMap<MainState> = {

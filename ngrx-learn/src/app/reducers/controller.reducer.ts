@@ -1,10 +1,10 @@
 import * as Controller from '../actions/controller.action';
 
-export interface State {
+export interface IState {
   counterValue: number;
 }
 
-const initial_state: State = {
+const initial_state: IState = {
   counterValue: 0
 };
 
@@ -23,4 +23,4 @@ export function reducer(state = initial_state, action: Controller.Actions) {
   }
 }
 
-export const getControllerState = (state: State) => state;
+export const getControllerState = (state: IState) => state;

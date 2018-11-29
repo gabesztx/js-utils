@@ -1,9 +1,14 @@
-import { Input, AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnChanges, OnInit } from '@angular/core';
+import { Input, ChangeDetectionStrategy, Component, OnChanges, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
+import { MainState } from '../../reducers/index.reducer';
+import { ICard } from '../../models/card.model';
 import { Observable } from 'rxjs';
-import * as fromRoot from '../../reducers/index.reducer';
-import * as controllerReducer from '../../reducers/controller.reducer';
-import * as controllerAction from '../../actions/controller.action';
+
+// import * as fromRoot from '../../reducers/index.reducer';
+// import { AddCounter, RemoveCounter } from '../../actions/controller.action';
+// import * as controllerReducer from '../../reducers/controller.reducer';
+
+import { CardService } from '../../services/card.service';
 
 @Component({
   selector: 'app-main-game',
@@ -11,32 +16,40 @@ import * as controllerAction from '../../actions/controller.action';
   styleUrls: ['./main-game.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MainGameComponent implements OnInit, OnChanges, AfterContentInit {
-  @Input() config: any;
-  controller$: Observable<controllerReducer.State>;
 
-  constructor(private store: Store<fromRoot.MainState>, private cdr: ChangeDetectorRef) {
-    this.controller$ = this.store.pipe(select(fromRoot.getControlller));
+export class MainGameComponent implements OnInit, OnChanges {
+  // @Input() config: any;
+  // controller$: Observable<controllerReducer.IState>;
+  constructor(
+    private store: Store<MainState>,
+    private cardService: CardService) {
+    // this.controller$ = this.store.pipe(select(fromRoot.getControlller));
   }
 
-  ngOnChanges() {}
-  ngOnInit() {}
-  ngAfterContentInit() {}
+  ngOnChanges() {
+  }
 
-  addValue() {
-    this.store.dispatch(new controllerAction.AddCounter());
+  ngOnInit() {
   }
-  removeValue() {
-    this.store.dispatch(new controllerAction.RemoveCounter());
-  }
+
+
+  /* addValue() {
+     this.store.dispatch(new AddCounter());
+   }
+
+   removeValue() {
+     this.store.dispatch(new RemoveCounter());
+   }*/
 }
 
+// private cdr: ChangeDetectorRef
+// this.cdr.detectChanges();
+// this.cdr.markForCheck();
 
 
 // this.controller$ .subscribe((res) => { this.value += 1000; });
 // setTimeout(() => {});
-// this.cdr.detectChanges();
-// this.cdr.markForCheck();
+
 /*
   let num = 0;
   setInterval(() => {
