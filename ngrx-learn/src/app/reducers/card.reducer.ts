@@ -3,6 +3,7 @@ import { ICard } from '../models/card.model';
 
 const initial_state: ICard = {
   id: null,
+  imgUrl: null,
   rotate: false,
 };
 

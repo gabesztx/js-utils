@@ -1,6 +1,13 @@
-<div class="mainGameComponent">
-  <!--<h1>mainGameComponent</h1>-->
+<div class="cardsContainer">
+  <div class="cards" *ngFor="let card of cardList">
+    <div class="card">
+      <div class="cardFront">{{ card.id}}</div>
+      <div class="cardBack">memo</div>
+      <!--<div class=""></div>-->
+    </div>
+  </div>
 </div>
+
 <!--<div class="mainGameComponent">
   <h2 *ngIf="controller$ | async; let state">Value: {{state.counterValue}} </h2>
   <button (click)="addValue()">Add</button>

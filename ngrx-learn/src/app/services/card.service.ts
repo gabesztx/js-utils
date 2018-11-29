@@ -6,29 +6,24 @@ import { ICard } from '../models/card.model';
 })
 
 export class CardService {
-  CARD_DATA: string[] = ['8-ball', 'baked-potato'];
-  cardList: ICard[] = [];
+  cardData: string[] = ['8-ball', 'baked-potato', 'baked-potato', 'dinosaur','kronos', 'rocket'];
+  cardList: ICard[];
 
-  constructor() {
-  }
+  constructor() {}
 
   initCards() {
-    console.log('Init Cards');
-    this.cardList = this.CARD_DATA.map(key => (
+    this.cardList = this.cardData.map(key => (
         {
           id: key,
-          imgUrl: key,
-          rotate: false
+          rotate: false,
+          imgUrl: key
         }
       )
-    )
-    console.log(this.cardList);
+    );
   }
 
-  // private
-
-  duplicatedCards(): string[] {
-    return this.CARD_DATA.concat(Array.from(this.CARD_DATA));
+  getCards(): ICard[] {
+    return this.cardList.concat(Array.from(this.cardList));
   }
 }
 

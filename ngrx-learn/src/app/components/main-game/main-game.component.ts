@@ -20,16 +20,15 @@ import { CardService } from '../../services/card.service';
 export class MainGameComponent implements OnInit, OnChanges {
   // @Input() config: any;
   // controller$: Observable<controllerReducer.IState>;
-  constructor(
-    private store: Store<MainState>,
-    private cardService: CardService) {
+  cardList = [];
+
+  constructor(private store: Store<MainState>, private cardService: CardService) {
     // this.controller$ = this.store.pipe(select(fromRoot.getControlller));
   }
 
-  ngOnChanges() {
-  }
-
+  ngOnChanges() {}
   ngOnInit() {
+    this.cardList = this.cardService.getCards();
   }
 
 
