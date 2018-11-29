@@ -26,12 +26,16 @@ export class MainGameComponent implements OnInit, OnChanges {
     // this.controller$ = this.store.pipe(select(fromRoot.getControlller));
   }
 
-  ngOnChanges() {}
+  ngOnChanges() {
+  }
+
   ngOnInit() {
     this.cardList = this.cardService.getCards();
   }
 
-
+  cardRotate(value: ICard) {
+    console.log('rotate card', value);
+  }
   /* addValue() {
      this.store.dispatch(new AddCounter());
    }

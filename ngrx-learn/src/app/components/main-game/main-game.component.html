@@ -1,9 +1,8 @@
 <div class="cardsContainer">
   <div class="cards" *ngFor="let card of cardList">
-    <div class="card">
+    <div class="card" (click)="cardRotate(card)">
       <div class="cardFront">{{ card.id}}</div>
       <div class="cardBack">memo</div>
-      <!--<div class=""></div>-->
     </div>
   </div>
 </div>
