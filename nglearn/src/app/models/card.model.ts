@@ -1,9 +1,8 @@
 export interface ICard {
-  id: string;
+  id: number;
+  label: string;
   imgUrl: string;
   rotate: boolean;
 }
 
-export class CardModel {
-
-}
+export class CardModel {}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CardService } from './services/card.service';
 
 @Component({
@@ -6,18 +6,19 @@ import { CardService } from './services/card.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   constructor(private cardService: CardService) {
     this.cardService.initCards();
   }
+  ngOnInit() {}
 
-  // ngOnInit() {}
   /* onClick() {
      this.config = {
        position: 'bottom'
      };
    }*/
 }
+
 /*  config = {
     position: 'top'
   };*/

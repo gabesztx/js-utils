@@ -2,10 +2,11 @@ import { Input, ChangeDetectionStrategy, Component, OnChanges, OnInit } from '@a
 import { Store, select } from '@ngrx/store';
 import { MainState } from '../../reducers/index.reducer';
 import { ICard } from '../../models/card.model';
-import { Observable } from 'rxjs';
 import { CardService } from '../../services/card.service';
+import { Observable } from 'rxjs';
 
-// import * as fromRoot from '../../reducers/index.reducer';
+import * as fromRoot from '../../reducers/index.reducer';
+import { RotateCard } from '../../actions/card.action';
 // import { AddCounter, RemoveCounter } from '../../actions/controller.action';
 // import * as controllerReducer from '../../reducers/controller.reducer';
 
@@ -17,18 +18,15 @@ import { CardService } from '../../services/card.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class MainGameComponent implements OnInit, OnChanges {
+export class MainGameComponent implements OnInit {
   // @Input() config: any;
-  // controller$: Observable<controllerReducer.IState>;
+  controller$: Observable<any>;
   cardList$: Observable<ICard[]>;
 
   constructor(private store: Store<MainState>, private cardService: CardService) {
-    // this.controller$ = this.store.pipe(select(fromRoot.getControlller));
-    this.cardList$ = this.cardService.getCards();
-
-  }
-
-  ngOnChanges() {
+    this.cardList$ = this.store.pipe(select(fromRoot.getCard));
+    // this.controller$ = this.store.pipe(select(fromRoot.getCard));
+    // this.cardList$ = this.cardService.getCards();
   }
 
   ngOnInit() {
@@ -41,8 +39,8 @@ export class MainGameComponent implements OnInit, OnChanges {
     // this.cardList = this.cardService.getCards();
   }
 
-  cardRotate(value: ICard) {
-    console.log('rotate card', value);
+  cardRotate(card: ICard) {
+    this.store.dispatch(new RotateCard(card));
   }
 
   /* addValue() {
