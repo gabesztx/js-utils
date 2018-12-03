@@ -15,7 +15,7 @@ import { RotateCard } from '../../actions/card.action';
   selector: 'app-main-game',
   templateUrl: './main-game.component.html',
   styleUrls: ['./main-game.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class MainGameComponent implements OnInit {
@@ -30,7 +30,6 @@ export class MainGameComponent implements OnInit {
   }
 
   ngOnInit() {
-
     /*this.cardService.getCards().subscribe(
       value => {
         console.log('VALUE', value);

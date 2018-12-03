@@ -24,7 +24,8 @@ export class CardService {
         rotate: false,
       };
     });
-    this.cardList = cards.concat(Array.from(cards));
+    this.cardList = JSON.parse(JSON.stringify(cards.concat(cards.slice(0))));
+    console.log(this.cardList);
     this.store.dispatch(new InitCards(this.cardList));
   }
 

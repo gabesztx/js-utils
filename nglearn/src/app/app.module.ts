@@ -5,13 +5,15 @@ import { StoreModule } from '@ngrx/store';
 import { reducers } from './reducers/index.reducer';
 import { AppComponent } from './app.component';
 import { MainGameComponent } from './components/main-game/main-game.component';
+import { CardComponent } from './components/card/card.component';
 
 // import { CardService } from './services/card.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainGameComponent
+    MainGameComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
