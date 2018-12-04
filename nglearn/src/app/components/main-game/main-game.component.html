@@ -1,14 +1,10 @@
 <div class="cardsContainer">
-  <div class="cards" *ngFor="let card of cardList$ | async">
-    <div class="card"
-         [ngClass]="{'rotate':card.rotate}"
-         (click)="cardRotate(card)">
-      <div class="cardFront">{{card.id}}</div>
-      <div class="cardBack">memo {{card.rotate}}</div>
-    </div>
-  </div>
+  <app-card
+    *ngFor="let item of cardList$ | async"
+    [card]="item"
+    (flipped)="cardRotate($event)">
+  </app-card>
 </div>
-
 
 <!--<div class="mainGameComponent">
   <h2 *ngIf="controller$ | async; let state">Value: {{state.counterValue}} </h2>

@@ -10,19 +10,15 @@ import { RotateCard } from '../../actions/card.action';
 // import { AddCounter, RemoveCounter } from '../../actions/controller.action';
 // import * as controllerReducer from '../../reducers/controller.reducer';
 
-
 @Component({
   selector: 'app-main-game',
   templateUrl: './main-game.component.html',
   styleUrls: ['./main-game.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class MainGameComponent implements OnInit {
-  // @Input() config: any;
-  controller$: Observable<any>;
   cardList$: Observable<ICard[]>;
-
   constructor(private store: Store<MainState>, private cardService: CardService) {
     this.cardList$ = this.store.pipe(select(fromRoot.getCard));
     // this.controller$ = this.store.pipe(select(fromRoot.getCard));
@@ -39,6 +35,7 @@ export class MainGameComponent implements OnInit {
   }
 
   cardRotate(card: ICard) {
+    console.log('ROTATE');
     this.store.dispatch(new RotateCard(card));
   }
 
