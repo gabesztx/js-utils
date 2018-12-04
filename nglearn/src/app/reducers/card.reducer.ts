@@ -8,7 +8,7 @@ export function reducer(state = initial_state, action: CardAction.Actions) {
     case CardAction.INIT_CARDS:
       return action.payload;
     case CardAction.ROTATE_CARD:
-      action.payload.rotate = true;
+      action.payload.rotate = !action.payload.rotate;
       return state;
     default:
       return state;

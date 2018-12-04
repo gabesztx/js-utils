@@ -11,7 +11,7 @@ export class InitCards implements Action {
 
 export class RotateCard implements Action {
   readonly type = ROTATE_CARD;
-  constructor(public payload?: any) {}
+  constructor(public payload: any) {}
 }
 
 export type Actions = InitCards | RotateCard;

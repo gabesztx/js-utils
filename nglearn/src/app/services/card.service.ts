@@ -12,7 +12,8 @@ import { InitCards } from '../actions/card.action';
 
 export class CardService {
   cardData: string[] = ['8-ball', 'baked-potato', 'dinosaur', 'kronos', 'rocket', 'skinny-unicorn'];
-  cardList: ICard[];
+  private cardList: ICard[];
+
   constructor(private store: Store<MainState>) {}
 
   initCards() {
@@ -25,17 +26,8 @@ export class CardService {
       };
     });
     this.cardList = JSON.parse(JSON.stringify(cards.concat(cards.slice(0))));
-    console.log(this.cardList);
     this.store.dispatch(new InitCards(this.cardList));
   }
-
-  /*getCards(): Observable<ICard[]> {
-    return of(this.cardList).pipe(
-      map(value => {
-        return value;
-      })
-    );
-  }*/
 
   /*private duplicatedCards(): ICard[] {
     return this.CARD_DATA.concat(Array.from(this.CARD_DATA));

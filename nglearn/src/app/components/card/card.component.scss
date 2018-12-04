@@ -1,13 +1,13 @@
 :host {
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 80px;
   margin: 10px;
   perspective: 800px;
   .card {
     width: 100%;
     height: 100%;
-    transition: transform 0.75s ease-out;
+    transition: transform 0.5s ease-out;
     transform-style: preserve-3d;
     .item {
       position: absolute;
@@ -18,10 +18,9 @@
       width: 100%;
       border-radius: 4px;
       backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
       &.back {
         cursor: pointer;
-        background: blue;
+        background: #6cad4d;
         transform: rotateY(0);
       }
       &.front {

@@ -2,12 +2,6 @@
   <app-card
     *ngFor="let item of cardList$ | async"
     [card]="item"
-    (flipped)="cardRotate($event)">
+    (cardHandler)="cardHandler($event)">
   </app-card>
 </div>
-
-<!--<div class="mainGameComponent">
-  <h2 *ngIf="controller$ | async; let state">Value: {{state.counterValue}} </h2>
-  <button (click)="addValue()">Add</button>
-  <button (click)="removeValue()">Remove</button>
-</div>-->

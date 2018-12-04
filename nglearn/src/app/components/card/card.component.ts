@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ICard } from '../../models/card.model';
 
 @Component({
   selector: 'app-card',
@@ -6,12 +7,14 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit {
-  @Input() card: any;
-  @Output() flipped = new EventEmitter();
+  @Input() card: ICard;
+  @Output() cardHandler = new EventEmitter();
+
   constructor() {}
   ngOnInit() {}
-  flip(card: any) {
-    this.flipped.emit(card)
+
+  checkCard(card: ICard) {
+    this.cardHandler.emit(card);
   }
 
 }
