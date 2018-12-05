@@ -24,7 +24,13 @@ export class MainGameComponent implements OnInit {
     this.cardList$ = this.store.pipe(select(fromRoot.getCard));
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.cardList$.subscribe(
+      value => {
+        console.log('VALUE', value);
+      }
+    );
+  }
 
   cardHandler(card: ICard) {
     this.cardRotate(card);
@@ -38,10 +44,21 @@ export class MainGameComponent implements OnInit {
   cardsIsMatched(card: ICard) {
     this.cardsOpened.push(card);
     if (this.cardsOpened.length === 2) {
-      const isEqualCards = this.cardsOpened
-        .reduce((prevCard, currCard) => prevCard.label === currCard.label);
+      const isEqualCards = this.cardsOpened.reduce((previousValue, currentValue) => {
+      return previousValue.label === currentValue.label;
+      });
+      console.log(isEqualCards);
+      /*const isEqualCards = this.cardsOpened.reduce((prevCard, currCard) => {
+
+        console.log('prevCard', prevCard);
+        console.log('currCArd', currCard);
+      });*/
+      /*const isEqualCards = this.cardsOpened.reduce((prevCard, currCard) => {
+        return prevCard;
+      });*/
+      // console.log('isEqualCards', isEqualCards);
       if (isEqualCards) {
-        // console.log('MATCHED!!!!!');
+        console.log('MATCHED!!!!!');
       } else {
         const cardsOpened = [this.cardsOpened[0], this.cardsOpened[1]];
         setTimeout(() => {

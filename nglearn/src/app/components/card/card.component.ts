@@ -13,7 +13,7 @@ export class CardComponent implements OnInit {
   constructor() {}
   ngOnInit() {}
 
-  checkCard(card: ICard) {
+  rotate(card: ICard) {
     this.cardHandler.emit(card);
   }
 
