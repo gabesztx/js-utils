@@ -25,11 +25,11 @@ export class MainGameComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.cardList$.subscribe(
+    /*this.cardList$.subscribe(
       value => {
         console.log('VALUE', value);
       }
-    );
+    );*/
   }
 
   cardHandler(card: ICard) {
@@ -44,20 +44,17 @@ export class MainGameComponent implements OnInit {
   cardsIsMatched(card: ICard) {
     this.cardsOpened.push(card);
     if (this.cardsOpened.length === 2) {
-      const isEqualCards = this.cardsOpened.reduce((previousValue, currentValue) => {
+      
+      /*const isEqualCards = this.cardsOpened.reduce((previousValue, currentValue) => {
       return previousValue.label === currentValue.label;
-      });
-      console.log(isEqualCards);
+      });*/
+      // console.log(isEqualCards);
       /*const isEqualCards = this.cardsOpened.reduce((prevCard, currCard) => {
 
         console.log('prevCard', prevCard);
         console.log('currCArd', currCard);
       });*/
-      /*const isEqualCards = this.cardsOpened.reduce((prevCard, currCard) => {
-        return prevCard;
-      });*/
-      // console.log('isEqualCards', isEqualCards);
-      if (isEqualCards) {
+      /*if (isEqualCards) {
         console.log('MATCHED!!!!!');
       } else {
         const cardsOpened = [this.cardsOpened[0], this.cardsOpened[1]];
@@ -67,7 +64,7 @@ export class MainGameComponent implements OnInit {
           });
           this.cdr.detectChanges();
         }, 1000);
-      }
+      }*/
       this.cardsOpened = [];
     }
   }

@@ -35,7 +35,8 @@ export function reducer(state = initial_state, action: CardAction.Actions) {
         cards: action.payload
       };
     case CardAction.ROTATE_CARD:
-      action.payload.rotate = !action.payload.rotate;
+      const currentCard = action.payload;
+      currentCard.rotate = !currentCard.rotate;
       return state;
     default:
       return state;
