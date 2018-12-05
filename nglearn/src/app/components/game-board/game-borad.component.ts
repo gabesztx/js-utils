@@ -20,22 +20,19 @@ export class GameBoradComponent implements OnInit {
   cardsOpened: ICard[] = [];
 
   constructor(private store: Store<MainState>,
-              private cardService: CardService,
-              private cdr: ChangeDetectorRef,
-  ) {
+              private cardService: CardService) {
     this.cardList$ = this.store.pipe(select(fromRoot.getCard));
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   cardRotate(card: ICard) {
     this.cardsOpened.push(card);
     this.store.dispatch(new RotateCard(card));
     if (this.cardsOpened.length === 2) {
-      const prevCardValue = this.cardsOpened[0].label;
-      const currCardValu = this.cardsOpened[1].label;
-      if (prevCardValue === currCardValu) {
+      const prevCardLabel = this.cardsOpened[0].label;
+      const currCardLabel = this.cardsOpened[1].label;
+      if (prevCardLabel === currCardLabel) {
         this.cardsMatched();
       } else {
         this.cardsUnMatched();
@@ -57,10 +54,10 @@ export class GameBoradComponent implements OnInit {
     }, 1000);
   }
 
-  cardReset() {
+  /*cardReset() {
     this.cardService.resetCards();
     this.cardService.initCards();
-  }
+  }*/
 }
 
 // setTimeout(() => {})

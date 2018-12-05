@@ -1,4 +1,4 @@
-import * as Controller from '../actions/controller.action';
+import * as Controller from '../actions/status.action';
 
 export interface IState {
   counterValue: number;
