@@ -1,14 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ICard } from '../models/card.model';
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { MainState } from '../reducers/index.reducer';
 import { InitCards, ResetCard } from '../actions/card.action';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 
 export class CardService {
   cardData: string[] = ['8-ball', 'baked-potato', 'dinosaur', 'kronos', 'rocket', 'skinny-unicorn'];
@@ -31,7 +27,7 @@ export class CardService {
     this.store.dispatch(new InitCards(this.cardList));
   }
 
-  resetCards(){
+  resetCards() {
     this.store.dispatch(new ResetCard());
   }
 

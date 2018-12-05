@@ -12,25 +12,21 @@ const initial_state: IState = {
 export function reducer(state = initial_state, action: CardAction.Actions) {
   switch (action.type) {
     case CardAction.INIT_CARDS:
-      console.log('INIT CARDS');
+      // console.log('INIT CARDS');
       return {
         ...state,
         cards: action.payload
       };
     case CardAction.ROTATE_CARD:
-      const cardId = action.payload.id;
-      // console.log('ROTATE_CARD', cardId);
-      /*const cards = state.cards.map((value) => {
-        if (value.id === cardId) {
-          value.rotate = !value.rotate;
-        }
-        return value;
-      });
-      // currentCard.rotate = !currentCard.rotate;
       return {
         ...state,
-        cards: cards
-      };*/
+        cards: state.cards.map((card) => {
+          if (card.id === action.payload.id) {
+            card.rotate = !card.rotate;
+          }
+          return card;
+        })
+      };
     case CardAction.RESET_CARD:
       return initial_state;
     default:

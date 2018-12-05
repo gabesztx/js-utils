@@ -9,24 +9,25 @@ import * as fromRoot from '../../reducers/index.reducer';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-main-game',
-  templateUrl: './main-game.component.html',
-  styleUrls: ['./main-game.component.scss'],
+  selector: 'app-game-board',
+  templateUrl: './game-borad.component.html',
+  styleUrls: ['./game-board.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class MainGameComponent implements OnInit {
+export class GameBoradComponent implements OnInit {
   cardList$: Observable<ICard[]>;
   cardsOpened: ICard[] = [];
 
   constructor(private store: Store<MainState>,
               private cardService: CardService,
               private cdr: ChangeDetectorRef,
-              ) {
+  ) {
     this.cardList$ = this.store.pipe(select(fromRoot.getCard));
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   cardRotate(card: ICard) {
     this.cardsOpened.push(card);
@@ -35,17 +36,25 @@ export class MainGameComponent implements OnInit {
       const prevCardValue = this.cardsOpened[0].label;
       const currCardValu = this.cardsOpened[1].label;
       if (prevCardValue === currCardValu) {
-        // console.log('Card is Matched');
+        this.cardsMatched();
       } else {
-        const cardsOpened = [this.cardsOpened[0], this.cardsOpened[1]];
-        setTimeout(() => {
-          cardsOpened.forEach((item: ICard) => {
-            this.store.dispatch(new RotateCard(item));
-          });
-        }, 1000);
+        this.cardsUnMatched();
       }
       this.cardsOpened = [];
     }
+  }
+
+  cardsMatched() {
+    console.log('Card is Matched');
+  }
+
+  cardsUnMatched() {
+    const cardsOpened = [this.cardsOpened[0], this.cardsOpened[1]];
+    setTimeout(() => {
+      cardsOpened.forEach((item: ICard) => {
+        this.store.dispatch(new RotateCard(item));
+      });
+    }, 1000);
   }
 
   cardReset() {
