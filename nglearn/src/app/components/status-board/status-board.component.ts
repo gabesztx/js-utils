@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, timer } from 'rxjs';
 
 @Component({
   selector: 'app-status-board',
@@ -6,6 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./status-board.component.scss']
 })
 export class StatusBoardComponent implements OnInit {
-  constructor() {}
-  ngOnInit() {}
+  $interval: Observable<number>;
+  constructor() {
+    // this.$interval = timer(0, 1000);
+  }
+
+  ngOnInit() {
+    // this.$interval = timer(0, 1000);
+  /*  this.$interval.subscribe(
+      (val) => {
+        console.log('VAL', val);
+      });*/
+  }
 }

@@ -12,7 +12,6 @@ const initial_state: IState = {
 export function reducer(state = initial_state, action: CardAction.Actions) {
   switch (action.type) {
     case CardAction.INIT_CARDS:
-      // console.log('INIT CARDS');
       return {
         ...state,
         cards: action.payload
@@ -27,11 +26,11 @@ export function reducer(state = initial_state, action: CardAction.Actions) {
           return card;
         })
       };
-    case CardAction.RESET_CARD:
+    case CardAction.RESET_CARDS:
       return initial_state;
     default:
       return state;
   }
 }
 
-export const getCardState = (state) => state.cards;
+export const getCards = (state) => state.cards;

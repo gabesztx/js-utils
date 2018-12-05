@@ -3,7 +3,7 @@ import { Store, select } from '@ngrx/store';
 import { MainState } from '../../reducers/index.reducer';
 import { ICard } from '../../models/card.model';
 import { CardService } from '../../services/card.service';
-import { RotateCard, ResetCard } from '../../actions/card.action';
+import { RotateCard } from '../../actions/card.action';
 import * as fromRoot from '../../reducers/index.reducer';
 
 import { Observable } from 'rxjs';
@@ -21,7 +21,7 @@ export class GameBoradComponent implements OnInit {
 
   constructor(private store: Store<MainState>,
               private cardService: CardService) {
-    this.cardList$ = this.store.pipe(select(fromRoot.getCard));
+    this.cardList$ = this.store.pipe(select(fromRoot.getCards));
   }
 
   ngOnInit() {}
@@ -51,7 +51,7 @@ export class GameBoradComponent implements OnInit {
       cardsOpened.forEach((item: ICard) => {
         this.store.dispatch(new RotateCard(item));
       });
-    }, 1000);
+    }, 750);
   }
 
   /*cardReset() {
