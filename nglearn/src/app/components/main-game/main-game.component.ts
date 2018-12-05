@@ -44,18 +44,12 @@ export class MainGameComponent implements OnInit {
   cardsIsMatched(card: ICard) {
     this.cardsOpened.push(card);
     if (this.cardsOpened.length === 2) {
-      
-      /*const isEqualCards = this.cardsOpened.reduce((previousValue, currentValue) => {
-      return previousValue.label === currentValue.label;
-      });*/
-      // console.log(isEqualCards);
-      /*const isEqualCards = this.cardsOpened.reduce((prevCard, currCard) => {
-
-        console.log('prevCard', prevCard);
-        console.log('currCArd', currCard);
-      });*/
-      /*if (isEqualCards) {
-        console.log('MATCHED!!!!!');
+      console.log(this.cardsOpened);
+      const prevCardValue = this.cardsOpened[0].label;
+      const currCardValu = this.cardsOpened[1].label;
+      const isEqualCards = prevCardValue === currCardValu;
+      if (isEqualCards) {
+        console.log('Card is Matched');
       } else {
         const cardsOpened = [this.cardsOpened[0], this.cardsOpened[1]];
         setTimeout(() => {
@@ -64,7 +58,7 @@ export class MainGameComponent implements OnInit {
           });
           this.cdr.detectChanges();
         }, 1000);
-      }*/
+      }
       this.cardsOpened = [];
     }
   }
@@ -74,3 +68,7 @@ export class MainGameComponent implements OnInit {
 // private cdr: ChangeDetectorRef
 // this.cdr.detectChanges();
 // this.cdr.markForCheck();
+/*  const isEqualCards = this.cardsOpened.reduce((previousValue, currentValue) => {
+ return previousValue.label === currentValue.label;
+ });
+ */

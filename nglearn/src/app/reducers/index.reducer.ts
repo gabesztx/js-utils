@@ -1,5 +1,4 @@
 import { ActionReducerMap, createSelector } from '@ngrx/store';
-import { ICard } from '../models/card.model';
 import * as fromCardReducer from '../reducers/card.reducer';
 
 export interface MainState {

@@ -29,7 +29,7 @@ const initial_state: IState = {
 export function reducer(state = initial_state, action: CardAction.Actions) {
   switch (action.type) {
     case CardAction.INIT_CARDS:
-      console.log('INIT_CARDS');
+      // console.log('INIT_CARDS');
       return {
         ...state,
         cards: action.payload

@@ -6,12 +6,12 @@ export const ROTATE_CARD = '[CARD] Rotate Card';
 
 export class InitCards implements Action {
   readonly type = INIT_CARDS;
-  constructor(public payload?: ICard[]) {}
+  constructor(public payload: ICard[]) {}
 }
 
 export class RotateCard implements Action {
   readonly type = ROTATE_CARD;
-  constructor(public payload: any) {}
+  constructor(public payload: ICard) {}
 }
 
 export type Actions = InitCards | RotateCard;
