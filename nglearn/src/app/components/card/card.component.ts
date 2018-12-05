@@ -8,13 +8,12 @@ import { ICard } from '../../models/card.model';
 })
 export class CardComponent implements OnInit {
   @Input() card: ICard;
-  @Output() cardHandler = new EventEmitter();
+  @Output() cardRotate = new EventEmitter();
 
   constructor() {}
   ngOnInit() {}
 
   rotate(card: ICard) {
-    this.cardHandler.emit(card);
+    this.cardRotate.emit(card);
   }
-
 }

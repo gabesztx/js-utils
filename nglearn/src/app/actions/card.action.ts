@@ -3,6 +3,7 @@ import { ICard } from '../models/card.model';
 
 export const INIT_CARDS = '[CARD] Init Cards';
 export const ROTATE_CARD = '[CARD] Rotate Card';
+export const RESET_CARD = '[CARD] Reset Card';
 
 export class InitCards implements Action {
   readonly type = INIT_CARDS;
@@ -14,4 +15,8 @@ export class RotateCard implements Action {
   constructor(public payload: ICard) {}
 }
 
-export type Actions = InitCards | RotateCard;
+export class ResetCard implements Action {
+  readonly type = RESET_CARD;
+}
+
+export type Actions = InitCards | RotateCard | ResetCard;

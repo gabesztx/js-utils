@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { MainState } from '../reducers/index.reducer';
-import { InitCards } from '../actions/card.action';
+import { InitCards, ResetCard } from '../actions/card.action';
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +12,15 @@ import { InitCards } from '../actions/card.action';
 
 export class CardService {
   cardData: string[] = ['8-ball', 'baked-potato', 'dinosaur', 'kronos', 'rocket', 'skinny-unicorn'];
-  private cardList: ICard[];
+  cardList: ICard[];
 
-  constructor(private store: Store<MainState>) {}
+  constructor(private store: Store<MainState>) {
+  }
 
   initCards() {
-    const cards: ICard[] = this.cardData.map((label, id) => {
+    const duplicatedCards = JSON.parse(JSON.stringify(this.cardData.concat(this.cardData.slice(0))));
+    const randomCards = this.randomCards(duplicatedCards);
+    this.cardList = randomCards.map((label, id) => {
       return {
         id: id,
         imgUrl: label,
@@ -25,13 +28,20 @@ export class CardService {
         rotate: false,
       };
     });
-    this.cardList = JSON.parse(JSON.stringify(cards.concat(cards.slice(0))));
     this.store.dispatch(new InitCards(this.cardList));
   }
 
-  /*private duplicatedCards(): ICard[] {
-    return this.CARD_DATA.concat(Array.from(this.CARD_DATA));
-  }*/
+  resetCards(){
+    this.store.dispatch(new ResetCard());
+  }
+
+  randomCards(cardData): string[] {
+    return cardData
+      .map(a => [Math.random(), a])
+      .sort((a, b) => a[0] - b[0])
+      .map(a => a[1]);
+  }
+
 }
 
 

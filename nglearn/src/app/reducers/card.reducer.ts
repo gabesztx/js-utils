@@ -1,20 +1,3 @@
-/*import * as CardAction from '../actions/card.action';
-import { ICard } from '../models/card.model';
-const initial_state: ICard[] = [];
-export function reducer(state = initial_state, action: CardAction.Actions) {
-  switch (action.type) {
-    case CardAction.INIT_CARDS:
-      return action.payload;
-    case CardAction.ROTATE_CARD:
-      action.payload.rotate = !action.payload.rotate;
-      return state;
-    default:
-      return state;
-  }
-}
-export const getCardState = (state: ICard[]) => state;*/
-
-
 import * as CardAction from '../actions/card.action';
 import { ICard } from '../models/card.model';
 
@@ -29,15 +12,27 @@ const initial_state: IState = {
 export function reducer(state = initial_state, action: CardAction.Actions) {
   switch (action.type) {
     case CardAction.INIT_CARDS:
-      // console.log('INIT_CARDS');
+      console.log('INIT CARDS');
       return {
         ...state,
         cards: action.payload
       };
     case CardAction.ROTATE_CARD:
-      const currentCard = action.payload;
-      currentCard.rotate = !currentCard.rotate;
-      return state;
+      const cardId = action.payload.id;
+      // console.log('ROTATE_CARD', cardId);
+      /*const cards = state.cards.map((value) => {
+        if (value.id === cardId) {
+          value.rotate = !value.rotate;
+        }
+        return value;
+      });
+      // currentCard.rotate = !currentCard.rotate;
+      return {
+        ...state,
+        cards: cards
+      };*/
+    case CardAction.RESET_CARD:
+      return initial_state;
     default:
       return state;
   }

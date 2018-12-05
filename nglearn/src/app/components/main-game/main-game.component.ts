@@ -3,7 +3,7 @@ import { Store, select } from '@ngrx/store';
 import { MainState } from '../../reducers/index.reducer';
 import { ICard } from '../../models/card.model';
 import { CardService } from '../../services/card.service';
-import { RotateCard } from '../../actions/card.action';
+import { RotateCard, ResetCard } from '../../actions/card.action';
 import * as fromRoot from '../../reducers/index.reducer';
 
 import { Observable } from 'rxjs';
@@ -20,47 +20,37 @@ export class MainGameComponent implements OnInit {
   cardsOpened: ICard[] = [];
 
   constructor(private store: Store<MainState>,
-              private cdr: ChangeDetectorRef) {
+              private cardService: CardService,
+              private cdr: ChangeDetectorRef,
+              ) {
     this.cardList$ = this.store.pipe(select(fromRoot.getCard));
   }
 
-  ngOnInit() {
-    /*this.cardList$.subscribe(
-      value => {
-        console.log('VALUE', value);
-      }
-    );*/
-  }
-
-  cardHandler(card: ICard) {
-    this.cardRotate(card);
-    this.cardsIsMatched(card);
-  }
+  ngOnInit() {}
 
   cardRotate(card: ICard) {
-    this.store.dispatch(new RotateCard(card));
-  }
-
-  cardsIsMatched(card: ICard) {
     this.cardsOpened.push(card);
+    this.store.dispatch(new RotateCard(card));
     if (this.cardsOpened.length === 2) {
-      console.log(this.cardsOpened);
       const prevCardValue = this.cardsOpened[0].label;
       const currCardValu = this.cardsOpened[1].label;
-      const isEqualCards = prevCardValue === currCardValu;
-      if (isEqualCards) {
-        console.log('Card is Matched');
+      if (prevCardValue === currCardValu) {
+        // console.log('Card is Matched');
       } else {
         const cardsOpened = [this.cardsOpened[0], this.cardsOpened[1]];
         setTimeout(() => {
           cardsOpened.forEach((item: ICard) => {
-            this.cardRotate(item);
+            this.store.dispatch(new RotateCard(item));
           });
-          this.cdr.detectChanges();
         }, 1000);
       }
       this.cardsOpened = [];
     }
+  }
+
+  cardReset() {
+    this.cardService.resetCards();
+    this.cardService.initCards();
   }
 }
 
@@ -72,3 +62,9 @@ export class MainGameComponent implements OnInit {
  return previousValue.label === currentValue.label;
  });
  */
+
+/*this.cardList$.subscribe(
+  value => {
+	console.log('VALUE', value);
+  }
+);*/
