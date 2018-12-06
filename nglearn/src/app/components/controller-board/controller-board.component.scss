@@ -1,0 +1,13 @@
+:host{
+  width: 100%;
+  .controllerContainer {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    .startGameBtn{
+      margin: 10px;
+      color: white;
+      background-color: #2566ff;
+    }
+  }
+}

@@ -12,36 +12,37 @@ import { TimeUpdate } from '../../actions/status.action';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StatusBoardComponent implements OnInit {
+  private timeSubscription: Subscription;
   private timeInterval$: Observable<number>;
-  private timeIntervalSub: Subscription;
-  gameIsStarted$: Observable<boolean>;
+
+  isStart$: Observable<boolean>;
   time$: Observable<number>;
   match$: Observable<number>;
-  // time$: Observable<number>;
+  score$: Observable<number>;
 
   constructor(private store: Store<fromRoot.MainState>) {
     this.timeInterval$ = timer(0, 1000);
-    this.gameIsStarted$ = this.store.pipe(select(fromRoot.getStatusIsStarted));
+    this.isStart$ = this.store.pipe(select(fromRoot.getStatusIsStarted));
     this.time$ = this.store.pipe(select(fromRoot.getStatusTime));
+    this.match$ = this.store.pipe(select(fromRoot.getStatusMatch));
   }
 
   ngOnInit() {
-    this.gameIsStarted$.subscribe(isStart => {
+    this.isStart$.subscribe(isStart => {
       isStart ? this.addTimer() : this.removeTimer();
     });
   }
 
   addTimer() {
-    console.log('Add Timer');
-    this.timeIntervalSub = this.timeInterval$.subscribe(timeValue => {
+    this.timeSubscription = this.timeInterval$.subscribe(timeValue => {
       this.store.dispatch(new TimeUpdate(timeValue));
     });
   }
 
   removeTimer() {
-    if (this.timeIntervalSub) {
-      console.log('Remove Timer', this.timeIntervalSub);
-      this.timeIntervalSub.unsubscribe();
+    if (this.timeSubscription) {
+      console.log('Remove Timer', this.timeSubscription);
+      this.timeSubscription.unsubscribe();
     }
   }
 }

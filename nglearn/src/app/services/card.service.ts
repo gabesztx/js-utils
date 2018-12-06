@@ -5,17 +5,16 @@ import { MainState } from '../reducers/index.reducer';
 import { InitCards } from '../actions/card.action';
 
 @Injectable()
-
 export class CardService {
-  cardData: string[] = ['8-ball', 'baked-potato', 'dinosaur', 'kronos', 'rocket', 'skinny-unicorn'];
+  // cardData: string[] = ['8-ball', 'baked-potato', 'dinosaur', 'kronos', 'rocket', 'skinny-unicorn'];
+  cardData: string[] = ['8-ball', 'baked-potato'];
   cardList: ICard[];
 
-  constructor(private store: Store<MainState>) {
-  }
+  constructor(private store: Store<MainState>) {}
 
   initCards() {
     const duplicatedCards = JSON.parse(JSON.stringify(this.cardData.concat(this.cardData.slice(0))));
-    const randomCards = this.randomCards(duplicatedCards);
+    const randomCards = this.getRandomCards(duplicatedCards);
     this.cardList = randomCards.map((label, id) => {
       return {
         id: id,
@@ -27,11 +26,7 @@ export class CardService {
     this.store.dispatch(new InitCards(this.cardList));
   }
 
-  resetCards() {
-    // this.store.dispatch(new ResetCard());
-  }
-
-  randomCards(cardData): string[] {
+  private getRandomCards(cardData): string[] {
     return cardData
       .map(a => [Math.random(), a])
       .sort((a, b) => a[0] - b[0])
@@ -40,6 +35,4 @@ export class CardService {
 
 }
 
-
-
-
+// this.store.dispatch(new ResetCard());

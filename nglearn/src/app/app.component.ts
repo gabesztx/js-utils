@@ -29,8 +29,6 @@ export class AppComponent implements OnInit {
     // this.obj.id = 100;
     // console.log('new', newObj);
     // console.log('old', this.obj);
-
-
   }
 
   /* onClick() {

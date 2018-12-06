@@ -30,7 +30,7 @@ export function reducer(state = initial_state, action: StatusAction.Actions) {
       });
     case StatusAction.MATCH_UPDATE:
       return Object.assign({}, state, {
-        match: state.match++,
+        match: ++state.match,
       });
     default:
       return state;

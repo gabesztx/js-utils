@@ -3,9 +3,8 @@ import { Store, select } from '@ngrx/store';
 import { ICard } from '../../models/card.model';
 import { CardService } from '../../services/card.service';
 import { RotateCard } from '../../actions/card.action';
-import { StartGame, EndGame } from '../../actions/status.action';
+import { StartGame, MatchUpdate } from '../../actions/status.action';
 import * as fromRoot from '../../reducers/index.reducer';
-// import { getStatusIsStarted } from '../../reducers/status.reducer';
 
 import { Observable } from 'rxjs';
 
@@ -22,20 +21,17 @@ export class GameBoradComponent implements OnInit {
   private firstClick: boolean;
   cardList$: Observable<ICard[]>;
 
-  constructor(private store: Store<fromRoot.MainState>,
-              private cardService: CardService) {
+  constructor(private store: Store<fromRoot.MainState>) {
     this.cardList$ = this.store.pipe(select(fromRoot.getCards));
     this.firstClick = true;
     this.matchNum = 0;
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   cardRotate(card: ICard) {
     this.cardsOpened.push(card);
     this.store.dispatch(new RotateCard(card));
-
     if (this.firstClick) {
       this.firstClick = false;
       this.store.dispatch(new StartGame());
@@ -53,13 +49,7 @@ export class GameBoradComponent implements OnInit {
   }
 
   cardsMatched() {
-    const matchNumber = this.cardService.cardData.length;
-    this.matchNum++;
-    if(this.matchNum === matchNumber){
-      console.log('GAME OVER');
-      this.store.dispatch(new StartGame());
-    }
-    // console.log('Card is Matched', this.matchNum, ' - ', matchNumber);
+    this.store.dispatch(new MatchUpdate());
   }
 
   cardsUnMatched() {
@@ -68,7 +58,7 @@ export class GameBoradComponent implements OnInit {
       cardsOpened.forEach((card: ICard) => {
         this.store.dispatch(new RotateCard(card));
       });
-    }, 850);
+    }, 900);
   }
 
   /*cardReset() {

@@ -23,7 +23,6 @@ export class ScoreUpdate implements Action {
 }
 export class MatchUpdate implements Action {
   readonly type = MATCH_UPDATE;
-  constructor(public payload: number) {}
 }
 
 export type Actions =

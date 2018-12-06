@@ -7,6 +7,7 @@ import { GameBoradComponent } from './components/game-board/game-borad.component
 import { StatusBoardComponent } from './components/status-board/status-board.component';
 import { CardComponent } from './components/card/card.component';
 import { CardService } from './services/card.service';
+import { ControllerBoardComponent } from './components/controller-board/controller-board.component';
 // import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
@@ -14,7 +15,8 @@ import { CardService } from './services/card.service';
     AppComponent,
     GameBoradComponent,
     CardComponent,
-    StatusBoardComponent
+    StatusBoardComponent,
+    ControllerBoardComponent
   ],
   imports: [
     BrowserModule,
