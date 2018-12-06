@@ -1,10 +1,11 @@
-import { Input, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnChanges, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { MainState } from '../../reducers/index.reducer';
 import { ICard } from '../../models/card.model';
 import { CardService } from '../../services/card.service';
 import { RotateCard } from '../../actions/card.action';
+import { StartGame, EndGame } from '../../actions/status.action';
 import * as fromRoot from '../../reducers/index.reducer';
+// import { getStatusIsStarted } from '../../reducers/status.reducer';
 
 import { Observable } from 'rxjs';
 
@@ -16,19 +17,29 @@ import { Observable } from 'rxjs';
 })
 
 export class GameBoradComponent implements OnInit {
+  private cardsOpened: ICard[] = [];
+  private matchNum: number;
+  private firstClick: boolean;
   cardList$: Observable<ICard[]>;
-  cardsOpened: ICard[] = [];
 
-  constructor(private store: Store<MainState>,
+  constructor(private store: Store<fromRoot.MainState>,
               private cardService: CardService) {
     this.cardList$ = this.store.pipe(select(fromRoot.getCards));
+    this.firstClick = true;
+    this.matchNum = 0;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   cardRotate(card: ICard) {
     this.cardsOpened.push(card);
     this.store.dispatch(new RotateCard(card));
+
+    if (this.firstClick) {
+      this.firstClick = false;
+      this.store.dispatch(new StartGame());
+    }
     if (this.cardsOpened.length === 2) {
       const prevCardLabel = this.cardsOpened[0].label;
       const currCardLabel = this.cardsOpened[1].label;
@@ -42,16 +53,22 @@ export class GameBoradComponent implements OnInit {
   }
 
   cardsMatched() {
-    console.log('Card is Matched');
+    const matchNumber = this.cardService.cardData.length;
+    this.matchNum++;
+    if(this.matchNum === matchNumber){
+      console.log('GAME OVER');
+      this.store.dispatch(new StartGame());
+    }
+    // console.log('Card is Matched', this.matchNum, ' - ', matchNumber);
   }
 
   cardsUnMatched() {
     const cardsOpened = [this.cardsOpened[0], this.cardsOpened[1]];
     setTimeout(() => {
-      cardsOpened.forEach((item: ICard) => {
-        this.store.dispatch(new RotateCard(item));
+      cardsOpened.forEach((card: ICard) => {
+        this.store.dispatch(new RotateCard(card));
       });
-    }, 750);
+    }, 850);
   }
 
   /*cardReset() {

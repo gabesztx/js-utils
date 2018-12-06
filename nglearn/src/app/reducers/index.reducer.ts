@@ -6,18 +6,15 @@ export interface MainState {
   cards: fromCardReducer.IState;
   status: fromStatusReducer.IState;
 }
-
 export const reducers: ActionReducerMap<MainState> = {
   cards: fromCardReducer.reducer,
   status: fromStatusReducer.reducer,
 };
-
 const cardState = (state: MainState) => state.cards;
 const statusState = (state: MainState) => state.status;
 
 export const getCards = createSelector(cardState, fromCardReducer.getCards);
 
-// export const getStatusState = createSelector(statusState, fromStatusReducer.getStatusState);
-
 export const getStatusTime = createSelector(statusState, fromStatusReducer.getStatusTime);
+export const getStatusMatch = createSelector(statusState, fromStatusReducer.getStatusMatch);
 export const getStatusIsStarted = createSelector(statusState, fromStatusReducer.getStatusIsStarted);

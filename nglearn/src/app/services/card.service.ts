@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ICard } from '../models/card.model';
 import { Store } from '@ngrx/store';
 import { MainState } from '../reducers/index.reducer';
-import { InitCards, ResetCard } from '../actions/card.action';
+import { InitCards } from '../actions/card.action';
 
 @Injectable()
 
@@ -28,7 +28,7 @@ export class CardService {
   }
 
   resetCards() {
-    this.store.dispatch(new ResetCard());
+    // this.store.dispatch(new ResetCard());
   }
 
   randomCards(cardData): string[] {

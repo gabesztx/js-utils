@@ -1,6 +1,10 @@
 <div class="statusContainer">
-  <!--<div class="timeContent" *ngIf="$interval | async; let time;">-->
-  <div class="timeContent">Time: 0:00</div>
-  <div class="timeContent">Score: 0</div>
-  <div class="scoreContent">Matched: 0</div>
+  <div class="timeContent">
+    <span class="">Time:</span>
+    <span *ngIf="time$ | async; let time; else defaultNumber">{{time}}</span>
+  </div>
+  <div class="scoreContent">Score: 0</div>
+  <div class="matchContent">Matched: 0</div>
 </div>
+<ng-template #defaultNumber>0</ng-template>
+
