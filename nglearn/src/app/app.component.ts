@@ -30,14 +30,5 @@ export class AppComponent implements OnInit {
     // console.log('new', newObj);
     // console.log('old', this.obj);
   }
-
-  /* onClick() {
-     this.config = {
-       position: 'bottom'
-     };
-   }*/
 }
 
-/*  config = {
-    position: 'top'
-  };*/

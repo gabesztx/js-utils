@@ -34,5 +34,3 @@ export class CardService {
   }
 
 }
-
-// this.store.dispatch(new ResetCard());

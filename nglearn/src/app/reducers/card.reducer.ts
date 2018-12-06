@@ -6,7 +6,7 @@ export interface IState {
 }
 
 const initial_state: IState = {
-  cards: []
+  cards: [],
 };
 
 export function reducer(state = initial_state, action: CardAction.Actions) {
@@ -20,7 +20,7 @@ export function reducer(state = initial_state, action: CardAction.Actions) {
       return {
         ...state,
         cards: state.cards.map((card) => {
-          if (card.id === action.payload.id) {
+          if (card.id === action.payload) {
             card.rotate = !card.rotate;
           }
           return card;

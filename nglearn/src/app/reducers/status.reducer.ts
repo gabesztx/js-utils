@@ -8,7 +8,7 @@ export interface IState {
 }
 
 const initial_state: IState = {
-  isStarted: false,
+  isStarted: null,
   time: 0,
   score: 0,
   match: 0,
@@ -17,21 +17,32 @@ const initial_state: IState = {
 export function reducer(state = initial_state, action: StatusAction.Actions) {
   switch (action.type) {
     case StatusAction.START_GAME:
-      return Object.assign({}, state, {
-        isStarted: true,
-      });
+      return {
+        ...state,
+        isStarted: true
+      };
     case StatusAction.END_GAME:
-      return Object.assign({}, state, {
-        isStarted: false,
-      });
+      return {
+        ...state,
+        isStarted: false
+      };
+    case StatusAction.UPDATE_GAME:
+      return {
+        ...state,
+        isStarted: !state.isStarted ? true : state.isStarted
+      };
     case StatusAction.TIME_UPDATE:
-      return Object.assign({}, state, {
-        time: action.payload,
-      });
+      return {
+        ...state,
+        time: action.payload
+      };
     case StatusAction.MATCH_UPDATE:
-      return Object.assign({}, state, {
-        match: ++state.match,
-      });
+      const matchNum = ++state.match;
+      return {
+        ...state,
+        match: matchNum,
+        isStarted: matchNum === action.payload ? false : state.isStarted
+      };
     default:
       return state;
   }

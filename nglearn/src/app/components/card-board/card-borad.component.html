@@ -2,6 +2,6 @@
   <app-card
     *ngFor="let item of cardList$ | async"
     [card]="item"
-    (cardRotate)="cardRotate($event)">
+    (cardHandler)="cardHandler($event)">
   </app-card>
 </div>

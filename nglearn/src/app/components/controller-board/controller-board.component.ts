@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./controller-board.component.scss']
 })
 export class ControllerBoardComponent implements OnInit {
-
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
+  restartGame() {
+    // this.store.dispatch(new ResetCard());
+  }
 }

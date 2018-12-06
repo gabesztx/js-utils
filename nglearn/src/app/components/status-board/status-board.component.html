@@ -3,10 +3,10 @@
     <span class="">Time: </span>
     <span *ngIf="time$ | async; let timeValue; else defaultNumber">{{timeValue}}</span>
   </div>
-  <div class="scoreContent">
+  <!--<div class="scoreContent">
     <span class="">Score: </span>
     <span *ngIf="score$ | async; let scoreValue; else defaultNumber">{{scoreValue}}</span>
-  </div>
+  </div>-->
   <div class="matchContent">
     <span class="">Matched: </span>
     <span *ngIf="match$ | async; let matchValue; else defaultNumber">{{matchValue}}</span>
