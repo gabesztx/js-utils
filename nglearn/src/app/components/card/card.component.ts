@@ -8,12 +8,12 @@ import { ICard } from '../../models/card.model';
 })
 export class CardComponent implements OnInit {
   @Input() card: ICard;
-  @Output() cardHandler = new EventEmitter();
+  @Output() cardUpdate = new EventEmitter();
 
   constructor() {}
   ngOnInit() {}
 
   clickCard(card: ICard) {
-    this.cardHandler.emit(card);
+    this.cardUpdate.emit(card);
   }
 }

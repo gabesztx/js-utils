@@ -2,7 +2,8 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@
 import { Store, select } from '@ngrx/store';
 import { ICard } from '../../models/card.model';
 import { RotateCard } from '../../actions/card.action';
-import { MatchUpdate, UpdateGame, EndGame } from '../../actions/status.action';
+import { MatchUpdate } from '../../actions/status.action';
+import { UpdateGame } from '../../actions/controller.action';
 import * as fromRoot from '../../reducers/index.reducer';
 import { CardService } from '../../services/card.service';
 import { Observable } from 'rxjs';
@@ -22,15 +23,15 @@ export class CardBoradComponent implements OnInit {
     this.cardList$ = this.store.pipe(select(fromRoot.getCards));
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
-  cardHandler(card: ICard) {
+  cardUpdate(card: ICard) {
     this.store.dispatch(new UpdateGame());
     this.cardRotate(card);
     this.cardsOpened.push(card);
     if (this.cardsOpened.length === 2) {
-      const isEqualCards = this.cardsOpened[0].label === this.cardsOpened[1].label;
-      isEqualCards ? this.cardsMatched() : this.cardsUnMatched();
+      this.cardsIsMatched() ? this.cardsMatched() : this.cardsUnMatched();
       this.cardsOpened = [];
     }
   }
@@ -40,8 +41,7 @@ export class CardBoradComponent implements OnInit {
   }
 
   cardsMatched() {
-    const matchLenght = this.cardService.cardData.length;
-    this.store.dispatch(new MatchUpdate(matchLenght));
+    this.store.dispatch(new MatchUpdate());
   }
 
   cardsUnMatched() {
@@ -51,6 +51,10 @@ export class CardBoradComponent implements OnInit {
         this.cardRotate(card);
       });
     }, 1000);
+  }
+
+  cardsIsMatched(): boolean {
+    return this.cardsOpened[0].label === this.cardsOpened[1].label;
   }
 }
 

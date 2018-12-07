@@ -1,3 +1,5 @@
 <div class="controllerContainer">
-  <div class="startGameBtn" (click)="restartGame()">New Game</div>
+  <div class="btnContent" *ngIf="isFinished$| async">
+    <div class="restartBtn" (click)="restartGame()">Restart Game</div>
+  </div>
 </div>
