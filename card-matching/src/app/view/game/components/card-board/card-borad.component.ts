@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { ICard } from '../../models/card.model';
-import { RotateCard, InactiveCards } from '../../actions/card.action';
-import { ScoreUpdate, MatchUpdate } from '../../actions/status.action';
-import { UpdateGame } from '../../actions/controller.action';
-import * as fromRoot from '../../reducers/index.reducer';
+import { ICard } from '../../../../models/card.model';
+import { RotateCard, InactiveCards } from '../../../../actions/card.action';
+import { ScoreUpdate, MatchUpdate } from '../../../../actions/status.action';
+import { UpdateGame } from '../../../../actions/controller.action';
+import * as fromRoot from '../../../../reducers/index.reducer';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -32,8 +32,7 @@ export class CardBoradComponent implements OnInit {
     );
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   cardUpdate(card: ICard) {
     this.store.dispatch(new UpdateGame());

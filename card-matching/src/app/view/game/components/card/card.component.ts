@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ICard } from '../../models/card.model';
+import { ICard } from '../../../../models/card.model';
 
 @Component({
   selector: 'app-card',
