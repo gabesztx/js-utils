@@ -3,6 +3,7 @@ export interface ICard {
   label: string;
   imgUrl: string;
   rotate: boolean;
+  inactive: boolean;
 }
 
 export class CardModel {}

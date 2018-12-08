@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { ICard } from '../../models/card.model';
-import { RotateCard } from '../../actions/card.action';
+import { RotateCard, InactiveCards } from '../../actions/card.action';
 import { ScoreUpdate, MatchUpdate } from '../../actions/status.action';
 import { UpdateGame } from '../../actions/controller.action';
 import * as fromRoot from '../../reducers/index.reducer';
@@ -50,8 +50,16 @@ export class CardBoradComponent implements OnInit {
   }
 
   cardsMatched() {
+    const cardsOpened = [this.cardsOpened[0], this.cardsOpened[1]];
+    setTimeout(() => {
+      cardsOpened.forEach((card: ICard) => {
+        this.store.dispatch(new InactiveCards(card.id));
+      });
+    }, 450);
+
     this.store.dispatch(new MatchUpdate());
   }
+
 
   cardsUnMatched() {
     const cardsOpened = [this.cardsOpened[0], this.cardsOpened[1]];

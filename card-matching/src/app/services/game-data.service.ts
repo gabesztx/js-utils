@@ -31,16 +31,15 @@ export class GameDataService {
         imgUrl: `assets/${label}.png`,
         label: label,
         rotate: false,
+        inactive: false,
       };
     });
     this.store.dispatch(new InitCards(this.cardList));
   }
-
   private getRandomCards(cardData): string[] {
     return cardData
       .map(a => [Math.random(), a])
       .sort((a, b) => a[0] - b[0])
       .map(a => a[1]);
   }
-
 }

@@ -26,6 +26,16 @@ export function reducer(state = initial_state, action: CardAction.Actions) {
           return card;
         })
       };
+    case CardAction.INACTIVE_CARDS:
+      return {
+        ...state,
+        cards: state.cards.map((card) => {
+          if (card.id === action.payload) {
+            card.inactive = true;
+          }
+          return card;
+        })
+      };
     case CardAction.RESET_CARDS:
       return initial_state;
     default:
