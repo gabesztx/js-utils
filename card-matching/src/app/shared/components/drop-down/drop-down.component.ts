@@ -6,16 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./drop-down.component.scss']
 })
 export class DropDownComponent implements OnInit {
-  sortOrders: string[] = ["Year", "Title", "Author"];
-  selectedSortOrder: string = "Year";
-  constructor() { }
+  option = [3, 4, 5, 6, 7, 8, 9, 10];
+  selected = 3;
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
-  onClick(){
-   console.log('onOpenChange');
-  }
-  ChangeSortOrder(newSortOrder: string) {
-    this.selectedSortOrder = newSortOrder;
+
+  onSelect(value) {
+    this.selected = value;
   }
 }

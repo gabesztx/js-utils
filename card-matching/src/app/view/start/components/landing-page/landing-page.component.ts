@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 import * as fromRoot from '../../../../reducers/index.reducer';
 
 @Component({
@@ -9,14 +9,16 @@ import * as fromRoot from '../../../../reducers/index.reducer';
   styleUrls: ['./landing-page.component.scss']
 })
 export class LandingPageComponent implements OnInit {
-
   constructor(private store: Store<fromRoot.MainState>, private router: Router) {
     // this.router.navigate(['game']);
     // this.store.dispatch()
+    // setTimeout(() => {}, 2000)
   }
 
-  ngOnInit() {
-    // setTimeout(() => {}, 2000)
+  ngOnInit() {}
+
+  startGame() {
+    console.log('startGame');
   }
 
 }

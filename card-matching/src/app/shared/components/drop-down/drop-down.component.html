@@ -1,20 +1,12 @@
 <div class="dropDownComponent">
-  <div ngbDropdown
-       class="d-inline-block">
-    <button class="btn btn-outline-primary"
-            id="dropdownBasic1"
-            ngbDropdownToggle>
-      {{selectedSortOrder}}
-    </button>
-    <div ngbDropdownMenu
-         class="dropdown-menu"
-         aria-labelledby="dropdownBasic1">
-      <button
-        class="dropdown-item"
-        *ngFor="let sortOrder of sortOrders"
-        (click)="ChangeSortOrder(sortOrder)">
-        {{sortOrder}}
-      </button>
+  <div class="dropDownContent" ngbDropdown>
+    <div class="dropDownBtn" id="dropDown" ngbDropdownToggle>{{selected}}</div>
+    <div class="dropDownMenu" aria-labelledby="dropDown" ngbDropdownMenu>
+      <div class="dropDownItem"
+           *ngFor="let item of option"
+           (click)="onSelect(item)">
+        {{item}}
+      </div>
     </div>
   </div>
 </div>

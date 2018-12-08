@@ -1,3 +1,44 @@
-.dropDownComponent{
+$boxShadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+$dropDownWidth: 70px;
+$dropDownFontSize: 15px;
+$dropDownPadding: 18px;
 
+.dropDownComponent {
+  .dropDownContent {
+    position: relative;
+    font-size: 15px;
+    margin: auto;
+    padding: 5px 0;
+    width: $dropDownWidth;
+    box-shadow: $boxShadow;
+    background-color: white;
+    .dropDownBtn {
+      cursor: pointer;
+      border-radius: 2px;
+      width: 100%;
+      padding-left: $dropDownPadding;
+      &:after {
+        position: absolute;
+        font-size: 15px;
+        top: 15px;
+        right: $dropDownPadding;
+      }
+    }
+    .dropDownMenu {
+      border: 0;
+      border-radius: 0;
+      font-size: $dropDownFontSize;
+      min-width: $dropDownWidth;
+      box-shadow: $boxShadow;
+      background-color: white;
+      .dropDownItem {
+        cursor: pointer;
+        text-align: center;
+        padding: 2px 0;
+        &:hover {
+          background-color: #e8e8e8;
+        }
+      }
+    }
+  }
 }
