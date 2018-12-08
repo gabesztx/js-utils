@@ -1,20 +1,19 @@
 :host {
-  width: 100%;
-  padding: 20px 0;
+  display: flex;
   .statusContainer {
-    display: flex;
     width: 100%;
-    .statusWrapper{
+    padding: 20px 0;
+    .statusWrapper {
       display: flex;
       width: 100%;
       justify-content: space-between;
       align-items: center;
-      .highScoreContent{}
+      .highScoreContent {
+      }
       .restartContent {
         .restartBtn {
           cursor: pointer;
           color: black;
-          font-weight: bold;
           border: 2px solid black;
           padding: 5px;
         }
