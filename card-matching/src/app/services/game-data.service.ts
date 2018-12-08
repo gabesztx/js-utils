@@ -9,8 +9,8 @@ export class GameDataService {
   cardData: string[] = [
     'angular',
     'd3',
-    'jenkins',
-    'postcss',
+    // 'jenkins',
+    // 'postcss',
     // 'react',
     // 'redux',
     // 'sass',
