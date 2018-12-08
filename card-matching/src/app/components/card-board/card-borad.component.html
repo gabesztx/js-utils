@@ -1,0 +1,7 @@
+<div class="cardsContainer">
+  <app-card
+    *ngFor="let item of cardList$ | async"
+    [card]="item"
+    (cardUpdate)="cardUpdate($event)">
+  </app-card>
+</div>

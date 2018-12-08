@@ -1,0 +1,38 @@
+:host {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 10px;
+  perspective: 800px;
+  .card {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-out;
+    transform-style: preserve-3d;
+    .item {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+      border-radius: 4px;
+      backface-visibility: hidden;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
+      background: white;
+      img {
+        width: 60%;
+      }
+      &.back {
+        cursor: pointer;
+        transform: rotateY(0);
+      }
+      &.front {
+        transform: rotateY(180deg);
+      }
+    }
+    &.rotate {
+      transform: rotateY(180deg);
+    }
+  }
+}

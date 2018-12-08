@@ -1,0 +1,6 @@
+<div class="card" [ngClass]="{'rotate': card.rotate}">
+  <div class="item front" >
+    <img class="cardImg" src="{{card.imgUrl}}" alt="">
+  </div>
+  <div class="item back" (click)="clickCard(card)"></div>
+</div>

@@ -1,0 +1,27 @@
+:host {
+  display: flex;
+  width: 100%;
+  padding: 20px 0;
+  background-color: black;
+  .headerContent {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    .logoContent {
+      display: flex;
+      align-items: center;
+      .logo {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+        background-image: url('../../../assets/icon/supercharge-logo.svg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+      .companyName {
+        color: white;
+      }
+    }
+  }
+}

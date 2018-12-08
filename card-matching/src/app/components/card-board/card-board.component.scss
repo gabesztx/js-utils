@@ -1,0 +1,8 @@
+:host {
+  display: flex;
+  .cardsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
