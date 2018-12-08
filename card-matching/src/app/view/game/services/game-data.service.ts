@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ICard } from '../models/card.model';
 import { Store } from '@ngrx/store';
-import { MainState } from '../reducers/index.reducer';
-import { InitCards } from '../actions/card.action';
+import { ICard } from '../models/card.model';
+import { MainState } from '../../../reducers/index.reducer';
+import { InitCards } from '../../../actions/card.action';
 
 @Injectable()
 export class GameDataService {

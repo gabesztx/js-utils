@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { GameDataService } from './services/game-data.service';
+// import { GameDataService } from './view/game/services/game-data.service';
+// this.gameDataService.initCards();
 
 @Component({
   selector: 'app-root',
@@ -7,9 +8,11 @@ import { GameDataService } from './services/game-data.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(private gameDataService: GameDataService) {
-    this.gameDataService.initCards();
+  // constructor(private gameDataService: GameDataService) {
+  constructor() {
   }
-  ngOnInit() {}
+
+  ngOnInit() {
+  }
 }
 

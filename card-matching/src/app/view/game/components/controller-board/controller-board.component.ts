@@ -3,7 +3,7 @@ import { select, Store } from '@ngrx/store';
 import * as fromRoot from '../../../../reducers/index.reducer';
 import { HighScroreUpdate } from '../../../../actions/status.action';
 import { FinishGame } from '../../../../actions/controller.action';
-import { GameDataService } from '../../../../services/game-data.service';
+import { GameDataService } from '../../services/game-data.service';
 import { Observable, Subscription } from 'rxjs';
 
 @Component({

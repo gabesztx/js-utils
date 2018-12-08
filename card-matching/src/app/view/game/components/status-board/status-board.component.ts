@@ -3,7 +3,7 @@ import { select, Store } from '@ngrx/store';
 import * as fromRoot from '../../../../reducers/index.reducer';
 import { ResetStatus } from '../../../../actions/status.action';
 import { ResetCards } from '../../../../actions/card.action';
-import { GameDataService } from '../../../../services/game-data.service';
+import { GameDataService } from '../../services/game-data.service';
 import { Observable } from 'rxjs';
 
 @Component({

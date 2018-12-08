@@ -5,23 +5,28 @@ import { StatusBoardComponent } from './components/status-board/status-board.com
 import { CardBoradComponent } from './components/card-board/card-borad.component';
 import { CardComponent } from './components/card/card.component';
 import { ControllerBoardComponent } from './components/controller-board/controller-board.component';
+import { GamePageComponent } from './components/game-page/game-page.component';
+import { GameDataService } from './services/game-data.service';
 
 @NgModule({
   declarations: [
+    GamePageComponent,
     StatusBoardComponent,
     CardBoradComponent,
     CardComponent,
     ControllerBoardComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
   ],
   exports: [
+    GamePageComponent,
     StatusBoardComponent,
     CardBoradComponent,
     CardComponent,
     ControllerBoardComponent,
-  ]
+  ],
+  providers: [GameDataService],
 })
 export class GameModule {
 }

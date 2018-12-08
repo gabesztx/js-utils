@@ -1,14 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-// import { RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { RouterStateSerializer } from '@ngrx/router-store';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { reducers } from './reducers/index.reducer';
+import { GameModule } from './view/game/game.module';
+import { StartModule } from './view/start/start.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
-import { GameDataService } from './services/game-data.service';
-import { GameModule } from './view/game/game.module';
+import { reducers } from './reducers/index.reducer';
 import { routes } from './app.routing';
+import { CustomSerializer } from './shared/utils';
 
 @NgModule({
   declarations: [
@@ -17,12 +20,16 @@ import { routes } from './app.routing';
   ],
   imports: [
     BrowserModule,
-    GameModule,
+    RouterModule.forRoot(routes),
     StoreModule.forRoot(reducers),
-    // RouterModule.forRoot(routes),
-    // StoreRouterConnectingModule,
+    StartModule,
+    GameModule,
+    StoreDevtoolsModule.instrument(),
+    StoreRouterConnectingModule.forRoot({stateKey: 'router'})
   ],
-  providers: [GameDataService],
+  providers: [
+    { provide: RouterStateSerializer, useClass: CustomSerializer }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

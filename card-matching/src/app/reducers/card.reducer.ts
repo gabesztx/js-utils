@@ -1,5 +1,5 @@
 import * as CardAction from '../actions/card.action';
-import { ICard } from '../models/card.model';
+import { ICard } from '../view/game/models/card.model';
 
 export interface IState {
   cards: ICard[];

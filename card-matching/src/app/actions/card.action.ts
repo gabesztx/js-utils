@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { ICard } from '../models/card.model';
+import { ICard } from '../view/game/models/card.model';
 
 export const INIT_CARDS = '[CARD] Init Cards';
 export const ROTATE_CARD = '[CARD] Rotate Card';

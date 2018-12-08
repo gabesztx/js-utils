@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { ICard } from '../../../../models/card.model';
+import { ICard } from '../../models/card.model';
 import { RotateCard, InactiveCards } from '../../../../actions/card.action';
 import { ScoreUpdate, MatchUpdate } from '../../../../actions/status.action';
 import { UpdateGame } from '../../../../actions/controller.action';
