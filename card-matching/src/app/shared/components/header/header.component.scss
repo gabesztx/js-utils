@@ -1,8 +1,9 @@
 :host {
-  display: flex;
-  width: 100%;
+  //display: flex;
+  //width: 100%;
   .headerContent {
-    padding: 15px;
+    padding: 15px 0;
+    //padding: 15px;
     width: 100%;
     background-color: black;
     .logoContent {
@@ -12,7 +13,7 @@
         width: 35px;
         height: 35px;
         margin-right: 10px;
-        background-image: url('../../../assets/icon/supercharge-logo.svg');
+        background-image: url('../../../../assets/icon/supercharge-logo.svg');
         background-position: center;
         background-repeat: no-repeat;
         background-size: contain;

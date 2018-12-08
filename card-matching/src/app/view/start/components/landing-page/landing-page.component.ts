@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Router } from "@angular/router";
 import * as fromRoot from '../../../../reducers/index.reducer';
-// import { RouterGo } from '../../../../actions/router.action';
 
 @Component({
   selector: 'app-landing-page',
@@ -11,18 +10,13 @@ import * as fromRoot from '../../../../reducers/index.reducer';
 })
 export class LandingPageComponent implements OnInit {
 
-  constructor(private store: Store<fromRoot.MainState>,
-              private router: Router) {
+  constructor(private store: Store<fromRoot.MainState>, private router: Router) {
     // this.router.navigate(['game']);
+    // this.store.dispatch()
   }
 
   ngOnInit() {
-    setTimeout(() => {
-      // this.router.navigate(['game']);
-      // console.log('NAVI', fromRoot.reducers.router);
-      // fromRoot.reducers.router
-      // this.store.dispatch()
-    }, 2000)
+    // setTimeout(() => {}, 2000)
   }
 
 }

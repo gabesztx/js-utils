@@ -5,30 +5,34 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { RouterStateSerializer } from '@ngrx/router-store';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
+
 import { GameModule } from './view/game/game.module';
 import { StartModule } from './view/start/start.module';
+import { SharedModule } from './shared/shared.module';
+
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
+
 import { reducers } from './reducers/index.reducer';
 import { routes } from './app.routing';
+
 import { CustomSerializer } from './shared/utils';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     StoreModule.forRoot(reducers),
+    SharedModule,
     StartModule,
     GameModule,
     StoreDevtoolsModule.instrument(),
     StoreRouterConnectingModule.forRoot({stateKey: 'router'})
   ],
   providers: [
-    { provide: RouterStateSerializer, useClass: CustomSerializer }
+    {provide: RouterStateSerializer, useClass: CustomSerializer}
   ],
   bootstrap: [AppComponent]
 })
