@@ -55,7 +55,6 @@ export class CardBoradComponent implements OnInit {
         this.store.dispatch(new InactiveCards(card.id));
       });
     }, 450);
-
     this.store.dispatch(new MatchUpdate());
   }
 

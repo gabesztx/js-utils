@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import * as fromRoot from '../../../../reducers/index.reducer';
+import { Observable } from "rxjs";
 
 @Component({
   selector: 'app-landing-page',
@@ -9,16 +10,19 @@ import * as fromRoot from '../../../../reducers/index.reducer';
   styleUrls: ['./landing-page.component.scss']
 })
 export class LandingPageComponent implements OnInit {
+  deskSize$: Observable<number>;
+
   constructor(private store: Store<fromRoot.MainState>, private router: Router) {
-    // this.router.navigate(['game']);
-    // this.store.dispatch()
-    // setTimeout(() => {}, 2000)
+    this.deskSize$ = this.store.pipe(select(fromRoot.getDeskSize))
   }
 
   ngOnInit() {}
-
   startGame() {
+    // this.router.navigate(['game']);
     console.log('startGame');
   }
 
+  changeDeskSize() {
+  console.log('changeDesk');
+  }
 }

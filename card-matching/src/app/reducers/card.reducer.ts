@@ -3,10 +3,12 @@ import { ICard } from '../view/game/models/card.model';
 
 export interface IState {
   cards: ICard[];
+  deskSize: number
 }
 
 const initial_state: IState = {
   cards: [],
+  deskSize: 1
 };
 
 export function reducer(state = initial_state, action: CardAction.Actions) {
@@ -36,6 +38,11 @@ export function reducer(state = initial_state, action: CardAction.Actions) {
           return card;
         })
       };
+    case CardAction.DESK_SIZE:
+      return {
+        ...state,
+        deskSize:action.payload
+      };
     case CardAction.RESET_CARDS:
       return initial_state;
     default:
@@ -44,3 +51,4 @@ export function reducer(state = initial_state, action: CardAction.Actions) {
 }
 
 export const getCards = (state) => state.cards;
+export const getDeskSize = (state) => state.deskSize;
