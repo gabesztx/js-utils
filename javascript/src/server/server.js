@@ -5,7 +5,8 @@ import webpack from 'webpack';
 
 import webpackMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
-import webpackConfig from '../../config/webpack.config';
+// import webpackConfig from '../../config/webpack.config';
+import webpackConfig from '../../config/webpack.config.typescript';
 
 const app = express();
 const port = process.env.PORT || 5000;
