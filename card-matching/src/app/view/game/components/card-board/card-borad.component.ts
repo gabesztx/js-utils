@@ -47,7 +47,6 @@ export class CardBoradComponent implements OnInit {
   cardRotate(card: ICard) {
     this.store.dispatch(new RotateCard(card.id));
   }
-
   cardsMatched() {
     const cardsOpened = [this.cardsOpened[0], this.cardsOpened[1]];
     setTimeout(() => {
@@ -55,11 +54,8 @@ export class CardBoradComponent implements OnInit {
         this.store.dispatch(new InactiveCards(card.id));
       });
     }, 450);
-
     this.store.dispatch(new MatchUpdate());
   }
-
-
   cardsUnMatched() {
     const cardsOpened = [this.cardsOpened[0], this.cardsOpened[1]];
     this.store.dispatch(new ScoreUpdate());
@@ -69,14 +65,11 @@ export class CardBoradComponent implements OnInit {
       });
     }, 850);
   }
-
   cardsIsMatched(): boolean {
     return this.cardsOpened[0].label === this.cardsOpened[1].label;
   }
-
   cardsReset() {
     this.cardsOpened = [];
     clearTimeout(this.rotateTimeOut);
   }
-
 }

@@ -1,9 +1,9 @@
 import { Action } from '@ngrx/store';
 
-export const SCORE_UPDATE = '[Status] Score Update';
-export const MATCH_UPDATE = '[Status] Match Update';
-export const HIGHSCORE_UPDATE = '[Status] High Score Update';
-export const RESET_STATUS = '[Status] Reset Status';
+export const SCORE_UPDATE = '[STATUS] Score Update';
+export const MATCH_UPDATE = '[STATUS] Match Update';
+export const HIGHSCORE_UPDATE = '[STATUS] High Score Update';
+export const RESET_STATUS = '[STATUS] Reset Status';
 
 export class ScoreUpdate implements Action {
   readonly type = SCORE_UPDATE;

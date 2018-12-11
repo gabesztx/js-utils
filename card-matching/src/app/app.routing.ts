@@ -3,7 +3,6 @@ import { LandingPageComponent } from './view/start/components/landing-page/landi
 import { GamePageComponent } from './view/game/components/game-page/game-page.component';
 // import { PreloadGuard } from './shared/guards/preload.guard';
 
-
 export const routes: Routes = [
   {
     path: 'start',
@@ -13,6 +12,14 @@ export const routes: Routes = [
     path: 'game',
     component: GamePageComponent
   },
-  {path: '', redirectTo: 'start', pathMatch: 'full'},
-  {path: '**', redirectTo: 'start', pathMatch: 'full'},
+  {
+    path: '',
+    redirectTo: 'start',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    redirectTo: 'start',
+    pathMatch: 'full'
+  }
 ];

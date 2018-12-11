@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import * as fromRoot from '../../../../reducers/index.reducer';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-landing-page',
@@ -18,7 +19,6 @@ export class LandingPageComponent implements OnInit {
   ngOnInit() {}
 
   startGame() {
-    console.log('startGame');
+    this.router.navigate(['game']);
   }
-
 }

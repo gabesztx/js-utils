@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import * as fromRoot from '../../../reducers/index.reducer';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -6,6 +10,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  constructor() {}
-  ngOnInit() {}
+  constructor(private store: Store<fromRoot.MainState>, private router: Router) {}
+  startPage$: Observable<boolean>;
+  ngOnInit() {
+    this.startPage$ = this.store.pipe(select(fromRoot.getStartPage));
+    /*this.state$ = this.store.pipe(select(fromRoot.getRouter));
+    this.state$.subscribe((res) => {
+      console.log('STATE: ', res);
+    });*/
+  }
+  newGame(){
+    // this.store.dispatch()
+    this.router.navigate(['start']);
+  }
 }

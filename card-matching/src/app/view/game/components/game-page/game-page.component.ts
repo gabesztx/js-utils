@@ -7,11 +7,10 @@ import { GameDataService } from '../../services/game-data.service';
   styleUrls: ['./game-page.component.scss']
 })
 export class GamePageComponent implements OnInit {
-
-  constructor(private gameDataService:GameDataService) { }
-
+  constructor(private gameDataService: GameDataService) {
+    console.log('Game');
+  }
   ngOnInit() {
     this.gameDataService.initCards();
   }
-
 }

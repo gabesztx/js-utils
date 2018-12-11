@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// import { GameDataService } from './view/game/services/game-data.service';
-// this.gameDataService.initCards();
 
 @Component({
   selector: 'app-root',
@@ -9,10 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   // constructor(private gameDataService: GameDataService) {
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit() {
+    // this.gameDataService.initCards();
   }
 }
-

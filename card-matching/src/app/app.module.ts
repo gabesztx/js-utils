@@ -15,7 +15,7 @@ import { AppComponent } from './app.component';
 import { reducers } from './reducers/index.reducer';
 import { routes } from './app.routing';
 
-import { CustomSerializer } from './shared/utils';
+// import { CustomSerializer } from './shared/utils';
 
 @NgModule({
   declarations: [
@@ -29,11 +29,11 @@ import { CustomSerializer } from './shared/utils';
     StartModule,
     GameModule,
     StoreDevtoolsModule.instrument(),
-    StoreRouterConnectingModule.forRoot({stateKey: 'router'})
+    // StoreRouterConnectingModule.forRoot({stateKey: 'router'})
   ],
-  providers: [
+ /* providers: [
     {provide: RouterStateSerializer, useClass: CustomSerializer}
-  ],
+  ],*/
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -23,13 +23,15 @@ export const reducers: ActionReducerMap<MainState> = {
 const cardState = (state: MainState) => state.cards;
 const statusState = (state: MainState) => state.status;
 const controllerState = (state: MainState) => state.controller;
-
 // const routerState = createFeatureSelector<RouterReducerState<RouterStateUrl>>('router');
-// export const getRouter = createSelector(routerState, state => state.state);
 
+// export const getRouter = createSelector(routerState, state => state.state);
 export const getCards = createSelector(cardState, fromCardReducer.getCards);
 export const getMatch = createSelector(statusState, fromStatusReducer.getStatusMatch);
 export const getScore = createSelector(statusState, fromStatusReducer.getStatusScore);
 export const getHighScore = createSelector(statusState, fromStatusReducer.getStatusHighScore);
+
 export const getIsStarted = createSelector(controllerState, fromControllerReducer.getControllerIsStarted);
+export const getStartPage = createSelector(controllerState, fromControllerReducer.getControllerStartPage);
+export const getGamePage = createSelector(controllerState, fromControllerReducer.getControllerGamePage);
 

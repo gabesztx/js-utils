@@ -2,7 +2,9 @@
   //display: flex;
   //width: 100%;
   .headerContent {
+    display: flex;
     padding: 10px 0;
+    justify-content: space-between;
     width: 100%;
     background-color: rgb(30, 30, 30);
     box-shadow: 1px 1px 16px 0 rgba(0, 0, 0, 0.6);
@@ -21,6 +23,17 @@
         margin-left: 15px;
         color: white;
         font-size: 18px;
+      }
+    }
+    .newGameContent {
+      //padding-top: 20px;
+      .startGameBtn {
+        cursor: pointer;
+        color: white;
+        font-weight: 500;
+        padding: 5px 15px;
+        text-transform: uppercase;
+        background-color: rgb(255, 1, 23);
       }
     }
   }
