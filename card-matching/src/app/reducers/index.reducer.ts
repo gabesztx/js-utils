@@ -1,6 +1,4 @@
-import { ActionReducerMap, createSelector, createFeatureSelector } from '@ngrx/store';
-import { routerReducer, RouterReducerState, } from '@ngrx/router-store';
-import { RouterStateUrl } from '../shared/utils';
+import { ActionReducerMap, createSelector } from '@ngrx/store';
 
 import * as fromCardReducer from '../reducers/card.reducer';
 import * as fromStatusReducer from '../reducers/status.reducer';
@@ -27,6 +25,7 @@ const controllerState = (state: MainState) => state.controller;
 
 // export const getRouter = createSelector(routerState, state => state.state);
 export const getCards = createSelector(cardState, fromCardReducer.getCards);
+export const getDeskSize = createSelector(cardState, fromCardReducer.getDeskSize);
 export const getMatch = createSelector(statusState, fromStatusReducer.getStatusMatch);
 export const getScore = createSelector(statusState, fromStatusReducer.getStatusScore);
 export const getHighScore = createSelector(statusState, fromStatusReducer.getStatusHighScore);

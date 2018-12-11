@@ -1,21 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 
 @Component({
   selector: 'app-drop-down',
   templateUrl: './drop-down.component.html',
   styleUrls: ['./drop-down.component.scss']
 })
-export class DropDownComponent implements OnInit {
+export class DropDownComponent implements OnChanges {
   option = [3, 4, 5, 6, 7, 8, 9, 10];
-  selected = 3;
-
-  constructor() {
+  @Input() selected;
+  @Output() changeDeskSize = new EventEmitter();
+  constructor() {}
+  ngOnChanges() {
+    // console.log('CVHNAGES', this.selected);
   }
-
-  ngOnInit() {
-  }
-
   onSelect(value) {
-    this.selected = value;
+    this.changeDeskSize.emit(value)
   }
 }

@@ -5,7 +5,11 @@
   </div>
   <div class="dropDownContent">
     <div class="dropDownTitle">Deck size:</div>
-    <app-drop-down></app-drop-down>
+    <app-drop-down
+      [selected]="deskSize$ | async"
+      (changeDesk)="changeDeskSize()"
+    >
+    </app-drop-down>
   </div>
   <div class="startGameContent">
     <button class="startGameBtn" (click)="startGame()">Start Game</button>
