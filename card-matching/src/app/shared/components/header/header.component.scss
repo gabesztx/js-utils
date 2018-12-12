@@ -1,9 +1,8 @@
 :host {
-  //display: flex;
-  //width: 100%;
   .headerContent {
     display: flex;
-    padding: 10px 15px;
+    height: 50px;
+    padding: 0 15px;
     justify-content: space-between;
     width: 100%;
     background-color: rgb(30, 30, 30);
@@ -26,12 +25,14 @@
       }
     }
     .newGameContent {
-      //padding-top: 20px;
+      display: flex;
+      align-items: center;
       .startGameBtn {
         cursor: pointer;
         color: white;
+        border-radius: 2px;
         font-weight: 500;
-        padding: 5px 15px;
+        //padding: 5px 15px;
         text-transform: uppercase;
         background-color: rgb(255, 1, 23);
       }

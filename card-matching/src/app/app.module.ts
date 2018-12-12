@@ -10,14 +10,11 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { GameModule } from './view/game/game.module';
 import { StartModule } from './view/start/start.module';
 import { SharedModule } from './shared/shared.module';
-
 import { AppComponent } from './app.component';
-
 import { reducers } from './reducers/index.reducer';
 import { routes } from './app.routing';
-
 import { CustomSerializer } from './shared/utils';
-import { GameDataService } from './services/game-data.service';
+
 @NgModule({
   declarations: [
     AppComponent

@@ -2,20 +2,45 @@
   display: flex;
   .statusContainer {
     width: 100%;
-    padding: 20px 0;
+    padding-top: 15px;
     .statusWrapper {
       display: flex;
       width: 100%;
       justify-content: space-between;
       align-items: center;
+      .tiresContent {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .tiresTitle {
+          color: rgb(111, 111, 111);
+          font-size: 13px;
+        }
+        .tiresValue {
+          font-size: 18px;
+          padding-left: 5px;
+        }
+
+      }
       .highScoreContent {
+        text-align: center;
+        .highScoreTitle {
+          font-size: 13px;
+          color: rgb(111, 111, 111);
+        }
+        .highScoreValue {
+          font-size: 40px;
+          line-height: 45px;
+        }
       }
       .restartContent {
         .restartBtn {
           cursor: pointer;
-          color: black;
-          border: 2px solid black;
-          padding: 5px;
+          border: 2px solid rgb(111, 111, 111);
+          padding: 2px 15px;
+          line-height: 25px;
+          font-weight: 500;
+          border-radius: 4px;
         }
       }
     }

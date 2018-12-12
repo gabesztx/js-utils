@@ -4,11 +4,10 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    /*mobil:  space around*/
   }
   @media (max-width: 550px) {
     .cardsContainer {
-      justify-content: space-around;
+      justify-content: space-between;
     }
   }
 }

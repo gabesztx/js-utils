@@ -1,12 +1,16 @@
 <div class="statusContainer">
   <div class="statusWrapper">
-    <div class="matchContent">
-      <span class="">Current tries: </span>
-      <span *ngIf="score$ | async; let scoreValue; else defaultScore">{{scoreValue}}</span>
+    <div class="tiresContent">
+      <div class="tiresTitle">Current tries: </div>
+      <div class="tiresValue">
+        <div *ngIf="score$ | async; let scoreValue; else defaultScore">{{scoreValue}}</div>
+      </div>
     </div>
     <div class="highScoreContent">
-      <span class="">Best: </span>
-      <span *ngIf="highScore$ | async; let highScoreValue; else defaultScore">{{highScoreValue}}</span>
+      <div class="highScoreTitle">Best: </div>
+      <div class="highScoreValue">
+        <div class="" *ngIf="highScore$ | async; let highScoreValue; else defaultScore">{{highScoreValue}}</div>
+      </div>
     </div>
     <div class="restartContent">
       <div class="restartBtn" (click)="restartGame()">RESTART</div>
