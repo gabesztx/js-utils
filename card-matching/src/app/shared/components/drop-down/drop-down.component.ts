@@ -9,11 +9,10 @@ export class DropDownComponent implements OnChanges {
   option = [3, 4, 5, 6, 7, 8, 9, 10];
   @Input() selected;
   @Output() changeDeskSize = new EventEmitter();
-  constructor() {}
-  ngOnChanges() {
-    // console.log('CVHNAGES', this.selected);
+  constructor() {
   }
+  ngOnChanges() {}
   onSelect(value) {
-    this.changeDeskSize.emit(value)
+    this.changeDeskSize.emit(value);
   }
 }

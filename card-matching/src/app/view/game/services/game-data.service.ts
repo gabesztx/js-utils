@@ -20,7 +20,9 @@ export class GameDataService {
   ];
   cardList: ICard[];
 
-  constructor(private store: Store<MainState>) {}
+  constructor(private store: Store<MainState>) {
+
+  }
 
   initCards() {
     const duplicatedCards = JSON.parse(JSON.stringify(this.cardData.concat(this.cardData.slice(0))));

@@ -3,7 +3,7 @@ import { ICard } from '../view/game/models/card.model';
 
 export interface IState {
   cards: ICard[];
-  deskSize: number
+  deskSize: number;
 }
 
 const initial_state: IState = {
@@ -41,7 +41,7 @@ export function reducer(state = initial_state, action: CardAction.Actions) {
     case CardAction.DESK_SIZE:
       return {
         ...state,
-        deskSize:action.payload
+        deskSize: action.payload
       };
     case CardAction.RESET_CARDS:
       return initial_state;

@@ -7,7 +7,7 @@
     <div class="dropDownTitle">Deck size:</div>
     <app-drop-down
       [selected]="deskSize$ | async"
-      (changeDesk)="changeDeskSize()"
+      (changeDeskSize)="changeDeskSize($event)"
     >
     </app-drop-down>
   </div>
