@@ -11,16 +11,14 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   constructor(private store: Store<fromRoot.MainState>, private router: Router) {}
-  startPage$: Observable<boolean>;
+  gamePage$: Observable<boolean>;
   ngOnInit() {
-    this.startPage$ = this.store.pipe(select(fromRoot.getStartPage));
-    /*this.state$ = this.store.pipe(select(fromRoot.getRouter));
-    this.state$.subscribe((res) => {
-      console.log('STATE: ', res);
-    });*/
+    this.gamePage$ = this.store.pipe(select(fromRoot.getGamePage));
+    this.gamePage$.subscribe(value => {
+      console.log('VALUEEE', value);
+    })
   }
   newGame(){
-    // this.store.dispatch()
     this.router.navigate(['start']);
   }
 }

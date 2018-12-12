@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { ICard } from '../../models/card.model';
 import { RotateCard, InactiveCards } from '../../../../actions/card.action';
@@ -15,7 +15,7 @@ import { map } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class CardBoradComponent implements OnInit {
+export class CardBoradComponent implements OnInit, OnDestroy {
   private cardsOpened: ICard[] = [];
   private rotateTimeOut: any;
 
@@ -33,6 +33,7 @@ export class CardBoradComponent implements OnInit {
   }
 
   ngOnInit() {}
+ 
 
   cardUpdate(card: ICard) {
     this.store.dispatch(new UpdateGame());
@@ -43,7 +44,6 @@ export class CardBoradComponent implements OnInit {
       this.cardsOpened = [];
     }
   }
-
   cardRotate(card: ICard) {
     this.store.dispatch(new RotateCard(card.id));
   }
@@ -71,5 +71,8 @@ export class CardBoradComponent implements OnInit {
   cardsReset() {
     this.cardsOpened = [];
     clearTimeout(this.rotateTimeOut);
+  }
+  ngOnDestroy() {
+    this.cardsReset();
   }
 }

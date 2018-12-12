@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import * as fromRoot from '../../../../reducers/index.reducer';
-import { DeskSize } from '../../../../actions/card.action';
+import { DeckSize } from '../../../../actions/card.action';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -11,22 +11,18 @@ import { Observable } from 'rxjs';
   styleUrls: ['./landing-page.component.scss']
 })
 export class LandingPageComponent implements OnInit {
-  deskSize$: Observable<number>;
-
+  deckSize$: Observable<number>;
   constructor(private store: Store<fromRoot.MainState>, private router: Router) {
-    this.deskSize$ = this.store.pipe(select(fromRoot.getDeskSize));
+    this.deckSize$ = this.store.pipe(select(fromRoot.getDeckSize));
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   startGame() {
-    // this.router.navigate(['game']);
-    console.log('startGame');
+    this.router.navigate(['game']);
   }
 
-  changeDeskSize(value) {
-    console.log('changeDesk', value);
-    this.store.dispatch(new DeskSize(value));
+  changeDeckSize(value) {
+    this.store.dispatch(new DeckSize(value));
   }
 }

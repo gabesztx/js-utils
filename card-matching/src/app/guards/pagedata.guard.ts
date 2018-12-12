@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class PagedataGuard implements CanActivate {
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    console.log('URL', state.url);
+    // console.log('URL', state.url);
     return true;
   }
 }
