@@ -33,8 +33,8 @@ $dropDownPadding: 18px;
       background-color: white;
       .dropDownItem {
         cursor: pointer;
-        text-align: center;
         padding: 2px 0;
+        padding-left: 18px;
         &:hover {
           background-color: #e8e8e8;
         }
