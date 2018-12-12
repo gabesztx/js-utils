@@ -32,15 +32,10 @@ export function reducer(state = initial_state, action: ControllerAction.Actions)
         isStarted: true,
         isFinished: false,
       };
-    case ControllerAction.START_PAGE:
-      return {
-        ...state,
-        gamePage: false,
-      };
     case ControllerAction.GAME_PAGE:
       return {
         ...state,
-        gamePage: true,
+        gamePage: action.payload,
       };
     default:
       return state;

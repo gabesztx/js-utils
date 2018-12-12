@@ -14,9 +14,6 @@ export class HeaderComponent implements OnInit {
   gamePage$: Observable<boolean>;
   ngOnInit() {
     this.gamePage$ = this.store.pipe(select(fromRoot.getGamePage));
-    this.gamePage$.subscribe(value => {
-      console.log('VALUEEE', value);
-    })
   }
   newGame(){
     this.router.navigate(['start']);

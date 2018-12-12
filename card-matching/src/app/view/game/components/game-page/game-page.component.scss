@@ -1,0 +1,13 @@
+:host {
+  padding: 0 15px;
+  display: flex;
+  width: 100%;
+  .gameComponent{
+    display: flex;
+    padding-top: 15px;
+    width: 100%;
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: 760px;
+  }
+}

@@ -18,7 +18,6 @@ import { map } from 'rxjs/operators';
 export class CardBoradComponent implements OnInit, OnDestroy {
   private cardsOpened: ICard[] = [];
   private rotateTimeOut: any;
-
   cardList$: Observable<ICard[]>;
 
   constructor(private store: Store<fromRoot.MainState>) {
@@ -33,7 +32,6 @@ export class CardBoradComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {}
- 
 
   cardUpdate(card: ICard) {
     this.store.dispatch(new UpdateGame());
@@ -44,9 +42,11 @@ export class CardBoradComponent implements OnInit, OnDestroy {
       this.cardsOpened = [];
     }
   }
+
   cardRotate(card: ICard) {
     this.store.dispatch(new RotateCard(card.id));
   }
+
   cardsMatched() {
     const cardsOpened = [this.cardsOpened[0], this.cardsOpened[1]];
     setTimeout(() => {
@@ -56,6 +56,7 @@ export class CardBoradComponent implements OnInit, OnDestroy {
     }, 450);
     this.store.dispatch(new MatchUpdate());
   }
+
   cardsUnMatched() {
     const cardsOpened = [this.cardsOpened[0], this.cardsOpened[1]];
     this.store.dispatch(new ScoreUpdate());
@@ -65,13 +66,16 @@ export class CardBoradComponent implements OnInit, OnDestroy {
       });
     }, 850);
   }
+
   cardsIsMatched(): boolean {
     return this.cardsOpened[0].label === this.cardsOpened[1].label;
   }
+
   cardsReset() {
     this.cardsOpened = [];
     clearTimeout(this.rotateTimeOut);
   }
+
   ngOnDestroy() {
     this.cardsReset();
   }

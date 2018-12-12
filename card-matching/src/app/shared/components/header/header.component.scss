@@ -3,7 +3,7 @@
   //width: 100%;
   .headerContent {
     display: flex;
-    padding: 10px 0;
+    padding: 10px 15px;
     justify-content: space-between;
     width: 100%;
     background-color: rgb(30, 30, 30);
@@ -34,6 +34,18 @@
         padding: 5px 15px;
         text-transform: uppercase;
         background-color: rgb(255, 1, 23);
+      }
+    }
+    @media (max-width: 550px) {
+      .logoContent {
+
+        .logo {
+          width: 25px;
+          height: 25px;
+        }
+        .companyName {
+          font-size: 14px;
+        }
       }
     }
   }

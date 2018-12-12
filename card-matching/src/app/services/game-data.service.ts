@@ -9,7 +9,6 @@ import * as fromRoot from '../reducers/index.reducer';
   providedIn: 'root'
 })
 export class GameDataService {
-  deckNumber: number;
   cardData: string[] = [
     'angular',
     'd3',
@@ -23,6 +22,7 @@ export class GameDataService {
     'webpack',
   ];
   cardList: ICard[];
+  deckNumber: number;
 
   constructor(private store: Store<MainState>) {
     this.store.pipe(select(fromRoot.getDeckSize)).subscribe(deckSize => {
