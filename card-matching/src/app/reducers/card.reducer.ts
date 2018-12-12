@@ -8,7 +8,7 @@ export interface IState {
 
 const initial_state: IState = {
   cards: [],
-  deckSize: 7
+  deckSize: 5
 };
 
 export function reducer(state = initial_state, action: CardAction.Actions) {
