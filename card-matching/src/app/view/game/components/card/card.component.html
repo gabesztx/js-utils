@@ -1,8 +1,0 @@
-<div class="cardContent" [ngClass]="{'rotate': card.rotate}">
-  <div class="item front" [ngClass]="{'inactive': card.inactive}">
-    <img class="cardImg" src="{{card.imgUrl}}" alt="">
-  </div>
-  <div class="item back" [ngClass]="{'inactive': card.inactive}"
-       (click)="clickCard(card)">
-  </div>
-</div>
