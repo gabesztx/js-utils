@@ -27,6 +27,7 @@ export function routerReducer<
   const routerAction = action as RouterAction<any, T>;
   switch (routerAction.type) {
     case ROUTER_NAVIGATION:
+      console.log('----- ROUTER_NAVIGATION ----- ');
     case ROUTER_ERROR:
     case ROUTER_CANCEL:
       return {
