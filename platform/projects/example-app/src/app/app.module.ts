@@ -36,7 +36,9 @@ import { AppRoutingModule } from '@example-app/app-routing.module';
      * meta-reducer. This returns all providers for an @ngrx/store
      * based application.
      */
-    StoreModule.forRoot(reducers, { metaReducers }),
+    // StoreModule.forRoot(reducers, { metaReducers }),
+    EffectsModule.forRoot([]),
+    StoreModule.forRoot(reducers),
 
     /**
      * @ngrx/router-store keeps router state up-to-date in the store.
@@ -65,7 +67,6 @@ import { AppRoutingModule } from '@example-app/app-routing.module';
      *
      * See: https://github.com/ngrx/platform/blob/master/docs/effects/api.md#forroot
      */
-    EffectsModule.forRoot([]),
 
     /**
      * `provideDB` sets up @ngrx/db with the provided schema and makes the Database

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -32,11 +33,15 @@ import * as fromBooks from '@example-app/books/reducers';
 export class CollectionPageComponent implements OnInit {
   books$: Observable<Book[]>;
 
-  constructor(private store: Store<fromBooks.State>) {
+  constructor(private store: Store<fromBooks.State>, private router: Router) {
     this.books$ = store.pipe(select(fromBooks.getBookCollection));
   }
 
   ngOnInit() {
     this.store.dispatch(new CollectionPageActions.LoadCollection());
+    setTimeout(() => {
+      console.log('navigate');
+      // this.router.navigate(['books/find']);
+    }, 3000);
   }
 }
