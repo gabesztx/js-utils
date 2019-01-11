@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { reducers } from './reducers';
 import { environment } from '../environments/environment';
+import { GameModule } from './game/game.module';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { environment } from '../environments/environment';
     StoreModule.forRoot(reducers),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([]),
+    GameModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
