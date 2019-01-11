@@ -7,6 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { LandingpageModule } from './landingpage/landingpage.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { environment } from '../environments/environment';
     AppRoutingModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
+    LandingpageModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
