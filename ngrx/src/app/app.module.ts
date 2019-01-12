@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { environment } from '../environments/environment';
 import { reducers } from './reducers';
 import { AppComponent } from './app.component';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { AppComponent } from './app.component';
     StoreModule.forRoot(reducers),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([]),
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
