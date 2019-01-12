@@ -9,5 +9,5 @@ import { HeaderComponent } from './components/header/header.component';
   ],
   exports: [HeaderComponent]
 })
-export class SharedModule {
+export class CoreModule {
 }
