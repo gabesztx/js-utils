@@ -21,7 +21,7 @@ import { CoreModule } from './core/core.module';
     StoreModule.forRoot(reducers),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([]),
-    CoreModule,
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
