@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { environment } from '../environments/environment';
 import { reducers } from './reducers';
 import { AppComponent } from './app.component';
+import { GameModule } from './game/game.module';
 import { CoreModule } from './core/core.module';
 
 
@@ -21,9 +22,11 @@ import { CoreModule } from './core/core.module';
     StoreModule.forRoot(reducers),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([]),
-    CoreModule
+    GameModule,
+    CoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
