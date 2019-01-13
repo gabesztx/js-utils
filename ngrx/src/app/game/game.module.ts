@@ -4,14 +4,16 @@ import { StoreModule } from '@ngrx/store';
 import { reducers } from './reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { GameEffects } from './effects/game.effects';
+import { LandingPageComponent } from './containers/landing-page/landing-page.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [LandingPageComponent],
   imports: [
     CommonModule,
     StoreModule.forFeature('game', reducers),
     EffectsModule.forFeature([GameEffects])
-  ]
+  ],
+  exports: [LandingPageComponent]
 })
 export class GameModule {
 }
