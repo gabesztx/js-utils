@@ -15,6 +15,6 @@ export interface State {
 export const reducers: ActionReducerMap<State> = {
   card: fromCard.reducer,
 };
-
+const cardState = (state: State) => state.card;
 
 export const metaReducers: MetaReducer<State>[] = !environment.production ? [] : [];
