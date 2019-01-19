@@ -6,6 +6,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { GameEffects } from './effects/game.effects';
 import { LandingPageComponent } from './containers/landing-page/landing-page.component';
 import { GamePageComponent } from './containers/game-page/game-page.component';
+import { GameDataService } from './services/game-data.service';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,9 @@ import { GamePageComponent } from './containers/game-page/game-page.component';
     CommonModule,
     StoreModule.forFeature('game', reducers),
     EffectsModule.forFeature([GameEffects])
+  ],
+  providers: [
+    GameDataService
   ],
   exports: [
     LandingPageComponent,
