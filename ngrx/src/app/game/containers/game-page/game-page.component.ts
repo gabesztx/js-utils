@@ -9,7 +9,7 @@ import * as fromGame from '../../reducers';
 })
 export class GamePageComponent implements OnInit {
 
-  constructor(private store: Store<fromGame.State>) { }
+  constructor(private store: Store<fromGame.GameState>) { }
 
   ngOnInit() {
   }
