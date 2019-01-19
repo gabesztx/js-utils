@@ -7,16 +7,22 @@ import {
 
 
 import * as fromCard from './card.reducer';
+import * as fromController from './controller.reducer';
+import * as fromStatus from './status.reducer';
 
 export interface GameState {
   card: fromCard.IState;
+  controller: fromController.IState;
+  status: fromStatus.IState;
 }
 
 export const reducers: ActionReducerMap<GameState> = {
   card: fromCard.reducer,
+  controller: fromController.reducer,
+  status: fromStatus.reducer,
 };
 
-// Game State Selector
+// Game Selector
 export const selectGameState = createFeatureSelector<GameState>('game');
 
 // Game Card State Selector
@@ -24,4 +30,17 @@ export const selectGameCardState = createSelector(selectGameState,
   (state: GameState) => state.card);
 export const getDeckSize = createSelector(selectGameCardState, fromCard.getDeckSize);
 export const getCards = createSelector(selectGameCardState, fromCard.getCards);
+export const getOpened = createSelector(selectGameCardState, fromCard.getCardsOpen);
 
+// Game Controller State Selector
+export const selectGameControllerState = createSelector(selectGameState,
+  (state: GameState) => state.controller);
+export const getIsStarted = createSelector(selectGameControllerState, fromController.getControllerIsStarted);
+export const getGamePage = createSelector(selectGameControllerState, fromController.getControllerGamePage);
+
+// Game Status State Selector
+export const selectGameStatusState = createSelector(selectGameState,
+  (state: GameState) => state.status);
+export const getMatch = createSelector(selectGameStatusState, fromStatus.getStatusMatch);
+export const getScore = createSelector(selectGameStatusState, fromStatus.getStatusScore);
+export const getHighScore = createSelector(selectGameStatusState, fromStatus.getStatusHighScore);
