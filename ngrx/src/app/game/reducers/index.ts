@@ -22,25 +22,28 @@ export const reducers: ActionReducerMap<GameState> = {
   status: fromStatus.reducer,
 };
 
-// Game Selector
+// Game State Selector
 export const selectGameState = createFeatureSelector<GameState>('game');
 
-// Game Card State Selector
+// Game Card Selector
 export const selectGameCardState = createSelector(selectGameState,
   (state: GameState) => state.card);
 export const getDeckSize = createSelector(selectGameCardState, fromCard.getDeckSize);
 export const getCards = createSelector(selectGameCardState, fromCard.getCards);
 export const getOpened = createSelector(selectGameCardState, fromCard.getCardsOpen);
+// ------------------------------------------------------------------------
 
-// Game Controller State Selector
+// Game Controller Selector
 export const selectGameControllerState = createSelector(selectGameState,
   (state: GameState) => state.controller);
 export const getIsStarted = createSelector(selectGameControllerState, fromController.getControllerIsStarted);
 export const getGamePage = createSelector(selectGameControllerState, fromController.getControllerGamePage);
+// ------------------------------------------------------------------------
 
-// Game Status State Selector
+// Game Status Selector
 export const selectGameStatusState = createSelector(selectGameState,
   (state: GameState) => state.status);
 export const getMatch = createSelector(selectGameStatusState, fromStatus.getStatusMatch);
 export const getScore = createSelector(selectGameStatusState, fromStatus.getStatusScore);
 export const getHighScore = createSelector(selectGameStatusState, fromStatus.getStatusHighScore);
+// ------------------------------------------------------------------------
