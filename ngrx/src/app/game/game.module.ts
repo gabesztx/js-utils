@@ -8,13 +8,19 @@ import { LandingPageComponent } from './containers/landing-page/landing-page.com
 import { GamePageComponent } from './containers/game-page/game-page.component';
 
 @NgModule({
-  declarations: [LandingPageComponent, GamePageComponent],
+  declarations: [
+    LandingPageComponent,
+    GamePageComponent
+  ],
   imports: [
     CommonModule,
     StoreModule.forFeature('game', reducers),
     EffectsModule.forFeature([GameEffects])
   ],
-  exports: [LandingPageComponent, GamePageComponent]
+  exports: [
+    LandingPageComponent,
+    GamePageComponent
+  ]
 })
 export class GameModule {
 }
