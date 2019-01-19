@@ -21,6 +21,11 @@ export class LandingPageComponent implements OnInit {
 
   ngOnInit() {
     this.deckSize$ = this.store.pipe(select(fromGame.getDeckSize));
+    this.deckSize$.subscribe(
+      value => {
+        console.log('Desck number', value);
+      }
+    );
   }
 
   startGame() {
@@ -29,7 +34,8 @@ export class LandingPageComponent implements OnInit {
   }
 
   changeDeckSize(value) {
-    this.store.dispatch(new DeckSize(value));
+    console.log('changeDeckSize', value);
+    // this.store.dispatch(new DeckSize(value));
   }
 }
 

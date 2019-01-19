@@ -5,20 +5,13 @@ import {
   createSelector
 } from '@ngrx/store';
 
-// import * as fromRoot from '../../reducers';
+
 import * as fromCard from './card.reducer';
-
-// import * as fromCard from '../actions/card.actions';
-
 
 export interface GameState {
   card: fromCard.IState;
 }
 
-/*
-export interface State extends fromRoot.State {
-  game: GameState;
-}*/
 export const reducers: ActionReducerMap<GameState> = {
   card: fromCard.reducer,
 };
