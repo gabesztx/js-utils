@@ -15,9 +15,7 @@ export class LandingPageComponent implements OnInit {
   deckSize$: Observable<number>;
 
   constructor(private store: Store<fromGame.GameState>,
-              private router: Router) {
-
-  }
+              private router: Router) {}
 
   ngOnInit() {
     this.deckSize$ = this.store.pipe(select(fromGame.getDeckSize));
