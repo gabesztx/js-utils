@@ -54,6 +54,6 @@ export const getHighScore = createSelector(selectGameStatusState, fromStatus.get
 // Game Other Selector
 export const selectGameOtherState = createSelector(selectGameState,
   (state: GameState) => state.other);
-export const getLoadCards = createSelector(selectGameOtherState, fromOther.getCards);
 export const getIsLoading = createSelector(selectGameOtherState, fromOther.getIsLoading);
+export const getLoadCards = createSelector(selectGameOtherState, fromOther.getCards);
 // ------------------------------------------------------------------------

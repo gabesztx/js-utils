@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class GameDataService {
-  cardList: ICard[];
+  cards: ICard[];
   cardData: string[] = [
     'angular',
     'd3',
@@ -26,7 +26,7 @@ export class GameDataService {
     const desckCards = JSON.parse(JSON.stringify(randomCards.slice(0, 3)));
     const duplicatedCards = JSON.parse(JSON.stringify(desckCards.concat(desckCards.slice(0))));
     const randomDuplicatedCards = this.getRandomCards(duplicatedCards);
-    const cards = randomDuplicatedCards.map((label, id) => {
+    this.cards = randomDuplicatedCards.map((label, id) => {
       return {
         id: id,
         imgUrl: `assets/${label}.png`,
@@ -37,9 +37,13 @@ export class GameDataService {
       };
     });
 
-    return of(cards);
-    // console.log('cards', cards);
+    return of(this.cards);
+    // return cards;
 
+  }
+
+  getCards(): ICard[] {
+    return this.cards;
   }
 
   initCards() {

@@ -12,7 +12,7 @@ export class LoadCards implements Action {
 
 export class LoadCardsCompleted implements Action {
   readonly type = OtherActionTypes.LoadCardsCompleted;
-  constructor(public payload: { cards: ICard[] }) {
+  constructor(public payload: ICard[]) {
   }
 }
 

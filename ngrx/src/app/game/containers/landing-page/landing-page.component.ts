@@ -3,12 +3,13 @@ import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import * as fromGame from '../../reducers';
 import * as fromOther from '../../reducers';
-
 import { DeckSize } from '../../actions/card.actions';
+import { GameEffects } from '../../effects/game.effects';
 import { LoadCards } from '../../actions/other.actions';
-import { LoadCardsCompleted } from '../../actions/other.actions';
+// import { LoadCardsCompleted } from '../../actions/other.actions';
 import { Observable } from 'rxjs';
-import { GameDataService } from '../../services/game-data.service';
+import { filter, take } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-landing-page',
@@ -17,42 +18,54 @@ import { GameDataService } from '../../services/game-data.service';
 })
 export class LandingPageComponent implements OnInit {
   deckSize$: Observable<number>;
-  loadCards: Observable<boolean>;
   loadCardsCompleted: Observable<any>;
+  // loadCards: Observable<boolean>;
 
   constructor(private store: Store<fromGame.GameState>,
-              private gameDataServices: GameDataService,
               private router: Router) {
   }
 
   ngOnInit() {
     this.deckSize$ = this.store.pipe(select(fromGame.getDeckSize));
-    // this.loadCards = this.store.pipe(select(fromOther.getIsLoading));
-    // this.loadCardsCompleted = this.store.pipe(select(fromOther.getLoadCards));
-    /*this.loadCards.subscribe(
-      value => {
-        console.log('Loading status: ', value);
-      }
-    );*/
-    /* this.loadCardsCompleted.subscribe(
-       value => {
-         console.log('Load Cards Complete: ', value);
-       }
-     );*/
+    this.loadCardsCompleted = this.store.pipe(select(fromGame.getLoadCards));
   }
 
   startGame() {
-    // this.store.dispatch(new LoadCards());
-    // console.log(this.gameDataServices.loadCards());
-    // const data = this.gameDataServices.loadCards();
-
+    this.store.dispatch(new LoadCards());
   }
 
   changeDeckSize(value) {
-    // this.store.dispatch(new DeckSize(value));
+    this.store.dispatch(new DeckSize(value));
   }
 }
 
+
+// this.loadCards = this.store.pipe(select(fromOther.getIsLoading));
+// this.loadCardsCompleted = this.store.pipe(select(fromOther.getLoadCards));
+/*this.loadCards.subscribe(
+  value => {
+    console.log('Loading status: ', value);
+  }
+);*/
+
+/*this.gameEffects.loadCards$
+  .pipe(
+    filter(action => {
+      return true;
+    })
+  ).subscribe(
+    value => {
+      console.log('res effects value', value);
+    }
+  );*/
+
+/*this.loadCardsCompleted.subscribe(
+  res => {
+    console.log('Load Cards Complete: ', res)
+  }
+);*/
+
+// private gameEffects: GameEffects,
 // this.router.navigate(['game']);
 // this.gameDataService.resetCards();
 // setTimeout(() => {}, 2000);
