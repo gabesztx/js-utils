@@ -2,8 +2,24 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class GameDataService {
-
+  cardData: string[] = [
+    'angular',
+    'd3',
+    'jenkins',
+    'postcss',
+    'react',
+    'redux',
+    'sass',
+    'supercharge',
+    'ts',
+    'webpack',
+  ];
   constructor() { }
+
+  loadCards() {
+
+
+  }
 
   /*initCards() {
     const localStorgeCards = this.getLocalStorage('cards').cards;

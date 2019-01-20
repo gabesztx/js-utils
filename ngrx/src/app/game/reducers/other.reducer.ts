@@ -15,14 +15,14 @@ export const initialState: IState = {
 export function reducer(state = initialState, action: OtherAction.Actions): IState {
   switch (action.type) {
     case OtherAction.OtherActionTypes.LoadCards:
-      console.log('LoadCards State');
+      // console.log('LoadCards State');
       return {
         ...state,
         isLoading: true
       };
 
     case OtherAction.OtherActionTypes.LoadCardsCompleted:
-      console.log('LoadCardsCompleted State');
+      // console.log('LoadCardsCompleted State');
       return {
         ...state,
         cards: action.payload.cards

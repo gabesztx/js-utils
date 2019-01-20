@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+import { ICard } from '../models/card.model';
 
 export enum OtherActionTypes {
   LoadCards = '[Other] Load Cards',
@@ -11,7 +12,8 @@ export class LoadCards implements Action {
 
 export class LoadCardsCompleted implements Action {
   readonly type = OtherActionTypes.LoadCardsCompleted;
-  constructor(public payload: any) {}
+  constructor(public payload: { cards: ICard[] }) {
+  }
 }
 
 export type Actions =
