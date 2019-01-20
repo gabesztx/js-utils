@@ -4,9 +4,7 @@ import { GameActionTypes } from '../actions/game.actions';
 
 @Injectable()
 export class GameEffects {
-
+  constructor(private actions$: Actions) {}
   @Effect()
   loadGames$ = this.actions$.pipe(ofType(GameActionTypes.LoadGames));
-
-  constructor(private actions$: Actions) {}
 }

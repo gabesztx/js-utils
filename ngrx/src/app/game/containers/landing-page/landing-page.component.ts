@@ -19,30 +19,14 @@ export class LandingPageComponent implements OnInit {
 
   ngOnInit() {
     this.deckSize$ = this.store.pipe(select(fromGame.getDeckSize));
-  /*  this.deckSize$.subscribe(
-      value => {
-        console.log('Desck number', value);
-      }
-    );*/
   }
 
   startGame() {
     // this.gameDataService.resetCards();
-    this.router.navigate(['game']);
+    // this.router.navigate(['game']);
   }
 
   changeDeckSize(value) {
-    // console.log('changeDeckSize', value);
     this.store.dispatch(new DeckSize(value));
   }
 }
-
-
-// import { ICard } from '../../models/card.model';
-// cards$: Observable<ICard[]>;
-// this.cards$ = this.store.pipe(select(fromGame.getCards));
-// this.deckSize$.subscribe(
-//   value => {
-//     console.log('Desck number', value);
-//   }
-// );
