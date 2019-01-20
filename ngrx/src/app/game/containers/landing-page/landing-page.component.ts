@@ -6,7 +6,7 @@ import * as fromOther from '../../reducers';
 import { DeckSize } from '../../actions/card.actions';
 import { GameEffects } from '../../effects/game.effects';
 import { LoadCards } from '../../actions/other.actions';
-// import { LoadCardsCompleted } from '../../actions/other.actions';
+import { LoadCardsCompleted } from '../../actions/other.actions';
 import { Observable } from 'rxjs';
 import { filter, take } from 'rxjs/operators';
 
@@ -18,7 +18,7 @@ import { filter, take } from 'rxjs/operators';
 })
 export class LandingPageComponent implements OnInit {
   deckSize$: Observable<number>;
-  loadCardsCompleted: Observable<any>;
+  // loadCardsCompleted: Observable<any>;
   // loadCards: Observable<boolean>;
 
   constructor(private store: Store<fromGame.GameState>,
@@ -27,13 +27,14 @@ export class LandingPageComponent implements OnInit {
 
   ngOnInit() {
     this.deckSize$ = this.store.pipe(select(fromGame.getDeckSize));
-    this.loadCardsCompleted = this.store.pipe(select(fromGame.getLoadCards));
+    // this.loadCardsCompleted = this.store.pipe(select(fromGame.getLoadCards));
+    // this.loadCards = this.store.pipe(select(fromGame.getIsLoading));
   }
 
   startGame() {
     this.store.dispatch(new LoadCards());
+    // this.store.dispatch(new LoadCardsCompleted([0, 1, 2, 3]));
   }
-
   changeDeckSize(value) {
     this.store.dispatch(new DeckSize(value));
   }

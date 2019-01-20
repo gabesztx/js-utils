@@ -26,5 +26,6 @@ export class GameEffects {
     )
   );
 }
+
 // TODO video alapján unsubrscibe
 

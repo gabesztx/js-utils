@@ -4,7 +4,8 @@ import { ICard } from '../models/card.model';
 
 export interface IState {
   readonly isLoading: boolean;
-  readonly cards: ICard[];
+  readonly cards: any[];
+  // readonly cards: ICard[];
 }
 
 export const initialState: IState = {
