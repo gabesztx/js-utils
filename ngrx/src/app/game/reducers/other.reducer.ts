@@ -1,11 +1,9 @@
-import { Action } from '@ngrx/store';
 import * as OtherAction from '../actions/other.actions';
 import { ICard } from '../models/card.model';
 
 export interface IState {
   readonly isLoading: boolean;
-  readonly cards: any[];
-  // readonly cards: ICard[];
+  readonly cards: ICard[];
 }
 
 export const initialState: IState = {
@@ -22,7 +20,6 @@ export function reducer(state = initialState, action: OtherAction.Actions): ISta
       };
 
     case OtherAction.OtherActionTypes.LoadCardsCompleted:
-      // console.log('Payload: ', action.payload);
       return {
         ...state,
         isLoading: false,
@@ -33,7 +30,6 @@ export function reducer(state = initialState, action: OtherAction.Actions): ISta
       return state;
   }
 }
-
 
 export const getCards = (state: IState) => state.cards;
 export const getIsLoading = (state: IState) => state.isLoading;
