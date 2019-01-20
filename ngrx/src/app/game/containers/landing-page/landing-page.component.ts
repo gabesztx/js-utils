@@ -8,6 +8,7 @@ import { DeckSize } from '../../actions/card.actions';
 import { LoadCards } from '../../actions/other.actions';
 import { LoadCardsCompleted } from '../../actions/other.actions';
 import { Observable } from 'rxjs';
+import { GameDataService } from '../../services/game-data.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -20,6 +21,7 @@ export class LandingPageComponent implements OnInit {
   loadCardsCompleted: Observable<any>;
 
   constructor(private store: Store<fromGame.GameState>,
+              private gameDataServices: GameDataService,
               private router: Router) {
   }
 
@@ -32,15 +34,18 @@ export class LandingPageComponent implements OnInit {
         console.log('Loading status: ', value);
       }
     );*/
-   /* this.loadCardsCompleted.subscribe(
-      value => {
-        console.log('Load Cards Complete: ', value);
-      }
-    );*/
+    /* this.loadCardsCompleted.subscribe(
+       value => {
+         console.log('Load Cards Complete: ', value);
+       }
+     );*/
   }
 
   startGame() {
-    this.store.dispatch(new LoadCards());
+    // this.store.dispatch(new LoadCards());
+    // console.log(this.gameDataServices.loadCards());
+    // const data = this.gameDataServices.loadCards();
+
   }
 
   changeDeckSize(value) {
@@ -51,3 +56,8 @@ export class LandingPageComponent implements OnInit {
 // this.router.navigate(['game']);
 // this.gameDataService.resetCards();
 // setTimeout(() => {}, 2000);
+/*data.subscribe(
+      val => {
+        console.log('val', val);
+      }
+    )*/
