@@ -5,7 +5,7 @@ import * as fromGame from '../reducers';
 import { GameDataService } from './game-data.service';
 import { LoadCards } from '../actions/other.actions';
 import { Observable, of } from 'rxjs';
-import { map, take, tap, filter, switchMap, delay } from 'rxjs/operators';
+import { map, take, tap, filter, switchMap } from 'rxjs/operators';
 
 @Injectable()
 export class GameDataGuard implements CanActivate {
@@ -31,9 +31,9 @@ export class GameDataGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | boolean {
     if (this.gameDataService.getCards().length) {
-      console.log('Cards is loaded!');
       return true;
     }
+    console.log('Load cards!');
     return this.getCards();
   }
 }

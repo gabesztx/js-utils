@@ -12,7 +12,8 @@ const routes: Routes = [
   },
   {
     path: 'game',
-    component: GamePageComponent
+    component: GamePageComponent,
+    canActivate: [GameDataGuard]
   },
   {
     path: 'start',

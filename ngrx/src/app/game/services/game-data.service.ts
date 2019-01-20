@@ -18,8 +18,7 @@ export class GameDataService {
     'webpack',
   ];
 
-  constructor() {
-  }
+  constructor() {}
 
   loadCards(): Observable<ICard[]> {
     const randomCards = this.getRandomCards(this.cardData);
@@ -36,7 +35,6 @@ export class GameDataService {
         isOpen: false,
       };
     });
-
     return of(this.cards);
 
   }
