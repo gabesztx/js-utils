@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class GameDataService {
-  cards: ICard[];
+  cards: ICard[] = [];
   cardData: string[] = [
     'angular',
     'd3',
@@ -38,7 +38,6 @@ export class GameDataService {
     });
 
     return of(this.cards);
-    // return cards;
 
   }
 
