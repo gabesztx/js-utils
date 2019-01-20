@@ -15,6 +15,13 @@ import { LogoutConfirmationDialogComponent } from '@example-app/auth/components/
 
 @Injectable()
 export class AuthEffects {
+  constructor(
+    private actions$: Actions<LoginPageActions.LoginPageActionsUnion>,
+    private authService: AuthService,
+    private router: Router,
+    private dialog: MatDialog
+  ) {}
+
   @Effect()
   login$ = this.actions$.pipe(
     ofType(LoginPageActions.LoginPageActionTypes.Login),
@@ -62,11 +69,4 @@ export class AuthEffects {
         : new AuthActions.LogoutConfirmationDismiss()
     )
   );
-
-  constructor(
-    private actions$: Actions<LoginPageActions.LoginPageActionsUnion>,
-    private authService: AuthService,
-    private router: Router,
-    private dialog: MatDialog
-  ) {}
 }

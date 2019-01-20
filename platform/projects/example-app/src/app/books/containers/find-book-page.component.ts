@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 
 import { FindBookPageActions } from '@example-app/books/actions';
 import { Book } from '@example-app/books/models/book';
@@ -30,6 +30,10 @@ export class FindBookPageComponent {
   constructor(private store: Store<fromBooks.State>) {
     this.searchQuery$ = store.pipe(
       select(fromBooks.getSearchQuery),
+      map(value => {
+        console.log('Map', value);
+        return value;
+      }),
       take(1)
     );
     this.books$ = store.pipe(select(fromBooks.getSearchResults));
