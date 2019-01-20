@@ -78,10 +78,8 @@ export class LoginFormComponent implements OnInit {
   @Input()
   set pending(isPending: boolean) {
     if (isPending) {
-      // console.log('form disable');
       this.form.disable();
     } else {
-      // console.log('form enable');
       this.form.enable();
     }
   }
@@ -91,7 +89,7 @@ export class LoginFormComponent implements OnInit {
   @Output() submitted = new EventEmitter<Credentials>();
 
   form: FormGroup = new FormGroup({
-    username: new FormControl(''),
+    username: new FormControl('ngrx'),
     password: new FormControl(''),
   });
 

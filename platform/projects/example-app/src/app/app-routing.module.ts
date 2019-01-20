@@ -4,7 +4,7 @@ import { AuthGuard } from '@example-app/auth/services/auth-guard.service';
 import { NotFoundPageComponent } from '@example-app/core/containers/not-found-page.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/books/find', pathMatch: 'full' },
+  { path: '', redirectTo: '/books', pathMatch: 'full' },
   {
     path: 'books',
     loadChildren: '@example-app/books/books.module#BooksModule',
@@ -14,7 +14,7 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

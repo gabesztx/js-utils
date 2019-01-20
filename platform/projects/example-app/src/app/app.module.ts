@@ -17,7 +17,6 @@ import { reducers, metaReducers } from '@example-app/reducers';
 import { schema } from '@example-app/db';
 
 import { AppComponent } from '@example-app/core/containers/app.component';
-import { environment } from '../environments/environment';
 import { AppRoutingModule } from '@example-app/app-routing.module';
 
 @NgModule({
@@ -36,9 +35,7 @@ import { AppRoutingModule } from '@example-app/app-routing.module';
      * meta-reducer. This returns all providers for an @ngrx/store
      * based application.
      */
-    // StoreModule.forRoot(reducers, { metaReducers }),
-    EffectsModule.forRoot([]),
-    StoreModule.forRoot(reducers),
+    StoreModule.forRoot(reducers, { metaReducers }),
 
     /**
      * @ngrx/router-store keeps router state up-to-date in the store.
@@ -56,7 +53,9 @@ import { AppRoutingModule } from '@example-app/app-routing.module';
      * See: https://github.com/zalmoxisus/redux-devtools-extension
      */
     StoreDevtoolsModule.instrument({
-      // name: 'NgRx Book Store App',
+      name: 'NgRx Book Store App',
+
+      // In a production build you would want to disable the Store Devtools
       // logOnly: environment.production,
     }),
 
@@ -67,6 +66,7 @@ import { AppRoutingModule } from '@example-app/app-routing.module';
      *
      * See: https://github.com/ngrx/platform/blob/master/docs/effects/api.md#forroot
      */
+    EffectsModule.forRoot([]),
 
     /**
      * `provideDB` sets up @ngrx/db with the provided schema and makes the Database

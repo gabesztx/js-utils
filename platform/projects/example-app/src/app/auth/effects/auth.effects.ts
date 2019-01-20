@@ -19,13 +19,12 @@ export class AuthEffects {
   login$ = this.actions$.pipe(
     ofType(LoginPageActions.LoginPageActionTypes.Login),
     map(action => action.payload.credentials),
-    exhaustMap((auth: Credentials) => {
-      // console.log('Auth: ', auth);
-      return this.authService.login(auth).pipe(
+    exhaustMap((auth: Credentials) =>
+      this.authService.login(auth).pipe(
         map(user => new AuthApiActions.LoginSuccess({ user })),
         catchError(error => of(new AuthApiActions.LoginFailure({ error })))
-      );
-    })
+      )
+    )
   );
 
   @Effect({ dispatch: false })
@@ -41,7 +40,6 @@ export class AuthEffects {
       AuthActions.AuthActionTypes.Logout
     ),
     tap(authed => {
-      // console.log('Auted', authed);
       this.router.navigate(['/login']);
     })
   );
