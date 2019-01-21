@@ -10,13 +10,17 @@ import { GameDataService } from './services/game-data.service';
 import { CoreModule } from '../core/core.module';
 import { CardBoardComponent } from './containers/card-board/card-board.component';
 import { CardComponent } from './components/card/card.component';
+import { StatusBoardComponent } from './containers/status-board/status-board.component';
+import { ControllerBoardComponent } from './containers/controller-board/controller-board.component';
 
 @NgModule({
   declarations: [
     LandingPageComponent,
     GamePageComponent,
     CardBoardComponent,
-    CardComponent
+    CardComponent,
+    StatusBoardComponent,
+    ControllerBoardComponent
   ],
   imports: [
     CommonModule,

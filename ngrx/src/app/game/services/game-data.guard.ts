@@ -33,7 +33,7 @@ export class GameDataGuard implements CanActivate {
     if (this.gameDataService.getCards().length) {
       return true;
     }
-    console.log('Load cards!');
+    // console.log('Load cards!');
     return this.getCards();
   }
 }
