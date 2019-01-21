@@ -34,6 +34,7 @@ export const selectGameCardState = createSelector(selectGameState,
 export const getDeckSize = createSelector(selectGameCardState, fromCard.getDeckSize);
 export const getCards = createSelector(selectGameCardState, fromCard.getCards);
 export const getOpened = createSelector(selectGameCardState, fromCard.getCardsOpen);
+export const getIsLoading = createSelector(selectGameCardState, fromCard.getIsLoading);
 // ------------------------------------------------------------------------
 
 // Game Controller Selector
@@ -52,8 +53,8 @@ export const getHighScore = createSelector(selectGameStatusState, fromStatus.get
 // ------------------------------------------------------------------------
 
 // Game Other Selector
-export const selectGameOtherState = createSelector(selectGameState,
+/*export const selectGameOtherState = createSelector(selectGameState,
   (state: GameState) => state.other);
 export const getIsLoading = createSelector(selectGameOtherState, fromOther.getIsLoading);
-export const getLoadCards = createSelector(selectGameOtherState, fromOther.getCards);
+export const getLoadCards = createSelector(selectGameOtherState, fromOther.getCards);*/
 // ------------------------------------------------------------------------

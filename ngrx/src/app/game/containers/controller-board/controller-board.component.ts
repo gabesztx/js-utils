@@ -26,19 +26,19 @@ export class ControllerBoardComponent implements OnInit {
     this.isStarted$ = this.store.pipe(select(fromGame.getIsStarted));
     this.match$ = this.store.pipe(select(fromGame.getMatch));
     // this.matchLength = this.gameDataService.deckNumber;
+    // TODO: game szervizből megnézni a lengthet a finish gamere
   }
 
   ngOnInit() {
     this.isStarted$.subscribe(
       started => {
-        // console.log('started', started);
         started ? this.startGame() : this.finishGame();
       });
   }
 
   startGame() {
     console.log('Start Game');
-    /*this.matchSubscription = this.match$.subscribe(
+   /* this.matchSubscription = this.match$.subscribe(
       machValue => {
         if (this.matchLength === machValue) {
           this.store.dispatch(new FinishGame());
@@ -49,8 +49,8 @@ export class ControllerBoardComponent implements OnInit {
   finishGame() {
     if (this.matchSubscription) {
       console.log('Finish Game');
-      // this.matchSubscription.unsubscribe();
-      // this.store.dispatch(new HighScroreUpdate());
+      this.matchSubscription.unsubscribe();
+      this.store.dispatch(new HighScroreUpdate());
     }
   }
 }

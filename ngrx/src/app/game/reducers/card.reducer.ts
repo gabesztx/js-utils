@@ -2,6 +2,7 @@ import * as CardAction from '../actions/card.actions';
 import { ICard } from '../models/card.model';
 
 export interface IState {
+  readonly isLoading: boolean;
   readonly cards: ICard[];
   readonly cardsOpen: ICard[];
   readonly deckSize: number;
@@ -9,6 +10,7 @@ export interface IState {
 }
 
 const initial_state: IState = {
+  isLoading: false,
   cards: [],
   cardsOpen: [],
   deckSize: 3,
@@ -17,10 +19,16 @@ const initial_state: IState = {
 
 export function reducer(state = initial_state, action: CardAction.Actions) {
   switch (action.type) {
-    case CardAction.INIT_CARDS:
+    case CardAction.LOAD_CARDS:
       return {
         ...state,
-        cards: action.payload
+        isLoading: true
+      };
+    case CardAction.LOAD_CARDS_COMPLETED:
+      return {
+        ...state,
+        isLoading: false,
+        cards: action.payload,
       };
     case CardAction.CURRENT_CARD_ID:
       return {
@@ -92,3 +100,4 @@ export function reducer(state = initial_state, action: CardAction.Actions) {
 export const getCards = (state) => state.cards;
 export const getDeckSize = (state) => state.deckSize;
 export const getCardsOpen = (state) => state.cardsOpen;
+export const getIsLoading = (state) => state.isLoading;
