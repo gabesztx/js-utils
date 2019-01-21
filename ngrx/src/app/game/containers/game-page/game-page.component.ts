@@ -5,7 +5,7 @@ import * as fromGame from '../../reducers';
 @Component({
   selector: 'app-game-page',
   templateUrl: './game-page.component.html',
-  styleUrls: ['./game-page.component.css']
+  styleUrls: ['./game-page.component.scss']
 })
 export class GamePageComponent implements OnInit {
 
