@@ -9,20 +9,20 @@ import {
 import * as fromCard from './card.reducer';
 import * as fromController from './controller.reducer';
 import * as fromStatus from './status.reducer';
-import * as fromOther from './other.reducer';
+// import * as fromOther from './other.reducer';
 
 export interface GameState {
   card: fromCard.IState;
   controller: fromController.IState;
   status: fromStatus.IState;
-  other: fromOther.IState;
+  // other: fromOther.IState;
 }
 
 export const reducers: ActionReducerMap<GameState> = {
   card: fromCard.reducer,
   controller: fromController.reducer,
   status: fromStatus.reducer,
-  other: fromOther.reducer,
+  // other: fromOther.reducer,
 };
 
 // Game State Selector

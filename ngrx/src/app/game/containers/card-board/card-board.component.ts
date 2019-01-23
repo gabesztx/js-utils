@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import * as fromGame from '../../reducers';
-import { Observable, Subscription } from 'rxjs';
 import { ICard } from '../../models/card.model';
 import { InactiveCards, IsOpenCard, OpenedCardAdd, OpenedCardReset, RotateCard } from '../../actions/card.actions';
 import { UpdateGame } from '../../actions/controller.actions';
 import { MatchUpdate, ScoreUpdate } from '../../actions/status.actions';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-card-board',

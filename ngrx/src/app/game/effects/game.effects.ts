@@ -4,8 +4,9 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { GameDataService } from '../services/game-data.service';
 import { ICard } from '../models/card.model';
 import { LOAD_CARDS, LoadCardsCompleted } from '../actions/card.actions';
-import { switchMap, mergeMap, map, delay } from 'rxjs/operators';
+import { switchMap, mergeMap, map, delay, tap, startWith } from 'rxjs/operators';
 import * as fromGame from '../reducers';
+import { of, timer } from 'rxjs';
 
 @Injectable()
 export class GameEffects {
@@ -18,10 +19,16 @@ export class GameEffects {
   loadCards$ = this.actions$.pipe(
     ofType(LOAD_CARDS),
     // mergeMap(action =>
-    switchMap(action =>
-      this.gameDataServices.loadCards().pipe(
-        map((payload: ICard[]) => new LoadCardsCompleted(payload))
-      )
+    tap(x1 => console.log('Load Cards')),
+    // delay(3000),
+    startWith(),
+    tap(x1 => console.log('loaded: ', x1)),
+    switchMap(action => {
+        console.log('SwitchMap: ', action);
+        return this.gameDataServices.loadCards().pipe(
+          map((payload: ICard[]) => new LoadCardsCompleted(payload))
+        );
+      }
     )
   );
 

@@ -22,7 +22,7 @@ export class GameDataService {
 
   loadCards(): Observable<ICard[]> {
     const randomCards = this.getRandomCards(this.cardData);
-    const desckCards = JSON.parse(JSON.stringify(randomCards.slice(0, 3)));
+    const desckCards = JSON.parse(JSON.stringify(randomCards.slice(0, 3))); //TODO: a 3- desk
     const duplicatedCards = JSON.parse(JSON.stringify(desckCards.concat(desckCards.slice(0))));
     const randomDuplicatedCards = this.getRandomCards(duplicatedCards);
     this.cards = randomDuplicatedCards.map((label, id) => {
