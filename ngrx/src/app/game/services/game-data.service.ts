@@ -57,8 +57,3 @@ export class GameDataService {
       .map(a => a[1]);
   }
 }
-
-
-// this.store.dispatch(new InitCards(this.cardList));
-// this.store.dispatch(new ResetStatus());
-// this.store.dispatch(new ResetCards());

@@ -3,19 +3,8 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { GameDataService } from '../services/game-data.service';
 import { ICard } from '../models/card.model';
-import { LOAD_CARDS, LoadCardsCompleted, GetDeckSize } from '../actions/card.actions';
-import {
-  switchMap,
-  mergeMap,
-  map,
-  delay,
-  tap,
-  startWith,
-  concatMapTo,
-  combineAll,
-  concatAll,
-  withLatestFrom, take, concatMap, mapTo
-} from 'rxjs/operators';
+import { LOAD_CARDS, LoadCardsCompleted } from '../actions/card.actions';
+import { switchMap, map } from 'rxjs/operators';
 import * as fromGame from '../reducers';
 
 @Injectable()
