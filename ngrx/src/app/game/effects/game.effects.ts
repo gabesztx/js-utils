@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { GameDataService } from '../services/game-data.service';
 import { ICard } from '../models/card.model';
-import { LOAD_CARDS, RESET_CARDS, SetCards } from '../actions/card.actions';
+import { LOAD_CARDS, RESET_CARDS, ResetCards, SetCards } from '../actions/card.actions';
 import { ResetStatus } from '../actions/status.actions';
-import { switchMap, map, take, tap } from 'rxjs/operators';
+import { switchMap, map, take, tap, startWith } from 'rxjs/operators';
 import * as fromGame from '../reducers';
 import { GAME_OVER } from '../actions/controller.actions';
 
@@ -62,5 +62,13 @@ export class GameEffects {
       );
     })
   );*/
-  // TODO: get more multiple store value
 }
+
+
+// TODO: https://github.com/ngrx/platform/blob/master/docs/effects/api.md#controlling-effects
+//  - ofType
+//  - Non-dispatching Effects
+//  - Initializing effect
+//  - Controlling Effects
+//  - get more multiple store value
+
