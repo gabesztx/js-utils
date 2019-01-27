@@ -6,7 +6,7 @@ import { Credentials } from '@example-app/auth/models/user';
   selector: 'bc-login-form',
   template: `
     <mat-card>
-      <mat-card-title>Login</mat-card-title>
+      <mat-card-title>Bejelentkezés</mat-card-title>
       <mat-card-content>
         <form [formGroup]="form" (ngSubmit)="submit()">
           <p>
@@ -14,7 +14,7 @@ import { Credentials } from '@example-app/auth/models/user';
               <input
                 type="text"
                 matInput
-                placeholder="Username"
+                placeholder="Felhasználónév"
                 formControlName="username"
               />
             </mat-form-field>
@@ -25,7 +25,7 @@ import { Credentials } from '@example-app/auth/models/user';
               <input
                 type="password"
                 matInput
-                placeholder="Password"
+                placeholder="Jelszó"
                 formControlName="password"
               />
             </mat-form-field>
@@ -89,7 +89,7 @@ export class LoginFormComponent implements OnInit {
   @Output() submitted = new EventEmitter<Credentials>();
 
   form: FormGroup = new FormGroup({
-    username: new FormControl('ngrx'),
+    username: new FormControl('gabesz'),
     password: new FormControl(''),
   });
 

@@ -4,12 +4,12 @@ import { Component, Output, Input, EventEmitter } from '@angular/core';
   selector: 'bc-book-search',
   template: `
     <mat-card>
-      <mat-card-title>Find a Book</mat-card-title>
+      <mat-card-title>Könyv keresés</mat-card-title>
       <mat-card-content>
         <mat-form-field>
           <input
             matInput
-            placeholder="Search for a book"
+            placeholder="keresés"
             [value]="query"
             (keyup)="search.emit($event.target.value)"
           />

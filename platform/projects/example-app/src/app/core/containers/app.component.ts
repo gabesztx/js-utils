@@ -18,27 +18,25 @@ import { LayoutActions } from '@example-app/core/actions';
           *ngIf="(loggedIn$ | async)"
           routerLink="/"
           icon="book"
-          hint="View your book collection"
         >
-          My Collection
+          Gyűjtemény
         </bc-nav-item>
         <bc-nav-item
           (navigate)="closeSidenav()"
           *ngIf="(loggedIn$ | async)"
           routerLink="/books/find"
           icon="search"
-          hint="Find your next book!"
         >
-          Browse Books
+          Könyv keresés
         </bc-nav-item>
         <bc-nav-item (navigate)="closeSidenav()" *ngIf="!(loggedIn$ | async)">
-          Sign In
+          Bejelentkezés
         </bc-nav-item>
         <bc-nav-item (navigate)="logout()" *ngIf="(loggedIn$ | async)">
-          Sign Out
+          Kijelentkezés
         </bc-nav-item>
       </bc-sidenav>
-      <bc-toolbar (openMenu)="openSidenav()"> Book Collection </bc-toolbar>
+      <bc-toolbar (openMenu)="openSidenav()"> Könyveid</bc-toolbar>
 
       <router-outlet></router-outlet>
     </bc-layout>
