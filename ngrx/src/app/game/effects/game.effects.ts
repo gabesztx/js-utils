@@ -11,13 +11,11 @@ import * as fromGame from '../reducers';
 export class GameEffects {
   constructor(private actions$: Actions,
               private store: Store<fromGame.GameState>,
-              private gameDataServices: GameDataService) {
-  }
+              private gameDataServices: GameDataService) {}
   @Effect()
   loadCards$ = this.actions$.pipe(
     ofType(LOAD_CARDS),
     switchMap(action => this.store.pipe(select(fromGame.getDeckSize))),
-      // this.store.pipe(select(fromGame.getDeckSize)).pipe(take(1))),
     switchMap(deckSize => {
       return this.gameDataServices.loadCards(deckSize).pipe(
         map((payload: ICard[]) => {
@@ -27,17 +25,3 @@ export class GameEffects {
     })
   );
 }
-
-// loadCards$ = this.actions$.pipe(
-//   ofType(LOAD_CARDS),
-//   // tap(x => console.log('Effect: Load Cards')),
-//   switchMap(action => {
-//     // console.log('SwitchMap: ', action);
-//     return this.gameDataServices.loadCards().pipe(
-//       map((payload: ICard[]) => {
-//         return new LoadCardsCompleted(payload);
-//       }),
-//     );
-//   })
-// );
-

@@ -13,7 +13,7 @@ const initial_state: IState = {
   isLoading: false,
   cards: [],
   cardsOpen: [],
-  deckSize: 3,
+  deckSize: 2,
   // currentCardId: null,
 };
 
