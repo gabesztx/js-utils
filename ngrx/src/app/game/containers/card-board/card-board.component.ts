@@ -27,7 +27,7 @@ export class CardBoardComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.cards$.subscribe(
       cards => {
-        console.log('Cards', cards);
+        // console.log('Cards', cards);
       }
     );
 
@@ -95,8 +95,9 @@ export class CardBoardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.timerRotate();
-    this.cardsOpenedSub.unsubscribe();
+    console.log('DESTROY');
+    // this.timerRotate();
+    // this.cardsOpenedSub.unsubscribe();
   }
 
 }

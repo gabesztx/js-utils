@@ -105,4 +105,4 @@ export function reducer(state = initial_state, action: CardAction.Actions) {
 export const getCards = (state) => state.cards;
 export const getCardsOpen = (state) => state.cardsOpen;
 export const getIsLoading = (state) => state.isLoading;
-export const deckSize = (state) => state.deckSize;
+export const getDeckSize = (state) => state.deckSize;

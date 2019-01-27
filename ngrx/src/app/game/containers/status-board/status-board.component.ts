@@ -23,9 +23,8 @@ export class StatusBoardComponent implements OnInit, OnDestroy {
   ngOnInit() {}
 
   restartGame() {
-    console.log('restartGame');
     this.store.dispatch(new ResetCards());
-    // this.gameDataService.resetCards();
+    // console.log(this.gameDataService.getCards());
     // this.gameDataService.initCards();
   }
   ngOnDestroy() {

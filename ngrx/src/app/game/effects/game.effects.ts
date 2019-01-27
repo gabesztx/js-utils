@@ -21,7 +21,21 @@ export class GameEffects {
     switchMap(deckSize => {
       return this.gameDataServices.loadCards(deckSize).pipe(
         // take(1),
-        map((payload: ICard[]) => new LoadCardsCompleted(payload)),
+        map((cards: ICard[]) => new LoadCardsCompleted(cards)),
+      );
+    })
+  );
+
+  @Effect()
+  resetCards$ = this.actions$.pipe(
+    ofType(RESET_CARDS),
+    switchMap(action => {
+      return this.gameDataServices.loadCards().pipe(
+        
+        /*map((cards: ICard[]) => {
+          // console.log('reset cards', cards);
+          return new LoadCardsCompleted(cards);
+        })*/
       );
     })
   );

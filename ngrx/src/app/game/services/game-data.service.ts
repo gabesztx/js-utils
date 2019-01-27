@@ -22,12 +22,16 @@ export class GameDataService {
   constructor() {}
 
   loadCards(deckSize?: number): Observable<ICard[]> {
-    this.deckSize = deckSize || 2;
-    console.log('Load Cards: ', this.deckSize);
+    console.log('deckSize', deckSize);
+    this.deckSize = deckSize || this.deckSize;
+    console.log('loadCards', this.deckSize);
     const randomCards = this.getRandomCards(this.cardData);
-    const desckCards = JSON.parse(JSON.stringify(randomCards.slice(0, this.deckSize)));
-    const duplicatedCards = JSON.parse(JSON.stringify(desckCards.concat(desckCards.slice(0))));
+    const deckCards = JSON.parse(JSON.stringify(randomCards.slice(0, this.deckSize)));
+
+    const duplicatedCards = JSON.parse(JSON.stringify(deckCards.concat(deckCards.slice(0))));
+
     const randomDuplicatedCards = this.getRandomCards(duplicatedCards);
+
     this.cards = randomDuplicatedCards.map((label, id) => {
       return {
         id: id,
@@ -42,6 +46,10 @@ export class GameDataService {
 
   }
 
+  /*resetCards(): Observable<ICard[]> {
+
+  }
+*/
   getCards(): ICard[] {
     return this.cards;
   }
