@@ -26,7 +26,7 @@ export function reducer(
   switch (action.type) {
     case FindBookPageActions.FindBookPageActionTypes.SearchBooks: {
       const query = action.payload;
-
+      console.log('SearchBooks');
       if (query === '') {
         return {
           ids: [],
@@ -45,6 +45,7 @@ export function reducer(
     }
 
     case BooksApiActions.BooksApiActionTypes.SearchSuccess: {
+      console.log('SearchSuccess');
       return {
         ids: action.payload.map(book => book.id),
         loading: false,
@@ -54,6 +55,7 @@ export function reducer(
     }
 
     case BooksApiActions.BooksApiActionTypes.SearchFailure: {
+      console.log('SearchFailure');
       return {
         ...state,
         loading: false,

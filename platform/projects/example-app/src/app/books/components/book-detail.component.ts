@@ -21,7 +21,7 @@ import { Book } from '@example-app/books/models/book';
           *ngIf="inCollection"
           (click)="remove.emit(book)"
         >
-          Remove Book from Collection
+          Könyv levétele
         </button>
 
         <button
@@ -30,7 +30,7 @@ import { Book } from '@example-app/books/models/book';
           *ngIf="!inCollection"
           (click)="add.emit(book)"
         >
-          Add Book to Collection
+          Könyv hozzáadása
         </button>
       </mat-card-actions>
     </mat-card>

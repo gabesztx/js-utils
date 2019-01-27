@@ -37,7 +37,8 @@ export class AuthEffects {
   @Effect({ dispatch: false })
   loginSuccess$ = this.actions$.pipe(
     ofType(AuthApiActions.AuthApiActionTypes.LoginSuccess),
-    tap(() => this.router.navigate(['/']))
+    tap(() => this.router.navigate(['/books/find']))
+    // tap(() => this.router.navigate(['/']))
   );
 
   @Effect({ dispatch: false })

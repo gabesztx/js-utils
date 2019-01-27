@@ -19,7 +19,7 @@ import { LayoutActions } from '@example-app/core/actions';
           routerLink="/"
           icon="book"
         >
-          Gyűjtemény
+          Könyveim
         </bc-nav-item>
         <bc-nav-item
           (navigate)="closeSidenav()"
@@ -36,7 +36,7 @@ import { LayoutActions } from '@example-app/core/actions';
           Kijelentkezés
         </bc-nav-item>
       </bc-sidenav>
-      <bc-toolbar (openMenu)="openSidenav()"> Könyveid</bc-toolbar>
+      <bc-toolbar (openMenu)="openSidenav()"> Menu</bc-toolbar>
 
       <router-outlet></router-outlet>
     </bc-layout>

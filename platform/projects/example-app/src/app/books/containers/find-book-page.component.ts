@@ -30,10 +30,9 @@ export class FindBookPageComponent {
   constructor(private store: Store<fromBooks.State>) {
     this.searchQuery$ = store.pipe(
       select(fromBooks.getSearchQuery),
-      map(value => {
-        console.log('Map', value);
+      /*map(value => {
         return value;
-      }),
+      }),*/
       take(1)
     );
     this.books$ = store.pipe(select(fromBooks.getSearchResults));

@@ -9,6 +9,7 @@ import {
   skip,
   switchMap,
   takeUntil,
+  tap,
 } from 'rxjs/operators';
 
 import { GoogleBooksService } from '@example-app/core/services/google-books.service';
@@ -31,6 +32,11 @@ import { Book } from '@example-app/books/models/book';
 
 @Injectable()
 export class BookEffects {
+  constructor(
+    private actions$: Actions<FindBookPageActions.FindBookPageActionsUnion>,
+    private googleBooks: GoogleBooksService
+  ) {}
+  // TODO: debounce átnézés
   @Effect()
   search$ = ({ debounce = 300, scheduler = asyncScheduler } = {}): Observable<
     Action
@@ -43,9 +49,11 @@ export class BookEffects {
         if (query === '') {
           return empty;
         }
+        console.log('switchMap', query);
 
         const nextSearch$ = this.actions$.pipe(
           ofType(FindBookPageActions.FindBookPageActionTypes.SearchBooks),
+          tap(x => console.log('nextSearch$', x)),
           skip(1)
         );
 
@@ -56,9 +64,4 @@ export class BookEffects {
         );
       })
     );
-
-  constructor(
-    private actions$: Actions<FindBookPageActions.FindBookPageActionsUnion>,
-    private googleBooks: GoogleBooksService
-  ) {}
 }
