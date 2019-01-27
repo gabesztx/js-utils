@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import * as fromGame from '../../reducers/index';
 import { HighScroreUpdate } from '../../actions/status.actions';
-import { FinishGame } from '../../actions/controller.actions';
+import { FinishGame, GameOver } from '../../actions/controller.actions';
 import { Observable, Subscription } from 'rxjs';
 import { GameDataService } from '../../services/game-data.service';
 
@@ -12,8 +12,9 @@ import { GameDataService } from '../../services/game-data.service';
   styleUrls: ['./controller-board.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ControllerBoardComponent implements OnInit {
+export class ControllerBoardComponent implements OnInit, OnDestroy {
   private matchSubscription: Subscription;
+  private isStartSubscription: Subscription;
   private matchLength: number;
 
   isStarted$: Observable<boolean>;
@@ -27,7 +28,7 @@ export class ControllerBoardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isStarted$.subscribe(
+    this.isStartSubscription = this.isStarted$.subscribe(
       started => {
         started ? this.startGame() : this.finishGame();
       });
@@ -45,9 +46,19 @@ export class ControllerBoardComponent implements OnInit {
 
   finishGame() {
     if (this.matchSubscription) {
-      console.log('Finish Game');
+      // console.log('Finish Game');
       this.matchSubscription.unsubscribe();
       this.store.dispatch(new HighScroreUpdate());
     }
+  }
+
+  ngOnDestroy() {
+    if (this.isStartSubscription) {
+      this.isStartSubscription.unsubscribe();
+    }
+    if (this.matchSubscription) {
+      this.matchSubscription.unsubscribe();
+    }
+    this.store.dispatch(new GameOver());
   }
 }

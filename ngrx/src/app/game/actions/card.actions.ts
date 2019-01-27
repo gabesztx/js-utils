@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store';
 import { ICard } from '../models/card.model';
 
 export const LOAD_CARDS = '[CARD] Load Cards';
-export const LOAD_CARDS_COMPLETED = '[CARD] Load Cards Completed';
+export const SET_CARDS = '[CARD] Set Cards';
 export const CURRENT_CARD_ID = '[CARD] Current Id Card';
 export const ROTATE_CARD = '[CARD] Rotate Card';
 export const ISOPEN_CARD = '[CARD] IsOpen Card';
@@ -16,8 +16,8 @@ export const OPENED_CARD_RESET = '[CARD] Opened Card reset';
 export class LoadCards implements Action {
   readonly type = LOAD_CARDS;
 }
-export class LoadCardsCompleted implements Action {
-  readonly type = LOAD_CARDS_COMPLETED;
+export class SetCards implements Action {
+  readonly type = SET_CARDS;
   constructor(public payload: ICard[]) {}
 }
 export class RotateCard implements Action {
@@ -63,7 +63,7 @@ export type Actions =
   GetDeckSize |
   SetDeckSize |
   LoadCards |
-  LoadCardsCompleted |
+  SetCards |
   RotateCard |
   IsOpenCard |
   InactiveCards |

@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import * as fromGame from '../../reducers';
 import { Observable } from 'rxjs';
-import { GameDataService } from '../../services/game-data.service';
 import { ResetCards } from '../../actions/card.actions';
 
 @Component({
@@ -11,11 +10,10 @@ import { ResetCards } from '../../actions/card.actions';
   styleUrls: ['./status-board.component.scss'],
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class StatusBoardComponent implements OnInit, OnDestroy {
+export class StatusBoardComponent implements OnInit {
   highScore$: Observable<number>;
   score$: Observable<number>;
-  constructor(private store: Store<fromGame.GameState>,
-              private gameDataService: GameDataService) {
+  constructor(private store: Store<fromGame.GameState>) {
     this.highScore$ = this.store.pipe(select(fromGame.getHighScore));
     this.score$ = this.store.pipe(select(fromGame.getScore));
   }
@@ -24,10 +22,6 @@ export class StatusBoardComponent implements OnInit, OnDestroy {
 
   restartGame() {
     this.store.dispatch(new ResetCards());
-    // console.log(this.gameDataService.getCards());
-    // this.gameDataService.initCards();
   }
-  ngOnDestroy() {
-    // this.gameDataService.resetCards();
-  }
+
 }

@@ -24,7 +24,7 @@ export function reducer(state = initial_state, action: CardAction.Actions) {
         ...state,
         isLoading: true
       };
-    case CardAction.LOAD_CARDS_COMPLETED:
+    case CardAction.SET_CARDS:
       return {
         ...state,
         isLoading: false,

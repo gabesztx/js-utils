@@ -2,7 +2,13 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import * as fromGame from '../../reducers';
 import { ICard } from '../../models/card.model';
-import { InactiveCards, IsOpenCard, OpenedCardAdd, OpenedCardReset, RotateCard } from '../../actions/card.actions';
+import {
+  InactiveCards,
+  IsOpenCard,
+  OpenedCardAdd,
+  OpenedCardReset, ResetCards,
+  RotateCard
+} from '../../actions/card.actions';
 import { UpdateGame } from '../../actions/controller.actions';
 import { MatchUpdate, ScoreUpdate } from '../../actions/status.actions';
 import { Observable, Subscription } from 'rxjs';
@@ -25,14 +31,9 @@ export class CardBoardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.cards$.subscribe(
+    this.cardsOpenedSub = this.cardsOpen$.subscribe(
       cards => {
-        // console.log('Cards', cards);
-      }
-    );
-
-    this.cardsOpen$.subscribe(
-      cards => {
+        // console.log('cardsOpen$', cards);
         cards.map((card, index, array) => {
           const key = index + 1;
           if (key % 2 === 0) {
@@ -50,7 +51,6 @@ export class CardBoardComponent implements OnInit, OnDestroy {
 
 
   cardFlippedIn(card: ICard) {
-    // setTimeout(() => {}, 3000);
     this.store.dispatch(new UpdateGame());
     this.store.dispatch(new RotateCard(card));
     this.store.dispatch(new IsOpenCard({card: card, isOpen: true}));
@@ -73,7 +73,7 @@ export class CardBoardComponent implements OnInit, OnDestroy {
       cards.forEach((card: ICard) => {
         this.store.dispatch(new IsOpenCard({card: card, isOpen: false}));
       });
-    }, 250);
+    }, 300);
   }
 
   cardsMatched(cards: ICard[]) {
@@ -95,9 +95,8 @@ export class CardBoardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log('DESTROY');
-    // this.timerRotate();
-    // this.cardsOpenedSub.unsubscribe();
+    this.timerRotate();
+    this.cardsOpenedSub.unsubscribe();
   }
 
 }
