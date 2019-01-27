@@ -87,11 +87,11 @@ export function reducer(state = initial_state, action: CardAction.Actions) {
         ...state,
         deckSize: action.payload
       };
-    case CardAction.GET_DECK_SIZE:
+    /*case CardAction.GET_DECK_SIZE:
       return {
         ...state,
         deckSize: state.deckSize
-      };
+      };*/
     case CardAction.RESET_CARDS:
       return {
         ...initial_state,

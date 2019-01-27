@@ -52,7 +52,8 @@ export class CardComponent implements OnInit, OnChanges {
   public isOpen: string;
   public inactive: string;
 
-  constructor() {}
+  constructor() {
+  }
 
   ngOnChanges() {
     this.inactive = 'visible';
@@ -72,6 +73,7 @@ export class CardComponent implements OnInit, OnChanges {
 
   clickCard(card: ICard) {
     this.isOpen = 'open';
+    // setTimeout(() => {}, 500);
   }
 
   rotateDone(event: any, card) {

@@ -7,8 +7,7 @@ import { GameDataGuard } from './game/services/game-data.guard';
 const routes: Routes = [
   {
     path: 'start',
-    component: LandingPageComponent,
-    canActivate: [GameDataGuard]
+    component: LandingPageComponent
   },
   {
     path: 'game',

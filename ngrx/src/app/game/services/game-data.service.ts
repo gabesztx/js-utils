@@ -23,6 +23,7 @@ export class GameDataService {
 
   loadCards(deckSize: number): Observable<ICard[]> {
     console.log('Load Cards: ', deckSize);
+    this.deckSize = deckSize;
     const randomCards = this.getRandomCards(this.cardData);
     const desckCards = JSON.parse(JSON.stringify(randomCards.slice(0, deckSize)));
     const duplicatedCards = JSON.parse(JSON.stringify(desckCards.concat(desckCards.slice(0))));

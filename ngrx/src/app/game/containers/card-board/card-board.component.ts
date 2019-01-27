@@ -67,7 +67,7 @@ export class CardBoardComponent implements OnInit, OnDestroy {
       cards.forEach((card: ICard) => {
         this.store.dispatch(new IsOpenCard({card: card, isOpen: false}));
       });
-    }, 500);
+    }, 250);
   }
 
   cardsMatched(cards: ICard[]) {

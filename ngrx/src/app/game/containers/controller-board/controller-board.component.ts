@@ -19,14 +19,11 @@ export class ControllerBoardComponent implements OnInit {
   isStarted$: Observable<boolean>;
   match$: Observable<number>;
 
-
   constructor(private store: Store<fromGame.GameState>,
-              private gameDataService: GameDataService
-  ) {
+              private gameDataService: GameDataService) {
     this.isStarted$ = this.store.pipe(select(fromGame.getIsStarted));
     this.match$ = this.store.pipe(select(fromGame.getMatch));
-    // this.matchLength = this.gameDataService.deckNumber;
-    // TODO: game szervizből megnézni a lengthet a finish gamere
+    this.matchLength = this.gameDataService.deckSize;
   }
 
   ngOnInit() {
@@ -37,13 +34,13 @@ export class ControllerBoardComponent implements OnInit {
   }
 
   startGame() {
-    console.log('Start Game');
-   /* this.matchSubscription = this.match$.subscribe(
+    // console.log('Start Game');
+    this.matchSubscription = this.match$.subscribe(
       machValue => {
         if (this.matchLength === machValue) {
           this.store.dispatch(new FinishGame());
         }
-      });*/
+      });
   }
 
   finishGame() {
