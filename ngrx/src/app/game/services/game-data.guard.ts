@@ -4,8 +4,8 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angul
 import * as fromGame from '../reducers';
 import { GameDataService } from './game-data.service';
 import { LoadCards } from '../actions/card.actions';
-import { Observable, of } from 'rxjs';
-import { map, take, tap, filter, switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map, tap, filter } from 'rxjs/operators';
 
 @Injectable()
 export class GameDataGuard implements CanActivate {
@@ -23,10 +23,7 @@ export class GameDataGuard implements CanActivate {
         }
       }),
       filter((cards: any) => !!cards.length),
-      map((cards: any) => {
-
-        return !!cards.length;
-      })
+      map((cards: any) => !!cards.length)
     );
   }
 
@@ -37,5 +34,8 @@ export class GameDataGuard implements CanActivate {
       return true;
     }
     return this.getCards();
+    /*return this.getCards().pipe(
+      tap(x => console.log('canActivate: ', x))
+    );*/
   }
 }

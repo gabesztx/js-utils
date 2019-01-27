@@ -8,7 +8,8 @@ export const ROTATE_CARD = '[CARD] Rotate Card';
 export const ISOPEN_CARD = '[CARD] IsOpen Card';
 export const RESET_CARDS = '[CARD] Reset Cards';
 export const INACTIVE_CARDS = '[CARD] Inactive Cards';
-export const DECK_SIZE = '[CARD] Deck Size';
+export const SET_DECK_SIZE = '[CARD] Set Deck Size';
+export const GET_DECK_SIZE = '[CARD] Get Deck Size';
 export const OPENED_CARD_ADD = '[CARD] Opened Card add';
 export const OPENED_CARD_RESET = '[CARD] Opened Card reset';
 
@@ -34,8 +35,12 @@ export class InactiveCards implements Action {
   readonly type = INACTIVE_CARDS;
   constructor(public payload: ICard) {}
 }
-export class DeckSize implements Action {
-  readonly type = DECK_SIZE;
+export class SetDeckSize implements Action {
+  readonly type = SET_DECK_SIZE;
+  constructor(public payload: number) {}
+}
+export class GetDeckSize implements Action {
+  readonly type = GET_DECK_SIZE;
   constructor(public payload: number) {}
 }
 export class OpenedCardAdd implements Action {
@@ -55,7 +60,8 @@ export type Actions =
   OpenedCardAdd |
   OpenedCardReset |
   CurrentCardId |
-  DeckSize |
+  GetDeckSize |
+  SetDeckSize |
   LoadCards |
   LoadCardsCompleted |
   RotateCard |

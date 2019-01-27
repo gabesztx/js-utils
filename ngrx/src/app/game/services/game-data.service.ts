@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class GameDataService {
+  deckSize: number;
   cards: ICard[] = [];
   cardData: string[] = [
     'angular',
@@ -20,9 +21,10 @@ export class GameDataService {
 
   constructor() {}
 
-  loadCards(): Observable<ICard[]> {
+  loadCards(deckSize: number): Observable<ICard[]> {
+    console.log('Load Cards: ', deckSize);
     const randomCards = this.getRandomCards(this.cardData);
-    const desckCards = JSON.parse(JSON.stringify(randomCards.slice(0, 3))); //TODO: a 3- desk
+    const desckCards = JSON.parse(JSON.stringify(randomCards.slice(0, deckSize)));
     const duplicatedCards = JSON.parse(JSON.stringify(desckCards.concat(desckCards.slice(0))));
     const randomDuplicatedCards = this.getRandomCards(duplicatedCards);
     this.cards = randomDuplicatedCards.map((label, id) => {
@@ -42,28 +44,6 @@ export class GameDataService {
   getCards(): ICard[] {
     return this.cards;
   }
-
-  initCards() {
-    /*const localStorgeCards = this.getLocalStorage('cards').cards;
-    const randomCards = this.getRandomCards(this.cardData);
-    const desckCards = JSON.parse(JSON.stringify(randomCards.slice(0, this.deckNumber)));
-    const duplicatedCards = JSON.parse(JSON.stringify(desckCards.concat(desckCards.slice(0))));
-    const randomDuplicatedCards = this.getRandomCards(duplicatedCards);
-    // console.log('Local Storage', localStorgeCards);
-    this.cardList = localStorgeCards.length ?
-      localStorgeCards :
-      randomDuplicatedCards.map((label, id) => {
-        return {
-          id: id,
-          imgUrl: `assets/${label}.png`,
-          label: label,
-          rotate: false,
-          inactive: false,
-          isOpen: false,
-        };
-      });*/
-  }
-
   // resetCards() {}
 
   getLocalStorage(key: string): any {

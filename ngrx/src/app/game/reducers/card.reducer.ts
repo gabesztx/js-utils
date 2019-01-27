@@ -82,10 +82,15 @@ export function reducer(state = initial_state, action: CardAction.Actions) {
           return !(cardId === cards[0].id || cardId === cards[1].id);
         })]
       };
-    case CardAction.DECK_SIZE:
+    case CardAction.SET_DECK_SIZE:
       return {
         ...state,
         deckSize: action.payload
+      };
+    case CardAction.GET_DECK_SIZE:
+      return {
+        ...state,
+        deckSize: state.deckSize
       };
     case CardAction.RESET_CARDS:
       return {
@@ -98,6 +103,6 @@ export function reducer(state = initial_state, action: CardAction.Actions) {
 }
 
 export const getCards = (state) => state.cards;
-export const getDeckSize = (state) => state.deckSize;
 export const getCardsOpen = (state) => state.cardsOpen;
 export const getIsLoading = (state) => state.isLoading;
+export const deckSize = (state) => state.deckSize;

@@ -12,8 +12,6 @@ export class GamePageComponent implements OnInit {
   constructor(private store: Store<fromGame.GameState>) {
   }
 
-  ngOnInit() {
-    // TODO: game board folytatása
-  }
+  ngOnInit() {}
 
 }

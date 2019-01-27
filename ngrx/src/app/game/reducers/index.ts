@@ -31,7 +31,8 @@ export const selectGameState = createFeatureSelector<GameState>('game');
 // Game Card Selector
 export const selectGameCardState = createSelector(selectGameState,
   (state: GameState) => state.card);
-export const getDeckSize = createSelector(selectGameCardState, fromCard.getDeckSize);
+
+export const getDeckSize = createSelector(selectGameCardState, fromCard.deckSize);
 export const getCards = createSelector(selectGameCardState, fromCard.getCards);
 export const getOpened = createSelector(selectGameCardState, fromCard.getCardsOpen);
 export const getIsLoading = createSelector(selectGameCardState, fromCard.getIsLoading);
