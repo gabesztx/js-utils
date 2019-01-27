@@ -3,6 +3,7 @@ import { select, Store } from '@ngrx/store';
 import * as fromGame from '../../reducers';
 import { Observable } from 'rxjs';
 import { GameDataService } from '../../services/game-data.service';
+import { ResetCards } from '../../actions/card.actions';
 
 @Component({
   selector: 'app-status-board',
@@ -23,6 +24,7 @@ export class StatusBoardComponent implements OnInit, OnDestroy {
 
   restartGame() {
     console.log('restartGame');
+    this.store.dispatch(new ResetCards());
     // this.gameDataService.resetCards();
     // this.gameDataService.initCards();
   }

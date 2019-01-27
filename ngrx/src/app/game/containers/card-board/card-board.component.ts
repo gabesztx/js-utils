@@ -25,6 +25,12 @@ export class CardBoardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.cards$.subscribe(
+      cards => {
+        console.log('Cards', cards);
+      }
+    );
+
     this.cardsOpen$.subscribe(
       cards => {
         cards.map((card, index, array) => {

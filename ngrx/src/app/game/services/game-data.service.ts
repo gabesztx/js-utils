@@ -21,11 +21,11 @@ export class GameDataService {
 
   constructor() {}
 
-  loadCards(deckSize: number): Observable<ICard[]> {
-    console.log('Load Cards: ', deckSize);
-    this.deckSize = deckSize;
+  loadCards(deckSize?: number): Observable<ICard[]> {
+    this.deckSize = deckSize || 2;
+    console.log('Load Cards: ', this.deckSize);
     const randomCards = this.getRandomCards(this.cardData);
-    const desckCards = JSON.parse(JSON.stringify(randomCards.slice(0, deckSize)));
+    const desckCards = JSON.parse(JSON.stringify(randomCards.slice(0, this.deckSize)));
     const duplicatedCards = JSON.parse(JSON.stringify(desckCards.concat(desckCards.slice(0))));
     const randomDuplicatedCards = this.getRandomCards(duplicatedCards);
     this.cards = randomDuplicatedCards.map((label, id) => {
@@ -45,7 +45,6 @@ export class GameDataService {
   getCards(): ICard[] {
     return this.cards;
   }
-  // resetCards() {}
 
   getLocalStorage(key: string): any {
     return JSON.parse(localStorage.getItem(key));

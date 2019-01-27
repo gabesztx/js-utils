@@ -41,7 +41,7 @@ export class SetDeckSize implements Action {
 }
 export class GetDeckSize implements Action {
   readonly type = GET_DECK_SIZE;
-  constructor(public payload: number) {}
+  // constructor(public payload: number) {}
 }
 export class OpenedCardAdd implements Action {
   readonly type = OPENED_CARD_ADD;
