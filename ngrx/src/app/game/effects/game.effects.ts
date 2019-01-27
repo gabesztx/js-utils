@@ -7,7 +7,7 @@ import { LOAD_CARDS, RESET_CARDS, ResetCards, SetCards } from '../actions/card.a
 import { ResetStatus } from '../actions/status.actions';
 import { switchMap, map, take, tap, startWith } from 'rxjs/operators';
 import * as fromGame from '../reducers';
-import { GAME_OVER } from '../actions/controller.actions';
+import { GAME_OVER, GamePage } from '../actions/controller.actions';
 
 @Injectable()
 export class GameEffects {
@@ -19,13 +19,13 @@ export class GameEffects {
   @Effect()
   loadCards$ = this.actions$.pipe(
     ofType(LOAD_CARDS),
-    switchMap(() =>
-      this.store.pipe(select(fromGame.getDeckSize)).pipe(take(1))
-    ),
-    switchMap(deckSize => {
-      return this.gameDataServices.loadCards(deckSize).pipe(
-        map((cards: ICard[]) => new SetCards(cards)),
-      );
+    switchMap(() => this.store.pipe(select(fromGame.getDeckSize)).pipe(take(1))),
+    switchMap(deckSize => this.gameDataServices.loadCards(deckSize)),
+    switchMap(cards => {
+     return [
+       new SetCards(cards),
+       new GamePage(true)
+     ];
     })
   );
   @Effect()
@@ -46,7 +46,8 @@ export class GameEffects {
     switchMap(() => {
       return [
         new ResetStatus(),
-        new SetCards([])
+        new SetCards([]),
+        new GamePage(false)
       ];
     })
   );

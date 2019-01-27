@@ -32,6 +32,11 @@ export function reducer(state = initial_state, action: ControllerAction.Actions)
         isStarted: true,
         isFinished: false,
       };
+    case ControllerAction.GAME_PAGE:
+      return {
+        ...state,
+        gamePage: action.payload,
+      };
     case ControllerAction.GAME_OVER:
       return {
         ...initial_state,
@@ -43,10 +48,3 @@ export function reducer(state = initial_state, action: ControllerAction.Actions)
 
 export const getControllerIsStarted = (state: IState) => state.isStarted;
 export const getControllerGamePage = (state: IState) => state.gamePage;
-
-
-// case ControllerAction.GAME_PAGE:
-//   return {
-//     ...state,
-//     gamePage: action.payload,
-//   };
