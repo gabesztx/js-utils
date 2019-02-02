@@ -6,6 +6,7 @@ import { GameDataService } from './game-data.service';
 import { LoadCards } from '../actions/card.actions';
 import { Observable } from 'rxjs';
 import { map, tap, filter, take } from 'rxjs/operators';
+import { ICard } from '../models/card.model';
 
 @Injectable()
 export class GameDataGuard implements CanActivate {
@@ -15,15 +16,14 @@ export class GameDataGuard implements CanActivate {
   }
 
   getCards(): Observable<boolean> {
-    return this.store.pipe(
-      select(fromGame.getCards),
-      tap(cards => {
+    return this.store.pipe(select(fromGame.getCards),
+      tap((cards: ICard[]) => {
         if (!cards.length) {
           this.store.dispatch(new LoadCards());
         }
       }),
-      filter((cards: any) => !!cards.length),
-      map((cards: any) => !!cards.length),
+      filter((cards: ICard[]) => !!cards.length),
+      map((cards: ICard[]) => !!cards.length),
       // take(1)
     );
   }
