@@ -11,6 +11,7 @@ import { reducers } from './reducers';
 import { AppComponent } from './app.component';
 import { GameModule } from './game/game.module';
 import { CoreModule } from './core/core.module';
+import { RouterModule } from './router/router.module';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { CoreModule } from './core/core.module';
     StoreModule.forRoot(reducers),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([]),
+    RouterModule,
     GameModule,
     CoreModule,
   ],
