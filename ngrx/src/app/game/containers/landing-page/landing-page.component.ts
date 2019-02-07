@@ -6,7 +6,7 @@ import * as fromRoot from '../../../reducers';
 import { SetDeckSize } from '../../actions/card.actions';
 import { GameEffects } from '../../effects/game.effects';
 import { Observable } from 'rxjs';
-import { RouterGo } from '../../../actions/router.actions';
+// import { RouterGo } from '../../../actions/router.actions';
 
 @Component({
   selector: 'app-landing-page',

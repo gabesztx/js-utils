@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { StoreModule } from '@ngrx/store';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -12,6 +12,7 @@ import { reducers } from './reducers';
 import { AppComponent } from './app.component';
 import { GameModule } from './game/game.module';
 import { CoreModule } from './core/core.module';
+import { CustomSerializer } from './reducers/router.reducer';
 // import { RouterEffects } from './effects/router.effects';
 
 
@@ -30,7 +31,9 @@ import { CoreModule } from './core/core.module';
     GameModule,
     CoreModule,
   ],
-  providers: [],
+  providers: [
+    {provide: RouterStateSerializer, useClass: CustomSerializer}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

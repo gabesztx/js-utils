@@ -1,3 +1,6 @@
+import * as fromRouter from '@ngrx/router-store';
+// import * as fromRouter from './router.reducer';
+import { RouterStateUrl } from './router.reducer';
 import {
   ActionReducer,
   ActionReducerMap,
@@ -5,11 +8,10 @@ import {
   createSelector,
   MetaReducer
 } from '@ngrx/store';
-// import * as fromRouter from './router.reducer';
-import * as fromRouter from '@ngrx/router-store';
 
 export interface State {
   // router: fromRouter.RouterState;
+  // router: fromRouter.RouterReducerState<RouterStateUrl>;
   router: fromRouter.RouterReducerState;
 }
 
