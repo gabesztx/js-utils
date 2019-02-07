@@ -19,10 +19,10 @@ export class RouterEffects {
     private router: Router,
     private location: Location,
     private store: Store<fromRoot.State>) {
-    this.listenToRouter();
+    // this.listenToRouter();
   }
 
-  /* Router Go */
+  /*/!* Router Go *!/
   @Effect({dispatch: false})
   navigate$ = this.actions$.pipe(
     ofType(RouterActionTypes.RouterGo),
@@ -32,14 +32,14 @@ export class RouterEffects {
     })
   );
 
-  /* Router Back */
+  /!* Router Back *!/
   @Effect({dispatch: false})
   navigateBack$ = this.actions$.pipe(
     ofType(RouterActionTypes.RouterBack),
     tap(() => this.location.back())
   );
 
-  /* Router Forward */
+  /!* Router Forward *!/
   @Effect({dispatch: false})
   navigateForward$ = this.actions$.pipe(
     ofType(RouterActionTypes.RouterForward),
@@ -58,5 +58,5 @@ export class RouterEffects {
         }));
       }
     );
-  }
+  }*/
 }
