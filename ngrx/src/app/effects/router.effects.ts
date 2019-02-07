@@ -27,10 +27,8 @@ export class RouterEffects {
   navigate$ = this.actions$.pipe(
     ofType(RouterActionTypes.RouterGo),
     map((action: RouterGo) => action.payload),
-    // tap(({path, queryParams, extras}) => {
-    tap(val => {
-      console.log('route value: ', val);
-      // this.router.navigate(path, { queryParams, ...extras });
+    tap(({path, queryParams, extras}) => {
+      this.router.navigate(path, { queryParams, ...extras });
     })
   );
 
@@ -50,14 +48,14 @@ export class RouterEffects {
 
   private listenToRouter() {
     this.router.events.pipe(
-      // tap(val => console.log(val)),
+      // tap(event => console.log('router event', event)),
       filter(event => event instanceof ActivationEnd)
     ).subscribe((event: ActivationEnd) => {
-        // console.log('ActivationEnd: ', event);
-        /*this.store.dispatch(new RouteChange({
+        console.log('ActivationEnd: ', event);
+        this.store.dispatch(new RouteChange({
           params: {...event.snapshot.params},
           path: event.snapshot.routeConfig.path
-        }));*/
+        }));
       }
     );
   }

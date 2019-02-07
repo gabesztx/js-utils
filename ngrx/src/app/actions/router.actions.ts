@@ -26,7 +26,7 @@ export class RouterForward implements Action {
 
 export class RouteChange implements Action {
   readonly type = RouterActionTypes.RouteChange;
-  constructor(public payload: { params: any, path: string }) {}
+  constructor(public payload: {path: string, params: any}) {}
 }
 
 export type RouterActions =
