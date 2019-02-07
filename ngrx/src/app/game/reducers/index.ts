@@ -6,10 +6,12 @@ import {
 } from '@ngrx/store';
 
 
+// import * as fromRoot from '../../reducers';
 import * as fromCard from './card.reducer';
 import * as fromController from './controller.reducer';
 import * as fromStatus from './status.reducer';
 // import * as fromOther from './other.reducer';
+
 
 export interface GameState {
   card: fromCard.IState;
@@ -17,6 +19,10 @@ export interface GameState {
   status: fromStatus.IState;
   // other: fromOther.IState;
 }
+// TODO: reducerek extendálási lényegét átnézni
+/*export interface State extends fromRoot.State {
+  game: GameState;
+}*/
 
 export const reducers: ActionReducerMap<GameState> = {
   card: fromCard.reducer,

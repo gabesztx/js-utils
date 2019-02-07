@@ -16,11 +16,11 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.gamePage$ = this.store.pipe(select(fromGame.getGamePage));
+    // this.gamePage$ = this.store.pipe(select(fromGame.getGamePage));
   }
 
   newGame() {
-    this.router.navigate(['start']);
+    // this.router.navigate(['start']);
   }
 
 }

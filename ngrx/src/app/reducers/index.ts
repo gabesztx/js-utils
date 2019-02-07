@@ -7,13 +7,11 @@ import {
 } from '@ngrx/store';
 import * as fromRouter from './router.reducer';
 
-export interface MainState {
-
-  router: fromRouter.State;
+export interface State {
+  router: fromRouter.RouterState;
 }
 
-export const reducers: ActionReducerMap<MainState> = {
-
+export const reducers: ActionReducerMap<State> = {
   router: fromRouter.reducer,
 };
 
