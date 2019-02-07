@@ -17,10 +17,10 @@ export class LandingPageComponent implements OnInit {
   deckSize$: Observable<number>;
 
   constructor(
-    private store: Store<fromRoot.State>,
     // private store: Store<fromGame.GameState>,
-    private gameEffects: GameEffects,
-  ) {
+    private store: Store<fromRoot.State>,
+    private router: Router,
+    private gameEffects: GameEffects) {
   }
 
   ngOnInit() {
@@ -29,7 +29,7 @@ export class LandingPageComponent implements OnInit {
 
   startGame() {
     // this.store.dispatch(new RouterGo({path: ['game']}));
-    // this.router.navigate(['game']);
+    this.router.navigate(['game']);
   }
 
   changeDeckSize(value) {
@@ -37,7 +37,7 @@ export class LandingPageComponent implements OnInit {
   }
 }
 
-// private router: Router
+//
 // this.store.dispatch(new LoadCards());
 // const cards = this.store.pipe(select(fromGame.getCards));
 // cards.subscribe(
