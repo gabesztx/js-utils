@@ -9,9 +9,7 @@ import * as fromAuth from '../../reducers';
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor(private store: Store<fromAuth.State>) {
-  }
-
+  constructor(private store: Store<fromAuth.State>) {}
   ngOnInit() {
     // this.http.get(this.apiIpUrl)
     // console.log('LoginPageComponent');
