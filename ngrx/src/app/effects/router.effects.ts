@@ -1,4 +1,5 @@
 import { ActivationEnd, Router } from '@angular/router';
+import * as fromRouter from '@ngrx/router-store';
 import { Injectable } from '@angular/core';
 import { Location } from '@angular/common';
 import { Store } from '@ngrx/store';
@@ -19,8 +20,31 @@ export class RouterEffects {
     private router: Router,
     private location: Location,
     private store: Store<fromRoot.State>) {
-    // this.listenToRouter();
   }
+
+  /* NavigationStart */
+  @Effect({dispatch: false})
+  navigatonStart$ = this.actions$.pipe(
+    ofType(fromRouter.ROUTER_REQUEST),
+    tap(x => console.log('Route event: NavigationStart: ', x))
+  );
+
+  /* ActivationEnd */
+  @Effect({dispatch: false})
+  activationEnd$ = this.actions$.pipe(
+    ofType(fromRouter.ROUTER_NAVIGATION),
+    tap(x => console.log('Route event: ActivationEnd: ', x))
+  );
+
+  /* NavigationEnd */
+  @Effect({dispatch: false})
+  navigationEnd = this.actions$.pipe(
+    ofType(fromRouter.ROUTER_NAVIGATED),
+    tap(x => console.log('Route event: NavigationEnd: ', x))
+  );
+
+
+// this.listenToRouter();
 
   /*/!* Router Go *!/
   @Effect({dispatch: false})

@@ -10,9 +10,8 @@ import {
 } from '@ngrx/store';
 
 export interface State {
-  // router: fromRouter.RouterState;
-  // router: fromRouter.RouterReducerState<RouterStateUrl>;
-  router: fromRouter.RouterReducerState;
+  router: fromRouter.RouterReducerState<RouterStateUrl>;
+  // router: fromRouter.RouterReducerState;
 }
 
 export const reducers: ActionReducerMap<State> = {

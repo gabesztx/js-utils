@@ -13,7 +13,7 @@ import { AppComponent } from './app.component';
 import { GameModule } from './game/game.module';
 import { CoreModule } from './core/core.module';
 import { CustomSerializer } from './reducers/router.reducer';
-// import { RouterEffects } from './effects/router.effects';
+import { RouterEffects } from './effects/router.effects';
 
 
 @NgModule({
@@ -26,15 +26,16 @@ import { CustomSerializer } from './reducers/router.reducer';
     AppRoutingModule,
     StoreModule.forRoot(reducers),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([RouterEffects]),
+    // EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
     GameModule,
     CoreModule,
   ],
   providers: [
+    // router-store serialiser store data
     {provide: RouterStateSerializer, useClass: CustomSerializer}
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}
