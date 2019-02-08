@@ -27,7 +27,6 @@ import { RouterEffects } from './effects/router.effects';
     StoreModule.forRoot(reducers),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([RouterEffects]),
-    // EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
     GameModule,
     CoreModule,
@@ -38,4 +37,5 @@ import { RouterEffects } from './effects/router.effects';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}

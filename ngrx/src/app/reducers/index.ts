@@ -1,5 +1,4 @@
 import * as fromRouter from '@ngrx/router-store';
-// import * as fromRouter from './router.reducer';
 import { RouterStateUrl } from './router.reducer';
 import {
   ActionReducer,
@@ -19,5 +18,6 @@ export const reducers: ActionReducerMap<State> = {
 };
 
 
+// import * as fromRouter from './router.reducer';
 // import { environment } from '../../environments/environment';
 // export const metaReducers: MetaReducer<MainState>[] = !environment.production ? [] : [];

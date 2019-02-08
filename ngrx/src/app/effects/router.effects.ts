@@ -26,26 +26,28 @@ export class RouterEffects {
   @Effect({dispatch: false})
   navigatonStart$ = this.actions$.pipe(
     ofType(fromRouter.ROUTER_REQUEST),
-    tap(x => console.log('Route event: NavigationStart: ', x))
+    map((action: any) => action.payload),
+    // tap(x => console.log('NavigationStart: ', x))
   );
 
-  /* ActivationEnd */
-  @Effect({dispatch: false})
-  activationEnd$ = this.actions$.pipe(
-    ofType(fromRouter.ROUTER_NAVIGATION),
-    tap(x => console.log('Route event: ActivationEnd: ', x))
-  );
+    /* ActivationEnd */
+    @Effect({dispatch: false})
+    activationEnd$ = this.actions$.pipe(
+      ofType(fromRouter.ROUTER_NAVIGATION),
+      map((action: any) => action.payload),
+      // tap(x => console.log('ActivationEnd: ', x))
+    );
 
   /* NavigationEnd */
-  @Effect({dispatch: false})
-  navigationEnd = this.actions$.pipe(
-    ofType(fromRouter.ROUTER_NAVIGATED),
-    tap(x => console.log('Route event: NavigationEnd: ', x))
-  );
+    @Effect({dispatch: false})
+    navigationEnd = this.actions$.pipe(
+      ofType(fromRouter.ROUTER_NAVIGATED),
+      map((action: any) => action.payload),
+      // tap(payload => console.log('NavigationEnd: ', payload))
+    );
 
 
 // this.listenToRouter();
-
   /*/!* Router Go *!/
   @Effect({dispatch: false})
   navigate$ = this.actions$.pipe(
