@@ -8,9 +8,16 @@ import * as fromAuth from '../../reducers';
   styleUrls: ['./login-page.component.scss']
 })
 export class LoginPageComponent implements OnInit {
+  value = 0;
 
-  constructor(private store: Store<fromAuth.State>) {}
+  constructor(private store: Store<fromAuth.State>) {
+  }
+
   ngOnInit() {
+    setInterval(() => {
+      this.value++;
+    }, 1000);
+    // console.log('LoginPageComponent');
     // this.http.get(this.apiIpUrl)
     // console.log('LoginPageComponent');
   }

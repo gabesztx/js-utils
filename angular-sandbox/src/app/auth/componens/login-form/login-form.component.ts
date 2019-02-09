@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { LoginDataService } from '../../services/login-data.service';
 import { of, combineLatest } from 'rxjs';
 import { combineAll, concatAll, delay, tap } from 'rxjs/operators';
@@ -10,11 +10,35 @@ import { combineAll, concatAll, delay, tap } from 'rxjs/operators';
 })
 
 export class LoginFormComponent implements OnInit {
+  private nameVale: number;
 
   constructor(private loginDataService: LoginDataService) {
   }
 
+  // @Input() name: string;
+
   ngOnInit() {
+
+    /*setTimeout(
+      () => {
+        this.name = 'Jóósi';
+      }, 3000);*/
+
+  }
+
+  @Input()
+  set name(value: number) {
+    console.log('set', value);
+    if (value % 2) {
+      this.nameVale = value - 1;
+    }
+  }
+
+  get nameV(): number {
+    return this.nameVale;
+  }
+
+  /*ngOnInit() {
     const location$ = this.loginDataService.getLocation().pipe(
       // tap(x => console.log('location started...')),
       // delay(2000)
@@ -39,6 +63,6 @@ export class LoginFormComponent implements OnInit {
       },
       err => console.log('err: ', err),
       () => console.log('combined completed!'),
-    )
-  }
+    );
+  }*/
 }
