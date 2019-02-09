@@ -5,13 +5,16 @@ import {
   createSelector,
   MetaReducer
 } from '@ngrx/store';
+import * as fromDynamicComponent from './dynamic-component.reducer';
 
-export interface DynamicComponentState {
+export interface State {
 
+  dynamicComponent: fromDynamicComponent.State;
 }
 
-export const reducers: ActionReducerMap<DynamicComponentState> = {
+export const reducers: ActionReducerMap<State> = {
 
+  dynamicComponent: fromDynamicComponent.reducer,
 };
 
 
