@@ -9,6 +9,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthModule } from './auth/auth.module';
+import { DynamicComponentModule } from './dynamic-component/dynamic-component.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { AuthModule } from './auth/auth.module';
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([]),
     AuthModule,
+    DynamicComponentModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
