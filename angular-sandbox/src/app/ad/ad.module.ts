@@ -5,9 +5,10 @@ import { StoreModule } from '@ngrx/store';
 import * as fromAd from './reducers';
 import { AdEffects } from './effects/ad.effects';
 import { AdService } from './services/ad.service';
+import { AdPageComponent } from './ad-page/ad-page.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [AdPageComponent],
   imports: [
     CommonModule,
     StoreModule.forFeature('ad', fromAd.reducers),
@@ -15,7 +16,8 @@ import { AdService } from './services/ad.service';
   ],
   providers: [
     AdService
-  ]
+  ],
+  exports: [AdPageComponent]
 })
 export class AdModule {
 }
