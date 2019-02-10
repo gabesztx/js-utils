@@ -1,7 +1,7 @@
 import { Directive, ViewContainerRef } from '@angular/core';
 
 @Directive({
-  selector: '[appAdHost]',
+  selector: '[appContainerComponent]',
 })
 export class AdDirective {
   constructor(public viewContainerRef: ViewContainerRef) {

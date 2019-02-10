@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { AdComponent } from '../../models/ad.model';
 
 @Component({
@@ -6,11 +6,17 @@ import { AdComponent } from '../../models/ad.model';
   templateUrl: './item1.component.html',
   styleUrls: ['./item1.component.scss']
 })
-export class Item1Component implements OnInit, AdComponent {
+export class Item1Component implements OnInit, OnChanges, AdComponent {
   @Input() data: any;
-  constructor() { }
 
-  ngOnInit() {
+  constructor() {
   }
 
+  ngOnChanges() {
+    // console.log('Item1 changes', this.data);
+  }
+
+  ngOnInit() {
+    // console.log('Item1 init', this.data);
+  }
 }

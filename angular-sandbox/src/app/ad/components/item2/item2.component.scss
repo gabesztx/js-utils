@@ -1,3 +1,5 @@
-.item2Component{
-  background-color: olivedrab;
+:host {
+  .itemComponent {
+    background-color: olivedrab;
+  }
 }

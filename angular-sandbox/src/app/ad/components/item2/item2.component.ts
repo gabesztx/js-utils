@@ -13,6 +13,7 @@ export class Item2Component implements OnInit, AdComponent {
   }
 
   ngOnInit() {
+    // console.log('Item2Component', this.data);
   }
 
 }

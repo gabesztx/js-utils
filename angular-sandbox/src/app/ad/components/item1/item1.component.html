@@ -1,5 +1,5 @@
-<div class="item1Component">
+<div class="itemComponent" *ngIf="data">
   <h1>Item 1</h1>
-  <div class="name">name</div>
-  <div class="bio">bio</div>
+  <div class="name">Name: {{data.name}}</div>
+  <div class="bio">Bio: {{data.bio}}</div>
 </div>
