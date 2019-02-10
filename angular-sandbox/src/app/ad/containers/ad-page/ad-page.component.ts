@@ -16,7 +16,7 @@ export class AdPageComponent implements OnInit {
               private adService: AdService) {}
 
   ngOnInit() {
-    // console.log(this.ads);
+    this.ads = this.adService.getAds();
   }
 
 }
