@@ -10,7 +10,8 @@ import { Item1Component } from './components/item1/item1.component';
 import { Item2Component } from './components/item2/item2.component';
 import { Item3Component } from './components/item3/item3.component';
 import { AdContainerComponent } from './containers/ad-container/ad-container.component';
-
+import { AdContainerDirective } from './directive/ad-container.directive';
+import { AttributeDirectiveDirective } from './directive/attribute-directive.directive';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,8 @@ import { AdContainerComponent } from './containers/ad-container/ad-container.com
     Item1Component,
     Item2Component,
     Item3Component,
+    AdContainerDirective,
+    AttributeDirectiveDirective,
   ],
   imports: [
     CommonModule,
