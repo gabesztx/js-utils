@@ -8,6 +8,7 @@ import { reducers, metaReducers } from './reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
+import { UiModule } from './ui/ui.module';
 // import { AdModule } from './ad/ad.module';
 // import { AuthModule } from './auth/auth.module';
 
@@ -22,6 +23,7 @@ import { EffectsModule } from '@ngrx/effects';
     StoreModule.forRoot(reducers, {metaReducers}),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([]),
+    UiModule,
     // AdModule,
     // AuthModule,
   ],
