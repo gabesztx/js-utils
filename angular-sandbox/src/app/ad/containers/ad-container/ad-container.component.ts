@@ -35,13 +35,12 @@ export class AdContainerComponent implements OnInit {
     const componentRef = viewContainerRef.createComponent(componentFactory);
     const component = (componentRef.instance as AdComponent);
     component.data = item.data;
-
   }
 
   getAds() {
     this.interval = setInterval(() => {
       this.loadComponent();
-    }, 3000);
+    }, 2500);
   }
 
 }
