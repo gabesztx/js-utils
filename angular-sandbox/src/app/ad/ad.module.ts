@@ -5,7 +5,7 @@ import { StoreModule } from '@ngrx/store';
 import * as fromAd from './reducers';
 import { AdEffects } from './effects/ad.effects';
 import { AdService } from './services/ad.service';
-import { AdPageComponent } from './ad-page/ad-page.component';
+import { AdPageComponent } from './containers/ad-page/ad-page.component';
 
 @NgModule({
   declarations: [AdPageComponent],
@@ -17,7 +17,6 @@ import { AdPageComponent } from './ad-page/ad-page.component';
   providers: [
     AdService
   ],
-  exports: [AdPageComponent]
+  exports: [AdPageComponent],
 })
-export class AdModule {
-}
+export class AdModule {}
