@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as fromAd from '../../reducers';
 
@@ -7,12 +7,15 @@ import * as fromAd from '../../reducers';
   templateUrl: './ad-page.component.html',
   styleUrls: ['./ad-page.component.scss']
 })
-export class AdPageComponent implements OnInit {
+export class AdPageComponent implements OnInit, AfterViewInit {
 
-  constructor(private store: Store<fromAd.State>) { }
+
+  constructor(private store: Store<fromAd.State>) {}
 
   ngOnInit() {
     console.log('AdPageComponent');
+    // console.log('AdPageComponent', this.textValue);
   }
+  ngAfterViewInit() {}
 
 }

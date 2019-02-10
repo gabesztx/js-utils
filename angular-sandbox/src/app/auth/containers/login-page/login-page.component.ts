@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as fromAuth from '../../reducers';
+import * as fromAd from "../../../ad/reducers";
 
 @Component({
   selector: 'app-login-page',
@@ -23,3 +24,20 @@ export class LoginPageComponent implements OnInit {
   }
 
 }
+/*
+@ViewChild('textValue')
+textValue: ElementRef;
+
+constructor(private store: Store<fromAd.State>) {
+}
+
+ngOnInit() {
+  setInterval(
+    () => {
+      console.log('textValue: ', this.textValue.nativeElement.value);
+    }, 50);
+  // console.log('AdPageComponent', this.textValue);
+}
+ngAfterViewInit() {
+  // console.log('ngAfterViewInit');
+}*/
