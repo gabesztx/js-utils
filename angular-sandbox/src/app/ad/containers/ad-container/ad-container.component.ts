@@ -21,13 +21,13 @@ export class AdContainerComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.loadComponent();
+    this.loadComponent();
     this.getAds();
   }
 
   loadComponent() {
     this.currentAdIndex = (this.currentAdIndex + 1) % this.ads.length;
-    console.log('currentAdIndex', this.currentAdIndex);
+    // console.log('currentAdIndex', this.currentAdIndex);
     const item = this.ads[this.currentAdIndex];
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(item.component);
     const viewContainerRef = this.componentContainer.viewContainerRef;
