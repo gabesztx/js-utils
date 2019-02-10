@@ -8,8 +8,8 @@ import { reducers, metaReducers } from './reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
-import { AuthModule } from './auth/auth.module';
-import { AdModule } from './ad/ad.module';
+// import { AdModule } from './ad/ad.module';
+// import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -22,8 +22,8 @@ import { AdModule } from './ad/ad.module';
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([]),
+    // AdModule,
     // AuthModule,
-    AdModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
