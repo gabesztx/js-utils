@@ -9,7 +9,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { UiModule } from './ui/ui.module';
-// import { AdModule } from './ad/ad.module';
+import { AdModule } from './ad/ad.module';
 // import { AuthModule } from './auth/auth.module';
 
 @NgModule({
@@ -24,7 +24,7 @@ import { UiModule } from './ui/ui.module';
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([]),
     UiModule,
-    // AdModule,
+    AdModule,
     // AuthModule,
   ],
   providers: [],
