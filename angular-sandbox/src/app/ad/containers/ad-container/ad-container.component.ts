@@ -13,8 +13,9 @@ import { AdComponent } from '../../models/ad.model';
 export class AdContainerComponent implements OnInit {
   @Input() ads: AdItem[];
   @ViewChild(AdDirective) componentContainer: AdDirective;
-  currentAdIndex = -1;
+  currentAdIndex = 0;
   interval: any;
+  componentItems = [];
 
   constructor(private store: Store<fromStore.State>,
               private componentFactoryResolver: ComponentFactoryResolver) {
@@ -26,21 +27,29 @@ export class AdContainerComponent implements OnInit {
   }
 
   loadComponent() {
-    this.currentAdIndex = (this.currentAdIndex + 1) % this.ads.length;
-    // console.log('currentAdIndex', this.currentAdIndex);
+    // this.currentAdIndex = (this.currentAdIndex + 1) % this.ads.length;
     const item = this.ads[this.currentAdIndex];
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(item.component);
     const viewContainerRef = this.componentContainer.viewContainerRef;
-    // viewContainerRef.clear();
+    // // viewContainerRef.clear();
     const componentRef = viewContainerRef.createComponent(componentFactory);
     const component = (componentRef.instance as AdComponent);
     component.data = item.data;
+    this.componentItems.push(component);
+    if (this.currentAdIndex === this.ads.length - 1) {
+      setTimeout(() => {
+        this.componentItems[0].data.name = 'Gabesz';
+      }, 2000);
+
+      clearInterval(this.interval);
+    }
+    this.currentAdIndex++;
   }
 
   getAds() {
     this.interval = setInterval(() => {
       this.loadComponent();
-    }, 2500);
+    }, 2000);
   }
 
 }

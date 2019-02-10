@@ -13,10 +13,10 @@ export class Item1Component implements OnInit, OnChanges, AdComponent {
   }
 
   ngOnChanges() {
-    // console.log('Item1 changes', this.data);
+    console.log('Item 1 changes', this.data);
   }
 
   ngOnInit() {
-    // console.log('Item1 init', this.data);
+    console.log('Item 1 init', this.data);
   }
 }
