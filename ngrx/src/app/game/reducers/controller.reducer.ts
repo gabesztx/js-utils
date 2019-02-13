@@ -1,4 +1,5 @@
 import * as ControllerAction from '../actions/controller.actions';
+import { calcPossibleSecurityContexts } from '@angular/compiler/src/template_parser/binding_parser';
 
 export interface IState {
   gamePage: boolean;

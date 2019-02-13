@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import * as fromStore from '../../reducers';
+import { select, Store } from '@ngrx/store';
+import * as fromGame from '../../reducers';
+import { Observable } from 'rxjs';
+import { ICard } from '../../models/card.model';
 
 @Component({
   selector: 'app-selector-page',
@@ -8,7 +10,17 @@ import * as fromStore from '../../reducers';
   styleUrls: ['./selector-page.component.scss']
 })
 export class SelectorPageComponent implements OnInit {
-  constructor(private store: Store<fromStore.GameState>) {}
+  cards$: Observable<ICard[]>;
+
+  constructor(private store: Store<fromGame.GameState>) {
+    // this.cards$ = this.store.pipe(select(fromGame.selectCardCards));
+  }
+
   ngOnInit() {
+   /* this.cards$.subscribe(
+      cards => {
+        console.log('cards: ', cards);
+      }
+    );*/
   }
 }
