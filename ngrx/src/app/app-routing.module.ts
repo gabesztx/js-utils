@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LandingPageComponent } from './game/containers/landing-page/landing-page.component';
 import { GamePageComponent } from './game/containers/game-page/game-page.component';
+import { SelectorPageComponent } from './game/containers/selector-page/selector-page.component'
 import { GameDataGuard } from './game/services/game-data.guard';
 
 const routes: Routes = [
@@ -12,6 +13,11 @@ const routes: Routes = [
   {
     path: 'game',
     component: GamePageComponent,
+    canActivate: [GameDataGuard]
+  },
+  {
+    path: 'selector',
+    component: SelectorPageComponent,
     canActivate: [GameDataGuard]
   },
   {

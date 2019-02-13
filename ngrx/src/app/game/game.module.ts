@@ -12,6 +12,7 @@ import { CardBoardComponent } from './containers/card-board/card-board.component
 import { CardComponent } from './components/card/card.component';
 import { StatusBoardComponent } from './containers/status-board/status-board.component';
 import { ControllerBoardComponent } from './containers/controller-board/controller-board.component';
+import { SelectorPageComponent } from './containers/selector-page/selector-page.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ControllerBoardComponent } from './containers/controller-board/controll
     CardBoardComponent,
     CardComponent,
     StatusBoardComponent,
-    ControllerBoardComponent
+    ControllerBoardComponent,
+    SelectorPageComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +35,8 @@ import { ControllerBoardComponent } from './containers/controller-board/controll
   ],
   exports: [
     LandingPageComponent,
-    GamePageComponent
+    GamePageComponent,
+    SelectorPageComponent,
   ]
 })
 export class GameModule {

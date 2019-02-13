@@ -27,6 +27,9 @@ export class LandingPageComponent implements OnInit {
   startGame() {
     this.router.navigate(['game']);
   }
+  selectorPage() {
+    this.router.navigate(['selector']);
+  }
 
   changeDeckSize(value) {
     this.store.dispatch(new SetDeckSize(value));
