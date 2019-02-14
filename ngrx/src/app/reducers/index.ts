@@ -1,14 +1,14 @@
 import * as fromRouter from '@ngrx/router-store';
-import { RouterStateUrl } from './router.reducer';
-import * as fromUser from './user.reducer';
 import {
   ActionReducer,
   ActionReducerMap,
-  createFeatureSelector,
   createSelector,
   MetaReducer
 } from '@ngrx/store';
+import { RouterStateUrl } from './router.reducer';
+import * as fromUser from './user.reducer';
 import * as fromBook from './book.reducer';
+
 
 export interface State {
   // router: fromRouter.RouterReducerState;
@@ -32,6 +32,11 @@ export const reducers: ActionReducerMap<State> = {
 export const selectUserState = (state: State) => state.user;
 export const selectUserName = createSelector(selectUserState, fromUser.getUserName);
 export const selectUserId = createSelector(selectUserState, fromUser.getUserId);
+
+export const selectBookState = (state: State) => state.book;
+export const selectBook = createSelector(selectBookState, (state: fromBook.BookState) => {
+  return state.book;
+});
 // export const selectCardCards = createSelector(selectCardState, (state: any) => state);
 // console.log('cardState', );
 
