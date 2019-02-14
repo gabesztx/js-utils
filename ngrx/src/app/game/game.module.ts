@@ -28,6 +28,7 @@ import { SelectorPageComponent } from './containers/selector-page/selector-page.
     CommonModule,
     CoreModule,
     StoreModule.forFeature('game', reducers),
+    StoreModule.forFeature('time', reducers),
     EffectsModule.forFeature([GameEffects])
   ],
   providers: [
