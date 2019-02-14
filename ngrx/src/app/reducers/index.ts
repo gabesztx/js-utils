@@ -8,16 +8,19 @@ import {
   createSelector,
   MetaReducer
 } from '@ngrx/store';
+import * as fromBook from './book.reducer';
 
-export interface AppState {
+export interface State {
+  // router: fromRouter.RouterReducerState;
   router: fromRouter.RouterReducerState<RouterStateUrl>;
   user: fromUser.UserState;
-  // router: fromRouter.RouterReducerState;
+  book: fromBook.State;
 }
 
-export const reducers: ActionReducerMap<AppState> = {
+export const reducers: ActionReducerMap<State> = {
   router: fromRouter.routerReducer,
   user: fromUser.reducer,
+  book: fromBook.reducer,
 };
 
 
@@ -26,8 +29,9 @@ export const reducers: ActionReducerMap<AppState> = {
  */
 
 
-// export const selectCardState = (state: GameState) => state.card;
-// export const selectCardCards = createSelector(selectGameState, fromCard.getCards);
+export const selectUserState = (state: State) => state.user;
+export const selectUserName = createSelector(selectUserState, fromUser.getUserName);
+export const selectUserId = createSelector(selectUserState, fromUser.getUserId);
 // export const selectCardCards = createSelector(selectCardState, (state: any) => state);
 // console.log('cardState', );
 

@@ -28,8 +28,8 @@ import { RouterEffects } from './effects/router.effects';
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([RouterEffects]),
     StoreRouterConnectingModule.forRoot(),
-    GameModule,
     CoreModule,
+    // GameModule,
   ],
   providers: [
     // router-store serialiser store data
