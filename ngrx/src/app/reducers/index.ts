@@ -14,7 +14,7 @@ export interface State {
   // router: fromRouter.RouterReducerState;
   router: fromRouter.RouterReducerState<RouterStateUrl>;
   user: fromUser.UserState;
-  book: fromBook.State;
+  book: fromBook.BookState;
 }
 
 export const reducers: ActionReducerMap<State> = {

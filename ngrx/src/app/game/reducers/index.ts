@@ -9,11 +9,13 @@ import {
 import * as fromCard from './card.reducer';
 import * as fromController from './controller.reducer';
 import * as fromStatus from './status.reducer';
+import * as fromTime from './time.reducer';
 
 export interface GameState {
   card: fromCard.IState;
   controller: fromController.IState;
   status: fromStatus.IState;
+  time: fromTime.State;
   // other: fromOther.IState;
 }
 
@@ -21,6 +23,7 @@ export const reducers: ActionReducerMap<GameState> = {
   card: fromCard.reducer,
   controller: fromController.reducer,
   status: fromStatus.reducer,
+  time: fromTime.reducer,
   // other: fromOther.reducer,
 };
 

@@ -1,15 +1,15 @@
 import { Action } from '@ngrx/store';
 
 
-export interface State {
-
+export interface BookState {
+  book: [];
 }
 
-export const initialState: State = {
-
+export const initialState: BookState = {
+  book: []
 };
 
-export function reducer(state = initialState, action: Action): State {
+export function reducer(state = initialState, action: Action): BookState {
   switch (action.type) {
 
     default:
