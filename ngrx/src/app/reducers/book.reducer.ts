@@ -11,10 +11,15 @@ export const initialState: BookState = {
 
 export function reducer(state = initialState, action: BookAction.BookActions): BookState {
   switch (action.type) {
-    case BookAction.BookActionTypes.Books:
+    case BookAction.BookActionTypes.Book:
       return {
         ...state,
         book: state.book
+      };
+    case BookAction.BookActionTypes.AddBook:
+      return {
+        ...state,
+        book: action.payload
       };
     default:
       return state;

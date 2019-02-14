@@ -69,7 +69,6 @@ export const getLoadCards = createSelector(selectGameOtherState, fromOther.getCa
 }*/
 
 
-// export const selectTimeState = (state: GameState) => state.time;
 export const selectTimeState = createFeatureSelector<GameState>('time');
 export const selectTime = createSelector(selectTimeState,
   (state: GameState) => state.time);

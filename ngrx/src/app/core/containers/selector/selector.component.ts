@@ -38,4 +38,8 @@ export class SelectorComponent implements OnInit {
     );
   }
 
+  triggerValue() {
+    console.log('trigger');
+  }
+
 }
