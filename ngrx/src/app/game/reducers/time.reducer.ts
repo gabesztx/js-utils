@@ -25,3 +25,5 @@ export function reducer(state = initialState, action: TimeAction.Actions): State
       return state;
   }
 }
+
+export const getCounter = (state: State) => state.counter;

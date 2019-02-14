@@ -61,11 +61,20 @@ export const getHighScore = createSelector(selectGameStatusState, fromStatus.get
 export const getIsLoading = createSelector(selectGameOtherState, fromOther.getIsLoading);
 export const getLoadCards = createSelector(selectGameOtherState, fromOther.getCards);*/
 // ------------------------------------------------------------------------
-
-
 // TODO: reducerek extend a root-al lényegét átnézni
 // import * as fromRoot from '../../reducers';
 
 /*export interface State extends fromRoot.State {
   game: GameState;
 }*/
+
+
+// export const selectTimeState = (state: GameState) => state.time;
+export const selectTimeState = createFeatureSelector<GameState>('game');
+export const selectTime = createSelector(selectGameState,
+  (state: GameState) => state.time);
+
+export const selectTimeCounter = createSelector(selectTime, (state: fromTime.State) => {
+  return state.counter;
+});
+
