@@ -1,4 +1,3 @@
-import { Action } from '@ngrx/store';
 import * as BookAction from '../actions/book.actions';
 
 
@@ -10,7 +9,7 @@ export const initialState: BookState = {
   book: ['1', '2', '3']
 };
 
-export function reducer(state = initialState, action: Action): BookState {
+export function reducer(state = initialState, action: BookAction.BookActions): BookState {
   switch (action.type) {
     case BookAction.BookActionTypes.Books:
       return {
