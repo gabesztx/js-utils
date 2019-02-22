@@ -63,7 +63,7 @@ class MyApp extends PolymerElement {
           display: block;
           padding: 0 16px;
           text-decoration: none;
-          color: var(--app-secondary-color);
+          /*color: var(--app-secondary-color);*/
           line-height: 40px;
         }
 

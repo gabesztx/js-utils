@@ -1,7 +1,7 @@
 {
-  "name": "My App",
-  "short_name": "My App",
-  "description": "My App description",
+  "name": "Polymer starter learn",
+  "short_name": "Polymer starter learn",
+  "description": "Polymer starter learn description",
   "icons": [
     {
       "src": "images/manifest/icon-192x192.png",
