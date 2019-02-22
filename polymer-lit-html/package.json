@@ -4,7 +4,7 @@
   "description": "Polymer-Lit-Html",
   "main": "index.js",
   "scripts": {
-    "start": "polymer serve",
+    "start": "polymer serve --open",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -12,5 +12,8 @@
   "dependencies": {
     "@webcomponents/webcomponentsjs": "^2.2.7",
     "lit-html": "^1.0.0"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.26.3"
   }
 }
