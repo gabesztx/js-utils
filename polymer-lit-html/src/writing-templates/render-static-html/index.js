@@ -1,5 +1,12 @@
-import {html, render} from 'lit-html';
-// Declare a template
-const myTemplate = html`<div>Render Static Html</div>`;
-// Render the template
-render(myTemplate, document.body);
+
+import { LitElement, html } from 'lit-element';
+
+class MyComponent extends LitElement {
+    render() {
+        return html`
+      <p>Hello world!</p>
+    `;
+    }
+}
+
+customElements.define('my-component', MyComponent);
