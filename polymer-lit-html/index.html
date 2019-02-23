@@ -6,14 +6,23 @@
     <title>Polymer + Web Components</title>
     <base href="/">
     <link rel="icon" href="assets/images/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
 </head>
 <body>
-    <autonomous-element
-            title="Title param value"
-            imgUrl="assets/images/pic1.jpg"
-    ></autonomous-element>
-    
-    <div is="customized-element"></div>
+
+
+<div class="main">
+    <!--Autonomous-->
+    <!--<autonomous-element title="Custom Java Title" imgUrl="assets/images/pic1.jpg"></autonomous-element>-->
+
+    <!--Customized-->
+    <!--<div class="customized" is="customized-element"></div>-->
+
+    <!--LifeCycle-->
+    <lifecycle-element title="First Title" count="0"></lifecycle-element>
+</div>
 </body>
 </html>
 <!--<script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>-->

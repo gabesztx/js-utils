@@ -17,6 +17,7 @@
     "webpack-merge": "^4.2.1"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.3.3",
     "@open-wc/building-webpack": "^0.1.9",
     "css-loader": "^2.1.0",
     "http-server": "^0.11.1",

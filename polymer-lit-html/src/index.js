@@ -1,3 +1,3 @@
 import './index.scss';
-import './webcomponent/custom-elements'
 // import './lit-html'
+import './webcomponent/custom-elements'

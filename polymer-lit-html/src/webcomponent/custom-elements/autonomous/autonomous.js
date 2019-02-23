@@ -1,7 +1,7 @@
-class AutonomouseComponent extends HTMLElement {
+export class AutonomouseComponent extends HTMLElement {
   constructor() {
     super();
-
+    console.log('this',this);
     const title = this.createElement('div');
     const image = this.createElement('img');
 
@@ -9,9 +9,7 @@ class AutonomouseComponent extends HTMLElement {
     image.setAttribute('class', 'image');
 
     title.innerHTML = this.hasAttribute('title') ?
-      this.getAttribute('title') :
-      'Autonomus element';
-
+      this.getAttribute('title') : 'Autonomouse Div element';
     image.src = this.hasAttribute('imgUrl') ?
       this.getAttribute('imgUrl') :
       'assets/images/pic2.jpg';
@@ -20,10 +18,14 @@ class AutonomouseComponent extends HTMLElement {
     this.appendChild(image)
   }
 
+  getTitle() {
+    return this.innerText;
+  }
+
   createElement(elementName) {
     return document.createElement(elementName);
   }
 }
 
-customElements.define('autonomous-element', AutonomouseComponent);
+// customElements.define('autonomous-element', AutonomouseComponent);
 
