@@ -13,14 +13,22 @@
  */
 // import './writing-templates/using-expressions'
 
-import { LitElement, html } from 'lit-element';
 
-class MyComponent extends LitElement {
+/**
+ * Custom elements
+ */
+// import './custom-elements'
+
+import './index.scss';
+import { LitElement, html } from 'lit-element';
+class AppComponent extends LitElement {
+    constructor() {
+        super();
+    }
     render() {
-        return html`
-      <p>Hello world!</p>
-    `;
+        return html`<div>App Root</div>`;
     }
 }
-console.log('customElements', customElements);
-// customElements.define('my-component', MyComponent);
+
+customElements.define('app-root', AppComponent);
+
