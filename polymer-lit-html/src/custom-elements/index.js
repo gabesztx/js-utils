@@ -1,11 +1,11 @@
 import { LitElement, html } from 'lit-element';
 
-class AppComponent extends LitElement {
+class CustomComponent extends LitElement {
     constructor(){
         super();
     }
     render() {
-        return html`<div>App Root</div>`;
+        return html`<div>Custom component</div>`;
     }
 }
-customElements.define('app-root', AppComponent);
+customElements.define('custom-element', CustomComponent);
