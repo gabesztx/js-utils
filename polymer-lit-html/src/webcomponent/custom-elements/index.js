@@ -3,7 +3,7 @@
  * Önálló elemek és nem örökölnek a beépített HTML elemekből
  * ( custom directive dom element )
  */
-import './autonomous-custom-element'
+import './autonomous-element'
 
 /**
  * Customized

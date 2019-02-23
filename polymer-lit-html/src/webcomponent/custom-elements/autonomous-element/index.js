@@ -7,8 +7,14 @@ class AutonomouseComponent extends HTMLElement {
 
     title.setAttribute('class', 'title');
     image.setAttribute('class', 'image');
-    title.innerHTML = 'Autonomous Element';
-    image.src = 'assets/images/g.jpg';
+
+    title.innerHTML = this.hasAttribute('title') ?
+      this.getAttribute('title') :
+      'Autonomus element';
+
+    image.src = this.hasAttribute('imgUrl') ?
+      this.getAttribute('imgUrl') :
+      'assets/images/pic2.jpg';
 
     this.appendChild(title);
     this.appendChild(image)
