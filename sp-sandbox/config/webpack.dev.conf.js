@@ -1,14 +1,18 @@
+const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const base = require('./webpack.base.conf');
 
-const TITLE = 'DEV - ';
+const TITLE = 'DEV - SB';
 
 module.exports = merge(base, {
   mode    : 'development',
   devtool : 'eval-source-map',
-  output  : {
+  entry   : {
+    app: path.join(__dirname, '../src/index.js')
+  },
+  output: {
     filename   : 'app.js',
     publicPath : '/'
   },
@@ -41,7 +45,6 @@ module.exports = merge(base, {
     }]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template : 'src/index.ejs',
       favicon  : 'favicon.ico', // or use favicons-webpack-plugin
@@ -49,6 +52,7 @@ module.exports = merge(base, {
     }),
     new webpack.DefinePlugin({
       PRODUCTION: JSON.stringify(false)
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin()
   ]
 });

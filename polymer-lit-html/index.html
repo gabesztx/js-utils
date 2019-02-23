@@ -11,6 +11,18 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
+<div class="main">
+    <!--Autonomous-->
+    <autonomous-element title="Custom Java Title" imgUrl="assets/images/pic1.jpg"></autonomous-element>
+    <!--Customized-->
+    <div class="customized" is="customized-element"></div>
+    <!--LifeCycle-->
+    <lifecycle-element title="Custom LifeCycle" count="0"></lifecycle-element>
+</div>
+<div class="main-shadow">
+    <!--<div class="shadowRootContent" is="shadow-container"></div>-->
+    <shadow-container></shadow-container>
+</div>
 <div class="html-template">
     <template id="paragraph-template"><p>Paragraph template</p></template>
     <custom-template></custom-template>

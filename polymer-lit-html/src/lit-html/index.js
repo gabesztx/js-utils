@@ -1,7 +1,7 @@
 /**
  * Render Static Html
  */
-// import './writing-templates/render-static-html'
+import './writing-templates/render-static-html'
 
 /**
  * Render Dynamic Dynamic Text Content
