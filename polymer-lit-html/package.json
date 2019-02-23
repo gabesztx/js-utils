@@ -4,7 +4,7 @@
   "description": "Polymer-Lit-Html",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development",
+    "start": "webpack-dev-server --mode development --open",
     "startpoly": "polymer serve --open",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -2,8 +2,9 @@ export class LifeCycleComponent extends HTMLElement {
 
   constructor() {
     super();
-    this.titleEl = this.createElement('div');
-    this.countEl = this.createElement('div');
+    console.log('constructor');
+    this.titleEl = this.createElement('span');
+    this.countEl = this.createElement('span');
     this.appendChild(this.titleEl);
     this.appendChild(this.countEl);
   }
@@ -46,7 +47,7 @@ export class LifeCycleComponent extends HTMLElement {
   // component change value
   attributeChangedCallback(name, oldVal, newVal) {
     if (newVal) {
-      console.log('Change lifecycle', newVal);
+      console.log('Change lifecycle: ', newVal);
       this.render(newVal)
     }
   }
