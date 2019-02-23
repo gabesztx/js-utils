@@ -1,27 +1,19 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <base href="/">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
     <title>Polymer + Web Components</title>
-    <base href="/">
     <link rel="icon" href="assets/images/favicon.ico">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="main">
-    <!--Autonomous-->
-    <autonomous-element title="Custom Java Title" imgUrl="assets/images/pic1.jpg"></autonomous-element>
-    <!--Customized-->
-    <div class="customized" is="customized-element"></div>
-    <!--LifeCycle-->
-    <lifecycle-element title="Custom LifeCycle" count="0"></lifecycle-element>
-</div>
-<div class="main-shadow">
-    <!--<div class="shadowRootContent" is="shadow-container"></div>-->
-    <!--<shadow-container></shadow-container>-->
+<div class="html-template">
+    <template id="paragraph-template"><p>Paragraph template</p></template>
+    <custom-template></custom-template>
 </div>
 </body>
 </html>
