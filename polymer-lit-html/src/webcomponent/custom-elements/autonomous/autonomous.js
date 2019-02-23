@@ -22,4 +22,3 @@ export class AutonomouseComponent extends HTMLElement {
     return document.createElement(elementName);
   }
 }
-

@@ -5,6 +5,8 @@
  */
 
 import { AutonomouseComponent } from './autonomous/autonomous'
+customElements.define('autonomous-element', AutonomouseComponent);
+
 
 /**
  * Egyéni
@@ -12,17 +14,13 @@ import { AutonomouseComponent } from './autonomous/autonomous'
  * ( custom directive property )
  */
 
-import { CustomizedComponent } from './customized/customized'
+import { CustomizedComponent } from './customized/customized';
+customElements.define('customized-element', CustomizedComponent, {extends: 'div'});
 
 /**
  * Custom Component Lifecycle
  */
 import { LifeCycleComponent } from './lifecycle/lifecycle';
-
-
-/* Define and Append Custom Element to Body */
-customElements.define('autonomous-element', AutonomouseComponent);
-customElements.define('customized-element', CustomizedComponent, {extends: 'div'});
 
 setTimeout(
   () => {
@@ -40,7 +38,7 @@ setTimeout(
   }, 12000
 );
 
-/* Promise that resolves when the named element is defined. */
+/* Promise that resolves when the named element is defined.
 const element = customElements.whenDefined('lifecycle-element');
 element.then(
   () => {
