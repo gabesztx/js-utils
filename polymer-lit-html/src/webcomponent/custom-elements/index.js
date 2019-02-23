@@ -15,7 +15,7 @@ import { AutonomouseComponent } from './autonomous/autonomous'
 import { CustomizedComponent } from './customized/customized'
 
 /**
- * Component events
+ * Custom Component Lifecycle
  */
 import { LifeCycleComponent } from './lifecycle/lifecycle';
 
@@ -42,4 +42,3 @@ setTimeout(
 
 /* Custom element get selectors */
 // const Autonomous = customElements.get('autonomous-element');
-// const Customized = customElements.get('customized-element');

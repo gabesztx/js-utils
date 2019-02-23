@@ -1,14 +1,11 @@
 export class LifeCycleComponent extends HTMLElement {
 
   constructor() {
-    // always call super() first
     super();
     this.titleEl = this.createElement('div');
     this.countEl = this.createElement('div');
-
     this.appendChild(this.titleEl);
     this.appendChild(this.countEl);
-
   }
 
   static get observedAttributes() {
