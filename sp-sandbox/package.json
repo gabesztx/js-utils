@@ -4,9 +4,9 @@
   "description": "",
   "main": "./src/index.js",
   "scripts": {
+    "start": "node ./config/dev",
     "dev": "node ./config/dev",
     "build": "node ./config/prod",
-    "lint": "eslint ./src",
     "flow": "flow",
     "test": "nyc ava",
     "prehttpserver": "yarn build",

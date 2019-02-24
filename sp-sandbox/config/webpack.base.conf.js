@@ -10,12 +10,6 @@ module.exports = {
       options : { minimize: true }
     },
     {
-      enforce : 'pre',
-      test    : /\.js$/,
-      exclude : [/node_modules/],
-      loader  : 'eslint-loader'
-    },
-    {
       test    : /\.js?$/,
       exclude : [/node_modules/],
       loader  : 'babel-loader'
@@ -32,3 +26,12 @@ module.exports = {
     new StyleLintPlugin()
   ]
 };
+
+/*
+{
+  enforce : 'pre',
+  test    : /\.js$/,
+  exclude : [/node_modules/],
+  loader  : 'eslint-loader'
+}
+*/
