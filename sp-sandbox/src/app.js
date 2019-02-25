@@ -1,19 +1,8 @@
-import { html, render } from 'lit-html';
-import { SbComponent } from './components/sb';
+// import {html, render} from 'lit-html';
+// import './components'
 
-// console.log('ahadsd dsds dsd');
-export class AppRoot {
-  constructor() {
-    // console.log('Root');
-  }
+// const myTemplate = html`<root-app></root-app>`;
+// const myTemplate = html`<div>hi123456</div>`;
+// render(myTemplate, document.body);
+// console.log('hellodsdsdddff33dsss2233ds');
 
-  render() {
-    // console.log('render');
-    const sb = new SbComponent();
-    // const AppComponenet = html`<h1>Meg</h1>`;
-    // console.log('render', AppComponenet);
-    // render(AppComponenet, document.body);
-    // console.log('AppComponenet', AppComponenet);
-
-  }
-}

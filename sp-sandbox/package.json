@@ -76,6 +76,7 @@
     "webpack-merge": "4.2.1"
   },
   "dependencies": {
+    "lit-element": "^2.0.1",
     "lit-html": "^1.0.0"
   }
 }
