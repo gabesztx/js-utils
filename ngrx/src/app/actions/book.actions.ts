@@ -11,7 +11,7 @@ export class Book implements Action {
 
 export class AddBook implements Action {
   readonly type = BookActionTypes.AddBook;
-  constructor(public payload: any) {
+  constructor(public payload?: any) {
   }
 }
 

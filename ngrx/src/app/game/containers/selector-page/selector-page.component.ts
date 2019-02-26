@@ -13,14 +13,14 @@ export class SelectorPageComponent implements OnInit {
   conter$: Observable<number>;
 
   constructor(private store: Store<fromGame.GameState>) {
-    this.conter$ = this.store.pipe(select(fromGame.selectTimeCounter));
+    // this.conter$ = this.store.pipe(select(fromGame.selectTimeCounter));
   }
 
   ngOnInit() {
-    this.conter$.subscribe(
+    /*this.conter$.subscribe(
       count => {
         console.log('count: ', count);
       }
-    );
+    );*/
   }
 }
