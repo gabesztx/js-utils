@@ -1,0 +1,16 @@
+body {
+  /* background-color: bisque; */
+}
+
+.header {
+  font-size: 50px;
+  padding: 20px 0;
+}
+
+.main {
+  padding: 20px 0;
+}
+
+.form-cont {
+  padding: 20px 0;
+}

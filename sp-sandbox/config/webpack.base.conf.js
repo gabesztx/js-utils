@@ -1,4 +1,5 @@
 const StyleLintPlugin = require('stylelint-webpack-plugin');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 
 process.noDeprecation = true;
 
@@ -30,6 +31,21 @@ module.exports = {
       }]
   },
   plugins : [
-    new StyleLintPlugin()
+    new StyleLintPlugin(),
+    new BrowserSyncPlugin(
+      // BrowserSync options
+      {
+        host: 'localhost',
+        port: 3000,
+        proxy: 'http://10.22.1.165:8080/',
+        notify: false
+
+      },
+      {
+        // prevent BrowserSync from reloading the page
+        // and let Webpack Dev Server take care of this
+        reload: false
+      }
+    )
   ]
 };

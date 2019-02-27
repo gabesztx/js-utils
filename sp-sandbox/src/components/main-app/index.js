@@ -1,15 +1,29 @@
-import { LitElement, html } from 'lit-element';
+// import { LitElement, html } from 'lit-element';
+import template from './template.html';
+import './style.css';
 
-export class MyElement extends LitElement {
+export class MyElement {
+  constructor() {
+    this.render();
+    this.name = 'dsdsadas';
+    this.name = 'dsdsadas';
+
+
+  }
+
+  render() {
+    document.body.innerHTML = template;
+  }
+}
+
+/* export class MyElement extends LitElement {
 
   render() {
     return html`
         <p>11ddddddsss</p>
       `;
   }
-}
-
-
+}*/
 
 
 // connectedCallback() {}

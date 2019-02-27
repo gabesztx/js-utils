@@ -36,6 +36,7 @@
     "ava": "1.2.1",
     "babel-eslint": "10.0.1",
     "babel-loader": "8.0.5",
+    "browser-sync": "^2.26.3",
     "chalk": "2.4.2",
     "clean-webpack-plugin": "1.0.1",
     "copy-webpack-plugin": "5.0.0",
@@ -79,6 +80,7 @@
   },
   "dependencies": {
     "@webcomponents/webcomponentsjs": "^2.2.7",
+    "browser-sync-webpack-plugin": "^2.2.2",
     "lit-element": "^2.0.1",
     "lit-html": "^1.0.0"
   }

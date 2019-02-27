@@ -6,7 +6,7 @@ const config = require('./webpack.dev.conf');
 
 const { log } = console;
 
-const DEFAULT_HOST = 'localhost';
+const DEFAULT_HOST = '10.22.1.165';
 const DEFAULT_PORT = 8080;
 const options = {
   host           : DEFAULT_HOST,
