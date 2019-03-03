@@ -21,7 +21,9 @@ export class LandingPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('Init1');
     this.deckSize$ = this.store.pipe(select(fromGame.getDeckSize));
+
   }
 
   startGame() {

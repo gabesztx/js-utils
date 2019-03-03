@@ -12,6 +12,14 @@ import { CardBoardComponent } from './containers/card-board/card-board.component
 import { CardComponent } from './components/card/card.component';
 import { StatusBoardComponent } from './containers/status-board/status-board.component';
 import { ControllerBoardComponent } from './containers/controller-board/controller-board.component';
+// import { RouterModule, Routes } from '@angular/router';
+
+/*const routes: Routes = [
+  {
+    path: '',
+    component: GamePageComponent
+  }
+];*/
 
 @NgModule({
   declarations: [
@@ -25,6 +33,7 @@ import { ControllerBoardComponent } from './containers/controller-board/controll
   imports: [
     CommonModule,
     CoreModule,
+    // RouterModule.forChild(routes),
     StoreModule.forFeature('game', reducers),
     EffectsModule.forFeature([GameEffects])
   ],
@@ -32,6 +41,7 @@ import { ControllerBoardComponent } from './containers/controller-board/controll
     GameDataService
   ],
   exports: [
+    // RouterModule,
     LandingPageComponent,
     GamePageComponent
   ]

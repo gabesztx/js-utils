@@ -11,8 +11,9 @@ const routes: Routes = [
   },
   {
     path: 'game',
+    // canActivate: [GameDataGuard],
+    // loadChildren: './game/game.module#GameModule'
     component: GamePageComponent,
-    canActivate: [GameDataGuard]
   },
   {
     path: 'start',

@@ -17,25 +17,25 @@ import { RouterEffects } from './effects/router.effects';
 
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    StoreModule.forRoot(reducers),
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot([RouterEffects]),
-    StoreRouterConnectingModule.forRoot(),
-    GameModule,
-    CoreModule,
-  ],
-  providers: [
-    // router-store serialiser store data
-    {provide: RouterStateSerializer, useClass: CustomSerializer}
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent
+    ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        StoreModule.forRoot(reducers),
+        !environment.production ? StoreDevtoolsModule.instrument() : [],
+        EffectsModule.forRoot([RouterEffects]),
+        StoreRouterConnectingModule.forRoot(),
+        GameModule,
+        CoreModule,
+    ],
+    providers: [
+        // router-store serialiser store data
+        {provide: RouterStateSerializer, useClass: CustomSerializer}
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }
