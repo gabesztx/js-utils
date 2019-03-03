@@ -4,8 +4,7 @@
  * ( custom directive dom element )
  */
 
-import { AutonomouseComponent } from './autonomous/autonomous'
-customElements.define('autonomous-element', AutonomouseComponent);
+import { AutonomouseComponent } from './autonomous/autonomous';
 
 
 /**
@@ -15,37 +14,39 @@ customElements.define('autonomous-element', AutonomouseComponent);
  */
 
 import { CustomizedComponent } from './customized/customized';
-customElements.define('customized-element', CustomizedComponent, {extends: 'div'});
 
 /**
  * Custom Component Lifecycle
  */
 import { LifeCycleComponent } from './lifecycle/lifecycle';
 
+customElements.define('autonomous-element', AutonomouseComponent);
+customElements.define('customized-element', CustomizedComponent, {extends: 'div'});
+
 setTimeout(
   () => {
     customElements.define('lifecycle-element', LifeCycleComponent);
-  }, 3000
+  }, 3000,
 );
 setTimeout(
   () => {
-    $('lifecycle-element').attr('count', 1000)
-  }, 6000
+    $('lifecycle-element').attr('count', 1000);
+  }, 6000,
 );
 setTimeout(
   () => {
     $('lifecycle-element').remove();
-  }, 12000
+  }, 12000,
 );
+window.hello = 'hee';
 
-/* Promise that resolves when the named element is defined.
 const element = customElements.whenDefined('lifecycle-element');
 element.then(
   () => {
-    console.log('Lifecycle custom element is defined!');
+    console.log('Lifecycle custom element is defined!')
   }
 );
 
 
-/* Custom element get selectors */
+/* Custom element get selectors
 // const Autonomous = customElements.get('autonomous-element');

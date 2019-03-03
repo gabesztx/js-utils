@@ -12,7 +12,7 @@ export class AutonomouseComponent extends HTMLElement {
       this.getAttribute('title') : 'Autonomouse Div element';
     image.src = this.hasAttribute('imgUrl') ?
       this.getAttribute('imgUrl') :
-      'assets/images/pic2.jpg';
+      "assets/images/pic2.jpg";
 
     this.appendChild(title);
     this.appendChild(image)

@@ -1,7 +1,7 @@
 /**
  * Render Static Html
  */
-import './writing-templates/render-static-html'
+import './writing-templates/render-static-html';
 
 /**
  * Render Dynamic Dynamic Text Content
@@ -11,7 +11,7 @@ import './writing-templates/render-static-html'
 /**
  * Using expressions
  */
-import './writing-templates/using-expressions'
+import './writing-templates/using-expressions';
 
 /**
  * Bind to properties
