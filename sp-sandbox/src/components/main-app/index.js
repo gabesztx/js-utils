@@ -5,10 +5,6 @@ import './style.css';
 export class MyElement {
   constructor() {
     this.render();
-    this.name = 'dsdsadas';
-    this.name = 'dsdsadas';
-
-
   }
 
   render() {
@@ -17,7 +13,6 @@ export class MyElement {
 }
 
 /* export class MyElement extends LitElement {
-
   render() {
     return html`
         <p>11ddddddsss</p>

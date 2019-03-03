@@ -37,7 +37,7 @@ module.exports = {
       {
         host: 'localhost',
         port: 3000,
-        proxy: 'http://10.22.1.165:8080/',
+        proxy: 'http://localhost:8080/',
         notify: false
 
       },
