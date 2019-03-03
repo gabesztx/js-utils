@@ -32,7 +32,7 @@ module.exports = {
   },
   plugins : [
     new StyleLintPlugin(),
-    new BrowserSyncPlugin(
+    /*new BrowserSyncPlugin(
       // BrowserSync options
       {
         host: 'localhost',
@@ -46,6 +46,6 @@ module.exports = {
         // and let Webpack Dev Server take care of this
         reload: false
       }
-    )
+    )*/
   ]
 };
