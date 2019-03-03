@@ -1,0 +1,8 @@
+<div class="cardsContainer">
+  <app-card
+    *ngFor="let card of cards$ | async"
+    [card]="card"
+    (cardFlippedIn)="cardFlippedIn($event)"
+    (cardFlippedOut)="cardFlippedOut($event)">
+  </app-card>
+</div>
