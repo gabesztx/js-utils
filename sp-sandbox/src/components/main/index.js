@@ -4,7 +4,7 @@ import './style.css';
 
 export class MyElement {
   constructor() {
-    this.render();
+    // this.render();
   }
 
   render() {
