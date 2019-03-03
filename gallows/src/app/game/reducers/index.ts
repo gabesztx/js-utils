@@ -58,10 +58,3 @@ export const getMatch = createSelector(selectGameStatusState, fromStatus.getStat
 export const getScore = createSelector(selectGameStatusState, fromStatus.getStatusScore);
 export const getHighScore = createSelector(selectGameStatusState, fromStatus.getStatusHighScore);
 // ------------------------------------------------------------------------
-
-// Game Other Selector
-/*export const selectGameOtherState = createSelector(selectGameState,
-  (state: GameState) => state.other);
-export const getIsLoading = createSelector(selectGameOtherState, fromOther.getIsLoading);
-export const getLoadCards = createSelector(selectGameOtherState, fromOther.getCards);*/
-// ------------------------------------------------------------------------

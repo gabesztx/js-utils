@@ -31,6 +31,7 @@ export class CardBoardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+
     this.cardsOpenedSub = this.cardsOpen$.subscribe(
       cards => {
         // console.log('cardsOpen$', cards);
