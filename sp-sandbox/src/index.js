@@ -1,10 +1,13 @@
 import './index.css'
-// new RootApp().render();
-import './lite-element';
-// new RootApp()
-/*if (module.hot) {
-  module.hot.accept('./gridlayout', () => {
-    new RootApp().render()
-  });
-}*/
-//TODO: templattel or shadow dom change when use hotModule
+// import { App, AppComponent } from './lite-element';
+// import { MainContainer } from "./lite-element/components/main-container";
+
+// customElements.define('app-root', AppComponent);
+// customElements.define('main-container', MainContainer);
+// new App();
+module.hot.accept('./lite-element', (obj) => {
+  // console.log('Hot');
+  // $('app-root').remove();
+  // new App();
+});
+// TODO: templattel or shadow dom change when use hotModule

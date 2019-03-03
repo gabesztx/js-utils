@@ -1,58 +1,32 @@
-import './style.css';
-import { LitElement, html } from 'lit-element';
+import { LitElement, html, property, customElement } from 'lit-element';
+// import './components/main-container'
 
-export class RootApp extends LitElement {
 
+
+export class AppComponent extends LitElement {
   static get properties() {
     return {
-      name: {type: String},
-      message: {type: String},
-      isShow: {type: Boolean},
-      items: {type: Array}
+      title: {type: String},
+      num: {type: Number},
     };
   }
 
   constructor() {
     super();
-    // this.name = 'Ödönke';
-    this.message = 'This is title';
-    this.isShow = true;
-    this.items = ['item1', 'item2', 'item3'];
-
-    setTimeout(() => {
-      this.items[1] = 'item new ;)'; // not change
-      // this.changeAttributes()
-      console.log('NAME', this.name);
-    }, 2000);
   }
 
   onClick() {
-    this.isShow = !this.isShow;
 
   }
 
-  changeAttributes(){
-    this.setAttribute('name', 'change name')
-  }
-
-  // Only change value when click, or other observable change detaction
   render() {
+    console.log('Render: AppComponent');
     return html`
-      <h1>Name: ${this.name}</h1>
       <div>
-        ${this.isShow ?
-      html`<p>${this.message}</p>` :
-      html`<p>Title changed </p>`
-      }
-      </div>
-      <ul>${this.items.map(item => html`<li>${item}</li>`)}</ul>
-      <button @click="${this.onClick}">Trigger</button>
-    `;
+        <!--<h2>Root dsdsdsss s</h2>-->
+        <div>${this.title + this.num}</div>
+        <main-container></main-container>
+        <button @click="${this.onClick}">Trigger</button>
+      </div>`;
   }
 }
-
-customElements.define('root-app', RootApp);
-
-// TODO:
-//  - https://lit-element.polymer-project.org/guide/properties#declare
-//  - Configure observed attributes
