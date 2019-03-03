@@ -8,20 +8,4 @@ body {
   font-size: 14px;
   margin: 0;
   padding: 0;
-  background-color: antiquewhite;
-}
-
-h1 {
-  font-size: 6rem;
-}
-
-p {
-  font-size: 1.3rem;
-}
-
-mark {
-  padding: 2px 8px;
-  border-radius: 4px;
-  background-color: #4286F4;
-  color: #FFF;
 }
