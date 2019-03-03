@@ -21,11 +21,18 @@ export class RootApp extends LitElement {
 
     setTimeout(() => {
       this.items[1] = 'item new ;)'; // not change
-    }, 1000);
+      // this.changeAttributes()
+      console.log('NAME', this.name);
+    }, 2000);
   }
 
   onClick() {
     this.isShow = !this.isShow;
+
+  }
+
+  changeAttributes(){
+    this.setAttribute('name', 'change name')
   }
 
   // Only change value when click, or other observable change detaction
@@ -46,4 +53,6 @@ export class RootApp extends LitElement {
 
 customElements.define('root-app', RootApp);
 
-// TODO: https://lit-element.polymer-project.org/guide/properties#declare
+// TODO:
+//  - https://lit-element.polymer-project.org/guide/properties#declare
+//  - Configure observed attributes
