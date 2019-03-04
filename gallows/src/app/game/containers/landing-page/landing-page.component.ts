@@ -22,16 +22,16 @@ export class LandingPageComponent implements OnInit {
 
   ngOnInit() {
     console.log('Init1');
-    this.deckSize$ = this.store.pipe(select(fromGame.getDeckSize));
+    // this.deckSize$ = this.store.pipe(select(fromGame.getDeckSize));
 
   }
 
   startGame() {
-    this.router.navigate(['game']);
+    // this.router.navigate(['game']);
   }
 
   changeDeckSize(value) {
-    this.store.dispatch(new SetDeckSize(value));
+    // this.store.dispatch(new SetDeckSize(value));
   }
 }
 
