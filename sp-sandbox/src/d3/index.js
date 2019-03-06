@@ -10,7 +10,7 @@ export class D3SandBox {
 
   render() {
 
-    /*let perc_so_far = 0;
+    /*let percent = 0;
     const data = [8, 3, 40, 15, 10];
     const height = 30;
     const totalValue = d3.sum(data);
@@ -32,9 +32,9 @@ export class D3SandBox {
         return ((d / totalValue) * 100) + '%';
       })
       .attr('x', function (d) {
-        const prev_perc = perc_so_far;
+        const prev_perc = percent;
         const this_perc = 100 * (d / totalValue);
-        perc_so_far = perc_so_far + this_perc;
+        percent = percent + this_perc;
         return prev_perc + '%';
       })
       .attr('height', height)
@@ -42,12 +42,12 @@ export class D3SandBox {
 
 
     /!* TEXT *!/
-    perc_so_far = 0;
+    percent = 0;
     bar.append('text')
       .attr('x', function (d) {
-        const prev_perc = perc_so_far;
+        const prev_perc = percent;
         const this_perc = 100 * (d / totalValue);
-        perc_so_far = perc_so_far + this_perc;
+        percent = percent + this_perc;
         return prev_perc + '%';
       })
       .attr('dy', '1.35em')
@@ -55,61 +55,90 @@ export class D3SandBox {
         return d;
       });*/
 
-    const data = [
+    const dummyData = [
       {
-        value : 5,
-        color : '#1b35f5'
+        value: 10,
+        color: '#1b35f5'
       },
       {
-        value : 20,
-        color : '#e746f5'
+        value: 20,
+        color: '#e746f5'
       },
       {
-        value : 20,
-        color : '#27f535'
+        value: 30,
+        color: '#27f535'
       },
+
       {
-        value : 5,
-        color : '#f53e48'
+        value: 40,
+        color: '#f53e48'
       }
     ];
 
-    let perc_so_far = 0;
-
+    let percent = 0;
     const height = 30;
-    const totalValue = d3.sum(data, v => v.value);
+    const totalValue = d3.sum(dummyData, v => v.value);
 
     /* SVG */
     const svg = d3.select(document.querySelector('.d3-content svg'))
       .attr('width', '100%')
       .attr('height', height);
-
     /* BAR */
     const bar = svg.selectAll('g')
-      .data(data)
+      .data(dummyData)
       .enter()
       .append('g');
     bar
       .append('rect')
-      .attr('width', (d) => {
-        return ((d.value / totalValue) * 100) + '%';
+      .attr('width', d => {
+        // console.log(percent);
+        const percent = ((d.value / totalValue) * 100) + '%';
+        return percent;
       })
       .attr('height', height)
       .attr('x', (d) => {
-        const prev_perc = perc_so_far;
-        const this_perc = 100 * (d.value / totalValue);
-        perc_so_far = perc_so_far + this_perc;
-        // console.log(prev_perc);
-        // console.log(perc_so_far);
-        return prev_perc + '%';
+        //TODO: refact
+        let prevPercent = percent;
+        // console.log('percent', percent);
+        percent += 100 * (d.value / totalValue);
+        return prevPercent + '%';
       })
       .attr('fill', d => d.color);
-    // const myScale = d3.scaleLinear()
-    //   .domain([0, 10])
-    //   .range([0, 600]);
-    //
-    // console.log(myScale(1));
 
+    /* TEXT */
+    percent = 0;
+    bar.append('text')
+      .text(d => d.value)
+      .attr('class', d => 'text' + d.value)
+      .attr('font-size', '14')
+      .attr('dy', '14')
+      .attr('dx', '0') //TODO: innét folxt köv
+      .attr('x', (d) => {
+        let prevPercent = percent;
+        percent += 100 * (d.value / totalValue);
+        return prevPercent + '%';
+      })
+    // bar.each((d) => {
+ /*   bar.attr('dx', (d) => {
+      const className = '.text' + d.value;
+      // console.log('className', className);
+      const textEl = document.querySelector(className);
+      const dx = textEl.getComputedTextLength() / 2;
+      console.log(textEl.getComputedTextLength());
+      // console.log(dx);
+      return '10px'
+    });*/
+
+  /*  bar.attr('dx', (d) => {
+      console.log('dx', d);
+      return 0
+    })
+*/
+    // .attr('dx', '15')
+    /*.attr('dx', (val)=>{
+      console.log('val', val.value);
+    })
+*/
     // const lineGroup = svg.append('g');
     //
     // const line = lineGroup.append('rect');
@@ -166,3 +195,7 @@ export class D3SandBox {
 
 // setTimeout(() => {});
 // .style('transform', 'translateY(5px)')
+// const myScale = d3.scaleLinear()
+//   .domain([0, 10])
+//   .range([0, 600]);
+//
