@@ -81,6 +81,7 @@
   "dependencies": {
     "@webcomponents/webcomponentsjs": "^2.2.7",
     "browser-sync-webpack-plugin": "^2.2.2",
+    "d3": "^5.7.0",
     "lit-element": "^2.0.1",
     "lit-html": "^1.0.0"
   }

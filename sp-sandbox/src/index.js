@@ -1,7 +1,8 @@
 import './index.css';
-// import { App, AppComponent } from './lite-element';
-// import { MainContainer } from "./lite-element/components/main-container";
+import { D3SandBox } from './d3';
 
-// module.hot.accept('./lite-element', () => {});
+new D3SandBox();
 
-// TODO: templattel or shadow dom change when use hotModule
+module.hot.accept('./d3', () => {
+  new D3SandBox();
+});
