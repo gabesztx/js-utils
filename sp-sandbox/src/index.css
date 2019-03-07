@@ -15,7 +15,8 @@ body {
   margin-left: 15px;
   margin-right: 15px;
 }
-
-.d3-content svg {
-  background-color: #d4d4d4;
+#singleStackChartAll {
+  display: inline-block;
+  vertical-align: middle;
+  padding-top: 15px;
 }
