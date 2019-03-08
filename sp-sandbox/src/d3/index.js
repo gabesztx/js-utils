@@ -35,7 +35,7 @@ export class D3SandBox {
     let percent = 0;
     const height = 30;
     const totalValue = d3.sum(dummyData, v => v.value);
-    return
+    // return
     /* SVG */
     const svg = d3.select(document.querySelector('#singleStackChart'))
       .attr('width', '80%')
@@ -84,7 +84,7 @@ export class D3SandBox {
         }
         return -textWidth / 2;
       });
-    // document.querySelector('#singleStackChartAll').innerHTML = totalValue + 'GB';
+    document.querySelector('#singleStackChartAll').innerHTML = totalValue + 'GB';
   }
 }
 
