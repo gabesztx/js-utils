@@ -1,8 +1,6 @@
-import './index.css';
-import { D3SandBox } from './d3';
-
-new D3SandBox();
-
+import './index.scss';
+import { StacketBulletChart } from './d3';
+new StacketBulletChart();
 module.hot.accept('./d3', () => {
-  new D3SandBox();
+  new StacketBulletChart();
 });

@@ -10,48 +10,57 @@ module.exports = merge(base, {
   mode    : 'development',
   devtool : 'eval-source-map',
   entry   : {
-    app: path.join(__dirname, '../src/index.js')
+    app : path.join(__dirname, '../src/index.js')
   },
-  output: {
+  output  : {
     filename   : 'app.js',
     publicPath : '/'
   },
-  module: {
-    rules: [{
-      test : /(\.css|\.pcss)$/,
-      use  : [
-        {
-          loader: 'style-loader' // creates style nodes from JS strings
-        },
-        {
-          loader  : 'css-loader', // translates CSS into CommonJS
-          options : {
-            sourceMap     : true,
-            importLoaders : 2
+  module  : {
+    rules : [
+      {
+        test: /\.scss$/,
+        use: [
+          {
+            loader: "style-loader" // creates style nodes from JS strings
+          },
+          {
+            loader: "css-loader" // translates CSS into CommonJS
+          },
+          {
+            loader: "sass-loader" // compiles Sass to CSS
           }
-        },
-        {
-          loader  : 'postcss-loader', // postprocesses CSS
-          options : {
-            sourceMap : true,
-            ident     : 'postcss'
+        ]
+      }
+     /* {
+        test : /\.(scss|css)$/,
+        use  : [
+          {
+            loader : 'style-loader' // creates style nodes from JS strings
+          },
+          {
+            loader  : 'css-loader', // translates CSS into CommonJS
+            options : {
+              sourceMap     : true,
+              importLoaders : 2
+            }
+          },
+          {
+            // resolves relative paths based on the original source file.
+            loader : 'resolve-url-loader'
           }
-        },
-        {
-          // resolves relative paths based on the original source file.
-          loader: 'resolve-url-loader'
-        }
-      ]
-    }]
+        ]
+      }*/
+    ]
   },
-  plugins: [
+  plugins : [
     new HtmlWebpackPlugin({
       template : 'src/index.ejs',
       favicon  : 'favicon.ico', // or use favicons-webpack-plugin
       title    : TITLE
     }),
     new webpack.DefinePlugin({
-      PRODUCTION: JSON.stringify(false)
+      PRODUCTION : JSON.stringify(false)
     }),
     new webpack.HotModuleReplacementPlugin()
   ]

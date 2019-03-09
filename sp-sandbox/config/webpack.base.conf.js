@@ -31,7 +31,7 @@ module.exports = {
       }]
   },
   plugins : [
-    new StyleLintPlugin(),
+    // new StyleLintPlugin(),
     /*new BrowserSyncPlugin(
       // BrowserSync options
       {

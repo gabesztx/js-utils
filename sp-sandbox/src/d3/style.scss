@@ -1,0 +1,27 @@
+.page-wrapper {
+  margin-left: 15px;
+  margin-right: 15px;
+  padding-top: 15px;
+  .chartContent {
+    display: flex;
+    align-items: center;
+    //background-color: orangered;
+    .chartValueContent {
+      font-size: 15px;
+      .dataValue {
+        font-size: 30px;
+      }
+      .dataTotal {
+      }
+    }
+    .chartSVGContent {
+      flex-grow: 1;
+      background-color: beige;
+      #stackedBulletChart {
+        //width: 100%;
+        //height: 100%;
+        //background-color: #ff6b97;
+      }
+    }
+  }
+}
