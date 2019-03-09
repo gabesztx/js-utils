@@ -12,20 +12,20 @@ export class StacketBulletChart {
         {
           label : 'Roaming',
           color : '#AAAACE',
-          value : 10
+          value : 20
         },
         {
           label : 'National',
           color : '#767676',
-          value : 10
+          value : 20
         }
 
       ]
     };
 
-    this.initData();
-    this.initSvg();
-    this.setRectBar();
+    // this.initData();
+    // this.initSvg();
+    // this.setRectBar();
 
     // const annyi = d3.select('.rect-0').node().getBoundingClientRect().width;
     // const aaa = (20 / annyi) * 100;
