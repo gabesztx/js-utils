@@ -12,24 +12,20 @@ export class StacketBulletChart {
         {
           label : 'Roaming',
           color : '#AAAACE',
-          value : 20
+          value : 5
         },
         {
           label : 'National',
           color : '#767676',
           value : 20
         }
-
       ]
     };
 
-    // this.initData();
-    // this.initSvg();
-    // this.setRectBar();
-
-    // const annyi = d3.select('.rect-0').node().getBoundingClientRect().width;
-    // const aaa = (20 / annyi) * 100;
-    // console.log('AASA', aaa);
+    this.initData();
+    this.initSvg();
+    this.setRectBar();
+    // d3.select('.rect-0').node().getBoundingClientRect().width
   }
 
   initData() {
@@ -56,7 +52,6 @@ export class StacketBulletChart {
   getDimension(value) {
     const percent = (value / this.totalData) * 100;
     return percent;
-    // return value;
   }
 
   setRectBar() {
@@ -64,16 +59,14 @@ export class StacketBulletChart {
     const lineYPos = this.svgHeight / 2 - rectHeight / 2;
     let rectBarX = 0;
     const rectGroup = this.svgD3.select('#stackedLineGroup');
-    // rectGroup.attr('transform', `translate(${20}, 0)`);
-
+    // rectGroup.attr('transform', `translate(${12.495119094103865}, 0)`);
     rectGroup.selectAll('rect')
       .data(this.dummaData.data)
       .enter()
       .append('rect')
       .attr('fill', data => data.color)
       .attr('width', data => this.getDimension(data.value) + '%')
-      .attr('class', (data, index) => `rect-${index}`)
-      // .attr('width', data => this.getDimension(data.value))
+      .attr('class', (data, index) => `rect rect-${index}`)
       .attr('height', rectHeight)
       .attr('y', lineYPos)
       .attr('x', (data) => {
@@ -81,17 +74,16 @@ export class StacketBulletChart {
         rectBarX += this.getDimension(data.value);
         return prevPercent + '%';
       });
-    /* if (this.freeData > 0) {
-       rectGroup.append('rect')
-         .attr('width', this.getDimension(data.value) + '%')
-         // .attr('width', this.getDimension(data.value))
-         .attr('height', rectHeight)
-         .attr('y', lineYPos)
-         .attr('x', rectBarX + '%')
-         .attr('fill-opacity', 0)
-         .attr('stroke', '#D8D8D8')
-         .attr('stroke-width', '0.5');
-     }*/
+    if (this.freeData > 0) {
+      rectGroup.append('rect')
+        .attr('width', this.getDimension(this.freeData) + '%')
+        .attr('height', rectHeight)
+        .attr('y', lineYPos)
+        .attr('x', rectBarX + '%')
+        .attr('fill-opacity', 0)
+        .attr('stroke', '#D8D8D8')
+        .attr('stroke-width', '0.5');
+    }
 
     // rectGroup.append('rect')
     //   .attr('width', 2)
@@ -209,3 +201,18 @@ render() {
   // console.log(val);
   // console.log(index);
 });*/
+
+/*
+
+    const margin = {
+      top    : 30,
+      right  : 20,
+      bottom : 30,
+      left   : 50
+    };
+
+
+    const width = 600 - margin.left - margin.right;
+    const height = 270 - margin.top - margin.bottom;
+*/
+

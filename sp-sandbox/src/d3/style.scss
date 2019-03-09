@@ -2,26 +2,41 @@
   margin-left: 15px;
   margin-right: 15px;
   padding-top: 15px;
+
   .chartContent {
     display: flex;
     align-items: center;
     //background-color: orangered;
     .chartValueContent {
       font-size: 15px;
+
       .dataValue {
         font-size: 30px;
       }
-      .dataTotal {
-      }
+      .dataTotal {}
     }
+
     .chartSVGContent {
       flex-grow: 1;
 
       #stackedBulletChartSVG {
-        background-color: beige;
+        background-color: #ff6f94;
         //width: 100%;
         //height: 100%;
         //background-color: #ff6b97;
+        .rect{
+          cursor: pointer;
+        }
+        .rect-0 {
+          &:hover {
+            fill: beige;
+          }
+        }
+        .rect-1 {
+          &:hover {
+            fill: beige;
+          }
+        }
       }
     }
   }
