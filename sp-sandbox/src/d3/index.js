@@ -6,18 +6,18 @@ export class StacketBulletChart {
   constructor() {
     document.body.innerHTML = template;
     this.dummaData = {
-      mobilDataTotal : 20,
+      mobilDataTotal : 40,
       zeroRated      : false,
       data           : [
         {
           label : 'Roaming',
           color : '#AAAACE',
-          value : 5,
+          value : 10
         },
         {
           label : 'National',
           color : '#767676',
-          value : 4,
+          value : 10
         }
 
       ]
@@ -26,17 +26,14 @@ export class StacketBulletChart {
     this.initData();
     this.initSvg();
     this.setRectBar();
-  }
 
-  initSvg() {
-    this.svgWidth = '100%';
-    this.svgHeight = 100;
-    this.svgD3 = d3.select(document.querySelector('#stackedBulletChartSVG'))
-      .attr('width', this.svgWidth)
-      .attr('height', this.svgHeight);
+    // const annyi = d3.select('.rect-0').node().getBoundingClientRect().width;
+    // const aaa = (20 / annyi) * 100;
+    // console.log('AASA', aaa);
   }
 
   initData() {
+
     this.totalData = this.dummaData.mobilDataTotal;
     this.amountDada = d3.sum(this.dummaData.data, v => v.value);
     this.freeData = this.totalData - this.amountDada;
@@ -47,36 +44,60 @@ export class StacketBulletChart {
     this.currentDataElement.innerHTML = this.amountDada;
   }
 
+  initSvg() {
+    this.svgWidth = '100%';
+    this.svgHeight = 100;
+    this.svgD3 = d3.select(document.querySelector('#stackedBulletChartSVG'))
+      .attr('width', this.svgWidth)
+      .attr('height', this.svgHeight);
+  }
+
+
+  getDimension(value) {
+    const percent = (value / this.totalData) * 100;
+    return percent;
+    // return value;
+  }
+
   setRectBar() {
     const rectHeight = 20;
-    const rectGroup = this.svgD3.select('#stackedLineGroup');
     const lineYPos = this.svgHeight / 2 - rectHeight / 2;
     let rectBarX = 0;
+    const rectGroup = this.svgD3.select('#stackedLineGroup');
+    // rectGroup.attr('transform', `translate(${20}, 0)`);
 
     rectGroup.selectAll('rect')
       .data(this.dummaData.data)
       .enter()
       .append('rect')
       .attr('fill', data => data.color)
-      .attr('width', data => (data.value / this.totalData) * 100 + '%')
+      .attr('width', data => this.getDimension(data.value) + '%')
+      .attr('class', (data, index) => `rect-${index}`)
+      // .attr('width', data => this.getDimension(data.value))
       .attr('height', rectHeight)
       .attr('y', lineYPos)
       .attr('x', (data) => {
         let prevPercent = rectBarX;
-        rectBarX += (data.value / this.totalData) * 100;
+        rectBarX += this.getDimension(data.value);
         return prevPercent + '%';
       });
+    /* if (this.freeData > 0) {
+       rectGroup.append('rect')
+         .attr('width', this.getDimension(data.value) + '%')
+         // .attr('width', this.getDimension(data.value))
+         .attr('height', rectHeight)
+         .attr('y', lineYPos)
+         .attr('x', rectBarX + '%')
+         .attr('fill-opacity', 0)
+         .attr('stroke', '#D8D8D8')
+         .attr('stroke-width', '0.5');
+     }*/
 
-    if (this.freeData > 0) {
-      rectGroup.append('rect')
-        .attr('width', (this.freeData / this.totalData) * 100 + '%')
-        .attr('height', rectHeight)
-        .attr('y', lineYPos)
-        .attr('x', rectBarX + '%')
-        .attr('fill-opacity', 0)
-        .attr('stroke', '#D8D8D8')
-        .attr('stroke-width', '0.5')
-    }
+    // rectGroup.append('rect')
+    //   .attr('width', 2)
+    //   .attr('height', 30)
+    //   .attr('x', '50%')
+    //   .attr('y', lineYPos)
   }
 }
 
