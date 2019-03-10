@@ -8,7 +8,8 @@ const TITLE = 'DEV - SB';
 
 module.exports = merge(base, {
   mode    : 'development',
-  devtool : 'eval-source-map',
+  // devtool : 'eval-source-map',
+  devtool: 'inline-source-map',
   entry   : {
     app : path.join(__dirname, '../src/index.js')
   },
@@ -16,6 +17,7 @@ module.exports = merge(base, {
     filename   : 'app.js',
     publicPath : '/'
   },
+
   module  : {
     rules : [
       {

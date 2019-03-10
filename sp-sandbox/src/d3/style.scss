@@ -6,38 +6,43 @@
   .chartContent {
     display: flex;
     align-items: center;
-    //background-color: orangered;
+
     .chartValueContent {
       font-size: 15px;
-
-      .dataValue {
+      .dataCurrent {
         font-size: 30px;
       }
       .dataTotal {}
     }
 
     .chartSVGContent {
+      margin-left: 20px;
       flex-grow: 1;
 
       #stackedBulletChartSVG {
-        background-color: #ff6f94;
-        //width: 100%;
-        //height: 100%;
-        //background-color: #ff6b97;
-        .rect{
-          cursor: pointer;
-        }
-        .rect-0 {
-          &:hover {
-            fill: beige;
+        .label-group {
+          .label-value {}
+          .label-flag {
+            fill: #767676;
+            //font-size: 14px;
           }
         }
-        .rect-1 {
-          &:hover {
-            fill: beige;
-          }
-        }
+
       }
     }
   }
 }
+
+/*.rect{
+  cursor: pointer;
+}
+.rect-0 {
+  &:hover {
+    fill: beige;
+  }
+}
+.rect-1 {
+  &:hover {
+    fill: beige;
+  }
+}*/
