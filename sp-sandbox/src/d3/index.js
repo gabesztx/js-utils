@@ -11,14 +11,15 @@ export class StacketBulletChart {
         {
           label : 'Roaming',
           color : '#AAAACE',
-          value : 4
+          value : 5
         },
         {
           label : 'National',
           color : '#767676',
-          value : 5
+          value : 2
         }
-      ]
+      ],
+
       // zeroRated      : {
       //   label : 'allowance',
       //   color : '#36B07F'
@@ -84,11 +85,11 @@ export class StacketBulletChart {
         .attr('x', this.rectBarXpos + '%')
         .attr('fill-opacity', 0)
         .attr('stroke', '#D8D8D8')
-        .attr('stroke-width', '0.5');
+        .attr('stroke-width', '.5');
     }
 
     if (this.isZeroRated) {
-      const zeroRatedData = this.dummaData.zeroRated || {};
+      const zeroRatedData = this.dummaData['zeroRated'] || {};
       const groupLength = this.svgD3.selectAll('g')
         .nodes().length;
       this.svgD3.append('g')
@@ -105,7 +106,7 @@ export class StacketBulletChart {
         });
     }
 
-    /* TEXT */
+    /* LABEL */
     this.rectBarXpos = 0;
     this.barLength = this.dummaData.data.length - 1;
     this.svgD3.selectAll('g')
@@ -127,40 +128,54 @@ export class StacketBulletChart {
       }
     });
     this.setTextLabelPosition();
+    this.setTriangle();
+
   }
 
   setTextLabel(index, value, position) {
     const textGroup = d3.select(this.textLabelGroup.nodes()[index]);
-    const textLabel = textGroup.append('text')
-      .attr('class', `label-value`)
+    textGroup.attr('font-size', () => {
+      if (index === this.barLength) {
+        return 16;
+      }
+    });
+    const textLabel = textGroup
+      .append('text')
+      .attr('class', 'label-value')
       .text(value);
-    const textFlag = textGroup.append('text')
-      .attr('class', `label-flag`)
+    const textFlag = textGroup
+      .append('text')
+      .attr('class', 'label-flag')
       .text('GB');
-    const textHeight = textLabel.node()
-      .getBoundingClientRect().height;
-    const textWidth = textLabel.node()
-      .getBoundingClientRect().width;
-    const textYpos = this.lineYPos + this.rectHeight + textHeight;
-    textLabel
-      .attr('x', position + '%')
-      .attr('dy', textYpos);
-    textFlag
-      .attr('x', position + '%')
-      .attr('dx', textWidth + 2)
-      .attr('dy', textYpos);
+
+
+    if (textLabel.node()) {
+      const textHeight = textLabel.node()
+        .getBoundingClientRect().height;
+      const textWidth = textLabel.node()
+        .getBoundingClientRect().width;
+      const textYpos = this.lineYPos + this.rectHeight + textHeight;
+      textLabel
+        .attr('x', position + '%')
+        .attr('dy', textYpos);
+      textFlag
+        .attr('x', position + '%')
+        .attr('dx', textWidth + 2)
+        .attr('dy', textYpos);
+    }
   }
 
   setTextLabelPosition() {
     const barLength = this.dummaData.data.length;
+    const totalData = this.totalData;
+    const amountDada = this.amountDada;
     const isZeroRated = this.isZeroRated;
     d3.selectAll('.text-label-group')
       .attr('transform', function (data, index) {
         let xPos = 0;
         if (barLength - 1 === index) {
-          console.log(this.getBoundingClientRect().width);
           const groupWidth = this.getBoundingClientRect().width;
-          xPos = -groupWidth / 2;
+          xPos = amountDada === totalData ? -groupWidth : -groupWidth / 2;
         }
         if (barLength === index) {
           const groupWidth = this.getBoundingClientRect().width;
@@ -168,6 +183,40 @@ export class StacketBulletChart {
         }
         return `translate(${xPos},0)`;
       });
+  }
+
+  setTriangle() {
+    /* Triangle */
+    const triangleGroup = this.svgD3.append('g')
+      .attr('class', 'label-triangle-group');
+    triangleGroup
+      .append('clipPath')
+      .attr('id', 'triangle-mask')
+      .append('rect')
+      .attr('height', 10)
+      .attr('width', 10)
+      .attr('x', () => {
+        return d3.select('.text-group-1 .label-value')
+          .attr('x')
+      })
+      .attr('y', () => {
+        return 100;
+      });
+
+    const triangle = triangleGroup.append('rect')
+      .attr('class', 'label-triangle')
+      .attr('width', 10)
+      .attr('height', 10)
+      .attr('clip-path', 'url(#triangle-mask)')
+      .attr('x', () => {
+        return d3.select('.text-group-1 .label-value')
+          .attr('x');
+      })
+      .attr('y', () => {
+        return d3.select('.text-group-1 .label-value')
+          .attr('dy');
+      })
+      .attr('transform', 'rotate(0) translate(-5,5)');
   }
 
   getDimension(value) {

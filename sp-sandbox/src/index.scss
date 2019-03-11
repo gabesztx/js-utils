@@ -10,3 +10,11 @@ body {
   margin: 0;
   padding: 0;
 }
+.label-triangle{
+  transform-origin: 70% 100px;
+  transform: rotate(45deg);
+}
+#triangle-mask{
+  transform-origin: 70% 100px;
+  transform: rotate(45deg);
+}
