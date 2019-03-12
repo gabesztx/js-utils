@@ -6,7 +6,7 @@ export class StacketBulletChart {
   constructor() {
     document.body.innerHTML = template;
     this.dummaData = {
-      mobilTotalData : 10,
+      mobilTotalData : 15,
       data           : [
         {
           label : 'Roaming',
@@ -16,23 +16,25 @@ export class StacketBulletChart {
         {
           label : 'National',
           color : '#767676',
-          value : 2
+          value : 7.8
         }
       ],
-
-      // zeroRated      : {
-      //   label : 'allowance',
-      //   color : '#36B07F'
-      // }
+      zeroRated      : {
+        label : 'allowance',
+        color : '#36B07F'
+      }
     };
 
     this.initSvg();
     this.initData();
     this.setRectBar();
+    this.setTextLabelPosition();
+    this.setTriangle();
+    this.setMarket();
   }
 
   initSvg() {
-    this.svgWidth = '100%';
+    this.svgWidth = 600;
     this.svgHeight = 150;
     this.svgD3 = d3.select(document.querySelector('#stackedBulletChartSVG'))
       .attr('width', this.svgWidth)
@@ -44,14 +46,16 @@ export class StacketBulletChart {
     this.totalData = this.dummaData.mobilTotalData;
     this.amountDada = d3.sum(this.dummaData.data, v => v.value);
     this.freeData = this.totalData - this.amountDada;
+    this.rectBarXpos = 0;
+    this.marketWidth = 1.5;
+    this.rectHeight = 12;
+    this.barLength = this.dummaData.data.length - 1;
+
     document.querySelector('.dataCurrent').innerHTML = this.amountDada;
     document.querySelector('.dataTotal').innerHTML = this.totalData;
   }
 
-
   setRectBar() {
-    this.rectBarXpos = 0;
-    this.rectHeight = 12;
     this.lineYPos = this.svgHeight / 2 - this.rectHeight / 2;
     this.rectGroup = this.svgD3.selectAll('g')
       .data(this.dummaData.data)
@@ -95,7 +99,7 @@ export class StacketBulletChart {
       this.svgD3.append('g')
         .attr('class', () => `rect-group-${groupLength}`)
         .append('rect')
-        .attr('class', (data, index) => `rect rect-${index}`)
+        .attr('class', (data, index) => `rect rect-${groupLength}`)
         .attr('fill', () => zeroRatedData.color)
         .attr('width', () => '20%')
         .attr('height', this.rectHeight)
@@ -108,7 +112,7 @@ export class StacketBulletChart {
 
     /* LABEL */
     this.rectBarXpos = 0;
-    this.barLength = this.dummaData.data.length - 1;
+
     this.svgD3.selectAll('g')
       .append('g')
       .attr('class', (data, index) => {
@@ -127,8 +131,6 @@ export class StacketBulletChart {
         }
       }
     });
-    this.setTextLabelPosition();
-    this.setTriangle();
 
   }
 
@@ -148,13 +150,13 @@ export class StacketBulletChart {
       .attr('class', 'label-flag')
       .text('GB');
 
-
     if (textLabel.node()) {
       const textHeight = textLabel.node()
         .getBoundingClientRect().height;
       const textWidth = textLabel.node()
         .getBoundingClientRect().width;
-      const textYpos = this.lineYPos + this.rectHeight + textHeight;
+      this.yPositions = this.lineYPos + this.rectHeight + textHeight;
+      const textYpos = index === this.barLength ? this.lineYPos - 20 : this.yPositions;
       textLabel
         .attr('x', position + '%')
         .attr('dy', textYpos);
@@ -186,41 +188,43 @@ export class StacketBulletChart {
   }
 
   setTriangle() {
-    /* Triangle */
-    const triangleGroup = this.svgD3.append('g')
-      .attr('class', 'label-triangle-group');
-    triangleGroup
-      .append('clipPath')
-      .attr('id', 'triangle-mask')
-      .append('rect')
-      .attr('height', 10)
-      .attr('width', 10)
-      .attr('x', () => {
-        return d3.select('.text-group-1 .label-value')
-          .attr('x')
-      })
-      .attr('y', () => {
-        return 100;
-      });
+    let tirangleWidth = 0;
+    const getRectBarwidth = this.svgD3.selectAll('.rect')
+      .nodes();
+    getRectBarwidth.forEach((val, i) => {
+      const rectElement = val.getBoundingClientRect().width;
+      if (i <= this.barLength) {
+        tirangleWidth += rectElement;
+      }
+    });
 
-    const triangle = triangleGroup.append('rect')
+    this.triangleGroup = this.svgD3.selectAll('g');
+    this.triangleGroup
+      .append('g')
+      .attr('class', 'label-triangle-group')
+      .attr('transform', () => {
+        return `translate(${tirangleWidth - 5},${this.lineYPos - 12})`;
+      })
+      .append('path')
       .attr('class', 'label-triangle')
-      .attr('width', 10)
-      .attr('height', 10)
-      .attr('clip-path', 'url(#triangle-mask)')
-      .attr('x', () => {
-        return d3.select('.text-group-1 .label-value')
-          .attr('x');
-      })
-      .attr('y', () => {
-        return d3.select('.text-group-1 .label-value')
-          .attr('dy');
-      })
-      .attr('transform', 'rotate(0) translate(-5,5)');
+      .attr('transform', 'scale(1.1)');
+    const labelTriangle = d3.select('.label-triangle')
+      .node();
+    labelTriangle.setAttribute('d', 'M0 0 L5 5 L10 0 Z');
+  }
+
+  setMarket() {
+    const percentVale = this.isZeroRated ? 80 : 100;
+    const marketTranslate = this.isZeroRated ? 0 : -this.marketWidth;
+    this.svgD3.append('rect')
+      .attr('width', this.marketWidth)
+      .attr('height', this.rectHeight + 5)
+      .attr('y', this.lineYPos - 5)
+      .attr('x', percentVale + '%')
+      .attr('transform', `translate(${marketTranslate},0)`);
   }
 
   getDimension(value) {
-    // TODO: 20% zeroratedet dinamikusan
     const percentVale = this.isZeroRated ? 80 : 100;
     return (value / this.totalData) * percentVale;
   }
