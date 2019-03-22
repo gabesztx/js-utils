@@ -9,8 +9,10 @@
       "projectType": "application",
       "prefix": "app",
       "schematics": {
-        "@schematics/angular:component": {
-          "style": "sass"
+        "schematics": {
+          "@ngrx/schematics:component": {
+            "styleext": "scss"
+          }
         }
       },
       "architect": {
@@ -136,5 +138,8 @@
       }
     }
   },
-  "defaultProject": "sp-gallowsgame"
+  "defaultProject": "sp-gallowsgame",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
