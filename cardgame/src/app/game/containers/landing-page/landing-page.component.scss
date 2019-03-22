@@ -1,0 +1,41 @@
+:host {
+  display: flex;
+  width: 100%;
+  flex: 1 0 auto;
+  justify-content: center;
+  align-items: center;
+  .landingPageComponent {
+    margin-top: -45px;
+    .titleContent {
+      padding-bottom: 15px;
+      text-align: center;
+      text-transform: uppercase;
+      line-height: 30px;
+      .companyName {
+        font-size: 40px;
+      }
+      .gameTitle {}
+    }
+
+  }
+  .dropDownContent {
+    padding-bottom: 30px;
+    .dropDownTitle{
+      font-size: 12px;
+      text-align: center;
+      padding-bottom: 2px;
+    }
+  }
+  .startGameContent{
+    text-align: center;
+    //padding-top: 20px;
+    .startGameBtn{
+      cursor: pointer;
+      color: white;
+      font-weight: 500;
+      padding: 10px 15px;
+      text-transform: uppercase;
+      background-color: rgb(255,1,23);
+    }
+  }
+}

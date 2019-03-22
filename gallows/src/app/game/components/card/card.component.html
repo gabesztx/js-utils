@@ -1,0 +1,12 @@
+<div class="cardContent"
+     [@rotateState]="isOpen"
+     (@rotateState.done)="rotateDone($event, card)">
+  <!--<div class="item front" [ngClass]="{'inactive': card.inactive}">-->
+  <div class="item front">
+    <div class="cardBg" [@cardBgState]="inactive"></div>
+    <img class="cardImg" src="{{card.imgUrl}}" [@cardImgState]="inactive">
+  </div>
+  <!--<div class="item back" [ngClass]="{'inactive': card.inactive}">-->
+  <div class="item back" (click)="clickCard(card)">
+  </div>
+</div>

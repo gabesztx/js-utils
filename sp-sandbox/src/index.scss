@@ -1,0 +1,40 @@
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, Ubuntu, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+.page-wrapper {
+  margin-left: 15px;
+  margin-right: 15px;
+  padding-top: 15px;
+  .chartContent {
+    display: flex;
+    align-items: center;
+    .chartValueContent {
+      .dataCurrent {
+        font-size: 28px;
+      }
+      .dataMeasure {
+        font-size: 16px;
+        color: #767676;
+      }
+    }
+    .chartSVGContent {
+      margin-left: 20px;
+      flex-grow: 1;
+      #stackedBulletChartSVG {
+        .label-measure {
+          fill: #767676;
+        }
+      }
+    }
+  }
+}
