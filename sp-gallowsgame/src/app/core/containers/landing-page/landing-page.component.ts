@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-// import * as fromGame from '../../reducers';
-// import { SetDeckSize } from '../../actions/card.actions';
-// import { GameEffects } from '../../effects/game.effects';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -15,7 +12,6 @@ export class LandingPageComponent implements OnInit {
   deckSize$: Observable<number>;
 
   constructor(
-    // private gameEffects: GameEffects,
     // private store: Store<fromGame.GameState>,
     private router: Router) {
   }
