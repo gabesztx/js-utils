@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
@@ -13,6 +14,7 @@ import * as fromGame from './reducers';
   imports: [
     CommonModule,
     GameRoutingModule,
+    FormsModule,
     StoreModule.forFeature('game', fromGame.reducers),
     EffectsModule.forFeature([GameEffects])
   ],
