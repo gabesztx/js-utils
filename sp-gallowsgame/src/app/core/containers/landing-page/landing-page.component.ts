@@ -32,21 +32,3 @@ export class LandingPageComponent implements OnInit {
     // this.store.dispatch(new SetDeckSize(value));
   }
 }
-/*
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-
-@Component({
-  selector: 'app-landing-page',
-  templateUrl: './landing-page.component.html',
-  styleUrls: ['./landing-page.component.css']
-})
-export class LandingPageComponent implements OnInit {
-
-  constructor(private store: Store<any>) { }
-
-  ngOnInit() {
-  }
-
-}
-*/
