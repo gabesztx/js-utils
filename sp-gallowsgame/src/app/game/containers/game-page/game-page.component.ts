@@ -8,12 +8,12 @@ import * as fromStore from '../../reducers';
   styleUrls: ['./game-page.component.scss']
 })
 export class GamePageComponent implements OnInit {
-  private pattern = /^[A-Za-z]*$/;
-
-  public word = 'SUPERCHARGE';
+  private letterPattern = /^[A-Za-z]*$/;
   public letterArr: Array<string> = [];
+  public word = 'SUPERCHARGE';
 
   @ViewChild('letter') inputLetter: ElementRef;
+
   constructor(private store: Store<fromStore.State>) {
     this.letterArr = this.word.split('');
   }
@@ -23,7 +23,7 @@ export class GamePageComponent implements OnInit {
   }
 
   onChange(event) {
-    if (!this.pattern.test(event.key)) {
+    if (!this.letterPattern.test(event.key)) {
       event.preventDefault();
     }
     event.target.value = '';
