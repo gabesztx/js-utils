@@ -8,14 +8,12 @@ import * as fromStore from '../../reducers';
   styleUrls: ['./game-page.component.scss']
 })
 export class GamePageComponent implements OnInit {
+  @ViewChild('letter') inputLetter: ElementRef;
   private letterPattern = /^[A-Za-z]*$/;
   public letterArr: Array<string> = [];
-  public word = 'SUPERCHARGE';
-
-  @ViewChild('letter') inputLetter: ElementRef;
-
   constructor(private store: Store<fromStore.State>) {
-    this.letterArr = this.word.split('');
+    const word = 'SUPERCHARGE';
+    this.letterArr = word.split('');
   }
 
   ngOnInit() {
