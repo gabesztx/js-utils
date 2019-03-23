@@ -7,7 +7,8 @@ import { DropDownComponent } from './components/drop-down/drop-down.component';
 @NgModule({
   declarations: [HeaderComponent, DropDownComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    NgbDropdownModule
   ],
   exports: [HeaderComponent, DropDownComponent]
 })
