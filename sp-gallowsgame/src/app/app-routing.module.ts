@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LandingPageComponent } from './game/landing-page/landing-page.component';
 
 const routes: Routes = [
-  {
+/*  {
     path: 'start',
     component: LandingPageComponent
   },
+  {
+    path: 'game',
+    loadChildren: './game/game.module#GameModule',
+  },
+
   {
     path: 'start',
     redirectTo: '',
@@ -16,11 +20,12 @@ const routes: Routes = [
     path: '**',
     redirectTo: 'start',
     pathMatch: 'full'
-  },
+  },*/
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
