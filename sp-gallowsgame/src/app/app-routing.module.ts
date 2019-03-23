@@ -7,10 +7,10 @@ const routes: Routes = [
     path: 'start',
     component: LandingPageComponent
   },
-/*  {
+  {
     path: 'game',
-    // loadChildren: './game/game.module#GameModule',
-  },*/
+    loadChildren: './game/game.module#GameModule',
+  },
 
   {
     path: 'start',

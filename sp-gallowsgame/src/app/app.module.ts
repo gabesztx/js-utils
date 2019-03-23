@@ -8,7 +8,7 @@ import { reducers, metaReducers } from './reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { CoreModule } from './core/core.module';
-import { GameModule } from './game/game.module';
+// import { GameModule } from './game/game.module';
 
 @NgModule({
   imports: [
@@ -18,7 +18,7 @@ import { GameModule } from './game/game.module';
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([]),
     CoreModule,
-    GameModule,
+    // GameModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
