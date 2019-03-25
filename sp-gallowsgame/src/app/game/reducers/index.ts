@@ -8,9 +8,11 @@ import {
 
 import * as fromGame from './game.reducer';
 import * as fromRoot from '../../reducers';
+import * as fromWord from './word.reducer';
 
 export interface GameState {
   game: fromGame.State;
+  word: fromWord.State;
 }
 
 export interface State extends fromRoot.State {
@@ -19,5 +21,6 @@ export interface State extends fromRoot.State {
 
 export const reducers: ActionReducerMap<GameState, any> = {
   game: fromGame.reducer,
+  word: fromWord.reducer,
 };
 
