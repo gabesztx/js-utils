@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LandingPageComponent } from './core/containers/landing-page/landing-page.component';
+import { GameDataGuard } from './game/guards/game.quard';
+
 
 const routes: Routes = [
   {
@@ -10,6 +12,7 @@ const routes: Routes = [
   {
     path: 'game',
     loadChildren: './game/game.module#GameModule',
+    canActivate: [GameDataGuard]
   },
   {
     path: 'start',

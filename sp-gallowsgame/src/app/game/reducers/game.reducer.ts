@@ -12,7 +12,7 @@ export const initialState: State = {
 export function reducer(state = initialState, action: GameActions): State {
   switch (action.type) {
 
-    case GameActionTypes.LoadGames:
+    case GameActionTypes.LoadData:
       return state;
 
     default:
