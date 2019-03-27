@@ -66,12 +66,15 @@ body {
     }
 
     .dateContent {
-
+      height: 200px;
+      overflow: auto;
       .dateItemRow {
         display: flex;
         background-color: #f5f5f5;
         .dateItem {
           display: flex;
+          cursor:pointer;
+          height: 40px;
           padding: 10px 0;
           flex-grow: 1;
           font-size: 14px;

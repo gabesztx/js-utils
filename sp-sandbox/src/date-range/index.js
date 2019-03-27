@@ -5,18 +5,44 @@ import * as d3 from 'd3';
 export class DateRange {
   constructor() {
     document.body.innerHTML = template;
-
-    // const dayDiffNum = d3.timeDay.count(start, end);
     //  const rangeEvery = d3.timeDay.every(2).range(start, end);
-    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    const start = new Date(2006,1,1);
-    const end = new Date(2006,1,3);
-    const dayDiffTime = d3.timeDay.range(start, end);
-    dayDiffTime.push(end);
-    // console.log(start);
-    // const dayContent = [dayDiffTime, ...end]
-     // console.log(dayContent);
+    const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    // const dayDiffNum = d3.timeDay.count(startDay, endDay);
+
+    const startDay = new Date(2019, 2, 17);
+    const endDay = new Date(2019, 2, 27);
+    const diffDay = d3.timeDay.range(startDay, endDay);
+    const diffWeek = d3.timeWeek.range(startDay, endDay);
+    console.log(diffWeek);
+    // TODO heti row alapján legenárlni az oszlopokat
+
+    // diffDay.push(endDay);
+    // console.log('Days:', diffDay);
+    //
+    // console.log('diffWeek:', diffWeek);
+
+   /* const days = diffDay.length;
+    const date1 = new Date('2019-03-11');
+    const date2 = new Date('2019-03-31');
+    const getWeek = function (d1, d2) {
+      const ONE_WEEK = 1000 * 60 * 60 * 24 * 7;
+      const date1 = d1.setDate(d1.getDate() - 1);
+      const date1_ms = new Date(date1).getTime();
+      // const date1_ms = d1.getTime();
+      const date2_ms = d2.getTime();
+      // console.log('Date 1', date1_ms);
+      const difference_ms = Math.abs(date1_ms - date2_ms);
+      return Math.floor(difference_ms / ONE_WEEK);
+
+    };*/
+    // console.log(date1);
+    // console.log(date1.getDate() + 1);
+    // console.log(getWeek(date1, date2) + 1);
+    // alert(Math.round(dif/1000/60/60/24/7));
+    // const diffMonth = d3.timeMonth.range(startDay, endDay);
+    // console.log(diffMonth);
+
 
   }
 }
@@ -34,66 +60,3 @@ while (i < daysDiff) {
   i++;
   // console.log(i);
 }*/
-
-
-/*
-    let today = new Date();
-    let currentMonth = today.getMonth();
-    let currentYear = today.getFullYear();
-    let selectYear = document.getElementById("year");
-    let selectMonth = document.getElementById("month");
-
-    let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-    let monthAndYear = document.getElementById("monthAndYear");
-    showCalendar(currentMonth, currentYear);
-
-    function showCalendar(month, year) {
-
-      let firstDay = (new Date(year, month)).getDay();
-      let daysInMonth = 32 - new Date(year, month, 32).getDate();
-
-      let tbl = document.getElementById("calendar-body"); // body of the calendar
-
-      // clearing all previous cells
-      tbl.innerHTML = "";
-
-      // filing data about month and in the page via DOM.
-      monthAndYear.innerHTML = months[month] + " " + year;
-      selectYear.value = year;
-      selectMonth.value = month;
-
-      // creating all cells
-      let date = 1;
-      for (let i = 0; i < 6; i++) {
-        // creates a table row
-        let row = document.createElement("tr");
-
-        //creating individual cells, filing them up with data.
-        for (let j = 0; j < 7; j++) {
-          if (i === 0 && j < firstDay) {
-            let cell = document.createElement("td");
-            let cellText = document.createTextNode("");
-            cell.appendChild(cellText);
-            row.appendChild(cell);
-          }
-          else if (date > daysInMonth) {
-            break;
-          }
-
-          else {
-            let cell = document.createElement("td");
-            let cellText = document.createTextNode(date);
-            if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
-              cell.classList.add("bg-info");
-            } // color today's date
-            cell.appendChild(cellText);
-            row.appendChild(cell);
-            date++;
-          }
-        }
-        tbl.appendChild(row); // appending each row into calendar body.
-      }
-
-    }
-*/
