@@ -46,10 +46,12 @@ body {
   .dateWrapper {
     width: 400px;
     font-family: Roboto, Helvetica, sans-serif;
+
     .weekContent {
       display: flex;
       width: 100%;
       background-color: #f5f5f5;
+
       .weekItem {
         display: flex;
         padding: 10px 0;
@@ -66,14 +68,17 @@ body {
     }
 
     .dateContent {
-      height: 200px;
+      max-height: 200px;
       overflow: auto;
+      background-color: wheat;
+
       .dateItemRow {
         display: flex;
-        background-color: #f5f5f5;
+
         .dateItem {
           display: flex;
-          cursor:pointer;
+          color: #7b7b7b;
+          cursor: pointer;
           height: 40px;
           padding: 10px 0;
           flex-grow: 1;
@@ -81,15 +86,16 @@ body {
           justify-content: center;
           align-items: center;
           flex-basis: 44px;
-          color: #7b7b7b;
           text-transform: uppercase;
           letter-spacing: .4px;
-          background-color: wheat;
+          background-color: transparent;
+
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+            //background-color: #4bc800;
+          }
         }
       }
-
-
-
     }
   }
 }
