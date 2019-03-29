@@ -8,16 +8,21 @@ const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
 export class DateRange {
   constructor() {
     document.body.innerHTML = template;
+    this.setData();
+  }
 
-    const startDay = new Date(2019, 2, 11);
-    const endDay = new Date(2019, 3, 14);
-    const diffDay = d3.timeDay.range(startDay, endDay);
-    diffDay.push(endDay);
+  setData() {
+    this.startDay = new Date(2019, 2, 15);
+    this.endDay = new Date(2019, 2, 29);
+    // this.buildWeeks();
+    // this.buildDays();
+    // this.clearunUsedDate();
+  }
 
-    const diffWeek = d3.timeWeek.range(startDay, endDay).length;
+  buildWeeks() {
+    const diffWeek = d3.timeWeek.range(this.startDay, this.endDay).length;
     const dateContent = d3.select('.dateContent')
       .node();
-
     for (let i = 0; i <= diffWeek; i++) {
       let row = document.createElement('div');
       row.setAttribute('class', 'dateItemRow');
@@ -28,6 +33,11 @@ export class DateRange {
         row.appendChild(item);
       }
     }
+  }
+
+  buildDays() {
+    const diffDay = d3.timeDay.range(this.startDay, this.endDay);
+    diffDay.push(this.endDay);
     const dateItemRows = d3.selectAll('.dateItemRow')
       .nodes();
     let rowId = 0;
@@ -42,5 +52,17 @@ export class DateRange {
       }
       dateRow.innerText = date;
     }
+  }
+  clearunUsedDate() {
+    d3.selectAll('.dateItem')
+      .each(function (a, i) {
+        const item = this;
+        const row = item.parentNode;
+        if (!item.innerText.length) {
+          // row.removeChild(item)
+        }
+      });
+
+    // console.log(dayItems);
   }
 }
