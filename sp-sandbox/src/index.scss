@@ -71,10 +71,8 @@ body {
       max-height: 200px;
       overflow: auto;
       background-color: wheat;
-
       .dateItemRow {
         display: flex;
-
         .dateItem {
           display: flex;
           color: #7b7b7b;
@@ -89,7 +87,7 @@ body {
           text-transform: uppercase;
           letter-spacing: .4px;
           background-color: transparent;
-          .valueContent{
+          .itemValue{
             text-align: center;
             line-height: 16px;
             .dateVal{}
@@ -100,15 +98,12 @@ body {
             }
           }
           .itemHover {
-            background-color: rgba(255, 255, 255, 1);
+            background-color: rgba(255, 255, 255, 0);
             &:hover {
               background-color: rgba(255, 255, 255, 0.4);
             }
           }
-
-          .itemBg {
-          }
-
+          .itemBg {}
         }
       }
     }
