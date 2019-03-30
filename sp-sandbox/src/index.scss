@@ -43,69 +43,85 @@ body {
     }
   }
 
-  .dateWrapper {
-    width: 400px;
-    font-family: Roboto, Helvetica, sans-serif;
+  $dateItemWidth: 40px;
+  $contentWidth: $dateItemWidth * 7;
+  $item-radius: 8px;
 
+  .dateWrapper {
+    font-family: Roboto, Helvetica, sans-serif;
+    width: $contentWidth;
     .weekContent {
       display: flex;
-      width: 100%;
-      background-color: #f5f5f5;
-
+      //width: $contentWidth;
       .weekItem {
         display: flex;
-        padding: 10px 0;
-        flex-grow: 1;
+        width: $dateItemWidth;
+        height: 30px;
+        box-sizing: border-box;
         justify-content: center;
         align-items: center;
         font-size: 11px;
-        color: #7b7b7b;
+        font-weight: 500;
         text-transform: uppercase;
         letter-spacing: .4px;
-        line-height: 11px;
-        flex-basis: 44px;
       }
     }
 
     .dateContent {
+      position: relative;
       max-height: 200px;
       overflow: auto;
-      background-color: wheat;
+      width: $contentWidth + 15;
       .dateItemRow {
         display: flex;
         .dateItem {
           display: flex;
-          color: #7b7b7b;
-          cursor: pointer;
-          height: 40px;
-          padding: 10px 0;
-          flex-grow: 1;
-          font-size: 14px;
-          justify-content: center;
-          align-items: center;
-          flex-basis: 44px;
-          text-transform: uppercase;
-          letter-spacing: .4px;
-          background-color: transparent;
-          .itemValue{
-            text-align: center;
-            line-height: 16px;
-            .dateVal{}
-            .monthVal{
-              font-size: 12px;
-              color: darkred;
+          width: $dateItemWidth;
+          height: $dateItemWidth;
+          box-sizing: border-box;
+          background-color: wheat;
+          .itemValue {
+            position: relative;
+            display: flex;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            border-radius: $item-radius;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            line-height: 12px;
+
+            .dateVal {
+              color: #7b7b7b;
+              z-index: 1;
+              font-size: 14px;
+            }
+
+            .monthVal {
+              z-index: 1;
+              font-size: 10px;
+              color: #e20505;
+              text-transform: uppercase;
               font-weight: bold;
             }
-          }
-          .itemHover {
-            background-color: rgba(255, 255, 255, 0);
+
+            .itemBg {
+              display: none;
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              z-index: 0;
+              background-color: rgb(75, 200, 0);
+            }
+
             &:hover {
-              background-color: rgba(255, 255, 255, 0.4);
+              background-color: rgba(255, 255, 255, 0.25);
             }
           }
-          .itemBg {}
         }
       }
     }
   }
 }
+

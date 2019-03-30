@@ -2,8 +2,8 @@
 import template from './template.html';
 import * as d3 from 'd3';
 
-const DAYNAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 export class DateRange {
   constructor() {
@@ -12,10 +12,10 @@ export class DateRange {
   }
 
   setData() {
-    this.startDay = new Date(2019, 2, 15);
-    this.endDay = new Date(2019, 2, 29);
-    // this.buildWeeks();
-    // this.buildDays();
+    this.startDay = new Date(2019, 0, 1);
+    this.endDay = new Date(2019, 4, 4);
+    this.buildWeeks();
+    this.buildDays();
     // this.clearunUsedDate();
   }
 
@@ -45,14 +45,16 @@ export class DateRange {
       const time = diffDay[k];
       const date = time.getDate();
       const day = time.getDay();
-      const dayId = day === 0 ? 7 : day;
-      const dateRow = dateItemRows[rowId].children[dayId - 1];
-      if (dayId === 7) {
+      const month = date === 1 ? MONTHS[time.getMonth()] : '';
+      const dayItemRow = day === 0 ? 7 : day;
+      const dateRow = dateItemRows[rowId].children[dayItemRow - 1];
+      if (dayItemRow === 7) {
         rowId++;
       }
-      dateRow.innerText = date;
+      dateRow.innerHTML = this.getItemTemplate(date, month);
     }
   }
+
   clearunUsedDate() {
     d3.selectAll('.dateItem')
       .each(function (a, i) {
@@ -62,7 +64,14 @@ export class DateRange {
           // row.removeChild(item)
         }
       });
+  }
 
-    // console.log(dayItems);
+  getItemTemplate(date, month) {
+    return `
+    <div class="itemValue">
+      <span class="dateVal">${date}</span>
+      ${month ? `<span class="monthVal">${month}</span>` : ''}
+      <div class="itemBg"></div>
+    </div>`;
   }
 }
