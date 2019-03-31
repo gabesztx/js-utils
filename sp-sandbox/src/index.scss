@@ -12,9 +12,9 @@ body {
 }
 
 .page-wrapper {
-  margin-left: 15px;
-  margin-right: 15px;
-  padding-top: 15px;
+  //margin-left: 15px;
+  //margin-right: 15px;
+  //padding-top: 15px;
 
   .chartContent {
     display: flex;
@@ -38,87 +38,6 @@ body {
       #stackedBulletChartSVG {
         .label-measure {
           fill: #767676;
-        }
-      }
-    }
-  }
-
-  $dateItemWidth: 40px;
-  $contentWidth: $dateItemWidth * 7;
-  $item-radius: 8px;
-
-  .dateWrapper {
-    font-family: Roboto, Helvetica, sans-serif;
-    width: $contentWidth;
-    .weekContent {
-      display: flex;
-      //width: $contentWidth;
-      .weekItem {
-        display: flex;
-        width: $dateItemWidth;
-        height: 30px;
-        box-sizing: border-box;
-        justify-content: center;
-        align-items: center;
-        font-size: 11px;
-        font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: .4px;
-      }
-    }
-
-    .dateContent {
-      position: relative;
-      max-height: 200px;
-      overflow: auto;
-      width: $contentWidth + 15;
-      .dateItemRow {
-        display: flex;
-        .dateItem {
-          display: flex;
-          width: $dateItemWidth;
-          height: $dateItemWidth;
-          box-sizing: border-box;
-          background-color: wheat;
-          .itemValue {
-            position: relative;
-            display: flex;
-            width: 100%;
-            height: 100%;
-            cursor: pointer;
-            border-radius: $item-radius;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            line-height: 12px;
-
-            .dateVal {
-              color: #7b7b7b;
-              z-index: 1;
-              font-size: 14px;
-            }
-
-            .monthVal {
-              z-index: 1;
-              font-size: 10px;
-              color: #e20505;
-              text-transform: uppercase;
-              font-weight: bold;
-            }
-
-            .itemBg {
-              display: none;
-              position: absolute;
-              width: 100%;
-              height: 100%;
-              z-index: 0;
-              background-color: rgb(75, 200, 0);
-            }
-
-            &:hover {
-              background-color: rgba(255, 255, 255, 0.25);
-            }
-          }
         }
       }
     }
