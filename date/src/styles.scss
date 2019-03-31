@@ -19,8 +19,10 @@ $item-radius: 10px;
     font-family: Roboto, Helvetica, sans-serif;
     width: $contentWidth;
     margin: auto;
+
     .weekContent {
       display: flex;
+
       .weekItem {
         display: flex;
         width: $dateItemWidth;
@@ -62,9 +64,9 @@ $item-radius: 10px;
             justify-content: center;
             align-items: center;
             line-height: 12px;
+            color: #7b7b7b;
 
             .dateVal {
-              color: #7b7b7b;
               z-index: 1;
               font-size: 14px;
 
@@ -81,7 +83,6 @@ $item-radius: 10px;
               text-transform: uppercase;
               font-weight: bold;
             }
-
             .itemBg {
               display: none;
               position: absolute;
@@ -89,12 +90,31 @@ $item-radius: 10px;
               height: 100%;
               z-index: 0;
               background-color: rgb(75, 200, 0);
+              //border-radius: $item-radius;
             }
 
             &:hover {
               background-color: rgba(255, 255, 255, 0.25);
             }
+
+            &.selected {
+              color: #fff;
+              font-weight: bold;
+              .dateVal {
+                &.today {
+                  color: #fff;
+                }
+              }
+              .monthVal {
+                display: none;
+              }
+
+              .itemBg {
+                display: block;
+              }
+            }
           }
+
         }
       }
     }

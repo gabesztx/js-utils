@@ -16,17 +16,24 @@ export class AppComponent implements OnInit {
 
   private weekItems: any[];
   private dateItems: any[];
+  private isClicked = false;
+  private selectRange: any;
+  private selectedDates: number[];
 
-  constructor() {}
+
+  constructor() {
+  }
 
   ngOnInit() {
     // this.startDay = new Date(2019, 0, 1);
-    // this.endDay = new Date(2019, 5, 13);
+    // this.endDay = new Date(2019, 0, 13);
+    this.selectRange = {};
     this.startDay = new Date(2019, 0, 1);
     this.endDay = new Date(2019, 4, 17);
     this.buildData();
     this.buildWeeks();
     this.buildDays();
+    this.addClickEvent();
   }
 
   buildData() {
@@ -41,8 +48,7 @@ export class AppComponent implements OnInit {
   }
 
   buildWeeks() {
-    const dateContent = d3.select('.dateContent');
-    dateContent.selectAll('div')
+    d3.select('.dateContent').selectAll('div')
       .data(this.weekItems)
       .enter()
       .append('div')
@@ -55,8 +61,8 @@ export class AppComponent implements OnInit {
   }
 
   buildDays() {
-    const weekItemRows = d3.selectAll('.weekRowItem');
     let rowId = 0;
+    const weekItemRows = d3.selectAll('.weekRowItem');
     this.dateItems.forEach((value) => {
       const date = value.date;
       const dateDayIndex = date.getDay() === 0 ? 7 : date.getDay();
@@ -65,8 +71,71 @@ export class AppComponent implements OnInit {
         rowId++;
       }
       dateItem.innerHTML = this.getDayTemplate(date);
+      value.target = dateItem.children[0];
     });
   }
+
+
+  onClickEvent(data: any) {
+    this.isClicked = !this.isClicked;
+    if (this.isClicked) {
+      this.selectRange = {start: data.id, end: data.id};
+      this.addOverEvent();
+    } else {
+      this.removeOverEvent();
+      this.selectRange.end = data.id;
+    }
+    this.updateSelectedDate();
+  }
+
+  onOverEvent(data: any) {
+    this.selectRange.end = data.id;
+    this.updateSelectedDate();
+  }
+
+  addClickEvent() {
+    d3.selectAll('.itemValue')
+      .data(this.dateItems)
+      .on('click', this.onClickEvent.bind(this));
+  }
+
+  addOverEvent() {
+    d3.selectAll('.itemValue')
+      .data(this.dateItems)
+      .on('mouseover', this.onOverEvent.bind(this));
+  }
+
+  removeOverEvent() {
+    d3.selectAll('.itemValue').on('mouseover', null);
+  }
+
+  addSelected(items: any[]) {
+    items.forEach((item) => {
+      d3.select(item.target).classed('selected', true);
+    });
+  }
+
+  clearSelected() {
+    d3.selectAll('.itemValue').classed('selected', false);
+  }
+
+  updateSelectedDate() {
+    const start = this.selectRange.start;
+    const end = this.selectRange.end;
+    const selectedItems = this.getSelectDays(start, end)
+      .map(id => this.dateItems[id]);
+    this.clearSelected();
+    this.addSelected(selectedItems);
+  }
+
+  getSelectDays(start: number, end: number): number[] {
+    const option = start < end ? 1 : -1;
+    if (start === end) {
+      return [start];
+    }
+    return d3.range(start, end + option, option);
+  }
+
 
   getDayTemplate(date: Date): string {
     const dayDate = date.getDate();
@@ -88,14 +157,5 @@ export class AppComponent implements OnInit {
 
   getMonth(date: Date): string {
     return date.getDate() === 1 ? MONTHS[date.getMonth()] : '';
-  }
-
-  getSelectDays(start: number, end: number): number[] {
-    if (start === end) {
-      return [start];
-    } else if (start >= end) {
-      return [start, ...this.getSelectDays(start - 1, end)];
-    }
-    return [start, ...this.getSelectDays(start + 1, end)];
   }
 }
