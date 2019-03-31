@@ -59,8 +59,8 @@ export class AppComponent implements OnInit {
   buildDays() {
     const weekItemRows = d3.selectAll('.weekRowItem');
     let rowId = 0;
-    this.dateItems.forEach((data, i) => {
-      const date = data.date;
+    this.dateItems.forEach((value) => {
+      const date = value.date;
       const dateDayIndex = date.getDay() === 0 ? 7 : date.getDay();
       const dateItem = weekItemRows.nodes()[rowId].children[dateDayIndex - 1];
       if (dateDayIndex === 7) {
