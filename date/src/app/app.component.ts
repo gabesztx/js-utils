@@ -17,8 +17,7 @@ export class AppComponent implements OnInit {
   private weekItems: any[];
   private dateItems: any[];
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit() {
     // this.startDay = new Date(2019, 0, 1);
@@ -34,7 +33,6 @@ export class AppComponent implements OnInit {
     const weeks = d3.timeWeek.range(this.startDay, this.endDay);
     const dateItems = d3.timeDay.range(this.startDay, this.endDay);
     dateItems.push(this.endDay);
-
     this.weekItems = !weeks.length ? [this.startDay] : [this.startDay, ...weeks];
     this.dateItems = dateItems.map((d, i) => {
         return {date: d, id: i};
@@ -66,14 +64,14 @@ export class AppComponent implements OnInit {
       if (dateDayIndex === 7) {
         rowId++;
       }
-      dateItem.innerHTML = this.getItemTemplate(date);
+      dateItem.innerHTML = this.getDayTemplate(date);
     });
   }
 
-  getItemTemplate(date: Date): string {
+  getDayTemplate(date: Date): string {
     const dayDate = date.getDate();
     const todayClass = this.getIsToday(date) ? 'dateVal today' : 'dateVal';
-    const month = dayDate === 1 ? MONTHS[date.getMonth()] : '';
+    const month = this.getMonth(date);
     return `
     <div class="itemValue">
       <span class="${todayClass}">${dayDate}</span>
@@ -86,5 +84,18 @@ export class AppComponent implements OnInit {
 
   getIsToday(date: Date): boolean {
     return date.toDateString() === new Date().toDateString();
+  }
+
+  getMonth(date: Date): string {
+    return date.getDate() === 1 ? MONTHS[date.getMonth()] : '';
+  }
+
+  getSelectDays(start: number, end: number): number[] {
+    if (start === end) {
+      return [start];
+    } else if (start >= end) {
+      return [start, ...this.getSelectDays(start - 1, end)];
+    }
+    return [start, ...this.getSelectDays(start + 1, end)];
   }
 }
