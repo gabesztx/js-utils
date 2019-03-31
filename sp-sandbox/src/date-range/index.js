@@ -2,7 +2,7 @@ import './style.scss';
 import template from './template.html';
 import * as d3 from 'd3';
 
-// const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 export class DateRange {
@@ -13,7 +13,7 @@ export class DateRange {
 
   setData() {
     this.startDay = new Date(2019, 0, 1);
-    this.endDay = new Date(2019, 5, 13);
+    this.endDay = new Date(2019, 4, 17);
     // this.startDay = new Date(2019, 0, 1);
     // this.endDay = new Date(2019, 0, 2);
     this.buildWeeks();
@@ -81,7 +81,7 @@ export class DateRange {
   addMouseClickEvent() {
 
     const cont = d3.select('.dateContent').node()
-    console.log(cont.scrollTop);
+    // console.log(cont.scrollTop);
     setTimeout(() => {
 
     },2000)
