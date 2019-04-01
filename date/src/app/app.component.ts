@@ -1,10 +1,6 @@
 import * as scroll from './scroll';
 import * as d3 from 'd3v4';
-import {Component, OnInit} from '@angular/core';
-
-const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -12,15 +8,16 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  private days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  private months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   private endDay: Date;
   private startDay: Date;
   private weekItems: any[];
   private dateItems: any[];
   private isClicked = false;
-  // private isOutSideClicked = false;
   private selectRange: any;
   private selectedDates: number[];
-
+  // private isOutSideClicked = false
 
   constructor() {
   }
@@ -35,8 +32,8 @@ export class AppComponent implements OnInit {
     this.buildDays();
     this.addMouseClickEvent();
     this.emitDate();
-
-
+    // scroll.scrollIt();
+    // scroll(30, )
   }
 
   emitDate() {
@@ -56,64 +53,6 @@ export class AppComponent implements OnInit {
     } else {
       console.log('nincs emitálás és deaktiv');
     }
-
-    setTimeout(() => {
-      const item1 = this.getSearchDate(custom1);
-      this.addSelected(item1);
-
-      scroll.scrollIt(
-        item1[0].position,
-        3000,
-        'easeInOutQuad',
-        () => {
-          console.log('DONE 1');
-        }
-      );
-      setTimeout(() => {
-        const item2 = this.getSearchDate(custom);
-        this.addSelected(item2);
-        scroll.scrollIt(
-          item2[0].position,
-          2000,
-          'easeInOutQuad',
-          () => {
-            console.log('DONE 2');
-          }
-        );
-        setTimeout(() => {
-          const item3 = this.getSearchDate(yesterday);
-          this.addSelected(item3);
-          scroll.scrollIt(
-            item3[0].position,
-            2500,
-            'easeInOutQuad',
-            () => {
-              console.log('DONE 3');
-            }
-          );
-          setTimeout(() => {
-            scroll.scrollIt(
-              0,
-              3000,
-              'easeInOutQuad',
-              () => {
-                console.log('DONE 4');
-              }
-            );
-            setTimeout(() => {
-              scroll.scrollIt(
-                5000,
-                2000,
-                'easeInOutQuad',
-                () => {
-                  console.log('All DONE');
-                }
-              );
-            }, 4000);
-          }, 4000);
-        }, 3000);
-      }, 3000);
-    }, 3000);
 
     /*const customData = {
       start: new Date(2019, 3, 2),
@@ -141,7 +80,7 @@ export class AppComponent implements OnInit {
       .append('div')
       .attr('class', 'weekRowItem')
       .selectAll('div')
-      .data(DAYS)
+      .data(this.days)
       .enter()
       .append(() => document.createElement('div'))
       .attr('class', 'dateItem');
@@ -173,7 +112,6 @@ export class AppComponent implements OnInit {
 
   // Handler click
   onMouseClickEvent(data: any) {
-    // this.addOutSideClickEvent();
     this.isClicked = !this.isClicked;
     if (this.isClicked) {
       this.selectRange = {start: data.id, end: data.id};
@@ -273,7 +211,7 @@ export class AppComponent implements OnInit {
 
   // Get month name
   getMonth(date: Date): string {
-    return date.getDate() === 1 ? MONTHS[date.getMonth()] : '';
+    return date.getDate() === 1 ? this.months[date.getMonth()] : '';
   }
 
   // Get day date
