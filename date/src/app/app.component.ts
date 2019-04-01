@@ -1,3 +1,4 @@
+import * as scroll from './scroll';
 import * as d3 from 'd3v4';
 import {Component, OnInit} from '@angular/core';
 
@@ -26,7 +27,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.startDay = new Date(2019, 0, 1);
-    this.endDay = new Date(2019, 4, 28);
+    this.endDay = new Date(2019, 10, 28);
     // this.startDay = new Date(2019, 0, 1);
     // this.endDay = new Date(2019, 0, 7);
     this.buildData();
@@ -35,6 +36,7 @@ export class AppComponent implements OnInit {
     this.addMouseClickEvent();
     this.emitDate();
 
+
   }
 
   emitDate() {
@@ -42,16 +44,76 @@ export class AppComponent implements OnInit {
     // TODO: custom date pontosítás
     const today = new Date();
     const yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
-    const custom = new Date(2019, 2, 10);
+    const custom = new Date(2019, 0, 10);
+    const custom1 = new Date(2019, 5, 30);
+
     const items = this.getSearchDate(today);
+    this.addSelected(items);
     if (items.length) {
-      this.addSelected(items);
       const dateContent = d3.select('.dateContent').node();
       const scrollYPos = items[0].position;
       dateContent.scrollTo(0, scrollYPos);
     } else {
       console.log('nincs emitálás és deaktiv');
     }
+
+    setTimeout(() => {
+      const item1 = this.getSearchDate(custom1);
+      this.addSelected(item1);
+
+      scroll.scrollIt(
+        item1[0].position,
+        3000,
+        'easeInOutQuad',
+        () => {
+          console.log('DONE 1');
+        }
+      );
+      setTimeout(() => {
+        const item2 = this.getSearchDate(custom);
+        this.addSelected(item2);
+        scroll.scrollIt(
+          item2[0].position,
+          2000,
+          'easeInOutQuad',
+          () => {
+            console.log('DONE 2');
+          }
+        );
+        setTimeout(() => {
+          const item3 = this.getSearchDate(yesterday);
+          this.addSelected(item3);
+          scroll.scrollIt(
+            item3[0].position,
+            2500,
+            'easeInOutQuad',
+            () => {
+              console.log('DONE 3');
+            }
+          );
+          setTimeout(() => {
+            scroll.scrollIt(
+              0,
+              3000,
+              'easeInOutQuad',
+              () => {
+                console.log('DONE 4');
+              }
+            );
+            setTimeout(() => {
+              scroll.scrollIt(
+                5000,
+                2000,
+                'easeInOutQuad',
+                () => {
+                  console.log('All DONE');
+                }
+              );
+            }, 4000);
+          }, 4000);
+        }, 3000);
+      }, 3000);
+    }, 3000);
 
     /*const customData = {
       start: new Date(2019, 3, 2),
@@ -194,6 +256,7 @@ export class AppComponent implements OnInit {
       <div class="itemBg"></div>
     </div>`;
   }
+
   // Get if today
   getSearchDate(date: Date): any[] {
     return this.dateItems.filter((data) => {
@@ -202,20 +265,24 @@ export class AppComponent implements OnInit {
       }
     });
   }
+
   // Get if today
   getIsToday(date: Date): boolean {
     return date.toDateString() === new Date().toDateString();
   }
+
   // Get month name
   getMonth(date: Date): string {
     return date.getDate() === 1 ? MONTHS[date.getMonth()] : '';
   }
+
   // Get day date
   getDayRange(start: Date, end: Date): Date[] {
     const dates = d3.timeDay.range(start, end);
     dates.push(end);
     return dates;
   }
+
   // Get weeks date
   getWeekRange(start: Date, end: Date): Date[] {
     return d3.timeWeek.range(start, end);
