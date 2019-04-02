@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.startDay = new Date(2019, 0, 1);
-    this.endDay = new Date(2019, 10, 28);
+    this.endDay = new Date(2019, 10, 26);
     // this.startDay = new Date(2019, 0, 1);
     // this.endDay = new Date(2019, 0, 7);
     this.buildData();
@@ -119,7 +119,6 @@ export class AppComponent implements OnInit {
     } else {
       this.offMouseEvents();
       this.selectRange.end = data.id;
-
     }
     this.updateSelected();
   }
@@ -194,6 +193,7 @@ export class AppComponent implements OnInit {
       <div class="itemBg"></div>
     </div>`;
   }
+
 
   // Get if today
   getSearchDate(date: Date): any[] {
