@@ -1,4 +1,3 @@
-import * as scroll from './scroll';
 import * as d3 from 'd3v4';
 import { Component, OnInit } from '@angular/core';
 
@@ -10,67 +9,80 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   private days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   private months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  private endDay: Date;
-  private startDay: Date;
+  private readonly endDay: Date;
+  private readonly startDay: Date;
+  private tabsData: any[];
   private weekItems: any[];
   private dateItems: any[];
   private isClicked = false;
   private selectRange: any;
   private selectedDates: number[];
+
   // private isOutSideClicked = false
 
   constructor() {
+    this.startDay = new Date(2019, 0, 1);
+    this.endDay = new Date(2019, 10, 26);
   }
 
   ngOnInit() {
-    this.startDay = new Date(2019, 0, 1);
-    this.endDay = new Date(2019, 10, 26);
-    // this.startDay = new Date(2019, 0, 1);
-    // this.endDay = new Date(2019, 0, 7);
     this.buildData();
+    this.buildTabsData();
     this.buildWeeks();
     this.buildDays();
     this.addMouseClickEvent();
-    this.emitDate();
-    // scroll.scrollIt();
-    // scroll(30, )
+    // this.emitDate();
   }
 
-  emitDate() {
-    // TODO: ha triggerek között nincs olyan emitálási dátum nint a listába ne jelenitsük meg
-    // TODO: custom date pontosítás
-    const today = new Date();
-    const yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
-    const custom = new Date(2019, 0, 10);
-    const custom1 = new Date(2019, 5, 30);
-
-    const items = this.getSearchDate(today);
-    this.addSelected(items);
-    if (items.length) {
-      const dateContent = d3.select('.dateContent').node();
-      const scrollYPos = items[0].position;
-      dateContent.scrollTo(0, scrollYPos);
-    } else {
-      console.log('nincs emitálás és deaktiv');
-    }
-
-    /*const customData = {
-      start: new Date(2019, 3, 2),
-      end: new Date(2019, 3, 3),
-    };
-    const customDates = this.getDayRange(customData.start, customData.end)*/
-
-  }
+  /*
+    emitDate() {
+      // TODO: ha triggerek között nincs olyan emitálási dátum nint a listába ne jelenitsük meg
+      const today = new Date();
+      const yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
+      const items = this.getSearchDate(today);
+      this.addSelected(items);
+      if (items.length) {
+        const dateContent = d3.select('.dateContent').node();
+        const scrollYPos = items[0].position;
+        dateContent.scrollTo(0, scrollYPos);
+      } else {
+        console.log('deaktív');
+      }
+  const customDates = this.getDayRange(customData.start, customData.end)
+  */
 
   buildData() {
     const weeks = this.getWeekRange(this.startDay, this.endDay);
     const dateItems = this.getDayRange(this.startDay, this.endDay);
-
     this.weekItems = !weeks.length ? [this.startDay] : [this.startDay, ...weeks];
     this.dateItems = dateItems.map((d, i) => {
         return {date: d, id: i};
       }
     );
+    this.tabsData = [
+      {
+        label: 'Today',
+        value: [new Date()]
+      },
+      {
+        label: 'Yesterday',
+        value: [new Date(new Date().setDate(new Date().getDate() - 1))]
+      },
+      {
+        label: 'Custom',
+        value: [new Date(2019, 5, 1)]
+      },
+    ];
+  }
+
+  buildTabsData() {
+    d3.select('.dateMenu').selectAll('div')
+      .data(this.tabsData)
+      .enter()
+      .append('div')
+      .attr('class', 'dateMenuItem')
+      .text(d => d.label)
+      .on('click', this.emitDate.bind(this));
   }
 
   buildWeeks() {
@@ -103,11 +115,16 @@ export class AppComponent implements OnInit {
     });
   }
 
-  // Handler over
+  // Add mosue over event
   onMouseOverEvent() {
     d3.selectAll('.itemValue')
       .data(this.dateItems)
       .on('mouseover', this.addMouseOverEvent.bind(this));
+  }
+
+  // Remove mosue over event
+  offMouseOverEvents() {
+    d3.selectAll('.itemValue').on('mouseover', null);
   }
 
   // Handler click
@@ -117,7 +134,7 @@ export class AppComponent implements OnInit {
       this.selectRange = {start: data.id, end: data.id};
       this.onMouseOverEvent();
     } else {
-      this.offMouseEvents();
+      this.offMouseOverEvents();
       this.selectRange.end = data.id;
     }
     this.updateSelected();
@@ -136,16 +153,16 @@ export class AppComponent implements OnInit {
       .data(this.dateItems)
       .on('click', this.onMouseClickEvent.bind(this));
   }
-
   // Add over event
   addMouseOverEvent(data: any) {
     this.selectRange.end = data.id;
     this.updateSelected();
   }
 
-  // Remove over event
-  offMouseEvents() {
-    d3.selectAll('.itemValue').on('mouseover', null);
+  emitDate(data: any) {
+    const value = data.value;
+    // this.selectedDates
+    console.log('date', value);
   }
 
   // Update selected items
@@ -193,7 +210,6 @@ export class AppComponent implements OnInit {
       <div class="itemBg"></div>
     </div>`;
   }
-
 
   // Get if today
   getSearchDate(date: Date): any[] {
