@@ -10,21 +10,34 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   private days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   private months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  private readonly endDay: Date;
-  private readonly startDay: Date;
+  private endDay: Date;
+  private startDay: Date;
   private tabsData: any[];
   private tabsDataTransform: any[];
   private weekItems: any[];
   private dateItems: any[];
   private isClicked = false;
   private selectRange: any;
-  private selectedDates: number[];
+  private selectedDates: any[];
 
   // private isOutSideClicked = false
 
   constructor() {
+  }
+
+  ngOnInit() {
+    this.setData();
+    this.buildData();
+    this.buildTabsData();
+    this.buildWeeks();
+    this.buildDays();
+    this.addMouseClickEvent();
+    // this.emitDate();
+  }
+
+  setData() {
     this.startDay = new Date(2019, 0, 1);
-    this.endDay = new Date(2019, 10, 26);
+    this.endDay = new Date(2019, 10, 27);
     this.tabsData = [
       {
         label: 'Today',
@@ -41,33 +54,23 @@ export class AppComponent implements OnInit {
       {
         label: 'Custom',
         value: {
-          start: new Date(2019, 1, 2),
-          end: new Date(2019, 1, 5),
+          start: new Date(2019, 4, 1),
+          end: new Date(2019, 4, 7),
         }
       },
     ];
   }
 
-  ngOnInit() {
-    this.buildData();
-    this.buildTabsData();
-    this.buildWeeks();
-    this.buildDays();
-    this.addMouseClickEvent();
-    // this.emitDate();
-  }
-
-  /* --------------- TABS START --------------- */
+  /* --------------- MENU TABS START --------------- */
   onClickTab(data: any, index: number) {
     const value = data.value || data;
     this.changeTabActive(index);
-
-    this.selectRange = {start: value[0].id, end: value[1] && value[1].id ? value[1].id : value[0].id};
+    this.selectRange = {start: value[0], end: value[1] && value[1] ? value[1] : value[0]};
     this.updateSelected();
     scroll.scrollIt(
       value[0].position,
       d3.select('.dateContent').node(),
-      750,
+      500,
       'easeInOutQuad',
       () => {
       }
@@ -81,7 +84,7 @@ export class AppComponent implements OnInit {
     currentItem.classed('selected', true);
   }
 
-  /* --------------- TABS END --------------- */
+  /* --------------- MENU TABS END --------------- */
 
   /* --------------- BUILD VIEW START --------------- */
   buildData() {
@@ -141,7 +144,6 @@ export class AppComponent implements OnInit {
   }
 
   /* --------------- BUILD VIEW END --------------- */
-
   /* --------------- MOUSE EVENTS START --------------- */
 
   // Add click event
@@ -162,19 +164,21 @@ export class AppComponent implements OnInit {
   onMouseClickEvent(data: any) {
     this.isClicked = !this.isClicked;
     if (this.isClicked) {
-      this.selectRange = {start: data.id, end: data.id};
+      this.selectRange = {start: data, end: data};
       this.addMouseOverEvent();
 
     } else {
       this.offMouseOverEvents();
-      this.selectRange.end = data.id;
+      this.selectRange.end = data;
+      this.getDateSequence();
+      // console.log('EMIT');
     }
     this.updateSelected();
   }
 
   // Handler over mouse
   onMouseOverEvent(data: any) {
-    this.selectRange.end = data.id;
+    this.selectRange.end = data;
     this.updateSelected();
   }
 
@@ -187,8 +191,8 @@ export class AppComponent implements OnInit {
 
   // Update selected items
   updateSelected() {
-    const start = this.selectRange.start;
-    const end = this.selectRange.end;
+    const start = this.selectRange.start.id;
+    const end = this.selectRange.end.id;
     const selectedItems = this.getSelectRangeDays(start, end)
       .map(id => this.dateItems[id]);
     this.addSelected(selectedItems);
@@ -245,6 +249,16 @@ export class AppComponent implements OnInit {
     return dateIdRange;
   }
 
+  getDateSequence() {
+    const start = this.selectRange.start.date;
+    const end = this.selectRange.end.date;
+    if (start.toDateString() > end.toDateString()) {
+      console.log('START NAGYOBB');
+      return;
+    }
+    console.log('END NAGYOBB');
+  }
+
   // Get if today
   getIsToday(date: Date): boolean {
     return date.toDateString() === new Date().toDateString();
@@ -268,6 +282,7 @@ export class AppComponent implements OnInit {
   }
 
   /* --------------- GET DATE DATAS END --------------- */
+
 }
 
 // Add outside event
