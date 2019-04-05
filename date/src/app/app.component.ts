@@ -1,4 +1,5 @@
 import * as d3 from 'd3v4';
+import * as scroll from './scroll';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -12,6 +13,7 @@ export class AppComponent implements OnInit {
   private readonly endDay: Date;
   private readonly startDay: Date;
   private tabsData: any[];
+  private tabsDataTransform: any[];
   private weekItems: any[];
   private dateItems: any[];
   private isClicked = false;
@@ -23,6 +25,27 @@ export class AppComponent implements OnInit {
   constructor() {
     this.startDay = new Date(2019, 0, 1);
     this.endDay = new Date(2019, 10, 26);
+    this.tabsData = [
+      {
+        label: 'Today',
+        value: {
+          start: new Date()
+        }
+      },
+      {
+        label: 'Yesterday',
+        value: {
+          start: new Date(new Date().setDate(new Date().getDate() - 1))
+        }
+      },
+      {
+        label: 'Custom',
+        value: {
+          start: new Date(2019, 1, 2),
+          end: new Date(2019, 1, 5),
+        }
+      },
+    ];
   }
 
   ngOnInit() {
@@ -34,23 +57,33 @@ export class AppComponent implements OnInit {
     // this.emitDate();
   }
 
-  /*
-    emitDate() {
-      // TODO: ha triggerek között nincs olyan emitálási dátum nint a listába ne jelenitsük meg
-      const today = new Date();
-      const yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
-      const items = this.getSearchDate(today);
-      this.addSelected(items);
-      if (items.length) {
-        const dateContent = d3.select('.dateContent').node();
-        const scrollYPos = items[0].position;
-        dateContent.scrollTo(0, scrollYPos);
-      } else {
-        console.log('deaktív');
-      }
-  const customDates = this.getDayRange(customData.start, customData.end)
-  */
+  /* --------------- TABS START --------------- */
+  onClickTab(data: any, index: number) {
+    const value = data.value || data;
+    this.changeTabActive(index);
 
+    this.selectRange = {start: value[0].id, end: value[1] && value[1].id ? value[1].id : value[0].id};
+    this.updateSelected();
+    scroll.scrollIt(
+      value[0].position,
+      d3.select('.dateContent').node(),
+      750,
+      'easeInOutQuad',
+      () => {
+      }
+    );
+  }
+
+  changeTabActive(tabIndex: number) {
+    const dateMenuItem = d3.selectAll('.dateMenuItem');
+    const currentItem = d3.select(dateMenuItem.nodes()[tabIndex]);
+    dateMenuItem.classed('selected', false);
+    currentItem.classed('selected', true);
+  }
+
+  /* --------------- TABS END --------------- */
+
+  /* --------------- BUILD VIEW START --------------- */
   buildData() {
     const weeks = this.getWeekRange(this.startDay, this.endDay);
     const dateItems = this.getDayRange(this.startDay, this.endDay);
@@ -59,30 +92,22 @@ export class AppComponent implements OnInit {
         return {date: d, id: i};
       }
     );
-    this.tabsData = [
-      {
-        label: 'Today',
-        value: [new Date()]
-      },
-      {
-        label: 'Yesterday',
-        value: [new Date(new Date().setDate(new Date().getDate() - 1))]
-      },
-      {
-        label: 'Custom',
-        value: [new Date(2019, 5, 1)]
-      },
-    ];
+    this.tabsDataTransform = this.tabsData.map((data, index) => {
+      return {
+        label: data.label,
+        value: this.getDayIdRange(Object.values(data.value))
+      };
+    });
   }
 
   buildTabsData() {
     d3.select('.dateMenu').selectAll('div')
-      .data(this.tabsData)
+      .data(this.tabsDataTransform)
       .enter()
       .append('div')
       .attr('class', 'dateMenuItem')
       .text(d => d.label)
-      .on('click', this.emitDate.bind(this));
+      .on('click', this.onClickTab.bind(this));
   }
 
   buildWeeks() {
@@ -115,37 +140,9 @@ export class AppComponent implements OnInit {
     });
   }
 
-  // Add mosue over event
-  onMouseOverEvent() {
-    d3.selectAll('.itemValue')
-      .data(this.dateItems)
-      .on('mouseover', this.addMouseOverEvent.bind(this));
-  }
+  /* --------------- BUILD VIEW END --------------- */
 
-  // Remove mosue over event
-  offMouseOverEvents() {
-    d3.selectAll('.itemValue').on('mouseover', null);
-  }
-
-  // Handler click
-  onMouseClickEvent(data: any) {
-    this.isClicked = !this.isClicked;
-    if (this.isClicked) {
-      this.selectRange = {start: data.id, end: data.id};
-      this.onMouseOverEvent();
-    } else {
-      this.offMouseOverEvents();
-      this.selectRange.end = data.id;
-    }
-    this.updateSelected();
-  }
-
-  // Add outside event
-  // TODO: out click handler
-  addOutSideClickEvent() {
-    // d3.select((window as any)).on('mousedown', () => {});
-    // d3.select((window as any)).on('mousedown', null);
-  }
+  /* --------------- MOUSE EVENTS START --------------- */
 
   // Add click event
   addMouseClickEvent() {
@@ -153,23 +150,46 @@ export class AppComponent implements OnInit {
       .data(this.dateItems)
       .on('click', this.onMouseClickEvent.bind(this));
   }
-  // Add over event
-  addMouseOverEvent(data: any) {
+
+  // Add mosue over event
+  addMouseOverEvent() {
+    d3.selectAll('.itemValue')
+      .data(this.dateItems)
+      .on('mouseover', this.onMouseOverEvent.bind(this));
+  }
+
+  // Handler click mouse
+  onMouseClickEvent(data: any) {
+    this.isClicked = !this.isClicked;
+    if (this.isClicked) {
+      this.selectRange = {start: data.id, end: data.id};
+      this.addMouseOverEvent();
+
+    } else {
+      this.offMouseOverEvents();
+      this.selectRange.end = data.id;
+    }
+    this.updateSelected();
+  }
+
+  // Handler over mouse
+  onMouseOverEvent(data: any) {
     this.selectRange.end = data.id;
     this.updateSelected();
   }
 
-  emitDate(data: any) {
-    const value = data.value;
-    // this.selectedDates
-    console.log('date', value);
+  // Remove mosue over event
+  offMouseOverEvents() {
+    d3.selectAll('.itemValue').on('mouseover', null);
   }
+
+  /* --------------- MOUSE EVENTS END --------------- */
 
   // Update selected items
   updateSelected() {
     const start = this.selectRange.start;
     const end = this.selectRange.end;
-    const selectedItems = this.getSelectDays(start, end)
+    const selectedItems = this.getSelectRangeDays(start, end)
       .map(id => this.dateItems[id]);
     this.addSelected(selectedItems);
   }
@@ -188,13 +208,14 @@ export class AppComponent implements OnInit {
   }
 
   // Get start, end range Array
-  getSelectDays(start: number, end: number): number[] {
+  getSelectRangeDays(start: number, end: number): number[] {
     const option = start < end ? 1 : -1;
     if (start === end) {
       return [start];
     }
     return d3.range(start, end + option, option);
   }
+
 
   // Get day item template
   getDayTemplate(date: Date): string {
@@ -211,13 +232,17 @@ export class AppComponent implements OnInit {
     </div>`;
   }
 
-  // Get if today
-  getSearchDate(date: Date): any[] {
-    return this.dateItems.filter((data) => {
-      if (date.toDateString() === data.date.toDateString()) {
-        return data;
-      }
+  /* --------------- GET DATE DATAS START --------------- */
+  getDayIdRange(date: Date[]): number[] {
+    const dateIdRange = [];
+    date.forEach((dateValue) => {
+      this.dateItems.forEach((dataObj) => {
+        if (dateValue.toDateString() === dataObj.date.toDateString()) {
+          dateIdRange.push(dataObj);
+        }
+      });
     });
+    return dateIdRange;
   }
 
   // Get if today
@@ -241,4 +266,13 @@ export class AppComponent implements OnInit {
   getWeekRange(start: Date, end: Date): Date[] {
     return d3.timeWeek.range(start, end);
   }
+
+  /* --------------- GET DATE DATAS END --------------- */
 }
+
+// Add outside event
+// TODO: out click handler
+// addOutSideClickEvent() {
+//   // d3.select((window as any)).on('mousedown', () => {});
+//   // d3.select((window as any)).on('mousedown', null);
+// }

@@ -39,16 +39,15 @@ const easings = {
     return t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * (--t) * t * t * t * t;
   }
 };
-export const scrollIt = (destination: any, duration = 200, easing = 'linear', callback?: any) => {
-  const scrollContent = document.querySelector('.dateContent');
-  const start = scrollContent.scrollTop;
+export const scrollIt = (destination: any, scrollWrapper: any, duration = 200, easing = 'linear', callback?: any) => {
+  const start = scrollWrapper.scrollTop;
   const startTime = 'now' in window.performance ? performance.now() : new Date().getTime();
-  const documentHeight = scrollContent.scrollHeight;
-  const scrollContentHeight = scrollContent.clientHeight;
+  const documentHeight = scrollWrapper.scrollHeight;
+  const scrollContentHeight = scrollWrapper.clientHeight;
   const destinationOffset = typeof destination === 'number' ? destination : destination.offsetTop;
   const destinationOffsetToScroll = Math.round(documentHeight - destinationOffset < scrollContentHeight ? documentHeight - scrollContentHeight : destinationOffset);
   if ('requestAnimationFrame' in window === false) {
-    scrollContent.scrollTo(0, destinationOffsetToScroll);
+    scrollWrapper.scrollTo(0, destinationOffsetToScroll);
     if (callback) {
       callback();
     }
@@ -60,7 +59,7 @@ export const scrollIt = (destination: any, duration = 200, easing = 'linear', ca
     const time = Math.min(1, ((now - startTime) / duration));
     const timeFunction = easings[easing](time);
     scrollCont.scrollTo(0, Math.ceil((timeFunction * (destinationOffsetToScroll - start)) + start));
-    if (scrollContent.scrollTop === destinationOffsetToScroll) {
+    if (scrollWrapper.scrollTop === destinationOffsetToScroll) {
       if (callback) {
         callback();
       }
