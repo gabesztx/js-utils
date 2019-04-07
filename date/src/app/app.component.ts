@@ -16,10 +16,10 @@ export class AppComponent implements OnInit {
   private tabsDataTransform: any[];
   private weekItems: any[];
   private dateItems: any[];
+  private tabMenuItem: any;
   private isClicked = false;
   private selectRange: any;
-  private selectedDates: any[];
-
+  // private selectedDates: any[];
   // private isOutSideClicked = false
 
   constructor() {
@@ -36,36 +36,40 @@ export class AppComponent implements OnInit {
   }
 
   setData() {
+
     this.startDay = new Date(2019, 0, 1);
     this.endDay = new Date(2019, 10, 27);
     this.tabsData = [
       {
         label: 'Today',
-        value: {
+        date: {
           start: new Date()
         }
       },
       {
         label: 'Yesterday',
-        value: {
+        date: {
           start: new Date(new Date().setDate(new Date().getDate() - 1))
         }
       },
       {
         label: 'Custom',
-        value: {
+        date: {
           start: new Date(2019, 4, 1),
-          end: new Date(2019, 4, 7),
+          end: new Date(2019, 4, 3),
         }
       },
     ];
   }
 
   /* --------------- MENU TABS START --------------- */
-  onClickTab(data: any, index: number) {
-    const value = data.value || data;
-    this.changeTabActive(index);
-    this.selectRange = {start: value[0], end: value[1] && value[1] ? value[1] : value[0]};
+  onClickTab(data: any) {
+    const value = data.date || data;
+    this.selectRange = {
+      start: value[0],
+      end: value[1] && value[1] ? value[1] : value[0]
+    };
+    this.hasTabActive();
     this.updateSelected();
     scroll.scrollIt(
       value[0].position,
@@ -77,14 +81,34 @@ export class AppComponent implements OnInit {
     );
   }
 
-  changeTabActive(tabIndex: number) {
-    const dateMenuItem = d3.selectAll('.dateMenuItem');
-    const currentItem = d3.select(dateMenuItem.nodes()[tabIndex]);
-    dateMenuItem.classed('selected', false);
-    currentItem.classed('selected', true);
+  hasTabActive() {
+    const start = this.selectRange.start.date;
+    const end = this.selectRange.end.date;
+    this.tabsData.forEach((data, index) => {
+      const tabDateStart = data.date.start;
+      const tabDateEnd = data.date.end;
+      const isStartEqual = tabDateStart && (start.toDateString() === tabDateStart.toDateString());
+      const isEndEqual = tabDateEnd && (end.toDateString() === tabDateEnd.toDateString());
+      const isOneDay = !isEndEqual && (start.toDateString() === end.toDateString());
+      if (isStartEqual && isEndEqual) {
+        this.addTabActive(index);
+      } else if (isStartEqual && isOneDay) {
+        this.addTabActive(index);
+      }
+    });
+  }
+
+  addTabActive(tabIndex: number) {
+    this.removeTabActive();
+    d3.select(this.tabMenuItem.nodes()[tabIndex]).classed('selected', true);
+  }
+
+  removeTabActive() {
+    this.tabMenuItem.classed('selected', false);
   }
 
   /* --------------- MENU TABS END --------------- */
+
 
   /* --------------- BUILD VIEW START --------------- */
   buildData() {
@@ -98,13 +122,14 @@ export class AppComponent implements OnInit {
     this.tabsDataTransform = this.tabsData.map((data, index) => {
       return {
         label: data.label,
-        value: this.getDayIdRange(Object.values(data.value))
+        date: this.getDayIdRange(Object.values(data.date))
       };
     });
   }
 
   buildTabsData() {
-    d3.select('.dateMenu').selectAll('div')
+    // TODO: inactive when tabs data is undefined
+    this.tabMenuItem = d3.selectAll('.dateMenu').selectAll('div')
       .data(this.tabsDataTransform)
       .enter()
       .append('div')
@@ -142,10 +167,9 @@ export class AppComponent implements OnInit {
       value.target = dateItem.children[0];
     });
   }
-
   /* --------------- BUILD VIEW END --------------- */
-  /* --------------- MOUSE EVENTS START --------------- */
 
+  /* --------------- MOUSE EVENTS START --------------- */
   // Add click event
   addMouseClickEvent() {
     d3.selectAll('.itemValue')
@@ -166,12 +190,11 @@ export class AppComponent implements OnInit {
     if (this.isClicked) {
       this.selectRange = {start: data, end: data};
       this.addMouseOverEvent();
-
     } else {
-      this.offMouseOverEvents();
       this.selectRange.end = data;
+      this.offMouseOverEvents();
       this.getDateSequence();
-      // console.log('EMIT');
+      this.hasTabActive();
     }
     this.updateSelected();
   }
@@ -220,7 +243,6 @@ export class AppComponent implements OnInit {
     return d3.range(start, end + option, option);
   }
 
-
   // Get day item template
   getDayTemplate(date: Date): string {
     const dayDate = date.getDate();
@@ -250,13 +272,12 @@ export class AppComponent implements OnInit {
   }
 
   getDateSequence() {
-    const start = this.selectRange.start.date;
-    const end = this.selectRange.end.date;
-    if (start.toDateString() > end.toDateString()) {
-      console.log('START NAGYOBB');
-      return;
+    const start = this.selectRange.start;
+    const end = this.selectRange.end;
+    if (start.id > end.id) {
+      this.selectRange.start = end;
+      this.selectRange.end = start;
     }
-    console.log('END NAGYOBB');
   }
 
   // Get if today
