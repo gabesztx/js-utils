@@ -36,7 +36,6 @@ export class AppComponent implements OnInit {
   }
 
   setData() {
-
     this.startDay = new Date(2019, 0, 1);
     this.endDay = new Date(2019, 10, 27);
     this.tabsData = [
@@ -82,8 +81,10 @@ export class AppComponent implements OnInit {
   }
 
   hasTabActive() {
+    console.log('hasTabActive');
     const start = this.selectRange.start.date;
     const end = this.selectRange.end.date;
+    this.removeTabActive();
     this.tabsData.forEach((data, index) => {
       const tabDateStart = data.date.start;
       const tabDateEnd = data.date.end;
@@ -99,7 +100,7 @@ export class AppComponent implements OnInit {
   }
 
   addTabActive(tabIndex: number) {
-    this.removeTabActive();
+
     d3.select(this.tabMenuItem.nodes()[tabIndex]).classed('selected', true);
   }
 
@@ -125,6 +126,7 @@ export class AppComponent implements OnInit {
         date: this.getDayIdRange(Object.values(data.date))
       };
     });
+    console.log(this.tabsDataTransform);
   }
 
   buildTabsData() {
