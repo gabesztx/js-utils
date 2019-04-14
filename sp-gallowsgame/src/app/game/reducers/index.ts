@@ -6,8 +6,8 @@ import {
   MetaReducer
 } from '@ngrx/store';
 
-import * as fromGame from './game.reducer';
 import * as fromRoot from '../../reducers';
+import * as fromGame from './game.reducer';
 import * as fromWord from './word.reducer';
 
 export interface GameState {

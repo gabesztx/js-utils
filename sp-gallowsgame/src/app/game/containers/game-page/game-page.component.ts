@@ -64,7 +64,7 @@ export class GamePageComponent implements OnInit {
   }
 
   addInputEvent() {
-    const typeInput$ = fromEvent(this.inputElement, 'keypress')
+    /*const typeInput$ = fromEvent(this.inputElement, 'keypress')
       .pipe(
         tap(x => console.log('LOG', x)),
         map((e: KeyboardEvent) => {
@@ -79,7 +79,7 @@ export class GamePageComponent implements OnInit {
     const sub1 = typeInput$.pipe(pluck('element'))
       .subscribe(this.clearInput);
     const sub2 = typeInput$.pipe(pluck('value'))
-      .subscribe(this.logInputValue);
+      .subscribe(this.logInputValue);*/
     // const sub = typeInput$.pipe(share());
 
     // const source1 = sub.subscribe(val => console.log('source1', val));
