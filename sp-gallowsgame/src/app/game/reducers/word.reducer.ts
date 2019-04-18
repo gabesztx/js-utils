@@ -1,5 +1,5 @@
 import * as WordActions from '../actions/word.actions';
-import { ILetter } from '../models/game.model';
+import { Letter } from '../models/game.model';
 
 const WORD = 'SUPERCHARGE'.split('').map(
   (item) => {
@@ -10,7 +10,7 @@ const WORD = 'SUPERCHARGE'.split('').map(
   });
 
 export interface State {
-  letters: ILetter[];
+  letters: Letter[];
   letterId: number;
 }
 

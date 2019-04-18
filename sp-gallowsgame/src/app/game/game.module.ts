@@ -7,7 +7,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { GameEffects } from './effects/game.effects';
 import { GamePageComponent } from './containers/game-page/game-page.component';
 import { GameRoutingModule } from './game-routing.module';
-import { LettersBoardComponent } from './components/letter/letters-board.component';
+import { LettersListComponent } from './components/letter-list/letters-list.component';
 
 import * as fromGame from './reducers';
 
@@ -19,6 +19,6 @@ import * as fromGame from './reducers';
     StoreModule.forFeature('game', fromGame.reducers),
     EffectsModule.forFeature([GameEffects])
   ],
-  declarations: [GamePageComponent, LettersBoardComponent],
+  declarations: [GamePageComponent, LettersListComponent],
 })
 export class GameModule { }

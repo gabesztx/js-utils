@@ -1,6 +1,6 @@
 <div class="gameComponent">
   <div class="wordsLetterContent">
-    <app-letter-board [letters]="letters$ | async"></app-letter-board>
+    <app-letter-list [letters]="letters$ | async"></app-letter-list>
   </div>
   <!--<div class="wordsLetterContent" *ngIf="letters$ | async as letters">
     <div class="letterItem" *ngFor="let item of letters">

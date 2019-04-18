@@ -1,4 +1,4 @@
-export interface ILetter {
+export interface Letter {
   value: any;
   active: boolean;
 }

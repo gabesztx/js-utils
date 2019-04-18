@@ -2,8 +2,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import * as fromGame from '../../reducers';
 import { Observable } from 'rxjs';
-import { tap } from "rxjs/internal/operators/tap";
-import { map } from "rxjs/operators";
+import { tap } from 'rxjs/internal/operators/tap';
+import { map } from 'rxjs/operators';
 
 const WORD = 'SUPERCHARGE';
 const PATTERN = /^[A-Za-z]*$/;
@@ -19,28 +19,14 @@ export class GamePageComponent implements OnInit {
   // public inputVal: string;
   @ViewChild('letterInput') inputRef: ElementRef;
   // public inputElement: any;
-  public textArr: Array<any> = [];
-  public wrongTextArr: Array<any> = [];
-
+  // public textArr: Array<any> = [];
+  // public wrongTextArr: Array<any> = [];
   letters$: Observable<any>;
-  selectLetter$: Observable<any>;
-
-  constructor(private store: Store<fromGame.State>) {
-  }
+  // selectLetter$: Observable<any>;
+  constructor(private store: Store<fromGame.State>) {}
 
   ngOnInit() {
-    this.letters$ = this.store.pipe(
-      select(fromGame.getSelectLetters),
-      tap(x => console.log('LOG', x)),
-      map(value => {
-        console.log('value', value);
-        return value;
-      })
-      /*filter((value) => {
-        console.log(value);
-        return true;
-      })*/
-    );
+    this.letters$ = this.store.pipe(select(fromGame.getSelectLetters));
     /*this.letters$.subscribe((res) => {
       // console.log('res', res);
       // console.log(res);
