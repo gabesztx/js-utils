@@ -1,7 +1,8 @@
 import * as WordActions from '../actions/word.actions';
 import { Letter } from '../models/game.model';
 
-const WORD = 'SUPERCHARGE'.split('').map(
+// const WORD = 'SUPERCHARGE'.split('').map(
+const WORD = 'SUP'.split('').map(
   (item) => {
     return {
       value: item,
@@ -11,33 +12,20 @@ const WORD = 'SUPERCHARGE'.split('').map(
 
 export interface State {
   letters: Letter[];
-  letterId: number;
+  selectedId: number;
 }
 
 export const initialState: State = {
   letters: WORD,
-  letterId: null,
+  selectedId: null,
 };
 
 export function reducer(state = initialState, action: WordActions.Actions): State {
   switch (action.type) {
-    case WordActions.WordActionsTypes.GetLetterItem:
+    case WordActions.WordActionsTypes.SetActiveLetter:
       return {
         ...state,
-        letterId: action.payload,
-     /*   letters: state.letters.map((item, key) => {
-          if (key === action.payload) {
-            return {
-              ...item,
-              active: !item.active
-            };
-          }
-          return item;
-        })*/
-      };
-    /*case WordActions.WordActionsTypes.SetActiveLetter:
-      return {
-        ...state,
+        selectedId: action.payload,
         letters: state.letters.map((item, key) => {
           if (key === action.payload) {
             return {
@@ -47,7 +35,7 @@ export function reducer(state = initialState, action: WordActions.Actions): Stat
           }
           return item;
         })
-      };*/
+      };
 
     default:
       return state;
@@ -55,4 +43,4 @@ export function reducer(state = initialState, action: WordActions.Actions): Stat
 }
 
 export const getLetters = (state: State) => state.letters;
-export const getLetterId = (state: State) => state.letterId;
+export const getLetterSelectId = (state: State) => state.selectedId;

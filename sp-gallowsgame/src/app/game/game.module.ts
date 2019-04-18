@@ -8,6 +8,7 @@ import { GameEffects } from './effects/game.effects';
 import { GamePageComponent } from './containers/game-page/game-page.component';
 import { GameRoutingModule } from './game-routing.module';
 import { LettersListComponent } from './components/letter-list/letters-list.component';
+import { LetterComponent } from './components/letter/letter.component';
 
 import * as fromGame from './reducers';
 
@@ -19,6 +20,6 @@ import * as fromGame from './reducers';
     StoreModule.forFeature('game', fromGame.reducers),
     EffectsModule.forFeature([GameEffects])
   ],
-  declarations: [GamePageComponent, LettersListComponent],
+  declarations: [GamePageComponent, LettersListComponent, LetterComponent],
 })
 export class GameModule { }

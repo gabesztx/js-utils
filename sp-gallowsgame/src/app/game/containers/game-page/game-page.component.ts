@@ -3,9 +3,10 @@ import { select, Store } from '@ngrx/store';
 import * as fromGame from '../../reducers';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/internal/operators/tap';
-import { map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
+import { WordActions } from '../../actions';
 
-const WORD = 'SUPERCHARGE';
+// const WORD = 'SUPERCHARGE';
 const PATTERN = /^[A-Za-z]*$/;
 
 @Component({
@@ -17,22 +18,24 @@ const PATTERN = /^[A-Za-z]*$/;
 export class GamePageComponent implements OnInit {
   // public items: Observable<string[]>;
   // public inputVal: string;
+  // public teszt: boolean;
   @ViewChild('letterInput') inputRef: ElementRef;
   // public inputElement: any;
   // public textArr: Array<any> = [];
   // public wrongTextArr: Array<any> = [];
   letters$: Observable<any>;
-  // selectLetter$: Observable<any>;
-  constructor(private store: Store<fromGame.State>) {}
+
+  selectLetter$: Observable<any>;
+  constructor(private store: Store<fromGame.State>) {
+  }
 
   ngOnInit() {
     this.letters$ = this.store.pipe(select(fromGame.getSelectLetters));
-    /*this.letters$.subscribe((res) => {
-      // console.log('res', res);
-      // console.log(res);
-      // this.textArr = res;
-      // console.log('Letters$: ', res);
+   /* this.letters$.subscribe((res) => {
+      // console.log('letters$: ', res);
     });*/
+    // this.selectedLetter$ = this.store.pipe(select(fromGame.getSelectLetterItem));
+    // this.selectedLetter$.subscribe((res) => {});
     /*this.selectLetter$ = this.store.pipe(select(fromGame.getSelectLetterId));
     this.selectLetter$.subscribe((id) => {
       if (id !== null) {
@@ -41,14 +44,18 @@ export class GamePageComponent implements OnInit {
       }
     });*/
     setTimeout(() => {
-      // this.store.dispatch(new WordActions.GetLetterItem(0));
-    }, 2000);
+      console.log('ping');
+      this.store.dispatch(new WordActions.SetActiveItem(0));
+    }, 1000);
 
     setTimeout(() => {
-      // this.store.dispatch(new WordActions.GetLetterItem(1));
-    }, 4000);
+      // console.log('ping');
+      // this.teszt = true;
+      this.store.dispatch(new WordActions.SetActiveItem(0));
+      // this.store.dispatch(new WordActions.SetActiveItem(1));
+    }, 5000);
     setTimeout(() => {
-      // this.store.dispatch(new WordActions.GetLetterItem(2));
+      // this.store.dispatch(new WordActions.SetActiveItem(0));
     }, 6000);
     // this.store.dispatch(new WordActions.LoadLetters());
     // this.letters$ = this.inputRef.nativeElement;

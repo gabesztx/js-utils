@@ -20,23 +20,22 @@ export const reducers: ActionReducerMap<GameState, any> = {
 
 export const getGameState = createFeatureSelector<State, GameState>('game');
 export const getWordState = createSelector(getGameState, state => state.word);
-export const getSelectLetters = createSelector(getWordState, fromWord.getLetters);
-// export const getSelectLetterId = createSelector(getWordState, fromWord.getLetterId);
 
-/*export const getSelectLetterItem = createSelector(
+export const getSelectLetters = createSelector(getWordState, fromWord.getLetters);
+export const getSelectLetterId = createSelector(getWordState, fromWord.getLetterSelectId);
+
+export const getSelectLetterItem = createSelector(
   getSelectLetters,
   getSelectLetterId,
   (letters, id) => {
-    // if (id !== null) {
-    //   return [letters[id]];
-    // }
-    // console.log('ID');
+    console.log('letters', letters);
+    // console.log();
     if (id !== null) {
-      console.log('id', id);
       return id;
     }
+    return letters;
   }
-);*/
+);
 // export const getActiveItem = createSelector(getWordState, fromWord.gelLetters);
 // export const getSelectedLetters = createSelector(getWordState, fromWord.gelLetters);
 

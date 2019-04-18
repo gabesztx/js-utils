@@ -1,6 +1,1 @@
-<!--
-<div class="letterItem" *ngFor="let item of letters">
-  &lt;!&ndash;<div class="letter" [ngClass]="{'active': item.active}">{{item.value}}</div>&ndash;&gt;
-  <div class="letter">{{item.value}}</div>
-</div>
--->
+<app-letter *ngFor="let letter of letters" [letter]="letter"></app-letter>

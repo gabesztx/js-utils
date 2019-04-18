@@ -1,24 +1,5 @@
-:host{
+:host {
   display: flex;
   width: 100%;
   justify-content: center;
-  /*.letterItem {
-    display: flex;
-    width: 50px;
-    height: 50px;
-    color: #fff;
-    justify-content: center;
-    align-items: center;
-    margin: 10px;
-    font-size: 30px;
-    background-color: #191919;
-    .letter {
-      opacity: 0;
-      transition: all 1.5s ease-out;
-      &.active {
-        opacity: 1;
-      }
-    }
-  }*/
-
 }

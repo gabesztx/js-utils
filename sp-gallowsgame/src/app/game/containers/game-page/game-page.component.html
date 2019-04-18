@@ -2,15 +2,16 @@
   <div class="wordsLetterContent">
     <app-letter-list [letters]="letters$ | async"></app-letter-list>
   </div>
-  <!--<div class="wordsLetterContent" *ngIf="letters$ | async as letters">
-    <div class="letterItem" *ngFor="let item of letters">
-      <div class="letter" [ngClass]="{'active': item.active}">{{item.value}}</div>
-    </div>
-  </div>-->
-  <!--<div class="letterInputContent">
-    <input #letterInput type="text" class="letterInput" [maxLength]="1">
-  </div>-->
+</div>
+
+<!--<div class="wordsLetterContent" *ngIf="letters$ | async as letters">
+  <div class="letterItem" *ngFor="let item of letters">
+    <div class="letter" [ngClass]="{'active': item.active}">{{item.value}}</div>
+  </div>
+</div>-->
+<!--<div class="letterInputContent">
+  <input #letterInput type="text" class="letterInput" [maxLength]="1">
+</div>-->
 <!--  <div class="wordsBoardGuesses">-->
 <!--    <div class="textItem" *ngFor="let item of wrongTextArr">{{item}}</div>-->
 <!--  </div>-->
-</div>

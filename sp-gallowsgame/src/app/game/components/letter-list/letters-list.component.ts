@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Letter } from '../../models/game.model';
 
 @Component({
@@ -6,12 +6,10 @@ import { Letter } from '../../models/game.model';
   templateUrl: './letter-list.component.html',
   styleUrls: ['./letter-list.component.scss']
 })
-export class LettersListComponent implements OnInit {
+export class LettersListComponent implements OnChanges {
   @Input() letters: Letter[];
-  constructor() { }
-
-  ngOnInit() {
-    console.log(this.letters);
+  ngOnChanges(changes: SimpleChanges) {
+    // console.log('changes', changes);
   }
-
 }
+
