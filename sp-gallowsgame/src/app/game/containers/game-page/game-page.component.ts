@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Store } from '@ngrx/store';
-import * as fromStore from '../../reducers';
+import { Store, select } from '@ngrx/store';
+import * as fromGame from '../../reducers';
+import { WordActions } from '../../actions';
 import { fromEvent, Observable, of, timer } from 'rxjs';
 import {
   map,
@@ -28,20 +29,37 @@ const PATTERN = /^[A-Za-z]*$/;
 export class GamePageComponent implements OnInit {
   // public items: Observable<string[]>;
   // public inputVal: string;
-  @ViewChild('textInput') inputRef: ElementRef;
+  @ViewChild('letterInput') inputRef: ElementRef;
   public textArr: Array<any> = [];
   public wrongTextArr: Array<any> = [];
   public inputElement: any;
 
-  constructor(private store: Store<fromStore.State>) {
+  letters$: Observable<any[]>;
+  aciteveItem$: Observable<any[]>;
+
+  // letters$: Observable<any[]>;
+
+  constructor(private store: Store<fromGame.State>) {
     // console.log('GamePageComponent');
   }
 
   ngOnInit() {
-    this.inputElement = this.inputRef.nativeElement;
-    this.inputElement.focus();
-    this.addLetters();
-    this.addInputEvent();
+    this.letters$ = this.store.pipe(select(fromGame.getSelectedLetters));
+    this.aciteveItem$ = this.store.pipe(select(fromGame.getActiveItem));
+    this.letters$.subscribe((res) => {
+      console.log('Update letters$: ', res);
+    });
+    this.aciteveItem$.subscribe((res) => {
+      console.log('Update aciteveItem$: ', res);
+    });
+    setTimeout(() => {
+      this.store.dispatch(new WordActions.SetActiveItem(5));
+    }, 1000);
+    // this.store.dispatch(new WordActions.LoadLetters());
+    // this.letters$ = this.inputRef.nativeElement;
+    // this.inputElement.focus();
+    // this.addLetters();
+    // this.addInputEvent();
   }
 
   addLetters() {

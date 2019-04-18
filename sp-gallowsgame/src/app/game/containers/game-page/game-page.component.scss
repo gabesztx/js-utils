@@ -1,12 +1,12 @@
 :host {
   .gameComponent {
     padding-top: 30px;
-    .textBoardContent {
+    .wordsLetterContent {
       display: flex;
       width: 100%;
       justify-content: center;
 
-      .textItem {
+      .letterItem {
         color: #fff;
         display: flex;
         justify-content: center;
@@ -19,14 +19,14 @@
       }
     }
 
-    .textInputContent {
+    .letterInputContent {
       display: flex;
       justify-content: center;
       align-items: center;
       font-size: 20px;
       padding: 10px;
 
-      .textInput {
+      .letterInput {
         color: #191919;
         text-align: center;
         width: 50px;

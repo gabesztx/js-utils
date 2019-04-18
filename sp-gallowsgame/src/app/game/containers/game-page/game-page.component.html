@@ -1,12 +1,12 @@
 <div class="gameComponent">
-  <div class="textBoardContent">
-    <div class="textItem" *ngFor="let item of textArr">
-      <div class="letterValue" *ngIf="item.active">{{item.value}}</div>
+  <div class="wordsLetterContent" *ngIf="letters$ | async as letters">
+    <div class="letterItem" *ngFor="let item of letters">
+      <div class="letter">{{item.value}}</div>
     </div>
   </div>
-  <div class="textInputContent">
-    <input #textInput type="text" class="textInput" [maxLength]="1">
-  </div>
+  <!--<div class="letterInputContent">
+    <input #letterInput type="text" class="letterInput" [maxLength]="1">
+  </div>-->
   <div class="wordsBoardGuesses">
     <div class="textItem" *ngFor="let item of wrongTextArr">{{item}}</div>
   </div>

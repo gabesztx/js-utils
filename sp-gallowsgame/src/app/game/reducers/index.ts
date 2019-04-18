@@ -24,3 +24,9 @@ export const reducers: ActionReducerMap<GameState, any> = {
   word: fromWord.reducer,
 };
 
+export const getGameState = createFeatureSelector<State, GameState>('game');
+export const getWordState = createSelector(getGameState, state => state.word);
+
+export const getSelectedLetters = createSelector(getWordState, fromWord.gelLetters);
+export const getActiveItem = createSelector(getWordState, fromWord.gelLetters);
+// export const getSelectedLetters = createSelector(getWordState, fromWord.gelLetters);
