@@ -1,8 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import * as fromGame from '../../reducers';
-import { WordActions } from '../../actions';
 import { Observable } from 'rxjs';
+import { tap } from "rxjs/internal/operators/tap";
+import { map } from "rxjs/operators";
 
 const WORD = 'SUPERCHARGE';
 const PATTERN = /^[A-Za-z]*$/;
@@ -28,28 +29,40 @@ export class GamePageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.letters$ = this.store.pipe(select(fromGame.getSelectLetters));
-    // this.selectLetter$ = this.store.pipe(select(fromGame.getSelectLetterItem));
-    this.selectLetter$ = this.store.pipe(select(fromGame.getSelectLetterId));
-    this.letters$.subscribe((res) => {
-      this.textArr = res;
-      console.log('Letters$: ', res);
-    });
+    this.letters$ = this.store.pipe(
+      select(fromGame.getSelectLetters),
+      tap(x => console.log('LOG', x)),
+      map(value => {
+        console.log('value', value);
+        return value;
+      })
+      /*filter((value) => {
+        console.log(value);
+        return true;
+      })*/
+    );
+    /*this.letters$.subscribe((res) => {
+      // console.log('res', res);
+      // console.log(res);
+      // this.textArr = res;
+      // console.log('Letters$: ', res);
+    });*/
+    /*this.selectLetter$ = this.store.pipe(select(fromGame.getSelectLetterId));
     this.selectLetter$.subscribe((id) => {
       if (id !== null) {
-        console.log('SelectLetter$: ', id);
+        // console.log('SelectLetter$: ', id);
         this.textArr[id].active = true;
       }
-    });
+    });*/
     setTimeout(() => {
-      this.store.dispatch(new WordActions.GetLetterItem(0));
+      // this.store.dispatch(new WordActions.GetLetterItem(0));
     }, 2000);
 
     setTimeout(() => {
-      this.store.dispatch(new WordActions.GetLetterItem(1));
+      // this.store.dispatch(new WordActions.GetLetterItem(1));
     }, 4000);
     setTimeout(() => {
-      this.store.dispatch(new WordActions.GetLetterItem(2));
+      // this.store.dispatch(new WordActions.GetLetterItem(2));
     }, 6000);
     // this.store.dispatch(new WordActions.LoadLetters());
     // this.letters$ = this.inputRef.nativeElement;
