@@ -1,4 +1,5 @@
 import * as WordActions from '../actions/word.actions';
+import { ILetter } from '../models/game.model';
 
 const WORD = 'SUPERCHARGE'.split('').map(
   (item) => {
@@ -9,28 +10,27 @@ const WORD = 'SUPERCHARGE'.split('').map(
   });
 
 export interface State {
-  letters: any[];
+  letters: ILetter[];
+  selectLetterId: number;
 }
 
 export const initialState: State = {
-  letters: WORD
+  letters: WORD,
+  selectLetterId: null,
 };
 
 export function reducer(state = initialState, action: WordActions.Actions): State {
   switch (action.type) {
-    case WordActions.WordActionsTypes.LoadLetters:
-      console.log('REDUCER: ', 'LoadLetters');
+    case WordActions.WordActionsTypes.GetLetterItem:
       return {
         ...state,
-        letters: state.letters
+        selectLetterId: action.payload,
       };
-    case WordActions.WordActionsTypes.SetActiveItem:
-      console.log('REDUCER: ', 'SetActiveItem');
+    case WordActions.WordActionsTypes.SetActiveLetter:
       return {
         ...state,
         letters: state.letters.map((item, key) => {
           if (key === action.payload) {
-            console.log('KEY: ', key);
             return {
               ...item,
               active: !item.active
@@ -38,11 +38,12 @@ export function reducer(state = initialState, action: WordActions.Actions): Stat
           }
           return item;
         })
-        // letters:
       };
+
     default:
       return state;
   }
 }
 
-export const gelLetters = (state: State) => state.letters;
+export const getLetters = (state: State) => state.letters;
+export const getLetterItem = (state: State) => state.selectLetterId;

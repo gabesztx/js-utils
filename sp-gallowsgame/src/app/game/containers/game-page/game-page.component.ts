@@ -35,7 +35,7 @@ export class GamePageComponent implements OnInit {
   public inputElement: any;
 
   letters$: Observable<any[]>;
-  aciteveItem$: Observable<any[]>;
+  selectLetterId: Observable<number>;
 
   // letters$: Observable<any[]>;
 
@@ -45,16 +45,14 @@ export class GamePageComponent implements OnInit {
 
   ngOnInit() {
     this.letters$ = this.store.pipe(select(fromGame.getSelectedLetters));
-    this.aciteveItem$ = this.store.pipe(select(fromGame.getActiveItem));
+    this.selectLetterId = this.store.pipe(select(fromGame.getSelectedLetterItem));
     this.letters$.subscribe((res) => {
-      console.log('Update letters$: ', res);
+      console.log('Letters: ', res);
     });
-    this.aciteveItem$.subscribe((res) => {
-      console.log('Update aciteveItem$: ', res);
-    });
+    // this.aciteveItem$.subscribe((res) => {});
     setTimeout(() => {
-      this.store.dispatch(new WordActions.SetActiveItem(5));
-    }, 1000);
+      this.store.dispatch(new WordActions.SetActiveItem(0));
+    }, 2000);
     // this.store.dispatch(new WordActions.LoadLetters());
     // this.letters$ = this.inputRef.nativeElement;
     // this.inputElement.focus();
