@@ -1,9 +1,17 @@
 <div class="gameComponent">
-  <div class="wordsLetterContent" *ngIf="letters$ | async as letters">
-    <div class="letterItem" *ngFor="let item of letters">
-      <div class="letter" *ngIf="item.active">{{item.value}}</div>
-    </div>
+  <div class="wordsLetterContent">
+        <div class="letterItem" *ngFor="let item of textArr">
+          <div class="letter" [ngClass]="{'active': item.active}">{{item.value}}</div>
+        </div>
+<!--    <div class="letterItem" *ngFor="let item of letters">-->
+<!--      <div class="letter" [ngClass]="{'active': item.active}">{{item.value}}</div>-->
+<!--    </div>-->
   </div>
+  <!--<div class="wordsLetterContent" *ngIf="letters$ | async as letters">
+    <div class="letterItem" *ngFor="let item of letters">
+      <div class="letter" [ngClass]="{'active': item.active}">{{item.value}}</div>
+    </div>
+  </div>-->
   <!--<div class="letterInputContent">
     <input #letterInput type="text" class="letterInput" [maxLength]="1">
   </div>-->

@@ -11,12 +11,12 @@ const WORD = 'SUPERCHARGE'.split('').map(
 
 export interface State {
   letters: ILetter[];
-  selectLetterId: number;
+  letterId: number;
 }
 
 export const initialState: State = {
   letters: WORD,
-  selectLetterId: null,
+  letterId: null,
 };
 
 export function reducer(state = initialState, action: WordActions.Actions): State {
@@ -24,9 +24,18 @@ export function reducer(state = initialState, action: WordActions.Actions): Stat
     case WordActions.WordActionsTypes.GetLetterItem:
       return {
         ...state,
-        selectLetterId: action.payload,
+        letterId: action.payload,
+     /*   letters: state.letters.map((item, key) => {
+          if (key === action.payload) {
+            return {
+              ...item,
+              active: !item.active
+            };
+          }
+          return item;
+        })*/
       };
-    case WordActions.WordActionsTypes.SetActiveLetter:
+    /*case WordActions.WordActionsTypes.SetActiveLetter:
       return {
         ...state,
         letters: state.letters.map((item, key) => {
@@ -38,7 +47,7 @@ export function reducer(state = initialState, action: WordActions.Actions): Stat
           }
           return item;
         })
-      };
+      };*/
 
     default:
       return state;
@@ -46,4 +55,4 @@ export function reducer(state = initialState, action: WordActions.Actions): Stat
 }
 
 export const getLetters = (state: State) => state.letters;
-export const getLetterItem = (state: State) => state.selectLetterId;
+export const getLetterId = (state: State) => state.letterId;

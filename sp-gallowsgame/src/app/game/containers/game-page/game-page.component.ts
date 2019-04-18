@@ -1,21 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Store, select } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import * as fromGame from '../../reducers';
 import { WordActions } from '../../actions';
-import { fromEvent, Observable, of, timer } from 'rxjs';
-import {
-  map,
-  debounceTime,
-  tap,
-  take,
-  switchMap,
-  distinctUntilChanged,
-  startWith,
-  filter,
-  takeUntil,
-  takeWhile,
-  delay, finalize, pluck, share
-} from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 const WORD = 'SUPERCHARGE';
 const PATTERN = /^[A-Za-z]*$/;
@@ -30,29 +17,40 @@ export class GamePageComponent implements OnInit {
   // public items: Observable<string[]>;
   // public inputVal: string;
   @ViewChild('letterInput') inputRef: ElementRef;
+  // public inputElement: any;
   public textArr: Array<any> = [];
   public wrongTextArr: Array<any> = [];
-  public inputElement: any;
 
-  letters$: Observable<any[]>;
-  selectLetterId: Observable<number>;
-
-  // letters$: Observable<any[]>;
+  letters$: Observable<any>;
+  selectLetter$: Observable<any>;
 
   constructor(private store: Store<fromGame.State>) {
-    // console.log('GamePageComponent');
   }
 
   ngOnInit() {
-    this.letters$ = this.store.pipe(select(fromGame.getSelectedLetters));
-    this.selectLetterId = this.store.pipe(select(fromGame.getSelectedLetterItem));
+    this.letters$ = this.store.pipe(select(fromGame.getSelectLetters));
+    // this.selectLetter$ = this.store.pipe(select(fromGame.getSelectLetterItem));
+    this.selectLetter$ = this.store.pipe(select(fromGame.getSelectLetterId));
     this.letters$.subscribe((res) => {
-      console.log('Letters: ', res);
+      this.textArr = res;
+      console.log('Letters$: ', res);
     });
-    // this.aciteveItem$.subscribe((res) => {});
+    this.selectLetter$.subscribe((id) => {
+      if (id !== null) {
+        console.log('SelectLetter$: ', id);
+        this.textArr[id].active = true;
+      }
+    });
     setTimeout(() => {
-      this.store.dispatch(new WordActions.SetActiveItem(0));
+      this.store.dispatch(new WordActions.GetLetterItem(0));
     }, 2000);
+
+    setTimeout(() => {
+      this.store.dispatch(new WordActions.GetLetterItem(1));
+    }, 4000);
+    setTimeout(() => {
+      this.store.dispatch(new WordActions.GetLetterItem(2));
+    }, 6000);
     // this.store.dispatch(new WordActions.LoadLetters());
     // this.letters$ = this.inputRef.nativeElement;
     // this.inputElement.focus();
@@ -61,13 +59,6 @@ export class GamePageComponent implements OnInit {
   }
 
   addLetters() {
-    this.textArr = WORD.split('').map(
-      (item) => {
-        return {
-          value: item,
-          active: false,
-        };
-      });
   }
 
   clearInput(inputEl: any) {

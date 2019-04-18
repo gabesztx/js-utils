@@ -17,8 +17,7 @@ export class SetActiveItem implements Action {
 }
 export class GetLetterItem implements Action {
   readonly type = WordActionsTypes.GetLetterItem;
-  constructor(public payload: number) {
-  }
+  constructor(public payload: number) {}
 }
 
 export type Actions =
