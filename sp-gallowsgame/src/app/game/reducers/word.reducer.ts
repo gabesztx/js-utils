@@ -3,8 +3,9 @@ import { Letter } from '../models/game.model';
 
 // const WORD = 'SUPERCHARGE'.split('').map(
 const WORD = 'SUP'.split('').map(
-  (item) => {
+  (item, key) => {
     return {
+      id: key,
       value: item,
       active: false,
     };

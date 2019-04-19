@@ -7,12 +7,22 @@ import { Letter } from '../../models/game.model';
   styleUrls: ['./letter.component.scss']
 })
 export class LetterComponent implements OnInit, OnChanges {
-  private isActive = false;
+  @Input() selectedId: number;
   @Input() letter: Letter;
 
   get value() {
     return this.letter.value;
   }
+
+  get id() {
+    return this.letter.id;
+  }
+
+  set active(isActive: boolean) {
+    console.log('SET', isActive);
+    this.letter.active = isActive;
+  }
+
   get active() {
     return this.letter.active;
   }
@@ -22,13 +32,27 @@ export class LetterComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    // this.isActive = this.active;
+    if (changes.hasOwnProperty('selectedId')) {
+      const selectedId = changes.selectedId;
+      if (!selectedId.firstChange) {
+        if (this.selectedId === this.id) {
+          this.active = true;
+          setTimeout(() => {
+            this.active = false;
+          }, 1000);
+        }
+        // console.log('selectedId: ', this.selectedId, ' - ', id);
+        // const value = selectedId.currentValue;
+      }
+
+    }
   }
 
   ngOnInit() {
-    // console.log(this.active);
-    setTimeout(() => {
-      // this.isActive = this.active;
-    });
+    // console.log('SELECTED ID: ', this.isSelectedId);
+    // console.log('INIT: ', this.active);
+    // this.isActive = this.active;
+    // setTimeout(() => {
+    // }, 1000);
   }
 }

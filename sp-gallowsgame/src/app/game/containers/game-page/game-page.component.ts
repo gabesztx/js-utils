@@ -19,21 +19,23 @@ export class GamePageComponent implements OnInit {
   // public items: Observable<string[]>;
   // public inputVal: string;
   // public teszt: boolean;
-  @ViewChild('letterInput') inputRef: ElementRef;
+  // @ViewChild('letterInput') inputRef: ElementRef;
   // public inputElement: any;
   // public textArr: Array<any> = [];
   // public wrongTextArr: Array<any> = [];
   letters$: Observable<any>;
+  selectLetterId$: Observable<any>;
 
-  selectLetter$: Observable<any>;
   constructor(private store: Store<fromGame.State>) {
   }
 
   ngOnInit() {
-    this.letters$ = this.store.pipe(select(fromGame.getSelectLetters));
-   /* this.letters$.subscribe((res) => {
-      // console.log('letters$: ', res);
-    });*/
+    this.selectLetterId$ = this.store.pipe(select(fromGame.getSelectLetterId));
+    this.letters$ = this.store.pipe(
+      select(fromGame.getSelectLetters),
+      take(1)
+    );
+    // this.letters$.subscribe((res) => {});
     // this.selectedLetter$ = this.store.pipe(select(fromGame.getSelectLetterItem));
     // this.selectedLetter$.subscribe((res) => {});
     /*this.selectLetter$ = this.store.pipe(select(fromGame.getSelectLetterId));
@@ -44,19 +46,14 @@ export class GamePageComponent implements OnInit {
       }
     });*/
     setTimeout(() => {
-      console.log('ping');
       this.store.dispatch(new WordActions.SetActiveItem(0));
+    }, 500);
+    setTimeout(() => {
+      this.store.dispatch(new WordActions.SetActiveItem(1));
+    }, 800);
+    setTimeout(() => {
+      this.store.dispatch(new WordActions.SetActiveItem(2));
     }, 1000);
-
-    setTimeout(() => {
-      // console.log('ping');
-      // this.teszt = true;
-      this.store.dispatch(new WordActions.SetActiveItem(0));
-      // this.store.dispatch(new WordActions.SetActiveItem(1));
-    }, 5000);
-    setTimeout(() => {
-      // this.store.dispatch(new WordActions.SetActiveItem(0));
-    }, 6000);
     // this.store.dispatch(new WordActions.LoadLetters());
     // this.letters$ = this.inputRef.nativeElement;
     // this.inputElement.focus();

@@ -24,18 +24,18 @@ export const getWordState = createSelector(getGameState, state => state.word);
 export const getSelectLetters = createSelector(getWordState, fromWord.getLetters);
 export const getSelectLetterId = createSelector(getWordState, fromWord.getLetterSelectId);
 
-export const getSelectLetterItem = createSelector(
+/*export const getSelectLetterItem = createSelector(
   getSelectLetters,
   getSelectLetterId,
   (letters, id) => {
-    console.log('letters', letters);
-    // console.log();
+    // console.log('letters: ', letters, ' - ', 'id: ', id);
     if (id !== null) {
       return id;
     }
+    console.log('LETTER');
     return letters;
   }
-);
+);*/
 // export const getActiveItem = createSelector(getWordState, fromWord.gelLetters);
 // export const getSelectedLetters = createSelector(getWordState, fromWord.gelLetters);
 
