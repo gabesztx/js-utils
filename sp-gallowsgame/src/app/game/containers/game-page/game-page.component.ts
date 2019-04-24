@@ -50,10 +50,10 @@ export class GamePageComponent implements OnInit {
     }, 500);
     setTimeout(() => {
       this.store.dispatch(new WordActions.SetActiveItem(1));
-    }, 800);
-    setTimeout(() => {
-      this.store.dispatch(new WordActions.SetActiveItem(2));
     }, 1000);
+    setTimeout(() => {
+      // this.store.dispatch(new WordActions.SetActiveItem(2));
+    }, 1500);
     // this.store.dispatch(new WordActions.LoadLetters());
     // this.letters$ = this.inputRef.nativeElement;
     // this.inputElement.focus();

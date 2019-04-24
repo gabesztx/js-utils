@@ -35,11 +35,9 @@ export class LetterComponent implements OnInit, OnChanges {
     if (changes.hasOwnProperty('selectedId')) {
       const selectedId = changes.selectedId;
       if (!selectedId.firstChange) {
+        this.active = !this.active;
         if (this.selectedId === this.id) {
-          this.active = true;
-          setTimeout(() => {
-            this.active = false;
-          }, 1000);
+          // setTimeout(() => {}, 1000);
         }
         // console.log('selectedId: ', this.selectedId, ' - ', id);
         // const value = selectedId.currentValue;
