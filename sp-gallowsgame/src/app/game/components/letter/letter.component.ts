@@ -9,40 +9,27 @@ import { Letter } from '../../models/game.model';
 export class LetterComponent implements OnInit, OnChanges {
   @Input() selectedId: number;
   @Input() letter: Letter;
+  public letterShow = false;
 
-  get value() {
+  get letterValue() {
     return this.letter.value;
   }
 
-  get id() {
+
+  get letterId() {
     return this.letter.id;
   }
-
-  set active(isActive: boolean) {
-    // console.log('SET', isActive);
-    this.letter.active = isActive;
-  }
-
-  get active() {
+  get letterActive() {
     return this.letter.active;
   }
 
   constructor() {
-    // console.log('LetterComponent');
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    /*if (changes.hasOwnProperty('selectedId')) {
-      const selectedId = changes.selectedId;
-      if (!selectedId.firstChange) {
-        this.active = !this.active;
-        if (this.selectedId === this.id) {
-          // setTimeout(() => {}, 1000);
-        }
-        // console.log('selectedId: ', this.selectedId, ' - ', id);
-        // const value = selectedId.currentValue;
-      }
-    }*/
+    if (!changes.selectedId.firstChange && this.letterId === this.selectedId) {
+      this.letterShow = true;
+    }
   }
 
   ngOnInit() {
@@ -53,3 +40,9 @@ export class LetterComponent implements OnInit, OnChanges {
     // }, 1000);
   }
 }
+
+/*
+  set active(isActive: boolean) {
+    // console.log('SET', isActive);
+    // this.letter.active = isActive;
+  }*/

@@ -12,25 +12,3 @@ button {
   border: 0 !important;
   outline: 0 !important;
 }
-
-
-.animScale{
-  animation-name: animationFrames;
-  animation-duration: 1s;
-  animation-fill-mode: backwards;
-  //animation-direction: alternate-reverse;
-  //animation-iteration-count: 2;
-
-}
-$scaleValue: 0;
-@keyframes animationFrames{
-  from {
-    opacity: 0;
-    transform: scale3d($scaleValue, $scaleValue, $scaleValue);
-  }
-
-  100% {
-    opacity: 1;
-    transform: scale3d(1, 1, 1);
-  }
-}

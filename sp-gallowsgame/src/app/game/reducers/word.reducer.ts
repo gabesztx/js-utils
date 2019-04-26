@@ -31,13 +31,12 @@ export function reducer(state = initialState, action: WordActions.Actions): Stat
           if (key === action.payload) {
             return {
               ...item,
-              active: !item.active
+              active: true
             };
           }
           return item;
         })
       };
-
     default:
       return state;
   }
@@ -45,3 +44,5 @@ export function reducer(state = initialState, action: WordActions.Actions): Stat
 
 export const getLetters = (state: State) => state.letters;
 export const getLetterSelectId = (state: State) => state.selectedId;
+
+// TODO: map állandoan vissza dobja ha nincs változás akkor is

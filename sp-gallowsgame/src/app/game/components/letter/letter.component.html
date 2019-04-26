@@ -1,2 +1,3 @@
-<!--<div class="letter">0</div>-->
-<div class="letter" [ngClass]="{'active': active }">{{value}}</div>
+<div class="letter" [ngClass]="{'fade': letterShow, 'active': letterActive }">
+  {{letterValue}}
+</div>

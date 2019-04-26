@@ -35,7 +35,6 @@ export class GamePageComponent implements OnInit {
       select(fromGame.getSelectLetters),
       take(1)
     );
-    // this.letters$.subscribe((res) => {});
     // this.selectedLetter$ = this.store.pipe(select(fromGame.getSelectLetterItem));
     // this.selectedLetter$.subscribe((res) => {});
     /*this.selectLetter$ = this.store.pipe(select(fromGame.getSelectLetterId));
@@ -46,14 +45,15 @@ export class GamePageComponent implements OnInit {
       }
     });*/
     setTimeout(() => {
-      // this.store.dispatch(new WordActions.SetActiveItem(0));
-    }, 500);
+      this.store.dispatch(new WordActions.SetActiveItem(0));
+    }, 2000);
     setTimeout(() => {
       // this.store.dispatch(new WordActions.SetActiveItem(1));
-    }, 1000);
+      // this.store.dispatch(new WordActions.SetActiveItem(1));
+    }, 1500);
     setTimeout(() => {
       // this.store.dispatch(new WordActions.SetActiveItem(2));
-    }, 1500);
+    }, 3000);
     // this.store.dispatch(new WordActions.LoadLetters());
     // this.letters$ = this.inputRef.nativeElement;
     // this.inputElement.focus();

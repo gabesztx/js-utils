@@ -10,23 +10,9 @@ export class LettersListComponent implements OnChanges, OnInit {
   @Input() letters: Letter[];
   @Input() selectedId: number;
 
-  ngOnChanges(changes: SimpleChanges) {
-    // console.log('changes', changes);
-    /*if (!changes.selectedId.firstChange) {
-
-    } else {
-      // console.log('ELSŐ');
-    }*/
-  }
+  ngOnChanges(changes: SimpleChanges) {}
 
   ngOnInit() {
-    setTimeout(() => {
-      // this.selectedId = 0;
-      // console.log('trigger');
-      // this.letters[0].active = true;
-      // console.log('letter item', this.letters[0]);
-      // this.isActive = this.active;
-    }, 2000);
   }
 }
 
