@@ -46,10 +46,10 @@ export class GamePageComponent implements OnInit {
       }
     });*/
     setTimeout(() => {
-      this.store.dispatch(new WordActions.SetActiveItem(0));
+      // this.store.dispatch(new WordActions.SetActiveItem(0));
     }, 500);
     setTimeout(() => {
-      this.store.dispatch(new WordActions.SetActiveItem(1));
+      // this.store.dispatch(new WordActions.SetActiveItem(1));
     }, 1000);
     setTimeout(() => {
       // this.store.dispatch(new WordActions.SetActiveItem(2));
@@ -132,3 +132,10 @@ export class GamePageComponent implements OnInit {
   }
 }
 
+/*
+// setTimeout(() => {}, 400);
+const el = document.querySelector('.logo');
+el.classList.add('animScale');
+el.addEventListener('animationend', () => {
+  console.log('Animation ended');
+});*/

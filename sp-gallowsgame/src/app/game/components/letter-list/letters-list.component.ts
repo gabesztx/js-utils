@@ -11,11 +11,12 @@ export class LettersListComponent implements OnChanges, OnInit {
   @Input() selectedId: number;
 
   ngOnChanges(changes: SimpleChanges) {
-    if (!changes.selectedId.firstChange) {
-      // console.log('Change', this.selectedId);
+    // console.log('changes', changes);
+    /*if (!changes.selectedId.firstChange) {
+
     } else {
       // console.log('ELSŐ');
-    }
+    }*/
   }
 
   ngOnInit() {

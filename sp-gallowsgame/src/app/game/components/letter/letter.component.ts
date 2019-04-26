@@ -19,7 +19,7 @@ export class LetterComponent implements OnInit, OnChanges {
   }
 
   set active(isActive: boolean) {
-    console.log('SET', isActive);
+    // console.log('SET', isActive);
     this.letter.active = isActive;
   }
 
@@ -32,7 +32,7 @@ export class LetterComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.hasOwnProperty('selectedId')) {
+    /*if (changes.hasOwnProperty('selectedId')) {
       const selectedId = changes.selectedId;
       if (!selectedId.firstChange) {
         this.active = !this.active;
@@ -42,8 +42,7 @@ export class LetterComponent implements OnInit, OnChanges {
         // console.log('selectedId: ', this.selectedId, ' - ', id);
         // const value = selectedId.currentValue;
       }
-
-    }
+    }*/
   }
 
   ngOnInit() {
