@@ -13,12 +13,12 @@ const WORD = 'SUP'.split('').map(
 
 export interface State {
   letters: Letter[];
-  selectedId: number;
+  selected: number;
 }
 
 export const initialState: State = {
   letters: WORD,
-  selectedId: null,
+  selected: null,
 };
 
 export function reducer(state = initialState, action: WordActions.Actions): State {
@@ -26,7 +26,7 @@ export function reducer(state = initialState, action: WordActions.Actions): Stat
     case WordActions.WordActionsTypes.SetActiveLetter:
       return {
         ...state,
-        selectedId: action.payload,
+        selected: action.payload,
         letters: state.letters.map((item, key) => {
           if (key === action.payload) {
             return {
@@ -43,6 +43,6 @@ export function reducer(state = initialState, action: WordActions.Actions): Stat
 }
 
 export const getLetters = (state: State) => state.letters;
-export const getLetterSelectId = (state: State) => state.selectedId;
+export const getLetterSelect = (state: State) => state.selected;
 
 // TODO: map állandoan vissza dobja ha nincs változás akkor is

@@ -8,7 +8,7 @@ import { Letter } from '../../models/game.model';
 })
 export class LettersListComponent implements OnChanges, OnInit {
   @Input() letters: Letter[];
-  @Input() selectedId: number;
+  @Input() selected: number;
 
   ngOnChanges(changes: SimpleChanges) {}
 

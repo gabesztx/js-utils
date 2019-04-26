@@ -6,7 +6,6 @@ import { tap } from 'rxjs/internal/operators/tap';
 import { map, take } from 'rxjs/operators';
 import { WordActions } from '../../actions';
 
-// const WORD = 'SUPERCHARGE';
 const PATTERN = /^[A-Za-z]*$/;
 
 @Component({
@@ -16,63 +15,21 @@ const PATTERN = /^[A-Za-z]*$/;
 })
 
 export class GamePageComponent implements OnInit {
-  // public items: Observable<string[]>;
-  // public inputVal: string;
-  // public teszt: boolean;
-  // @ViewChild('letterInput') inputRef: ElementRef;
-  // public inputElement: any;
-  // public textArr: Array<any> = [];
-  // public wrongTextArr: Array<any> = [];
   letters$: Observable<any>;
-  selectLetterId$: Observable<any>;
-
-  constructor(private store: Store<fromGame.State>) {
-  }
+  selectLetter$: Observable<any>;
+  constructor(private store: Store<fromGame.State>) {}
 
   ngOnInit() {
-    this.selectLetterId$ = this.store.pipe(select(fromGame.getSelectLetterId));
-    this.letters$ = this.store.pipe(
-      select(fromGame.getSelectLetters),
-      take(1)
-    );
-    // this.selectedLetter$ = this.store.pipe(select(fromGame.getSelectLetterItem));
-    // this.selectedLetter$.subscribe((res) => {});
-    /*this.selectLetter$ = this.store.pipe(select(fromGame.getSelectLetterId));
-    this.selectLetter$.subscribe((id) => {
-      if (id !== null) {
-        // console.log('SelectLetter$: ', id);
-        this.textArr[id].active = true;
-      }
-    });*/
-    setTimeout(() => {
-      this.store.dispatch(new WordActions.SetActiveItem(0));
-    }, 2000);
-    setTimeout(() => {
-      // this.store.dispatch(new WordActions.SetActiveItem(1));
-      // this.store.dispatch(new WordActions.SetActiveItem(1));
-    }, 1500);
-    setTimeout(() => {
-      // this.store.dispatch(new WordActions.SetActiveItem(2));
-    }, 3000);
-    // this.store.dispatch(new WordActions.LoadLetters());
-    // this.letters$ = this.inputRef.nativeElement;
-    // this.inputElement.focus();
-    // this.addLetters();
-    // this.addInputEvent();
+    this.selectLetter$ = this.store.pipe(select(fromGame.getSelectLetter));
+    this.letters$ = this.store.pipe(select(fromGame.getSelectLetters), take(1));
   }
-
-  addLetters() {
-  }
-
   clearInput(inputEl: any) {
     console.log('clearInput');
     inputEl.value = '';
   }
-
   logInputValue(inputVal: any) {
     console.log('logInputValue', inputVal);
   }
-
   addInputEvent() {
     /*const typeInput$ = fromEvent(this.inputElement, 'keypress')
       .pipe(
@@ -133,6 +90,16 @@ export class GamePageComponent implements OnInit {
 }
 
 /*
+setTimeout(() => {
+  // this.store.dispatch(new WordActions.SetActiveItem(0));
+}, 2000);
+setTimeout(() => {
+  // this.store.dispatch(new WordActions.SetActiveItem(1));
+  // this.store.dispatch(new WordActions.SetActiveItem(1));
+}, 1500);
+setTimeout(() => {
+  // this.store.dispatch(new WordActions.SetActiveItem(2));
+}, 3000);
 // setTimeout(() => {}, 400);
 const el = document.querySelector('.logo');
 el.classList.add('animScale');

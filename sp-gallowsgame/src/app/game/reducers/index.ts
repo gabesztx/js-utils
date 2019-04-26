@@ -22,7 +22,7 @@ export const getGameState = createFeatureSelector<State, GameState>('game');
 export const getWordState = createSelector(getGameState, state => state.word);
 
 export const getSelectLetters = createSelector(getWordState, fromWord.getLetters);
-export const getSelectLetterId = createSelector(getWordState, fromWord.getLetterSelectId);
+export const getSelectLetter = createSelector(getWordState, fromWord.getLetterSelect);
 
 /*export const getSelectLetterItem = createSelector(
   getSelectLetters,
