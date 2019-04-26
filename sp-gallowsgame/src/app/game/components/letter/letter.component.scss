@@ -1,19 +1,4 @@
-$scaleValue: 0.5;
-@mixin fadeInAnim {
-  animation-name: fadeIn;
-  animation-duration: 1s;
-  animation-fill-mode: both;
-}
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale3d($scaleValue, $scaleValue, $scaleValue);
-  }
-  100% {
-    opacity: 1;
-    transform: scale3d(1, 1, 1);
-  }
-}
+@import '../../../../varible';
 
 :host {
   display: flex;
