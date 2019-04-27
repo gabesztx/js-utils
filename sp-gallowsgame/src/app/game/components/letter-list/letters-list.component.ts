@@ -12,7 +12,6 @@ export class LettersListComponent implements OnChanges, OnInit {
 
   ngOnChanges(changes: SimpleChanges) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 }
 

@@ -2,18 +2,16 @@
   <div class="wordsLetterContent">
     <app-letter-list
       [letters]="letters$ | async"
-      [selected]="selectLetter$ | async">
+      [selected]="selected$ | async">
     </app-letter-list>
   </div>
   <div class="letterInputContent">
-    <input #letterInput
-           type="text"
-           class="letterInput"
-           [value]="inputValue$ | async"
+    <input type="text" class="letterInput"
+           #letterInput
+           [value]="inputElementValue$ | async"
            [maxLength]="1">
   </div>
 </div>
-
 
 <!--  <div class="wordsBoardGuesses">-->
 <!--    <div class="textItem" *ngFor="let item of wrongTextArr">{{item}}</div>-->

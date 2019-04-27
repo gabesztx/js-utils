@@ -1,9 +1,19 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, OnDestroy, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import * as fromGame from '../../reducers';
-import { Observable, fromEvent, of, pipe, combineLatest } from 'rxjs';
-import { distinctUntilChanged, filter, map, pluck, startWith, take, share, merge, switchMap, scan } from 'rxjs/operators';
-import { tap } from 'rxjs/internal/operators/tap';
+import { Observable, fromEvent, of, pipe, combineLatest, Subscription } from 'rxjs';
+import {
+  distinctUntilChanged,
+  map,
+  pluck,
+  take,
+  filter,
+  startWith,
+  share,
+  merge,
+  switchMap,
+  scan
+} from 'rxjs/operators';
 import { WordActions } from '../../actions';
 import { Letter } from '../../models/game.model';
 
@@ -12,48 +22,55 @@ const PATTERN = /^[A-Za-z]*$/;
 @Component({
   selector: 'app-game-page',
   templateUrl: './game-page.component.html',
-  styleUrls: ['./game-page.component.scss']
+  styleUrls: ['./game-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class GamePageComponent implements OnInit {
+export class GamePageComponent implements OnInit, OnDestroy {
   @ViewChild('letterInput') inputRef: ElementRef;
-  letters$: Observable<Letter[]>;
-  inputValue$: Observable<string>;
-  selectLetter$: Observable<number>;
+
   public inputElement: HTMLElement;
+
+  letters$: Observable<Letter[]>;
+  inputElementValue$: Observable<string>;
+  selected$: Observable<number>;
+  keyInputValue$: Subscription;
 
   constructor(private store: Store<fromGame.State>) {
   }
 
   ngOnInit() {
-    this.inputValue$ = this.store.pipe(select(fromGame.getSelectInputValue));
-    this.selectLetter$ = this.store.pipe(select(fromGame.getSelectLetter));
+    this.inputElementValue$ = this.store.pipe(select(fromGame.getSelectInputValue));
+    this.selected$ = this.store.pipe(select(fromGame.getSelectLetter));
     this.letters$ = this.store.pipe(select(fromGame.getSelectLetters), take(1));
+
     this.inputElement = this.inputRef.nativeElement;
-    this.addInputEvent();
+    this.inputElement.focus();
+
+    this.addKeyEvent();
   }
 
-  addInputEvent() {
-    this.inputElement.focus();
-    const keysInput$ = fromEvent(this.inputElement, 'keydown').pipe(
-      map(event => this.getValidInput(event) ? event : {key: ''}),
+  addKeyEvent() {
+    this.keyInputValue$ = fromEvent(this.inputElement, 'keydown').pipe(
+      map((e: KeyboardEvent) => {
+        e.preventDefault();
+        const keyIsValid = this.getKeyIsValide(e);
+        return !keyIsValid ? event : {key: ''};
+      }),
       pluck('key'),
       distinctUntilChanged()
-    );
-    keysInput$.subscribe((res: any) => {
-      this.store.dispatch(new WordActions.SetInputValue(res));
-    });
+    ).subscribe((value: string) =>
+      this.store.dispatch(new WordActions.SetInputValue(value)));
   }
 
-  getIsValidValue = (val): boolean => PATTERN.test(val);
+  getKeyIsValide(e: KeyboardEvent): boolean {
+    return !PATTERN.test(e.key) || !(e.key.length === 1);
+  }
 
-  getValidInput(event): boolean {
-    const value = event.key;
-    const valueNumber = value.trim().length === 1;
-    const valueIsValid = !this.getIsValidValue(value) || !valueNumber;
-    if (valueIsValid) {
-      event.preventDefault();
-    }
-    return !valueIsValid;
+  ngOnDestroy() {
+    this.keyInputValue$.unsubscribe();
   }
 }
+
+// validPattern = (val): boolean => PATTERN.test(val);
+// TODO: wrong letters

@@ -1,8 +1,7 @@
 import * as WordActions from '../actions/word.actions';
 import { Letter } from '../models/game.model';
 
-// const WORD = 'SUPERCHARGE'.split('').map(
-const WORD = 'SUP'.split('').map(
+const WORD = 'SUPERCHARGE'.split('').map(
   (item, key) => {
     return {
       id: key,

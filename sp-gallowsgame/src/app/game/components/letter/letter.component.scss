@@ -10,12 +10,15 @@
   margin: 10px;
   font-size: 30px;
   background-color: #191919;
+
   .letter {
     opacity: 0;
     transform: scale3d($scaleValue, $scaleValue, $scaleValue);
+
     &.fade {
       @include fadeInAnim;
     }
+
     &.active {
       opacity: 1;
       transform: scale3d(1, 1, 1);
