@@ -23,6 +23,7 @@ export const getWordState = createSelector(getGameState, state => state.word);
 
 export const getSelectLetters = createSelector(getWordState, fromWord.getLetters);
 export const getSelectLetter = createSelector(getWordState, fromWord.getLetterSelect);
+export const getSelectInputValue = createSelector(getWordState, fromWord.getInputValue);
 
 /*export const getSelectLetterItem = createSelector(
   getSelectLetters,

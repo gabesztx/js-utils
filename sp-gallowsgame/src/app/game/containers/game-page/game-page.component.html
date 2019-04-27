@@ -5,17 +5,17 @@
       [selected]="selectLetter$ | async">
     </app-letter-list>
   </div>
-</div>
-<!--[selectedId]="selectLetterId$ | async"-->
-
-<!--<div class="wordsLetterContent" *ngIf="letters$ | async as letters">
-  <div class="letterItem" *ngFor="let item of letters">
-    <div class="letter" [ngClass]="{'active': item.active}">{{item.value}}</div>
+  <div class="letterInputContent">
+    <input #letterInput
+           type="text"
+           class="letterInput"
+           [value]="inputValue$ | async"
+           [maxLength]="1"
+    >
   </div>
-</div>-->
-<!--<div class="letterInputContent">
-  <input #letterInput type="text" class="letterInput" [maxLength]="1">
-</div>-->
+</div>
+
+
 <!--  <div class="wordsBoardGuesses">-->
 <!--    <div class="textItem" *ngFor="let item of wrongTextArr">{{item}}</div>-->
 <!--  </div>-->
