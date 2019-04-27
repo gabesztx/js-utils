@@ -1,8 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import * as fromGame from '../../reducers';
-import { Observable, fromEvent, of } from 'rxjs';
-import { distinctUntilChanged, filter, map, pluck, startWith, take } from 'rxjs/operators';
+import { Observable, fromEvent, of, pipe, combineLatest } from 'rxjs';
+import { distinctUntilChanged, filter, map, pluck, startWith, take, share, merge, switchMap, scan } from 'rxjs/operators';
 import { tap } from 'rxjs/internal/operators/tap';
 import { WordActions } from '../../actions';
 import { Letter } from '../../models/game.model';
@@ -26,62 +26,101 @@ export class GamePageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.inputElement = this.inputRef.nativeElement;
     this.inputValue$ = this.store.pipe(select(fromGame.getSelectInputValue));
     this.selectLetter$ = this.store.pipe(select(fromGame.getSelectLetter));
     this.letters$ = this.store.pipe(select(fromGame.getSelectLetters), take(1));
-    this.inputElement.focus();
+    this.inputElement = this.inputRef.nativeElement;
     this.addInputEvent();
   }
 
   addInputEvent() {
-    const inputStream = fromEvent(this.inputElement, 'keydown')
-      .pipe(
-        map((e: KeyboardEvent) => e.key)
-        // startWith('k'),
-        // distinctUntilChanged(),
-      );
-
-
-    /*inputStream.subscribe(
-      val => {
-        console.log('Emit: ', val);
-        // this.store.dispatch(new WordActions.SetInputValue(val));
-      });*/
-
-    setTimeout(() => {
-
-    }, 2000);
-
-    setTimeout(() => {
-      // this.store.dispatch(new WordActions.SetInputValue('b'));
-    }, 4000);
-
-    setTimeout(() => {
-      // this.store.dispatch(new WordActions.SetInputValue('b'));
-    }, 6000);
-
+    this.inputElement.focus();
+    const keysInput$ = fromEvent(this.inputElement, 'keydown').pipe(
+      map(event => this.getValidInput(event) ? event : {key: ''}),
+      pluck('key'),
+      distinctUntilChanged()
+    );
+    keysInput$.subscribe((res: any) => {
+      this.store.dispatch(new WordActions.SetInputValue(res));
+    });
   }
 
-  getIsValidValue = (event): boolean => PATTERN.test(event.key);
+  getIsValidValue = (val): boolean => PATTERN.test(val);
 
   getValidInput(event): boolean {
-    // console.log('valueIsValide', valueIsValide);
-    // console.log('getIsValidValue', this.getIsValidValue(event));
-    // console.log('valueIsValide', valueIsValide);
-    // this.store.dispatch(new WordActions.SetInputValue(''));
-    const valueIsValide = event.key.trim().length === 1;
-    if (!this.getIsValidValue(event) || !valueIsValide) {
-      // if (!this.getIsValidValue(event)) {
-      //   console.log('Clear');
+    const value = event.key;
+    const valueNumber = value.trim().length === 1;
+    const valueIsValid = !this.getIsValidValue(value) || !valueNumber;
+    if (valueIsValid) {
       event.preventDefault();
-      return false;
     }
-    return true;
+    return !valueIsValid;
   }
 }
 
 
+/*this.inputValue$.subscribe(
+  (value) => {
+    // console.log('SUB VALUE', value);
+  }
+);*/
+/*  const inputHandler$ = fromEvent(this.inputElement, 'keydown')
+    .pipe(map((e: KeyboardEvent) => e.key),
+      map((value) => {
+        if (this.getValidInput(value)) {
+          return value;
+        }
+        return '';
+      }),
+    );*/
+// startWith({key: 'D'}),
+
+// const letters$ = of('1');
+
+// console.log('acc', acc, ' - ', 'value: ', value);
+/*const stream$ = combineLatest(keys$, letters$).pipe(
+  scan((acc, curr) => {
+    console.log('acc', acc, ' - ', 'value', curr);
+    return [];
+  }),
+  tap(x => console.log('value', x)),
+);*/
+
+/*const keyIsValide$ = keyEven$.pipe(
+  filter(e => {
+    // console.log('event', e);
+    return true;
+  })
+);*/
+// .pipe(pluck('key'));
+
+/*map((e: KeyboardEvent) => {
+  console.log(e);
+  // if (this.getValidInput(e.key){}
+})*/
+// this.getValidInput(e.key) ? e.key : e.preventDefault()),
+/*    keyIsValide$.subscribe(
+      val => {
+        console.log('EMIT', val);
+        // this.store.dispatch(new WordActions.SetInputValue(val));
+      });*/
+/*
+setTimeout(() => {
+
+}, 2000);
+
+setTimeout(() => {
+  // this.store.dispatch(new WordActions.SetInputValue('b'));
+}, 4000);
+
+setTimeout(() => {
+  // this.store.dispatch(new WordActions.SetInputValue('b'));
+}, 6000);*/
+/*switchMap((event) => {
+ /!* return of(value).pipe(
+    map(val => this.getValidInput(val) ? val : ''),
+  );*!/
+})*/
 /*const sub1 = typeInput$.pipe(pluck('element'))
   .subscribe(this.clearInput);
 const sub2 = typeInput$.pipe(pluck('value'))
