@@ -54,8 +54,7 @@ export class GamePageComponent implements OnInit, OnDestroy {
     this.keyInputValue$ = fromEvent(this.inputElement, 'keydown').pipe(
       map((e: KeyboardEvent) => {
         e.preventDefault();
-        const keyIsValid = this.getKeyIsValide(e);
-        return !keyIsValid ? event : {key: ''};
+        return this.getKeyIsValide(e.key) ? {key: ''} : event;
       }),
       pluck('key'),
       distinctUntilChanged()
@@ -63,8 +62,8 @@ export class GamePageComponent implements OnInit, OnDestroy {
       this.store.dispatch(new WordActions.SetInputValue(value)));
   }
 
-  getKeyIsValide(e: KeyboardEvent): boolean {
-    return !PATTERN.test(e.key) || !(e.key.length === 1);
+  getKeyIsValide(value: string): boolean {
+    return !PATTERN.test(value) || !(value.length === 1);
   }
 
   ngOnDestroy() {
