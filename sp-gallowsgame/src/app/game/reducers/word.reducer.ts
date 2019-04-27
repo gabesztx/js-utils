@@ -11,17 +11,19 @@ const WORD = 'SUPERCHARGE'.split('').map(
   });
 
 export interface State {
-  readonly letterItems: Letter[];
-  readonly wrongItems: Letter[];
+  readonly letterItem: Letter[];
+  readonly letter: any;
+  readonly letterItemWrong: Letter[];
+  readonly letterWrong: any;
   readonly inputValue: string;
-  readonly selected: number;
 }
 
 export const initialState: State = {
-  letterItems: WORD,
-  wrongItems: [],
+  letterItem: WORD,
+  letter: null,
+  letterItemWrong: [],
+  letterWrong: null,
   inputValue: '',
-  selected: null,
 };
 
 export function reducer(state = initialState, action: WordActions.WordActions): State {
@@ -30,8 +32,8 @@ export function reducer(state = initialState, action: WordActions.WordActions): 
       // console.log('SelectLetter', action.payload);
       return {
         ...state,
-        selected: action.payload,
-        letterItems: state.letterItems.map((item, key) => {
+        letter: action.payload,
+        letterItem: state.letterItem.map((item, key) => {
           if (key === action.payload) {
             return {
               ...item,
@@ -43,7 +45,6 @@ export function reducer(state = initialState, action: WordActions.WordActions): 
       };
     case WordActions.WordActionsTypes.SetInputValue:
       const letterValue = action.payload;
-      // console.log(letterValue);
       return {
         ...state,
         inputValue: letterValue
@@ -53,8 +54,12 @@ export function reducer(state = initialState, action: WordActions.WordActions): 
   }
 }
 
-export const getLetters = (state: State) => state.letterItems;
-export const getLetterSelect = (state: State) => state.selected;
+export const getLetterItem = (state: State) => state.letterItem;
+export const getLetter = (state: State) => state.letter;
+
+export const getWrongLetterItem = (state: State) => state.letterItemWrong;
+export const getWrongLetter = (state: State) => state.letterWrong;
+
 export const getInputValue = (state: State) => state.inputValue;
 
 // TODO: map állandoan vissza dobja ha nincs változás akkor is

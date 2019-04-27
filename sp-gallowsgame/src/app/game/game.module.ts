@@ -11,6 +11,7 @@ import { LettersListComponent } from './components/letter-list/letters-list.comp
 import { LetterComponent } from './components/letter/letter.component';
 
 import * as fromGame from './reducers';
+import { LetterWrongListComponent } from './components/letter-wrong-list/letter-wrong-list.component';
 
 @NgModule({
   imports: [
@@ -20,6 +21,6 @@ import * as fromGame from './reducers';
     StoreModule.forFeature('game', fromGame.reducers),
     EffectsModule.forFeature([GameEffects])
   ],
-  declarations: [GamePageComponent, LettersListComponent, LetterComponent],
+  declarations: [GamePageComponent, LettersListComponent, LetterComponent, LetterWrongListComponent],
 })
 export class GameModule { }

@@ -1,17 +1,24 @@
 <div class="gameComponent">
   <app-letter-list
-    [letters]="letters$ | async"
-    [selected]="selected$ | async">
+    [letterItem]="letterItem$ | async"
+    [item]="letter$ | async">
   </app-letter-list>
   <div class="letterInputContent">
-    <input type="text" class="letterInput"
-           #letterInput
+    <input #letterInput
+           type="text"
+           class="letterInput"
            [value]="letterInput$ | async"
            [maxLength]="1">
   </div>
-  <div class="wrongLetterContent">
+  <app-letter-wrong-list
+    [letterItem]="letterWrongItem$ | async"
+    [item]="letterWrong$ | async">
+    >
+  </app-letter-wrong-list>
+  <!--  <app-letter-wrong-list></app-letter-wrong-list>-->
+  <!--<div class="wrongLetterContent">
     <div class="textItem" *ngFor="let item of wrongTextArr">{{item}}</div>
-  </div>
+  </div>-->
 </div>
 
 <!--  <div class="wordsBoardGuesses">-->

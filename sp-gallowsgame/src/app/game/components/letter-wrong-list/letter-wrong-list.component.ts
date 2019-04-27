@@ -2,15 +2,14 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { Letter } from '../../models/game.model';
 
 @Component({
-  selector: 'app-letter-list',
-  templateUrl: './letter-list.component.html',
-  styleUrls: ['./letter-list.component.scss']
+  selector: 'app-letter-wrong-list',
+  templateUrl: './letter-wrong-list.component.html',
+  styleUrls: ['./letter-wrong-list.component.scss']
 })
-export class LettersListComponent implements OnChanges, OnInit {
+export class LetterWrongListComponent implements OnInit, OnChanges {
   @Input() letterItem: Letter[];
   @Input() item: any;
 
   ngOnChanges(changes: SimpleChanges) {}
   ngOnInit() {}
 }
-

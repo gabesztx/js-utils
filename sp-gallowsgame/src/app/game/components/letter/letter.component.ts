@@ -8,7 +8,8 @@ import { Letter } from '../../models/game.model';
 })
 export class LetterComponent implements OnChanges {
   @Input() letter: Letter;
-  @Input() selected: number;
+  @Input() item: number;
+
   private letterShow = false;
 
   get letterValue() {
@@ -24,7 +25,7 @@ export class LetterComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (!changes.selected.firstChange && this.letterId === this.selected) {
+    if (!changes.item.firstChange && this.letterId === this.item) {
       this.letterShow = true;
     }
   }
