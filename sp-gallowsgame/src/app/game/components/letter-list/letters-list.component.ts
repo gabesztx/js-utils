@@ -11,7 +11,6 @@ export class LettersListComponent implements OnChanges, OnInit {
   @Input() selected: number;
 
   ngOnChanges(changes: SimpleChanges) {}
-
   ngOnInit() {}
 }
 

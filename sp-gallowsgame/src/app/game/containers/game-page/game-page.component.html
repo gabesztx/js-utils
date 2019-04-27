@@ -1,15 +1,16 @@
 <div class="gameComponent">
-  <div class="wordsLetterContent">
-    <app-letter-list
-      [letters]="letters$ | async"
-      [selected]="selected$ | async">
-    </app-letter-list>
-  </div>
+  <app-letter-list
+    [letters]="letters$ | async"
+    [selected]="selected$ | async">
+  </app-letter-list>
   <div class="letterInputContent">
     <input type="text" class="letterInput"
            #letterInput
-           [value]="inputElementValue$ | async"
+           [value]="letterInput$ | async"
            [maxLength]="1">
+  </div>
+  <div class="wrongLetterContent">
+
   </div>
 </div>
 

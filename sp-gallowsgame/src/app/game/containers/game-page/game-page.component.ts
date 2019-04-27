@@ -32,7 +32,7 @@ export class GamePageComponent implements OnInit, OnDestroy {
   public inputElement: HTMLElement;
 
   letters$: Observable<Letter[]>;
-  inputElementValue$: Observable<string>;
+  letterInput$: Observable<string>;
   selected$: Observable<number>;
   keyInputValue$: Subscription;
 
@@ -40,9 +40,9 @@ export class GamePageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.inputElementValue$ = this.store.pipe(select(fromGame.getSelectInputValue));
     this.selected$ = this.store.pipe(select(fromGame.getSelectLetter));
     this.letters$ = this.store.pipe(select(fromGame.getSelectLetters), take(1));
+    this.letterInput$ = this.store.pipe(select(fromGame.getSelectInputValue));
 
     this.inputElement = this.inputRef.nativeElement;
     this.inputElement.focus();

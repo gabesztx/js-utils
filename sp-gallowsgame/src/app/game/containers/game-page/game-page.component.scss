@@ -1,12 +1,11 @@
 :host {
   .gameComponent {
     padding-top: 30px;
-    .wordsLetterContent {}
+    font-size: 25px;
     .letterInputContent {
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 25px;
       padding: 10px;
       .letterInput {
         color: #191919;
@@ -20,18 +19,17 @@
       }
     }
 
-    .wordsBoardGuesses {
+    .wrongLetterContent {
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 20px;
       padding: 10px;
-      .textItem {
+      /*.textItem {
         display: flex;
         justify-content: center;
         align-items: center;
         margin: 10px;
-      }
+      }*/
     }
   }
 }
