@@ -30,6 +30,7 @@ export class GamePageComponent implements OnInit, OnDestroy {
   @ViewChild('letterInput') inputRef: ElementRef;
 
   public inputElement: HTMLElement;
+  public wrongTextArr = ['1', '2', '3'];
 
   letters$: Observable<Letter[]>;
   letterInput$: Observable<string>;
@@ -47,10 +48,11 @@ export class GamePageComponent implements OnInit, OnDestroy {
     this.inputElement = this.inputRef.nativeElement;
     this.inputElement.focus();
 
-    this.addKeyEvent();
+    this.inputKeyEvent();
+
   }
 
-  addKeyEvent() {
+  inputKeyEvent() {
     this.keyInputValue$ = fromEvent(this.inputElement, 'keydown').pipe(
       map((e: KeyboardEvent) => {
         e.preventDefault();
@@ -73,3 +75,13 @@ export class GamePageComponent implements OnInit, OnDestroy {
 
 // validPattern = (val): boolean => PATTERN.test(val);
 // TODO: wrong letters
+
+/*setTimeout(() => {
+  this.store.dispatch(new WordActions.SelectLetter(0));
+  setTimeout(() => {
+    this.store.dispatch(new WordActions.SelectLetter(1));
+    setTimeout(() => {
+      this.store.dispatch(new WordActions.SelectLetter(2));
+    }, 1000);
+  }, 1000);
+}, 1000);*/

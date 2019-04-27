@@ -11,22 +11,23 @@ const WORD = 'SUPERCHARGE'.split('').map(
   });
 
 export interface State {
-  letterItems: Letter[];
-  wrongItems: Letter[];
-  inputEl: string;
-  selected: number;
+  readonly letterItems: Letter[];
+  readonly wrongItems: Letter[];
+  readonly inputValue: string;
+  readonly selected: number;
 }
 
 export const initialState: State = {
   letterItems: WORD,
   wrongItems: [],
-  inputEl: '',
+  inputValue: '',
   selected: null,
 };
 
 export function reducer(state = initialState, action: WordActions.WordActions): State {
   switch (action.type) {
     case WordActions.WordActionsTypes.SelectLetter:
+      // console.log('SelectLetter', action.payload);
       return {
         ...state,
         selected: action.payload,
@@ -41,9 +42,11 @@ export function reducer(state = initialState, action: WordActions.WordActions): 
         })
       };
     case WordActions.WordActionsTypes.SetInputValue:
+      const letterValue = action.payload;
+      // console.log(letterValue);
       return {
         ...state,
-        inputEl: action.payload
+        inputValue: letterValue
       };
     default:
       return state;
@@ -52,6 +55,6 @@ export function reducer(state = initialState, action: WordActions.WordActions): 
 
 export const getLetters = (state: State) => state.letterItems;
 export const getLetterSelect = (state: State) => state.selected;
-export const getInputValue = (state: State) => state.inputEl;
+export const getInputValue = (state: State) => state.inputValue;
 
 // TODO: map állandoan vissza dobja ha nincs változás akkor is
