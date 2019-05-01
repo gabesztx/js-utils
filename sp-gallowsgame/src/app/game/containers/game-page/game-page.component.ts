@@ -34,8 +34,8 @@ export class GamePageComponent implements OnInit, OnDestroy {
 
   letterItem$: Observable<Letter[]>;
   letter$: Observable<any>;
-  
-  letterWrongItem$: Observable<Letter[]>;
+
+  letterWrongItem$: Observable<string[]>;
   letterWrong$: Observable<any>;
 
   letterInput$: Observable<string>;
@@ -54,6 +54,7 @@ export class GamePageComponent implements OnInit, OnDestroy {
 
     this.inputElement = this.inputRef.nativeElement;
     this.inputElement.focus();
+
     this.inputKeyEvent();
   }
 
@@ -61,14 +62,14 @@ export class GamePageComponent implements OnInit, OnDestroy {
     this.keyInputValue$ = fromEvent(this.inputElement, 'keydown')
       .pipe(
         map((e: KeyboardEvent) => {
-          e.preventDefault();
+          e.preventDefault(); // TODO: nem biztos hogy a map alatt ez a preventDefault valide :/
           return this.getKeyIsValide(e.key) ? {key: ''} : event;
         }),
         pluck('key'),
         distinctUntilChanged())
-      .subscribe((value: string) =>
-        this.store.dispatch(new WordActions.SetInputValue(value))
-      );
+      .subscribe((value: string) => {
+        this.store.dispatch(new WordActions.SetInputValue(value));
+      });
   }
 
   getKeyIsValide(value: string): boolean {

@@ -10,7 +10,8 @@ export class LettersListComponent implements OnChanges, OnInit {
   @Input() letterItem: Letter[];
   @Input() item: any;
 
-  ngOnChanges(changes: SimpleChanges) {}
+  ngOnChanges(changes: SimpleChanges) {
+  }
   ngOnInit() {}
 }
 

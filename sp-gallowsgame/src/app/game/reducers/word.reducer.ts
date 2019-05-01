@@ -1,7 +1,8 @@
 import * as WordActions from '../actions/word.actions';
 import { Letter } from '../models/game.model';
 
-const WORD = 'SUPERCHARGE'.split('').map(
+// const WORD = 'SUPERCHARGE'.split('').map(
+const WORD = 'supercharge'.split('').map(
   (item, key) => {
     return {
       id: key,
@@ -13,7 +14,7 @@ const WORD = 'SUPERCHARGE'.split('').map(
 export interface State {
   readonly letterItem: Letter[];
   readonly letter: any;
-  readonly letterItemWrong: Letter[];
+  readonly letterItemWrong: any[];
   readonly letterWrong: any;
   readonly inputValue: string;
 }
@@ -28,11 +29,10 @@ export const initialState: State = {
 
 export function reducer(state = initialState, action: WordActions.WordActions): State {
   switch (action.type) {
-    case WordActions.WordActionsTypes.SelectLetter:
-      // console.log('SelectLetter', action.payload);
+    case WordActions.WordActionsTypes.SetLetter:
       return {
         ...state,
-        letter: action.payload,
+        /*letter: action.payload,
         letterItem: state.letterItem.map((item, key) => {
           if (key === action.payload) {
             return {
@@ -41,13 +41,45 @@ export function reducer(state = initialState, action: WordActions.WordActions): 
             };
           }
           return item;
-        })
+        })*/
       };
     case WordActions.WordActionsTypes.SetInputValue:
+      // return value.value === letterValue && !value.active;
       const letterValue = action.payload;
+      const letterItemMatches = state.letterItem.filter((value) => {
+        return value.value === letterValue;
+      });
+      if (letterItemMatches.length) {
+        return {
+          ...state,
+          inputValue: letterValue,
+          letter: letterItemMatches,
+          letterItem: state.letterItem.map(item => {
+            if (letterValue === item.value) {
+              return {
+                ...item,
+                active: true
+              };
+            }
+            return item;
+          })
+        };
+      } else if (letterValue.length) {
+        const letter = {
+          id: state.letterItemWrong.length,
+          value: letterValue,
+          active: true
+        };
+        return {
+          ...state,
+          inputValue: letterValue,
+          letterWrong: letter,
+          letterItemWrong: [...state.letterItemWrong, letter]
+        };
+      }
       return {
         ...state,
-        inputValue: letterValue
+        inputValue: letterValue,
       };
     default:
       return state;

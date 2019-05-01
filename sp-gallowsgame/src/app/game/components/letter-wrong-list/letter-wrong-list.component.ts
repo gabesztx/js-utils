@@ -9,7 +9,14 @@ import { Letter } from '../../models/game.model';
 export class LetterWrongListComponent implements OnInit, OnChanges {
   @Input() letterItem: Letter[];
   @Input() item: any;
+  // private firstChange: boolean;
 
-  ngOnChanges(changes: SimpleChanges) {}
-  ngOnInit() {}
+  ngOnChanges(changes: SimpleChanges) {
+    /*this.firstChange = changes.item.firstChange;
+    if (!changes.item.firstChange) {
+      this.letterItem.push(this.item);
+    }*/
+  }
+  ngOnInit() {
+  }
 }

@@ -3,7 +3,7 @@ $scaleValue: 0.5;
 @mixin fadeInAnim {
   animation-name: fadeIn;
   animation-duration: 1s;
-  animation-fill-mode: both;
+  animation-fill-mode: forwards;
 }
 @keyframes fadeIn {
   from {
