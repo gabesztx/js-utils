@@ -1,5 +1,4 @@
-<!--<div class="wrongLetter" *ngFor="let letter of letterItem">
-  <div class="letter" [ngClass]="{'fade': letter.active && !firstChange, 'active': letter.active }">
-    {{letter.value}}
-  </div>
-</div>-->
+<app-letter-wrong *ngFor="let letter of letterItem"
+            [letter]="letter"
+            [item]="item">
+</app-letter-wrong>

@@ -8,7 +8,6 @@ import { Letter } from '../../models/game.model';
 })
 export class LetterComponent implements OnChanges {
   @Input() letter: Letter;
-  @Input() isWrong: boolean;
   @Input() item: [];
 
   private letterShow = false;
@@ -26,7 +25,7 @@ export class LetterComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (!changes.item.firstChange && !this.isWrong) {
+    if (!changes.item.firstChange) {
       this.item.forEach((item: any) => {
         if (this.letterId === item.id && !item.active) {
           this.letterShow = true;
@@ -35,5 +34,4 @@ export class LetterComponent implements OnChanges {
     }
   }
 }
-
 // if (!changes.item.firstChange && this.letterId === this.item.id) {

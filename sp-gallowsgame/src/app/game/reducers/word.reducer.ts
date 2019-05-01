@@ -68,13 +68,16 @@ export function reducer(state = initialState, action: WordActions.WordActions): 
         const letter = {
           id: state.letterItemWrong.length,
           value: letterValue,
-          active: true
+          active: false
         };
         return {
           ...state,
           inputValue: letterValue,
           letterWrong: letter,
-          letterItemWrong: [...state.letterItemWrong, letter]
+          letterItemWrong: [...state.letterItemWrong, {
+            ...letter,
+            active: true
+          }]
         };
       }
       return {
