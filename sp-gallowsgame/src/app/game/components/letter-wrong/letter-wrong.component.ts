@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { Letter } from '../../models/game.model';
+import { LetterItem } from '../../models/game.model';
 
 @Component({
   selector: 'app-letter-wrong',
@@ -7,7 +7,7 @@ import { Letter } from '../../models/game.model';
   styleUrls: ['./letter-wrong.component.scss']
 })
 export class LetterWrongComponent implements OnChanges {
-  @Input() letter: Letter;
+  @Input() letter: LetterItem;
   @Input() item: [];
 
   private letterShow = false;

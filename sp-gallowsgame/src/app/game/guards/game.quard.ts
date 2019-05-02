@@ -1,18 +1,20 @@
+import { Store } from '@ngrx/store';
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { GameActions } from '../actions';
+import { GameActions, WordActions } from '../actions';
 import * as fromGame from '../reducers';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GameDataGuard implements CanActivate {
-  constructor() {
+  constructor(private store: Store<fromGame.State>) {
   }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
-    return true;
+    this.store.dispatch(new WordActions.LoadLetterData());
+    return false;
   }
 }
 

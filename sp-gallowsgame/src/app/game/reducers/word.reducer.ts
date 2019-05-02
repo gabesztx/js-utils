@@ -1,18 +1,18 @@
 import * as WordActions from '../actions/word.actions';
-import { Letter } from '../models/game.model';
+import { LetterItem } from '../models/game.model';
 
 // const WORD = 'SUPERCHARGE'.split('').map(
-const WORD = 'supercharge'.split('').map(
-  (item, key) => {
-    return {
-      id: key,
-      value: item,
-      active: false,
-    };
-  });
+// const WORD = 'supercharge'.split('').map(
+//   (item, key) => {
+//     return {
+//       id: key,
+//       value: item,
+//       active: false,
+//     };
+//   });
 
 export interface State {
-  readonly letterItem: Letter[];
+  readonly letterItem: LetterItem[];
   readonly letter: any;
   readonly letterItemWrong: any[];
   readonly letterWrong: any;
@@ -20,7 +20,7 @@ export interface State {
 }
 
 export const initialState: State = {
-  letterItem: WORD,
+  letterItem: [],
   letter: null,
   letterItemWrong: [],
   letterWrong: null,
@@ -29,20 +29,6 @@ export const initialState: State = {
 
 export function reducer(state = initialState, action: WordActions.WordActions): State {
   switch (action.type) {
-    case WordActions.WordActionsTypes.SetLetter:
-      return {
-        ...state,
-        /*letter: action.payload,
-        letterItem: state.letterItem.map((item, key) => {
-          if (key === action.payload) {
-            return {
-              ...item,
-              active: true
-            };
-          }
-          return item;
-        })*/
-      };
     case WordActions.WordActionsTypes.SetInputValue:
       // return value.value === letterValue && !value.active;
       const letterValue = action.payload;

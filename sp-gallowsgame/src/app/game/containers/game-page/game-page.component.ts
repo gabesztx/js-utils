@@ -15,7 +15,7 @@ import {
   scan, tap
 } from 'rxjs/operators';
 import { WordActions } from '../../actions';
-import { Letter } from '../../models/game.model';
+import { LetterItem } from '../../models/game.model';
 
 const PATTERN = /^[A-Za-z]*$/;
 
@@ -32,7 +32,7 @@ export class GamePageComponent implements OnInit, OnDestroy {
   public inputElement: HTMLElement;
   public keyInputValue$: Subscription;
 
-  letterItem$: Observable<Letter[]>;
+  letterItem$: Observable<LetterItem[]>;
   letter$: Observable<any>;
 
   letterWrongItem$: Observable<string[]>;
@@ -59,6 +59,7 @@ export class GamePageComponent implements OnInit, OnDestroy {
   }
 
   inputKeyEvent() {
+    // TODO: input logic in inputTemplate
     this.keyInputValue$ = fromEvent(this.inputElement, 'keydown')
       .pipe(
         map((e: KeyboardEvent) => {

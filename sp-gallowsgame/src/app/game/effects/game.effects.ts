@@ -13,14 +13,17 @@ import * as fromGame from '../reducers';
 @Injectable()
 export class GameEffects {
   @Effect({dispatch: false})
-  // @Effect()
-  resetCards$ = this.actions$.pipe(
-    ofType(WordActionsTypes.SetLetterValue),
-    map((action: any) => action.payload),
-    tap(val => this.store.dispatch(new SetInputValue(val))),
+    // @Effect()
+  loadLetterData$ = this.actions$.pipe(
+    ofType(WordActionsTypes.LoadLetterData),
+    switchMap(value => {
+      console.log('switchMap', value);
+      return of(true);
+    })
+    // tap(val => console.log('Log:', val)),
     // map((action: any) => action.payload),
     // switchMap(value => {}),
-      // return of(new SetInputValue(value));
+    // return of(new SetInputValue(value));
     /*switchMap(cards => {
       return [
         new ResetStatus(),
