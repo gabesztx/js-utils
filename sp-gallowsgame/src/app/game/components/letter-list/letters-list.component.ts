@@ -11,6 +11,8 @@ export class LettersListComponent implements OnChanges, OnInit {
   @Input() item: any;
 
   ngOnChanges(changes: SimpleChanges) {
+    // console.log('LettersListComponent', this.letterItem);
+    console.log('LettersListComponent', this.item);
   }
   ngOnInit() {}
 }

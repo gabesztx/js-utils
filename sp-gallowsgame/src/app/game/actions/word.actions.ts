@@ -2,8 +2,8 @@ import { Action } from '@ngrx/store';
 
 export enum WordActionsTypes {
   LoadLetterData = '[Word] Load Letter Data',
+  SetLetterData = '[Word] Set Letter Data',
   SetLetterValue = '[Word] Set Letter Value',
-  SetLetter = '[Word] Set Letter',
   SetInputValue = '[Word] Set Input Value',
 }
 
@@ -11,18 +11,14 @@ export class LoadLetterData implements Action {
   readonly type = WordActionsTypes.LoadLetterData;
 }
 
-export class SetLetterValue implements Action {
-  readonly type = WordActionsTypes.SetLetterValue;
-
-  constructor(public payload: any) {
-  }
+export class SetLetterData implements Action {
+  readonly type = WordActionsTypes.SetLetterData;
+  constructor(public payload: any) {}
 }
 
-export class SetLetter implements Action {
-  readonly type = WordActionsTypes.SetLetter;
-
-  constructor(public payload: any) {
-  }
+export class SetLetterValue implements Action {
+  readonly type = WordActionsTypes.SetLetterValue;
+  constructor(public payload: any) {}
 }
 
 export class SetInputValue implements Action {
@@ -34,6 +30,6 @@ export class SetInputValue implements Action {
 
 export type WordActions =
   | LoadLetterData
+  | SetLetterData
   | SetLetterValue
-  | SetLetter
   | SetInputValue;

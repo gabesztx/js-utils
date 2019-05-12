@@ -24,9 +24,15 @@ export class LetterComponent implements OnChanges {
     return this.letter.active;
   }
 
+  constructor() {
+    // console.log('LELELEL');
+  }
+
   ngOnChanges(changes: SimpleChanges) {
+    console.log('LetterComponent CHANGES', this.letter);
     if (!changes.item.firstChange) {
       this.item.forEach((item: any) => {
+        // console.log('ITEM', item);
         if (this.letterId === item.id && !item.active) {
           this.letterShow = true;
         }
@@ -34,4 +40,5 @@ export class LetterComponent implements OnChanges {
     }
   }
 }
+
 // if (!changes.item.firstChange && this.letterId === this.item.id) {

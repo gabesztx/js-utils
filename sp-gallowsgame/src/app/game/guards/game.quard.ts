@@ -1,9 +1,10 @@
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs';
-import { GameActions, WordActions } from '../actions';
+import { WordActions } from '../actions';
 import * as fromGame from '../reducers';
+import { Observable } from 'rxjs';
+import { map, take, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -13,8 +14,16 @@ export class GameDataGuard implements CanActivate {
   }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
-    this.store.dispatch(new WordActions.LoadLetterData());
-    return false;
+    return this.store.pipe(select(fromGame.getSelectLetterItem)).pipe(
+      map(data => {
+        if (!data.length) {
+          this.store.dispatch(new WordActions.LoadLetterData());
+          return false;
+        }
+        return true;
+      }),
+      take(1)
+    );
   }
 }
 

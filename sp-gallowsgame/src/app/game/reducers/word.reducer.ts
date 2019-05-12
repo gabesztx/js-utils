@@ -1,5 +1,6 @@
 import * as WordActions from '../actions/word.actions';
 import { LetterItem } from '../models/game.model';
+import { SetLetterData } from '../actions/word.actions';
 
 // const WORD = 'SUPERCHARGE'.split('').map(
 // const WORD = 'supercharge'.split('').map(
@@ -29,9 +30,16 @@ export const initialState: State = {
 
 export function reducer(state = initialState, action: WordActions.WordActions): State {
   switch (action.type) {
+    case WordActions.WordActionsTypes.SetLetterData:
+      return {
+        ...state,
+        letterItem: action.payload
+      };
+
     case WordActions.WordActionsTypes.SetInputValue:
       // return value.value === letterValue && !value.active;
       const letterValue = action.payload;
+      // console.log('LetterValue', letterValue);
       const letterItemMatches = state.letterItem.filter((value) => {
         return value.value === letterValue;
       });
