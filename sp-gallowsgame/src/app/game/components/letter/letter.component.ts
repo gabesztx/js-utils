@@ -29,7 +29,7 @@ export class LetterComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log('LetterComponent CHANGES', this.letter);
+    // console.log('LetterComponent CHANGES', this.letter);
     if (!changes.item.firstChange) {
       this.item.forEach((item: any) => {
         // console.log('ITEM', item);

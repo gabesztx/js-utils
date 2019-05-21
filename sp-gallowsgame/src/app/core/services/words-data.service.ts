@@ -28,10 +28,46 @@ export class WordsDataService {
       return this.letterItems;
     }
     return this.loadLetters();
-    // return this.letterItems;
   }
 
-
-  // transformWord(){
-  // }
+  isLetterMatches(letter: any, letterItem: any): Observable<any> {
+    /*
+    const letterValue = action.payload;
+    const letterItemMatches = state.letterItem.filter((value) => {
+      return value.value === letterValue;
+    });
+    if (letterItemMatches.length) {
+      return {
+        ...state,
+        inputValue: letterValue,
+        letter: letterItemMatches,
+        letterItem: state.letterItem.map(item => {
+          if (letterValue === item.value) {
+            return {
+              ...item,
+              active: true
+            };
+          }
+          return item;
+        })
+      };
+    } else if (letterValue.length) {
+      const letter = {
+        id: state.letterItemWrong.length,
+        value: letterValue,
+        active: false
+      };
+      return {
+        ...state,
+        inputValue: letterValue,
+        letterWrong: letter,
+        letterItemWrong: [...state.letterItemWrong, {
+          ...letter,
+          active: true
+        }]
+      };
+    }
+    */
+    return of('Hello');
+  }
 }

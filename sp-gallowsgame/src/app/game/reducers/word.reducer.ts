@@ -38,44 +38,17 @@ export function reducer(state = initialState, action: WordActions.WordActions): 
 
     case WordActions.WordActionsTypes.SetInputValue:
       const letterValue = action.payload;
-      // console.log('LetterValue', letterValue);
-      /*const letterItemMatches = state.letterItem.filter((value) => {
-        return value.value === letterValue;
-      });
-      if (letterItemMatches.length) {
-        return {
-          ...state,
-          inputValue: letterValue,
-          letter: letterItemMatches,
-          letterItem: state.letterItem.map(item => {
-            if (letterValue === item.value) {
-              return {
-                ...item,
-                active: true
-              };
-            }
-            return item;
-          })
-        };
-      } else if (letterValue.length) {
-        const letter = {
-          id: state.letterItemWrong.length,
-          value: letterValue,
-          active: false
-        };
-        return {
-          ...state,
-          inputValue: letterValue,
-          letterWrong: letter,
-          letterItemWrong: [...state.letterItemWrong, {
-            ...letter,
-            active: true
-          }]
-        };
-      }*/
       return {
         ...state,
         inputValue: letterValue,
+      };
+    case WordActions.WordActionsTypes.SetLetter:
+      console.log('STORE - SetLetter: ', action.payload);
+      // TODO: innét folytatjuk,
+      return {
+        ...state,
+        letter: action.payload
+        // inputValue: letterValue,
       };
     default:
       return state;
@@ -84,10 +57,8 @@ export function reducer(state = initialState, action: WordActions.WordActions): 
 
 export const getLetterItem = (state: State) => state.letterItem;
 export const getLetter = (state: State) => state.letter;
-
 export const getWrongLetterItem = (state: State) => state.letterItemWrong;
 export const getWrongLetter = (state: State) => state.letterWrong;
-
 export const getInputValue = (state: State) => state.inputValue;
 
 // TODO: map állandoan vissza dobja ha nincs változás akkor is

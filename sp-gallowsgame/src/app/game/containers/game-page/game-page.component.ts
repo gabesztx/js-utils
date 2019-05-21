@@ -40,14 +40,13 @@ export class GamePageComponent implements OnInit, OnDestroy {
 
   letterInput$: Observable<string>;
 
-  constructor(private store: Store<fromGame.State>) {
-  }
+  constructor(private store: Store<fromGame.State>) {}
 
   ngOnInit() {
     this.letterItem$ = this.store.pipe(select(fromGame.getSelectLetterItem), take(1));
-    this.letter$ = this.store.pipe(select(fromGame.getSelectLetter));
-
     this.letterWrongItem$ = this.store.pipe(select(fromGame.getSelectWrongLetterItem), take(1));
+
+    this.letter$ = this.store.pipe(select(fromGame.getSelectLetter));
     this.letterWrong$ = this.store.pipe(select(fromGame.getSelectWrongLetter));
 
     this.letterInput$ = this.store.pipe(select(fromGame.getSelectInputValue));
@@ -69,7 +68,8 @@ export class GamePageComponent implements OnInit, OnDestroy {
         pluck('key'),
         distinctUntilChanged())
       .subscribe((value: string) => {
-        this.store.dispatch(new WordActions.SetInputValue(value));
+        // this.store.dispatch(new WordActions.SetInputValue(value));
+        this.store.dispatch(new WordActions.SetLetterHandler(value));
       });
   }
 

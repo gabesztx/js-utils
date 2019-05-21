@@ -12,7 +12,7 @@ export class LettersListComponent implements OnChanges, OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
     // console.log('LettersListComponent', this.letterItem);
-    console.log('LettersListComponent', this.item);
+    // console.log('LettersListComponent', this.item);
   }
   ngOnInit() {}
 }
