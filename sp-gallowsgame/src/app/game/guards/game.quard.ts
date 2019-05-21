@@ -1,10 +1,10 @@
 import { select, Store } from '@ngrx/store';
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
 import { WordActions } from '../actions';
 import * as fromGame from '../reducers';
 import { Observable } from 'rxjs';
-import { map, take, tap } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',

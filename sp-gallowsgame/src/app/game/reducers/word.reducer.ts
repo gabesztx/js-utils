@@ -37,10 +37,9 @@ export function reducer(state = initialState, action: WordActions.WordActions): 
       };
 
     case WordActions.WordActionsTypes.SetInputValue:
-      // return value.value === letterValue && !value.active;
       const letterValue = action.payload;
       // console.log('LetterValue', letterValue);
-      const letterItemMatches = state.letterItem.filter((value) => {
+      /*const letterItemMatches = state.letterItem.filter((value) => {
         return value.value === letterValue;
       });
       if (letterItemMatches.length) {
@@ -73,7 +72,7 @@ export function reducer(state = initialState, action: WordActions.WordActions): 
             active: true
           }]
         };
-      }
+      }*/
       return {
         ...state,
         inputValue: letterValue,
