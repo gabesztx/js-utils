@@ -1,0 +1,24 @@
+{
+  "script": "model-list/ModelList",
+  "title": "MODEL_LIST_TITLE",
+  "route": "model-list",
+  "dependencies": {
+    "@eui/component": "^0.6.2",
+    "@eui/lit-component": "^0.6.3",
+    "@eui/app": "^0.6.0"
+  },
+  "menu": {
+    "id": "MODEL_LIST",
+    "label": "MODEL_LIST",
+    "data": {
+      "path": "model-list"
+    }
+  },
+  "children": {
+    "model-info": {
+      "route": "model-list/model-info",
+      "script": "model-info/ModelInfo",
+      "title": "MODEL_INFO"
+    }
+  }
+}

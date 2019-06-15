@@ -1,0 +1,17 @@
+{
+  "script": "flow-info/FlowInfo",
+  "title": "FLOW_INFO_TITLE",
+  "route": "flow-catalogue/flow-info",
+  "dependencies": {
+    "@eui/component": "^0.6.2",
+    "@eui/lit-component": "^0.6.3",
+    "@eui/app": "^0.6.0"
+  },
+  "menu": {
+    "id": "FLOW_INFO",
+    "label": "FLOW_INFO",
+    "data": {
+      "path": "flow-catalogue/flow-info"
+    }
+  }
+}
