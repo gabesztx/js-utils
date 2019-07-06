@@ -27,7 +27,7 @@ const PATTERN = /^[A-Za-z]*$/;
 })
 
 export class GamePageComponent implements OnInit, OnDestroy {
-  @ViewChild('letterInput') inputRef: ElementRef;
+  @ViewChild('letterInput', { static: true }) inputRef: ElementRef;
 
   public inputElement: HTMLElement;
   public keyInputValue$: Subscription;
