@@ -1,0 +1,27 @@
+{
+  "app": {
+    "options": {},
+    "menu": {
+      "data": [
+        {
+          "id": "DASHBOARD",
+          "label": "DASHBOARD",
+          "active": true,
+          "data": { "path": "dashboard" }
+        },
+        {
+          "id": "MODEL_LIST",
+          "label": "MODEL_LIST",
+          "active": false,
+          "data": { "path": "model-list" }
+        },
+        {
+          "id": "FLOW_CATALOGUE",
+          "label": "FLOW_CATALOGUE",
+          "active": false,
+          "data": { "path": "flow-catalogue" }
+        }
+      ]
+    }
+  }
+}

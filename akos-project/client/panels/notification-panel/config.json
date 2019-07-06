@@ -1,0 +1,11 @@
+{
+  "script": "notification-panel/NotificationPanel",
+  "id": "NotificationPanel",
+  "title": "Notification Panel",
+  "dependencies": {
+    "@eui/lit-component": "^0.6.3",
+    "@eui/component": "^0.6.2",
+    "@eui/panel": "^0.5.0",
+    "@eui/base": "^0.6.9"
+  }
+}

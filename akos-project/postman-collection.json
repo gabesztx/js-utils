@@ -1,0 +1,311 @@
+{
+  "info": {
+    "_postman_id": "fc274dba-6da4-4890-be94-5ee941cb29ea",
+    "name": "MXE",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create flow deployment",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\t\"name\": \"{{DeploymentName}}\",\r\n\t\"flowName\": \"{{FlowName}}\"\r\n}"
+        },
+        "url": {
+          "raw": "http://localhost:{{IngressPort}}/v1/flow-deployments/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "{{IngressPort}}",
+          "path": ["v1", "flow-deployments", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Flow Deployments",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "http://localhost:{{IngressPort}}/v1/flow-deployments/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "{{IngressPort}}",
+          "path": ["v1", "flow-deployments", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete flow deployment",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "http://localhost:{{IngressPort}}/v1/flow-deployments/{{DeploymentName}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "{{IngressPort}}",
+          "path": ["v1", "flow-deployments", "{{DeploymentName}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete flow file",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "8193790b-25c4-46a6-a5a8-8b79c9603241",
+            "exec": [""],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "http://localhost:{{IngressPort}}/v1/flows/{{FlowName}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "{{IngressPort}}",
+          "path": ["v1", "flows", "{{FlowName}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get flow file list",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "8193790b-25c4-46a6-a5a8-8b79c9603241",
+            "exec": [""],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "http://localhost:{{IngressPort}}/v1/flows",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "{{IngressPort}}",
+          "path": ["v1", "flows"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get model deployments",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "http://localhost:{{IngressPort}}/v1/modeldeployments",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "{{IngressPort}}",
+          "path": ["v1", "modeldeployments"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create model deployment",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"name\": \"{{DeploymentName}}\",\n\t\"type\": \"model\",\n\t\"replicas\": 1,\n\t\"models\": [\n\t\t{\n\t\t\t\"image\": \"img_vgg16:v0.0.1\",\n\t\t\t\"endpointType\" : \"REST\"\n\t\t}\n\t]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:{{IngressPort}}/v1/modeldeployments",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "{{IngressPort}}",
+          "path": ["v1", "modeldeployments"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete model deployment",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "http://localhost:{{IngressPort}}/v1/modeldeployments/{{DeploymentName}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "{{IngressPort}}",
+          "path": ["v1", "modeldeployments", "{{DeploymentName}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create model",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"name\": \"{{DeploymentName}}\",\n\t\"version\": \"version\",\n\t\"description\": \"description\",\n\t\"image\": \"image\",\n\t\"icon\": 12\n}"
+        },
+        "url": {
+          "raw": "localhost:{{IngressPort}}/v1/models",
+          "host": ["localhost"],
+          "port": "{{IngressPort}}",
+          "path": ["v1", "models"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get models",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "localhost:{{IngressPort}}/v1/models",
+          "host": ["localhost"],
+          "port": "{{IngressPort}}",
+          "path": ["v1", "models"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "8910a44d-8ca5-44ff-9fed-b13e70e067ef",
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "df28124c-c859-437c-97b7-e2eaac3401f7",
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "id": "9621e011-84f6-48fa-8e60-132d0335b7dc",
+      "key": "IngressPort",
+      "value": "31683",
+      "type": "string"
+    },
+    {
+      "id": "fd4b11c0-a3dd-4d88-9347-bad8eedd0bc7",
+      "key": "DeploymentName",
+      "value": "test",
+      "type": "string"
+    },
+    {
+      "id": "daba92d5-d279-4cdb-9607-cb3d93442525",
+      "key": "FlowName",
+      "value": "flowTest",
+      "type": "string"
+    }
+  ]
+}

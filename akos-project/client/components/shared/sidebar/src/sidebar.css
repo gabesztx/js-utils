@@ -1,0 +1,29 @@
+:host {
+  width: 20%;
+  margin: calc(var(--space-xl) * -1) 0 calc(var(--space-xl) * -1) calc(var(--space-xl) * -1);
+  padding: var(--space-xl);
+  border-right: 3px var(--layer1) solid;
+}
+
+.filter-name-container {
+  margin-top: 0;
+  margin-bottom: var(--space-base);
+}
+
+.filter-name {
+  font-size: 14px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  color: var(--text);
+}
+.clear-filter {
+  color: var(--blue);
+  cursor: pointer;
+  margin-left: 4px;
+}
+.filters {
+  margin-top: var(--space-xl);
+}

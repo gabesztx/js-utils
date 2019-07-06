@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<testsuite name="HeadlessChrome 75.0.3770 (Mac OS X 10.14.4)" package="" timestamp="2019-05-07T15:55:25" id="0" hostname="Akos-MacBook-Pro.local" tests="6" errors="0" failures="0" time="0.107">
+  <properties>
+    <property name="browser.fullName" value="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/75.0.3770.18 Safari/537.36"/>
+  </properties>
+  <testcase name="Dashboard Application Tests Basic application setup should create a new &lt;e-dashboard>" time="0.006" classname="HeadlessChrome_75_0_3770_(Mac_OS_X_10_14_4).Dashboard Application Tests"/>
+  <testcase name="FlowCatalogue Application Tests Basic application setup should create a new &lt;e-flow-catalogue>" time="0.011" classname="HeadlessChrome_75_0_3770_(Mac_OS_X_10_14_4).FlowCatalogue Application Tests"/>
+  <testcase name="ModelList Application Tests Basic application setup should create a new &lt;e-model-list>" time="0.042" classname="HeadlessChrome_75_0_3770_(Mac_OS_X_10_14_4).ModelList Application Tests"/>
+  <testcase name="ModelCard Component Tests Basic component setup should create a new &lt;e-model-card>" time="0.009" classname="HeadlessChrome_75_0_3770_(Mac_OS_X_10_14_4).ModelCard Component Tests"/>
+  <testcase name="Sidebar Component Tests Basic component setup should create a new &lt;e-sidebar>" time="0.032" classname="HeadlessChrome_75_0_3770_(Mac_OS_X_10_14_4).Sidebar Component Tests"/>
+  <testcase name="UploadComponent Component Tests Basic component setup should create a new &lt;e-upload-component>" time="0.007" classname="HeadlessChrome_75_0_3770_(Mac_OS_X_10_14_4).UploadComponent Component Tests"/>
+  <system-out>
+    <![CDATA[HeadlessChrome 75.0.3770 (Mac OS X 10.14.4) ERROR: 'Network error! Status: 404, Response: ', Promise{}
+,HeadlessChrome 75.0.3770 (Mac OS X 10.14.4) LOG: Error
+Error
+    at HttpService._makeRequest (http://localhost:9876/base/test/webpackEntry.js?c1d352ea7385310942548d4e3dbde834150240d6:12372:3396)
+    at async Promise.all (index 0)
+    at async HTMLElement.getModels (http://localhost:9876/base/test/webpackEntry.js?c1d352ea7385310942548d4e3dbde834150240d6:12248:22834)
+    at async HTMLElement.componentDidConnect (http://localhost:9876/base/test/webpackEntry.js?c1d352ea7385310942548d4e3dbde834150240d6:12248:21156)
+,HeadlessChrome 75.0.3770 (Mac OS X 10.14.4) ERROR: 'Network error! Status: 404, Response: ', Promise{}
+
+]]>
+  </system-out>
+  <system-err/>
+</testsuite>
