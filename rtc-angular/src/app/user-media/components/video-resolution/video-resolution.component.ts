@@ -8,7 +8,7 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 export class VideoResolutionComponent implements AfterViewInit {
   @ViewChild('videoElement', {static: false}) vidRef: ElementRef;
   video: HTMLVideoElement;
-  stream: MediaStream;
+  mediaStream: any;
   mediaDevice: MediaDevices;
 
   constraints = {
@@ -28,7 +28,7 @@ export class VideoResolutionComponent implements AfterViewInit {
     this.mediaDevice
       .getUserMedia(this.constraints)
       .then((media: MediaStream) => {
-        this.stream = media;
+        this.mediaStream = media;
         this.startVideo();
       })
       .catch(e => console.log('Error: ', e));
@@ -36,7 +36,7 @@ export class VideoResolutionComponent implements AfterViewInit {
 
   changeVideoResolution(w: number, h: number) {
     this.constraints.video = {width: w, height: h};
-    if (this.stream) {
+    if (this.mediaStream) {
       this.stopVideo();
     }
     this.getMedia();
@@ -44,7 +44,7 @@ export class VideoResolutionComponent implements AfterViewInit {
 
 
   startVideo() {
-    this.video.srcObject = this.stream;
+    this.video.srcObject = this.mediaStream;
   }
 
   stopVideo() {
@@ -54,7 +54,9 @@ export class VideoResolutionComponent implements AfterViewInit {
   }
 
   getAllMediaStream(): Array<MediaStreamTrack> {
-    return this.stream.getTracks();  // get MediaStreamTracks ( audio, video )
+    return this.mediaStream.getTracks();  // get MediaStreamTracks ( audio, video )
   }
 
 }
+
+// this.mediaStream.oninactive = () => {}; // stream Event: END
