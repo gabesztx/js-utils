@@ -1,0 +1,17 @@
+<div class="videoResolutionComponent">
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">getUserMedia: select resolution</h1>
+    </div>
+    <div class="video-content">
+      <video class="videoElement" autoplay playsinline #videoElement></video>
+    </div>
+    <div class="btn-content">
+      <button class="btn btn-primary" (click)="changeVideoResolution(320,240)">QVGA</button>
+      <button class="btn btn-primary" (click)="changeVideoResolution(640, 480)">VGA</button>
+      <button class="btn btn-primary" (click)="changeVideoResolution(1280, 720)">HD</button>
+      <button class="btn btn-primary" (click)="changeVideoResolution(1920, 1080)">Full HD</button>
+      <button class="btn btn-primary" (click)="changeVideoResolution(4096, 2160)">4K</button>
+    </div>
+  </section>
+</div>

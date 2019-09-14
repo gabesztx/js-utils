@@ -1,6 +1,4 @@
-'use strict';
-
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-basic-media',
@@ -25,8 +23,8 @@ export class BasicMediaComponent implements AfterViewInit {
   handleSuccess(stream: MediaStream) {
     // (window as any).stream = stream;
     this.video.srcObject = stream; // append media stream, then start video camera or audio
-    const videoTracks = stream.getVideoTracks(); // video metadata
-    const audioTracks = stream.getAudioTracks(); // audio metadata
+    const videoTracks = stream.getVideoTracks(); // video data
+    const audioTracks = stream.getAudioTracks(); // audio data
     // console.log('videoTracks' videoTracks);
     // console.log('audioTracks' videoTracks);
   }
