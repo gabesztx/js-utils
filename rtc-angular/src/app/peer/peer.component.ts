@@ -1,14 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import Peer from 'peerjs';
+// import Peer from 'peerjs';
 
-// declare const Peer: any;
+declare const Peer: any;
 declare const navigator: any;
 declare const InstallTrigger: any;
 
-const CONFIG = {
+const CONFIG_PRODUCT = {
   host: 'gabesztx.duckdns.org',
   port: 9000,
-  path: '/app'
+  path: '/'
+};
+const CONFIG_DEV = {
+  host: 'localhost',
+  port: 9000,
+  path: '/'
 };
 
 @Component({
@@ -17,63 +22,56 @@ const CONFIG = {
   styleUrls: ['./peer.component.scss']
 })
 export class PeerComponent implements OnInit {
-  peer;
-  isFirefox: boolean;
-  peerId: string;
-  channelID1 = 'ID1';
-  channelID2 = 'ID2';
+  isFirefox = typeof InstallTrigger !== 'undefined';
+  peerId = this.isFirefox ? 'client1' : 'server';
+  peer: any;
+  // browser = this.isFirefox ? 'Firefox: ' : 'Chrome: ';
+  conn: any;
 
 
   constructor() {
+    this.peer = new Peer(this.peerId, {host: 'localhost', port: 9000, path: '/'});
   }
 
   ngOnInit() {
-    const peer = new Peer('pick-an-id');
-    console.log('peer', peer);
-    // this.peerId = !this.isFirefox ? this.channelID1 : this.channelID2;
-    // this.isFirefox = typeof InstallTrigger !== 'undefined';
-    // this.peerId = this.channelID1;
-    /*    const peer = new Peer(this.peerId, CONFIG);
-        console.log(peer);
-        this.peer.on('connection', (conn) => {
-          console.log('connection event:', conn);
-          conn.on('data', (data) => {
-            console.log('DATA: ', data);
-          });
-        });*/
-    // this.peer = new Peer(this.channelID1, CONFIG);
-    // this.peer.on('open', id => console.log('Event Open:' + id));
-    // this.peer.on('close', id => console.log('Event Close:' + id));
-
-    // if (this.isFirefox) {}
-    // this.initConnetion(isFirefox);
-    // setTimeout(() => {}, 3000);
-
-  }
-
-  initConnetion(isFirefox: boolean) {
-    if (isFirefox) {
-
+    if (!this.isFirefox) {
+      this.onCreateConnection();
+    } else {
+      this.onJoinConnection();
     }
-    /*  this.peer.on('open', (id) => {
-        console.log('EVENT: peer open', ' - ', id);
-      });*/
   }
 
-  connect() {
-    console.log('connect');
-    /*   const conn = this.peer.connect(this.peerId);
-       conn.on('open', () => {
-         console.log('Open: ');
-       });*/
-    // console.log('click', jo);
-    /*setTimeout(() => {
-      console.log('SEND');
-      conn.send('DATA: Hello!');
-    }, 2000);*/
+  onCreateConnection() {
+    this.peer.on('connection', (conn) => {
+      console.log('peer connected: ', conn);
+      conn.on('data', (data) => {
+        console.log('data', data);
+        const reData = parseInt(String(Math.random() * 1000), 10);
+        setTimeout(() => {
+          conn.send(reData);
+        }, 1000);
+      });
 
+    });
   }
 
+  onJoinConnection() {
+    setTimeout(() => {
+      this.conn = this.peer.connect('server');
+      this.conn.on('data', (data) => {
+        console.log('re data: ', data);
+      });
+    }, 1000);
+  }
+
+  onSendData() {
+    const data = parseInt(String(Math.random() * 1000), 10);
+    this.conn.send(data);
+  }
 }
 
-// this.peer.disconnect();
+// TODO: conn events, create reciever and sender events
+/*this.conn.on('open', () => {
+     console.log('connected to server', this.conn);
+   });
+  */
