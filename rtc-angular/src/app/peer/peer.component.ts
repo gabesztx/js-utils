@@ -23,51 +23,61 @@ const CONFIG_DEV = {
 })
 export class PeerComponent implements OnInit {
   isFirefox = typeof InstallTrigger !== 'undefined';
-  peerId = this.isFirefox ? 'client1' : 'server';
   peer: any;
-  // browser = this.isFirefox ? 'Firefox: ' : 'Chrome: ';
-  conn: any;
+  dataConnection: any;
 
 
   constructor() {
-    this.peer = new Peer(this.peerId, {host: 'localhost', port: 9000, path: '/'});
+    const id = this.isFirefox ? 'sender' : 'receiver';
+    this.peer = new Peer(id, {host: 'localhost', port: 9000, path: '/'});
   }
 
   ngOnInit() {
     if (!this.isFirefox) {
-      this.onCreateConnection();
+      this.initReceive();
     } else {
-      this.onJoinConnection();
+      setTimeout(() => {
+        this.initDataConnection();
+      }, 1000);
     }
   }
 
-  onCreateConnection() {
-    this.peer.on('connection', (conn) => {
-      console.log('peer connected: ', conn);
-      conn.on('data', (data) => {
-        console.log('data', data);
-        const reData = parseInt(String(Math.random() * 1000), 10);
+  initReceive() {
+    const peer = this.peer.on('connection', (client) => {
+      console.log('peer connected: ', client.peer);
+      client.on('data', (data) => {
+        console.log('Data from sender: ', data);
         setTimeout(() => {
-          conn.send(reData);
+          const data1 = parseInt(String(Math.random() * 1000), 10);
+          client.send(data1);
         }, 1000);
       });
 
     });
+
   }
 
-  onJoinConnection() {
+  initDataConnection() {
+    const peer = this.peer.connect('receiver');
+    peer.on('open', () => {
+      console.log('sender is open');
+    });
     setTimeout(() => {
-      this.conn = this.peer.connect('server');
-      this.conn.on('data', (data) => {
-        console.log('re data: ', data);
-      });
+      const data = parseInt(String(Math.random() * 1000), 10);
+      peer.send(data);
     }, 1000);
+
+    setTimeout(() => {
+      const data = parseInt(String(Math.random() * 1000), 10);
+      peer.send(data);
+    }, 3000);
+
+    peer.on('data', (data) => {
+      console.log('Data from receiver: ', data);
+    });
   }
 
-  onSendData() {
-    const data = parseInt(String(Math.random() * 1000), 10);
-    this.conn.send(data);
-  }
+  sendData() {}
 }
 
 // TODO: conn events, create reciever and sender events

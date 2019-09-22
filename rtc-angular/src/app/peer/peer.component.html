@@ -1,9 +1,9 @@
 <section class="jumbotron text-center">
   <div class="container" *ngIf="!isFirefox">
-    <h1 class="jumbotron-heading">Data: Server</h1>
-    <div style="padding-top: 10px">
+    <h1 class="jumbotron-heading">Data Connection</h1>
+    <!--<div style="padding-top: 10px">
       <button class="btn btn-primary" (click)="onCreateConnection()">Start Connection</button>
-    </div>
+    </div>-->
   </div>
   <div class="container" *ngIf="isFirefox">
     <h1 class="jumbotron-heading">Data: Client</h1>
@@ -11,7 +11,7 @@
       <button class="btn btn-primary" (click)="onJoinConnection()">Connect</button>
     </div>-->
     <div style="padding-top: 10px">
-      <button class="btn btn-primary" (click)="onSendData()">Send Data</button>
+      <button class="btn btn-primary" (click)="sendData()">Send Data</button>
     </div>
   </div>
 </section>
