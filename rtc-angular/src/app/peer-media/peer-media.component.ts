@@ -35,8 +35,8 @@ export class PeerMediaComponent implements OnInit, AfterViewInit {
 
 
   constructor() {
-    this.peerId = this.isChrome ? 'streamer' : 'clients';
-    this.peer = new Peer(this.peerId, {host: '192.168.1.14', port: 9000, path: '/'});
+    // this.peerId = this.isChrome ? 'streamer' : 'clients';
+    // this.peer = new Peer(this.peerId, {host: '192.168.1.14', port: 9000, path: '/'});
   }
 
   ngAfterViewInit() {
@@ -46,7 +46,6 @@ export class PeerMediaComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     // this.getMediaStream();
-    console.log('getMediaStream', navigator);
     console.log('getMediaStream', navigator.mediaDevices);
     // setTimeout(() => {});
     /*this.peer.on('call', (call) => {
