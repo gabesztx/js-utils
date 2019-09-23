@@ -34,15 +34,15 @@ export class PeerComponent implements OnInit {
 
   ngOnInit() {
     if (!this.isFirefox) {
-      this.initReceive();
+      // this.initReceive();
     } else {
       setTimeout(() => {
-        this.initDataConnection();
+        // this.initDataConnection();
       }, 1000);
     }
   }
 
-  initReceive() {
+  /*initReceive() {
     const peer = this.peer.on('connection', (client) => {
       console.log('peer connected: ', client.peer);
       client.on('data', (data) => {
@@ -75,7 +75,7 @@ export class PeerComponent implements OnInit {
     peer.on('data', (data) => {
       console.log('Data from receiver: ', data);
     });
-  }
+  }*/
 
   sendData() {}
 }

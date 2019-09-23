@@ -1,0 +1,18 @@
+<section class="jumbotron text-center">
+  <h1 class="jumbotron-heading">{{this.isChrome}}</h1>
+  <h1 class="jumbotron-heading">{{peerId}}</h1>
+  <div class="video-content">
+    <video class="videoElement" autoplay playsinline #videoElement></video>
+  </div>
+  <div class="container">
+    <div class="btn-content">
+<!--      <button class="btn btn-primary" (click)="startStream()">Start stream</button>-->
+    </div>
+    <div class="btn-content" *ngIf="isChrome">
+      <button class="btn btn-primary" (click)="startStream()">Start stream</button>
+    </div>
+    <div class="btn-content" *ngIf="isChrome">
+      <button class="btn btn-primary" (click)="stopStream()">Stop stream</button>
+    </div>
+  </div>
+</section>

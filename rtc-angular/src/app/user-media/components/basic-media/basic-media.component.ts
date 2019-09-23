@@ -25,12 +25,13 @@ export class BasicMediaComponent implements AfterViewInit {
     this.video.srcObject = stream; // append media stream, then start video camera or audio
     const videoTracks = stream.getVideoTracks(); // video data
     const audioTracks = stream.getAudioTracks(); // audio data
-    // console.log('videoTracks' videoTracks);
-    // console.log('audioTracks' videoTracks);
+    console.log('videoTracks', videoTracks);
+    console.log('audioTracks', audioTracks);
   }
 
   async getMedia() {
     try {
+      console.log('navigator', navigator.mediaDevices);
       const stream = await navigator.mediaDevices.getUserMedia(this.constraints);
       this.handleSuccess(stream);
     } catch (err) {

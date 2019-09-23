@@ -1,0 +1,16 @@
+:host {
+  .jumbotron-heading{
+    text-transform: capitalize;
+  }
+  .video-content{
+    .videoElement{
+      border: 3px solid;
+      padding: 10px;
+      width: 320px;
+      height: 240px;
+    }
+  }
+  .btn-content{
+    padding-top: 10px;
+  }
+}
