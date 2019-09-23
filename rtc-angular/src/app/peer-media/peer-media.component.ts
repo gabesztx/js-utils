@@ -35,8 +35,8 @@ export class PeerMediaComponent implements OnInit, AfterViewInit {
 
 
   constructor() {
-    // this.peerId = this.isChrome ? 'streamer' : 'clients';
-    // this.peer = new Peer(this.peerId, {host: '192.168.1.14', port: 9000, path: '/'});
+    this.peerId = this.isChrome ? 'streamer' : 'clients';
+    this.peer = new Peer(this.peerId, {host: '192.168.1.14', port: 9000, path: '/'});
   }
 
   ngAfterViewInit() {
@@ -45,10 +45,8 @@ export class PeerMediaComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit() {
-    // this.getMediaStream();
-    console.log('getMediaStream', navigator.mediaDevices);
     // setTimeout(() => {});
-    /*this.peer.on('call', (call) => {
+    this.peer.on('call', (call) => {
       // console.log('call from :', call);
       call.answer(this.stream);
       call.on('stream', (streamData) => {
@@ -56,14 +54,15 @@ export class PeerMediaComponent implements OnInit, AfterViewInit {
         this.video.srcObject = streamData;
       });
       // call.on('close', () => {});
-    });*/
+    });
 
 
   }
 
 
   startStream() {
-    this.startCamera();
+    // this.startCamera();
+    this.getMediaStream();
     this.mediaConnection = this.peer.call('clients', this.stream);
     // this.mediaConnection.on('close', () => {});
   }
@@ -71,8 +70,8 @@ export class PeerMediaComponent implements OnInit, AfterViewInit {
   stopStream() {
     this.stopCamera();
     this.mediaConnection.close();
+    this.video.srcObject = null;
 
-    // this.video.srcObject = null;
     // this.video.srcObject = this.stream; // append media stream, then start video camera or audio
     // if (!this.isFirefox) {}
   }
@@ -92,6 +91,7 @@ export class PeerMediaComponent implements OnInit, AfterViewInit {
   handleSuccess(stream: MediaStream) {
     console.log('stream');
     this.stream = stream;
+    this.startCamera();
     // const videoTracks = stream.getVideoTracks(); // video data
     // const audioTracks = stream.getAudioTracks(); // audio data
     // console.log('videoTracks', videoTracks);
@@ -99,12 +99,10 @@ export class PeerMediaComponent implements OnInit, AfterViewInit {
   }
 
   async getMediaStream() {
-
     try {
-
-      console.log('getMediaStream', navigator.mediaDevices);
-      // const stream = await navigator.mediaDevices.getUserMedia(this.constraints);
-      // this.handleSuccess(stream);
+      // console.log('getMediaStream', navigator.mediaDevices);
+      const stream = await navigator.mediaDevices.getUserMedia(this.constraints);
+      this.handleSuccess(stream);
     } catch (err) {
       console.log('Error Media: ', err);
     }
