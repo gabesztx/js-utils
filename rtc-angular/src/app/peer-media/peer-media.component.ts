@@ -36,7 +36,7 @@ export class PeerMediaComponent implements OnInit, AfterViewInit {
 
   constructor() {
     this.peerId = this.isChrome ? 'streamer' : 'clients';
-    this.peer = new Peer(this.peerId, {host: '192.168.1.14', port: 9000, path: '/'});
+    this.peer = new Peer(this.peerId, {host: 'localhost', port: 9000, path: '/'});
   }
 
   ngAfterViewInit() {
@@ -45,7 +45,12 @@ export class PeerMediaComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit() {
-    // setTimeout(() => {});
+    setTimeout(() => {
+      if (!this.isChrome) {
+        this.getMediaStream();
+      }
+    });
+
     this.peer.on('call', (call) => {
       // console.log('call from :', call);
       call.answer(this.stream);
@@ -55,31 +60,55 @@ export class PeerMediaComponent implements OnInit, AfterViewInit {
       });
       // call.on('close', () => {});
     });
+    // this.peer.on('open', (id) => {});
+    this.peer.on('close', () => {
+      console.log('Peer Event: close');
+    });
+    this.peer.on('disconnected', () => {
+      console.log('Peer Event: disconnected');
+    });
 
 
   }
 
 
   startStream() {
-    // this.startCamera();
-    this.getMediaStream();
-    this.mediaConnection = this.peer.call('clients', this.stream);
+    this.getMediaStream().then(() => {
+      this.startCamera();
+      this.mediaConnection = this.peer.call('clients', this.stream);
+    });
+    // console.log();
+    /*  if (!this.stream) {
+        console.log('go go go');
+        this.getMediaStream();
+      }*/
+    // if (this.isChrome) {}
+    // this.mediaConnection.on('open', () => {});
     // this.mediaConnection.on('close', () => {});
   }
 
-  stopStream() {
-    this.stopCamera();
-    this.mediaConnection.close();
-    this.video.srcObject = null;
 
+  stopStream() {
+    if (!this.mediaConnection) {
+      return;
+    }
+    // console.log('stopStream');
+    this.mediaConnection.close();
+    this.mediaConnection = null;
+    this.stopCamera();
+    this.stream.getTracks().forEach((track) => {
+      track.stop();
+    });
+    this.stream = null;
+    // this.peer.disconnect();
+    // this.video.srcObject = null;
     // this.video.srcObject = this.stream; // append media stream, then start video camera or audio
     // if (!this.isFirefox) {}
   }
 
-
   startCamera() {
     this.video.srcObject = this.stream; // append media stream, then start video camera or audio
-    // if (!this.isFirefox) {}
+
   }
 
   stopCamera() {
@@ -89,9 +118,8 @@ export class PeerMediaComponent implements OnInit, AfterViewInit {
 
 
   handleSuccess(stream: MediaStream) {
-    console.log('stream');
+    console.log('go stream');
     this.stream = stream;
-    this.startCamera();
     // const videoTracks = stream.getVideoTracks(); // video data
     // const audioTracks = stream.getAudioTracks(); // audio data
     // console.log('videoTracks', videoTracks);
@@ -99,7 +127,9 @@ export class PeerMediaComponent implements OnInit, AfterViewInit {
   }
 
   async getMediaStream() {
+
     try {
+
       // console.log('getMediaStream', navigator.mediaDevices);
       const stream = await navigator.mediaDevices.getUserMedia(this.constraints);
       this.handleSuccess(stream);
