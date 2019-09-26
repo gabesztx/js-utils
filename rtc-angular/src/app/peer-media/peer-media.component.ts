@@ -34,10 +34,7 @@ export class PeerMediaComponent implements OnInit, AfterViewInit {
   stream: any;
 
 
-  constructor() {
-    this.peerId = this.isChrome ? 'streamer' : 'clients';
-    this.peer = new Peer(this.peerId, {host: 'localhost', port: 9000, path: '/'});
-  }
+  constructor() {}
 
   ngAfterViewInit() {
     this.video = this.vidRef.nativeElement;
@@ -45,9 +42,11 @@ export class PeerMediaComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit() {
+    this.peerId = this.isChrome ? 'streamer' : 'clients';
+    this.peer = new Peer(this.peerId, {host: 'localhost', port: 9000, path: '/'});
     setTimeout(() => {
       if (!this.isChrome) {
-        this.getMediaStream();
+        // this.getMediaStream();
       }
     });
 
@@ -129,8 +128,6 @@ export class PeerMediaComponent implements OnInit, AfterViewInit {
   async getMediaStream() {
 
     try {
-
-      // console.log('getMediaStream', navigator.mediaDevices);
       const stream = await navigator.mediaDevices.getUserMedia(this.constraints);
       this.handleSuccess(stream);
     } catch (err) {
