@@ -49,7 +49,7 @@ export class PeerMediaComponent implements OnInit, AfterViewInit {
     this.peer.on('open', (id) => {
     });
     this.peer.on('close', () => {
-      console.log('close peer')
+      console.log('close peer');
     });
 
     this.peer.on('call', (call) => {
@@ -80,7 +80,6 @@ export class PeerMediaComponent implements OnInit, AfterViewInit {
     });
     this.peer.on('connection', (data) => {
       console.log('connection:', data);
-
     });
 
     this.peer.on('disconnected', () => {
