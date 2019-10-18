@@ -16,6 +16,16 @@ app.get('/', (req, res) => {
 app.use(express.static(path.join(__dirname, appFolder)));
 app.use('/peerjs', peerserver);
 
+peerserver.on('connection', (client) => {
+  // console.log('client connect');
+});
+
+peerserver.on('disconnect', (client) => {
+  // console.log('client disconnect');
+});
+
+
 server.listen(port, () => {
-  console.log('Server ' + app.name + ' listening on http://localhost:' + port)
+  // console.log('Server ' + app.name + ' listening on http://localhost:' + port)
+  console.log('Server started!')
 });

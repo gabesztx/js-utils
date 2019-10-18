@@ -11,7 +11,7 @@ const CONFIG_PRODUCT = {
 const CONFIG_DEV = {
   host: 'localhost',
   port: 9000,
-  path: '/'
+  path: '/peerjs'
 };
 
 @Component({
@@ -45,7 +45,7 @@ export class PeerMediaComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     // this.peerId = this.isChrome ? 'streamer' : 'clients';
     this.peerId = this.isChrome ? 'streamer' : 'clients';
-    this.peer = new Peer(this.peerId, {host: 'localhost', port: 9000, path: '/'});
+    this.peer = new Peer(this.peerId, CONFIG_DEV);
     this.peer.on('open', (id) => {
     });
     this.peer.on('close', () => {
@@ -87,7 +87,7 @@ export class PeerMediaComponent implements OnInit, AfterViewInit {
     });
 
     this.peer.on('error', (err) => {
-      console.log('Error', err);
+      // console.log('Error', err);
     });
   }
 
@@ -118,9 +118,9 @@ export class PeerMediaComponent implements OnInit, AfterViewInit {
 
   stopStream() {
     console.log('stopStream');
-    // this.mediaConnection.close();
+    this.mediaConnection.close();
     // this.peer.disconnect();
-    this.peer.destroy();
+    // this.peer.destroy();
 
     /* video element off */
     this.stream.getTracks().forEach((track) => {
@@ -157,19 +157,11 @@ export class PeerMediaComponent implements OnInit, AfterViewInit {
   /* startCamera() {
     console.log('startCamera');
     this.video.srcObject = this.stream; // append media stream, then start video or audio
-
   }
-
   stopCamera() {
     console.log('stopCamera');
     this.video.srcObject = null;
   }
-*/
+  */
 }
 
-
-/* setTimeout(() => {
-   if (!this.isChrome) {
-     // this.getMediaStream();
-   }
- });*/
