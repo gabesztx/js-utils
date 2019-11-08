@@ -1,31 +1,31 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const server = require('http').createServer(app);
-const ExpressPeerServer = require('peer').ExpressPeerServer;
+const index = require('http').createServer(app);
+const ExpressPeerServer = require('./src').ExpressPeerServer;
+const appPath = '../dist/rtc-angular/';
 const port = 9000;
-const appFolder = '../dist/rtc-angular/';
 const options = {
-  debug: true
+  path: '/peerjs',
 };
-const peerserver = ExpressPeerServer(server, options);
+
+const peerserver = ExpressPeerServer(index, options);
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, appFolder, '/index.html'));
+  res.sendFile(path.join(__dirname, appPath, '/index.html'));
 });
-app.use(express.static(path.join(__dirname, appFolder)));
-app.use('/peerjs', peerserver);
+app.use(express.static(path.join(__dirname, appPath)));
+app.use(options.path, peerserver);
 
 peerserver.on('connection', (client) => {
-  // console.log('client connect');
+  console.log('client connect');
 });
 
 peerserver.on('disconnect', (client) => {
-  // console.log('client disconnect');
+  console.log('client disconnect');
 });
 
-
-server.listen(port, () => {
-  // console.log('Server ' + app.name + ' listening on http://localhost:' + port)
-  console.log('Server started!')
+index.listen(port, () => {
+  console.log('Server started!');
+  console.log('Port: ', port)
 });
