@@ -30,7 +30,9 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "peerjs/dist/peerjs.min.js"
+            ]
           },
           "configurations": {
             "production": {

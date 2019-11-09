@@ -53,7 +53,8 @@ export class PeerMediaComponent implements OnInit, AfterViewInit {
   }
 
   initDataConnection() {
-    if (this.peerId === 'sender') {
+    // TODO when client reboot connect to server
+    if (this.peerId === this.server) {
       // DataConnect connect to client
       this.dataConnection = this.peer.connect(this.client);
       this.dataConnection.on('data', (data) => console.log(data));
