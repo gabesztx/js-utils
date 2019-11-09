@@ -29,6 +29,7 @@ const init = ({ app, server, options }) => {
 
   wss.on('connection', client => {
     console.log('ws connect');
+
     /*const messageQueue = realm.getMessageQueueById(client.getId());
     // console.log('wss connection');
     if (messageQueue) {
@@ -44,7 +45,7 @@ const init = ({ app, server, options }) => {
 
   wss.on('message', (client, message) => {
     messageHandler(client, message);
-    // console.log('ws: message');
+    console.log('ws: message');
     // console.log('message', message);
     // app.emit('message', client, message);
   });

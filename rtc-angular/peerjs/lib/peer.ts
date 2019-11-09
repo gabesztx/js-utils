@@ -208,6 +208,7 @@ export class Peer extends EventEmitter {
 
   /** Initialize a connection with the server. */
   private _initialize(id: string): void {
+    // console.log('INIT');
     this._id = id;
     this.socket.start(id, this._options.token!);
   }
@@ -399,7 +400,6 @@ export class Peer extends EventEmitter {
   //TODO should be private
   _removeConnection(connection: BaseConnection): void {
     const connections = this._connections.get(connection.peer);
-
     if (connections) {
       const index = connections.indexOf(connection);
 
@@ -408,7 +408,7 @@ export class Peer extends EventEmitter {
       }
     }
 
-    //remove from lost messages
+    // remove from lost messages
     this._lostMessages.delete(connection.connectionId);
   }
 

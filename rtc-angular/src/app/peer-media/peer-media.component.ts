@@ -44,7 +44,7 @@ export class PeerMediaComponent implements OnInit, AfterViewInit {
     this.peer = new Peer(this.peerId, CONFIG);
     // Peer Event
     this.peer.on('open', (id) => {
-      // this.initMediaConnection();
+      this.initMediaConnection();
       this.initDataConnection();
 
     });
@@ -59,6 +59,7 @@ export class PeerMediaComponent implements OnInit, AfterViewInit {
       // DataConnect connect to client
       this.dataConnection = this.peer.connect(this.client);
       this.dataConnection.on('data', (data) => console.log(data));
+
       // this.dataConnection.on('open', () => console.log('open'));
       // this.dataConnection.on('close', () => console.log('close'));
     } else {
