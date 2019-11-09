@@ -25,10 +25,15 @@ export class PeerMediaComponent implements OnInit, AfterViewInit {
   peer: any;
   peerId: string;
   mediaConnection: any;
+  dataConnection: any;
   stream: any;
+  client: string;
+  server: string;
 
   constructor() {
-    this.peerId = this.isChrome ? 'streamer' : 'clients';
+    this.client = 'reciever';
+    this.server = 'sender';
+    this.peerId = this.isChrome ? this.server : this.client;
   }
 
   ngAfterViewInit() {
@@ -36,46 +41,66 @@ export class PeerMediaComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    // Peer Connections
     this.peer = new Peer(this.peerId, CONFIG);
-    // Peer Events
-    this.peer.on('call', (call) => {
-      call.answer();
-      call.on('stream', (mediaStream) => {
-        console.log('stream from server:', mediaStream);
-        this.video.srcObject = mediaStream;
-      });
+    // Peer Event
+    this.peer.on('open', (id) => {
+      this.initMediaConnection();
+      this.initDataConnection();
     });
-    this.peer.on('connection', (data) => console.log('connection:', data));
     // this.peer.on('error', (err) => {});
     // this.peer.on('disconnected', () => console.log('server disconnected'));
-    // this.peer.on('open', (id) => {});
     // this.peer.on('close', () => {});
   }
 
-  startStream() {
-    this.getMediaStream().then(() => {
-      this.video.srcObject = this.stream;
-      // Media Connections
-      this.mediaConnection = this.peer.call('clients', this.stream);
-      this.mediaConnection.on('stream', (stream) => console.log('stream for client', stream));
-      this.mediaConnection.on('close', () => console.log('close server mediaConnection'));
-
-    });
-
-    /*
-    if (!this.stream) {
-        console.log('go go go');
-        this.getMediaStream();
-      }
-    */
-    // this.startCamera();
-    // if (this.isChrome) {}
-    // this.peerCall.on('open', () => {});
-    // this.peerCall.on('close', () => {});
+  initDataConnection() {
+    if (this.peerId === 'sender') {
+      // DataConnect connect to client
+      this.dataConnection = this.peer.connect(this.client);
+      this.dataConnection.on('data', (data) => console.log(data));
+      // this.dataConnection.on('open', () => console.log('open'));
+      // this.dataConnection.on('close', () => console.log('close'));
+    } else {
+      // DataConnect listening from server
+      this.peer.on('connection', (conn) => {
+        conn.on('data', (data) => {
+          console.log(data);
+          conn.send(`send data from client`);
+        });
+      });
+    }
+    // setTimeout(() => {}, 2000);
   }
 
-  stopStream() {
+  sendData() {
+    this.dataConnection.send(`send data from server`);
+  }
+
+
+  initMediaConnection() {
+    // Media Connect Event
+    this.peer.on('call', (call) => {
+      call.answer();
+      call.on('stream', (mediaStream) => {
+        console.log('Stream from sender', mediaStream);
+        this.video.srcObject = mediaStream;
+      });
+    });
+
+  }
+
+  startMediaStream() {
+    this.getMediaStream().then(() => {
+      this.video.srcObject = this.stream;
+
+      // Media Connections
+      this.mediaConnection = this.peer.call(this.client, this.stream);
+      this.mediaConnection.on('close', () => console.log('Close mediaConnection'));
+      this.mediaConnection.on('stream', (stream) => console.log('stream for client', stream));
+
+    });
+  }
+
+  stopMediaStream() {
     this.mediaConnection.close();
     // this.peer.disconnect();
     // this.peer.destroy();
@@ -110,32 +135,5 @@ export class PeerMediaComponent implements OnInit, AfterViewInit {
     }
   }
 }
-
-
-/* startCamera() {
-  console.log('startCamera');
-  this.video.srcObject = this.stream; // append media stream, then start video or audio
-}
-stopCamera() {
-  console.log('stopCamera');
-  this.video.srcObject = null;
-}
-*/
-
-
-// call.on('close', () => {});
-/*  this.getMediaStream().then(() => {
-    // console.log('peer call', call);
-    call.answer(this.stream);
-    // console.log('peer answer');
-    call.on('stream', (mediaStream) => {
-      console.log('Stream from server:', mediaStream);
-      this.video.srcObject = mediaStream;
-    });
-    call.on('close', () => {
-      console.log('Close Client media stream');
-      // this.video.srcObject = streamData;
-    });
-  });*/
 
 // setTimeout(() => {}, 3000);

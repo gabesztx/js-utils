@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserMediaModule } from './user-media/user-media.module';
 import { PeerMediaComponent } from './peer-media/peer-media.component';
+import { PeerDataComponent } from './peer-data/peer-data.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PeerMediaComponent
+    PeerMediaComponent,
+    PeerDataComponent
   ],
   imports: [
     BrowserModule,
