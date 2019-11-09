@@ -46,6 +46,6 @@ testem.log
 Thumbs.db
 server.cert
 server.key
-/peerjs
+/peerjs/dist
 /peerjs/node_modules
 /server/node_modules

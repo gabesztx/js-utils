@@ -14,7 +14,7 @@
   "license": "MIT",
   "scripts": {
     "test": "eslint . && mocha \"test/**/*.js\"",
-    "start": "bin/peerjs --port ${PORT:=9000}"
+    "start": "nodemon --inspect ./index.js"
   },
   "dependencies": {
     "body-parser": "^1.19.0",

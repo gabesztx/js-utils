@@ -18,14 +18,14 @@ app.use(express.static(path.join(__dirname, appPath)));
 app.use(options.path, peerserver);
 
 peerserver.on('connection', (client) => {
-  console.log('client connect');
+  // console.log('connect');
 });
 
 peerserver.on('disconnect', (client) => {
-  console.log('client disconnect');
+  // console.log('disconnect');
 });
 
 index.listen(port, () => {
-  console.log('Server started!');
-  console.log('Port: ', port)
+  console.log('Server is runing!');
+  // console.log('Port: ', port)
 });

@@ -31,7 +31,7 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "peerjs/dist/peerjs.min.js"
+              "peerjs/dist/peerjs.js"
             ]
           },
           "configurations": {

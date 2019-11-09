@@ -44,8 +44,9 @@ export class PeerMediaComponent implements OnInit, AfterViewInit {
     this.peer = new Peer(this.peerId, CONFIG);
     // Peer Event
     this.peer.on('open', (id) => {
-      this.initMediaConnection();
+      // this.initMediaConnection();
       this.initDataConnection();
+
     });
     // this.peer.on('error', (err) => {});
     // this.peer.on('disconnected', () => console.log('server disconnected'));
@@ -65,15 +66,16 @@ export class PeerMediaComponent implements OnInit, AfterViewInit {
       this.peer.on('connection', (conn) => {
         conn.on('data', (data) => {
           console.log(data);
-          conn.send(`send data from client`);
+          conn.send(data);
         });
       });
     }
-    // setTimeout(() => {}, 2000);
+
   }
 
   sendData() {
-    this.dataConnection.send(`send data from server`);
+    const data = parseInt(String(Math.random() * 1000), 10);
+    this.dataConnection.send(data);
   }
 
 
@@ -82,7 +84,7 @@ export class PeerMediaComponent implements OnInit, AfterViewInit {
     this.peer.on('call', (call) => {
       call.answer();
       call.on('stream', (mediaStream) => {
-        console.log('Stream from sender', mediaStream);
+        console.log('stream', mediaStream);
         this.video.srcObject = mediaStream;
       });
     });
@@ -138,3 +140,10 @@ export class PeerMediaComponent implements OnInit, AfterViewInit {
 }
 
 // setTimeout(() => {}, 3000);
+
+/*
+setTimeout(() => {
+  console.log('emit');
+  this.peer.socket.send({type: 'jo'});
+}, 4000);
+*/

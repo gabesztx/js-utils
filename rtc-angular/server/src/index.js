@@ -1,6 +1,4 @@
 const express = require('express');
-// const http = require('http');
-// const https = require('https');
 
 const defaultConfig = require('../config');
 const WebSocketServer = require('./services/webSocketServer');
@@ -14,13 +12,13 @@ const init = ({ app, server, options }) => {
   const api = require('./api')({ config, realm, messageHandler });
 
   const { startMessagesExpiration } = require('./services/messagesExpire')({ realm, config, messageHandler });
+
   const checkBrokenConnections = require('./services/checkBrokenConnections')({
     realm, config, onClose: (client) => {
       app.emit('disconnect', client);
     }
   });
   app.use(options.path, api);
-
   const wss = new WebSocketServer({
     server,
     realm,
@@ -30,7 +28,9 @@ const init = ({ app, server, options }) => {
   });
 
   wss.on('connection', client => {
-    const messageQueue = realm.getMessageQueueById(client.getId());
+    console.log('ws connect');
+    /*const messageQueue = realm.getMessageQueueById(client.getId());
+    // console.log('wss connection');
     if (messageQueue) {
       let message;
       // eslint-disable-next-line no-cond-assign
@@ -38,32 +38,32 @@ const init = ({ app, server, options }) => {
         messageHandler(client, message);
       }
       realm.clearMessageQueue(client.getId());
-    }
-
-    app.emit('connection', client);
+    }*/
+    // app.emit('connection', client);
   });
 
   wss.on('message', (client, message) => {
-    app.emit('message', client, message);
     messageHandler(client, message);
+    // console.log('ws: message');
+    // console.log('message', message);
+    // app.emit('message', client, message);
   });
 
   wss.on('close', client => {
-    app.emit('disconnect', client);
+    console.log('------------- ws close -------------');
+    // app.emit('disconnect', client);
   });
 
   wss.on('error', error => {
-    app.emit('error', error);
+    // app.emit('error', error);
   });
 
   startMessagesExpiration();
-
   checkBrokenConnections.start();
 };
 
 function ExpressPeerServer(server, options) {
   const app = express();
-
   options = {
     ...defaultConfig,
     ...options

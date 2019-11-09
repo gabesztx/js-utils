@@ -35,6 +35,7 @@ module.exports = ({ realm, config, messageHandler }) => {
   let timeoutId;
 
   const startMessagesExpiration = () => {
+    // console.log('startMessagesExpiration');
     if (timeoutId) {
       clearTimeout(timeoutId);
     }
