@@ -1,1 +1,0 @@
-# Gallows game - Angular

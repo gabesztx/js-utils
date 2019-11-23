@@ -68,7 +68,8 @@ export class GamePageComponent implements OnInit, OnDestroy {
         pluck('key'),
         distinctUntilChanged())
       .subscribe((value: string) => {
-        // this.store.dispatch(new WordActions.SetInputValue(value));
+        // console.log(value);
+        this.store.dispatch(new WordActions.SetInputValue(value));
         this.store.dispatch(new WordActions.SetLetterHandler(value));
       });
   }
