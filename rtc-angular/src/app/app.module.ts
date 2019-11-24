@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { UserMediaModule } from './user-media/user-media.module';
 import { PeerMediaComponent } from './peer-media/peer-media.component';
 import { PeerDataComponent } from './peer-data/peer-data.component';
+import { DataChannelComponent } from './data-channel/data-channel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PeerMediaComponent,
-    PeerDataComponent
+    PeerDataComponent,
+    DataChannelComponent
   ],
   imports: [
     BrowserModule,
