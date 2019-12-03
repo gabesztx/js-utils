@@ -1,8 +1,8 @@
-const express = require('express');
-const path = require('path');
+import express from 'express';
+import http from 'http';
+import path from 'path';
 const app = express();
-const server = require('http').createServer(app);
-const io = require('socket.io')(server);
+const server = http.createServer(app);
 
 const appPath = '../../dist/rtc-connection/';
 const port = 3000;
@@ -12,12 +12,11 @@ app.get('/', (req, res) => {
 });
 app.use(express.static(path.join(__dirname, appPath)));
 
-server.listen(port, () => {
-  console.log('Server is runing: ', port);
-});
+server.listen(port, () => {});
 
+/* Socket server */
+const io = require('socket.io')(server);
 io.on('connection', (socket) => {
-  console.log('connected!');
-  // socket.emit('news', { hello: 'world' });
+  console.log(socket);
   // socket.on('my other event', () => {});
 });
