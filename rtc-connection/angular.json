@@ -6,8 +6,8 @@
     "rtc-connection": {
       "projectType": "application",
       "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
+        "@ngrx/schematics:component": {
+          "styleext": "scss"
         }
       },
       "root": "",
@@ -124,6 +124,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "rtc-connection"
+    }
+  },
+  "defaultProject": "rtc-connection",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
