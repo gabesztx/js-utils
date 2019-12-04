@@ -16,12 +16,13 @@ export class ConnectComponent implements OnInit {
   ngOnInit() {
     this.socket = io(this.url);
     this.socket.on('connect', () => {
-      console.log('client connected!');
-      // socket.emit('news', { hello: 'world' });
-      // socket.on('my other event', () => {});
+      console.log('client: connect');
     });
-    this.socket.on('connect_error', (error) => {
-      console.log('error: ', error);
+    this.socket.on('event', (data) => {
+      console.log('client: event: ', data);
+    });
+    this.socket.on('disconnect', () => {
+      console.log('client: disconnect');
     });
   }
 

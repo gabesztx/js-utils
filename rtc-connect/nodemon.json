@@ -1,10 +1,15 @@
 {
-  "watch": [
-    "src/server/**/*.ts",
-    "src/server.ts"
-  ],
+  "verbose": false,
   "ignore": [
-    "src/app", ".*json"
+    ".git",
+    "node_modules/**/node_modules"
   ],
-  "exec": "TS_NODE_PROJECT='./tsconfig.server.json' ts-node"
+  "watch": [
+    "server/**/*.ts"
+  ],
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "ext": "ts",
+  "exec": "TS_NODE_PROJECT='./server/tsconfig.json' ts-node ./server/app.ts"
 }

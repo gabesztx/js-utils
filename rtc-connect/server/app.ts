@@ -1,28 +1,26 @@
 import * as express from 'express';
 import * as http from 'http';
 import * as path from 'path';
-import { Socket } from './socket';
+import * as io from 'socket.io';
+import * as config from './config';
+
 
 const app = express();
-const root = '../../dist/rtc-connection/';
-const port = process.env.PORT || 5000;
 const server = http.createServer(app);
-const socket =  new Socket();
 
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, root, '/index.html')));
-app.use(express.static(path.join(__dirname, root)));
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, config.root, '/index.html')));
+app.use(express.static(path.join(__dirname, config.root)));
+server.listen(config.serverPort, () => {
+});
 
-
-server.listen(port, () => {});
-
-
-// /* Socket server */
-// const io = require('socket.io')(server);
-// io.on('connection', (socket) => {
-//   console.log('connection');
-//   // console.log(socket);
-// });
-
+/* Socket server */
+// let userNumber = 0;
+io(server).on('connection', (socket: io.Socket) => {
+  console.log('connection');
+  socket.on('disconnecting', (data) => {
+    console.log('disconnecting');
+  });
+});
 
 /*
 import * as express from 'express';
