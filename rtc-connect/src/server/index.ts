@@ -1,4 +1,3 @@
-// import * as fs from 'fs';
 import * as express from 'express';
 import * as http from 'http';
 import * as path from 'path';
@@ -20,6 +19,6 @@ server.listen(port, () => {
 /* Socket server */
 const io = require('socket.io')(server);
 io.on('connection', (socket) => {
-  console.log('----- connection ------');
+  console.log('connection');
   // console.log(socket);
 });

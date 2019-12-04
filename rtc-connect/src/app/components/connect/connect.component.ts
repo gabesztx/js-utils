@@ -16,7 +16,7 @@ export class ConnectComponent implements OnInit {
   ngOnInit() {
     this.socket = io(this.url);
     this.socket.on('connect', () => {
-      console.log('client connect');
+      console.log('client connected!');
       // socket.emit('news', { hello: 'world' });
       // socket.on('my other event', () => {});
     });
