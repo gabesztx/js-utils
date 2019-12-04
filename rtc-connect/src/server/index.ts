@@ -15,12 +15,11 @@ app.get('/', (req, res) => {
 app.use(express.static(path.join(__dirname, appPath)));
 
 server.listen(port, () => {
-  console.log('Server is running!');
-  console.log('Port:', port);
 });
 
 /* Socket server */
 const io = require('socket.io')(server);
 io.on('connection', (socket) => {
   console.log('----- connection ------');
+  // console.log(socket);
 });

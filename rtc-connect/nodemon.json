@@ -5,5 +5,5 @@
   "ignore": [
     "src/app", ".*json"
   ],
-  "exec": "ts-node --project ./tsconfig.server.json ./src/server"
+  "exec": "TS_NODE_PROJECT='./tsconfig.server.json' ts-node"
 }
