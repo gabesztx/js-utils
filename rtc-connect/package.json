@@ -4,8 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve -o",
-    "server": "nodemon --exec babel-node --inspect src/server",
-    "ts-server": "nodemon --exec 'ts-node' src/server/index.ts",
+    "serv": "nodemon src/server/index.ts",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -24,7 +23,6 @@
     "express": "^4.17.1",
     "rxjs": "~6.4.0",
     "socket.io": "^2.3.0",
-    "tsconfig-paths": "^3.9.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },

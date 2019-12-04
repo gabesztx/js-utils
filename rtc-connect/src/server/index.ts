@@ -14,7 +14,10 @@ app.get('/', (req, res) => {
 });
 app.use(express.static(path.join(__dirname, appPath)));
 
-server.listen(port, () => {});
+server.listen(port, () => {
+  console.log('Server is running!');
+  console.log('Port:', port);
+});
 
 /* Socket server */
 const io = require('socket.io')(server);
