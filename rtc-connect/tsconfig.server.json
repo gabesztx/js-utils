@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "target": "es6",
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "dist/server",
+    "baseUrl": "./"
+  },
+  "include": [
+    "src/server/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
+
+
+//{
+//  "compilerOptions": {
+//    "module": "commonjs",
+//    "esModuleInterop": true,
+//    "target": "es6",
+//    "moduleResolution": "node",
+//    "sourceMap": true,
+//    "outDir": "dist"
+//  },
+//  "lib": ["es2015"]
+//}

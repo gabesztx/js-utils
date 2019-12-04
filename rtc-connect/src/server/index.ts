@@ -19,5 +19,5 @@ server.listen(port, () => {});
 /* Socket server */
 const io = require('socket.io')(server);
 io.on('connection', (socket) => {
-  console.log(socket);
+  console.log('----- connection ------');
 });
