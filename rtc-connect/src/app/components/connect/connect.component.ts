@@ -11,10 +11,10 @@ export class ConnectComponent implements OnInit {
   private socket;
 
   constructor() {
+    this.socket = io(this.url);
   }
 
   ngOnInit() {
-    this.socket = io(this.url);
     this.socket.on('connect', () => {
       console.log('client: connect');
     });

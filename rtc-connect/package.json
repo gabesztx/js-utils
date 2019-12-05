@@ -6,6 +6,7 @@
     "start": "ng serve",
     "server:run": "nodemon",
     "server:build": "tsc -p ./server",
+    "server:prod": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
