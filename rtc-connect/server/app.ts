@@ -7,7 +7,6 @@ import * as config from './config';
 
 const app = express();
 const server = http.createServer(app);
-
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, config.root, '/index.html')));
 app.use(express.static(path.join(__dirname, config.root)));
 server.listen(config.serverPort, () => {

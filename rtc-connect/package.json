@@ -4,10 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "server:run": "nodemon",
+    "server:dev": "nodemon",
     "server:build": "tsc -p ./server",
-    "server:prod": "node server.js",
-    "build": "ng build",
+    "server:prod": "node dist/server/app.js",
+    "build:dev": "ng build --outputPath=dist/client",
+    "build:prod": "ng build --prod --outputPath=dist/client",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const server = require('http').createServer(app);
-const port = 9000;
+const port = 3000;
 const appFolder = '../dist/media-stream/';
 
 app.get('/', (req, res) => {
