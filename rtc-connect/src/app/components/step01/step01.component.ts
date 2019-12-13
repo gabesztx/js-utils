@@ -29,8 +29,16 @@ export class Step01Component implements AfterViewInit {
 
   ngAfterViewInit() {
     this.localVideo = this.localVideoRef.nativeElement;
-    // this.remoteVideo = this.remoteVideoRef.nativeElement;
+    this.remoteVideo = this.remoteVideoRef.nativeElement;
+  }
+
+
+  startAction() {
+    // this.getStream();
     this.getStream();
+    // this.localPeerConnection.createOffer(this.offerOptions)
+    //   .then(this.createdOffer.bind(this))
+    //   .catch((error) => console.log('offerOptions ERROR:', error));
   }
 
   async getStream() {
@@ -43,102 +51,109 @@ export class Step01Component implements AfterViewInit {
   }
 
   gotLocalMediaStream(mediaStrem: MediaStream) {
+    this.localVideo.srcObject = mediaStrem;
     this.localMediaStream = mediaStrem;
-    console.log('gotLocalMediaStream');
-    if (this.isChrome) {
-      this.isCallBtn = true;
-    }
-    this.callAction();
+    this.isCallBtn = true;
+    // if (this.isChrome) {}
+    // this.callAction();
     // this.isCallBtn = true;
     // this.isChrome()
     // if (this.isChrome) {}
-    // this.localVideo.srcObject = mediaStrem;
     // setTimeout(() => {}, 1000);
   }
 
 
-  startAction() {
-    // this.getStream();
-    this.localPeerConnection.createOffer(this.offerOptions)
-      .then(this.createdOffer.bind(this))
-      .catch((error) => console.log('offerOptions ERROR:', error));
-  }
-
   callAction() {
-    console.log('callAction');
     const servers = null;
 
-    // localPeerConnection
+    // LocalPeerConnection
     this.localPeerConnection = new RTCPeerConnection(servers);
     this.localPeerConnection.addEventListener('icecandidate', (event) => {
-      console.log('event: ', 'icecandidate');
+      console.log('EVENT: ', 'localPeerConnection - icecandidate');
+      this.handleConnection(event);
+    });
+    this.localPeerConnection.addEventListener('iceconnectionstatechange', (event) => {
+      console.log('EVENT: ', 'localPeerConnection - iceconnectionstatechange');
+    });
+
+    // RemotePeerConnection
+    this.remotePeerConnection = new RTCPeerConnection(servers);
+    this.remotePeerConnection.addEventListener('icecandidate', (event) => {
+      console.log('EVENT: ', 'remotePeerConnection - icecandidate');
       // this.handleConnection(event);
     });
+    this.remotePeerConnection.addEventListener('iceconnectionstatechange', (event) => {
+      console.log('EVENT: ', 'remotePeerConnection - iceconnectionstatechange');
+    });
+    this.remotePeerConnection.addEventListener('addstream', this.gotRemoteMediaStream.bind(this));
+
+
     this.localPeerConnection.addStream(this.localMediaStream);
-    // this.localPeerConnection.addEventListener('iceconnectionstatechange', this.handleConnectionChange);
-
-    // remotePeerConnection
-    // this.remotePeerConnection = new RTCPeerConnection(servers);
-    // this.remotePeerConnection.addEventListener('icecandidate', this.handleConnection);
-    // this.remotePeerConnection.addEventListener('iceconnectionstatechange', this.handleConnectionChange);
-    // this.remotePeerConnection.addEventListener('addstream', this.gotRemoteMediaStream);
-    if (this.isChrome) {
-
-    }
+    this.localPeerConnection.createOffer(this.offerOptions)
+      .then(this.createdOffer.bind(this))
+      .catch((error) => console.log('createOffer ERROR:', error));
   }
-
-  createdOffer(description) {
-    console.log('createdOffer');
-    // console.log('localPeerConnection: ', this.localPeerConnection);
-    this.localPeerConnection.setLocalDescription(description).then(() => {
-      this.setLocalDescriptionSuccess(this.localPeerConnection);
-    }).catch((error) => console.log('setLocalDescription ERROR:', error));
-
-  }
-
-  setLocalDescriptionSuccess(peerConnection) {
-    // console.log('setLocalDescriptionSuccess');
-    // const peerName = this.getPeerName(peerConnection);
-    // console.log('peerName', peerName);
-    // console.log('setLocalDescriptionSuccess', );
-  }
-
-
-  gotRemoteMediaStream(event) {
-    console.log('gotRemoteMediaStream');
-    const mediaStream = event.stream;
-  }
-
 
   handleConnection(event) {
     const peerConnection = event.target;
     const iceCandidate = event.candidate;
-    console.log('handleConnection');
-    // console.log('peerConnection', peerConnection);
-    // console.log('iceCandidate', iceCandidate);
-    // if (iceCandidate) {
-    //   console.log('NEW NEW');
-    // }
+    if (iceCandidate) {
+      const newIceCandidate = new RTCIceCandidate(iceCandidate);
+      const otherPeer = this.getOtherPeer(peerConnection);
+      // TODO: hozzáadtuk a remothoz a candidat data ( socketen ezt küldjük ajd át? )
+      otherPeer.addIceCandidate(newIceCandidate)
+        .then(() => {
+          console.log('otherPeer addIceCandidate - DONE');
+        }).catch((error) => {
+        console.log('ERROR addIceCandidate:', error);
+      });
+    }
   }
 
-  handleConnectionChange(event) {
-    console.log('handleConnectionChange', event);
+  createdOffer(description) {
+    this.localPeerConnection.setLocalDescription(description)
+      .then(() => {
+        console.log('localPeerConnection setLocalDescription - Done');
+      }).catch((error) => console.log('setLocalDescription ERROR:', error));
+
+    this.remotePeerConnection.setRemoteDescription(description)
+      .then(() => {
+        console.log('remotePeerConnection setRemoteDescription - Done');
+      }).catch((error) => console.log('setRemoteDescription ERROR:', error));
+
+    this.remotePeerConnection.createAnswer()
+      .then(this.createdAnswer.bind(this))
+      .catch((error) => console.log('createAnswer ERROR:', error));
+  }
+
+  createdAnswer(description) {
+    this.remotePeerConnection.setLocalDescription(description)
+      .then(() => {
+        console.log('remotePeerConnection setLocalDescription - Done');
+      }).catch((error) => console.log('remotePeerConnection setLocalDescription ERROR:', error));
+
+    this.localPeerConnection.setRemoteDescription(description)
+      .then(() => {
+        console.log('localPeerConnection setRemoteDescription - Done');
+      }).catch((error) => console.log('remotePeerConnection setLocalDescription ERROR:', error));
+  }
+
+
+  gotRemoteMediaStream(event) {
+    console.log('----- gotRemoteMediaStream -----');
+    const mediaStream = event.stream;
+    this.remoteVideo.srcObject = mediaStream;
+    this.remoteMediaStream = mediaStream;
   }
 
   getPeerName(peerConnection) {
     return (peerConnection === this.localPeerConnection) ? 'localPeerConnection' : 'remotePeerConnection';
   }
 
+  getOtherPeer(peerConnection) {
+    console.log(peerConnection === this.localPeerConnection);
+    return (peerConnection === this.localPeerConnection) ?
+      this.remotePeerConnection : this.localPeerConnection;
+  }
 
 }
-
-/*  hdConstraints = {
-    video: {
-      width: {
-        min: 1280
-      },
-      height: {
-        min: 720
-      }
-    }
-  };*/
