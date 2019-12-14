@@ -19,6 +19,7 @@ io.on('connection', (socket: socketIo.Socket) => {
   // console.log('connection');
   socket.on('message', (msg) => {
     socket.broadcast.emit('message', msg);
+    // socket.emit('message', msg);
   });
 
   socket.on('create or join', (room) => {
