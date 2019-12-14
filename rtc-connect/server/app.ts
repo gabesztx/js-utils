@@ -1,7 +1,7 @@
 import * as express from 'express';
 import * as http from 'http';
 import * as path from 'path';
-import * as io from 'socket.io';
+import * as socketIo from 'socket.io';
 import * as config from './config';
 
 
@@ -14,10 +14,29 @@ server.listen(config.serverPort, () => {
 
 /* Socket server */
 // let userNumber = 0;
-io(server).on('connection', (socket: io.Socket) => {
-  console.log('connection');
+const io = socketIo(server);
+io.on('connection', (socket: socketIo.Socket) => {
+  // console.log('connection');
+  socket.on('message', (msg) => {
+    socket.broadcast.emit('message', msg);
+  });
+
+  socket.on('create or join', (room) => {
+    // const clientsInRoom = io.sockets.adapter.rooms[room];
+    // const numClients = clientsInRoom ? Object.keys(clientsInRoom.sockets).length : 0;
+    // if (!numClients) {
+    //   socket.join(room);
+    //   socket.emit('created', room, socket.id);
+    // }
+    // if (numClients === 1) {
+    //   io.sockets.in(room).emit('join', room);
+    //   socket.join(room);
+    //   socket.emit('joined', room, socket.id);
+    // }
+  });
+
   socket.on('disconnecting', (data) => {
-    console.log('disconnecting');
+    // console.log('disconnecting');
   });
 });
 
