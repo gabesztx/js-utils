@@ -4,7 +4,9 @@
 </div>
 <div class="btn-content">
 <!--  <button class="btn btn-primary" (click)="start()">Start</button>-->
-  <button class="btn btn-primary" *ngIf="isServer" (click)="call()">Call</button>
+  <button class="btn btn-primary" *ngIf="isServer" (click)="call()">Create</button>
+  <button class="btn btn-primary" *ngIf="isClose" (click)="end()">Close</button>
+  <div *ngIf="!isServer">Waiting for streamer</div>
+<!--  <button class="btn btn-primary" *ngIf="!isServer" (click)="join()">Join</button>-->
 <!--  <button class="btn btn-primary" *ngIf="isCallBtn" (click)="call()">Call</button>-->
-<!--  <button class="btn btn-primary" *ngIf="isClose" (click)="closePeerConnection()">Close</button>-->
 </div>

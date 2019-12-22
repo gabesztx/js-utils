@@ -11,8 +11,9 @@ export class SandboxComponent implements OnInit, AfterViewInit {
 
   pc: RTCPeerConnection;
   video: HTMLVideoElement;
-  constraints = {video: true, audio: false};
+  mediaStream: MediaStream;
   isServer = false;
+  isClose = false;
 
   constructor(private socketService: SocketService) {
   }
@@ -22,8 +23,8 @@ export class SandboxComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.video = this.videoTag.nativeElement;
-    this.socketService.getMessage().subscribe((res) => {
-      this.handleMessage(res);
+    this.socketService.getMessage().subscribe((message) => {
+      this.handleMessage(message);
     });
     this.socketService.getClients().subscribe((clients) => {
       if (clients.length === 1) {
@@ -56,8 +57,7 @@ export class SandboxComponent implements OnInit, AfterViewInit {
       }
     };
     if (this.isServer) {
-      navigator
-        .mediaDevices
+      navigator.mediaDevices
         .getUserMedia({video: true})
         .then((localStream) => {
           // console.log('localStream', localStream);
@@ -69,11 +69,12 @@ export class SandboxComponent implements OnInit, AfterViewInit {
     }
 
     this.pc.ontrack = (event) => {
-      console.log('onTrack', event.streams[0]);
+      // console.log('onTrack', event.streams[0]);
       this.video.srcObject = event.streams[0];
       // if (!this.video.srcObject) {}
     };
   }
+  end() {}
 
   async call() {
     const descOffer = await this.pc.createOffer();
@@ -83,7 +84,6 @@ export class SandboxComponent implements OnInit, AfterViewInit {
       offer: descOffer
     });
   }
-
 
   async handleMessage(message) {
     switch (message.channel) {
