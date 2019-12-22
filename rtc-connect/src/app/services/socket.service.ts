@@ -12,9 +12,10 @@ export class SocketService {
   option = {secure: true, reconnect: true, rejectUnauthorized: false};
 
   constructor() {
-    this.url = environment.production ? 'https://gabesztx.duckdns.org:3000' : 'http://localhost:3000';
+    this.url = environment.production ?
+      'https://gabesztx.duckdns.org:3000' :
+      'https://192.168.1.23:3000';
     this.socket = io(this.url, this.option);
-    // this.socket = io(this.url);
   }
 
   sendMessage(data) {
