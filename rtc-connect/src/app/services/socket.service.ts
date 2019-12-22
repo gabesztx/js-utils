@@ -49,7 +49,7 @@ export class SocketService {
   }
   getClients() {
     return new Observable<any>(observer => {
-      this.socket.on('login', (data) => observer.next(data));
+      this.socket.on('clients', (data) => observer.next(data));
     });
   }
 }

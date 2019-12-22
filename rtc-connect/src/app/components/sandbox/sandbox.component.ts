@@ -12,6 +12,7 @@ export class SandboxComponent implements OnInit, AfterViewInit {
   pc: RTCPeerConnection;
   video: HTMLVideoElement;
   constraints = {video: true, audio: false};
+  isServer = false;
 
   constructor(private socketService: SocketService) {
   }
@@ -21,108 +22,96 @@ export class SandboxComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.video = this.videoTag.nativeElement;
-    this.socketService.getMessage().subscribe((res) => this.handleMessage(res));
-    this.createPeerConnection();
+    this.socketService.getMessage().subscribe((res) => {
+      this.handleMessage(res);
+    });
+    this.socketService.getClients().subscribe((clients) => {
+      if (clients.length === 1) {
+        this.isServer = true;
+      }
+      this.createPeerConnection();
+
+    });
   }
 
   createPeerConnection() {
-    this.pc = new RTCPeerConnection();
-    this.pc.onnegotiationneeded = () => this.createOffer();
-    this.pc.onicecandidate = ({candidate}) => {
-      if (candidate) {
+    const iceServer = {
+      iceServers: [
+        {
+          urls: [
+            'stun:stun.stunprotocol.org',
+          ],
+        },
+      ],
+    };
+
+    this.pc = new RTCPeerConnection(iceServer);
+    this.pc.onnegotiationneeded = () => {};
+    this.pc.onicecandidate = (event) => {
+      if (event.candidate) {
         this.socketService.sendMessage({
           channel: 'iceCandidate',
-          iceCandidate: candidate
+          iceCandidate: event.candidate
         });
       }
     };
+    if (this.isServer) {
+      navigator
+        .mediaDevices
+        .getUserMedia({video: true})
+        .then((localStream) => {
+          // console.log('localStream', localStream);
+          this.video.srcObject = localStream;
+          localStream.getTracks().forEach(track => {
+            this.pc.addTrack(track, localStream);
+          });
+        });
+    }
+
     this.pc.ontrack = (event) => {
-      if (!this.video.srcObject) {
-        this.video.srcObject = event.streams[0];
-      }
+      console.log('onTrack', event.streams[0]);
+      this.video.srcObject = event.streams[0];
+      // if (!this.video.srcObject) {}
     };
   }
 
-  async createOffer() {
-    try {
-      const desc = await this.pc.createOffer();
-      await this.setLocalDescription(desc);
-      this.socketService.sendMessage({
-        channel: 'offer',
-        offer: desc
-      });
-    } catch (err) {
-      console.error('ERROR: createOffer');
-    }
+  async call() {
+    const descOffer = await this.pc.createOffer();
+    await this.pc.setLocalDescription(descOffer);
+    this.socketService.sendMessage({
+      channel: 'offer',
+      offer: descOffer
+    });
   }
 
-  async createAnswer() {
-    try {
-      const desc = await this.pc.createAnswer();
-      await this.setLocalDescription(desc);
-      this.socketService.sendMessage({
-        channel: 'answer',
-        answer: desc
-      });
-    } catch (err) {
-      console.error('ERROR: createAnswer');
-    }
-  }
-
-  async addIceCandidate(candidate) {
-    try {
-      await this.pc.addIceCandidate(candidate);
-    } catch (err) {
-      console.error('ERROR: addIceCandidate');
-    }
-  }
-
-  async setLocalDescription(desc) {
-    return await this.pc.setLocalDescription(desc);
-  }
-
-  async setRemoteDescription(desc) {
-    return await this.pc.setRemoteDescription(desc);
-  }
 
   async handleMessage(message) {
     switch (message.channel) {
+      case 'call':
+        break;
       case 'offer':
         console.log('offer');
-        await this.setRemoteDescription(message.offer);
-        this.createAnswer();
+        await this.pc.setRemoteDescription(message.offer);
+        const descAnswer = await this.pc.createAnswer();
+        await this.pc.setLocalDescription(descAnswer);
+        this.socketService.sendMessage({
+          channel: 'answer',
+          answer: descAnswer
+        });
         break;
-
       case 'answer':
+        await this.pc.setRemoteDescription(message.answer);
         console.log('answer');
-        await this.setRemoteDescription(message.answer);
         break;
-
       case 'iceCandidate':
+        await this.pc.addIceCandidate(message.iceCandidate);
         console.log('iceCandidate');
-        this.addIceCandidate(message.iceCandidate);
         break;
-
       default:
         // console.log("unknown message", message);
         break;
     }
   }
-
-  async start() {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia(this.constraints);
-      this.video.srcObject = stream;
-      stream.getTracks().forEach(track => {
-        this.pc.addTrack(track, stream);
-      });
-    } catch (err) {
-      console.error(err);
-    }
-  }
-
 }
-
-// isChrome = navigator.userAgent.indexOf('Chrome') > -1;
 
 
