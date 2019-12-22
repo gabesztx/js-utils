@@ -32,8 +32,8 @@ export class PeerconnectionComponent implements AfterViewInit {
         if (desc) {
           if (desc.type === 'offer') {
             // Bob sets the description Alice sent him as the remote description using setRemoteDescription()
+            console.log('OFFER');
             await this.pc.setRemoteDescription(desc);
-            console.log('GET OFFER');
             /*const stream = await navigator.mediaDevices.getUserMedia(this.constraints);
             stream.getTracks().forEach((track) => {
               this.pc.addTrack(track, stream);
@@ -41,18 +41,17 @@ export class PeerconnectionComponent implements AfterViewInit {
 
             // Create Answer
             await this.pc.setLocalDescription(await this.pc.createAnswer());
-            console.log('CREATED ANSWER');
             this.socket.emit('message', {desc: this.pc.localDescription});
           } else if (desc.type === 'answer') {
+            console.log('ANSWER');
             await this.pc.setRemoteDescription(desc);
-            console.log('GET ANSWER');
           } else {
             console.log('Unsupported SDP type.');
           }
 
         } else if (candidate) {
+          console.log('CANDIDATE', candidate);
           await this.pc.addIceCandidate(candidate);
-          console.log('CANDIDATE');
         }
       } catch (err) {
         console.error('ERROR SOCKET MESSAGE: ', err);
@@ -64,16 +63,18 @@ export class PeerconnectionComponent implements AfterViewInit {
     this.localVideo = this.localVideoRef.nativeElement;
     this.pc = new RTCPeerConnection();
     this.pc.onicecandidate = ({candidate}) => {
-      console.log('SEND CANDITATE');
-      this.socket.emit('message', {candidate}); // optimal?
+      if (candidate) {
+        console.log('send candidate', candidate);
+        this.socket.emit('message', {candidate});
+      }
     };
     this.pc.onnegotiationneeded = async () => {
       try {
         // Alice runs the RTCPeerConnection createOffer() method.
         // The return from this of this is passed an RTCSessionDescription: Alice's local session description.
         await this.pc.setLocalDescription(await this.pc.createOffer());
-        console.log('CREATED OFFER');
         // In the callback, Alice sets the local description using setLocalDescription() and then sends this session description to Bob via their signaling channel.
+        console.log('setLocalDescription');
         this.socket.emit('message', {desc: this.pc.localDescription});
       } catch (err) {
         console.error(err);
@@ -97,7 +98,7 @@ export class PeerconnectionComponent implements AfterViewInit {
         this.pc.addTrack(track, stream);
       });
       // this.localMediaStream = stream;
-      this.localVideo.srcObject = stream;
+      // this.localVideo.srcObject = stream;
     } catch (err) {
       console.error(err);
     }

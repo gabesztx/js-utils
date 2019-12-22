@@ -1,19 +1,34 @@
-import * as socketIo from 'socket.io';
+import * as SocketIo from 'socket.io';
+import { ClientService } from './client.service';
 
 export class SocketService {
-  io: socketIo.Server;
-  constructor(server) {
-    this.io = socketIo(server);
-    this.io.on('connection', (socket: socketIo.Socket) => {
-      // console.log('socket id', socket.id);
-      // console.log('rooms', socket.rooms);
-      // console.log('client', socket.client);
-      socket.on('disconnecting', (data) => {
-        console.log('disconnecting');
+  io: SocketIo.Server;
+  clientService: ClientService;
+
+  constructor() {
+    this.clientService = new ClientService();
+  }
+
+  listen(server) {
+    this.io = SocketIo(server);
+    this.io.on('connection', (socket: SocketIo.Socket) => {
+      this.clientService.addClient(socket);
+      socket.on('disconnecting', () => {
+        this.clientService.removeClient(socket);
+      });
+      socket.on('message', (message) => {
+        // this.handleMessage(socket, message);
+        socket.broadcast.emit('message', message);
       });
     });
   }
+
+  handleMessage(socket: SocketIo.Socket, message) {
+    console.log('socket: ', socket.id);
+    console.log('message: ', message);
+  }
 }
 
-/*export const init = () => {};
-export const destroy = () => {};*/
+/*socket.on('message', (msg) => {
+   socket.broadcast.emit('message', msg);
+ });*/

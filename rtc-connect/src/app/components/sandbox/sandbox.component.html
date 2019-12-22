@@ -1,8 +1,8 @@
 <div class="video-content">
-  <video class="videoElement" autoplay playsinline #localVideo></video>
+  <video class="videoElement" autoplay playsinline #videoTag></video>
   <!--  <video class="videoElement" autoplay playsinline #remoteVideo></video>-->
 </div>
 <div class="btn-content">
-<!--  <button class="btn btn-primary" *ngIf="isChrome" (click)="">Start</button>-->
-  <!--  <button class="btn btn-primary" *ngIf="isCallBtn" (click)="callAction()">Call</button>-->
+  <button class="btn btn-primary" (click)="start()">Start</button>
+<!--  <button class="btn btn-primary" *ngIf="isChrome" (click)="start()">Start</button>-->
 </div>
