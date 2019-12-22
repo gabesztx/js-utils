@@ -88,18 +88,18 @@ export class SandboxComponent implements OnInit, AfterViewInit {
   async handleMessage(message) {
     switch (message.channel) {
       case 'offer':
-        // console.log('offer');
+        console.log('offer');
         await this.setRemoteDescription(message.offer);
         this.createAnswer();
         break;
 
       case 'answer':
-        // console.log('answer');
+        console.log('answer');
         await this.setRemoteDescription(message.answer);
         break;
 
       case 'iceCandidate':
-        // console.log('iceCandidate');
+        console.log('iceCandidate');
         this.addIceCandidate(message.iceCandidate);
         break;
 

@@ -13,8 +13,8 @@ export class SocketService {
 
   constructor() {
     this.url = environment.production ? 'https://gabesztx.duckdns.org:3000' : 'http://localhost:3000';
-    // this.socket = io(this.url, this.option);
-    this.socket = io(this.url);
+    this.socket = io(this.url, this.option);
+    // this.socket = io(this.url);
   }
 
   sendMessage(data) {
