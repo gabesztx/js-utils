@@ -8,18 +8,18 @@ import { SocketService } from '../../services/socket.service';
 })
 export class HttpsComponent implements OnInit {
 
-  constructor(private socketService: SocketService) {
-  }
+  // constructor(private socketService: SocketService) {}
+  constructor() {}
 
   ngOnInit() {
-    this.socketService.getSandBox().subscribe((msg) => {
-      console.log('Get Socket Msg: ', msg);
-    });
+    // this.socketService.getSandBox().subscribe((msg) => {
+    //   console.log('Get Socket Msg: ', msg);
+    // });
   }
 
   send() {
-    const data = 'Hello' + ' - ' + Math.random() * 1000;
-    this.socketService.sendSandBox(data);
+    // const data = 'Hello' + ' - ' + Math.random() * 1000;
+    // this.socketService.sendSandBox(data);
   }
 
 }
