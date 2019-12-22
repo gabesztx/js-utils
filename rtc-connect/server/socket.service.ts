@@ -17,17 +17,14 @@ export class SocketService {
         this.clientService.removeClient(socket);
       });
       socket.on('message', (message) => {
-        // this.handleMessage(socket, message);
         socket.broadcast.emit('message', message);
       });
-
       socket.on('sandbox', (message) => {
         socket.broadcast.emit('sandbox', message);
+      });
+      socket.on('closeConnection', () => {
+        this.io.emit('closeConnection');
       });
     });
   }
 }
-
-/*socket.on('message', (msg) => {
-   socket.broadcast.emit('message', msg);
- });*/

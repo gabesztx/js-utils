@@ -9,24 +9,36 @@ import { environment } from '../../environments/environment';
 export class SocketService {
   socket: SocketIOClient.Socket;
   url: string;
-  option =  { secure: true, reconnect: true, rejectUnauthorized : false };
+  option = {secure: true, reconnect: true, rejectUnauthorized: false};
+
   constructor() {
     this.url = environment.production ? 'https://gabesztx.duckdns.org:3000' : 'http://localhost:3000';
-    this.socket = io(this.url, this.option);
+    // this.socket = io(this.url, this.option);
+    this.socket = io(this.url);
   }
 
   sendMessage(data) {
     this.socket.emit('message', data);
   }
 
+  sendSandBox(data) {
+    this.socket.emit('sandbox', data);
+  }
+
+  sendCloseConnection() {
+    this.socket.emit('closeConnection');
+  }
+
+  getCloseConnection() {
+    return new Observable<any>(observer => {
+      this.socket.on('closeConnection', () => observer.next());
+    });
+  }
+
   getMessage() {
     return new Observable<any>(observer => {
       this.socket.on('message', (data) => observer.next(data));
     });
-  }
-
-  sendSandBox(data) {
-    this.socket.emit('sandbox', data);
   }
 
   getSandBox() {

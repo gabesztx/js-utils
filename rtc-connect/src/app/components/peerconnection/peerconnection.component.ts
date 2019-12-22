@@ -98,7 +98,7 @@ export class PeerconnectionComponent implements AfterViewInit {
         this.pc.addTrack(track, stream);
       });
       // this.localMediaStream = stream;
-      // this.localVideo.srcObject = stream;
+      this.localVideo.srcObject = stream;
     } catch (err) {
       console.error(err);
     }

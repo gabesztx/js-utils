@@ -12,7 +12,6 @@ export class SandboxComponent implements OnInit, AfterViewInit {
   pc: RTCPeerConnection;
   video: HTMLVideoElement;
   constraints = {video: true, audio: false};
-  isCallBtn = false;
 
   constructor(private socketService: SocketService) {
   }
@@ -28,7 +27,7 @@ export class SandboxComponent implements OnInit, AfterViewInit {
 
   createPeerConnection() {
     this.pc = new RTCPeerConnection();
-    // this.pc.onnegotiationneeded = () => {};
+    this.pc.onnegotiationneeded = () => this.createOffer();
     this.pc.onicecandidate = ({candidate}) => {
       if (candidate) {
         this.socketService.sendMessage({
@@ -78,34 +77,38 @@ export class SandboxComponent implements OnInit, AfterViewInit {
     }
   }
 
+  async setLocalDescription(desc) {
+    return await this.pc.setLocalDescription(desc);
+  }
+
+  async setRemoteDescription(desc) {
+    return await this.pc.setRemoteDescription(desc);
+  }
 
   async handleMessage(message) {
     switch (message.channel) {
-      case 'call':
-        console.log('call');
-        this.createOffer();
-        break;
       case 'offer':
         // console.log('offer');
         await this.setRemoteDescription(message.offer);
         this.createAnswer();
         break;
+
       case 'answer':
         // console.log('answer');
         await this.setRemoteDescription(message.answer);
         break;
+
       case 'iceCandidate':
         // console.log('iceCandidate');
         this.addIceCandidate(message.iceCandidate);
         break;
+
       default:
+        // console.log("unknown message", message);
         break;
     }
   }
 
-  call() {
-    this.handleMessage({channel: 'call'});
-  }
 
   async start() {
     try {
@@ -113,19 +116,10 @@ export class SandboxComponent implements OnInit, AfterViewInit {
       stream.getTracks().forEach(track => {
         this.pc.addTrack(track, stream);
       });
-      this.isCallBtn = true;
       this.video.srcObject = stream;
     } catch (err) {
       console.error(err);
     }
-  }
-
-  async setLocalDescription(desc) {
-    return await this.pc.setLocalDescription(desc);
-  }
-
-  async setRemoteDescription(desc) {
-    return await this.pc.setRemoteDescription(desc);
   }
 
 }
