@@ -8,6 +8,7 @@ import { Step01Component } from './components/step01/step01.component';
 import { PeerconnectionComponent } from './components/peerconnection/peerconnection.component';
 import { SandboxComponent } from './components/sandbox/sandbox.component';
 import { HttpsComponent } from './components/https/https.component';
+import { VideocallComponent } from './components/videocall/videocall.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HttpsComponent } from './components/https/https.component';
     Step01Component,
     PeerconnectionComponent,
     SandboxComponent,
-    HttpsComponent
+    HttpsComponent,
+    VideocallComponent
   ],
   imports: [
     BrowserModule,
