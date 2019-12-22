@@ -20,12 +20,11 @@ export class SocketService {
         // this.handleMessage(socket, message);
         socket.broadcast.emit('message', message);
       });
-    });
-  }
 
-  handleMessage(socket: SocketIo.Socket, message) {
-    console.log('socket: ', socket.id);
-    console.log('message: ', message);
+      socket.on('sandbox', (message) => {
+        socket.broadcast.emit('sandbox', message);
+      });
+    });
   }
 }
 

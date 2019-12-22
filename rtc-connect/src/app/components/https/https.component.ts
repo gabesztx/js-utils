@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SocketService } from '../../services/socket.service';
 
 @Component({
   selector: 'app-https',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HttpsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private socketService: SocketService) {
+  }
 
   ngOnInit() {
+    this.socketService.getSandBox().subscribe((msg) => {
+      console.log('Get Socket Msg: ', msg);
+    });
+  }
+
+  send() {
+    const data = 'Hello' + ' - ' + Math.random() * 1000;
+    this.socketService.sendSandBox(data);
   }
 
 }

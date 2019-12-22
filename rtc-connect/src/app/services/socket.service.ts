@@ -22,4 +22,14 @@ export class SocketService {
       this.socket.on('message', (data) => observer.next(data));
     });
   }
+
+  sendSandBox(data) {
+    this.socket.emit('sandbox', data);
+  }
+
+  getSandBox() {
+    return new Observable<any>(observer => {
+      this.socket.on('sandbox', (data) => observer.next(data));
+    });
+  }
 }
