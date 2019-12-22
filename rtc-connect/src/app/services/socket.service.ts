@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
 import * as io from 'socket.io-client';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SocketService {
   socket: SocketIOClient.Socket;
-  // url = 'http://localhost:3000';
-  url = 'http://gabesztx.duckdns.org:3000';
+  url: string;
 
   constructor() {
+    this.url = environment.production ?
+      'http://gabesztx.duckdns.org:3000' :
+      'http://localhost:3000';
     this.socket = io(this.url);
   }
 
