@@ -7,7 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class SocketService {
   socket: SocketIOClient.Socket;
-  url = 'http://localhost:3000';
+  // url = 'http://localhost:3000';
+  url = 'http://gabesztx.duckdns.org:3000';
 
   constructor() {
     this.socket = io(this.url);
