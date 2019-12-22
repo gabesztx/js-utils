@@ -13,6 +13,7 @@ export class SocketService {
     this.io = SocketIo(server);
     this.io.on('connection', (socket: SocketIo.Socket) => {
       this.clientService.addClient(socket);
+      socket.emit('login', this.clientService.clients);
       socket.on('disconnecting', () => {
         this.clientService.removeClient(socket);
       });
@@ -22,9 +23,8 @@ export class SocketService {
       socket.on('sandbox', (message) => {
         socket.broadcast.emit('sandbox', message);
       });
-      socket.on('closeConnection', () => {
-        this.io.emit('closeConnection');
-      });
+
+      // socket.on('closeConnection', () => {// });
     });
   }
 }

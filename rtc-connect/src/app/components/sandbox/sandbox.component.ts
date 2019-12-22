@@ -45,11 +45,11 @@ export class SandboxComponent implements OnInit, AfterViewInit {
 
   async createOffer() {
     try {
-      const offer = await this.pc.createOffer();
-      await this.setLocalDescription(offer);
+      const desc = await this.pc.createOffer();
+      await this.setLocalDescription(desc);
       this.socketService.sendMessage({
         channel: 'offer',
-        offer: this.pc.localDescription
+        offer: desc
       });
     } catch (err) {
       console.error('ERROR: createOffer');
@@ -58,11 +58,11 @@ export class SandboxComponent implements OnInit, AfterViewInit {
 
   async createAnswer() {
     try {
-      const answer = await this.pc.createAnswer();
-      await this.setLocalDescription(answer);
+      const desc = await this.pc.createAnswer();
+      await this.setLocalDescription(desc);
       this.socketService.sendMessage({
         channel: 'answer',
-        answer: this.pc.localDescription
+        answer: desc
       });
     } catch (err) {
       console.error('ERROR: createAnswer');
@@ -109,14 +109,13 @@ export class SandboxComponent implements OnInit, AfterViewInit {
     }
   }
 
-
   async start() {
     try {
       const stream = await navigator.mediaDevices.getUserMedia(this.constraints);
+      this.video.srcObject = stream;
       stream.getTracks().forEach(track => {
         this.pc.addTrack(track, stream);
       });
-      this.video.srcObject = stream;
     } catch (err) {
       console.error(err);
     }
@@ -125,3 +124,5 @@ export class SandboxComponent implements OnInit, AfterViewInit {
 }
 
 // isChrome = navigator.userAgent.indexOf('Chrome') > -1;
+
+

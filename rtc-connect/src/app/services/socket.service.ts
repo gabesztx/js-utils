@@ -47,4 +47,9 @@ export class SocketService {
       this.socket.on('sandbox', (data) => observer.next(data));
     });
   }
+  getClients() {
+    return new Observable<any>(observer => {
+      this.socket.on('login', (data) => observer.next(data));
+    });
+  }
 }
