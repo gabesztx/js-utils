@@ -12,5 +12,4 @@ export class HttpsComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

@@ -1,22 +1,21 @@
 <div class="videoCallComponent">
+  <h4>Client: {{myName}}</h4>
   <div class="btn-content">
     <button (click)="invite()">Invite</button>
+    <button (click)="hangUp()">HangUp</button>
   </div>
   <div class="video-content">
     <video class="videoElement" autoplay playsinline #localVideo></video>
     <video class="videoElement" autoplay playsinline #remoteVideo></video>
   </div>
+</div>
 
 <!--  <div class="container">
     <div class="row">
       <div class="col-sm">
-        <div class="video-content">
-
-        </div>
+        <div class="video-content"></div>
       </div>
       <div class="col-sm">
-
       </div>
     </div>
   </div>-->
-</div>
