@@ -19,7 +19,7 @@ export class VideocallComponent implements OnInit, AfterViewInit {
   remoteVideo: HTMLVideoElement;
   localStream: MediaStream;
   remoteStream: MediaStream;
-  // isShowRemoteVideo = false;
+  isStart = true;
 
   constructor(private socketService: SocketWsService) {
     this.myName = 'Peer-' + parseInt(String(Math.random() * 100), 10);
@@ -170,6 +170,7 @@ export class VideocallComponent implements OnInit, AfterViewInit {
     const desc = new RTCSessionDescription(msg.sdp);
     this.pc.setRemoteDescription(desc)
       .then(() => {
+        this.isStart = false;
         return navigator.mediaDevices.getUserMedia(this.mediaConstraints);
       })
       .then((stream) => {
@@ -199,6 +200,7 @@ export class VideocallComponent implements OnInit, AfterViewInit {
     const desc = new RTCSessionDescription(msg.sdp);
     this.pc.setRemoteDescription(desc).then(() => {
       console.log('Answer done!');
+      this.isStart = false;
     });
   }
 
@@ -239,7 +241,7 @@ export class VideocallComponent implements OnInit, AfterViewInit {
     }
     this.localVideo.srcObject = null;
     this.remoteVideo.srcObject = null;
-
+    this.isStart = true;
     // targetUsername = null;
   }
 }
