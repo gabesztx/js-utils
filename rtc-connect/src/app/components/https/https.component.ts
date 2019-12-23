@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { SocketService } from '../../services/socket.service';
 
 @Component({
@@ -9,16 +10,19 @@ import { SocketService } from '../../services/socket.service';
 export class HttpsComponent implements OnInit {
 
   // constructor() {}
-  constructor(private socketService: SocketService) {}
+  constructor(private wsSocketService:) {
+  }
+
   ngOnInit() {
-    this.socketService.getSandBox().subscribe((msg) => {
-      console.log('Get Socket Msg: ', msg);
-    });
+    const socket = new WebSocket('wss://192.168.1.23:3000');
+    // this.socketService.getSandBox().subscribe((msg) => {
+    //   console.log('Get Socket Msg: ', msg);
+    // });
   }
 
   send() {
-    const data = 'Hello' + ' - ' + Math.random() * 1000;
-    this.socketService.sendSandBox(data);
+    // const data = 'Hello' + ' - ' + Math.random() * 1000;
+    // this.socketService.sendSandBox(data);
   }
 
 }
