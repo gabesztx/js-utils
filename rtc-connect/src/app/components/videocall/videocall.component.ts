@@ -141,6 +141,7 @@ export class VideocallComponent implements OnInit, AfterViewInit {
       case 'closed':
       case 'failed':
       case 'disconnected':
+        console.log('handleICEConnectionStateChangeEvent: disconnected');
         this.closeVideoCall();
         break;
     }
@@ -153,6 +154,7 @@ export class VideocallComponent implements OnInit, AfterViewInit {
     // console.log('--- EVENT ---: handleSignalingStateChangeEvent');
     switch (this.pc.signalingState) {
       case 'closed':
+        console.log('handleSignalingStateChangeEvent: closed');
         this.closeVideoCall();
         break;
     }
@@ -237,7 +239,6 @@ export class VideocallComponent implements OnInit, AfterViewInit {
     }
     this.localVideo.srcObject = null;
     this.remoteVideo.srcObject = null;
-
 
     // targetUsername = null;
   }
