@@ -61,6 +61,7 @@ export class SandboxComponent implements OnInit, AfterViewInit {
         .getUserMedia({video: true})
         .then((localStream) => {
           // console.log('localStream', localStream);
+          
           this.video.srcObject = localStream;
           localStream.getTracks().forEach(track => {
             this.pc.addTrack(track, localStream);
