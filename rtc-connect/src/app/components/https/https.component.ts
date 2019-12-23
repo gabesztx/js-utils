@@ -22,7 +22,8 @@ export class HttpsComponent implements OnInit {
   }
 
   connect() {
-    this.ws = new WebSocket('wss://192.168.1.23:3000');
+    // this.ws = new WebSocket('wss://192.168.1.23:3000');
+    this.ws = new WebSocket('wss://gabesztx.duckdns.org:3000');
     this.ws.onopen = (event) => {
       console.log('WS: Open');
     };
