@@ -6,7 +6,7 @@ import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class SocketService {
+export class SocketIoService {
   socket: SocketIOClient.Socket;
   url: string;
   option = {secure: true, reconnect: true, rejectUnauthorized: false};
@@ -22,29 +22,9 @@ export class SocketService {
     this.socket.emit('message', data);
   }
 
-  sendSandBox(data) {
-    this.socket.emit('sandbox', data);
-  }
-
-  sendCloseConnection() {
-    this.socket.emit('closeConnection');
-  }
-
-  getCloseConnection() {
-    return new Observable<any>(observer => {
-      this.socket.on('closeConnection', () => observer.next());
-    });
-  }
-
   getMessage() {
     return new Observable<any>(observer => {
       this.socket.on('message', (data) => observer.next(data));
-    });
-  }
-
-  getSandBox() {
-    return new Observable<any>(observer => {
-      this.socket.on('sandbox', (data) => observer.next(data));
     });
   }
   getClients() {

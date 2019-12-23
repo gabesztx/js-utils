@@ -1,0 +1,16 @@
+.videoCallComponent {
+  //display: flex;
+  margin: 10px;
+  .btn-content {}
+  .video-content {
+    padding-top: 10px;
+    //margin: 10px;
+    video {
+      margin-right: 15px;
+      width: 320px;
+      height: 240px;
+      background-color: gray;
+    }
+  }
+
+}

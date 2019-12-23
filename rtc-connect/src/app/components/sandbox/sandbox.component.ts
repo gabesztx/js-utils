@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { SocketService } from '../../services/socket.service';
+import { SocketIoService } from '../../services/socket-io.service';
 
 @Component({
   selector: 'app-sandbox',
@@ -15,7 +15,7 @@ export class SandboxComponent implements OnInit, AfterViewInit {
   isServer = false;
   isClose = false;
 
-  constructor(private socketService: SocketService) {
+  constructor(private socketService: SocketIoService) {
   }
 
   ngOnInit() {
@@ -61,7 +61,7 @@ export class SandboxComponent implements OnInit, AfterViewInit {
         .getUserMedia({video: true})
         .then((localStream) => {
           // console.log('localStream', localStream);
-          
+
           this.video.srcObject = localStream;
           localStream.getTracks().forEach(track => {
             this.pc.addTrack(track, localStream);

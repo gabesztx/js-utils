@@ -1,1 +1,22 @@
-<p>videocall works!</p>
+<div class="videoCallComponent">
+  <div class="btn-content">
+    <button (click)="invite()">Invite</button>
+  </div>
+  <div class="video-content">
+    <video class="videoElement" autoplay playsinline #localVideo></video>
+    <video class="videoElement" autoplay playsinline #remoteVideo></video>
+  </div>
+
+<!--  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <div class="video-content">
+
+        </div>
+      </div>
+      <div class="col-sm">
+
+      </div>
+    </div>
+  </div>-->
+</div>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { SocketWsService } from '../../services/socket-ws.service';
 
 @Component({
   selector: 'app-videocall',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./videocall.component.scss']
 })
 export class VideocallComponent implements OnInit {
-
-  constructor() { }
+  @ViewChild('localVideo', {static: false}) localVideoRef: ElementRef;
+  @ViewChild('remoteVideo', {static: false}) removeVideoRef: ElementRef;
+  mediaConstraints = {
+    audio: false,
+    video: true
+  };
+  constructor(private socketService: SocketWsService) {
+  }
 
   ngOnInit() {
   }
 
+  invite() {
+
+  }
 }
