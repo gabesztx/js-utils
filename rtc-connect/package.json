@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "clean": "rm -rf dist",
-    "start": "ng serve --ssl true --ssl-cert ./cert/server.crt --ssl-key ./cert/server.key --host=192.168.1.23 --disableHostCheck=true",
+    "start": "ng serve --ssl true --ssl-cert ./cert/server.crt --ssl-key ./cert/server.key --host=192.168.0.104 --disableHostCheck=true",
     "start1": "ng serve --ssl true --ssl-cert ./cert/server.crt --ssl-key ./cert/server.key",
     "server:dev": "nodemon",
     "server:build": "tsc -p ./server",

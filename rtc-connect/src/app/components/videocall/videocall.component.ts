@@ -11,7 +11,7 @@ export class VideocallComponent implements OnInit, AfterViewInit {
   @ViewChild('remoteVideo', {static: false}) removeVideoRef: ElementRef;
   myName: string;
   mediaConstraints = {
-    audio: false,
+    audio: true,
     video: true
   };
   pc: RTCPeerConnection | any;
@@ -20,6 +20,7 @@ export class VideocallComponent implements OnInit, AfterViewInit {
   localStream: MediaStream;
   remoteStream: MediaStream;
   isStart = true;
+  isCamera = true;
 
   constructor(private socketService: SocketWsService) {
     this.myName = 'Peer-' + parseInt(String(Math.random() * 100), 10);
@@ -30,16 +31,19 @@ export class VideocallComponent implements OnInit, AfterViewInit {
       const message = JSON.parse(msg.data);
       switch (message.type) {
         case 'video-offer':
-          // console.log('get: video-offer');
+          console.log('get: video-offer');
           this.handleVideoOfferMsg(message);
           break;
         case 'video-answer':
-          // console.log('get: video-answer');
+          console.log('get: video-answer');
           this.handleVideoAnswerMsg(message);
           break;
         case 'new-ice-candidate':
-          // console.log('get: new-ice-candidate');
+          console.log('get: new-ice-candidate');
           this.handleNewICECandidateMsg(message);
+          break;
+        case 'videoOff':
+          // console.log('HANG UP')
           break;
         case 'hang-up':
           // console.log('HANG UP');
@@ -55,6 +59,7 @@ export class VideocallComponent implements OnInit, AfterViewInit {
   }
 
   invite() {
+    this.isStart = false;
     this.createPeerConnection();
     navigator.mediaDevices.getUserMedia(this.mediaConstraints)
       .then((localStream) => {
@@ -64,6 +69,20 @@ export class VideocallComponent implements OnInit, AfterViewInit {
       }).catch((e) => {
       this.closeVideoCall();
     });
+  }
+
+  addCamera() {
+    // navigator.mediaDevices.getUserMedia(this.mediaConstraints).then((stream) => {
+    //   this.localStream = stream;
+    //   this.localVideo.srcObject = stream;
+    //   stream.getTracks().forEach(track => this.pc.addTrack(track, stream));
+    // });
+  }
+  stopCamera() {
+    // console.log('stopCamera');
+    // this.localStream.getTracks().forEach(track => track.stop());
+    // this.localStream = null;
+    // this.localVideo.srcObject = null;
   }
 
   hangUp() {
@@ -106,7 +125,7 @@ export class VideocallComponent implements OnInit, AfterViewInit {
   }
 
   handleTrackEvent(event) {
-    // console.log('--- EVENT ---: handleTrackEvent');
+    console.log('--- EVENT ---: handleTrackEvent');
     if (!this.remoteVideo.srcObject) {
       this.remoteStream = event.streams[0];
       this.remoteVideo.srcObject = event.streams[0];
@@ -114,7 +133,7 @@ export class VideocallComponent implements OnInit, AfterViewInit {
   }
 
   handleNegotiationNeededEvent() {
-    // console.log('--- EVENT ---: handleNegotiationNeededEvent');
+    console.log('--- EVENT ---: handleNegotiationNeededEvent');
     this.pc.createOffer()
       .then((offer) => {
         return this.pc.setLocalDescription(offer);
@@ -136,7 +155,7 @@ export class VideocallComponent implements OnInit, AfterViewInit {
   }
 
   handleICEConnectionStateChangeEvent() {
-    // console.log('--- EVENT ---: handleICEConnectionStateChangeEvent');
+    console.log('--- EVENT ---: handleICEConnectionStateChangeEvent');
     switch (this.pc.iceConnectionState) {
       case 'closed':
       case 'failed':
@@ -151,7 +170,7 @@ export class VideocallComponent implements OnInit, AfterViewInit {
   }
 
   handleSignalingStateChangeEvent() {
-    // console.log('--- EVENT ---: handleSignalingStateChangeEvent');
+    console.log('--- EVENT ---: handleSignalingStateChangeEvent');
     switch (this.pc.signalingState) {
       case 'closed':
         console.log('handleSignalingStateChangeEvent: closed');
@@ -164,13 +183,13 @@ export class VideocallComponent implements OnInit, AfterViewInit {
 
 
   handleVideoOfferMsg(msg) {
+    console.log('--- EVENT ---: handleVideoOfferMsg');
     if (!this.pc) {
       this.createPeerConnection();
     }
     const desc = new RTCSessionDescription(msg.sdp);
     this.pc.setRemoteDescription(desc)
       .then(() => {
-        this.isStart = false;
         return navigator.mediaDevices.getUserMedia(this.mediaConstraints);
       })
       .then((stream) => {
@@ -185,6 +204,7 @@ export class VideocallComponent implements OnInit, AfterViewInit {
         return this.pc.setLocalDescription(answer);
       })
       .then(() => {
+        this.isStart = false;
         this.sendToServer({
           name: this.myName,
           target: '-',
@@ -200,7 +220,6 @@ export class VideocallComponent implements OnInit, AfterViewInit {
     const desc = new RTCSessionDescription(msg.sdp);
     this.pc.setRemoteDescription(desc).then(() => {
       console.log('Answer done!');
-      this.isStart = false;
     });
   }
 
