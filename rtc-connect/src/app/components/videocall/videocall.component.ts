@@ -57,6 +57,7 @@ export class VideocallComponent implements OnInit, AfterViewInit {
     this.localVideo = this.localVideoRef.nativeElement;
     this.remoteVideo = this.removeVideoRef.nativeElement;
     this.localVideo.volume = 0;
+    this.remoteVideo.volume = 0.5;
   }
 
   invite() {
