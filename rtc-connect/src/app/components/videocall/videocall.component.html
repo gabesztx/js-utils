@@ -1,15 +1,18 @@
 <div class="videoCallComponent">
 <!--  <h4>Client: {{myName}}</h4>-->
-  <h4>Client</h4>
-  <div class="btn-content">
-    <button (click)="invite()" *ngIf="isStart">Start Stream</button>
-    <button (click)="hangUp()" *ngIf="!isStart">Close</button>
+  <h4>Video / Audio Broadcast Test</h4>
+  <div class="startText" *ngIf="!isMatch">Waiting for other client</div>
+  <div class="wrapper">
+    <div class="btn-content" *ngIf="isMatch">
+      <button (click)="invite()" *ngIf="isStart">Start Stream</button>
+      <button (click)="hangUp()" *ngIf="!isStart">Close</button>
+    </div>
+    <div class="video-content">
+      <video class="videoElement" autoplay playsinline #localVideo></video>
+    </div>
+  </div>
+</div>
+<!--    <video class="videoElement" autoplay playsinline #remoteVideo></video>-->
 <!--    <button (click)="hangUp()" *ngIf="isStart === false">Close</button>-->
 <!--    <button (click)="addCamera()" *ngIf="isCamera">Camera On</button>-->
 <!--    <button (click)="stopCamera()" *ngIf="isCamera">Camera Off</button>-->
-  </div>
-  <div class="video-content">
-    <video class="videoElement" autoplay playsinline muted="muted" #localVideo></video>
-    <video class="videoElement" autoplay playsinline #remoteVideo></video>
-  </div>
-</div>

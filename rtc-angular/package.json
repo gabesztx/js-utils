@@ -15,7 +15,7 @@
     "peer": "parcel build peerjs/lib/exports.ts --out-file peerjs.js --out-dir peerjs/dist --cache-dir peerjs/cache",
     "serv": "nodemon server/index.js",
     "client": "ng serve",
-    "start": "ng serve -o",
+    "start": "ng serve --host=192.168.1.23 --port=3000",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

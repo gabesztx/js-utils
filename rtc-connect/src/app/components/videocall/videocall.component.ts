@@ -20,6 +20,7 @@ export class VideocallComponent implements OnInit, AfterViewInit {
   localStream: MediaStream;
   remoteStream: MediaStream;
   isStart = true;
+  isMatch = false;
   isCamera = true;
 
   constructor(private socketService: SocketWsService) {
@@ -27,6 +28,11 @@ export class VideocallComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.socketService.ws.onopen = () => {
+      this.sendToServer({
+        type: 'connect'
+      });
+    };
     this.socketService.ws.onmessage = (msg) => {
       const message = JSON.parse(msg.data);
       switch (message.type) {
@@ -42,11 +48,20 @@ export class VideocallComponent implements OnInit, AfterViewInit {
           console.log('get: new-ice-candidate');
           this.handleNewICECandidateMsg(message);
           break;
-        case 'videoOff':
-          // console.log('HANG UP')
+        case 'connect':
+          console.log('Connect Client', message);
+          if (message.num === 2) {
+            // console.log('MATCH');
+            this.isMatch = true;
+          }
+          break;
+        case 'disconnect':
+          console.log('Disconnect Client', message);
+          this.isMatch = false;
+          this.closeVideoCall();
+          // console.log('HANG UP');
           break;
         case 'hang-up':
-          // console.log('HANG UP');
           this.closeVideoCall();
           break;
       }
@@ -55,9 +70,9 @@ export class VideocallComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.localVideo = this.localVideoRef.nativeElement;
-    this.remoteVideo = this.removeVideoRef.nativeElement;
-    this.localVideo.volume = 0;
-    this.remoteVideo.volume = 0.5;
+    // this.remoteVideo = this.removeVideoRef.nativeElement;
+    // this.localVideo.volume = 0;
+    // this.remoteVideo.volume = 0;
   }
 
   invite() {
@@ -65,7 +80,7 @@ export class VideocallComponent implements OnInit, AfterViewInit {
     this.createPeerConnection();
     navigator.mediaDevices.getUserMedia(this.mediaConstraints)
       .then((localStream) => {
-        this.localVideo.srcObject = localStream;
+        // this.localVideo.srcObject = localStream;
         this.localStream = localStream;
         localStream.getTracks().forEach(track => {
           this.pc.addTrack(track, localStream);
@@ -131,9 +146,11 @@ export class VideocallComponent implements OnInit, AfterViewInit {
 
   handleTrackEvent(event) {
     console.log('--- EVENT ---: handleTrackEvent');
-    if (!this.remoteVideo.srcObject) {
+    // if (!this.remoteVideo.srcObject) {
+    if (!this.localVideo.srcObject) {
       this.remoteStream = event.streams[0];
-      this.remoteVideo.srcObject = event.streams[0];
+      this.localVideo.srcObject = event.streams[0];
+      // this.remoteVideo.srcObject = event.streams[0];
     }
   }
 
@@ -199,7 +216,7 @@ export class VideocallComponent implements OnInit, AfterViewInit {
       })
       .then((stream) => {
         this.localStream = stream;
-        this.localVideo.srcObject = stream;
+        // this.localVideo.srcObject = stream;
         stream.getTracks().forEach(track => this.pc.addTrack(track, stream));
       })
       .then(() => {
@@ -264,7 +281,7 @@ export class VideocallComponent implements OnInit, AfterViewInit {
       this.pc = null;
     }
     this.localVideo.srcObject = null;
-    this.remoteVideo.srcObject = null;
+    // this.remoteVideo.srcObject = null;
     this.isStart = true;
     // targetUsername = null;
   }
