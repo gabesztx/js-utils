@@ -56,6 +56,7 @@ export class VideocallComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.localVideo = this.localVideoRef.nativeElement;
     this.remoteVideo = this.removeVideoRef.nativeElement;
+    this.localVideo.volume = 0;
   }
 
   invite() {
@@ -65,7 +66,9 @@ export class VideocallComponent implements OnInit, AfterViewInit {
       .then((localStream) => {
         this.localVideo.srcObject = localStream;
         this.localStream = localStream;
-        localStream.getTracks().forEach(track => this.pc.addTrack(track, localStream));
+        localStream.getTracks().forEach(track => {
+          this.pc.addTrack(track, localStream);
+        });
       }).catch((e) => {
       this.closeVideoCall();
     });
@@ -78,6 +81,7 @@ export class VideocallComponent implements OnInit, AfterViewInit {
     //   stream.getTracks().forEach(track => this.pc.addTrack(track, stream));
     // });
   }
+
   stopCamera() {
     // console.log('stopCamera');
     // this.localStream.getTracks().forEach(track => track.stop());

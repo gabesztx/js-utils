@@ -9,7 +9,7 @@ export class BasicMediaComponent implements AfterViewInit {
   @ViewChild('videoElement', {static: false}) vidRef: ElementRef;
   video: HTMLVideoElement;
   constraints = {
-    audio: false,
+    audio: true,
     video: true
   };
 
