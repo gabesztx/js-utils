@@ -9,7 +9,6 @@ export class SocketWsService {
   ws: WebSocket;
   constructor() {
     this.url = environment.production ? 'wss://gabesztx.duckdns.org:3000' : 'wss://192.168.1.23:3000';
-    // this.url = 'wss://192.168.1.23:3000';
     this.ws = new WebSocket(this.url);
     this.ws.onopen = (event) => {};
     this.ws.onclose = (event) => {};
