@@ -9,6 +9,11 @@ const cert = {
   cert: isDev ? path.join(__dirname, '../cert/server.crt') : '/etc/letsencrypt/live/gabesztx.duckdns.org/cert.pem',
   ca: isDev ? path.join(__dirname, '../cert/server.csr') : '/etc/letsencrypt/live/gabesztx.duckdns.org/chain.pem',
 };
+/*const cert = {
+  key: path.join(__dirname, '../cert/server.key'),
+  cert: path.join(__dirname, '../cert/server.crt'),
+  ca: path.join(__dirname, '../cert/server.csr'),
+};*/
 export const httpsOption = {
   key: fs.readFileSync(cert.key),
   cert: fs.readFileSync(cert.cert),
