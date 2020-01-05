@@ -90,21 +90,6 @@ export class VideocallComponent implements OnInit, AfterViewInit {
     });
   }
 
-  addCamera() {
-    // navigator.mediaDevices.getUserMedia(this.mediaConstraints).then((stream) => {
-    //   this.localStream = stream;
-    //   this.localVideo.srcObject = stream;
-    //   stream.getTracks().forEach(track => this.pc.addTrack(track, stream));
-    // });
-  }
-
-  stopCamera() {
-    // console.log('stopCamera');
-    // this.localStream.getTracks().forEach(track => track.stop());
-    // this.localStream = null;
-    // this.localVideo.srcObject = null;
-  }
-
   hangUp() {
     this.closeVideoCall();
     this.sendToServer({

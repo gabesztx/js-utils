@@ -7,6 +7,7 @@ import { Step01Component } from './components/step01/step01.component';
 import { SandboxComponent } from './components/sandbox/sandbox.component';
 import { HttpsComponent } from './components/https/https.component';
 import { VideocallComponent } from './components/videocall/videocall.component';
+import { JanusComponent } from './components/janus/janus.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { VideocallComponent } from './components/videocall/videocall.component';
     Step01Component,
     SandboxComponent,
     HttpsComponent,
-    VideocallComponent
+    VideocallComponent,
+    JanusComponent
   ],
   imports: [
     BrowserModule,

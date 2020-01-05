@@ -6,6 +6,7 @@
     "clean": "rm -rf dist",
     "start": "ng serve --ssl true --ssl-cert ./cert/server.crt --ssl-key ./cert/server.key --host=192.168.1.23 --disableHostCheck=true",
     "start1": "ng serve --ssl true --ssl-cert ./cert/server.crt --ssl-key ./cert/server.key",
+    "start2": "ng serve",
     "server:dev": "nodemon",
     "server:build": "tsc -p ./server",
     "server:prod": "node dist/server/app.js",

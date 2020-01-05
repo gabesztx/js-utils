@@ -1,0 +1,17 @@
+<div class="videoCallComponent">
+  <!--  <h4>Client: {{myName}}</h4>-->
+  <h4>Video / Audio Broadcast Test</h4>
+<!--  <div class="startText" *ngIf="!isMatch">Waiting for other client</div>-->
+  <div class="wrapper">
+    <!--<div class="btn-content" *ngIf="isMatch">
+      <button (click)="invite()" *ngIf="isStart">Start Stream</button>
+      <button (click)="hangUp()" *ngIf="!isStart">Close</button>
+    </div>-->
+    <div class="video-content">
+      <video class="videoElement" autoplay playsinline #localVideo></video>
+    </div>
+    <div class="video-content">
+      <video class="videoElement" autoplay playsinline #remoteVideo></video>
+    </div>
+  </div>
+</div>
