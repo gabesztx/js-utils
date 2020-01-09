@@ -8,6 +8,7 @@ import { SandboxComponent } from './components/sandbox/sandbox.component';
 import { HttpsComponent } from './components/https/https.component';
 import { VideocallComponent } from './components/videocall/videocall.component';
 import { JanusComponent } from './components/janus/janus.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,10 +19,11 @@ import { JanusComponent } from './components/janus/janus.component';
     VideocallComponent,
     JanusComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

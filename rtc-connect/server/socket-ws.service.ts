@@ -34,8 +34,9 @@ export class SocketWsService {
         });
       });
       ws.on('close', () => {
-        console.log('disconnect client');
-        this.clientNum--;
+        // console.log('disconnect client');
+        // this.clientNum--;
+        this.clientNum = 0;
         wss.clients.forEach((client) => {
           if (client.readyState === WebSocket.OPEN) {
             const data = JSON.stringify({

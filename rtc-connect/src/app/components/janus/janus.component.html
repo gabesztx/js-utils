@@ -1,12 +1,14 @@
 <div class="videoCallComponent">
-  <!--  <h4>Client: {{myName}}</h4>-->
-  <h4>Video / Audio Broadcast Test</h4>
-<!--  <div class="startText" *ngIf="!isMatch">Waiting for other client</div>-->
+  <h4>Video / Audio Call</h4>
+  <p>User: {{userName}}</p>
   <div class="wrapper">
-    <!--<div class="btn-content" *ngIf="isMatch">
-      <button (click)="invite()" *ngIf="isStart">Start Stream</button>
-      <button (click)="hangUp()" *ngIf="!isStart">Close</button>
-    </div>-->
+    <div class="btn-content">
+      <button (click)="list()">List</button>
+      <button (click)="register()">Register</button>
+      <button (click)="call()">Call</button>
+<!--      type="number" [(ngModel)]="callName"-->
+      <input type="text" [(ngModel)]="callName">
+    </div>
     <div class="video-content">
       <video class="videoElement" autoplay playsinline #localVideo></video>
     </div>
