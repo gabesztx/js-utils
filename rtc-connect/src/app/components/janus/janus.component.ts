@@ -33,6 +33,7 @@ export class JanusComponent implements OnInit, AfterViewInit {
     this.localVideo = this.localVideoRef.nativeElement;
     this.remoteVideo = this.removeVideoRef.nativeElement;
     this.localVideo.muted = true;
+    this.remoteVideo.muted = true;
     this.janusInit();
   }
 
@@ -50,6 +51,7 @@ export class JanusComponent implements OnInit, AfterViewInit {
     this.janus = new Janus(
       {
         server: 'wss://gabesztx.duckdns.org:8989',
+        iceServers: [{url: 'stun:stun.voip.eutelia.it'}],
         success: () => {
           // console.log('------ janusCreateSeassion SUCCESS ------');
           this.janusAttach();
