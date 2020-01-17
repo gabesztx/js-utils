@@ -41,6 +41,7 @@ export class SandboxComponent implements OnInit, AfterViewInit {
         {
           urls: [
             'stun:stun.stunprotocol.org',
+            // 'turn:gabesztx.duckdns.org',
           ],
         },
       ],
