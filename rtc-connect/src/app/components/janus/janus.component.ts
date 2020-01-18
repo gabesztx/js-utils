@@ -51,10 +51,6 @@ export class JanusComponent implements OnInit, AfterViewInit {
     this.janus = new Janus(
       {
         server: 'wss://gabesztx.duckdns.org:8989',
-        // iceServers: [
-          // {urls: 'turn:numb.viagenie.ca', username: 'gabesztx@gmail.com', credential: 'Gabesztx33'},
-          // {urls: 'stun:stun.stunprotocol.org'}
-        // ],
         success: () => {
           // console.log('------ janusCreateSeassion SUCCESS ------');
           this.janusAttach();
