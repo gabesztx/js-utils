@@ -33,7 +33,7 @@ export class JanusComponent implements OnInit, AfterViewInit {
     this.localVideo = this.localVideoRef.nativeElement;
     this.remoteVideo = this.removeVideoRef.nativeElement;
     this.localVideo.muted = true;
-    // this.remoteVideo.muted = true;
+    this.remoteVideo.muted = true;
     this.janusInit();
   }
 
