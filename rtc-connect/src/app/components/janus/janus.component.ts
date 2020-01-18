@@ -33,7 +33,7 @@ export class JanusComponent implements OnInit, AfterViewInit {
     this.localVideo = this.localVideoRef.nativeElement;
     this.remoteVideo = this.removeVideoRef.nativeElement;
     this.localVideo.muted = true;
-    this.remoteVideo.muted = true;
+    // this.remoteVideo.muted = true;
     this.janusInit();
   }
 
@@ -109,7 +109,7 @@ export class JanusComponent implements OnInit, AfterViewInit {
           console.log('oncleanup');
         },
         onmessage: (msg, jsep) => {
-          console.log('msg: ', msg);
+          // console.log('msg: ', msg);
           // console.log('jsep: ', jsep);
           const isResult = msg.hasOwnProperty('result');
           const isError = msg.hasOwnProperty('error');
@@ -212,7 +212,7 @@ export class JanusComponent implements OnInit, AfterViewInit {
 
   register() {
     const randomNum = parseInt(String(Math.random() * 50), 10);
-    const user = 'p' + randomNum;
+    const user = String(randomNum);
     this.userName = user;
     this.videoCall.send({
       message: {

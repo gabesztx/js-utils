@@ -1,19 +1,36 @@
 .videoCallComponent {
-  //display: flex;
-  text-align: center;
   margin: 10px;
+  h4{
+    text-align: center;
+  }
+  span {
+    font-size: 18px;
+    font-weight: bold;
+  }
 
   .wrapper {
-    .btn-content {
+    .btn-wrapper {
+      text-align: center;
+      .btn-content {
+        button {
+          margin-right: 5px;
+        }
+      }
     }
-    .video-content {
-      padding-top: 10px;
-      //margin: 10px;
-      video {
-        margin-right: 15px;
-        width: 320px;
-        height: 240px;
-        background-color: gray;
+
+    .video-wrapper {
+      padding-top: 15px;
+      display: flex;
+      justify-content: center;
+      font-size: 12px;
+
+      .video-content {
+        video {
+          margin-right: 15px;
+          width: 320px;
+          height: 240px;
+          background-color: rgba(255, 198, 205, 0.2);
+        }
       }
     }
   }

@@ -1,19 +1,24 @@
 <div class="videoCallComponent">
-  <h4>Video / Audio Call</h4>
-  <p>User: {{userName}}</p>
+  <h4>Test: Video / Audio Broadcast</h4>
   <div class="wrapper">
-    <div class="btn-content">
-      <button (click)="list()">List</button>
-      <button (click)="register()">Register</button>
-      <button (click)="call()">Call</button>
-<!--      type="number" [(ngModel)]="callName"-->
-      <input type="text" [(ngModel)]="callName">
+    <div class="btn-wrapper">
+      <div class="btn-title">Your Number: <span>{{userName}}</span></div>
+      <div class="btn-content">
+        <button class="btn btn-info btn-sm" (click)="list()">List</button>
+        <button class="btn btn-info btn-sm" (click)="call()">Call</button>
+        <input type="text" [(ngModel)]="callName">
+      </div>
     </div>
-    <div class="video-content">
-      <video class="videoElement" autoplay playsinline #localVideo></video>
-    </div>
-    <div class="video-content">
-      <video class="videoElement" autoplay playsinline #remoteVideo></video>
+    <div class="video-wrapper">
+      <div class="video-content">
+        <div>You:</div>
+        <video class="videoElement" autoplay playsinline #localVideo></video>
+      </div>
+      <div class="video-content">
+        <div>Other:</div>
+        <video class="videoElement" autoplay playsinline #remoteVideo></video>
+      </div>
     </div>
   </div>
 </div>
+<!--<button (click)="register()">Register</button>-->
