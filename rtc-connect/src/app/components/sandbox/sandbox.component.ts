@@ -38,17 +38,20 @@ export class SandboxComponent implements OnInit, AfterViewInit {
   createPeerConnection() {
     const iceServer = {
       iceServers: [
-        {
+        // {urls: 'stun:stun.l.google.com:19302'},
+        {urls: 'turn:numb.viagenie.ca', credential: 'homeo'}
+        /*{
           urls: [
             'stun:stun.stunprotocol.org',
             // 'turn:gabesztx.duckdns.org',
           ],
-        },
+        },*/
       ],
     };
 
     this.pc = new RTCPeerConnection(iceServer);
-    this.pc.onnegotiationneeded = () => {};
+    this.pc.onnegotiationneeded = () => {
+    };
     this.pc.onicecandidate = (event) => {
       if (event.candidate) {
         this.socketService.sendMessage({
@@ -75,7 +78,9 @@ export class SandboxComponent implements OnInit, AfterViewInit {
       // if (!this.video.srcObject) {}
     };
   }
-  end() {}
+
+  end() {
+  }
 
   async call() {
     const descOffer = await this.pc.createOffer();

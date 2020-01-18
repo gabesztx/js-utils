@@ -101,10 +101,7 @@ export class VideocallComponent implements OnInit, AfterViewInit {
 
   createPeerConnection() {
     this.pc = new RTCPeerConnection({
-      iceServers: [
-        {
-          urls: 'stun:stun.stunprotocol.org'
-        }
+      iceServers: [{urls: 'stun:stun.stunprotocol.org'}
       ]
     });
     this.pc.onicecandidate = this.handleICECandidateEvent.bind(this);
