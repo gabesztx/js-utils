@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules, NoPreloading } from '@angular/router';
 import { WelcomeComponent } from './welcome/welcome.component';
 
 
@@ -10,7 +10,12 @@ const routes: Routes = [
   },
   {
     path: 'forms',
-    loadChildren: () => import('./forms/forms.module').then(m => m.FormsModule)
+    loadChildren: () => import('./forms/forms.module').then(m => m.FormsModule),
+    data: { preload: true }
+  },
+  {
+    path: 'components',
+    loadChildren: () => import('./components/components.module').then(m => m.ComponentsModule)
   },
   {
     path: '',
@@ -29,7 +34,8 @@ const routes: Routes = [
     RouterModule.forRoot(
       routes,
       {
-        // preloadingStrategy: PreloadAllModules
+        // preloadingStrategy: NoPreloading, // default
+        // preloadingStrategy: PreloadAllModules, // when page is loaded, then preload all lazy load modules
         enableTracing: false
       }
     ),
