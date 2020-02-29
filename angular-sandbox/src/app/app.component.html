@@ -1,5 +1,5 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <a class="page-title" routerLink="/welcome">Angular Sandbox</a>
     <button class="navbar-toggler"
             type="button"
@@ -10,8 +10,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="menuToggler">
-
+    <div class="collapse navbar-collapse" id="menuToggler">ű
       <!-- Form -->
       <div class="dropdown">
         <button
@@ -24,8 +23,8 @@
           Forms
         </button>
         <div class="dropdown-menu" aria-labelledby="formMenu">
-          <a class="dropdown-item" routerLink="/reactive">Reactive</a>
-          <a class="dropdown-item" routerLink="/dynamic">Dynamic</a>
+          <a class="dropdown-item" routerLink="/forms/react">Reactive</a>
+          <a class="dropdown-item" routerLink="/forms/dynamic">Dynamic</a>
         </div>
       </div>
 
@@ -46,10 +45,9 @@
         </div>
       </div>
     </div>
-
-
   </nav>
 </header>
+<!-- Route content -->
 <main class="main-content">
   <router-outlet></router-outlet>
 </main>
