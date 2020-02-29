@@ -9,7 +9,7 @@ export class CustomPreloadingStrategyService implements PreloadingStrategy {
 
   preload(route: Route, load: () => Observable<any>): Observable<any> {
     if (route.data && route.data.preload) {
-      console.log(route.path, ' - ', 'Lazy module loaded');
+      // console.log(route.path, ' - ', 'Lazy module loaded');
       return load();
     } else {
       return of(null);
