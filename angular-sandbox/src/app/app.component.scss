@@ -1,11 +1,45 @@
-header{
-  .page-title{
+header {
+  .page-title {
     color: white;
+    text-decoration: none;
+
   }
-  .navbar-collapse{
-    justify-content: flex-end;
+
+  .navbar-collapse {
+    padding-left: 40px;
+  }
+
+  .dropdown {
+    margin-right: 20px;
+    .btn {
+      font-size: 13px;
+      color: white;
+      font-weight: 300;
+      &:after {
+        display: none;
+      }
+    }
+
+    .dropdown-menu {
+      border-radius: 0;
+      min-width: inherit;
+      padding: 5px;
+      margin-top: 5px;
+      box-shadow: -1px 3px 5px 0px rgba(0,0,0,0.27);
+      border: 0;
+      .dropdown-item {
+        padding: 5px;
+        font-size: 12px;
+        text-align: left;
+        &:hover {
+          background-color: transparent;
+        }
+      }
+    }
+
   }
 }
-.main-content{
+
+.main-content {
   margin: 0 16px;
 }

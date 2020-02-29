@@ -1,7 +1,15 @@
-body {
+button {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: inherit !important;
+  padding: 0 !important;
+  background-color: transparent !important;
+  &:focus {
+    box-shadow: none !important;
+  }
+  &:hover{
+    background-color: transparent !important;
+  }
 
-}
-
-button:focus {
-  outline: none;
 }

@@ -1,23 +1,55 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="page-title">Angular Sandbox</div>
+    <a class="page-title" routerLink="/welcome">Angular Sandbox</a>
     <button class="navbar-toggler"
             type="button"
             data-toggle="collapse"
-            data-target="#angularSanboxToggler"
-            aria-controls="angularSanboxToggler"
+            data-target="#menuToggler"
+            aria-controls="menuToggler"
             aria-expanded="false">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="angularSanboxToggler">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Menu1</a>
-        </li>
-      </ul>
+
+    <div class="collapse navbar-collapse" id="menuToggler">
+
+      <!-- Form -->
+      <div class="dropdown">
+        <button
+          class="btn dropdown-toggle"
+          type="button"
+          id="formMenu"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false">
+          Forms
+        </button>
+        <div class="dropdown-menu" aria-labelledby="formMenu">
+          <a class="dropdown-item" routerLink="/reactive">Reactive</a>
+          <a class="dropdown-item" routerLink="/dynamic">Dynamic</a>
+        </div>
+      </div>
+
+      <!-- Components -->
+      <div class="dropdown">
+        <button
+          class="btn dropdown-toggle"
+          type="button"
+          id="componentMenu"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false">
+          Components
+        </button>
+        <div class="dropdown-menu" aria-labelledby="componentMenu">
+          <a class="dropdown-item" href="#">Lifecycle hooks</a>
+          <a class="dropdown-item" href="#">Iterate</a>
+        </div>
+      </div>
     </div>
+
+
   </nav>
 </header>
 <main class="main-content">
-  Menu1
+  <router-outlet></router-outlet>
 </main>
