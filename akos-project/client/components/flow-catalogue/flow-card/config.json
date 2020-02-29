@@ -1,8 +1,0 @@
-{
-  "script": "flow-card/FlowCard",
-  "id": "FlowCard",
-  "data": {},
-  "dependencies": {
-    "@eui/lit-component": "^0.6.3"
-  }
-}

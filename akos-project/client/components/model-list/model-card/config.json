@@ -1,8 +1,0 @@
-{
-  "script": "model-card/ModelCard",
-  "id": "ModelCard",
-  "data": {},
-  "dependencies": {
-    "@eui/lit-component": "^0.6.3"
-  }
-}
