@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules, NoPreloading } from '@angular/router';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { CustomPreloadingStrategyService } from './services/custom-preloading-strategy.service';
 
 
 const routes: Routes = [
@@ -11,11 +12,17 @@ const routes: Routes = [
   {
     path: 'forms',
     loadChildren: () => import('./forms/forms.module').then(m => m.FormsModule),
-    data: {preload: true}
+    data: {
+      // preload: true // if preload true, automatic load module, handling in CustomPreloadingStrategyService
+    }
   },
   {
     path: 'components',
-    loadChildren: () => import('./components/components.module').then(m => m.ComponentsModule)
+    loadChildren: () => import('./components/components.module').then(m => m.ComponentsModule),
+    data: {
+      preload: false
+    }
+
   },
   {
     path: 'modules',
@@ -39,7 +46,8 @@ const routes: Routes = [
       routes,
       {
         // preloadingStrategy: NoPreloading, // default
-        // preloadingStrategy: PreloadAllModules, // when page is loaded, then preload all lazy load modules
+        // preloadingStrategy: PreloadAllModules, // automatic load all lazy load feature module
+        preloadingStrategy: CustomPreloadingStrategyService, // custom lazy load feature module
         enableTracing: false
       }
     ),
