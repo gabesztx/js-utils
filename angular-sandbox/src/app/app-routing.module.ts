@@ -41,8 +41,8 @@ const routes: Routes = [
       routes,
       {
         preloadingStrategy: NoPreloading, // default
-        // preloadingStrategy: PreloadAllModules, // automatic load all lazy load feature module
-        // preloadingStrategy: CustomPreloadingStrategyService, // custom lazy load feature module
+        // preloadingStrategy: PreloadAllModules, // automatic load all only lazy load feature module
+        // preloadingStrategy: CustomPreloadingStrategyService, // custom only lazy load feature module
         enableTracing: false
       }
     ),
