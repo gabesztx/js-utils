@@ -15,4 +15,5 @@ import { SharingModulesComponent } from './sharing-modules/sharing-modules.compo
     NgModulesRoutingModule
   ]
 })
-export class NgModulesModule { }
+export class NgModulesModule {
+}

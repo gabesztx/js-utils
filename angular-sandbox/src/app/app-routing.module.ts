@@ -5,6 +5,11 @@ import { CustomPreloadingStrategyService } from './services/custom-preloading-st
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: '/welcome',
+    pathMatch: 'full'
+  },
+  {
     path: 'welcome',
     component: WelcomeComponent
   },
@@ -22,11 +27,6 @@ const routes: Routes = [
   {
     path: 'modules',
     loadChildren: () => import('./ng-modules/ng-modules.module').then(m => m.NgModulesModule)
-  },
-  {
-    path: '',
-    redirectTo: '/welcome',
-    pathMatch: 'full'
   },
   {
     path: '**',
