@@ -9,6 +9,11 @@ export class AppComponent {
   title = 'angular-sandbox';
 
   navigation(link: string) {
+    console.log('hello :) ')
   }
 
+  hello(){
+    
+  }
+  
 }
