@@ -1,0 +1,14 @@
+{
+  "name": "due-date-calculator",
+  "version": "1.0.0",
+  "description": "Due Date Calculator Homework",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jasmine": "^3.5.0"
+  }
+}
