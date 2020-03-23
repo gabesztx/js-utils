@@ -7,6 +7,8 @@ import { FormsComponent } from './forms.component';
 import { ReactiveComponent } from './reactive/reactive.component';
 import { DynamicComponent } from './dynamic/dynamic.component';
 
+import { HttpService } from './services/http.service';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { DynamicComponent } from './dynamic/dynamic.component';
     CommonModule,
     HttpClientModule,
     FormsRoutingModule
-  ]
+  ],
+  providers: [HttpService],
 })
 export class FormsModule {
 }
