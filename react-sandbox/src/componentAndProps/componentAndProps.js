@@ -12,10 +12,12 @@ class ComponentAndProps extends React.Component {
 
 /* Component - Function */
 /*const ComponentAndProps = props => {
-  return <div>
-    <h1>Component And Props</h1>
-    <div>props: {props.name}</div>
-  </div>;
+  return (
+    <div>
+      <h1>Component And Props</h1>
+      <div>props: {props.name}</div>
+    </div>
+  );
 };*/
 
 export default ComponentAndProps;
