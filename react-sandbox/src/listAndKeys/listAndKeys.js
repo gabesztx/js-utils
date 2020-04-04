@@ -1,11 +1,18 @@
-import * as React from 'react';
+import React, { Component } from "react";
 
-class ListAndKeys extends React.Component {
+
+class ListAndKeys extends Component {
+  componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => response.json())
+      .then(json => {
+        console.log('Done: ', json)
+      })
+  }
 
   render() {
     return (
       <div>
-        <h1>List and Keys</h1>
       </div>
     );
   }
