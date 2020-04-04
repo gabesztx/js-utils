@@ -1,16 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Welcome from './components/welcome';
+import ComponentAndProps from "./componentAndProps/componentAndProps";
+import StateAndLifecycle from "./stateAndLifecycle/stateAndLifecycle";
+import HandlingEvents from "./handlingEvents/handlingEvents";
 
 
 const App = () => {
-
   return (
     <div className='App'>
-      <Welcome name='Component 1'/>
-      <Welcome name='Component 2'/>
-      <Welcome name='Component 3'/>
+      {/*<ComponentAndProps name='this is props data'/>*/}
+      {/*<StateAndLifecycle />*/}
+      <HandlingEvents/>
     </div>
   );
 };
