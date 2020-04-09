@@ -16,11 +16,11 @@ export class ReactiveComponent implements OnInit, OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.courseParam = this.httpService.getCourseParam$().subscribe(
+    /*this.courseParam = this.httpService.getCourseParam$().subscribe(
       (courseParams) => {
         console.log('Done: ', courseParams);
       },
-    );
+    );*/
     /*this.course = this.httpService.getCourse$().subscribe(
       (course) => {
         console.log('Done: ', course);
@@ -29,7 +29,7 @@ export class ReactiveComponent implements OnInit, OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.course.unsubscribe();
-    this.courseParam.unsubscribe();
+    // this.course.unsubscribe();
+    // this.courseParam.unsubscribe();
   }
 }

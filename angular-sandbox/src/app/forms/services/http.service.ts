@@ -35,10 +35,10 @@ export class HttpService {
         'Content-Type': 'application/json',
         // 'Authorization': 'my-auth-token'
       })
-      
+
     };
 
-    console.log('getCourseParam$');
+    // console.log('getCourseParam$');
     const params = new HttpParams()
       .set('orderBy', '"$key"')
       .set('limitToFirst', '1');

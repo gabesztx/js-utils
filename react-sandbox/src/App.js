@@ -5,7 +5,7 @@ import './App.css';
 // import StateAndLifecycle from "./stateAndLifecycle/stateAndLifecycle";
 // import HandlingEvents from "./handlingEvents/handlingEvents";
 // import ConditionalRendering from "./conditionalRendering/conditionalRendering";
-import ListAndKeys from "./listAndKeys/listAndKeys";
+// import ListAndKeys from "./listAndKeys/listAndKeys";
 
 
 const App = () => {
@@ -15,7 +15,7 @@ const App = () => {
       {/*<StateAndLifecycle />*/}
       {/*<HandlingEvents/>*/}
       {/*<ConditionalRendering/>*/}
-      <ListAndKeys/>
+      {/*<ListAndKeys/>*/}
     </div>
   );
 };

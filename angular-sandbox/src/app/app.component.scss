@@ -2,19 +2,22 @@ header {
   .page-title {
     color: white;
     text-decoration: none;
-
   }
 
+  /*
   .navbar-collapse {
     padding-left: 40px;
   }
+  */
 
   .dropdown {
     margin-right: 20px;
+
     .btn {
       font-size: 13px;
       color: white;
       font-weight: 300;
+
       &:after {
         display: none;
       }
@@ -25,12 +28,14 @@ header {
       min-width: inherit;
       padding: 5px;
       margin-top: 5px;
-      box-shadow: -1px 3px 5px 0px rgba(0,0,0,0.27);
+      box-shadow: -1px 3px 5px 0px rgba(0, 0, 0, 0.27);
       border: 0;
+
       .dropdown-item {
         padding: 5px;
         font-size: 12px;
         text-align: left;
+
         &:hover {
           background-color: transparent;
         }

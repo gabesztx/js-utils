@@ -24,10 +24,10 @@ const routes: Routes = [
     loadChildren: () => import('./components/components.module').then(m => m.ComponentsModule),
 
   },
-  {
+  /*{
     path: 'modules',
     loadChildren: () => import('./ng-modules/ng-modules.module').then(m => m.NgModulesModule)
-  },
+  },*/
   {
     path: '**',
     redirectTo: '/welcome',
