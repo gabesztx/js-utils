@@ -5,32 +5,20 @@ import { CustomPreloadingStrategyService } from './services/custom-preloading-st
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: '/welcome',
-    pathMatch: 'full'
-  },
-  {
     path: 'welcome',
     component: WelcomeComponent
   },
   {
     path: 'cards',
-    loadChildren: () => import('./card-list/card-list.module').then(m => m.CardListModule),
+    loadChildren: () => import('./cards/cards.module').then(m => m.CardsModule),
     // if preload true, automatic load lazy module - handling in CustomPreloadingStrategyService
     // data: {preload: true}
   },
-  /*{
-    path: 'components',
-    loadChildren: () => import('./components/components.module').then(m => m.ComponentsModule),
-
-  },*/
-  /*{
-    path: 'modules',
-    loadChildren: () => import('./ng-modules/ng-modules.module').then(m => m.NgModulesModule)
-  },*/
   {
-    path: '**',
-    redirectTo: '/welcome',
+    path: '', redirectTo: '/welcome', pathMatch: 'full'
+  },
+  {
+    path: '**', redirectTo: '/welcome',
   },
 
 ];
@@ -54,3 +42,13 @@ const routes: Routes = [
 })
 export class AppRoutingModule {
 }
+
+/*{
+  path: 'components',
+  loadChildren: () => import('./components/components.module').then(m => m.ComponentsModule),
+
+},*/
+/*{
+  path: 'modules',
+  loadChildren: () => import('./ng-modules/ng-modules.module').then(m => m.NgModulesModule)
+},*/
