@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { CardDetialComponent } from './card-detail/card-detial/card-detial.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
+    CardDetialComponent,
   ],
   imports: [
     BrowserModule,

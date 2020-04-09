@@ -40,7 +40,7 @@ const routes: Routes = [
     RouterModule.forRoot(
       routes,
       {
-        preloadingStrategy: NoPreloading, // default
+        // preloadingStrategy: NoPreloading, // default
         // preloadingStrategy: PreloadAllModules, // automatic load all only lazy load feature module
         // preloadingStrategy: CustomPreloadingStrategyService, // custom only lazy load feature module
         enableTracing: false
