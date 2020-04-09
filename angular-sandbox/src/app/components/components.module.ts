@@ -8,10 +8,15 @@ import { IterateComponent } from './iterate/iterate.component';
 
 
 @NgModule({
-  declarations: [ComponentsComponent, LifecycleComponent, IterateComponent],
+  declarations: [
+    ComponentsComponent,
+    LifecycleComponent,
+    IterateComponent
+  ],
   imports: [
     CommonModule,
     ComponentsRoutingModule
   ]
 })
-export class ComponentsModule { }
+export class ComponentsModule {
+}

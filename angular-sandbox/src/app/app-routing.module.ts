@@ -14,16 +14,16 @@ const routes: Routes = [
     component: WelcomeComponent
   },
   {
-    path: 'forms',
-    loadChildren: () => import('./forms/forms.module').then(m => m.FormsModule),
+    path: 'cards',
+    loadChildren: () => import('./card-list/card-list.module').then(m => m.CardListModule),
     // if preload true, automatic load lazy module - handling in CustomPreloadingStrategyService
     // data: {preload: true}
   },
-  {
+  /*{
     path: 'components',
     loadChildren: () => import('./components/components.module').then(m => m.ComponentsModule),
 
-  },
+  },*/
   /*{
     path: 'modules',
     loadChildren: () => import('./ng-modules/ng-modules.module').then(m => m.NgModulesModule)
