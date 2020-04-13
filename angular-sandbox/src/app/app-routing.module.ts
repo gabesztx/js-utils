@@ -43,13 +43,3 @@ const routes: Routes = [
 })
 export class AppRoutingModule {
 }
-
-/*{
-  path: 'components',
-  loadChildren: () => import('./components/components.module').then(m => m.ComponentsModule),
-
-},*/
-/*{
-  path: 'modules',
-  loadChildren: () => import('./ng-modules/ng-modules.module').then(m => m.NgModulesModule)
-},*/
