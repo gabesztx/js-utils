@@ -24,8 +24,8 @@ export class UserDetailComponent implements OnInit {
         this.userDataService.getUser(params.get('id'))
       )
     )
-    this.user$.subscribe((users) => {
-      console.log('users: ', users);
+    this.user$.subscribe((user) => {
+      // console.log('user: ', user);
     })
   }
 
