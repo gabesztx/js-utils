@@ -31,7 +31,6 @@ export interface User {
 })
 export class UserDataService {
   private readonly API_URL = 'http://jsonplaceholder.typicode.com/users';
-  // private readonly API_URL = 'https://jsonplaceholder.typicode.com/todos/1';
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -44,11 +43,11 @@ export class UserDataService {
 
 
   getUsers(): Observable<any> {
-    return this.http.get(this.API_URL, this.httpOptions);
+    return this.http.get(this.API_URL);
   }
 
 
   getUser(id: any): Observable<any> {
-    return this.http.get(`${this.API_URL}/${id}`, this.httpOptions);
+    return this.http.get(`${this.API_URL}/${id}`);
   }
 }
