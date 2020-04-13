@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { map, tap } from "rxjs/operators";
+import { Observable, of } from "rxjs";
+import { delay } from "rxjs/operators";
 
 export interface User {
   id: number;
@@ -19,7 +19,7 @@ export interface User {
   };
   phone: string;
   website: string;
-  company: {
+  company: {x
     name: string
     catchPhrase: string;
     bs: string
@@ -27,19 +27,22 @@ export interface User {
 }
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class UserDataService {
   private readonly API_URL = 'https://jsonplaceholder.typicode.com/users';
 
   constructor(private http: HttpClient) {
   }
 
+
   getUsers(): Observable<any> {
     return this.http.get(this.API_URL);
   }
 
 
-  getUser(id: any):Observable<any> {
+  getUser(id: any): Observable<any> {
     return this.http.get(`${this.API_URL}/${id}`);
   }
 }

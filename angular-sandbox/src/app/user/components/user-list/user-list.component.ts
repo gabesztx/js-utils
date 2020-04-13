@@ -16,9 +16,9 @@ export class UserListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.users$.subscribe((users) => {
+    /*this.users$.subscribe((users) => {
       // console.log('users list: ', users);
-    })
+    })*/
   }
 
   navigateToDetail(id: number) {

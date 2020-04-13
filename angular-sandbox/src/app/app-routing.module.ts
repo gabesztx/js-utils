@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules, NoPreloading } from '@angular/router';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { CustomPreloadingStrategyService } from './services/custom-preloading-strategy.service';
+import { UserGuard } from "./services/user.guard";
 
 const routes: Routes = [
   {
@@ -11,6 +12,7 @@ const routes: Routes = [
   {
     path: 'users',
     loadChildren: () => import('./user/user.module').then(m => m.UserModule),
+    // canLoad: [UserGuard]
     // if preload true, automatic load lazy module - handling in CustomPreloadingStrategyService
     // data: {preload: true}
   },
