@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, of } from "rxjs";
 import { User, UserDataService } from "../../services/user-data.service";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
-import { map, switchMap } from "rxjs/operators";
+import { switchMap } from "rxjs/operators";
 
 @Component({
   selector: 'app-user-detail',
@@ -10,10 +10,7 @@ import { map, switchMap } from "rxjs/operators";
   styleUrls: ['./user-detail.component.scss']
 })
 export class UserDetailComponent implements OnInit, OnDestroy {
-
-  // user$: Observable<User>
-  // user$: Observable<any>
-  user$: Observable<any>
+  user$: Observable<User>
 
   constructor(private route: ActivatedRoute,
               private router: Router,
