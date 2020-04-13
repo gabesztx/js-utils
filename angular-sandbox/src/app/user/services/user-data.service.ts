@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable, of } from "rxjs";
+import { Observable } from "rxjs";
 
 export interface User {
   id: number;
@@ -29,25 +29,25 @@ export interface User {
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserDataService {
-  private readonly API_URL = 'http://jsonplaceholder.typicode.com/users';
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-    })
+  private API_URL = 'http://jsonplaceholder.typicode.com/users';
 
-  };
-
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
 
   getUsers(): Observable<any> {
     return this.http.get(this.API_URL);
   }
 
-
   getUser(id: any): Observable<any> {
     return this.http.get(`${this.API_URL}/${id}`);
   }
 }
+
+/*
+httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+  })
+};*/

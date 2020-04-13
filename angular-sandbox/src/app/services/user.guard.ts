@@ -29,7 +29,7 @@ export class UserGuard implements CanActivate,
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any> | Promise<any> | any {
-    console.log('Resolve');
+    // console.log('Resolve');
     // return this.userDataService.getUser(route.paramMap.get('id'));
     // return of(true)
     return true
@@ -38,7 +38,7 @@ export class UserGuard implements CanActivate,
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    console.log('CanActivate');
+    // console.log('CanActivate');
     // return of(true).pipe(delay(4000))
     // return of(true)
     return true

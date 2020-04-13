@@ -19,12 +19,14 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    /* resolve in user data */
-    /*this.user$ = this.route.data.pipe(
+    // id from resolve
+    /*
+    this.user$ = this.route.data.pipe(
       map(resolve => resolve.user)
-    );*/
+    );
+    */
 
-    /* get id from url and get user data */
+    // id from route param
     this.user$ = this.route.paramMap.pipe(
       switchMap((params: ParamMap) => {
           return this.userDataService.getUser(params.get('id'))
