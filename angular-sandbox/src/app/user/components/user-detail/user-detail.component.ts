@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable, of } from "rxjs";
-import { User, UserDataService } from "../../services/user-data.service";
-import { ActivatedRoute, ParamMap, Router } from "@angular/router";
-import { switchMap } from "rxjs/operators";
+import { Observable, of } from 'rxjs';
+import { User, UserDataService } from '../../services/user-data.service';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-detail',
@@ -10,7 +10,7 @@ import { switchMap } from "rxjs/operators";
   styleUrls: ['./user-detail.component.scss']
 })
 export class UserDetailComponent implements OnInit, OnDestroy {
-  user$: Observable<User>
+  user$: Observable<User>;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -29,10 +29,10 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     // id from route param
     this.user$ = this.route.paramMap.pipe(
       switchMap((params: ParamMap) => {
-          return this.userDataService.getUser(params.get('id'))
+          return this.userDataService.getUser(params.get('id'));
         }
       )
-    )
+    );
     /*this.user$.subscribe((user) => {
       console.log('user: ', user);
     })*/

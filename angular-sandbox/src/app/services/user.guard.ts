@@ -11,7 +11,7 @@ import {
   UrlTree, Resolve
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { UserDataService } from "../user/services/user-data.service";
+import { UserDataService } from '../user/services/user-data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +31,7 @@ export class UserGuard implements CanActivate,
     // console.log('Resolve');
     // return this.userDataService.getUser(route.paramMap.get('id'));
     // return of(true)
-    return true
+    return true;
   }
 
   canActivate(
@@ -40,8 +40,9 @@ export class UserGuard implements CanActivate,
     // console.log('CanActivate');
     // return of(true).pipe(delay(4000))
     // return of(true)
-    return true
+    return true;
   }
+
   canDeactivate(
     component: unknown,
     currentRoute: ActivatedRouteSnapshot,
@@ -56,14 +57,14 @@ export class UserGuard implements CanActivate,
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     // console.log('CanActivateChild');
-    return of(true)
+    return of(true);
   }
 
   canLoad(
     route: Route,
     segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
     // console.log('CanLoad');
-    return of(true)
+    return of(true);
     // return of(true).pipe(delay(3000))
   }
 }

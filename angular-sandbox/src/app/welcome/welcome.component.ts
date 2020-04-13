@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserDataService } from "../user/services/user-data.service";
-import { DbDataService } from "../services/db-data.service";
+import { UserDataService } from '../user/services/user-data.service';
+import { DbDataService } from '../services/db-data.service';
 
 @Component({
   selector: 'app-welcome',
@@ -11,20 +11,20 @@ export class WelcomeComponent implements OnInit {
   DUMMY_DATA = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   moviesArr: any[] = [
     {
-      "id": 1,
-      "title": "Super Man"
+      id: 1,
+      title: 'Super Man'
     },
     {
-      "id": 2,
-      "title": "Spider Man"
+      id: 2,
+      title: 'Spider Man'
     },
     {
-      "id": 3,
-      "title": "Aladdin"
+      id: 3,
+      title: 'Aladdin'
     },
     {
-      "id": 4,
-      "title": "Downton Abbey"
+      id: 4,
+      title: 'Downton Abbey'
     }
   ];
 
@@ -35,12 +35,12 @@ export class WelcomeComponent implements OnInit {
 
   }
 
-  changeData(){
+  changeData() {
     // this.DUMMY_DATA[1] = 50;
     this.moviesArr[1].title = 'ÖDÖN';
   }
 
-  trackByMethod(index:number, el:any): number {
+  trackByMethod(index: number, el: any): number {
     console.log('trackByMethod', index, ' - ', el);
     return el.id;
   }
@@ -50,7 +50,7 @@ export class WelcomeComponent implements OnInit {
     this.userDataService.getUsers().subscribe(
       (data) => {
         console.log('Users', data);
-      })
+      });
   }
 
 
@@ -59,6 +59,6 @@ export class WelcomeComponent implements OnInit {
     this.userDataService.getUser(1).subscribe(
       (data) => {
         console.log('User:', data);
-      })
+      });
   }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 export interface User {
   id: number;
@@ -22,7 +22,7 @@ export interface User {
     name: string
     catchPhrase: string;
     bs: string
-  }
+  };
 }
 
 
