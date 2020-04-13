@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserDataService } from "../user/services/user-data.service";
 
 @Component({
   selector: 'app-welcome',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WelcomeComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private userDataService: UserDataService) {
   }
 
+  ngOnInit(): void {
+
+  }
+
+  getData() {
+    console.log('Click!');
+    this.userDataService.getUsers().subscribe(
+      (data) => {
+        console.log('Done!', data);
+      })
+  }
 }

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, of } from "rxjs";
-import { delay } from "rxjs/operators";
 
 export interface User {
   id: number;
@@ -19,7 +18,7 @@ export interface User {
   };
   phone: string;
   website: string;
-  company: {x
+  company: {
     name: string
     catchPhrase: string;
     bs: string
@@ -31,13 +30,15 @@ export interface User {
   providedIn: 'root'
 })
 export class UserDataService {
-  private readonly API_URL = 'https://jsonplaceholder.typicode.com/users';
+  private readonly API_URL = 'http://jsonplaceholder.typicode.com/users';
+  // private readonly API_URL = 'https://jsonplaceholder.typicode.com/todos/1';
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     })
 
   };
+
   constructor(private http: HttpClient) {
   }
 
