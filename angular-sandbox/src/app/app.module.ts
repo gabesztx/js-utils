@@ -16,7 +16,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    // InMemoryWebApiModule.forRoot(DataService)
+    // InMemoryWebApiModule.forRoot(DataService)  https://angular.io/tutorial/toh-pt6
   ],
   providers: [],
   bootstrap: [AppComponent]
