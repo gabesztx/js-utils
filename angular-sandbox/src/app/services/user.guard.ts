@@ -11,7 +11,6 @@ import {
   UrlTree, Resolve
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { delay } from "rxjs/operators";
 import { UserDataService } from "../user/services/user-data.service";
 
 @Injectable({
