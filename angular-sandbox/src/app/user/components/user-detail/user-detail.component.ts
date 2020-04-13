@@ -23,16 +23,17 @@ export class UserDetailComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     /* resolve in user data */
-    this.user$ = this.route.data.pipe(
+    /*this.user$ = this.route.data.pipe(
       map(resolve => resolve.user)
-    );
+    );*/
 
     /* get id from url and get user data */
-    /*this.user$ = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) =>
-        this.userDataService.getUser(params.get('id'))
+    this.user$ = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) => {
+          return this.userDataService.getUser(params.get('id'))
+        }
       )
-    )*/
+    )
     /*this.user$.subscribe((user) => {
       console.log('user: ', user);
     })*/
