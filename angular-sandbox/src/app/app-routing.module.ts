@@ -9,8 +9,8 @@ const routes: Routes = [
     component: WelcomeComponent
   },
   {
-    path: 'cards',
-    loadChildren: () => import('./cards/cards.module').then(m => m.CardsModule),
+    path: 'users',
+    loadChildren: () => import('./user/user.module').then(m => m.UserModule),
     // if preload true, automatic load lazy module - handling in CustomPreloadingStrategyService
     // data: {preload: true}
   },

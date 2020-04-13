@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CardListComponent } from "./components/card-list/card-list.component";
-import { CardsComponent } from "./components/cards/cards.component";
-import { CardDetailComponent } from "./components/card-detail/card-detail.component";
+import { UserComponent } from "./components/user/user.component";
+import { UserDetailComponent } from "./components/user-detail/user-detail.component";
+import { UserListComponent } from "./components/user-list/user-list.component";
 
 const routes: Routes = [
   {
     path: '',
-    component: CardsComponent,
+    component: UserComponent,
     children: [
       {
         path: 'list',
-        component: CardListComponent
+        component: UserListComponent
       },
       {
         path: 'list/:id',
-        component: CardDetailComponent
+        component: UserDetailComponent
       },
       {
         path: '', redirectTo: 'list', pathMatch: 'full'
@@ -29,5 +29,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class CardsRoutingModule {
+export class UserRoutingModule {
 }

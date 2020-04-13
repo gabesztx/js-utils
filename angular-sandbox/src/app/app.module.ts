@@ -12,7 +12,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

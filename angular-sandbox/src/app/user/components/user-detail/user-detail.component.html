@@ -1,0 +1,8 @@
+<div class="card" style="width: 18rem;" *ngIf="user$ | async as user">
+  <div class="card-body">
+    <h5 class="card-title">{{user.name}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{user.company.name}}</h6>
+    <p class="card-text">{{user.company.catchPhrase}}</p>
+    <button class="btn btn-primary" (click)="navigateToDetail()">Back</button>
+  </div>
+</div>
