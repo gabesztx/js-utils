@@ -28,11 +28,29 @@ export class WelcomeComponent implements OnInit {
     }
   ];
 
+  obj = {};
+
   constructor(private dbDataService: DbDataService, private userDataService: UserDataService) {
   }
 
-  ngOnInit(): void {
 
+  ngOnInit(): void {
+    let val = '';
+    // TODO: Object defineProperty
+  /*  Object.defineProperty(this.obj, 'name', {
+      get(): any {
+        return val;
+      },
+      set(v: any): void {
+        val = 'aha'
+      },
+      configurable: true,
+      writable: true,
+    });*/
+
+    console.log(this.obj);
+    // this.obj['name'] = 'jolo';
+    // console.log(this.obj);
   }
 
   changeData() {

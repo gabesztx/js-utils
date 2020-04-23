@@ -1,0 +1,33 @@
+<h3>Reactive Form</h3>
+<form [formGroup]="fb" (ngSubmit)="onSubmit()">
+  <div class="input-item">
+    <label>
+      First Name:
+      <input
+        type="text"
+        [formControl]="firstName"
+        (input)="onChange()">
+    </label>
+    <span class="error-input"
+          *ngIf="firstName.value.length && !firstName.valid">
+      Not valid!
+    </span>
+  </div>
+  <div class="input-item">
+    <label>
+      Last Name:
+      <input
+        type="text"
+        [formControl]="lastName"
+        (input)="onChange()">
+    </label>
+    <span class="error-input"
+          *ngIf="!lastName.valid">
+      Not valid!
+    </span>
+  </div>
+  <div class=btn-content>
+    <button type="submit" [disabled]="!fb.valid">Submit</button>
+  </div>
+  Form is valid: {{fb.valid}}
+</form>

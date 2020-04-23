@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 function Emoji() {
   return function(target: Object, key: string | symbol) {
-    console.log('target: ', target);
-    console.log('key: ', key);
+    // console.log('target: ', target);
+    // console.log('key: ', key);
     // let val = target[key];
     // const getter = () =>  {
     //   return val;
