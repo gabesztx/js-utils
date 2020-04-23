@@ -20,7 +20,7 @@ export class ReactiveFormComponent implements OnInit {
 
   ngOnInit(): void {
     // Form valid status listener
-    console.log(this.userForm);
+
     this.userForm.valueChanges.subscribe(value => {
       // console.log('value change: ', value)
     });
