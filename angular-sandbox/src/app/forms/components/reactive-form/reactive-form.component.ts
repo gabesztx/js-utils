@@ -7,40 +7,51 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./reactive-form.component.scss']
 })
 export class ReactiveFormComponent implements OnInit {
-  userForm = new FormGroup({
-    firstName: new FormControl('', Validators.required),
-    lastName: new FormControl('', Validators.required),
+  profileForm = new FormGroup({
+    name: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
     address: new FormGroup({
-      street: new FormControl(''),
-      city: new FormControl(''),
+      street: new FormControl('', Validators.required),
     })
   });
+
   constructor() {
   }
 
   ngOnInit(): void {
-    // Form valid status listener
-
-    this.userForm.valueChanges.subscribe(value => {
-      // console.log('value change: ', value)
+    // Form values change
+    this.profileForm.valueChanges.subscribe(value => {
+      console.log('value change: ', value);
     });
-    // Form input value listener
-    this.userForm.statusChanges.subscribe(value => {
-      // console.log('status change: ', value)
+    // Form validation change
+    this.profileForm.statusChanges.subscribe(value => {
+      console.log('status change: ', value);
     });
   }
 
-  onChange() {}
-
-  get firstName(){
-    return this.userForm.get('firstName')
+  get name() {
+    return this.profileForm.get('name');
   }
-  get lastName(){
-    return this.userForm.get('lastName')
+
+  get email() {
+    return this.profileForm.get('email');
+  }
+
+  get address() {
+    return this.profileForm.get('address');
+  }
+
+  updateProfile() {
+    this.profileForm.patchValue({
+      name: 'Nancy',
+      email: 'lofasz@test.hu',
+      address: {
+        street: '123 Drew Street'
+      }
+    });
   }
 
   onSubmit() {
-    console.log('submit');
+    this.updateProfile();
   }
-
 }

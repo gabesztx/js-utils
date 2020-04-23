@@ -48,7 +48,6 @@ export class WelcomeComponent implements OnInit {
       writable: true,
     });*/
 
-    console.log(this.obj);
     // this.obj['name'] = 'jolo';
     // console.log(this.obj);
   }

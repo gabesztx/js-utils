@@ -1,47 +1,25 @@
 <h3>Reactive Form</h3>
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
   <div class="input-item">
     <label>
-      First Name:
-      <input
-        type="text"
-        [formControl]="firstName"
-        (input)="onChange()">
+      Name: <input type="text" formControlName="name">
     </label>
-    <span class="error-input"
-          *ngIf="!firstName.valid">
-      Not valid!
-    </span>
+    <span class="error-input" *ngIf="!name.valid">Not valid!</span>
   </div>
   <div class="input-item">
     <label>
-      Last Name:
-      <input
-        type="text"
-        [formControl]="lastName"
-        (input)="onChange()">
+      Email: <input type="text" formControlName="email">
     </label>
-    <span class="error-input"
-          *ngIf="!lastName.valid">
-      Not valid!
-    </span>
+    <span class="error-input" *ngIf="!email.valid">Not valid!</span>
   </div>
-  <!--<div class="input-item">
-    <div [formGroup]="address">
-      <h3>Address</h3>
-      <label>
-        Street:
-        <input type="text" [formControl]="address">
-      </label>
-
-      <label>
-        City:
-        <input type="text" formControlName="city">
-      </label>
-    </div>
-  </div>-->
+  <div class="input-item" formGroupName="address">
+    <label>
+      Street: <input type="text" formControlName="street">
+    </label>
+    <span class="error-input" *ngIf="!address.valid">Not valid!</span>
+  </div>
   <div class=btn-content>
-    <button type="submit" [disabled]="!userForm.valid">Submit</button>
+    <button type="submit" [disabled]="!profileForm.valid">Submit</button>
   </div>
-  Form is valid: {{userForm.valid}}
+  <p>Profile form is valid: {{profileForm.valid}}</p>
 </form>
