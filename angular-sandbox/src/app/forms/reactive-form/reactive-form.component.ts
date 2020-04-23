@@ -7,21 +7,25 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./reactive-form.component.scss']
 })
 export class ReactiveFormComponent implements OnInit {
-  fb = new FormGroup({
-    firstName: new FormControl('', Validators.minLength(4),
-    ),
+  userForm = new FormGroup({
+    firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
+    address: new FormGroup({
+      street: new FormControl(''),
+      city: new FormControl(''),
+    })
   });
   constructor() {
   }
 
   ngOnInit(): void {
     // Form valid status listener
-    this.fb.valueChanges.subscribe(value => {
+    console.log(this.userForm);
+    this.userForm.valueChanges.subscribe(value => {
       // console.log('value change: ', value)
     });
     // Form input value listener
-    this.fb.statusChanges.subscribe(value => {
+    this.userForm.statusChanges.subscribe(value => {
       // console.log('status change: ', value)
     });
   }
@@ -29,10 +33,10 @@ export class ReactiveFormComponent implements OnInit {
   onChange() {}
 
   get firstName(){
-    return this.fb.get('firstName')
+    return this.userForm.get('firstName')
   }
   get lastName(){
-    return this.fb.get('lastName')
+    return this.userForm.get('lastName')
   }
 
   onSubmit() {
