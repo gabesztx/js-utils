@@ -1,4 +1,17 @@
 :host{
+  input{
+    outline: 0;
+  }
+  label{
+    padding-right: 10px;
+  }
+  .itemContent{
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .btnContent{
+    padding-top: 15px;
+  }
   .error-input{
     font-size: 12px;
     color: red;

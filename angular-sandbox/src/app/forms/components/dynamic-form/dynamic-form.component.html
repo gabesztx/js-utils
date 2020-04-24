@@ -1,1 +1,12 @@
 <div>E-mail címek</div>
+<form [formGroup]="form" *ngIf="form">
+  <div class="itemContent" *ngFor="let control of emailList.controls; let i=index">
+    <input type="text" [formControl]="control">
+  </div>
+  <div class=btnContent>
+    <button type="button" (click)="onSubmit()" [disabled]="!form.valid">Submit</button>
+  </div>
+  <div class=btnContent>
+    <button type="button" (click)="addEmail()">Add Email</button>
+  </div>
+</form>
