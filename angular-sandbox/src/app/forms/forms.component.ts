@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { InputBase } from './models/input-base';
-import { DataService } from './services/data.service';
+import { FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-forms',
@@ -9,15 +7,27 @@ import { DataService } from './services/data.service';
   styleUrls: ['./forms.component.scss']
 })
 export class FormsComponent implements OnInit {
-  // emails$: Observable<InputBase<any>[]>;
-  constructor(private service: DataService) {
+  form: FormGroup;
+  config: any = {
+    label: 'E-mail címek',
+    emailList: [
+      {
+        inputType: 'text',
+        placeholder: 'test1@test.hu',
+        validators: [Validators.required]
+      },
+      {
+        inputType: 'text',
+        placeholder: 'test2@test.hu',
+        validators: [Validators.required]
+      }
+    ]
+  };
+
+  constructor() {
   }
 
-  ngOnInit(): void {
-  /*  this.emails$ = this.service.getEmailInput();
-    this.emails$.subscribe((res) => {
-      console.log('emails: ', res);
-    })*/
+  ngOnInit() {
   }
 
 }

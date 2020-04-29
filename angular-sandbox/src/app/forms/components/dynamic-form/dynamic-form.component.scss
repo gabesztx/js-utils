@@ -1,20 +1,59 @@
-:host{
-  input{
+:host {
+  input {
     outline: 0;
+    height: 25px;
   }
-  label{
+
+  label {
     padding-right: 10px;
   }
-  .itemContent{
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-  .btnContent{
-    padding-top: 15px;
-  }
-  .error-input{
-    font-size: 12px;
-    color: red;
 
+  button {
+    outline: 0;
   }
+
+  form {
+    width: 30%;
+
+    .input-content {
+      position: relative;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      width: 100%;
+
+      .input-item {
+        width: 100%;
+      }
+
+      .input-item-handler {
+        position: absolute;
+        top: 13px;
+        right: -30px;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        .input-item-handler-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          background-color: #f8971d;
+        }
+      }
+    }
+
+    .btn-content {
+      padding-top: 15px;
+    }
+
+    .error-input {
+      font-size: 12px;
+      color: red;
+
+    }
+  }
+
 }

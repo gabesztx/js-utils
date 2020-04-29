@@ -1,12 +1,25 @@
 <div>E-mail címek</div>
-<form [formGroup]="form" *ngIf="form">
-  <div class="itemContent" *ngFor="let control of emailList.controls; let i=index">
-    <input type="text" [formControl]="control">
-  </div>
-  <div class=btnContent>
+<!--<form [formGroup]="form" *ngIf="form">
+&lt;!&ndash;  <div class="input-content" *ngFor="let control of emailList.controls; let i=index; trackBy: trackByFn;">
+    <input [formControl]="control"
+           class="input-item"
+           placeholder="e-mail címek"
+           type="text">
+    IsValid: {{control.valid}}
+    <div class="input-item-handler">
+      <div class="input-item-handler-btn"
+           *ngIf="i===0"
+           (click)="addInput()">
+        <i class="fas fa-plus">+</i>
+      </div>
+      <div class="input-item-handler-btn"
+           *ngIf="i!==0"
+           (click)="removeInput(i)">
+        <i class="fas fa-plus">-</i>
+      </div>
+    </div>
+  </div>&ndash;&gt;
+  <div class=btn-content>
     <button type="button" (click)="onSubmit()" [disabled]="!form.valid">Submit</button>
   </div>
-  <div class=btnContent>
-    <button type="button" (click)="addEmail()">Add Email</button>
-  </div>
-</form>
+</form>-->

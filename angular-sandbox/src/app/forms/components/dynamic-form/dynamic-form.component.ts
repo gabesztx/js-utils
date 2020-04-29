@@ -1,48 +1,56 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { FormBuilderService } from '../../services/form-builder.service';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-dynamic-form',
   templateUrl: './dynamic-form.component.html',
   styleUrls: ['./dynamic-form.component.scss']
 })
-export class DynamicFormComponent implements OnInit {
-  emailListData = ['teszt1@test.hu', 'teszt2@test.hu'];
-  form: FormGroup;
-  // emailListData = [];
+export class DynamicFormComponent implements OnInit, OnChanges { //input Array
+  @Input() config: any[] = [];
+  @Input() form: FormGroup;
+  @Output() submit: EventEmitter<any> = new EventEmitter<any>();
 
-  get emailList() {
-    return this.form.get('emailList') as FormArray;
+  label: string;
+
+  constructor(private fbService: FormBuilderService) {
   }
 
-  constructor(private fb: FormBuilder) {}
+  ngOnChanges() {
+    console.log('Change');
+    if (this.form) {
+    console.log('Form', this.form);
+    }
+  }
 
   ngOnInit(): void {
-    this.form = this.createGroup();
-    this.form.addControl('emailList', this.createArray());
-    if (this.emailListData.length) {
-      this.emailListData.forEach(() => this.addEmail());
-    }
+    // this.form = this.fbService.generateForm(this.config.emailList, 'emailList');
     // console.log(this.form);
+    /*  this.form = this.fbService.createFormGroup();
+      this.form.addControl('emailList', this.fbService.createFormArray());
+      if (this.emailListData.length) {
+        this.emailListData.forEach(() => this.addInput());
+      }
+
+      this.form.valueChanges.subscribe(value => {
+        console.log(this.form);
+      });*/
   }
 
-  createGroup(): FormGroup {
-    return this.fb.group({});
+  addInput() {
+    // this.emailList.push(this.fbService.createFormControl());
   }
 
-  createControl(): FormControl {
-    return this.fb.control('', Validators.required);
+  removeInput(index: number) {
+    // this.emailList.removeAt(index);
   }
 
-  createArray(): FormArray {
-    return this.fb.array([]);
-  }
-
-  addEmail() {
-    this.emailList.push(this.createControl());
+  trackByFn(index) {
+    return index;
   }
 
   onSubmit() {
-    console.log(this.emailList);
+    // console.log(this.emailList);
   }
 }
