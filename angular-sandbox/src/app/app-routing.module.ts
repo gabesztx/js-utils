@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules, NoPreloading } from '@angular/router';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { CustomPreloadingStrategyService } from './services/custom-preloading-strategy.service';
-import { DecoratorsComponent } from './components/decorators/decorators.component';
+import { DecoratorsComponent } from './components/decorators-component/decorators.component';
 import { FormsComponent } from './forms/forms.component';
 
 const routes: Routes = [
   {
     path: 'welcome',
-    component: WelcomeComponent
-    // component: DecoratorsComponent
+    // component: WelcomeComponent
+    component: DecoratorsComponent
   },
   {
     path: 'forms',
