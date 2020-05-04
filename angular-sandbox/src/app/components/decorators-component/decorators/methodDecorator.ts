@@ -14,8 +14,10 @@ export class Greeter {
     this.greeting = message;
   }
 
-  @enumerable(false)
+  // @enumerable(false)
   greet() {
     return 'Hello ' + this.greeting;
   }
 }
+// TODO: enumerable
+// TODO: configurable
