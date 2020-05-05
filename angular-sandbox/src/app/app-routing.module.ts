@@ -4,12 +4,14 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { CustomPreloadingStrategyService } from './services/custom-preloading-strategy.service';
 import { DecoratorsComponent } from './components/decorators-component/decorators.component';
 import { FormsComponent } from './forms/forms.component';
+import { ReflectMetadataComponent } from './components/reflect-metadata/reflect-metadata.component';
 
 const routes: Routes = [
   {
     path: 'welcome',
     // component: WelcomeComponent
-    component: DecoratorsComponent
+    // component: DecoratorsComponent
+    component: ReflectMetadataComponent
   },
   {
     path: 'forms',

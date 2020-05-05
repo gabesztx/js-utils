@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { DecoratorsComponent } from './components/decorators-component/decorators.component';
 import { FormsModule } from './forms/forms.module';
+import { ReflectMetadataComponent } from './components/reflect-metadata/reflect-metadata.component';
 // import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 // import { DataService } from "./services/data.service";
 
@@ -13,7 +14,8 @@ import { FormsModule } from './forms/forms.module';
   declarations: [
     AppComponent,
     WelcomeComponent,
-    DecoratorsComponent
+    DecoratorsComponent,
+    ReflectMetadataComponent
   ],
   imports: [
     BrowserModule,

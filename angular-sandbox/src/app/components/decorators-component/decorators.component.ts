@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 // import './decorators/classDecorator';
 // import './decorators/methodDecorator';
-import './decorators/propertyDecorator';
+// import './decorators/propertyDecorator';
 
 @Component({
   selector: 'app-decorators',
