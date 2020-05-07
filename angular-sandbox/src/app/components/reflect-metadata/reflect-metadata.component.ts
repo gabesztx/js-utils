@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+// import { FormLayoutHolder } from './models/FormLayoutHolder';
+import '../../models/user.model';
+// import './models/FormLayoutHolder';
 
 
 
@@ -8,13 +11,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reflect-metadata.component.scss']
 })
 
+// export class ReflectMetadataComponent extends FormLayoutHolder implements OnInit {
 export class ReflectMetadataComponent implements OnInit {
-
   constructor(){
+    // this.modelType = ;
+
+    // this.doSomething();
   }
 
   ngOnInit(){
-
   }
-
 }

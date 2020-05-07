@@ -1,11 +1,5 @@
 import 'reflect-metadata';
 
-interface IAttributeProperties {
-  icon?: string;
-  type?: AttributeType;
-  isEditable?: boolean;
-  isVisible?: boolean;
-}
 
 enum AttributeType {
   Text,
@@ -14,6 +8,12 @@ enum AttributeType {
   Password
 }
 
+interface IAttributeProperties {
+  icon?: string;
+  type?: AttributeType;
+  isEditable?: boolean;
+  isVisible?: boolean;
+}
 
 
 export const ATTRIBUTE_PREFIX = 'attribute:';
@@ -24,34 +24,39 @@ export const ATTRIBUTE_PREFIX = 'attribute:';
  * @returns {(target: any, propertyKey: string) => void}
  * @constructor
  */
-export function Attribute(attributes: IAttributeProperties) {
+export function Attribute(attributes?: IAttributeProperties){
   return (target: object, propertyKey: string) => {
     if (attributes !== undefined && attributes !== null) {
       Object.keys(attributes).forEach(key => {
-        Reflect.defineMetadata(`${ATTRIBUTE_PREFIX}${key}`, attributes[key], target, propertyKey);
+        Reflect.defineMetadata(
+          `${ATTRIBUTE_PREFIX}${key}`,
+          attributes[key],
+          target,
+          propertyKey
+        );
       });
     }
   };
 }
 
-/*
-function logType(target:any , key:string) {
-
-}
-*/
-
-export class UserModel {
+export class BaseModel {
   @Attribute({
-    type: AttributeType.Text
+    isEditable: true,
+    isVisible: true
   })
-  username: string;
+  username: any;
   // password: string;
   // email: string;
   // age: number;
   // name: string;
   // constructor() {
   // }
-  constructor() {
+  constructor(){
     this.username = null;
   }
 }
+
+const baseModel = new BaseModel();
+console.log(Reflect.getMetadataKeys(baseModel, 'username'));
+console.log(Reflect.getOwnMetadataKeys(baseModel));
+// console.log(Reflect.getMetadata('foo1', userModel, 'baz'));
