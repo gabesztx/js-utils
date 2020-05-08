@@ -28,37 +28,33 @@ export const ATTRIBUTE_PREFIX = 'attribute:';
  */
 export function Attribute(attributes?: IAttributeProperties){
   return (target: object, propertyKey: string) => {
-    console.log('target: ', target);
+    console.log('target: ', target.constructor, propertyKey);
+    /*    if (attributes !== undefined && attributes !== null) {
+          Object.keys(attributes).forEach(key => {
+            // console.log(`${ATTRIBUTE_PREFIX}${key}`);
 
-/*    if (attributes !== undefined && attributes !== null) {
-      Object.keys(attributes).forEach(key => {
-        // console.log(`${ATTRIBUTE_PREFIX}${key}`);
-
-        // console.log('key', key);
-        // console.log('attributes[key]', attributes[key]);
-        // `${ATTRIBUTE_PREFIX}${key}`,
-        // Reflect.defineMetadata(LAYOUT_META, attributes[key], target, propertyKey);
-        // Reflect.defineMetadata(LAYOUT_META, target);
-      });
-    }*/
+            // console.log('key', key);
+            // console.log('attributes[key]', attributes[key]);
+            // `${ATTRIBUTE_PREFIX}${key}`,
+            // Reflect.defineMetadata(LAYOUT_META, attributes[key], target, propertyKey);
+            // Reflect.defineMetadata(LAYOUT_META, target);
+          });
+        }*/
   };
 }
 
 class BaseModel {
-  /*@Attribute({
-    isEditable: true,
+  @Attribute({
     caption: 'Hello Caption'
-  })*/
-  username = '';
+  })
+  public username = '';
 
   constructor(){
-    // this.username = null
+    this.username = null;
   }
 }
-console.log(BaseModel);
-setTimeout(() => {
 
-}, 200);
+console.log(BaseModel);
 // const baseModel = new BaseModel();
 // const modelType: Type<any> | Type<any>[] = BaseModel;
 // console.log(modelType);

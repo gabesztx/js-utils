@@ -1,6 +1,79 @@
 import 'reflect-metadata';
 import { EditorTestRowType } from './editortest-row-type.model';
 import { Type } from '@angular/core';
+
+
+//-----------------------------------------------------------------------------------------------
+/*function LogMethod(
+  target: any,
+  propertyKey: string | symbol,
+  descriptor: PropertyDescriptor,
+){
+  console.log('target', target);
+  // console.log('propertyKey', propertyKey);
+  // console.log('descriptor', descriptor);
+  // console.log(Reflect.getMetadata('design:type', target, propertyKey)); // Function type
+  // console.log(Reflect.getMetadata('design:paramtypes', target, propertyKey)); // function arguments type: number
+  // console.log(Reflect.getMetadata('design:returntype', target, propertyKey)); // function return type: string
+}
+
+class Demo {
+  @LogMethod
+  public foo(bar: number): string{
+    return 'hello';
+  }
+}*/
+// let modelType: Type<any> | Type<any>[] = EditorTestRowType;
+// const demo = new Demo();
+// console.log('EditorTestRowType', modelType);
+// console.log('EditorTestRowType', EditorTestRowType);
+// -----------------------------------------------------------------------------------------------
+
+
+// -----------------------------------------------------------------------------------------------
+class BasicUsage {
+  constructor(){
+    // key, value, target, propertyKey
+    Reflect.defineMetadata('foo1', 'bar1', this, 'baz');
+  }
+
+  @Reflect.metadata('foo2', 'bar2')
+  public baz(){
+  }
+}
+
+// const basicUsageDemo = BasicUsage;
+// console.log(basicUsageDemo);
+// key, target, propertyKey
+// console.log(Reflect.getMetadata('foo1', basicUsageDemo, 'baz'));
+// bar1
+// console.log(Reflect.getMetadata('foo2', basicUsageDemo, 'baz'));
+// bar2
+// -----------------------------------------------------------------------------------------------
+/*
+import 'reflect-metadata';
+
+class BasicUsage {
+  @Reflect.metadata('foo1', 'Gabesz')
+  public userName: string;
+
+  constructor(){
+    // this.userId = 10
+    // Reflect.defineMetadata('foo1', 'bar1', this, 'userName');
+    // this.userId = 10;
+  }
+
+}
+
+
+const basicUsageDemo = new BasicUsage();
+console.log(Reflect.getMetadata(
+  'foo1',
+  basicUsageDemo,
+  'userName'))*/
+
+
+
 /*
 //-----------------------------------------------------------------------------------------------
 export const RANGE_KEY = Symbol('validateRange');
@@ -72,75 +145,3 @@ try {
 }
 //-----------------------------------------------------------------------------------------------
 */
-
-
-//-----------------------------------------------------------------------------------------------
-function LogMethod(
-  target: any,
-  propertyKey: string | symbol,
-  descriptor: PropertyDescriptor,
-){
-  console.log('target', target);
-  // console.log('propertyKey', propertyKey);
-  // console.log('descriptor', descriptor);
-  // console.log(Reflect.getMetadata('design:type', target, propertyKey)); // Function type
-  // console.log(Reflect.getMetadata('design:paramtypes', target, propertyKey)); // function arguments type: number
-  // console.log(Reflect.getMetadata('design:returntype', target, propertyKey)); // function return type: string
-}
-
-class Demo {
-  @LogMethod
-  public foo(bar: number): string{
-    return 'hello';
-  }
-}
-let modelType: Type<any> | Type<any>[] = EditorTestRowType;
-// const demo = new Demo();
-console.log('EditorTestRowType', modelType);
-// console.log('EditorTestRowType', EditorTestRowType);
-// -----------------------------------------------------------------------------------------------
-
-
-/*
------------------------------------------------------------------------------------------------
-class BasicUsage {
-  constructor(){
-    // key, value, target, propertyKey
-    Reflect.defineMetadata('foo1', 'bar1', this, 'baz');
-  }
-
-  @Reflect.metadata('foo2', 'bar2')
-  public baz(){
-  }
-}
-
-
-const basicUsageDemo = new BasicUsage();
-// key, target, propertyKey
-console.log(Reflect.getMetadata('foo1', basicUsageDemo, 'baz'));
-// bar1
-console.log(Reflect.getMetadata('foo2', basicUsageDemo, 'baz'));
-// bar2
------------------------------------------------------------------------------------------------
-*/
-/*
-import 'reflect-metadata';
-
-class BasicUsage {
-  @Reflect.metadata('foo1', 'Gabesz')
-  public userName: string;
-
-  constructor(){
-    // this.userId = 10
-    // Reflect.defineMetadata('foo1', 'bar1', this, 'userName');
-    // this.userId = 10;
-  }
-
-}
-
-
-const basicUsageDemo = new BasicUsage();
-console.log(Reflect.getMetadata(
-  'foo1',
-  basicUsageDemo,
-  'userName'))*/

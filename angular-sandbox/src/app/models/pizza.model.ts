@@ -28,8 +28,9 @@ class PizzaMaker {
 */
 
 
-// const pizza = PizzaMaker.create();
+const pizza = PizzaMaker.create();
 // const pclass = new Pizza();
+console.log(pizza);
 // console.log(pizza.label);
 // const pizza = new Pizza('Inferno', ['cheese', 'peppers']);
 // console.log(pizza);
