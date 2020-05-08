@@ -1,5 +1,7 @@
 import 'reflect-metadata';
+import { Type } from '@angular/core';
 
+export const LAYOUT_META = 'layout:metadata';
 
 enum AttributeType {
   Text,
@@ -11,8 +13,8 @@ enum AttributeType {
 interface IAttributeProperties {
   icon?: string;
   type?: AttributeType;
+  caption?: string;
   isEditable?: boolean;
-  isVisible?: boolean;
 }
 
 
@@ -26,37 +28,42 @@ export const ATTRIBUTE_PREFIX = 'attribute:';
  */
 export function Attribute(attributes?: IAttributeProperties){
   return (target: object, propertyKey: string) => {
-    if (attributes !== undefined && attributes !== null) {
+    console.log('target: ', target);
+
+/*    if (attributes !== undefined && attributes !== null) {
       Object.keys(attributes).forEach(key => {
-        Reflect.defineMetadata(
-          `${ATTRIBUTE_PREFIX}${key}`,
-          attributes[key],
-          target,
-          propertyKey
-        );
+        // console.log(`${ATTRIBUTE_PREFIX}${key}`);
+
+        // console.log('key', key);
+        // console.log('attributes[key]', attributes[key]);
+        // `${ATTRIBUTE_PREFIX}${key}`,
+        // Reflect.defineMetadata(LAYOUT_META, attributes[key], target, propertyKey);
+        // Reflect.defineMetadata(LAYOUT_META, target);
       });
-    }
+    }*/
   };
 }
 
-export class BaseModel {
-  @Attribute({
+class BaseModel {
+  /*@Attribute({
     isEditable: true,
-    isVisible: true
-  })
-  username: any;
-  // password: string;
-  // email: string;
-  // age: number;
-  // name: string;
-  // constructor() {
-  // }
+    caption: 'Hello Caption'
+  })*/
+  username = '';
+
   constructor(){
-    this.username = null;
+    // this.username = null
   }
 }
+console.log(BaseModel);
+setTimeout(() => {
 
-const baseModel = new BaseModel();
-console.log(Reflect.getMetadataKeys(baseModel, 'username'));
-console.log(Reflect.getOwnMetadataKeys(baseModel));
-// console.log(Reflect.getMetadata('foo1', userModel, 'baz'));
+}, 200);
+// const baseModel = new BaseModel();
+// const modelType: Type<any> | Type<any>[] = BaseModel;
+// console.log(modelType);
+// console.log(modelType);
+// console.log(Reflect.getMetadataKeys(BaseModel, 'username'));
+// console.log(Reflect.getMetadata('attribute:isEditable', baseModel, 'username'));
+// console.log(Reflect.getMetadata(LAYOUT_META, baseModel, 'username'));
+// console.log(Reflect.getOwnMetadataKeys(baseModel));

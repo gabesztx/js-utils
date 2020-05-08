@@ -1,3 +1,6 @@
+import 'reflect-metadata';
+import { EditorTestRowType } from './editortest-row-type.model';
+import { Type } from '@angular/core';
 /*
 //-----------------------------------------------------------------------------------------------
 export const RANGE_KEY = Symbol('validateRange');
@@ -71,19 +74,18 @@ try {
 */
 
 
-/*
 //-----------------------------------------------------------------------------------------------
 function LogMethod(
   target: any,
   propertyKey: string | symbol,
   descriptor: PropertyDescriptor,
 ){
-  // console.log('target', target);
+  console.log('target', target);
   // console.log('propertyKey', propertyKey);
   // console.log('descriptor', descriptor);
-  console.log(Reflect.getMetadata('design:type', target, propertyKey)); // Function type
-  console.log(Reflect.getMetadata('design:paramtypes', target, propertyKey)); // function arguments type: number
-  console.log(Reflect.getMetadata('design:returntype', target, propertyKey)); // function return type: string
+  // console.log(Reflect.getMetadata('design:type', target, propertyKey)); // Function type
+  // console.log(Reflect.getMetadata('design:paramtypes', target, propertyKey)); // function arguments type: number
+  // console.log(Reflect.getMetadata('design:returntype', target, propertyKey)); // function return type: string
 }
 
 class Demo {
@@ -92,10 +94,11 @@ class Demo {
     return 'hello';
   }
 }
-
-const demo = new Demo();
------------------------------------------------------------------------------------------------
-*/
+let modelType: Type<any> | Type<any>[] = EditorTestRowType;
+// const demo = new Demo();
+console.log('EditorTestRowType', modelType);
+// console.log('EditorTestRowType', EditorTestRowType);
+// -----------------------------------------------------------------------------------------------
 
 
 /*
