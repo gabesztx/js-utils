@@ -1,10 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Type, Component, OnInit } from '@angular/core';
+import { CustomTypeModel, LAYOUT_META } from '../../models/custom-type.model';
 // import { FormLayoutHolder } from './models/FormLayoutHolder';
-import '../../models/user.model';
-// import '../../models/reflect-sandbox';
-// import '../../models/pizza.model';
-// import './models/FormLayoutHolder';
-
 
 
 @Component({
@@ -13,14 +9,14 @@ import '../../models/user.model';
   styleUrls: ['./reflect-metadata.component.scss']
 })
 
-// export class ReflectMetadataComponent extends FormLayoutHolder implements OnInit {
 export class ReflectMetadataComponent implements OnInit {
+  modelType: Type<any>;
   constructor(){
-    // this.modelType = ;
-
-    // this.doSomething();
+    this.modelType = CustomTypeModel;
   }
 
   ngOnInit(){
+    const layout = Reflect.getMetadata(LAYOUT_META, this.modelType)
+    console.log('custom Type layout', layout);
   }
 }
