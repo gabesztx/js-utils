@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { FormBuilderService } from '../../services/form-builder.service';
-import { FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-dynamic-form',
@@ -8,49 +8,42 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./dynamic-form.component.scss']
 })
 export class DynamicFormComponent implements OnInit, OnChanges { //input Array
-  @Input() config: any[] = [];
+  @Input() config: any;
   @Input() form: FormGroup;
   @Output() submit: EventEmitter<any> = new EventEmitter<any>();
+  emailListData: FormArray;
 
-  label: string;
-
-  constructor(private fbService: FormBuilderService) {
+  constructor(private fbService: FormBuilderService){
   }
 
-  ngOnChanges() {
-    console.log('Change');
-    if (this.form) {
-    console.log('Form', this.form);
-    }
+  ngOnChanges(){
   }
 
-  ngOnInit(): void {
-    // this.form = this.fbService.generateForm(this.config.emailList, 'emailList');
-    // console.log(this.form);
-    /*  this.form = this.fbService.createFormGroup();
-      this.form.addControl('emailList', this.fbService.createFormArray());
-      if (this.emailListData.length) {
-        this.emailListData.forEach(() => this.addInput());
-      }
-
-      this.form.valueChanges.subscribe(value => {
-        console.log(this.form);
-      });*/
+  ngOnInit(): void{
+    this.form = this.fbService.createFormGroup();
+    const formArray = this.fbService.createFormArray();
+    this.form.addControl('emailList', formArray);
+    this.addInput();
+    console.log(this.form);
   }
 
-  addInput() {
-    // this.emailList.push(this.fbService.createFormControl());
+  get emailList(){
+    return this.form.get('emailList') as FormArray;
   }
 
-  removeInput(index: number) {
-    // this.emailList.removeAt(index);
+  addInput(){
+    this.emailList.push(this.fbService.createFormControl('', Validators.required));
   }
 
-  trackByFn(index) {
+  removeInput(index: number){
+    this.emailList.removeAt(index);
+  }
+
+  trackByFn(index){
     return index;
   }
 
-  onSubmit() {
+  onSubmit(){
     // console.log(this.emailList);
   }
 }

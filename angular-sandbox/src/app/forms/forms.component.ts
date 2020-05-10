@@ -7,9 +7,7 @@ import { FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./forms.component.scss']
 })
 export class FormsComponent implements OnInit {
-  form: FormGroup;
   config: any = {
-    label: 'E-mail címek',
     emailList: [
       {
         inputType: 'text',

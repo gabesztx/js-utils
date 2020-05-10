@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-reactive-form',
@@ -9,16 +9,20 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class ReactiveFormComponent implements OnInit {
   profileForm = new FormGroup({
     name: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required),
     address: new FormGroup({
       street: new FormControl('', Validators.required),
-    })
+    }),
+    emails: new FormArray([
+      new FormControl('', Validators.required),
+      new FormControl('', Validators.required),
+      new FormControl('', Validators.required),
+    ]),
   });
 
-  constructor() {
+  constructor(){
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void{
     // Form values change
     this.profileForm.valueChanges.subscribe(value => {
       console.log('value change: ', value);
@@ -27,21 +31,22 @@ export class ReactiveFormComponent implements OnInit {
     this.profileForm.statusChanges.subscribe(value => {
       console.log('status change: ', value);
     });
+
   }
 
-  get name() {
+  get name(){
     return this.profileForm.get('name');
   }
 
-  get email() {
-    return this.profileForm.get('email');
+  get emails(){
+    return this.profileForm.get('emails') as FormArray;;
   }
 
-  get address() {
+  get address(){
     return this.profileForm.get('address');
   }
 
-  updateProfile() {
+  updateProfile(){
     this.profileForm.patchValue({
       name: 'Nancy',
       email: 'lofasz@test.hu',
@@ -51,7 +56,7 @@ export class ReactiveFormComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  onSubmit(){
     this.updateProfile();
   }
 }

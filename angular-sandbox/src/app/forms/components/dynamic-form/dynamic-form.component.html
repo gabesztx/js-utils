@@ -1,11 +1,7 @@
 <div>E-mail címek</div>
-<!--<form [formGroup]="form" *ngIf="form">
-&lt;!&ndash;  <div class="input-content" *ngFor="let control of emailList.controls; let i=index; trackBy: trackByFn;">
-    <input [formControl]="control"
-           class="input-item"
-           placeholder="e-mail címek"
-           type="text">
-    IsValid: {{control.valid}}
+<form [formGroup]="form" *ngIf="form">
+  <div class="input-content" *ngFor="let control of emailList.controls; let i=index; trackBy: trackByFn;">
+    <input [formControl]="control" class="input-item" placeholder="e-mail címek" type="text">
     <div class="input-item-handler">
       <div class="input-item-handler-btn"
            *ngIf="i===0"
@@ -18,8 +14,9 @@
         <i class="fas fa-plus">-</i>
       </div>
     </div>
-  </div>&ndash;&gt;
+  </div>
+  {{form.valid}}
   <div class=btn-content>
     <button type="button" (click)="onSubmit()" [disabled]="!form.valid">Submit</button>
   </div>
-</form>-->
+</form>

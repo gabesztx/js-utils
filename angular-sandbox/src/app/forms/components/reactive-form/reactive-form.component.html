@@ -6,20 +6,35 @@
     </label>
     <span class="error-input" *ngIf="!name.valid">Not valid!</span>
   </div>
-  <div class="input-item">
-    <label>
-      Email: <input type="text" formControlName="email">
-    </label>
-    <span class="error-input" *ngIf="!email.valid">Not valid!</span>
-  </div>
+  <!--Form Group -->
   <div class="input-item" formGroupName="address">
     <label>
       Street: <input type="text" formControlName="street">
     </label>
     <span class="error-input" *ngIf="!address.valid">Not valid!</span>
   </div>
+
+  <!--Form Array -->
+  <div class="emailContent" formArrayName="emails">
+    <div class="input-item" *ngFor="let email of emails.controls;">
+      <label>
+        Email: <input type="text" [formControl]="email">
+      </label>
+       <span class="error-input" *ngIf="!email.valid">Not valid!</span>
+    </div>
+    Emails valid: {{emails.valid}}
+  </div>
   <div class=btn-content>
     <button type="submit" [disabled]="!profileForm.valid">Submit</button>
   </div>
   <p>Profile form is valid: {{profileForm.valid}}</p>
 </form>
+
+
+<!--
+<div class="input-item">
+  <label>
+    Email: <input type="text" formControlName="email">
+  </label>
+  &lt;!&ndash; <span class="error-input" *ngIf="!email.valid">Not valid!</span>&ndash;&gt;
+</div>-->
