@@ -3,7 +3,7 @@ import { Routes, RouterModule, PreloadAllModules, NoPreloading } from '@angular/
 import { WelcomeComponent } from './welcome/welcome.component';
 import { CustomPreloadingStrategyService } from './services/custom-preloading-strategy.service';
 import { DecoratorsComponent } from './components/decorators-component/decorators.component';
-import { FormsComponent } from './forms/forms.component';
+import { FormComponent } from './form/form.component';
 import { ReflectMetadataComponent } from './components/reflect-metadata/reflect-metadata.component';
 
 const routes: Routes = [
@@ -15,7 +15,7 @@ const routes: Routes = [
   },
   {
     path: 'forms',
-    component: FormsComponent
+    component: FormComponent
   },
   {
     path: 'users',

@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { DecoratorsComponent } from './components/decorators-component/decorators.component';
-import { FormsModule } from './forms/forms.module';
+import { FormModule } from './form/form.module';
 import { ReflectMetadataComponent } from './components/reflect-metadata/reflect-metadata.component';
 // import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 // import { DataService } from "./services/data.service";
@@ -21,7 +21,7 @@ import { ReflectMetadataComponent } from './components/reflect-metadata/reflect-
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule,
+    FormModule,
     // InMemoryWebApiModule.forRoot(DataService)  https://angular.io/tutorial/toh-pt6
   ],
   providers: [],

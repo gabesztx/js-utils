@@ -1,0 +1,11 @@
+<div>Custom Input Controller</div>
+
+<input
+  #input
+  #inputModel="ngModel"
+  [(ngModel)]="model.model"
+  (ngModelChange)="updateNgModel($event)"
+  [required]="required"
+  icellValidator
+  [validators]="validators"
+/>
