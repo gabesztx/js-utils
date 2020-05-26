@@ -17,7 +17,7 @@ import { IcellValidatorDirective } from './directives/validator.directive';
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
     // ReactiveFormsModule
   ]
 })

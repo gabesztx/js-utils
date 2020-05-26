@@ -30,39 +30,39 @@ export class WelcomeComponent implements OnInit {
 
   obj = {};
 
-  constructor(private dbDataService: DbDataService, private userDataService: UserDataService) {
+  constructor(private dbDataService: DbDataService, private userDataService: UserDataService){
   }
 
 
-  ngOnInit(): void {
+  ngOnInit(): void{
     let val = '';
     // TODO: Object defineProperty
-  /*  Object.defineProperty(this.obj, 'name', {
-      get(): any {
-        return val;
-      },
-      set(v: any): void {
-        val = 'aha'
-      },
-      configurable: true,
-      writable: true,
-    });*/
+    /*  Object.defineProperty(this.obj, 'name', {
+        get(): any {
+          return val;
+        },
+        set(v: any): void {
+          val = 'aha'
+        },
+        configurable: true,
+        writable: true,
+      });*/
 
     // this.obj['name'] = 'jolo';
     // console.log(this.obj);
   }
 
-  changeData() {
+  changeData(){
     // this.DUMMY_DATA[1] = 50;
     this.moviesArr[1].title = 'ÖDÖN';
   }
 
-  trackByMethod(index: number, el: any): number {
+  trackByMethod(index: number, el: any): number{
     console.log('trackByMethod', index, ' - ', el);
     return el.id;
   }
 
-  getUsers() {
+  getUsers(){
     console.log('getUsers');
     this.userDataService.getUsers().subscribe(
       (data) => {
@@ -71,7 +71,7 @@ export class WelcomeComponent implements OnInit {
   }
 
 
-  getUser() {
+  getUser(){
     console.log('getUser');
     this.userDataService.getUser(1).subscribe(
       (data) => {

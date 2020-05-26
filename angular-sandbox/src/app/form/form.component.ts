@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-forms',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
-  public inputValue: any = { model: '' };
+  public inputData: any = { model: '' };
 
   validators = {
     error1: (value) => {
@@ -27,10 +28,18 @@ export class FormComponent implements OnInit {
     },
   };
 
-  constructor() {
+  constructor(){
+    /*this.myForm = new FormGroup({
+      'inputData': new FormControl('Gabesztx')
+    });*/
+    // this.inputData = new FormControl({model: 'gabesztx'});
+    // this.inputData = new FormControl('', Validators.minLength(5));
+    // this.myForm = new FormGroup({
+    //   'name': new FormControl('Gaben')
+    // });
   }
 
-  ngOnInit() {
+  ngOnInit(){
   }
 
 }

@@ -24,6 +24,7 @@ export class CustomInputComponent implements OnInit, OnChanges, ControlValueAcce
   @ViewChild('inputModel') public inputModel;
   @Input() public required: boolean;
   @Input() public validators;
+  // @Input() public formControl = new FormControl(null);
 
   @Input()
   public get model(){
@@ -31,6 +32,7 @@ export class CustomInputComponent implements OnInit, OnChanges, ControlValueAcce
   }
 
   public set model(value){
+    // console.log('Set Model', value);
     this._model = value;
     if (this.propagateChanges) {
       this.propagateChanges(this._model);
@@ -51,6 +53,7 @@ export class CustomInputComponent implements OnInit, OnChanges, ControlValueAcce
   }
 
   ngOnInit(): void{
+
   }
 
   registerOnChange(fn: any): void{
@@ -59,6 +62,7 @@ export class CustomInputComponent implements OnInit, OnChanges, ControlValueAcce
         value.input = this.input.nativeElement;
       }
       value.inputModel = this.inputModel;
+
       fn(value);
     };
   }
@@ -74,11 +78,12 @@ export class CustomInputComponent implements OnInit, OnChanges, ControlValueAcce
   }
 
   validate(c: FormControl | any){
+    // console.log('validate');
     if (this.el.nativeElement.querySelectorAll('.ng-invalid').length > 0 || (c.value && !c.value.inputModel.valid)) {
       if (c.value && c.value.inputModel) {
         const err = c.value && c.value.inputModel.errors;
         const validation = c.value && !c.value.inputModel.valid ? err : null;
-        // console.log('validate', validation);
+        console.log(validation);
         return validation;
       }
     }
@@ -89,7 +94,6 @@ export class CustomInputComponent implements OnInit, OnChanges, ControlValueAcce
     if (!$event.target) {
       this.model.model = $event;
       this.model = this.model;
-      console.log(this.inputModel.valid);
     }
     // this.model = this.model;
     // console.log('updateNgModel', $event);
